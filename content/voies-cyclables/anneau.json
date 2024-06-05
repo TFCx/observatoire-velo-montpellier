@@ -7,57 +7,100 @@
                 "type": "LineString",
                 "coordinates": [
                     [
-                        3.874477,
-                        43.605302
+                        3.890465,
+                        43.607223
                     ],
                     [
-                        3.874483,
-                        43.605299
-                    ],
-                    [
-                        3.87463,
-                        43.605247
-                    ],
-                    [
-                        3.874904,
-                        43.605264
-                    ],
-                    [
-                        3.875102,
-                        43.605294
-                    ],
-                    [
-                        3.875284,
-                        43.605285
-                    ],
-                    [
-                        3.875744,
-                        43.605183
-                    ],
-                    [
-                        3.876597,
-                        43.604857
-                    ],
-                    [
-                        3.878749,
-                        43.603999
-                    ],
-                    [
-                        3.880184,
-                        43.603051
-                    ],
-                    [
-                        3.884591,
-                        43.603324
+                        3.890677,
+                        43.608919
                     ]
                 ]
             },
             "properties": {
-                "line": "Anneau",
+                "name": "Blum Zeus",
+                "subline": "Anneau",
+                "quality": "satisfaisant",
+                "status": "wip",
+                "type": "velorue",
+                "line": "Anneau"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        3.890677,
+                        43.608919
+                    ],
+                    [
+                        3.890776,
+                        43.609715
+                    ],
+                    [
+                        3.889305,
+                        43.612445
+                    ],
+                    [
+                        3.888842,
+                        43.613031
+                    ],
+                    [
+                        3.888735,
+                        43.613155
+                    ]
+                ]
+            },
+            "properties": {
+                "name": "Blum Nord",
+                "subline": "Anneau",
+                "quality": "non satisfaisant",
+                "doneAt": "31/12/2019",
+                "status": "done",
+                "type": "bidirectionnelle",
+                "line": "Anneau"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        3.888735,
+                        43.613155
+                    ],
+                    [
+                        3.888681,
+                        43.613218
+                    ],
+                    [
+                        3.888442,
+                        43.613372
+                    ],
+                    [
+                        3.88768,
+                        43.613721
+                    ],
+                    [
+                        3.887052,
+                        43.613899
+                    ],
+                    [
+                        3.886428,
+                        43.613919
+                    ]
+                ]
+            },
+            "properties": {
+                "name": "Mermoz",
+                "subline": "Anneau",
                 "quality": "",
+                "doneAt": "31/12/2019",
                 "status": "planned",
-                "name": "Saint-Denis - Strasbourg",
-                "type": "inconnu"
+                "type": "inconnu",
+                "line": "Anneau"
             }
         },
         {
@@ -120,11 +163,13 @@
                 ]
             },
             "properties": {
-                "line": "Anneau",
-                "quality": "",
-                "status": "planned",
                 "name": "Corum",
-                "type": "inconnu"
+                "subline": "Anneau",
+                "quality": "non satisfaisant",
+                "status": "done",
+                "type": "bidirectionnelle",
+                "line": "Anneau",
+                "doneAt": "31/12/2019"
             }
         },
         {
@@ -175,12 +220,13 @@
                 ]
             },
             "properties": {
-                "line": "Anneau",
+                "name": "Verdanson",
+                "subline": "Anneau",
                 "quality": "non satisfaisant",
                 "doneAt": "31/12/2019",
                 "status": "done",
-                "name": "Verdanson",
-                "type": "inconnu"
+                "type": "bidirectionnelle",
+                "line": "Anneau"
             }
         },
         {
@@ -200,6 +246,27 @@
                         3.873115,
                         43.616945
                     ],
+                    [
+                        3.871836,
+                        43.616006
+                    ]
+                ]
+            },
+            "properties": {
+                "name": "Saint-Charles",
+                "subline": "Anneau",
+                "quality": "satisfaisant",
+                "status": "done",
+                "type": "bidirectionnelle",
+                "line": "Anneau",
+                "doneAt": "01/01/2024"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
                     [
                         3.871836,
                         43.616006
@@ -223,35 +290,12 @@
                 ]
             },
             "properties": {
-                "line": "Anneau",
-                "quality": "",
-                "status": "planned",
                 "name": "Bonnard",
-                "type": "inconnu"
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "LineString",
-                "coordinates": [
-                    [
-                        3.867006,
-                        43.609019
-                    ],
-                    [
-                        3.874477,
-                        43.605302
-                    ]
-                ]
-            },
-            "properties": {
-                "line": "Anneau",
-                "quality": "non satisfaisant",
-                "doneAt": "31/12/2019",
+                "subline": "Anneau",
+                "quality": "",
+                "status": "wip",
                 "type": "velorue",
-                "status": "done",
-                "name": "Gambetta"
+                "line": "Anneau"
             }
         },
         {
@@ -290,11 +334,13 @@
                 ]
             },
             "properties": {
-                "line": "Anneau",
+                "name": "Doria Gerhardt",
+                "subline": "Anneau",
                 "quality": "non satisfaisant",
                 "status": "done",
-                "name": "Doria Gerhardt",
-                "type": "inconnu"
+                "type": "velorue",
+                "line": "Anneau",
+                "doneAt": "31/12/2019"
             }
         },
         {
@@ -317,11 +363,13 @@
                 ]
             },
             "properties": {
-                "line": "Anneau",
+                "name": "Saint-Louis",
+                "subline": "Anneau",
                 "quality": "satisfaisant",
-                "type": "inconnu",
+                "type": "zone-de-rencontre",
                 "status": "done",
-                "name": "Saint-Louis"
+                "line": "Anneau",
+                "doneAt": "01/01/2023"
             }
         },
         {
@@ -330,34 +378,23 @@
                 "type": "LineString",
                 "coordinates": [
                     [
-                        3.890677,
-                        43.608919
+                        3.867006,
+                        43.609019
                     ],
                     [
-                        3.890776,
-                        43.609715
-                    ],
-                    [
-                        3.889305,
-                        43.612445
-                    ],
-                    [
-                        3.888842,
-                        43.613031
-                    ],
-                    [
-                        3.888735,
-                        43.613155
+                        3.874477,
+                        43.605302
                     ]
                 ]
             },
             "properties": {
-                "line": "Anneau",
+                "name": "Gambetta",
+                "subline": "Anneau",
                 "quality": "non satisfaisant",
                 "doneAt": "31/12/2019",
+                "type": "velorue",
                 "status": "done",
-                "name": "Blum Mermoz",
-                "type": "inconnu"
+                "line": "Anneau"
             }
         },
         {
@@ -366,21 +403,75 @@
                 "type": "LineString",
                 "coordinates": [
                     [
-                        3.890465,
-                        43.607223
+                        3.874477,
+                        43.605302
                     ],
                     [
-                        3.890677,
-                        43.608919
+                        3.874483,
+                        43.605299
+                    ],
+                    [
+                        3.87463,
+                        43.605247
+                    ],
+                    [
+                        3.874904,
+                        43.605264
+                    ],
+                    [
+                        3.875102,
+                        43.605294
+                    ],
+                    [
+                        3.875284,
+                        43.605285
+                    ],
+                    [
+                        3.875744,
+                        43.605183
                     ]
                 ]
             },
             "properties": {
-                "line": "Anneau",
+                "name": "Saint-Denis",
+                "subline": "Anneau",
+                "quality": "non satisfaisant",
+                "status": "wip",
+                "type": "voie-verte",
+                "line": "Anneau"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        3.875744,
+                        43.605183
+                    ],
+                    [
+                        3.876597,
+                        43.604857
+                    ],
+                    [
+                        3.878749,
+                        43.603999
+                    ],
+                    [
+                        3.880184,
+                        43.603051
+                    ]
+                ]
+            },
+            "properties": {
+                "name": "Grand Saint-Jean",
+                "subline": "Anneau",
                 "quality": "satisfaisant",
                 "status": "done",
-                "name": "Blum",
-                "type": "inconnu"
+                "type": "velorue",
+                "line": "Anneau",
+                "doneAt": "01/01/2024"
             }
         },
         {
@@ -389,58 +480,23 @@
                 "type": "LineString",
                 "coordinates": [
                     [
-                        3.890339,
-                        43.603686
+                        3.880184,
+                        43.603051
                     ],
                     [
-                        3.888186,
-                        43.605422
-                    ],
-                    [
-                        3.889393,
-                        43.605501
-                    ],
-                    [
-                        3.890451,
-                        43.607117
-                    ],
-                    [
-                        3.890453,
-                        43.607127
+                        3.884591,
+                        43.603324
                     ]
                 ]
             },
             "properties": {
-                "line": "Anneau",
-                "quality": "non satisfaisant",
-                "doneAt": "31/12/2019",
+                "name": "Strasbourg Carnot",
+                "subline": "Anneau",
+                "quality": "satisfaisant",
                 "status": "done",
-                "name": "Voltaire Blum",
-                "type": "inconnu"
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "LineString",
-                "coordinates": [
-                    [
-                        3.888104,
-                        43.603541
-                    ],
-                    [
-                        3.890351,
-                        43.603681
-                    ]
-                ]
-            },
-            "properties": {
+                "type": "bilaterale",
                 "line": "Anneau",
-                "quality": "non satisfaisant",
-                "doneAt": "31/12/2019",
-                "status": "done",
-                "name": "Voltaire",
-                "type": "inconnu"
+                "doneAt": "01/01/2024"
             }
         },
         {
@@ -463,11 +519,13 @@
                 ]
             },
             "properties": {
-                "line": "Anneau",
+                "name": "Strasbourg Kléber",
+                "subline": "Anneau",
                 "quality": "satisfaisant",
                 "status": "done",
-                "name": "Strasbourg",
-                "type": "inconnu"
+                "type": "velorue",
+                "line": "Anneau",
+                "doneAt": "01/01/2023"
             }
         },
         {
@@ -476,38 +534,81 @@
                 "type": "LineString",
                 "coordinates": [
                     [
-                        3.888735,
-                        43.613155
+                        3.888104,
+                        43.603541
                     ],
                     [
-                        3.888681,
-                        43.613218
-                    ],
-                    [
-                        3.888442,
-                        43.613372
-                    ],
-                    [
-                        3.88768,
-                        43.613721
-                    ],
-                    [
-                        3.887052,
-                        43.613899
-                    ],
-                    [
-                        3.886428,
-                        43.613919
+                        3.890351,
+                        43.603681
                     ]
                 ]
             },
             "properties": {
-                "line": "Anneau",
+                "name": "Voltaire",
+                "subline": "Anneau",
                 "quality": "non satisfaisant",
                 "doneAt": "31/12/2019",
                 "status": "done",
-                "name": "Mermoz",
-                "type": "inconnu"
+                "type": "inconnu",
+                "line": "Anneau"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        3.890339,
+                        43.603686
+                    ],
+                    [
+                        3.888186,
+                        43.605422
+                    ]
+                ]
+            },
+            "properties": {
+                "name": "Quai Laurens",
+                "subline": "Anneau",
+                "quality": "non satisfaisant",
+                "doneAt": "31/12/2019",
+                "status": "done",
+                "type": "velorue",
+                "line": "Anneau"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        3.888186,
+                        43.605422
+                    ],
+                    [
+                        3.889393,
+                        43.605501
+                    ],
+                    [
+                        3.890451,
+                        43.607117
+                    ],
+                    [
+                        3.890453,
+                        43.607127
+                    ]
+                ]
+            },
+            "properties": {
+                "name": "Blum Sud",
+                "subline": "Anneau",
+                "quality": "non satisfaisant",
+                "doneAt": "31/12/2019",
+                "status": "done",
+                "type": "bilaterale",
+                "line": "Anneau"
             }
         }
     ]
