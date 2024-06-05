@@ -206,35 +206,32 @@ export const useMap = () => {
       paint: {
         'line-width': 4,
         'line-color': ['get', 'color'],
-        'line-dasharray': [0, 2, 2]
+        'line-dasharray': [0.6, 1.0]
+      }
+    });
+    map.addLayer({
+      id: 'wip-sectionsB',
+      type: 'line',
+      source: 'wip-sections',
+      paint: {
+        'line-width': 4,
+        'line-color': ['get', 'color'],
       }
     });
 
-    const dashArraySequence = [
-      [0, 2, 2],
-      [0.5, 2, 1.5],
-      [1, 2, 1],
-      [1.5, 2, 0.5],
-      [2, 2, 0],
-      [0, 0.5, 2, 1.5],
-      [0, 1, 2, 1],
-      [0, 1.5, 2, 0.5]
-    ];
-    let step = 0;
-    function animateDashArray(timestamp: number) {
-      // Update line-dasharray using the next value in dashArraySequence. The
-      // divisor in the expression `timestamp / 45` controls the animation speed.
-      const newStep = Math.floor((timestamp / 45) % dashArraySequence.length);
+    function animateOpacity(timestamp: number, animationLength: number, attribute: string) {
 
-      if (newStep !== step) {
-        map.setPaintProperty('wip-sections', 'line-dasharray', dashArraySequence[step]);
-        step = newStep;
+      function subAnimateOpacity(timestamp: number) {
+        const opacity01 = (timestamp % animationLength) / animationLength
+        const opacity = (Math.abs(opacity01 - 0.5)) * 2
+        map.setPaintProperty(attribute, 'line-opacity', opacity);
+
+        // Request the next frame of the animation.
+        requestAnimationFrame(subAnimateOpacity);
       }
-
-      // Request the next frame of the animation.
-      requestAnimationFrame(animateDashArray);
+      subAnimateOpacity(timestamp)
     }
-    animateDashArray(0);
+    animateOpacity(0, 1000*0.75, 'wip-sectionsB');
   }
 
   function plotPlannedSections({ map, features }: { map: Map; features: ColoredLineStringFeature[] }) {
@@ -254,7 +251,7 @@ export const useMap = () => {
       paint: {
         'line-width': 4,
         'line-color': ['get', 'color'],
-        'line-dasharray': [2, 2]
+        'line-dasharray': [0.6, 1.0]
       }
     });
   }
