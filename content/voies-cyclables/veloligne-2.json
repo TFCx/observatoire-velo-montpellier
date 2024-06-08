@@ -7,6 +7,103 @@
                 "type": "LineString",
                 "coordinates": [
                     [
+                        3.896652,
+                        43.609884
+                    ],
+                    [
+                        3.896003,
+                        43.609764
+                    ],
+                    [
+                        3.895309,
+                        43.609675
+                    ],
+                    [
+                        3.894538,
+                        43.609548
+                    ],
+                    [
+                        3.89404,
+                        43.609544
+                    ],
+                    [
+                        3.89085,
+                        43.610388
+                    ],
+                    [
+                        3.890424,
+                        43.610369
+                    ]
+                ]
+            },
+            "properties": {
+                "subline": "2",
+                "quality": "",
+                "status": "planned",
+                "type": "inconnu",
+                "line": "2",
+                "name": "Lycée Mermoz Sud"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        3.896652,
+                        43.609884
+                    ],
+                    [
+                        3.89773,
+                        43.609903
+                    ],
+                    [
+                        3.897746,
+                        43.609652
+                    ],
+                    [
+                        3.898614,
+                        43.609768
+                    ],
+                    [
+                        3.898683,
+                        43.609982
+                    ],
+                    [
+                        3.898707,
+                        43.610002
+                    ],
+                    [
+                        3.898777,
+                        43.610017
+                    ],
+                    [
+                        3.898964,
+                        43.610055
+                    ],
+                    [
+                        3.900069,
+                        43.610189
+                    ]
+                ]
+            },
+            "properties": {
+                "subline": "2",
+                "quality": "non satisfaisant",
+                "doneAt": "31/12/2019",
+                "status": "done",
+                "type": "voie-verte",
+                "line": "2",
+                "name": "Passerelle Moulin l'Eveque"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
                         3.900069,
                         43.610189
                     ],
@@ -113,6 +210,28 @@
                     [
                         3.908882,
                         43.609678
+                    ]
+                ]
+            },
+            "properties": {
+                "subline": "2",
+                "quality": "",
+                "doneAt": "31/12/2019",
+                "status": "done",
+                "devToSplit": "",
+                "type": "bidirectionnelle",
+                "line": "2",
+                "name": "Parallèle Mendès France"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        3.908882,
+                        43.609678
                     ],
                     [
                         3.909013,
@@ -161,9 +280,47 @@
                 "quality": "",
                 "doneAt": "31/12/2019",
                 "status": "done",
-                "devToSplit": "yes",
-                "type": "inconnu",
-                "line": 2
+                "devToSplit": "",
+                "type": "bidirectionnelle",
+                "line": "2",
+                "name": "Albert Einstein"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        3.914902,
+                        43.610575
+                    ],
+                    [
+                        3.919177,
+                        43.61138
+                    ],
+                    [
+                        3.923687,
+                        43.611318
+                    ],
+                    [
+                        3.92856,
+                        43.611752
+                    ],
+                    [
+                        3.930141,
+                        43.61191
+                    ]
+                ]
+            },
+            "properties": {
+                "subline": "2",
+                "quality": "non satisfaisant",
+                "doneAt": "31/12/2019",
+                "status": "done",
+                "type": "bidirectionnelle",
+                "line": "2",
+                "name": "Château de Flaugergues"
             }
         },
         {
@@ -245,140 +402,10 @@
                 "subline": "2",
                 "status": "postponed",
                 "type": "aucun",
-                "line": 2
+                "line": "2",
+                "name": "Route de Maugio"
             },
             "id": "kml_47"
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "LineString",
-                "coordinates": [
-                    [
-                        3.896652,
-                        43.609884
-                    ],
-                    [
-                        3.89773,
-                        43.609903
-                    ],
-                    [
-                        3.897746,
-                        43.609652
-                    ],
-                    [
-                        3.898614,
-                        43.609768
-                    ],
-                    [
-                        3.898683,
-                        43.609982
-                    ],
-                    [
-                        3.898707,
-                        43.610002
-                    ],
-                    [
-                        3.898777,
-                        43.610017
-                    ],
-                    [
-                        3.898964,
-                        43.610055
-                    ],
-                    [
-                        3.900069,
-                        43.610189
-                    ]
-                ]
-            },
-            "properties": {
-                "subline": "2",
-                "quality": "non satisfaisant",
-                "doneAt": "31/12/2019",
-                "status": "done",
-                "type": "inconnu",
-                "line": 2
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "LineString",
-                "coordinates": [
-                    [
-                        3.896652,
-                        43.609884
-                    ],
-                    [
-                        3.896003,
-                        43.609764
-                    ],
-                    [
-                        3.895309,
-                        43.609675
-                    ],
-                    [
-                        3.894538,
-                        43.609548
-                    ],
-                    [
-                        3.89404,
-                        43.609544
-                    ],
-                    [
-                        3.89085,
-                        43.610388
-                    ],
-                    [
-                        3.890424,
-                        43.610369
-                    ]
-                ]
-            },
-            "properties": {
-                "subline": "2",
-                "quality": "",
-                "status": "planned",
-                "type": "inconnu",
-                "line": 2
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "LineString",
-                "coordinates": [
-                    [
-                        3.914902,
-                        43.610575
-                    ],
-                    [
-                        3.919177,
-                        43.61138
-                    ],
-                    [
-                        3.923687,
-                        43.611318
-                    ],
-                    [
-                        3.92856,
-                        43.611752
-                    ],
-                    [
-                        3.930141,
-                        43.61191
-                    ]
-                ]
-            },
-            "properties": {
-                "subline": "2",
-                "quality": "non satisfaisant",
-                "doneAt": "31/12/2019",
-                "status": "done",
-                "type": "inconnu",
-                "line": 2
-            }
         }
     ]
 }

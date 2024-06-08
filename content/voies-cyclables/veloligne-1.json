@@ -34,7 +34,8 @@
                 "doneAt": "31/12/2019",
                 "status": "done",
                 "type": "bidirectionnelle",
-                "line": "1"
+                "line": "1",
+                "name": "Delmas"
             }
         },
         {
@@ -92,7 +93,8 @@
                 "subline": "1a",
                 "status": "postponed",
                 "type": "aucun",
-                "line": "1"
+                "line": "1",
+                "name": "Jean-Jaurès"
             },
             "id": "kml_40"
         },
@@ -152,7 +154,8 @@
                 "quality": "",
                 "status": "planned",
                 "type": "inconnu",
-                "line": "1"
+                "line": "1",
+                "name": "Chemin des Alouettes"
             }
         },
         {
@@ -168,6 +171,27 @@
                         3.89901,
                         43.646701
                     ],
+                    [
+                        3.899535,
+                        43.648021
+                    ]
+                ]
+            },
+            "properties": {
+                "subline": "1a",
+                "quality": "",
+                "doneAt": "31/12/2019",
+                "status": "planned",
+                "type": "bidirectionnelle",
+                "line": "1",
+                "name": "Route de Clapiers Sud"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
                     [
                         3.899535,
                         43.648021
@@ -200,7 +224,8 @@
                 "doneAt": "31/12/2019",
                 "status": "planned",
                 "type": "inconnu",
-                "line": "1"
+                "line": "1",
+                "name": "Route de Clapiers Parallèle"
             }
         },
         {
@@ -251,6 +276,52 @@
                     [
                         3.899082,
                         43.655958
+                    ]
+                ]
+            },
+            "properties": {
+                "subline": "1a",
+                "quality": "satisfaisant",
+                "doneAt": "31/12/2019",
+                "status": "done",
+                "type": "bidirectionnelle",
+                "line": "1",
+                "name": "D21 Parallèle Foret"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        3.899082,
+                        43.655958
+                    ],
+                    [
+                        3.899654,
+                        43.657139
+                    ]
+                ]
+            },
+            "properties": {
+                "subline": "1a",
+                "quality": "satisfaisant",
+                "doneAt": "31/12/2019",
+                "status": "done",
+                "type": "inconnu",
+                "line": "1",
+                "name": "Barreau Cross Lumière"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        3.899654,
+                        43.657139
                     ],
                     [
                         3.900381,
@@ -312,7 +383,8 @@
                 "doneAt": "31/12/2019",
                 "status": "done",
                 "type": "bidirectionnelle",
-                "line": "1"
+                "line": "1",
+                "name": "D21 Route de Teyran"
             }
         },
         {
@@ -352,7 +424,8 @@
                 "doneAt": "",
                 "status": "planned",
                 "type": "bilaterale",
-                "line": "1"
+                "line": "1",
+                "name": "Charles de Gaule Sud Est"
             }
         },
         {
@@ -420,7 +493,8 @@
                 "doneAt": "01/01/2024",
                 "status": "done",
                 "type": "voie-verte",
-                "line": "1"
+                "line": "1",
+                "name": "Chemin de Verchant"
             }
         },
         {
@@ -444,7 +518,8 @@
                 "doneAt": "31/12/2019",
                 "status": "done",
                 "type": "voie-verte",
-                "line": "1"
+                "line": "1",
+                "name": "Chemin du Clos de l'Armet"
             }
         },
         {
@@ -495,7 +570,8 @@
                 "quality": "",
                 "status": "planned",
                 "type": "bilaterale",
-                "line": "1"
+                "line": "1",
+                "name": "Route de Nimes Aube Rouge"
             }
         },
         {
@@ -526,7 +602,8 @@
                 "quality": "non satisfaisant",
                 "status": "done",
                 "type": "bilaterale",
-                "line": "1"
+                "line": "1",
+                "name": "Route de Nimes Carrefour"
             }
         },
         {
@@ -661,7 +738,8 @@
                 "quality": "",
                 "status": "planned",
                 "type": "voie-verte",
-                "line": "1"
+                "line": "1",
+                "name": "Parallèle Saint-Aunès"
             }
         },
         {
@@ -920,7 +998,8 @@
                 "quality": "",
                 "status": "planned",
                 "type": "voie-verte",
-                "line": "1"
+                "line": "1",
+                "name": "Vendargues Castries"
             }
         },
         {
@@ -1087,7 +1166,8 @@
                 "quality": "",
                 "status": "planned",
                 "type": "inconnu",
-                "line": "1"
+                "line": "1",
+                "name": "Castries Saint-Geniès"
             }
         },
         {
@@ -1138,7 +1218,8 @@
                 "quality": "satisfaisant",
                 "status": "done",
                 "type": "inconnu",
-                "line": "1"
+                "line": "1",
+                "name": "Saint-Geniès Est"
             }
         },
         {
@@ -1180,7 +1261,8 @@
                 "subline": "1c",
                 "status": "postponed",
                 "type": "aucun",
-                "line": "1"
+                "line": "1",
+                "name": "Vendargues Sud"
             },
             "id": "kml_20"
         },
@@ -1212,7 +1294,8 @@
                 "quality": "non satisfaisant",
                 "status": "done",
                 "type": "inconnu",
-                "line": "1"
+                "line": "1",
+                "name": "Avenue du 8 Mai 45"
             }
         },
         {
@@ -1271,7 +1354,8 @@
                 "quality": "",
                 "status": "planned",
                 "type": "inconnu",
-                "line": "1"
+                "line": "1",
+                "name": "Vendargues Est"
             }
         },
         {
@@ -1306,7 +1390,8 @@
                 "quality": "",
                 "status": "planned",
                 "type": "inconnu",
-                "line": "1"
+                "line": "1",
+                "name": "Avenue de l'Or"
             }
         },
         {
@@ -1376,7 +1461,8 @@
                 "subline": "1c",
                 "status": "postponed",
                 "type": "aucun",
-                "line": "1"
+                "line": "1",
+                "name": "Saint-Brès"
             },
             "id": "kml_36"
         }
