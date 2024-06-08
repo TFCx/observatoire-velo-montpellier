@@ -206,7 +206,7 @@ export const useMap = () => {
       paint: {
         'line-width': 4,
         'line-color': ['get', 'color'],
-        'line-dasharray': [0.6, 1.0]
+        'line-dasharray': [0.2, 1.1]
       }
     });
     map.addLayer({
@@ -251,7 +251,7 @@ export const useMap = () => {
       paint: {
         'line-width': 4,
         'line-color': ['get', 'color'],
-        'line-dasharray': [0.6, 1.0]
+        'line-dasharray': [0.2, 1.1]
       }
     });
   }
