@@ -64,7 +64,7 @@
                 "subline": "5",
                 "status": "postponed",
                 "type": "aucun",
-                "line": 5
+                "line": "5"
             },
             "id": "kml_24"
         },
@@ -88,7 +88,7 @@
                 "quality": "",
                 "status": "planned",
                 "type": "inconnu",
-                "line": 5
+                "line": "5"
             }
         }
     ]

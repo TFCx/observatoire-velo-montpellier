@@ -301,7 +301,7 @@
                 "quality": "satisfaisant",
                 "status": "done",
                 "type": "inconnu",
-                "line": 8
+                "line": "8"
             }
         },
         {
@@ -557,7 +557,7 @@
                 "doneAt": "31/12/2019",
                 "status": "done",
                 "type": "inconnu",
-                "line": 8
+                "line": "8"
             }
         },
         {
@@ -604,7 +604,7 @@
                 "quality": "",
                 "status": "planned",
                 "type": "inconnu",
-                "line": 8
+                "line": "8"
             }
         },
         {
@@ -663,7 +663,7 @@
                 "quality": "",
                 "status": "planned",
                 "type": "inconnu",
-                "line": 8
+                "line": "8"
             }
         },
         {
@@ -718,7 +718,7 @@
                 "quality": "",
                 "doneAt": "31/12/2019",
                 "type": "inconnu",
-                "line": 8,
+                "line": "8",
                 "status": "planned"
             }
         },
@@ -751,7 +751,7 @@
                 "doneAt": "31/12/2019",
                 "status": "done",
                 "type": "inconnu",
-                "line": 8
+                "line": "8"
             }
         },
         {
@@ -775,7 +775,7 @@
                 "doneAt": "31/12/2019",
                 "status": "done",
                 "type": "inconnu",
-                "line": 8
+                "line": "8"
             }
         },
         {
@@ -798,7 +798,7 @@
                 "quality": "",
                 "status": "planned",
                 "type": "inconnu",
-                "line": 8
+                "line": "8"
             }
         }
     ]

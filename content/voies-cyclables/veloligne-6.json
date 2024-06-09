@@ -177,7 +177,7 @@
                 "quality": "",
                 "status": "planned",
                 "type": "inconnu",
-                "line": 6
+                "line": "6"
             }
         },
         {
@@ -304,7 +304,7 @@
                 "quality": "",
                 "status": "planned",
                 "type": "inconnu",
-                "line": 6
+                "line": "6"
             }
         },
         {
@@ -371,7 +371,7 @@
                 "quality": "",
                 "status": "planned",
                 "type": "inconnu",
-                "line": 6
+                "line": "6"
             }
         },
         {
@@ -414,7 +414,7 @@
                 "quality": "",
                 "status": "planned",
                 "type": "inconnu",
-                "line": 6
+                "line": "6"
             }
         },
         {
@@ -476,7 +476,7 @@
                 "subline": "6",
                 "status": "postponed",
                 "type": "aucun",
-                "line": 6
+                "line": "6"
             },
             "id": "kml_51"
         },
@@ -575,7 +575,7 @@
                 "subline": "6",
                 "status": "postponed",
                 "type": "aucun",
-                "line": 6
+                "line": "6"
             },
             "id": "kml_53"
         },
@@ -651,7 +651,7 @@
                 "quality": "",
                 "status": "planned",
                 "type": "inconnu",
-                "line": 6
+                "line": "6"
             }
         },
         {
@@ -718,7 +718,7 @@
                 "quality": "",
                 "status": "planned",
                 "type": "inconnu",
-                "line": 6
+                "line": "6"
             }
         },
         {
@@ -838,7 +838,7 @@
                 "doneAt": "31/12/2019",
                 "status": "done",
                 "type": "inconnu",
-                "line": 6
+                "line": "6"
             }
         },
         {
@@ -847,7 +847,7 @@
                 "subline": "6a",
                 "status": "postponed",
                 "type": "aucun",
-                "line": 6
+                "line": "6"
             },
             "geometry": {
                 "type": "LineString",
@@ -869,7 +869,7 @@
                 "subline": "6a",
                 "status": "postponed",
                 "type": "aucun",
-                "line": 6
+                "line": "6"
             },
             "geometry": {
                 "type": "LineString",

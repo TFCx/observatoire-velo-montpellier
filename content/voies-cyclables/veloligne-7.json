@@ -104,7 +104,7 @@
                 "subline": "7",
                 "status": "postponed",
                 "type": "aucun",
-                "line": 7
+                "line": "7"
             },
             "id": "kml_46"
         },
@@ -171,7 +171,7 @@
                 "subline": "7",
                 "status": "postponed",
                 "type": "aucun",
-                "line": 7
+                "line": "7"
             },
             "id": "kml_11"
         },
@@ -254,7 +254,7 @@
                 "subline": "7",
                 "status": "postponed",
                 "type": "aucun",
-                "line": 7
+                "line": "7"
             },
             "id": "kml_63"
         },
@@ -293,7 +293,7 @@
                 "subline": "7",
                 "status": "postponed",
                 "type": "aucun",
-                "line": 7
+                "line": "7"
             },
             "id": "kml_22"
         },
@@ -697,7 +697,7 @@
                 "quality": "",
                 "status": "planned",
                 "type": "inconnu",
-                "line": 7
+                "line": "7"
             }
         }
     ]
