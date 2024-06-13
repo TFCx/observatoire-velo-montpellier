@@ -95,8 +95,7 @@
                 "type": "aucun",
                 "line": "1",
                 "name": "Jean-Jaurès"
-            },
-            "id": "kml_40"
+            }
         },
         {
             "type": "Feature",
@@ -1263,8 +1262,7 @@
                 "type": "aucun",
                 "line": "1",
                 "name": "Vendargues Sud"
-            },
-            "id": "kml_20"
+            }
         },
         {
             "type": "Feature",
@@ -1463,8 +1461,7 @@
                 "type": "aucun",
                 "line": "1",
                 "name": "Saint-Brès"
-            },
-            "id": "kml_36"
+            }
         }
     ]
 }

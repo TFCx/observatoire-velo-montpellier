@@ -117,8 +117,7 @@
                 "status": "postponed",
                 "type": "aucun",
                 "line": "C"
-            },
-            "id": "kml_85"
+            }
         },
         {
             "type": "Feature",
@@ -156,8 +155,7 @@
                 "status": "postponed",
                 "type": "aucun",
                 "line": "A"
-            },
-            "id": "kml_50"
+            }
         },
         {
             "type": "Feature",
@@ -191,8 +189,7 @@
                 "status": "postponed",
                 "type": "aucun",
                 "line": "A"
-            },
-            "id": "kml_6"
+            }
         },
         {
             "type": "Feature",
