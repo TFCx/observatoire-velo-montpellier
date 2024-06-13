@@ -100,6 +100,54 @@ export const useMap = () => {
     map.addImage('cross-icon', cross.data, { sdf: true });
   }
 
+
+  function plotQualityBackgroundNok({ map, features }: { map: Map; features: LineStringFeature[] }) {
+    const sections = features.filter(feature => feature.properties.quality === 'non satisfaisant');
+
+    if (sections.length === 0 && !map.getLayer('quality-non-satisfaisant')) {
+      return;
+    }
+    if (upsertMapSource(map, 'quality-non-satisfaisant', sections)) {
+      return;
+    }
+
+    map.addLayer({
+      id: 'quality-non-satisfaisant',
+      type: 'line',
+      source: 'quality-non-satisfaisant',
+      layout: { 'line-cap': 'round' },
+      paint: {
+        'line-gap-width': 5,
+        'line-width': 8,
+        'line-color': '#ffa3af',
+      }
+    });
+  }
+
+  function plotQualityBackgroundOk({ map, features }: { map: Map; features: LineStringFeature[] }) {
+    const sections = features.filter(feature => feature.properties.quality === 'satisfaisant');
+
+    if (sections.length === 0 && !map.getLayer('quality-satisfaisant')) {
+      return;
+    }
+    if (upsertMapSource(map, 'quality-satisfaisant', sections)) {
+      return;
+    }
+
+
+    map.addLayer({
+      id: 'quality-satisfaisant',
+      type: 'line',
+      source: 'quality-satisfaisant',
+      layout: { 'line-cap': 'round' },
+      paint: {
+        'line-gap-width': 5,
+        'line-width': 8,
+        'line-color': '#9cffaf',
+      }
+    });
+  }
+
   function plotUnderlinedSections({ map, features }: { map: Map; features: LineStringFeature[] }) {
     const sections = features.map((feature, index) => ({ id: index, ...feature }));
 
@@ -584,6 +632,9 @@ export const useMap = () => {
 
   function plotFeatures({ map, features }: { map: Map; features: Feature[] }) {
     const lineStringFeatures = features.filter(isLineStringFeature).sort(sortByLine).map(addLineColor);
+
+    plotQualityBackgroundNok({ map, features: lineStringFeatures });
+    plotQualityBackgroundOk({ map, features: lineStringFeatures });
 
     plotUnderlinedSections({ map, features: lineStringFeatures });
     plotDoneSections({ map, features: lineStringFeatures });

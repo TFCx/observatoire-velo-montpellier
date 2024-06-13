@@ -12,6 +12,8 @@ export type LaneType =
 
 export type LaneStatus = 'done' | 'wip' | 'planned' | 'postponed' | 'unknown' | 'variante' | 'variante-postponed';
 
+export type Quality = 'non satisfaisant' | 'satisfaisant';
+
 export type LineStringFeature = {
   type: 'Feature';
   properties: {
@@ -19,6 +21,7 @@ export type LineStringFeature = {
     line: number;
     name: string;
     status: LaneStatus;
+    quality: Quality;
     type: LaneType;
     doneAt?: string;
     link?: string;
