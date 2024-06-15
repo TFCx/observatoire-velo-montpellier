@@ -470,12 +470,21 @@ export const useMap = () => {
         source: `postponed-sections-${color}`,
         layout: {
           'symbol-placement': 'line',
-          'symbol-spacing': 1,
+          'symbol-spacing': 15,
           'icon-image': 'cross-icon',
           'icon-size': 1.2
         },
         paint: {
-          'icon-color': color
+          'icon-color': color,
+          'icon-opacity': [
+            'interpolate',
+            ['linear'],
+            ['zoom'],
+            12,
+            0.35, // opacity 0.4 at low zoom
+            14,
+            0.6 // opacity 0.35 at high zoom
+          ]
         }
       });
       map.addLayer({
