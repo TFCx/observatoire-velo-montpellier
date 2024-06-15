@@ -797,11 +797,12 @@
                 ]
             },
             "properties": {
-                "subline": "1a",
+                "id": "Alouettes-commun",
                 "quality": "",
                 "status": "planned",
                 "type": "inconnu",
-                "line": 1
+                "line": "B",
+                "name": "Chemin des Alouettes"
             }
         },
         {
