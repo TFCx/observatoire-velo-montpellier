@@ -1,10 +1,5 @@
 ---
-name: Anneau
-line: "Anneau"
-color: "#9d9d9c"
-from: Anneau
-to: Anneau
-distance: 0000
+line: Anneau
 description: On met une description ici
 trafic: 0k vélos/jour
 cover: https://cyclopolis.lavilleavelo.org/vl2/bd-vivier-merle.jpg

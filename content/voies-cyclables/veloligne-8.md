@@ -1,10 +1,5 @@
 ---
-name: Vélolignes 8
-line: "8"
-color: "#bb2868"
-from: Montpellier (Figerolles)
-to: Cournonsec
-distance: 18200
+line: 8
 description: On met une description ici
 trafic: 0k vélos/jour
 cover: https://cyclopolis.lavilleavelo.org/vl2/bd-vivier-merle.jpg

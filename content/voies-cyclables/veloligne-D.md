@@ -1,10 +1,5 @@
 ---
-name: Vélolignes D
-line: "D"
-color: "#c22d1d"
-from: Gare Sud de France
-to: Castries
-distance: 14500
+line: D
 description: On met une description ici
 trafic: 0k vélos/jour
 cover: https://cyclopolis.lavilleavelo.org/vl2/bd-vivier-merle.jpg

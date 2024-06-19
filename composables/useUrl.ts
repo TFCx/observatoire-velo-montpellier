@@ -5,13 +5,13 @@ export const useUrl = () => {
     return path.endsWith('/') ? path.slice(0, -1) : path;
   }
 
-  function getVoieCyclablePath(line: number) {
-    return `${config.slug}-${line}`;
+  function getVoieCyclablePath(lineId: string) {
+    return `${config.slug}-${lineId}`;
   }
 
-  function getVoieCyclableRegex() {
-    return new RegExp(`${config.slug}-(1[0-2]|[1-9])\\b`);
+  function getLineIdRegex() {
+    return new RegExp(`${config.slug}-(.*)\\b`);
   }
 
-  return { withoutTrailingSlash, getVoieCyclablePath, getVoieCyclableRegex };
+  return { withoutTrailingSlash, getVoieCyclablePath, getLineIdRegex };
 };

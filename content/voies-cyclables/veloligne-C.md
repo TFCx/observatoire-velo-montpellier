@@ -1,10 +1,5 @@
 ---
-name: Vélolignes C
-line: "C"
-color: "#f4c3d3"
-from: Carnon
-to: Juvignac
-distance: 25500
+line: C
 description: On met une description ici
 trafic: 0k vélos/jour
 cover: https://cyclopolis.lavilleavelo.org/vl2/bd-vivier-merle.jpg

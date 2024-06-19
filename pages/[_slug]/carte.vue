@@ -6,10 +6,10 @@
 
 <script setup>
 const { path } = useRoute();
-const { getVoieCyclableRegex } = useUrl();
+const { getLineIdRegex } = useUrl();
 const { getRevName } = useConfig();
 
-const regex = getVoieCyclableRegex();
+const regex = getLineIdRegex();
 const line = path.match(regex)[1];
 
 // https://github.com/nuxt/framework/issues/3587

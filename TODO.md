@@ -1,5 +1,4 @@
 - Ajout des tronçons multi-lignes
-- Réparer les pages des lignes
 - Gérer les hierarchies de lignes (1a/1b/1c)
 - Aménagements différents selon le sens
 - Améliorer la visualisation des tronçons multi-lignes

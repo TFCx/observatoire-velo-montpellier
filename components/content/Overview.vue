@@ -42,6 +42,6 @@ const { data: geojson } = await useAsyncData(`geojson-${path}`, () => {
 
 const features = geojson.value.features;
 
-const color = getLineColor(Number(voie.line));
+const color = getLineColor(voie.line);
 const distance = getTotalDistance([geojson.value]);
 </script>

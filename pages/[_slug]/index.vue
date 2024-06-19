@@ -28,9 +28,9 @@
 const { path } = useRoute();
 const { getLineColor } = useColors();
 const { getRevName } = useConfig();
-const { getVoieCyclableRegex } = useUrl();
+const { getLineIdRegex } = useUrl();
 
-const regex = getVoieCyclableRegex();
+const regex = getLineIdRegex();
 const line = path.match(regex)[1];
 
 // https://github.com/nuxt/framework/issues/3587
@@ -40,7 +40,9 @@ definePageMeta({
 });
 
 const { data: voie } = await useAsyncData(`${path}`, () => {
-  return queryContent('voies-cyclables').where({ _type: 'markdown', line: Number(line) }).findOne();
+  const lineInteger = Number(line)
+  const lineId = !Number.isNaN(lineInteger) ? lineInteger : line
+  return queryContent('voies-cyclables').where({ _type: 'markdown', line: lineId }).findOne();
 });
 
 const description = `Tout savoir sur la ${getRevName('singular')} ${voie.value.line}. Avancement, carte interactive, détail rue par rue, calendrier des travaux et photos du projet.`;

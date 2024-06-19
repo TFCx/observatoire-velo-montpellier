@@ -1,10 +1,5 @@
 ---
-name: Vélolignes 3
-line: "3"
-color: "#048aca"
-from: Montpellier (Odysséum)
-to: Gare Sud De France
-distance: 2100
+line: 3
 description: On met une description ici
 trafic: 0k vélos/jour
 cover: https://cyclopolis.lavilleavelo.org/vl2/bd-vivier-merle.jpg
