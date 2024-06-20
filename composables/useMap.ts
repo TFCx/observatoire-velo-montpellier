@@ -1,7 +1,7 @@
 import { GeoJSONSource, LngLatBounds, Map } from 'maplibre-gl';
 import { isCompteurFeature, isLineStringFeature, isPerspectiveFeature, isPointFeature, type Feature, type LineStringFeature } from '~/types';
 
-type ColoredLineStringFeature = LineStringFeature & { properties: { color: string } };
+type MultiColoredLineStringFeature = LineStringFeature & { properties: { colors: string[] } };
 
 type Compteur = {
   name: string;
@@ -51,10 +51,10 @@ function getCrossIconUrl(): string {
   return canvas.toDataURL();
 }
 
-function groupFeaturesByColor(features: ColoredLineStringFeature[]) {
+function groupFeaturesByColor(features: MultiColoredLineStringFeature[]) {
   const featuresByColor: Record<string, Feature[]> = {};
   for (const feature of features) {
-    const color = feature.properties.color;
+    const color = feature.properties.colors[0];
 
     if (featuresByColor[color]) {
       featuresByColor[color].push(feature);
@@ -68,11 +68,16 @@ function groupFeaturesByColor(features: ColoredLineStringFeature[]) {
 export const useMap = () => {
   const { getLineColor } = useColors();
 
-  function addLineColor(feature: LineStringFeature): ColoredLineStringFeature {
+  function addLineColor(feature: LineStringFeature): MultiColoredLineStringFeature {
+    let sub_array: string[] = []
+    if(feature.properties.id) {
+      console.log(feature.properties.id)
+      sub_array = ["orange"]
+    }
     return {
       ...feature,
       properties: {
-        color: getLineColor(feature.properties.line),
+        colors: [getLineColor(feature.properties.line)].concat(sub_array),
         ...feature.properties
       }
     };
@@ -214,7 +219,7 @@ export const useMap = () => {
     });
   }
 
-  function plotDoneSections({ map, features }: { map: Map; features: ColoredLineStringFeature[] }) {
+  function plotDoneSections({ map, features }: { map: Map; features: MultiColoredLineStringFeature[] }) {
     const sections = features.filter(feature => feature.properties.status === 'done');
 
     // si il n'y a rien a afficher et que la couche n'existe pas, on ne fait rien
@@ -232,12 +237,26 @@ export const useMap = () => {
       source: 'done-sections',
       paint: {
         'line-width': 4,
-        'line-color': ['get', 'color']
+        'line-color': ["to-color", ['at', 0, ['get', 'colors']]]
       }
     });
+
+    function animateColor(timestamp: number, animationLength: number, attribute: string) {
+
+      function subAnimateColor(timestamp: number) {
+        const t = (timestamp % animationLength) / animationLength
+        // WIP : trouver les index out of bounds
+        map.setPaintProperty(attribute, 'line-color', ["to-color", ['at', ['floor', ['*', t, ['length', ['get', 'colors']]]], ['get', 'colors']]]);
+
+        // Request the next frame of the animation.
+        requestAnimationFrame(subAnimateColor);
+      }
+      subAnimateColor(timestamp)
+    }
+    animateColor(0, 3000, 'done-sections');
   }
 
-  function plotWipSections({ map, features }: { map: Map; features: ColoredLineStringFeature[] }) {
+  function plotWipSections({ map, features }: { map: Map; features: MultiColoredLineStringFeature[] }) {
     const sections = features.filter(feature => feature.properties.status === 'wip');
 
     if (sections.length === 0 && !map.getLayer('wip-sections')) {
@@ -253,7 +272,7 @@ export const useMap = () => {
       source: 'wip-sections',
       paint: {
         'line-width': 4,
-        'line-color': ['get', 'color'],
+        'line-color': ["to-color", ['at', 0, ['get', 'colors']]],
         'line-dasharray': [0.2, 1.1]
       }
     });
@@ -263,7 +282,7 @@ export const useMap = () => {
       source: 'wip-sections',
       paint: {
         'line-width': 4,
-        'line-color': ['get', 'color'],
+        'line-color': ["to-color", ['at', 0, ['get', 'colors']]],
       }
     });
 
@@ -282,7 +301,7 @@ export const useMap = () => {
     animateOpacity(0, 1000*0.75, 'wip-sectionsB');
   }
 
-  function plotPlannedSections({ map, features }: { map: Map; features: ColoredLineStringFeature[] }) {
+  function plotPlannedSections({ map, features }: { map: Map; features: MultiColoredLineStringFeature[] }) {
     const sections = features.filter(feature => feature.properties.status === 'planned');
 
     if (sections.length === 0 && !map.getLayer('planned-sections')) {
@@ -298,13 +317,13 @@ export const useMap = () => {
       source: 'planned-sections',
       paint: {
         'line-width': 4,
-        'line-color': ['get', 'color'],
+        'line-color': ["to-color", ['at', 0, ['get', 'colors']]],
         'line-dasharray': [0.2, 1.1]
       }
     });
   }
 
-  function plotVarianteSections({ map, features }: { map: Map; features: ColoredLineStringFeature[] }) {
+  function plotVarianteSections({ map, features }: { map: Map; features: MultiColoredLineStringFeature[] }) {
     const sections = features.filter(feature => feature.properties.status === 'variante');
 
     if (sections.length === 0 && !map.getLayer('variante-sections')) {
@@ -320,7 +339,7 @@ export const useMap = () => {
       source: 'variante-sections',
       paint: {
         'line-width': 4,
-        'line-color': ['get', 'color'],
+        'line-color': ["to-color", ['at', 0, ['get', 'colors']]],
         'line-dasharray': [2, 2],
         'line-opacity': 0.5
       }
@@ -346,7 +365,7 @@ export const useMap = () => {
     map.on('mouseleave', 'variante-sections', () => (map.getCanvas().style.cursor = ''));
   }
 
-  function plotVariantePostponedSections({ map, features }: { map: Map; features: ColoredLineStringFeature[] }) {
+  function plotVariantePostponedSections({ map, features }: { map: Map; features: MultiColoredLineStringFeature[] }) {
     const sections = features.filter(feature => feature.properties.status === 'variante-postponed');
 
     if (sections.length === 0 && !map.getLayer('variante-postponed-sections')) {
@@ -362,7 +381,7 @@ export const useMap = () => {
       source: 'variante-postponed-sections',
       paint: {
         'line-width': 4,
-        'line-color': ['get', 'color'],
+        'line-color': ["to-color", ['at', 0, ['get', 'colors']]],
         'line-dasharray': [2, 2],
         'line-opacity': 0.5
       }
@@ -388,7 +407,7 @@ export const useMap = () => {
     map.on('mouseleave', 'variante-postponed-sections', () => (map.getCanvas().style.cursor = ''));
   }
 
-  function plotUnknownSections({ map, features }: { map: Map; features: ColoredLineStringFeature[] }) {
+  function plotUnknownSections({ map, features }: { map: Map; features: MultiColoredLineStringFeature[] }) {
     const sections = features.filter(feature => feature.properties.status === 'unknown');
 
     if (sections.length === 0 && !map.getLayer('unknown-sections')) {
@@ -415,7 +434,7 @@ export const useMap = () => {
           14,
           25 // progressively reach width 25 at high zoom
         ],
-        'line-color': ['get', 'color'],
+        'line-color': ["to-color", ['at', 0, ['get', 'colors']]],
         'line-opacity': [
           'interpolate',
           ['linear'],
@@ -448,7 +467,7 @@ export const useMap = () => {
     map.on('mouseleave', 'unknown-sections', () => (map.getCanvas().style.cursor = ''));
   }
 
-  function plotPostponedSections({ map, features }: { map: Map; features: ColoredLineStringFeature[] }) {
+  function plotPostponedSections({ map, features }: { map: Map; features: MultiColoredLineStringFeature[] }) {
     const sections = features.filter(feature => feature.properties.status === 'postponed');
 
     if (sections.length === 0) {
@@ -535,7 +554,7 @@ export const useMap = () => {
         'icon-offset': [-25, -25]
       },
       paint: {
-        'icon-color': ['get', 'color']
+        'icon-color': ["to-color", ['at', 0, ['get', 'colors']]]
       }
     });
     map.setLayoutProperty('perspectives', 'visibility', 'none');
