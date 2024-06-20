@@ -37,12 +37,14 @@
                 ]
             },
             "properties": {
+                "name": "Lycée Mermoz Sud",
                 "subline": "2",
                 "quality": "",
                 "status": "planned",
                 "type": "inconnu",
                 "line": "2",
-                "name": "Lycée Mermoz Sud"
+                "doneAt": "",
+                "devToSplit": "false"
             }
         },
         {
@@ -89,13 +91,14 @@
                 ]
             },
             "properties": {
+                "name": "Passerelle Moulin l'Eveque",
                 "subline": "2",
                 "quality": "non satisfaisant",
                 "doneAt": "31/12/2019",
                 "status": "done",
                 "type": "voie-verte",
                 "line": "2",
-                "name": "Passerelle Moulin l'Eveque"
+                "devToSplit": "false"
             }
         },
         {
@@ -214,14 +217,14 @@
                 ]
             },
             "properties": {
+                "name": "Parallèle Mendès France",
                 "subline": "2",
                 "quality": "",
                 "doneAt": "31/12/2019",
                 "status": "done",
-                "devToSplit": "",
+                "devToSplit": "false",
                 "type": "bidirectionnelle",
-                "line": "2",
-                "name": "Parallèle Mendès France"
+                "line": "2"
             }
         },
         {
@@ -276,14 +279,14 @@
                 ]
             },
             "properties": {
+                "name": "Albert Einstein",
                 "subline": "2",
                 "quality": "",
                 "doneAt": "31/12/2019",
                 "status": "done",
-                "devToSplit": "",
+                "devToSplit": "false",
                 "type": "bidirectionnelle",
-                "line": "2",
-                "name": "Albert Einstein"
+                "line": "2"
             }
         },
         {
@@ -314,13 +317,15 @@
                 ]
             },
             "properties": {
+                "name": "Château de Flaugergues",
                 "subline": "2",
                 "quality": "non satisfaisant",
                 "doneAt": "31/12/2019",
                 "status": "done",
                 "type": "bidirectionnelle",
                 "line": "2",
-                "name": "Château de Flaugergues"
+                "devToSplit": "false",
+                "id": "GrammontOuest"
             }
         },
         {
@@ -336,6 +341,28 @@
                         3.935163,
                         43.612377
                     ],
+                    [
+                        3.939276,
+                        43.6138
+                    ]
+                ]
+            },
+            "properties": {
+                "name": "Route de Maugio",
+                "subline": "2",
+                "status": "postponed",
+                "type": "aucun",
+                "line": "2",
+                "doneAt": "",
+                "devToSplit": "false",
+                "id": "GrammontEst"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
                     [
                         3.939276,
                         43.6138
@@ -399,11 +426,13 @@
                 ]
             },
             "properties": {
+                "name": "Route de Maugio",
                 "subline": "2",
                 "status": "postponed",
                 "type": "aucun",
                 "line": "2",
-                "name": "Route de Maugio"
+                "doneAt": "",
+                "devToSplit": "false"
             }
         }
     ]

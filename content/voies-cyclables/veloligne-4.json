@@ -37,13 +37,14 @@
                 ]
             },
             "properties": {
+                "name": "Avenue Jacques Cartier",
                 "subline": "4",
                 "quality": "non satisfaisant",
                 "doneAt": "31/12/2019",
                 "status": "done",
                 "type": "inconnu",
                 "line": "4",
-                "name": "Avenue Jacques Cartier"
+                "devToSplit": "false"
             }
         },
         {
@@ -74,12 +75,14 @@
                 ]
             },
             "properties": {
+                "name": "Avenue de Boirargues",
                 "subline": "4",
                 "quality": "",
                 "status": "planned",
                 "type": "inconnu",
                 "line": "4",
-                "name": "Avenue de Boirargues"
+                "doneAt": "",
+                "devToSplit": "false"
             }
         },
         {
@@ -118,13 +121,14 @@
                 ]
             },
             "properties": {
+                "name": "Avenue Raymond Dugrand",
                 "subline": "4",
                 "quality": "non satisfaisant",
                 "doneAt": "31/12/2019",
                 "status": "done",
                 "type": "inconnu",
                 "line": "4",
-                "name": "Avenue Raymond Dugrand"
+                "devToSplit": "false"
             }
         },
         {
@@ -179,198 +183,14 @@
                 ]
             },
             "properties": {
+                "name": "Avenue Georges Frêche",
                 "subline": "4a",
                 "quality": "satisfaisant",
                 "doneAt": "31/12/2019",
                 "status": "done",
                 "type": "inconnu",
                 "line": "4",
-                "name": "Avenue Georges Frêche"
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "LineString",
-                "coordinates": [
-                    [
-                        3.935747,
-                        43.577769
-                    ],
-                    [
-                        3.935989,
-                        43.57792
-                    ],
-                    [
-                        3.936095,
-                        43.577991
-                    ],
-                    [
-                        3.936371,
-                        43.578118
-                    ],
-                    [
-                        3.936649,
-                        43.578223
-                    ],
-                    [
-                        3.937004,
-                        43.578352
-                    ],
-                    [
-                        3.937291,
-                        43.578453
-                    ],
-                    [
-                        3.937678,
-                        43.578571
-                    ],
-                    [
-                        3.93821,
-                        43.578689
-                    ],
-                    [
-                        3.938637,
-                        43.578772
-                    ],
-                    [
-                        3.939315,
-                        43.578879
-                    ],
-                    [
-                        3.940358,
-                        43.579018
-                    ],
-                    [
-                        3.940407,
-                        43.579025
-                    ]
-                ]
-            },
-            "properties": {
-                "subline": "4d",
-                "quality": "",
-                "status": "planned",
-                "type": "inconnu",
-                "line": "4",
-                "name": "Avenue Alfred Sauvy"
-            }
-        },
-        {
-            "type": "Feature",
-            "geometry": {
-                "type": "LineString",
-                "coordinates": [
-                    [
-                        3.940407,
-                        43.579025
-                    ],
-                    [
-                        3.942552,
-                        43.579336
-                    ],
-                    [
-                        3.943414,
-                        43.579457
-                    ],
-                    [
-                        3.943612,
-                        43.579472
-                    ],
-                    [
-                        3.943945,
-                        43.579509
-                    ],
-                    [
-                        3.944141,
-                        43.579531
-                    ],
-                    [
-                        3.94424,
-                        43.579532
-                    ],
-                    [
-                        3.944391,
-                        43.579488
-                    ],
-                    [
-                        3.944581,
-                        43.579398
-                    ],
-                    [
-                        3.944782,
-                        43.579347
-                    ],
-                    [
-                        3.944965,
-                        43.579339
-                    ],
-                    [
-                        3.94514,
-                        43.579367
-                    ],
-                    [
-                        3.945272,
-                        43.579404
-                    ],
-                    [
-                        3.945369,
-                        43.57945
-                    ],
-                    [
-                        3.945522,
-                        43.579557
-                    ],
-                    [
-                        3.945642,
-                        43.579708
-                    ],
-                    [
-                        3.94567,
-                        43.579825
-                    ],
-                    [
-                        3.945691,
-                        43.579897
-                    ],
-                    [
-                        3.945787,
-                        43.580017
-                    ],
-                    [
-                        3.945863,
-                        43.580082
-                    ],
-                    [
-                        3.945992,
-                        43.580119
-                    ],
-                    [
-                        3.94615,
-                        43.580134
-                    ],
-                    [
-                        3.946255,
-                        43.580131
-                    ],
-                    [
-                        3.94638,
-                        43.580126
-                    ],
-                    [
-                        3.947188,
-                        43.580009
-                    ]
-                ]
-            },
-            "properties": {
-                "subline": "4d",
-                "quality": "non satisfaisant",
-                "doneAt": "31/12/2019",
-                "status": "done",
-                "type": "inconnu",
-                "line": "4",
-                "name": "Rond-point Aéroport"
+                "devToSplit": "false"
             }
         },
         {
@@ -585,13 +405,14 @@
                 ]
             },
             "properties": {
+                "name": "Perols Est",
                 "subline": "4a",
                 "quality": "non satisfaisant",
                 "doneAt": "31/12/2019",
                 "status": "done",
                 "type": "inconnu",
                 "line": "4",
-                "name": "Perols Est"
+                "devToSplit": "false"
             }
         },
         {
@@ -870,13 +691,14 @@
                 ]
             },
             "properties": {
+                "name": "Lattes Est",
                 "subline": "4b",
                 "quality": "non satisfaisant",
                 "doneAt": "31/12/2019",
                 "status": "done",
                 "type": "inconnu",
                 "line": "4",
-                "name": "Lattes Est"
+                "devToSplit": "false"
             }
         },
         {
@@ -963,13 +785,14 @@
                 ]
             },
             "properties": {
+                "name": "Lez Sud",
                 "subline": "4b",
                 "quality": "satisfaisant",
                 "doneAt": "31/12/2019",
                 "status": "done",
                 "type": "inconnu",
                 "line": "4",
-                "name": "Lez Sud"
+                "devToSplit": "false"
             }
         },
         {
@@ -1064,12 +887,202 @@
                 ]
             },
             "properties": {
+                "name": "Lez Maurin",
                 "subline": "4c",
                 "quality": "",
                 "status": "planned",
                 "type": "inconnu",
                 "line": "4",
-                "name": "Lez Maurin"
+                "doneAt": "",
+                "devToSplit": "false"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        3.935747,
+                        43.577769
+                    ],
+                    [
+                        3.935989,
+                        43.57792
+                    ],
+                    [
+                        3.936095,
+                        43.577991
+                    ],
+                    [
+                        3.936371,
+                        43.578118
+                    ],
+                    [
+                        3.936649,
+                        43.578223
+                    ],
+                    [
+                        3.937004,
+                        43.578352
+                    ],
+                    [
+                        3.937291,
+                        43.578453
+                    ],
+                    [
+                        3.937678,
+                        43.578571
+                    ],
+                    [
+                        3.93821,
+                        43.578689
+                    ],
+                    [
+                        3.938637,
+                        43.578772
+                    ],
+                    [
+                        3.939315,
+                        43.578879
+                    ],
+                    [
+                        3.940358,
+                        43.579018
+                    ],
+                    [
+                        3.940407,
+                        43.579025
+                    ]
+                ]
+            },
+            "properties": {
+                "name": "Avenue Alfred Sauvy",
+                "subline": "4d",
+                "quality": "",
+                "status": "planned",
+                "type": "inconnu",
+                "line": "4",
+                "doneAt": "",
+                "devToSplit": "false"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        3.940407,
+                        43.579025
+                    ],
+                    [
+                        3.942552,
+                        43.579336
+                    ],
+                    [
+                        3.943414,
+                        43.579457
+                    ],
+                    [
+                        3.943612,
+                        43.579472
+                    ],
+                    [
+                        3.943945,
+                        43.579509
+                    ],
+                    [
+                        3.944141,
+                        43.579531
+                    ],
+                    [
+                        3.94424,
+                        43.579532
+                    ],
+                    [
+                        3.944391,
+                        43.579488
+                    ],
+                    [
+                        3.944581,
+                        43.579398
+                    ],
+                    [
+                        3.944782,
+                        43.579347
+                    ],
+                    [
+                        3.944965,
+                        43.579339
+                    ],
+                    [
+                        3.94514,
+                        43.579367
+                    ],
+                    [
+                        3.945272,
+                        43.579404
+                    ],
+                    [
+                        3.945369,
+                        43.57945
+                    ],
+                    [
+                        3.945522,
+                        43.579557
+                    ],
+                    [
+                        3.945642,
+                        43.579708
+                    ],
+                    [
+                        3.94567,
+                        43.579825
+                    ],
+                    [
+                        3.945691,
+                        43.579897
+                    ],
+                    [
+                        3.945787,
+                        43.580017
+                    ],
+                    [
+                        3.945863,
+                        43.580082
+                    ],
+                    [
+                        3.945992,
+                        43.580119
+                    ],
+                    [
+                        3.94615,
+                        43.580134
+                    ],
+                    [
+                        3.946255,
+                        43.580131
+                    ],
+                    [
+                        3.94638,
+                        43.580126
+                    ],
+                    [
+                        3.947188,
+                        43.580009
+                    ]
+                ]
+            },
+            "properties": {
+                "name": "Rond-point Aéroport",
+                "subline": "4d",
+                "quality": "non satisfaisant",
+                "doneAt": "31/12/2019",
+                "status": "done",
+                "type": "inconnu",
+                "line": "4",
+                "devToSplit": "false"
             }
         }
     ]

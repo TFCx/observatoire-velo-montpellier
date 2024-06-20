@@ -7,24 +7,33 @@
                 "type": "LineString",
                 "coordinates": [
                     [
-                        3.873813,
-                        43.576657
+                        3.890324,
+                        43.603665
                     ],
                     [
-                        3.875031,
-                        43.577538
-                    ],
+                        3.894149,
+                        43.599459
+                    ]
+                ]
+            },
+            "properties": {
+                "subline": "5",
+                "quality": "",
+                "status": "planned",
+                "type": "inconnu",
+                "line": "5",
+                "doneAt": "",
+                "devToSplit": "false"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
                     [
-                        3.879967,
-                        43.580164
-                    ],
-                    [
-                        3.883417,
-                        43.581138
-                    ],
-                    [
-                        3.886189,
-                        43.582283
+                        3.887052,
+                        43.583091
                     ],
                     [
                         3.88791,
@@ -64,7 +73,9 @@
                 "subline": "5",
                 "status": "postponed",
                 "type": "aucun",
-                "line": "5"
+                "line": "5",
+                "doneAt": "",
+                "devToSplit": "false"
             }
         },
         {
@@ -73,21 +84,40 @@
                 "type": "LineString",
                 "coordinates": [
                     [
-                        3.890324,
-                        43.603665
+                        3.887048,
+                        43.583089
                     ],
                     [
-                        3.894149,
-                        43.599459
+                        3.886189,
+                        43.582283
+                    ],
+                    [
+                        3.883417,
+                        43.581138
+                    ],
+                    [
+                        3.879967,
+                        43.580164
+                    ],
+                    [
+                        3.875031,
+                        43.577538
+                    ],
+                    [
+                        3.873813,
+                        43.576657
                     ]
                 ]
             },
             "properties": {
                 "subline": "5",
-                "quality": "",
-                "status": "planned",
-                "type": "inconnu",
-                "line": "5"
+                "name": "Tournezy",
+                "status": "postponed",
+                "type": "aucun",
+                "line": "5",
+                "doneAt": "",
+                "devToSplit": "false",
+                "id": "Tournezy"
             }
         }
     ]

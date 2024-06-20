@@ -41,13 +41,15 @@
                 ]
             },
             "properties": {
+                "name": "Odysseum - Gare Sud de France",
                 "subline": "3",
-                "quality": "non satisfaisant",
-                "doneAt": "31/12/2019",
-                "status": "done",
+                "quality": "",
+                "doneAt": "",
+                "status": "planned",
                 "type": "inconnu",
                 "line": "3",
-                "name": "Odysseum - Gare Sud de France"
+                "devToSplit": "false",
+                "id": "BlvrdPenelope"
             }
         }
     ]

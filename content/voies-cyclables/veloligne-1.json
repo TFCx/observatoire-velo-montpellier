@@ -29,13 +29,14 @@
                 ]
             },
             "properties": {
+                "name": "Delmas",
                 "subline": "1",
                 "quality": "non satisfaisant",
                 "doneAt": "31/12/2019",
                 "status": "done",
                 "type": "bidirectionnelle",
                 "line": "1",
-                "name": "Delmas"
+                "devToSplit": "false"
             }
         },
         {
@@ -90,11 +91,13 @@
                 ]
             },
             "properties": {
+                "name": "Jean-Jaurès",
                 "subline": "1a",
                 "status": "postponed",
                 "type": "aucun",
                 "line": "1",
-                "name": "Jean-Jaurès"
+                "doneAt": "",
+                "devToSplit": "false"
             }
         },
         {
@@ -149,13 +152,15 @@
                 ]
             },
             "properties": {
-                "id": "Alouettes-commun",
+                "name": "Chemin des Alouettes",
                 "subline": "1a",
                 "quality": "",
                 "status": "planned",
                 "type": "inconnu",
                 "line": "1",
-                "name": "Chemin des Alouettes"
+                "doneAt": "",
+                "devToSplit": "false",
+                "id": "CheminDesAlouettes"
             }
         },
         {
@@ -178,13 +183,14 @@
                 ]
             },
             "properties": {
+                "name": "Route de Clapiers Sud",
                 "subline": "1a",
                 "quality": "",
                 "doneAt": "31/12/2019",
                 "status": "planned",
                 "type": "bidirectionnelle",
                 "line": "1",
-                "name": "Route de Clapiers Sud"
+                "devToSplit": "false"
             }
         },
         {
@@ -219,13 +225,14 @@
                 ]
             },
             "properties": {
+                "name": "Route de Clapiers Parallèle",
                 "subline": "1a",
                 "quality": "",
                 "doneAt": "31/12/2019",
                 "status": "planned",
                 "type": "inconnu",
                 "line": "1",
-                "name": "Route de Clapiers Parallèle"
+                "devToSplit": "false"
             }
         },
         {
@@ -280,13 +287,14 @@
                 ]
             },
             "properties": {
+                "name": "D21 Parallèle Foret",
                 "subline": "1a",
                 "quality": "satisfaisant",
                 "doneAt": "31/12/2019",
                 "status": "done",
                 "type": "bidirectionnelle",
                 "line": "1",
-                "name": "D21 Parallèle Foret"
+                "devToSplit": "false"
             }
         },
         {
@@ -305,13 +313,14 @@
                 ]
             },
             "properties": {
+                "name": "Barreau Cross Lumière",
                 "subline": "1a",
                 "quality": "satisfaisant",
                 "doneAt": "31/12/2019",
                 "status": "done",
                 "type": "inconnu",
                 "line": "1",
-                "name": "Barreau Cross Lumière"
+                "devToSplit": "false"
             }
         },
         {
@@ -378,13 +387,14 @@
                 ]
             },
             "properties": {
+                "name": "D21 Route de Teyran",
                 "subline": "1a",
                 "quality": "satisfaisant",
                 "doneAt": "31/12/2019",
                 "status": "done",
                 "type": "bidirectionnelle",
                 "line": "1",
-                "name": "D21 Route de Teyran"
+                "devToSplit": "false"
             }
         },
         {
@@ -419,13 +429,14 @@
                 ]
             },
             "properties": {
+                "name": "Charles de Gaule Sud Est",
                 "subline": "1b",
                 "quality": "",
                 "doneAt": "",
                 "status": "planned",
                 "type": "bilaterale",
                 "line": "1",
-                "name": "Charles de Gaule Sud Est"
+                "devToSplit": "false"
             }
         },
         {
@@ -488,13 +499,14 @@
                 ]
             },
             "properties": {
+                "name": "Chemin de Verchant",
                 "subline": "1b",
                 "quality": "satisfaisant",
                 "doneAt": "01/01/2024",
                 "status": "done",
                 "type": "voie-verte",
                 "line": "1",
-                "name": "Chemin de Verchant"
+                "devToSplit": "false"
             }
         },
         {
@@ -513,13 +525,14 @@
                 ]
             },
             "properties": {
+                "name": "Chemin du Clos de l'Armet",
                 "subline": "1b",
                 "quality": "satisfaisant",
                 "doneAt": "31/12/2019",
                 "status": "done",
                 "type": "voie-verte",
                 "line": "1",
-                "name": "Chemin du Clos de l'Armet"
+                "devToSplit": "false"
             }
         },
         {
@@ -566,12 +579,14 @@
                 ]
             },
             "properties": {
+                "name": "Route de Nimes Aube Rouge",
                 "subline": "1b",
                 "quality": "",
                 "status": "planned",
                 "type": "bilaterale",
                 "line": "1",
-                "name": "Route de Nimes Aube Rouge"
+                "doneAt": "",
+                "devToSplit": "false"
             }
         },
         {
@@ -598,12 +613,14 @@
                 ]
             },
             "properties": {
+                "name": "Route de Nimes Carrefour",
                 "subline": "1b",
                 "quality": "non satisfaisant",
                 "status": "done",
                 "type": "bilaterale",
                 "line": "1",
-                "name": "Route de Nimes Carrefour"
+                "doneAt": "",
+                "devToSplit": "false"
             }
         },
         {
@@ -734,12 +751,14 @@
                 ]
             },
             "properties": {
+                "name": "Parallèle Saint-Aunès",
                 "subline": "1b",
                 "quality": "",
                 "status": "planned",
                 "type": "voie-verte",
                 "line": "1",
-                "name": "Parallèle Saint-Aunès"
+                "doneAt": "",
+                "devToSplit": "false"
             }
         },
         {
@@ -994,12 +1013,14 @@
                 ]
             },
             "properties": {
+                "name": "Vendargues Castries",
                 "subline": "1b",
                 "quality": "",
                 "status": "planned",
                 "type": "voie-verte",
                 "line": "1",
-                "name": "Vendargues Castries"
+                "doneAt": "",
+                "devToSplit": "false"
             }
         },
         {
@@ -1162,12 +1183,14 @@
                 ]
             },
             "properties": {
+                "name": "Castries Saint-Geniès",
                 "subline": "1b",
                 "quality": "",
                 "status": "planned",
                 "type": "inconnu",
                 "line": "1",
-                "name": "Castries Saint-Geniès"
+                "doneAt": "",
+                "devToSplit": "false"
             }
         },
         {
@@ -1214,12 +1237,14 @@
                 ]
             },
             "properties": {
+                "name": "Saint-Geniès Est",
                 "subline": "1b",
                 "quality": "satisfaisant",
                 "status": "done",
                 "type": "inconnu",
                 "line": "1",
-                "name": "Saint-Geniès Est"
+                "doneAt": "",
+                "devToSplit": "false"
             }
         },
         {
@@ -1258,11 +1283,13 @@
                 ]
             },
             "properties": {
+                "name": "Vendargues Sud",
                 "subline": "1c",
                 "status": "postponed",
                 "type": "aucun",
                 "line": "1",
-                "name": "Vendargues Sud"
+                "doneAt": "",
+                "devToSplit": "false"
             }
         },
         {
@@ -1289,12 +1316,14 @@
                 ]
             },
             "properties": {
+                "name": "Avenue du 8 Mai 45",
                 "subline": "1c",
                 "quality": "non satisfaisant",
                 "status": "done",
                 "type": "inconnu",
                 "line": "1",
-                "name": "Avenue du 8 Mai 45"
+                "doneAt": "",
+                "devToSplit": "false"
             }
         },
         {
@@ -1349,12 +1378,14 @@
                 ]
             },
             "properties": {
+                "name": "Vendargues Est",
                 "subline": "1c",
                 "quality": "",
                 "status": "planned",
                 "type": "inconnu",
                 "line": "1",
-                "name": "Vendargues Est"
+                "doneAt": "",
+                "devToSplit": "false"
             }
         },
         {
@@ -1385,12 +1416,14 @@
                 ]
             },
             "properties": {
+                "name": "Avenue de l'Or",
                 "subline": "1c",
                 "quality": "",
                 "status": "planned",
                 "type": "inconnu",
                 "line": "1",
-                "name": "Avenue de l'Or"
+                "doneAt": "",
+                "devToSplit": "false"
             }
         },
         {
@@ -1403,16 +1436,30 @@
                         43.652729
                     ],
                     [
-                        4.006945,
-                        43.653071
-                    ],
+                        4.00903,
+                        43.653804
+                    ]
+                ]
+            },
+            "properties": {
+                "name": "Saint-Brès",
+                "subline": "1c",
+                "status": "postponed",
+                "type": "aucun",
+                "line": "1",
+                "doneAt": "",
+                "devToSplit": "false",
+                "id": "GareBaillargues"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
                     [
-                        4.007083,
-                        43.653121
-                    ],
-                    [
-                        4.00957,
-                        43.653996
+                        4.00903,
+                        43.653804
                     ],
                     [
                         4.020988,
@@ -1457,11 +1504,13 @@
                 ]
             },
             "properties": {
+                "name": "Saint-Brès",
                 "subline": "1c",
                 "status": "postponed",
                 "type": "aucun",
                 "line": "1",
-                "name": "Saint-Brès"
+                "doneAt": "",
+                "devToSplit": "false"
             }
         }
     ]

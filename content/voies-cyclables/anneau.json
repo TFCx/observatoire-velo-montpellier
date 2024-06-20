@@ -22,7 +22,9 @@
                 "quality": "satisfaisant",
                 "status": "wip",
                 "type": "velorue",
-                "line": "Anneau"
+                "line": "Anneau",
+                "doneAt": "",
+                "devToSplit": "false"
             }
         },
         {
@@ -59,7 +61,8 @@
                 "doneAt": "31/12/2019",
                 "status": "done",
                 "type": "bidirectionnelle",
-                "line": "Anneau"
+                "line": "Anneau",
+                "devToSplit": "false"
             }
         },
         {
@@ -100,7 +103,8 @@
                 "doneAt": "31/12/2019",
                 "status": "planned",
                 "type": "inconnu",
-                "line": "Anneau"
+                "line": "Anneau",
+                "devToSplit": "false"
             }
         },
         {
@@ -169,7 +173,8 @@
                 "status": "done",
                 "type": "bidirectionnelle",
                 "line": "Anneau",
-                "doneAt": "31/12/2019"
+                "doneAt": "31/12/2019",
+                "devToSplit": "false"
             }
         },
         {
@@ -226,7 +231,8 @@
                 "doneAt": "31/12/2019",
                 "status": "done",
                 "type": "bidirectionnelle",
-                "line": "Anneau"
+                "line": "Anneau",
+                "devToSplit": "false"
             }
         },
         {
@@ -259,7 +265,8 @@
                 "status": "done",
                 "type": "bidirectionnelle",
                 "line": "Anneau",
-                "doneAt": "01/01/2024"
+                "doneAt": "01/01/2024",
+                "devToSplit": "false"
             }
         },
         {
@@ -295,7 +302,9 @@
                 "quality": "",
                 "status": "wip",
                 "type": "velorue",
-                "line": "Anneau"
+                "line": "Anneau",
+                "doneAt": "",
+                "devToSplit": "false"
             }
         },
         {
@@ -340,7 +349,8 @@
                 "status": "done",
                 "type": "velorue",
                 "line": "Anneau",
-                "doneAt": "31/12/2019"
+                "doneAt": "31/12/2019",
+                "devToSplit": "false"
             }
         },
         {
@@ -369,7 +379,8 @@
                 "type": "zone-de-rencontre",
                 "status": "done",
                 "line": "Anneau",
-                "doneAt": "01/01/2023"
+                "doneAt": "01/01/2023",
+                "devToSplit": "false"
             }
         },
         {
@@ -394,7 +405,8 @@
                 "doneAt": "31/12/2019",
                 "type": "velorue",
                 "status": "done",
-                "line": "Anneau"
+                "line": "Anneau",
+                "devToSplit": "false"
             }
         },
         {
@@ -438,7 +450,9 @@
                 "quality": "non satisfaisant",
                 "status": "wip",
                 "type": "voie-verte",
-                "line": "Anneau"
+                "line": "Anneau",
+                "doneAt": "",
+                "devToSplit": "false"
             }
         },
         {
@@ -471,7 +485,8 @@
                 "status": "done",
                 "type": "velorue",
                 "line": "Anneau",
-                "doneAt": "01/01/2024"
+                "doneAt": "01/01/2024",
+                "devToSplit": "false"
             }
         },
         {
@@ -496,7 +511,8 @@
                 "status": "done",
                 "type": "bilaterale",
                 "line": "Anneau",
-                "doneAt": "01/01/2024"
+                "doneAt": "01/01/2024",
+                "devToSplit": "false"
             }
         },
         {
@@ -525,7 +541,8 @@
                 "status": "done",
                 "type": "velorue",
                 "line": "Anneau",
-                "doneAt": "01/01/2023"
+                "doneAt": "01/01/2023",
+                "devToSplit": "false"
             }
         },
         {
@@ -550,7 +567,8 @@
                 "doneAt": "31/12/2019",
                 "status": "done",
                 "type": "inconnu",
-                "line": "Anneau"
+                "line": "Anneau",
+                "devToSplit": "false"
             }
         },
         {
@@ -575,7 +593,8 @@
                 "doneAt": "31/12/2019",
                 "status": "done",
                 "type": "velorue",
-                "line": "Anneau"
+                "line": "Anneau",
+                "devToSplit": "false"
             }
         },
         {
@@ -608,7 +627,8 @@
                 "doneAt": "31/12/2019",
                 "status": "done",
                 "type": "bilaterale",
-                "line": "Anneau"
+                "line": "Anneau",
+                "devToSplit": "false"
             }
         }
     ]
