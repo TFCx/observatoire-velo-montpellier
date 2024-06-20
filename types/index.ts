@@ -18,7 +18,7 @@ export type LineStringFeature = {
   type: 'Feature';
   properties: {
     id?: string
-    line: number;
+    line: string;
     name: string;
     status: LaneStatus;
     quality: Quality;
