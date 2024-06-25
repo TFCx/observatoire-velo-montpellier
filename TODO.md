@@ -4,3 +4,5 @@
 - Améliorer la visualisation des tronçons multi-lignes
 - Bouton pour désactiver la qualité
 - Problème perfs / leak
+- Ajout type : bande cyclable, bande cyclable sur trottoir, voirie mixte
+- Ajout tag : métropole de Montpellier oui/non
