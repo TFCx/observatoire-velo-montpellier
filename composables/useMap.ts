@@ -69,15 +69,10 @@ export const useMap = () => {
   const { getLineColor } = useColors();
 
   function addLineColor(feature: LineStringFeature): MultiColoredLineStringFeature {
-    let sub_array: string[] = []
-    if(feature.properties.id) {
-      console.log(feature.properties.id)
-      sub_array = ["orange"]
-    }
     return {
       ...feature,
       properties: {
-        colors: [getLineColor(feature.properties.line)].concat(sub_array),
+        colors: [getLineColor(feature.properties.line)],
         ...feature.properties
       }
     };
@@ -241,19 +236,7 @@ export const useMap = () => {
       }
     });
 
-    function animateColor(timestamp: number, animationLength: number, attribute: string) {
-
-      function subAnimateColor(timestamp: number) {
-        const t = (timestamp % animationLength) / animationLength
-        // WIP : trouver les index out of bounds
-        map.setPaintProperty(attribute, 'line-color', ["to-color", ['at', ['floor', ['*', t, ['length', ['get', 'colors']]]], ['get', 'colors']]]);
-
-        // Request the next frame of the animation.
-        requestAnimationFrame(subAnimateColor);
-      }
-      subAnimateColor(timestamp)
-    }
-    animateColor(0, 3000, 'done-sections');
+    animateColor(map, 0, 10000, 'done-sections');
   }
 
   function plotWipSections({ map, features }: { map: Map; features: MultiColoredLineStringFeature[] }) {
@@ -321,6 +304,8 @@ export const useMap = () => {
         'line-dasharray': [0.2, 1.1]
       }
     });
+
+    animateColor(map, 0, 10000, 'planned-sections');
   }
 
   function plotVarianteSections({ map, features }: { map: Map; features: MultiColoredLineStringFeature[] }) {
@@ -658,8 +643,35 @@ export const useMap = () => {
     }
   }
 
+  function addOtherLineColor(features: MultiColoredLineStringFeature[]) {
+    for(let f of features) {
+      if(f.properties.id) {
+        for(let o of features) {
+          if(o != f && f.properties.id == o.properties.id) {
+            f.properties.colors.push(o.properties.colors[0])
+          }
+        }
+      }
+    }
+    return features
+  }
+
+  function animateColor(map: Map, timestamp: number, animationLength: number, attribute: string) {
+
+    function subAnimateColor(timestamp: number) {
+      const t = (timestamp % animationLength) / animationLength
+      // WIP : trouver les index out of bounds
+      map.setPaintProperty(attribute, 'line-color', ["to-color", ['at', ['floor', ['*', t, ['length', ['get', 'colors']]]], ['get', 'colors']]]);
+
+      // Request the next frame of the animation.
+      requestAnimationFrame(subAnimateColor);
+    }
+    subAnimateColor(timestamp)
+  }
+
   function plotFeatures({ map, features }: { map: Map; features: Feature[] }) {
-    const lineStringFeatures = features.filter(isLineStringFeature).sort(sortByLine).map(addLineColor);
+    let lineStringFeatures = features.filter(isLineStringFeature).sort(sortByLine).map(addLineColor);
+    lineStringFeatures = addOtherLineColor(lineStringFeatures)
 
     plotQualityBackgroundNok({ map, features: lineStringFeatures });
     plotQualityBackgroundOk({ map, features: lineStringFeatures });

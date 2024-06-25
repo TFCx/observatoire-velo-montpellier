@@ -1,7 +1,6 @@
-- Ajout des tronçons multi-lignes
 - Gérer les hierarchies de lignes (1a/1b/1c)
 - Aménagements différents selon le sens
-- Améliorer la visualisation des tronçons multi-lignes
+- Améliorer la visualisation des tronçons multi-lignes V2 (https://stackoverflow.com/questions/72251218/variable-line-offset-in-mapbox)
 - Bouton pour désactiver la qualité
 - Problème perfs / leak
 - Ajout type : bande cyclable, bande cyclable sur trottoir, voirie mixte
