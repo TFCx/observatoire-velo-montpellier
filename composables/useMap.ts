@@ -165,7 +165,7 @@ export const useMap = () => {
       layout: { 'line-cap': 'round' },
       paint: {
         'line-gap-width': 5,
-        'line-width': 4,
+        'line-width': ["*", 4, ['length', ['get', 'colors']]],
         'line-color': ['case', ['boolean', ['feature-state', 'hover'], false], '#9ca3af', '#FFFFFF']
       }
     });
@@ -175,7 +175,7 @@ export const useMap = () => {
       source: 'all-sections',
       layout: { 'line-cap': 'round' },
       paint: {
-        'line-gap-width': 4,
+        'line-gap-width': ["*", 4, ['length', ['get', 'colors']]],
         'line-width': 1,
         'line-color': '#6b7280'
       }
@@ -185,7 +185,7 @@ export const useMap = () => {
       type: 'line',
       source: 'all-sections',
       paint: {
-        'line-width': 4,
+        'line-width': ["*", 4, ['length', ['get', 'colors']]],
         'line-color': '#ffffff'
       }
     });
@@ -226,17 +226,38 @@ export const useMap = () => {
       return;
     }
 
+    let lineWidth = 4
+
     map.addLayer({
       id: 'done-sections',
       type: 'line',
       source: 'done-sections',
       paint: {
-        'line-width': 4,
-        'line-color': ["to-color", ['at', 0, ['get', 'colors']]]
+        'line-width': lineWidth,
+        'line-color': ["to-color", ['at', 0, ['get', 'colors']]],
+        'line-offset': ["case",
+            ["==", ["length", ['get', 'colors']], 2], - lineWidth / 2,
+            0
+        ]
       }
-    });
+    })
 
-    animateColor(map, 0, 10000, 'done-sections');
+    map.addLayer({
+      id: 'done-sections-2',
+      type: 'line',
+      filter: [">", ["length", ['get', 'colors']], 1],
+      source: 'done-sections',
+      paint: {
+        'line-width': lineWidth,
+        'line-color': ["to-color", ['at', 1, ['get', 'colors']]],
+        'line-offset': ["case",
+            ["==", ["length", ['get', 'colors']], 2], + lineWidth / 2,
+            0
+        ]
+      }
+    })
+
+    //animateColor(map, 0, 10000, 'done-sections');
   }
 
   function plotWipSections({ map, features }: { map: Map; features: MultiColoredLineStringFeature[] }) {
@@ -249,23 +270,63 @@ export const useMap = () => {
       return;
     }
 
+    let lineWidth = 4
+
     map.addLayer({
       id: 'wip-sections',
       type: 'line',
       source: 'wip-sections',
       paint: {
-        'line-width': 4,
+        'line-width': lineWidth,
         'line-color': ["to-color", ['at', 0, ['get', 'colors']]],
-        'line-dasharray': [0.2, 1.1]
+        'line-dasharray': [0.2, 1.1],
+        'line-offset': ["case",
+            ["==", ["length", ['get', 'colors']], 2], - lineWidth / 2,
+            0
+        ]
       }
     });
     map.addLayer({
-      id: 'wip-sectionsB',
+      id: 'wip-sections-done',
       type: 'line',
       source: 'wip-sections',
       paint: {
-        'line-width': 4,
+        'line-width': lineWidth,
         'line-color': ["to-color", ['at', 0, ['get', 'colors']]],
+        'line-offset': ["case",
+            ["==", ["length", ['get', 'colors']], 2], - lineWidth / 2,
+            0
+        ]
+      }
+    });
+
+    map.addLayer({
+      id: 'wip-sections-2',
+      type: 'line',
+      filter: [">", ["length", ['get', 'colors']], 1],
+      source: 'wip-sections',
+      paint: {
+        'line-width': lineWidth,
+        'line-color': ["to-color", ['at', 0, ['get', 'colors']]],
+        'line-dasharray': [0.2, 1.1],
+        'line-offset': ["case",
+            ["==", ["length", ['get', 'colors']], 2], + lineWidth / 2,
+            0
+        ]
+      }
+    });
+    map.addLayer({
+      id: 'wip-sections-done-2',
+      type: 'line',
+      filter: [">", ["length", ['get', 'colors']], 1],
+      source: 'wip-sections',
+      paint: {
+        'line-width': lineWidth,
+        'line-color': ["to-color", ['at', 0, ['get', 'colors']]],
+        'line-offset': ["case",
+            ["==", ["length", ['get', 'colors']], 2], + lineWidth / 2,
+            0
+        ]
       }
     });
 
@@ -281,7 +342,7 @@ export const useMap = () => {
       }
       subAnimateOpacity(timestamp)
     }
-    animateOpacity(0, 1000*0.75, 'wip-sectionsB');
+    animateOpacity(0, 1000*0.75, 'wip-sections-done');
   }
 
   function plotPlannedSections({ map, features }: { map: Map; features: MultiColoredLineStringFeature[] }) {
@@ -294,18 +355,37 @@ export const useMap = () => {
       return;
     }
 
+    let lineWidth = 4
+
     map.addLayer({
       id: 'planned-sections',
       type: 'line',
       source: 'planned-sections',
       paint: {
-        'line-width': 4,
+        'line-width': lineWidth,
         'line-color': ["to-color", ['at', 0, ['get', 'colors']]],
-        'line-dasharray': [0.2, 1.1]
+        'line-dasharray': [0.4, 1.1],
+        'line-offset': ["case",
+            ["==", ["length", ['get', 'colors']], 2], - lineWidth / 2,
+            0
+        ]
       }
     });
-
-    animateColor(map, 0, 10000, 'planned-sections');
+    map.addLayer({
+      id: 'planned-sections-2',
+      type: 'line',
+      filter: [">", ["length", ['get', 'colors']], 1],
+      source: 'planned-sections',
+      paint: {
+        'line-width': lineWidth,
+        'line-color': ["to-color", ['at', 1, ['get', 'colors']]],
+        'line-dasharray': [0.4, 1.1],
+        'line-offset': ["case",
+            ["==", ["length", ['get', 'colors']], 2], + lineWidth / 2,
+            0
+        ]
+      }
+    });
   }
 
   function plotVarianteSections({ map, features }: { map: Map; features: MultiColoredLineStringFeature[] }) {
@@ -360,17 +440,40 @@ export const useMap = () => {
       return;
     }
 
+    let lineWidth = 4
+
     map.addLayer({
       id: 'variante-postponed-sections',
       type: 'line',
       source: 'variante-postponed-sections',
       paint: {
-        'line-width': 4,
+        'line-width': lineWidth,
         'line-color': ["to-color", ['at', 0, ['get', 'colors']]],
         'line-dasharray': [2, 2],
-        'line-opacity': 0.5
+        'line-opacity': 0.5,
+        'line-offset': ["case",
+            ["==", ["length", ['get', 'colors']], 2], - lineWidth / 2,
+            0
+        ]
       }
     });
+    map.addLayer({
+      id: 'variante-postponed-sections-2',
+      type: 'line',
+      filter: [">", ["length", ['get', 'colors']], 1],
+      source: 'variante-postponed-sections',
+      paint: {
+        'line-width': lineWidth,
+        'line-color': ["to-color", ['at', 1, ['get', 'colors']]],
+        'line-dasharray': [2, 2],
+        'line-opacity': 0.5,
+        'line-offset': ["case",
+            ["==", ["length", ['get', 'colors']], 2], + lineWidth / 2,
+            0
+        ]
+      }
+    });
+
     map.addLayer({
       id: 'variante-postponed-symbols',
       type: 'symbol',
@@ -462,55 +565,97 @@ export const useMap = () => {
       return;
     }
 
-    const featuresByColor = groupFeaturesByColor(sections);
-    for (const [color, sameColorFeatures] of Object.entries(featuresByColor)) {
-      if (upsertMapSource(map, `postponed-sections-${color}`, sameColorFeatures as Feature[])) {
-        continue;
-      }
+    let lineWidth = 4
 
-      map.addLayer({
-        id: `postponed-symbols-${color}`,
-        type: 'symbol',
-        source: `postponed-sections-${color}`,
-        layout: {
-          'symbol-placement': 'line',
-          'symbol-spacing': 15,
-          'icon-image': 'cross-icon',
-          'icon-size': 1.2
-        },
-        paint: {
-          'icon-color': color,
-          'icon-opacity': [
-            'interpolate',
-            ['linear'],
-            ['zoom'],
-            12,
-            0.35, // opacity 0.4 at low zoom
-            14,
-            0.6 // opacity 0.35 at high zoom
-          ]
-        }
-      });
-      map.addLayer({
-        id: `postponed-text-${color}`,
-        type: 'symbol',
-        source: `postponed-sections-${color}`,
-        paint: {
-          'text-halo-color': '#fff',
-          'text-halo-width': 3
-        },
-        layout: {
-          'symbol-placement': 'line',
-          'symbol-spacing': 150,
-          'text-font': ['Open Sans Regular'],
-          'text-field': 'reporté',
-          'text-size': 14
-        }
-      });
-
-      map.on('mouseenter', `postponed-symbols-${color}`, () => (map.getCanvas().style.cursor = 'pointer'));
-      map.on('mouseleave', `postponed-symbols-${color}`, () => (map.getCanvas().style.cursor = ''));
+    if (upsertMapSource(map, `postponed-sections`, sections)) {
+      return;
     }
+
+    let symbolSpacing = 15
+    let iconSize = 1.0
+
+    map.addLayer({
+      id: `postponed-symbols`,
+      type: 'symbol',
+      source: `postponed-sections`,
+      layout: {
+        'symbol-placement': 'line',
+        'symbol-spacing': symbolSpacing,
+        'icon-image': 'cross-icon',
+        'icon-size': iconSize,
+        'icon-offset': [
+          "case",
+            ["==", ["length", ['get', 'colors']], 2], ["literal", [0, - lineWidth / 2]],
+            ["literal", [0, 0]]
+          ],
+        'icon-allow-overlap': true
+      },
+      paint: {
+        'icon-color': ["to-color", ['at', 0, ['get', 'colors']]],
+        'icon-opacity': [
+          'interpolate',
+          ['linear'],
+          ['zoom'],
+          12,
+          0.8, // opacity 0.4 at low zoom
+          14,
+          0.9 // opacity 0.35 at high zoom
+        ],
+      }
+    });
+
+    map.addLayer({
+      id: `postponed-symbols-2`,
+      type: 'symbol',
+      filter: [">", ["length", ['get', 'colors']], 1],
+      source: `postponed-sections`,
+      layout: {
+        'symbol-placement': 'line',
+        'symbol-spacing': symbolSpacing,
+        'icon-image': 'cross-icon',
+        'icon-size': iconSize,
+        'icon-offset': [
+          "case",
+            ["==", ["length", ['get', 'colors']], 2], ["literal", [symbolSpacing / 2, lineWidth / 2]],
+            ["literal", [0, 0]]
+          ],
+          'icon-allow-overlap': true
+      },
+      paint: {
+        'icon-color': ["to-color", ['at', 1, ['get', 'colors']]],
+        'icon-opacity': [
+          'interpolate',
+          ['linear'],
+          ['zoom'],
+          12,
+          0.8, // opacity 0.4 at low zoom
+          14,
+          0.9 // opacity 0.35 at high zoom
+        ],
+
+      }
+    });
+
+
+    map.addLayer({
+      id: `postponed-text`,
+      type: 'symbol',
+      source: `postponed-sections`,
+      paint: {
+        'text-halo-color': '#fff',
+        'text-halo-width': 3
+      },
+      layout: {
+        'symbol-placement': 'line',
+        'symbol-spacing': 150,
+        'text-font': ['Open Sans Regular'],
+        'text-field': 'reporté',
+        'text-size': 14
+      }
+    });
+
+    map.on('mouseenter', `postponed-symbols`, () => (map.getCanvas().style.cursor = 'pointer'));
+    map.on('mouseleave', `postponed-symbols`, () => (map.getCanvas().style.cursor = ''));
   }
 
   function plotPerspective({ map, features }: { map: Map; features: Feature[] }) {
