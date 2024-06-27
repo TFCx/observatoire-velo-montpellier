@@ -5,3 +5,4 @@
 - Problème perfs / leak
 - Ajout type : bande cyclable, bande cyclable sur trottoir, voirie mixte
 - Ajout tag : métropole de Montpellier oui/non
+- Push sur Netlify
