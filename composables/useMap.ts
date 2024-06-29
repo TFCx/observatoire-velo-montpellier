@@ -335,19 +335,7 @@ export const useMap = () => {
       }
     });
 
-    function animateOpacity(timestamp: number, animationLength: number, attribute: string) {
-
-      function subAnimateOpacity(timestamp: number) {
-        const opacity01 = (timestamp % animationLength) / animationLength
-        const opacity = (Math.abs(opacity01 - 0.5)) * 2
-        map.setPaintProperty(attribute, 'line-opacity', opacity);
-
-        // Request the next frame of the animation.
-        requestAnimationFrame(subAnimateOpacity);
-      }
-      subAnimateOpacity(timestamp)
-    }
-    animateOpacity(0, 1000*0.75, 'wip-sections-done');
+    animateOpacity(map, 0, 1000*0.75, 'wip-sections-done', 'line-opacity', 0.5, 1.0);
   }
 
   function plotPlannedSections({ map, features }: { map: Map; features: MultiColoredLineStringFeature[] }) {
@@ -576,8 +564,38 @@ export const useMap = () => {
       return;
     }
 
-    let symbolSpacing = 15
-    let iconSize = 1.0
+    let symbolSpacing = 25
+    let iconSize = 1.5
+
+    map.addLayer({
+      id: 'postponed-sections',
+      type: 'line',
+      source: 'postponed-sections',
+      paint: {
+        'line-width': lineWidth,
+        'line-color': ["to-color", ['at', 0, ['get', 'colors']]],
+        'line-dasharray': [0.4, 1.1],
+        'line-offset': ["case",
+            ["==", ["length", ['get', 'colors']], 2], - lineWidth / 2,
+            0
+        ]
+      }
+    });
+    map.addLayer({
+      id: 'postponed-sections-2',
+      type: 'line',
+      filter: [">", ["length", ['get', 'colors']], 1],
+      source: 'postponed-sections',
+      paint: {
+        'line-width': lineWidth,
+        'line-color': ["to-color", ['at', 1, ['get', 'colors']]],
+        'line-dasharray': [0.4, 1.1],
+        'line-offset': ["case",
+            ["==", ["length", ['get', 'colors']], 2], + lineWidth / 2,
+            0
+        ]
+      }
+    });
 
     map.addLayer({
       id: `postponed-symbols`,
@@ -588,15 +606,9 @@ export const useMap = () => {
         'symbol-spacing': symbolSpacing,
         'icon-image': 'cross-icon',
         'icon-size': iconSize,
-        'icon-offset': [
-          "case",
-            ["==", ["length", ['get', 'colors']], 2], ["literal", [0, - lineWidth / 2]],
-            ["literal", [0, 0]]
-          ],
-        'icon-allow-overlap': true
       },
       paint: {
-        'icon-color': ["to-color", ['at', 0, ['get', 'colors']]],
+        'icon-color': "black",
         'icon-opacity': [
           'interpolate',
           ['linear'],
@@ -608,39 +620,6 @@ export const useMap = () => {
         ],
       }
     });
-
-    map.addLayer({
-      id: `postponed-symbols-2`,
-      type: 'symbol',
-      filter: [">", ["length", ['get', 'colors']], 1],
-      source: `postponed-sections`,
-      layout: {
-        'symbol-placement': 'line',
-        'symbol-spacing': symbolSpacing,
-        'icon-image': 'cross-icon',
-        'icon-size': iconSize,
-        'icon-offset': [
-          "case",
-            ["==", ["length", ['get', 'colors']], 2], ["literal", [symbolSpacing / 2, lineWidth / 2]],
-            ["literal", [0, 0]]
-          ],
-          'icon-allow-overlap': true
-      },
-      paint: {
-        'icon-color': ["to-color", ['at', 1, ['get', 'colors']]],
-        'icon-opacity': [
-          'interpolate',
-          ['linear'],
-          ['zoom'],
-          12,
-          postPonedOpacity, // low zoom
-          14,
-          postPonedOpacity + 0.2 // high zoom
-        ],
-
-      }
-    });
-
 
     map.addLayer({
       id: `postponed-text`,
@@ -659,6 +638,8 @@ export const useMap = () => {
         'text-size': 14,
       }
     });
+
+    animateOpacity(map, 0, 1000*10.0, 'postponed-symbols', 'icon-opacity', 0.05, 0.25);
 
     map.on('mouseenter', `postponed-symbols`, () => (map.getCanvas().style.cursor = 'pointer'));
     map.on('mouseleave', `postponed-symbols`, () => (map.getCanvas().style.cursor = ''));
@@ -818,6 +799,19 @@ export const useMap = () => {
       requestAnimationFrame(subAnimateColor);
     }
     subAnimateColor(timestamp)
+  }
+
+  function animateOpacity(map: Map, timestamp: number, animationLength: number, attributeId: string, attributeOpacity: string, min: number, max: number) {
+
+    function subAnimateOpacity(timestamp: number) {
+      const opacity010 = Math.abs((((timestamp * 2) * (1 / animationLength)) % 2) - 1)
+      const opacity = opacity010 * (max - min) + min
+      map.setPaintProperty(attributeId, attributeOpacity, opacity);
+
+      // Request the next frame of the animation.
+      requestAnimationFrame(subAnimateOpacity);
+    }
+    subAnimateOpacity(timestamp)
   }
 
   function plotFeatures({ map, features }: { map: Map; features: Feature[] }) {
