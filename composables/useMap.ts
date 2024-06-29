@@ -1,6 +1,8 @@
 import { GeoJSONSource, LngLatBounds, Map } from 'maplibre-gl';
 import { isCompteurFeature, isLineStringFeature, isPerspectiveFeature, isPointFeature, type Feature, type LineStringFeature } from '~/types';
 
+let postPonedOpacity = 0.5
+
 type MultiColoredLineStringFeature = LineStringFeature & { properties: { colors: string[] } };
 
 type Compteur = {
@@ -166,7 +168,8 @@ export const useMap = () => {
       paint: {
         'line-gap-width': 5,
         'line-width': ["*", 4, ['length', ['get', 'colors']]],
-        'line-color': ['case', ['boolean', ['feature-state', 'hover'], false], '#9ca3af', '#FFFFFF']
+        'line-color': ['case', ['boolean', ['feature-state', 'hover'], false], '#9ca3af', '#FFFFFF'],
+        "line-opacity" : 0.5
       }
     });
     map.addLayer({
@@ -177,7 +180,8 @@ export const useMap = () => {
       paint: {
         'line-gap-width': ["*", 4, ['length', ['get', 'colors']]],
         'line-width': 1,
-        'line-color': '#6b7280'
+        'line-color': '#6b7280',
+        "line-opacity" : ["case", ["==", ['get', 'status'], 'postponed'], postPonedOpacity, 1.0]
       }
     });
     map.addLayer({
@@ -186,7 +190,8 @@ export const useMap = () => {
       source: 'all-sections',
       paint: {
         'line-width': ["*", 4, ['length', ['get', 'colors']]],
-        'line-color': '#ffffff'
+        'line-color': '#ffffff',
+        "line-opacity" : ["case", ["==", ['get', 'status'], 'postponed'], postPonedOpacity, 1.0]
       }
     });
 
@@ -597,9 +602,9 @@ export const useMap = () => {
           ['linear'],
           ['zoom'],
           12,
-          0.8, // opacity 0.4 at low zoom
+          postPonedOpacity, // low zoom
           14,
-          0.9 // opacity 0.35 at high zoom
+          postPonedOpacity + 0.2 // high zoom
         ],
       }
     });
@@ -628,9 +633,9 @@ export const useMap = () => {
           ['linear'],
           ['zoom'],
           12,
-          0.8, // opacity 0.4 at low zoom
+          postPonedOpacity, // low zoom
           14,
-          0.9 // opacity 0.35 at high zoom
+          postPonedOpacity + 0.2 // high zoom
         ],
 
       }
@@ -643,14 +648,15 @@ export const useMap = () => {
       source: `postponed-sections`,
       paint: {
         'text-halo-color': '#fff',
-        'text-halo-width': 3
+        'text-halo-width': 3,
+        "text-opacity": postPonedOpacity + 0.4
       },
       layout: {
         'symbol-placement': 'line',
         'symbol-spacing': 150,
         'text-font': ['Open Sans Regular'],
         'text-field': 'reporté',
-        'text-size': 14
+        'text-size': 14,
       }
     });
 
