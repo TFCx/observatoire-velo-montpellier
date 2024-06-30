@@ -181,7 +181,6 @@ export const useMap = () => {
         'line-gap-width': ["*", 4, ['length', ['get', 'colors']]],
         'line-width': 1,
         'line-color': '#6b7280',
-        "line-opacity" : ["case", ["==", ['get', 'status'], 'postponed'], postPonedOpacity, 1.0]
       }
     });
     map.addLayer({
@@ -191,7 +190,6 @@ export const useMap = () => {
       paint: {
         'line-width': ["*", 4, ['length', ['get', 'colors']]],
         'line-color': '#ffffff',
-        "line-opacity" : ["case", ["==", ['get', 'status'], 'postponed'], postPonedOpacity, 1.0]
       }
     });
 
@@ -598,30 +596,6 @@ export const useMap = () => {
     });
 
     map.addLayer({
-      id: `postponed-symbols`,
-      type: 'symbol',
-      source: `postponed-sections`,
-      layout: {
-        'symbol-placement': 'line',
-        'symbol-spacing': symbolSpacing,
-        'icon-image': 'cross-icon',
-        'icon-size': iconSize,
-      },
-      paint: {
-        'icon-color': "black",
-        'icon-opacity': [
-          'interpolate',
-          ['linear'],
-          ['zoom'],
-          12,
-          postPonedOpacity, // low zoom
-          14,
-          postPonedOpacity + 0.2 // high zoom
-        ],
-      }
-    });
-
-    map.addLayer({
       id: `postponed-text`,
       type: 'symbol',
       source: `postponed-sections`,
@@ -632,14 +606,16 @@ export const useMap = () => {
       },
       layout: {
         'symbol-placement': 'line',
-        'symbol-spacing': 150,
+        'symbol-spacing': 100,
         'text-font': ['Open Sans Regular'],
         'text-field': 'reporté',
         'text-size': 14,
       }
     });
 
-    animateOpacity(map, 0, 1000*10.0, 'postponed-symbols', 'icon-opacity', 0.05, 0.25);
+    animateOpacity(map, 0, 1000*5.0, 'postponed-sections', 'line-opacity', 0.0, postPonedOpacity );
+    animateOpacity(map, 0, 1000*5.0, 'postponed-sections-2', 'line-opacity', 0.0, postPonedOpacity);
+    animateOpacity(map, 0, 1000*5.0, 'postponed-text', 'text-opacity',postPonedOpacity, postPonedOpacity + 0.4);
 
     map.on('mouseenter', `postponed-symbols`, () => (map.getCanvas().style.cursor = 'pointer'));
     map.on('mouseleave', `postponed-symbols`, () => (map.getCanvas().style.cursor = ''));
