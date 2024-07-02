@@ -31,7 +31,7 @@
       </div>
     </div>
     <div class="py-16">
-      <LvvCta />
+      <AssoCallToAaction />
     </div>
   </div>
 </template>

@@ -20,7 +20,7 @@
       <ContentRenderer :value="voie" />
     </ContentFrame>
 
-    <LvvCta class="pb-10" />
+    <AssoCallToAaction class="pb-10" />
   </div>
 </template>
 
