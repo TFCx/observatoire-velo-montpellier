@@ -20,7 +20,7 @@
           <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
             <Icon name="mdi:magnify" class="h-6 w-6 text-gray-400" aria-hidden="true" />
           </div>
-          <input id="compteur" v-model="searchText" type="text" class="py-4 pl-10 pr-4 text-lg shadow-md focus:ring-lvv-blue-600 focus:border-lvv-blue-600 block w-full border-gray-900 text-gray-900 rounded-md" placeholder="Chercher un compteur...">
+          <input id="compteur" v-model="searchText" type="text" class="py-4 pl-10 pr-4 text-lg shadow-md focus:ring-velocite-yellow-5 focus:border-velocite-yellow-5 block w-full border-gray-900 text-gray-900 rounded-md" placeholder="Chercher un compteur...">
         </div>
       </div>
 
@@ -28,7 +28,7 @@
       <div class="mt-4 max-w-7xl mx-auto grid gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:max-w-none">
         <NuxtLink v-for="counter of counters" :key="counter.name" :to="counter._path" class="flex flex-col rounded-lg shadow-md hover:shadow-lg overflow-hidden">
           <div>
-            <div class="px-4 py-2 bg-lvv-blue-600 text-white">
+            <div class="px-4 py-2 bg-velocite-yellow-5 text-white">
               <div class="text-base font-medium">
                 {{ counter.arrondissement }}
               </div>
@@ -49,7 +49,7 @@
                 <th class="w-1/4">
                   {{ getCounterLastRecord(counter).year }}
                 </th>
-                <th class="w-1/4 italic font-normal border-l-2 border-lvv-blue-600">
+                <th class="w-1/4 italic font-normal border-l-2 border-velocite-yellow-5">
                   évolution
                 </th>
               </tr>
@@ -66,7 +66,7 @@
                   {{ getCounterLastRecord(counter).value }}
                   <Icon v-if="isLastRecordMax(counter)" name="iconoir:medal-1st-solid" class="text-lvv-pink text-xl" />
                 </td>
-                <td class="text-center p-1 border-l-2 border-lvv-blue-600">
+                <td class="text-center p-1 border-l-2 border-velocite-yellow-5">
                   <span v-if="getEvolution(counter) === 0 " class="text-green-600">
                     N/A
                   </span>

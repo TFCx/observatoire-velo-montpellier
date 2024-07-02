@@ -54,7 +54,7 @@
         </div>
       </div>
     </div>
-    <div class="bg-lvv-blue-600 flex justify-center">
+    <div class="bg-velocite-yellow-5 flex justify-center">
       <a class="p-1 text-white text-base italic hover:underline" :href="getSectionDetailsUrl(feature.properties)" target="_blank">
         voir le détail <Icon name="mdi:link-variant" class="h-4 w-4 text-white" />
       </a>
@@ -101,15 +101,15 @@ function getStatus(properties: LineStringFeature['properties']): { label: string
     done: {
       label: 'terminé',
       date: properties.doneAt && getDoneAtText(properties.doneAt),
-      class: 'text-white bg-lvv-blue-600 rounded-xl px-2 w-fit'
+      class: 'text-white bg-velocite-yellow-5 rounded-xl px-2 w-fit'
     },
     wip: {
       label: 'en travaux',
-      class: 'text-lvv-blue-600 rounded-xl px-2 border border-dashed border-lvv-blue-600'
+      class: 'text-velocite-yellow-5 rounded-xl px-2 border border-dashed border-velocite-yellow-5'
     },
     planned: {
       label: 'prévu',
-      class: 'text-lvv-blue-600 rounded-xl px-2 border border-lvv-blue-600'
+      class: 'text-velocite-yellow-5 rounded-xl px-2 border border-velocite-yellow-5'
     },
     postponed: {
       label: 'reporté',

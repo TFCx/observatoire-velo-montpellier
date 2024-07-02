@@ -21,7 +21,7 @@
             <div class="my-auto rounded-md border-gray-500 border">
               <div class="h-1 relative">
                 <div class="absolute h-full w-full">
-                  <div class="h-full bg-lvv-blue-600 dashed-line" />
+                  <div class="h-full bg-velocite-yellow-5 dashed-line" />
                 </div>
               </div>
             </div>
@@ -30,7 +30,7 @@
             </div>
 
             <div class="my-auto rounded-md border-gray-500 border">
-              <div class="h-1 bg-lvv-blue-600" />
+              <div class="h-1 bg-velocite-yellow-5" />
             </div>
             <div>
               terminé
@@ -39,7 +39,7 @@
             <div class="my-auto rounded-md border-gray-500 border">
               <div class="h-1 relative">
                 <div class="absolute h-full w-full">
-                  <div class="h-full bg-lvv-blue-600 dashed-line animated-dashes" />
+                  <div class="h-full bg-velocite-yellow-5 dashed-line animated-dashes" />
                 </div>
               </div>
             </div>
@@ -47,7 +47,7 @@
               en travaux
             </div>
 
-            <div class="my-auto h-4 rounded-md bg-lvv-blue-600 opacity-20 px-1">
+            <div class="my-auto h-4 rounded-md bg-velocite-yellow-5 opacity-20 px-1">
               <div class="flex items-center justify-center h-full">
                 <div class="h-1 w-full rounded-md border-2 border-gray-500" />
               </div>
@@ -58,7 +58,7 @@
 
             <div class="my-auto rounded-md border-gray-500 border relative">
               <div class="h-1 bg-white" />
-              <div class="text-lvv-blue-600 font-bold leading-none absolute -top-2 leading-none">
+              <div class="text-velocite-yellow-5 font-bold leading-none absolute -top-2 leading-none">
                 x x x x x
               </div>
             </div>

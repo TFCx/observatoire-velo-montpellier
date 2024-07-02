@@ -1,7 +1,7 @@
 <template>
   <div class="w-full">
     <img
-      src="https://cyclopolis.lavilleavelo.org/carte-voies-lyonnaises-2026.png"
+      src="https://www.montpellier.fr/uploads/Image/4b/43449_216_20220531_REV-version-definitive.jpg"
       class="object-contain w-full h-screen"
       :alt="`plan officiel des ${getRevName()}`"
     >
@@ -11,7 +11,7 @@
 <script setup lang="ts">
 const { getRevName } = useConfig();
 
-const description = `Découvrez le plan officiel des ${getRevName()}, le futur réseau vélo lyonnais de 260km.`;
+const description = `Découvrez le plan officiel des ${getRevName()}, le futur réseau vélo montpelliérain de 235km.`;
 const COVER_IMAGE_URL = 'https://cyclopolis.lavilleavelo.org/cyclopolis.png';
 
 useHead({

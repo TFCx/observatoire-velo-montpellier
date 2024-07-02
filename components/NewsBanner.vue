@@ -13,7 +13,7 @@
       <div>
         {{ lastNewsItem.newsBannerText }}
       </div>
-      <NuxtLink to="/historique" class="flex-none text-lvv-blue-600 py-1 text-sm font-semibold hover:underline">
+      <NuxtLink to="/historique" class="flex-none text-velocite-yellow-5 py-1 text-sm font-semibold hover:underline">
         Lire l'annonce <span aria-hidden="true">&rarr;</span>
       </NuxtLink>
     </div>

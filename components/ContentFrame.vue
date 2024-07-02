@@ -92,7 +92,7 @@
       <div class="text-lg max-w-prose mx-auto">
         <span
           v-if="header"
-          class="block text-base text-center text-lvv-blue-600 font-semibold tracking-wide uppercase"
+          class="block text-base text-center text-velocite-yellow-5 font-semibold tracking-wide uppercase"
         >{{ header }}</span>
         <h1 v-if="title" class="mt-2 block text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
           {{ title }}
