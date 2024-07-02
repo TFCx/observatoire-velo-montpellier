@@ -6,7 +6,7 @@
     <img
       v-if="options.logo"
       class="my-0 absolute bottom-0 right-0 z-10"
-      src="https://cyclopolis.lavilleavelo.org/logo-lvv-carte.png"
+      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmhVxxaZmo-qSqIqhnj5ZrGoX0lP1UChF4dw&s"
       width="75"
       height="75"
       :alt="`logo ${config.assoName}`"

@@ -50,49 +50,34 @@ const socials = {
   cyclopolis: [
     {
       name: 'Twitter',
-      href: 'https://twitter.com/benoit_dmgdt',
+      href: 'https://twitter.com/_TFCx_',
       icon: 'mdi:twitter'
     },
     {
       name: 'Github',
-      href: 'https://github.com/benoitdemaegdt/voieslyonnaises',
+      href: 'https://github.com/TFCx/observatoire-velolignes',
       icon: 'mdi:github'
-    },
-    {
-      name: 'LinkedIn',
-      href: 'https://www.linkedin.com/in/benoitdemaegdt',
-      icon: 'mdi:linkedin'
     }
   ],
   lvv: [
     {
       name: 'Twitter',
-      href: 'https://twitter.com/LaVilleaVelo',
+      href: 'https://twitter.com/VelociteMtp',
       icon: 'mdi:twitter'
     },
     {
       name: 'Facebook',
-      href: 'https://www.facebook.com/lavilleavelolyon/',
+      href: 'https://www.facebook.com/VelociteMontpellier/',
       icon: 'mdi:facebook'
     },
     {
-      name: 'LinkedIn',
-      href: 'https://www.linkedin.com/company/la-ville-%C3%A0-v%C3%A9lo',
-      icon: 'mdi:linkedin'
-    },
-    {
-      name: 'Instagram',
-      href: 'https://www.instagram.com/lavilleavelolyon',
-      icon: 'mdi:instagram'
-    },
-    {
       name: 'Site web',
-      href: 'https://lavilleavelo.org/',
+      href: 'https://www.velocite-montpellier.fr/',
       icon: 'mdi:link'
     },
     {
       name: 'Email',
-      href: 'mailto:contact_at_lavilleavelo.org',
+      href: 'mailto:velocite-montpellier@fub.fr',
       icon: 'mdi:email-outline'
     }
   ]

@@ -4,6 +4,17 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+
+        // A virer
+        'lvv-blue-600': '#152B68',
+        'lvv-blue-500': '#433E61',
+        'lvv-blue-400': '#665E7B',
+        'lvv-blue-300': '#C2BDC3',
+        'lvv-blue-200': '#DEDBDD',
+        'lvv-blue-100': '#EFEDF1',
+        'lvv-pink': '#C84271',
+        'lvv-green': '#83C0B7',
+
         'velocite-blue-1': '#99C1F1',
         'velocite-blue-2': '#62A0EA',
         'velocite-blue-3': '#3584E4',
