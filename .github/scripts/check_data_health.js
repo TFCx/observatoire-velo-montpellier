@@ -123,6 +123,7 @@ function checkGeoJsonDataHealth({ links }) {
                 'voie-verte',
                 'bandes-cyclables',
                 'zone-de-rencontre',
+                'heterogene',
                 'inconnu',
                 'aucun'
               ];

@@ -146,6 +146,7 @@ export const useStats = () => {
     'voie-verte': 'Voie verte',
     'bandes-cyclables': 'Bandes cyclables',
     'zone-de-rencontre': 'Zone de rencontre',
+    'heterogene': 'Héterogène',
     aucun: 'Aucun',
     inconnu: 'Inconnu'
   };
