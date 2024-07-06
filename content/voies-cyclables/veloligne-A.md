@@ -3,6 +3,8 @@ line: A
 description: On met une description ici
 trafic: 0k vélos/jour
 cover: https://cyclopolis.lavilleavelo.org/vl2/bd-vivier-merle.jpg
+from: Juvignac
+to: Castelnau
 ---
 
 ## Les tronçons (du Nord au Sud)
