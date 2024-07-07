@@ -86,7 +86,7 @@
                           class="h-10 w-10 rounded-full flex items-center justify-center text-white font-bold"
                           :style="`background-color: ${getLineColor(voie.line)}`"
                         >
-                          {{ voie.line }}
+                          {{ voie.lineNameShort }}
                         </div>
                       </div>
                     </NuxtLink>
@@ -180,7 +180,7 @@
                     class="h-10 w-10 rounded-full flex items-center justify-center text-white font-bold"
                     :style="`background-color: ${getLineColor(voie.line)}`"
                   >
-                    {{ voie.line }}
+                    {{ voie.lineNameShort }}
                   </div>
                 </div>
               </NuxtLink>

@@ -5,7 +5,7 @@
       class="h-6 w-6 rounded-full inline-flex items-center justify-center text-white"
       :style="`background-color: ${color};`"
     >
-      {{ line }}
+      {{ lineNameShort }}
     </span>
   </NuxtLink>
 </template>

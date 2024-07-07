@@ -1,5 +1,7 @@
 ---
 line: 4
+lineName: Ligne 4
+lineNameShort: 4
 description: On met une description ici
 trafic: 0k vélos/jour
 cover: https://cyclopolis.lavilleavelo.org/vl2/bd-vivier-merle.jpg

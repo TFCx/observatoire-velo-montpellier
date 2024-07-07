@@ -6,14 +6,14 @@
           class="h-10 w-10 rounded-full flex items-center justify-center text-white font-bold"
           :style="`background-color: ${getLineColor(voie.line)}`"
         >
-          {{ voie.line }}
+          {{ voie.lineNameShort }}
         </div>
       </div>
       <div class="flex-1 min-w-0">
         <NuxtLink :to="getVoieCyclablePath(voie.line)" class="focus:outline-none">
           <span class="absolute inset-0" aria-hidden="true" />
           <p class="text-sm font-medium text-gray-900">
-            Ligne {{ voie.line }}
+            {{ voie.lineName }}
           </p>
           <p class="text-sm text-gray-500 truncate">
             {{ voie.from }} → {{ voie.to }}

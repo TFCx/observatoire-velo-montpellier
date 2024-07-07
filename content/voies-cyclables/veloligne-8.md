@@ -1,5 +1,7 @@
 ---
 line: 8
+lineName: Ligne 8
+lineNameShort: 8
 description: On met une description ici
 trafic: 0k vélos/jour
 cover: https://cyclopolis.lavilleavelo.org/vl2/bd-vivier-merle.jpg

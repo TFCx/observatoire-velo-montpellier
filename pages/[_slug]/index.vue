@@ -11,7 +11,7 @@
             class="mt-2 h-12 w-12 rounded-full flex items-center justify-center text-white font-bold mx-auto"
             :style="`background-color: ${getLineColor(voie.line)}`"
           >
-            {{ voie.line }}
+            {{ voie.lineNameShort }}
           </div>
         </h1>
       </template>
