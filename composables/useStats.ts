@@ -138,18 +138,18 @@ export const useStats = () => {
   }
 
   const typologyNames: Record<LaneType, string> = {
-    bidirectionnelle: 'Piste bidirectionnelle',
-    bilaterale: 'Piste bilatérale',
+    'bidirectionnelle': 'Piste bidirectionnelle',
+    'bilaterale': 'Piste bilatérale',
     'voie-bus': 'Voie bus',
     'voie-bus-elargie': 'Voie bus élargie',
-    velorue: 'Vélorue',
+    'velorue': 'Vélorue',
     'voie-verte': 'Voie verte',
     'bandes-cyclables': 'Bandes cyclables',
     'zone-de-rencontre': 'Zone de rencontre',
     'heterogene': 'Héterogène',
-    aucun: 'Aucun',
-    inconnu: 'Inconnu',
-    'chaucidou': 'chaucidou'
+    'aucun': 'Aucun',
+    'inconnu': 'Inconnu',
+    'chaucidou': 'Chaucidou'
   };
 
   function getStatsByTypology(voies: Geojson[]) {
