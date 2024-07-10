@@ -96,12 +96,12 @@
             </transition>
           </Popover>
 
-          <NuxtLink
+          <!-- <NuxtLink
             to="/compteurs/velo"
             class="text-base font-medium text-gray-500 hover:text-velocite-yellow-5"
           >
             Compteurs
-          </NuxtLink>
+          </NuxtLink> -->
         </PopoverGroup>
         <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
           <NuxtLink
