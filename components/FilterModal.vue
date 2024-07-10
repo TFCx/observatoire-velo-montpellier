@@ -90,7 +90,8 @@ const typeFilters = ref([
   { label: 'Zone de rencontre', isEnable: true, types: ['zone-de-rencontre'] },
   { label: 'Héterogène', isEnable: true, types: ['heterogene'] },
   { label: 'Inconnu', isEnable: true, types: ['inconnu'] },
-  { label: 'Aucun', isEnable: true, types: ['aucun'] }
+  { label: 'Aucun', isEnable: true, types: ['aucun'] },
+  { label: 'Chaucidou', isEnable: true, types: ['chaucidou'] }
 ]);
 
 function toogleStatusFilter(index: number) {

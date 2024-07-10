@@ -9,7 +9,8 @@ export type LaneType =
 | 'zone-de-rencontre'
 | 'heterogene'
 | 'aucun'
-| 'inconnu';
+| 'inconnu'
+| 'chaucidou';
 
 export type LaneStatus = 'done' | 'wip' | 'planned' | 'postponed' | 'unknown' | 'variante' | 'variante-postponed';
 

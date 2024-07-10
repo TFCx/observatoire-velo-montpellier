@@ -148,7 +148,8 @@ export const useStats = () => {
     'zone-de-rencontre': 'Zone de rencontre',
     'heterogene': 'Héterogène',
     aucun: 'Aucun',
-    inconnu: 'Inconnu'
+    inconnu: 'Inconnu',
+    'chaucidou': 'chaucidou'
   };
 
   function getStatsByTypology(voies: Geojson[]) {

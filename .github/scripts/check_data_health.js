@@ -125,7 +125,8 @@ function checkGeoJsonDataHealth({ links }) {
                 'zone-de-rencontre',
                 'heterogene',
                 'inconnu',
-                'aucun'
+                'aucun',
+                'chaucidou'
               ];
               if (!validTypes.includes(properties.type)) {
                 console.error(`Invalid type '${properties.type}' in LineString properties of file: ${filePath}`);
