@@ -23,9 +23,9 @@ export const useStats = () => {
    * retourne la somme des distances de tous les tronçons passé en paramètre.
    * Attention : pas de notion de dédoublonnage ici.
    */
-  function getDistance({ features }: { features: Feature[] }): number {
+  function getDistance(features: Feature[], checkFeature: (f: Feature) => boolean = () => true): number {
     return features.reduce((acc: number, feature: Feature) => {
-      return acc + getLineStringDistance(feature);
+      return acc + (checkFeature(feature) ? getLineStringDistance(feature) : 0);
     }, 0);
   }
 
@@ -85,7 +85,7 @@ export const useStats = () => {
    */
   function getTotalDistance(voies: Geojson[]) {
     const features = getAllUniqLineStrings(voies);
-    return getDistance({ features });
+    return getDistance(features);
   }
 
   function getStats(voies: Geojson[]) {
@@ -99,21 +99,28 @@ export const useStats = () => {
       ['postponed', 'variante-postponed'].includes(feature.properties.status)
     );
 
-    const totalDistance = getDistance({ features });
-    const doneDistance = getDistance({ features: doneFeatures });
-    const wipDistance = getDistance({ features: wipFeatures });
-    const plannedDistance = getDistance({ features: plannedFeatures });
-    const postponedDistance = getDistance({ features: postponedFeatures });
+    const totalDistance = getDistance(features);
+    const doneDistance = getDistance(doneFeatures);
+    const alreadyExistingDistance = getDistance(doneFeatures, f => isBeforeMandat(f));
+    const wipDistance = getDistance(wipFeatures);
+    const plannedDistance = getDistance(plannedFeatures);
+    const postponedDistance = getDistance(postponedFeatures);
 
     function getPercent(distance: number) {
       return Math.round((distance / totalDistance) * 100);
     }
 
     return {
+      alreadyExisting: {
+        name: 'Avant mandat',
+        distance: alreadyExistingDistance,
+        percent: getPercent(alreadyExistingDistance),
+        class: 'text-velocite-dark-5 font-semibold'
+      },
       done: {
         name: 'Réalisés',
-        distance: doneDistance,
-        percent: getPercent(doneDistance),
+        distance: doneDistance - alreadyExistingDistance,
+        percent: getPercent(doneDistance) - getPercent(alreadyExistingDistance),
         class: 'text-velocite-yellow-5 font-semibold'
       },
       wip: {
@@ -126,7 +133,7 @@ export const useStats = () => {
         name: 'Prévus',
         distance: plannedDistance,
         percent: getPercent(plannedDistance),
-        class: 'text-black font-semibold'
+        class: 'text-velocite-light-4 font-semibold'
       },
       postponed: {
         name: 'Reportés',
@@ -155,7 +162,7 @@ export const useStats = () => {
 
   function getStatsByTypology(voies: Geojson[]) {
     const lineStringFeatures = getAllUniqLineStrings(voies);
-    const totalDistance = getDistance({ features: lineStringFeatures });
+    const totalDistance = getDistance(lineStringFeatures);
 
     function getPercent(distance: number) {
       return Math.round((distance / totalDistance) * 100);
@@ -164,7 +171,7 @@ export const useStats = () => {
     const featuresByType = groupBy<LineStringFeature, LaneType>(lineStringFeatures, feature => feature.properties.type);
     return Object.entries(featuresByType)
       .map(([type, features]) => {
-        const distance = getDistance({ features });
+        const distance = getDistance(features);
         const percent = getPercent(distance);
         return {
           name: typologyNames[type as LaneType],
@@ -186,3 +193,20 @@ export const useStats = () => {
     typologyNames
   };
 };
+
+function isBeforeMandat(feature: Feature): boolean {
+  if(!isLineStringFeature(feature)) {
+      return false
+  }
+
+  let lfeature = feature as LineStringFeature
+  let doneAt = lfeature.properties.doneAt
+
+  if(!doneAt) {
+    return false
+  }
+
+  const [day, month, year] = doneAt.split('/');
+  return new Date(Number(year), Number(month) - 1, Number(day)).getTime() < new Date(2021, 0, 1).getTime();
+}
+

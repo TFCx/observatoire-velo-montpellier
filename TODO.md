@@ -1,5 +1,3 @@
-- Gérer les hierarchies de lignes (1a/1b/1c)
-- Aménagements différents selon le sens
 - Bouton pour désactiver la qualité
 - Problème perfs / leak
 - Ajout type : bande cyclable, bande cyclable sur trottoir, voirie mixte
