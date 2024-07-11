@@ -149,7 +149,8 @@ export const useStats = () => {
     'heterogene': 'Héterogène',
     'aucun': 'Aucun',
     'inconnu': 'Inconnu',
-    'chaucidou': 'Chaucidou'
+    'chaucidou': 'Chaucidou',
+    'mixte': 'Mixte vélo/motorisé'
   };
 
   function getStatsByTypology(voies: Geojson[]) {

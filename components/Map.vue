@@ -60,7 +60,7 @@ const {
 } = useMap();
 
 const statuses = ref(['planned', 'variante', 'done', 'postponed', 'variante-postponed', 'unknown', 'wip']);
-const types = ref(['bidirectionnelle', 'bilaterale', 'voie-bus', 'voie-bus-elargie', 'velorue', 'voie-verte', 'bandes-cyclables', 'zone-de-rencontre', 'heterogene', 'aucun', 'inconnu','chaucidou']);
+const types = ref(['bidirectionnelle', 'bilaterale', 'voie-bus', 'voie-bus-elargie', 'velorue', 'voie-verte', 'bandes-cyclables', 'zone-de-rencontre', 'heterogene', 'aucun', 'inconnu','chaucidou','mixte']);
 const features = computed(() => {
   return (props.features ?? []).filter(feature => {
     if (isLineStringFeature(feature)) {

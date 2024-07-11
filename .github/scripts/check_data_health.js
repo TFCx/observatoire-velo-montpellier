@@ -126,7 +126,8 @@ function checkGeoJsonDataHealth({ links }) {
                 'heterogene',
                 'inconnu',
                 'aucun',
-                'chaucidou'
+                'chaucidou',
+                'mixte'
               ];
               if (!validTypes.includes(properties.type)) {
                 console.error(`Invalid type '${properties.type}' in LineString properties of file: ${filePath}`);

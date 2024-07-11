@@ -91,7 +91,8 @@ const typeFilters = ref([
   { label: 'Héterogène', isEnable: true, types: ['heterogene'] },
   { label: 'Inconnu', isEnable: true, types: ['inconnu'] },
   { label: 'Aucun', isEnable: true, types: ['aucun'] },
-  { label: 'Chaucidou', isEnable: true, types: ['chaucidou'] }
+  { label: 'Chaucidou', isEnable: true, types: ['chaucidou'] },
+  { label: 'Mixte vélo / motorisés', isEnable: true, types: ['mixte'] }
 ]);
 
 function toogleStatusFilter(index: number) {
