@@ -13,7 +13,9 @@ to: Maugio
 
 ### Antigone <> Lez
 
+::banner{type="unsecured"}
 Section inexistante. Pas de projet en cours à la connaissance de Vélocité.
+::
 
 ### Lez <> Vieille Poste
 

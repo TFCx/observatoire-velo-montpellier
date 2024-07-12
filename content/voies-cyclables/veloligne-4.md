@@ -25,7 +25,9 @@ Aménagement bilatéral prévu
 
 #### Place Ernest Granier <> Marché du Lez
 
+::banner{type="unsecured"}
 Pas de projet en cours à la connaissance de Vélocité.
+::
 
 ### Branche vers Lattes et Palavas
 
@@ -40,9 +42,8 @@ Zone dangereuse au sud du port Ariane. La voie verte sature déjà les jours de 
 Pas de projet en cours à la connaissance de Vélocité.
 ::
 
-::banner{type="info"}
 Tracé sinueux avec de forts facteurs de détour. Nécessité d'un franchissement du Lez (est-il budgété ?).
-::
+
 
 #### Fin de la Voie verte entre les cabanes de 4 vents et Palavas
 
@@ -53,7 +54,7 @@ Tracé sinueux avec de forts facteurs de détour. Nécessité d'un franchissemen
 #### Marché du Lez <> Pérols (Boulidou)
 
 <span style="color:green;font-weight:bold;">Satisfaisant</span> Bien qu'étroite cette section est globalement satisfaisante.
-<span style="color:orange;font-weight:bold;">/!\ Point d'attention /!\ </span>Dans le sens Lattes>Montpellier la fin est inexistante, ce qui conduit une très grande partie des usagers à utiliser la piste située de l'autre côté, circulant ainsi à l'envers sur un espace déjà partagé avec des piétons.
+<span style="color:orange;font-weight:bold;"><br>/!\ Point d'attention /!\ </span>Dans le sens Lattes>Montpellier la fin est inexistante, ce qui conduit une très grande partie des usagers à utiliser la piste située de l'autre côté, circulant ainsi à l'envers sur un espace déjà partagé avec des piétons.
 
 #### Desserte de l'aéroport
 
