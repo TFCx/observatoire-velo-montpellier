@@ -1,4 +1,4 @@
-    ---
+---
 line: 3
 lineName: Ligne 3
 lineNameShort: 3
