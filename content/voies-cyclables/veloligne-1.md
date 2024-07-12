@@ -2,19 +2,23 @@
 line: 1
 lineName: Ligne 1
 lineNameShort: 1
-description: On met une description ici
-trafic: 0k vélos/jour
-cover: https://cyclopolis.lavilleavelo.org/vl2/bd-vivier-merle.jpg
+description: Véloligne desservant les communes du quart nord-est de la métropole
+trafic: 
+cover: 
 from: Mtpl Corum
 to: Castelnau / Jacou / Saint-Geniès
 ---
 
-## Les tronçons (du Nord au Sud)
+## Les tronçons 
 
-### Juvignac
-Voie verte ouverte le ?
+### Section commune
+Corum <> Castelnau
 
-### Castelnau-le-lez
-Cette passerelle est en cours de construction.
+### Véloligne 1a
+Castelnau <> Jacou
 
-#### *Concertation*
+### Véloligne 1b
+Castelnau <> Vendargues <> Saint-Geniès-des-Mourgues
+
+### Véloligne 1c
+Castelnau <> Vendargues <> Saint-Bres
