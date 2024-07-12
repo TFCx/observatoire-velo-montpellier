@@ -2,19 +2,11 @@
 line: A
 lineName: Ligne A
 lineNameShort: A
-description: On met une description ici
-trafic: 0k vélos/jour
-cover: https://cyclopolis.lavilleavelo.org/vl2/bd-vivier-merle.jpg
+description: Cette Véloligne est l'une des rocades cyclable qui reliera à terme Juvignac à Castelnau
+trafic: 
+cover: https://www.montpellier.fr/uploads/Image/98/IMF_FICHEEVT/GAB_MPL/43475_157_pers-DUBOUT.jpg
 from: Juvignac
 to: Castelnau
 ---
 
-## Les tronçons (du Nord au Sud)
-
-### Juvignac
-Voie verte ouverte le ?
-
-### Castelnau-le-lez
-Cette passerelle est en cours de construction.
-
-#### *Concertation*
+*à venir*
