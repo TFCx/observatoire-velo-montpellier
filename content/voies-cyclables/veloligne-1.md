@@ -3,8 +3,10 @@ line: 1
 lineName: Ligne 1
 lineNameShort: 1
 description: Montpellier Corum <> Castelnau / Jacou / Saint-Geniès
-trafic: 
-cover: 
+<!---
+trafic: 0k vélos/jour
+cover: https://cyclopolis.lavilleavelo.org/vl2/bd-vivier-merle.jpg
+---!>
 from: Mtpl Corum
 to: Castelnau / Jacou / Saint-Geniès
 ---
