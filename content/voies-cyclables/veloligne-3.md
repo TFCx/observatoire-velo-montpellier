@@ -1,20 +1,12 @@
----
+    ---
 line: 3
 lineName: Ligne 3
 lineNameShort: 3
-description: On met une description ici
-trafic: 0k vélos/jour
-cover: https://cyclopolis.lavilleavelo.org/vl2/bd-vivier-merle.jpg
+description: Cette Véloligne partage l'intégralité de son court parcours avec la Véloligne B. Elle vise surtout à matérialiser sur le plan des Vélolignes la jonction Odysséum <> Gare Sud de France
+trafic: 
+cover: 
 from: Mtpl Odysséum
 to: Gare Sud de France
 ---
 
-## Les tronçons (du Nord au Sud)
-
-### Juvignac
-Voie verte ouverte le ?
-
-### Castelnau-le-lez
-Cette passerelle est en cours de construction.
-
-#### *Concertation*
+#### *pas de descriptif spécifique*

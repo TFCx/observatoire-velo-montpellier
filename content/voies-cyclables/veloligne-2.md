@@ -2,19 +2,30 @@
 line: 2
 lineName: Ligne 2
 lineNameShort: 2
-description: On met une description ici
-trafic: 0k vélos/jour
-cover: https://cyclopolis.lavilleavelo.org/vl2/bd-vivier-merle.jpg
+description: Véloligne devant offrir (à terme) une jonction directe Montpellier<>Mauguio via Grammont
+trafic: 
+cover: 
 from: Mtpl Antigone
 to: Maugio
 ---
 
-## Les tronçons (du Nord au Sud)
+## Les tronçons (d'ouest en est)
 
-### Juvignac
-Voie verte ouverte le ?
+### Antigone <> Lez
 
-### Castelnau-le-lez
-Cette passerelle est en cours de construction.
+Section inexistante. Pas de projet en cours à la connaissance de Vélocité.
 
-#### *Concertation*
+### Lez <> Vieille Poste
+
+Section très empruntée. Les virages de la passerelle sont trop étroits.
+::banner{type="wip"}
+Partie est en travaux dans le cadre des travaux du Bustram.
+::
+
+### Vieille Poste <> Grammont
+
+Section existante aux standards de confort, qualité, sécurité et attractivité dépassés non conformes aux exigences d'une Véloligne.
+
+### Grammont <> Maugio
+
+Section non prévue au cours de ce mandat. Reportée à une échéance ultérieure.
