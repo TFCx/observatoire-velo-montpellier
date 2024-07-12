@@ -11,9 +11,20 @@ to: Castelnau
 
 ### de Juvignac à Mosson (pôle d'échanges)
 
+::banner{type="unsecured"}
+Pas de projet en cours à la connaissance de Vélocité.
+::
+
 ### de Mosson à Celleneuve
 
+<span style="color:green;font-weight:bold">Satisfaisant</span>
+Portion existante réalisée en bilatérales.
+
 ### de Celleneuve à l'avenue des Garrats
+
+::banner{type="unsecured"}
+Reporté à après le mandat
+::
 
 ### de l'avenue des Garrats aux rues Forgues et Fontcarrade
 
@@ -68,7 +79,11 @@ En travaux. Les pistes transitoires bilatérales seront perennisées.
 
 ### Avenue du Mondial 98 (Odysseum <> Evariste Galois)
 
+Projet de piste bilatérales.
+
 ### Evariste Galois <> Albert Einstein
+
+Projet de piste bidirectionnelle côté est.
 
 ### Rues Becquerel et Pomessargues
 
