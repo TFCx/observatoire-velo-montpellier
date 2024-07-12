@@ -136,7 +136,7 @@ export const useStats = () => {
         class: 'text-velocite-light-4 font-semibold'
       },
       postponed: {
-        name: 'Reportés',
+        name: 'Après 2026',
         distance: postponedDistance,
         percent: getPercent(postponedDistance),
         class: 'text-lvv-pink font-semibold'
