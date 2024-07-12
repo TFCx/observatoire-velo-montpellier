@@ -2,19 +2,11 @@
 line: 9
 lineName: Ligne 9
 lineNameShort: 9
-description: On met une description ici
-trafic: 0k vélos/jour
-cover: https://cyclopolis.lavilleavelo.org/vl2/bd-vivier-merle.jpg
+description: Cette véloligne desservira le nord-ouest de Montpellier et Grabels
+trafic: 
+cover: 
 from: Mtpl Château d'Ô
 to: Grabels
 ---
 
-## Les tronçons (du Nord au Sud)
-
-### Juvignac
-Voie verte ouverte le ?
-
-### Castelnau-le-lez
-Cette passerelle est en cours de construction.
-
-#### *Concertation*
+<span style="color:orange;font-weight:bold;">Non satisfaisant</span> Équipement existant de longue date, aux standards de confort, qualité, sécurité et attractivité dépassés et non conformes aux exigences d'une Véloligne.

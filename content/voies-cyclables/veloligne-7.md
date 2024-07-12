@@ -2,19 +2,13 @@
 line: 7
 lineName: Ligne 7
 lineNameShort: 7
-description: On met une description ici
-trafic: 0k vélos/jour
-cover: https://cyclopolis.lavilleavelo.org/vl2/bd-vivier-merle.jpg
+description: Véloligne desservant Saint-Jean-de-Védas et Fabrègues
+trafic: 
+cover: 
 from: Mtpl 8 Mai 1945
 to: Fabrègues
 ---
 
-## Les tronçons (du Nord au Sud)
-
-### Juvignac
-Voie verte ouverte le ?
-
-### Castelnau-le-lez
-Cette passerelle est en cours de construction.
-
-#### *Concertation*
+::banner{type="unsecured"}
+Sur le mandat seule la liaison Saint-Jean-de-Védas<>Fabrègues est annoncée. Pas de projet en cours à la connaissance de Vélocité.
+::

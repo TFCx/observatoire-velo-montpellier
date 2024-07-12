@@ -2,19 +2,36 @@
 line: 6
 lineName: Ligne 6
 lineNameShort: 6
-description: On met une description ici
-trafic: 0k vélos/jour
-cover: https://cyclopolis.lavilleavelo.org/vl2/bd-vivier-merle.jpg
+description: Cette véloligne à 3 branches desservira Saint-Jean-de-Védas, Villeneuve-les-Maguelone et Maurin
+trafic: 
+cover: 
 from: Mtpl Dubout
 to: Villeneuve / Saint-Jean-de-Védas / Maurin
 ---
 
-## Les tronçons (du Nord au Sud)
+## Les tronçons
 
-### Juvignac
-Voie verte ouverte le ?
+### Montpellier <> Condamine (St-Jean-de-Védas)
 
-### Castelnau-le-lez
-Cette passerelle est en cours de construction.
+::banner{type="unsecured"}
+Pas de projet en cours à la connaissance de Vélocité.
+::
+""
+### Véloligne 4a : Condamine <> Villeneuve-les-Maguelone
 
-#### *Concertation*
+::banner{type="unsecured"}
+Sur la première partie, pas de projet en cours à la connaissance de Vélocité.
+::
+La fin est une voie verte existante et constitue une <a href="https://fr.eurovelo.com/ev8/escape-in-french-southern-lands">partie de l'eurovélo 8</a>
+
+### Véloligne 4b : Condamine <> Saint-Jean-de-Védas
+
+::banner{type="unsecured"}
+Pas de projet en cours à la connaissance de Vélocité.
+::
+
+### Véloligne 4c : Lauze <> Maurin
+
+::banner{type="unsecured"}
+Pas de projet en cours à la connaissance de Vélocité.
+::
