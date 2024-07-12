@@ -3,7 +3,7 @@ line: Anneau
 lineName: Anneau
 lineNameShort: 𐍈
 description: L'Anneau vélo est le maillon central des Vélolignes, il permet de relier (presque) toutes les radiales
-trafic: >5k vélos/jour
+trafic: 5k vélos/jour
 cover: 
 from: Mtpl
 to: Mtpl
