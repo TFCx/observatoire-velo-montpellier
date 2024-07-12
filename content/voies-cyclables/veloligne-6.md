@@ -16,7 +16,7 @@ to: Villeneuve / Saint-Jean-de-Védas / Maurin
 ::banner{type="unsecured"}
 Pas de projet en cours à la connaissance de Vélocité.
 ::
-""
+
 ### Véloligne 4a : Condamine <> Villeneuve-les-Maguelone
 
 ::banner{type="unsecured"}
