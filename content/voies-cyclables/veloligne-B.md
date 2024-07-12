@@ -9,4 +9,4 @@ from: Gare Sud de France
 to: Gare Sud de France
 ---
 
-*à venir*
+*détails à venir*

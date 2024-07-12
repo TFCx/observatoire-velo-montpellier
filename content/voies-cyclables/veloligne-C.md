@@ -9,4 +9,4 @@ from: Carnon
 to: Juvignac
 ---
 
-*à venir*
+Cette Véloligne est essentiellement de l'existant, basé notamment sur un long linéaire de l'<a href="https://fr.eurovelo.com/ev8/escape-in-french-southern-lands">eurovélo 8</a>. Les jonctions Juvignac<>Saussan et Fabrègues<>Villeneuve, manquantes, ne sont pas prévues pour ce mandat
