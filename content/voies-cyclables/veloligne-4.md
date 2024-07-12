@@ -36,7 +36,9 @@ Zone dangereuse au sud du port Ariane. La voie verte sature déjà les jours de 
 
 #### Branche vers Maurin
 
-Pas de projet en cours à la connaissance de Vélocité. Tracé sinueux avec de forts facteurs de détour. Nécessité d'un franchissement du Lez (est-il budgété ?).
+::banner{type="unsecured"} Pas de projet en cours à la connaissance de Vélocité. ::
+
+::banner{type="info"} Tracé sinueux avec de forts facteurs de détour. Nécessité d'un franchissement du Lez (est-il budgété ?). ::
 
 #### Fin de la Voie verte entre les cabanes de 4 vents et Palavas
 
