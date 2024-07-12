@@ -47,13 +47,12 @@ Pas de projet en cours à la connaissance de Vélocité. Tracé sinueux avec de 
 #### Marché du Lez <> Pérols (Boulidou)
 
 <span style="color:green;font-weight:bold;">Satisfaisant</span> Bien qu'étroite cette section est globalement satisfaisante.
-
 <span style="color:orange;font-weight:bold;">/!\ Point d'attention /!\ </span>Dans le sens Lattes>Montpellier la fin est inexistante, ce qui conduit une très grande partie des usagers à utiliser la piste située de l'autre côté, circulant ainsi à l'envers sur un espace déjà partagé avec des piétons.
 
 #### Desserte de l'aéroport
 
-Pourtant récente cette section existante aux standards de confort, qualité, sécurité et attractivité dépassés n'est pas conforme aux exigences d'une Véloligne.
+<span style="color:orange;font-weight:bold;">Non satisfaisant</span> Pourtant récente, cette section existante aux standards de confort, qualité, sécurité et attractivité dépassés n'est pas conforme aux exigences d'une Véloligne.
 
 #### Pérols (Boulidou <> Carnon)
 
-<span style="color:red;font-weight:bold;">Dangereux</span> Étroite, avec un fort conflit piéton/vélo, réalisée sans séparation en bordure de voies à grande circulation, cette section n'est absolument pas conforme aux exigences d'une Véloligne.
+<span style="color:red;font-weight:bold;">Dangereux</span> Étroite, avec un fort conflit piéton/vélo, réalisée - sans protection physique - en bordure de voies à grande circulation automobile, cette section n'est absolument pas conforme aux exigences d'une Véloligne.
