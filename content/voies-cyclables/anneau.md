@@ -61,6 +61,15 @@ Prévue pour être piétonne sans matérialisation spécifique d'espaces piéton
 
 <span style="color:orange;font-weight:bold">Non satisfaisant</span> Pistes bilatérales anciennes en "canyon". Le Cerema utilise des photos de ces pistes pour illustrer les exemples d'aménagements à éviter.
 
+::content-image
+---
+imageUrl: https://www.cerema.fr/sites/default/files/inline-images/effet_canyon_0.jpg
+caption: Piste cyclable ancienne sur le trajet de l'Anneau vélo
+credit: Cerema - 8 recommandations pour réussir votre piste cyclable
+streetView: 43.6058282,3.8896056,3a,15y,26.2h,88.67t
+---
+::
+
 ### rue Blum
 
 <span style="color:green;font-weight:bold">Satisfaisant</span> Vélorue.
