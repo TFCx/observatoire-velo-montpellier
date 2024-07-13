@@ -19,15 +19,31 @@ Section inexistante. Pas de projet en cours à la connaissance de Vélocité.
 
 ### Lez <> Vieille Poste
 
-Section très empruntée. Les virages de la passerelle sont trop étroits.
+<span style="color:red;font-weight:bold">Non satisfaisant</span> Section très empruntée. Conflit piéton/vélo important. Les virages de la passerelle sont trop étroits.
+
+::content-image
+---
+imageUrl: https://compteurs.velocite-montpellier.fr/assets/img/ED223110496.jpg
+caption: Présence d'un compteur muni d'un totem d'affichage à l'est de la passerelle.
+credit:
+streetView: 43.6098586,3.8987897,3a,75y,235.16h,87.95t
+---
+::
+
+<a href="https://compteurs.velocite-montpellier.fr/detail/quai-de-cythere">Données du compteur "Pompignane - Quai de Cythère"</a>
+
 ::banner{type="wip"}
-Partie est en travaux dans le cadre des travaux du Bustram.
+La partie est a été mise en travaux depuis mars 2024 dans le cadre des travaux du Bustram.
 ::
 
 ### Vieille Poste <> Grammont
 
-Section existante aux standards de confort, qualité, sécurité et attractivité dépassés non conformes aux exigences d'une Véloligne.
+
+
+<span style="color:red;font-weight:bold">Non satisfaisant</span> Section existante aux standards de confort, qualité, sécurité et attractivité dépassés non conformes aux exigences d'une Véloligne.
 
 ### Grammont <> Maugio
 
+::banner{type="unsecured"}
 Section non prévue au cours de ce mandat. Reportée à une échéance ultérieure.
+::

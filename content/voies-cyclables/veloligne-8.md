@@ -13,7 +13,13 @@ to: Cournonsec
 
 ### Figuerolles jusqu'à l'école maternelle du Docteur Roux
 
+<span style="color:green;font-weight:bold;font-style:italic">Plutôt satisfaisant</span> Piste bidirectionnelle réalisée à la fin du mandat précédent en passant la rue à sens unique.
+
 ### De Figuerolles à la rue des Chasseurs
+
+::banner{type="unsecured"}
+Section inexistante. Pas de projet en cours à la connaissance de Vélocité.
+::
 
 ### De la rue des Chasseurs à la rue du Pas du Loup
 
@@ -21,9 +27,15 @@ to: Cournonsec
 Section actuellement en travaux dans le cadre de la construction de la ligne 5 de tramway. Sera réalisée sous forme de pistes bilatérales.
 ::
 
-### De la rue du Pas du Loup à la Recambale
+### De la rue du Pas du Loup à l'avenue de Vanières
 
-### De la Recambale au rond-point Paul Fajon
+::banner{type="unsecured"}
+Section inexistante. Pas de projet en cours à la connaissance de Vélocité.
+::
+
+### De l'avenue de Vanières au rond-point Paul Fajon
+
+<span style="color:red;font-weight:bold;font-style:italic">Non satisfaisant</span> Seule la partie près des écoles Savary et Boucher sont existantes. La partie la plus dangereuse, très routière, avec des bretelles desservant la 2x2 voies de l'avenue de Vanière, est sans équipement.
 
 ### Du rond-point Paul Fajon au rond-point Maurice Gennevaux
 
