@@ -10,6 +10,7 @@ export type LaneType =
 | 'heterogene'
 | 'aucun'
 | 'inconnu'
+| 'mixte'
 | 'chaucidou';
 
 export type LaneStatus = 'done' | 'wip' | 'planned' | 'postponed' | 'unknown' | 'variante' | 'variante-postponed';
