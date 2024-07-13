@@ -66,7 +66,7 @@
               reporté après 2026
             </div>
 
-            <div class="my-auto h-4 rounded-md green opacity-20 px-1">
+            <div class="my-auto h-4 rounded-md velocite-green-1 opacity-20 px-1">
               <div class="flex items-center justify-center h-full">
                 <div class="h-1 w-full rounded-md border-2 border-gray-500" />
               </div>

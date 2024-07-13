@@ -39,11 +39,11 @@ definePageMeta({
 });
 
 const years = ref([
-  { label: '< 2021', match: (year) => year < 2021, isChecked: true },
-  { label: '2021', match: (year) => year === 2021, isChecked: false },
-  { label: '2022', match: (year) => year === 2022, isChecked: false },
-  { label: '2023', match: (year) => year === 2023, isChecked: false },
-  { label: '2024', match: (year) => year === 2024, isChecked: false }
+  { label: '< 2021', match: (year) => year < 2021, isChecked: false },
+  { label: '2021', match: (year) => year === 2021, isChecked: true },
+  { label: '2022', match: (year) => year === 2022, isChecked: true },
+  { label: '2023', match: (year) => year === 2023, isChecked: true },
+  { label: '2024', match: (year) => year === 2024, isChecked: true }
 ]);
 
 const { data: voies } = await useAsyncData(() => {
