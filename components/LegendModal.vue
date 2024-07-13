@@ -75,7 +75,7 @@
               satisfaisant
             </div>
 
-            <div class="my-auto h-4 rounded-md bg-velocite-red-1 opacity-50 px-1">
+            <div class="my-auto h-4 rounded-md bg-velocite-red-3 opacity-50 px-1">
               <div class="flex items-center justify-center h-full">
                 <div class="h-1 w-full rounded-md border-2 border-gray-500" />
               </div>
