@@ -21,6 +21,7 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 import style from '@/assets/style.json';
 import LegendControl from '@/maplibre/LegendControl';
 import FilterControl from '@/maplibre/FilterControl';
+import QualityControl from '@/maplibre/QualityControl';
 import FullscreenControl from '@/maplibre/FullscreenControl';
 import ShrinkControl from '@/maplibre/ShrinkControl';
 import LineTooltip from '~/components/tooltips/LineTooltip.vue';
@@ -36,6 +37,7 @@ const defaultOptions = {
   logo: true,
   legend: true,
   filter: true,
+  show_quality: true,
   geolocation: false,
   fullscreen: false,
   onFullscreenControlClick: () => { },
@@ -128,6 +130,14 @@ onMounted(() => {
       }
     });
     map.addControl(filterControl, 'top-right');
+  }
+  if (options.show_quality) {
+    const qualityControl = new QualityControl({
+      onClick: () => {
+        console.log("onClick")
+      }
+    });
+    map.addControl(qualityControl, 'top-right');
   }
 
   map.on('load', async() => {
@@ -266,6 +276,14 @@ onMounted(() => {
   background-position: center;
   pointer-events: auto;
   background-image: url('~/maplibre/filter.svg');
+  background-size: 85%;
+}
+
+.maplibregl-quality {
+  background-repeat: no-repeat;
+  background-position: center;
+  pointer-events: auto;
+  background-image: url('~/maplibre/quality.svg');
   background-size: 85%;
 }
 
