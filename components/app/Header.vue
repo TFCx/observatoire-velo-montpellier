@@ -7,7 +7,7 @@
             <span class="sr-only">Cyclopolis</span>
             <img
               width="150px"
-              src="https://pbs.twimg.com/profile_images/1170789962725371909/1P0nkpND_400x400.jpg"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmhVxxaZmo-qSqIqhnj5ZrGoX0lP1UChF4dw&s"
               alt="logo cyclopolis"
             >
           </NuxtLink>

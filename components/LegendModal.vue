@@ -18,22 +18,30 @@
         </DialogTitle>
         <div class="mt-2">
           <div class="grid grid-cols-[64px_1fr] gap-x-4">
-            <div class="my-auto rounded-md border-gray-500 border">
-              <div class="h-1 relative">
-                <div class="absolute h-full w-full">
-                  <div class="h-full bg-velocite-yellow-5 dashed-line" />
-                </div>
-              </div>
-            </div>
-            <div>
-              prévu pour 2026
-            </div>
 
             <div class="my-auto rounded-md border-gray-500 border">
               <div class="h-1 bg-velocite-yellow-5" />
             </div>
             <div>
               terminé
+            </div>
+
+            <div class="my-auto h-4 rounded-md bg-velocite-red-1 opacity-50 px-2">
+              <div class="flex items-center justify-center h-full">
+                <div class="h-2 w-full rounded-md bg-velocite-yellow-5 border-2 border-gray-500" />
+              </div>
+            </div>
+            <div>
+              non satisfaisant
+            </div>
+
+            <div class="my-auto h-4 rounded-md bg-velocite-green-1 opacity-50 px-2">
+              <div class="flex items-center justify-center h-full">
+                <div class="h-2 w-full rounded-md bg-velocite-yellow-5 border-2 border-gray-500" />
+              </div>
+            </div>
+            <div>
+              satisfaisant
             </div>
 
             <div class="my-auto rounded-md border-gray-500 border">
@@ -47,6 +55,18 @@
               en travaux
             </div>
 
+            <div class="my-auto rounded-md border-gray-500 border">
+              <div class="h-1 relative">
+                <div class="absolute h-full w-full">
+                  <div class="h-full bg-velocite-yellow-5 dashed-line" />
+                </div>
+              </div>
+            </div>
+            <div>
+              prévu pour 2026
+            </div>
+
+<!--
             <div class="my-auto h-4 rounded-md bg-velocite-yellow-5 opacity-20 px-1">
               <div class="flex items-center justify-center h-full">
                 <div class="h-1 w-full rounded-md border-2 border-gray-500" />
@@ -55,7 +75,7 @@
             <div>
               linéaire inconnu
             </div>
-
+-->
             <div class="my-auto rounded-md border-gray-500 border relative">
               <div class="h-1 bg-white" />
               <div class="text-velocite-yellow-5 font-bold leading-none absolute -top-2 leading-none">
@@ -66,23 +86,6 @@
               reporté après 2026
             </div>
 
-            <div class="my-auto h-4 rounded-md bg-velocite-red-1 opacity-50 px-1">
-              <div class="flex items-center justify-center h-full">
-                <div class="h-1 w-full rounded-md border-2 border-gray-500" />
-              </div>
-            </div>
-            <div>
-              non satisfaisant
-            </div>
-
-            <div class="my-auto h-4 rounded-md bg-velocite-green-1 opacity-50 px-1">
-              <div class="flex items-center justify-center h-full">
-                <div class="h-1 w-full rounded-md border-2 border-gray-500" />
-              </div>
-            </div>
-            <div>
-              satisfaisant
-            </div>
           </div>
         </div>
       </DialogPanel>

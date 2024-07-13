@@ -6,7 +6,7 @@
           Les {{ getRevName() }}, c'est quoi ?
         </h2>
         <p class="mt-3 text-xl text-gray-500 sm:mt-4">
-          C'est le nom donné au projet de Réseau Express Vélo voté en 2021 par la Métropole de Montpellier.<br>Concrètement, une {{ getRevName('singular') }} est une voie cyclable large (typiquement 2m20 à 3m en unidirectionelle, 3 à 4m en bidirectionelle), sécurisée, efficace, attractive et confortable, souvent sous forme de piste séparée des voitures. L'ensemble doit créer un maillage cyclable sans discontinuités qui connecte les quartiers montpelliérains aux communes de la périphérie de la métropole.
+          C'est le nom du projet de Réseau Express Vélo voté en 2021 par la Métropole de Montpellier.<br>Concrètement, une {{ getRevName('singular') }} est une voie cyclable large (typiquement 2m20 à 3m en unidirectionelle, 3 à 4m en bidirectionelle), sécurisée, efficace, attractive et confortable, souvent sous forme de piste séparée des voitures. L'ensemble doit créer un maillage cyclable sans discontinuités qui connecte les quartiers montpelliérains aux communes de la périphérie de la métropole.
         </p>
       </div>
     </div>
@@ -32,7 +32,7 @@
                   235km
                 </dd>
               </div>
-              <div class="flex flex-col border-t border-gray-100 p-6 text-center sm:border-0 sm:border-l">
+              <div class="flex flex-col border-t border-gray-100 p-6 text-center sm:border-0 sm:border-l" id=ou-on-en-est>
                 <dt class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
                   Budget
                 </dt>
