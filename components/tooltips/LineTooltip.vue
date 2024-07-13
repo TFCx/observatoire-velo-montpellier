@@ -42,7 +42,7 @@
           Longueur
         </div>
         <div class="text-sm">
-          {{ Math.round(getDistance({ features: [feature] }) / 25) * 25 }}m
+          {{ Math.round(getDistance([feature]) / 25) * 25 }}m
         </div>
       </div>
       <div class="py-1 flex items-center justify-between">

@@ -64,7 +64,7 @@ const features = computed(() => {
 
 const doneDistance = computed(() => {
   const allUniqFeatures = getAllUniqLineStrings([{ type: 'FeatureCollection', features: features.value }]);
-  const doneDistance = getDistance({ features: allUniqFeatures });
+  const doneDistance = getDistance(allUniqFeatures);
   return Math.round(doneDistance / 100) / 10;
 });
 </script>
