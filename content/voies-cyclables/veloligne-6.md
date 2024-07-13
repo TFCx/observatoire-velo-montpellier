@@ -17,20 +17,20 @@ to: Villeneuve / Saint-Jean-de-Védas / Maurin
 Pas de projet en cours à la connaissance de Vélocité.
 ::
 
-### Véloligne 4a : Condamine <> Villeneuve-les-Maguelone
+### Véloligne 6a : Condamine <> Villeneuve-les-Maguelone
 
 ::banner{type="unsecured"}
 Sur la première partie, pas de projet en cours à la connaissance de Vélocité.
 ::
 La fin est une voie verte existante et constitue une <a href="https://fr.eurovelo.com/ev8/escape-in-french-southern-lands">partie de l'eurovélo 8</a>
 
-### Véloligne 4b : Condamine <> Saint-Jean-de-Védas
+### Véloligne 6b : Condamine <> Saint-Jean-de-Védas
 
 ::banner{type="unsecured"}
 Pas de projet en cours à la connaissance de Vélocité.
 ::
 
-### Véloligne 4c : Lauze <> Maurin
+### Véloligne 6c : Lauze <> Maurin
 
 ::banner{type="unsecured"}
 Pas de projet en cours à la connaissance de Vélocité.
