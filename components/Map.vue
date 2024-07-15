@@ -29,6 +29,7 @@ import CounterTooltip from '~/components/tooltips/CounterTooltip.vue';
 import PerspectiveTooltip from '~/components/tooltips/PerspectiveTooltip.vue';
 import { isLineStringFeature, type Feature, type LaneStatus, type LaneType } from '~/types';
 import config from '~/config.json';
+import { shouldDisplayQuality, toggleShouldDisplayQuality } from '~/composables/useMap'
 
 // const config = useRuntimeConfig();
 // const maptilerKey = config.public.maptilerKey;
@@ -72,6 +73,7 @@ const features = computed(() => {
     return true;
   });
 });
+
 
 function refreshFilters({ visibleStatuses, visibleTypes }: { visibleStatuses: LaneStatus[]; visibleTypes: LaneType[] }) {
   statuses.value = visibleStatuses;
@@ -134,7 +136,7 @@ onMounted(() => {
   if (options.show_quality) {
     const qualityControl = new QualityControl({
       onClick: () => {
-        console.log("onClick")
+        toggleShouldDisplayQuality()
       }
     });
     map.addControl(qualityControl, 'top-right');

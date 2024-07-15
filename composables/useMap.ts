@@ -1,5 +1,18 @@
 import { GeoJSONSource, LngLatBounds, Map } from 'maplibre-gl';
 import { isCompteurFeature, isLineStringFeature, isPerspectiveFeature, isPointFeature, type Feature, type LineStringFeature } from '~/types';
+import { ref } from 'vue';
+
+const shouldDisplayQuality = ref(false);
+
+const toggleShouldDisplayQuality = () => {
+  shouldDisplayQuality.value = !shouldDisplayQuality.value;
+};
+
+const setShouldDisplayQuality = (value: boolean) => {
+  shouldDisplayQuality.value = value;
+};
+
+export { shouldDisplayQuality, toggleShouldDisplayQuality, setShouldDisplayQuality };
 
 let postPonedOpacity = 0.5
 
@@ -122,7 +135,16 @@ export const useMap = () => {
         'line-gap-width': 5,
         'line-width': 8,
         'line-color': '#ffa3af',
+        "line-opacity" : ["case",
+          ["==", shouldDisplayQuality.value, true], 1.0,
+          0.0
+        ]
       }
+    });
+
+    // Watcher pour mettre à jour la propriété line-opacity du calque
+    watch(shouldDisplayQuality, (shouldDisplayQuality) => {
+      map.setPaintProperty('quality-non-satisfaisant', 'line-opacity', shouldDisplayQuality ? 1.0 : 0.0);
     });
   }
 
@@ -146,7 +168,16 @@ export const useMap = () => {
         'line-gap-width': 5,
         'line-width': 8,
         'line-color': '#9cffaf',
+        "line-opacity" : ["case",
+          ["==", shouldDisplayQuality.value, true], 1.0,
+          0.0
+        ]
       }
+    });
+
+    // Watcher pour mettre à jour la propriété line-opacity du calque
+    watch(shouldDisplayQuality, (shouldDisplayQuality) => {
+      map.setPaintProperty('quality-satisfaisant', 'line-opacity', shouldDisplayQuality ? 1.0 : 0.0);
     });
   }
 
