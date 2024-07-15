@@ -1,5 +1,11 @@
-- Bouton pour désactiver la qualité
 - Changer le style des lignes réalisées avant le mandat pour qu'il paraisse moins visible
 - Problème perfs / leak
 - Ajout type : bande cyclable, bande cyclable sur trottoir, voirie mixte
 - Ajout tag : métropole de Montpellier oui/non => ***plus nécessaire car ce qui est hors métropole est aussi réalisé avant mandat***
+- Code Aurélien logo
+- 3 niveaux de qualité
+- Permettre de switch la visualisation
+- Mettre la légende en bas
+- Vieilles sections : reprendre la branche & fix le bug
+- Stats qualité première page
+- Arriver à une bonne spec pour le tag aménagement "aucun"
