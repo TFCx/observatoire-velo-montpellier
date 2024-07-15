@@ -49,8 +49,13 @@
         <div class="text-base font-bold">
           Type
         </div>
-        <div class="text-sm text-right">
-          {{ typologyNames[feature.properties.type] ?? 'Inconnu' }}
+        <div>
+          <div class="text-sm text-right">
+            {{ typologyNames[feature.properties.type] ?? 'Inconnu' }}
+          </div>
+          <div class="italic text-right">
+            {{ feature.properties.quality }}
+          </div>
         </div>
       </div>
     </div>

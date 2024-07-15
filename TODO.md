@@ -1,4 +1,5 @@
 - Bouton pour désactiver la qualité
+- Changer le style des lignes réalisées avant le mandat pour qu'il paraisse moins visible
 - Problème perfs / leak
 - Ajout type : bande cyclable, bande cyclable sur trottoir, voirie mixte
-- Ajout tag : métropole de Montpellier oui/non
+- Ajout tag : métropole de Montpellier oui/non => ***plus nécessaire car ce qui est hors métropole est aussi réalisé avant mandat***
