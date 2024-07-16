@@ -21,6 +21,7 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 import style from '@/assets/style.json';
 import LegendControl from '@/maplibre/LegendControl';
 import FilterControl from '@/maplibre/FilterControl';
+import QualityControl from '@/maplibre/QualityControl';
 import FullscreenControl from '@/maplibre/FullscreenControl';
 import ShrinkControl from '@/maplibre/ShrinkControl';
 import LineTooltip from '~/components/tooltips/LineTooltip.vue';
@@ -28,6 +29,7 @@ import CounterTooltip from '~/components/tooltips/CounterTooltip.vue';
 import PerspectiveTooltip from '~/components/tooltips/PerspectiveTooltip.vue';
 import { isLineStringFeature, type Feature, type LaneStatus, type LaneType } from '~/types';
 import config from '~/config.json';
+import { shouldDisplayQuality, toggleShouldDisplayQuality } from '~/composables/useMap'
 
 // const config = useRuntimeConfig();
 // const maptilerKey = config.public.maptilerKey;
@@ -36,6 +38,7 @@ const defaultOptions = {
   logo: true,
   legend: true,
   filter: true,
+  show_quality: true,
   geolocation: false,
   fullscreen: false,
   onFullscreenControlClick: () => { },
@@ -70,6 +73,7 @@ const features = computed(() => {
     return true;
   });
 });
+
 
 function refreshFilters({ visibleStatuses, visibleTypes }: { visibleStatuses: LaneStatus[]; visibleTypes: LaneType[] }) {
   statuses.value = visibleStatuses;
@@ -128,6 +132,14 @@ onMounted(() => {
       }
     });
     map.addControl(filterControl, 'top-right');
+  }
+  if (options.show_quality) {
+    const qualityControl = new QualityControl({
+      onClick: () => {
+        toggleShouldDisplayQuality()
+      }
+    });
+    map.addControl(qualityControl, 'top-right');
   }
 
   map.on('load', async() => {
@@ -266,6 +278,14 @@ onMounted(() => {
   background-position: center;
   pointer-events: auto;
   background-image: url('~/maplibre/filter.svg');
+  background-size: 85%;
+}
+
+.maplibregl-quality {
+  background-repeat: no-repeat;
+  background-position: center;
+  pointer-events: auto;
+  background-image: url('~/maplibre/quality.svg');
   background-size: 85%;
 }
 

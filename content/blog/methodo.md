@@ -6,20 +6,44 @@ imageUrl:
 
 *Pourquoi ce tronçon est marqué « terminé » alors qu’il n’y a eu aucuns travaux ?  
 Pourquoi ma rue est considérée comme « prévue » alors qu’il y a déjà une piste ?  
-À quoi dois-je m’attendre sur les tronçons marqués « reporté après 2026 » ?*
+À quoi dois-je m’attendre sur les tronçons marqués « reporté après 2026 » ?  
+Que signifient les qualités « satisfaisant / non-satisfaisant » ?*
 
 On vous explique tout !
 
 ## Que signifient les types de chaque tronçon et les statistiques "Typologie 2026"
 Il s'agit de chacun des aménagements cyclables que rencontreront les cyclistes sur chacune des lignes à la fin du mandat en 2026. Mis bout-à-bout, et rapportés à la distance totale des différents itinéraires, on peut ensuite obtenir des statistiques détaillées.
 
-L'ensemble du linéaire des Vélolignes est utilisé, y compris les tronçons reportés après 2026. Dans ce cas, l'aménagement indiqué est celui présent actuellement, car il ne sera malheureusement pas amélioré avant la fin du mandat en cours.
+L'ensemble du linéaire des Vélolignes est utilisé, y compris les tronçons reportés après 2026. Dans ce cas, l'aménagement indiqué est celui présent actuellement, car il ne sera malheureusement pas amélioré avant la fin du mandat en cours. Lorsqu'il n'y a aucun aménagement actuellement c'est le type "*Aucun*" qui est utilisé.
 
-Quand un tronçon est prévu mais qu'il n'y a toujours eu aucune communication publique à son sujet, il est considéré comme "Inconnu" même s'il peut déjà comporter des aménagements cyclables aujourd'hui. A ce stade, nous ne sommes pas en mesure de dire si ce tronçon sera reporté après 2026 ou s'il sera réaménagé et sécurisé d'ici la fin du mandat. La typologie sera évidemment mise à jour dès que nous aurons obtenu une information.
+Quand un tronçon est prévu mais qu'il n'y a toujours eu aucune communication publique à son sujet, il est considéré comme "*Inconnu*" même s'il peut déjà comporter des aménagements cyclables aujourd'hui. A ce stade, nous ne sommes pas en mesure de dire si ce tronçon sera reporté après 2026 ou s'il sera réaménagé et sécurisé d'ici la fin du mandat. La typologie sera évidemment mise à jour dès que nous aurons obtenu une information.
 
-Lorsqu'un tronçon présente une différence d'aménagement cyclable entre les deux sens de circulation, il est indiqué comme hétérogène.
+Lorsqu'un tronçon présente une différence d'aménagement cyclable entre les deux sens de circulation, il est indiqué comme "*Hétérogène*".
+
+Les autres types sont plus classiques : "*Bilatérale*" pour des pistes aménagées de chaque côté de la rue, "*Bidirectionnelle*" pour un piste à double-sens aménagée d'un seul côté de la rue, etc.
 
 Enfin, si une des typologie représente moins de 0.5% du linéaire total, il est masqué de l'écran des statistiques pour éviter d'afficher un pourcentage arrondi de 0% qui laisserait croire que cette typologie n'est pas présente.
+
+## Tronçon « satisfaisant / non-satisfaisant » ?
+
+Comme décrit dans les actes administratifs du conseil de Métropole de Montpellier, les Vélolignes sont le nom de baptême du futur **Réseau Express Vélo** de Montpellier. Il sera l’ « épine dorsale » du maillage cyclable de la Métropole.
+
+*Extrait de la délibération n°M2022-151 du conseil de métropole du 31 mai 2022 :*
+>Afin de pouvoir jouer pleinement son rôle et être exemplaire, afin de donner envie aux personnes hésitantes de sauter le pas, ce Réseau Express Vélo, à haut niveau de service, s’engage à assurer les qualités
+suivantes :
+>- Satisfaire les enjeux de capacité, d’efficacité de déplacement et de desserte ;
+>- Assurer sécurité et confort par le biais d’aménagements spécifiques ;
+>- Présenter des trajets directs avec peu de carrefours pour limiter les « pieds à terre » ;
+>- Sécuriser les intersections ;
+>- Présenter des gages supplémentaires de qualité et de confort avec une qualité constante du revêtement et un entretien régulier ;
+>- Identifier clairement le réseau ;
+>- Mettre en place une signalisation identitaire (signalisation horizontale, signalisation verticale, marquage régulier…).
+>
+>Le Réseau Express Vélo a pour objectif d’offrir une expérience qualitative aux personnes se déplaçant à vélo sur un réseau cyclable identifié comme structurant. Il permettra également de répondre à tous les nouvelles pratiques, dont la cyclo-logistique en forte croissance sur le territoire, et tous les gabarits de cycles.
+
+Pour chaque tronçon de Véloligne, nous avons donc regardé s'il était conforme aux qualités annoncées pour le réseau. Si un tronçon n'est pas conforme à ces qualités, il est classé comme « non-satisfaisant ». S'il est conforme à ces qualités, il est classé come « satisfaisant ».  
+
+Parmi les critères utilisés nous avons essentiellement retenu : la présence ou non d'un conflit piéton/vélo ; le confort ; la continuité et le caractère direct des trajets.
 
 ## En travaux sur le terrain, mais pas sur Cyclopolis ?
 Vous pourriez constater que certains tronçons sont réellement en travaux, mais qu'ils n'apparaissent pas sous ce statut sur la carte interactive de Cyclopolis. Malgré nos efforts pour suivre au plus près l'avancement du chantier des Vélolignes, il est possible que nous n'ayons pas encore eu l'information de début des travaux. Dans ce cas, n'hésitez pas à nous le signaler sur [ce lien](https://www.velocite-montpellier.fr/asso/contact/).
