@@ -1,11 +1,11 @@
 {
   "revName": {
-    "plural": "Voies Lyonnaises",
-    "singular": "Voie Lyonnaise"
+    "plural": "Reseau Express Vélo Grand Chambéry",
+    "singular": "Reseau Express Vélo Grand Chambéry"
   },
-  "assoName": "La Ville à Vélo",
-  "assoLink": "https://lavilleavelo.org",
-  "slug": "voie-lyonnaise",
+  "assoName": "Roue Libre",
+  "assoLink": "https://rouelibre.net",
+  "slug": "rev",
   "center": [
     4.8312188,
     45.757198
