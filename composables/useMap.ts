@@ -1,8 +1,10 @@
 import { GeoJSONSource, LngLatBounds, Map } from 'maplibre-gl';
-import { isCompteurFeature, isLineStringFeature, isPerspectiveFeature, isPointFeature, type Feature, type LineStringFeature } from '~/types';
+import { isCompteurFeature, isLineStringFeature, isPerspectiveFeature, isPointFeature, type Feature, type DisplayedLane, type LaneStatus, type LaneType, type LineStringFeature, type Quality } from '~/types';
 import { ref } from 'vue';
 
 const shouldDisplayQuality = ref(false);
+
+const laneWidth = 4
 
 const toggleShouldDisplayQuality = () => {
   shouldDisplayQuality.value = !shouldDisplayQuality.value;
@@ -93,19 +95,6 @@ export const useMap = () => {
     };
   }
 
-  function upsertMapSource(map: Map, sourceName: string, features: Feature[]) {
-    const source = map.getSource(sourceName) as GeoJSONSource;
-    if (source) {
-      source.setData({ type: 'FeatureCollection', features });
-      return true;
-    }
-    map.addSource(sourceName, {
-      type: 'geojson',
-      data: { type: 'FeatureCollection', features }
-    });
-    return false;
-  }
-
   async function loadImages({ map }: { map: Map }) {
     const camera = await map.loadImage('/icons/camera.png');
     map.addImage('camera-icon', camera.data, { sdf: true });
@@ -181,7 +170,38 @@ export const useMap = () => {
     });
   }
 
-  function plotUnderlinedSections({ map, features }: { map: Map; features: LineStringFeature[] }) {
+  function separateSectionIntoLanes(features: MultiColoredLineStringFeature[]): DisplayedLane[] {
+    let lanes: DisplayedLane[] = []
+    features.forEach(f => {
+      f.properties.colors.forEach((c, index) => {
+        let lane: DisplayedLane = {
+          type: f.type,
+          properties: {
+            id: f.properties.id,
+            line: f.properties.line,
+            name: f.properties.name,
+            lane_index: index,
+            nb_lanes: f.properties.colors.length,
+            color: c,
+            status: f.properties.status,
+            quality: f.properties.quality,
+            type: f.properties.type,
+            doneAt: f.properties.doneAt,
+            link: f.properties.link
+          },
+          geometry: f.geometry
+        }
+
+        lanes.push(lane)
+      })
+    })
+    return lanes
+  }
+
+  function plotSections(map: Map, features: MultiColoredLineStringFeature[]) {
+
+    const lanes = separateSectionIntoLanes(features)
+
     const sections = features.map((feature, index) => ({ id: index, ...feature }));
 
     if (sections.length === 0 && !map.getLayer('highlight')) {
@@ -191,223 +211,21 @@ export const useMap = () => {
       return;
     }
 
-    map.addLayer({
-      id: 'highlight',
-      type: 'line',
-      source: 'all-sections',
-      layout: { 'line-cap': 'round' },
-      paint: {
-        'line-gap-width': 5,
-        'line-width': ["*", 4, ['length', ['get', 'colors']]],
-        'line-color': ['case', ['boolean', ['feature-state', 'hover'], false], '#9ca3af', '#FFFFFF'],
-        "line-opacity" : 0.5
-      }
-    });
-    map.addLayer({
-      id: 'contour',
-      type: 'line',
-      source: 'all-sections',
-      layout: { 'line-cap': 'round' },
-      paint: {
-        'line-gap-width': ["*", 4, ['length', ['get', 'colors']]],
-        'line-width': 1,
-        'line-color': '#6b7280',
-      }
-    });
-    map.addLayer({
-      id: 'underline',
-      type: 'line',
-      source: 'all-sections',
-      paint: {
-        'line-width': ["*", 4, ['length', ['get', 'colors']]],
-        'line-color': '#ffffff',
-      }
-    });
+    drawHoveredEffect(map);
 
-    let hoveredLineId: any = null;
-    map.on('mousemove', 'highlight', (e: any) => {
-      map.getCanvas().style.cursor = 'pointer';
-      if (e.features.length > 0) {
-        if (hoveredLineId !== null) {
-          map.setFeatureState({ source: 'all-sections', id: hoveredLineId }, { hover: false });
-        }
-        if (e.features[0].id !== undefined) {
-          hoveredLineId = e.features[0].id;
-          if (hoveredLineId !== null) {
-            map.setFeatureState({ source: 'all-sections', id: hoveredLineId }, { hover: true });
-          }
-        }
-      }
-    });
-    map.on('mouseleave', 'highlight', () => {
-      map.getCanvas().style.cursor = '';
-      if (hoveredLineId !== null) {
-        map.setFeatureState({ source: 'all-sections', id: hoveredLineId }, { hover: false });
-      }
-      hoveredLineId = null;
-    });
-  }
+    drawSectionContour(map);
 
-  function plotDoneSections({ map, features }: { map: Map; features: MultiColoredLineStringFeature[] }) {
-    const sections = features.filter(feature => feature.properties.status === 'done');
+    drawSectionBackground(map);
 
-    // si il n'y a rien a afficher et que la couche n'existe pas, on ne fait rien
-    // si elle existe déjà, on la maj (carte dynamique par année)
-    if (sections.length === 0 && !map.getLayer('done-sections')) {
-      return;
-    }
-    if (upsertMapSource(map, 'done-sections', sections)) {
-      return;
-    }
+    drawLanesPlanned(map, lanes)
 
-    let lineWidth = 4
+    drawLanesWIP(map, lanes)
 
-    map.addLayer({
-      id: 'done-sections',
-      type: 'line',
-      source: 'done-sections',
-      paint: {
-        'line-width': lineWidth,
-        'line-color': ["to-color", ['at', 0, ['get', 'colors']]],
-        'line-offset': ["case",
-            ["==", ["length", ['get', 'colors']], 2], - lineWidth / 2,
-            0
-        ]
-      }
-    })
+    drawLanesDone(map, lanes);
 
-    map.addLayer({
-      id: 'done-sections-2',
-      type: 'line',
-      filter: [">", ["length", ['get', 'colors']], 1],
-      source: 'done-sections',
-      paint: {
-        'line-width': lineWidth,
-        'line-color': ["to-color", ['at', 1, ['get', 'colors']]],
-        'line-offset': ["case",
-            ["==", ["length", ['get', 'colors']], 2], + lineWidth / 2,
-            0
-        ]
-      }
-    })
+    drawLanesPostponed(map, lanes)
 
-    //animateColor(map, 0, 10000, 'done-sections');
-  }
-
-  function plotWipSections({ map, features }: { map: Map; features: MultiColoredLineStringFeature[] }) {
-    const sections = features.filter(feature => feature.properties.status === 'wip');
-
-    if (sections.length === 0 && !map.getLayer('wip-sections')) {
-      return;
-    }
-    if (upsertMapSource(map, 'wip-sections', sections)) {
-      return;
-    }
-
-    let lineWidth = 4
-
-    map.addLayer({
-      id: 'wip-sections',
-      type: 'line',
-      source: 'wip-sections',
-      paint: {
-        'line-width': lineWidth,
-        'line-color': ["to-color", ['at', 0, ['get', 'colors']]],
-        'line-dasharray': [0.2, 1.1],
-        'line-offset': ["case",
-            ["==", ["length", ['get', 'colors']], 2], - lineWidth / 2,
-            0
-        ]
-      }
-    });
-    map.addLayer({
-      id: 'wip-sections-done',
-      type: 'line',
-      source: 'wip-sections',
-      paint: {
-        'line-width': lineWidth,
-        'line-color': ["to-color", ['at', 0, ['get', 'colors']]],
-        'line-offset': ["case",
-            ["==", ["length", ['get', 'colors']], 2], - lineWidth / 2,
-            0
-        ]
-      }
-    });
-
-    map.addLayer({
-      id: 'wip-sections-2',
-      type: 'line',
-      filter: [">", ["length", ['get', 'colors']], 1],
-      source: 'wip-sections',
-      paint: {
-        'line-width': lineWidth,
-        'line-color': ["to-color", ['at', 0, ['get', 'colors']]],
-        'line-dasharray': [0.2, 1.1],
-        'line-offset': ["case",
-            ["==", ["length", ['get', 'colors']], 2], + lineWidth / 2,
-            0
-        ]
-      }
-    });
-    map.addLayer({
-      id: 'wip-sections-done-2',
-      type: 'line',
-      filter: [">", ["length", ['get', 'colors']], 1],
-      source: 'wip-sections',
-      paint: {
-        'line-width': lineWidth,
-        'line-color': ["to-color", ['at', 0, ['get', 'colors']]],
-        'line-offset': ["case",
-            ["==", ["length", ['get', 'colors']], 2], + lineWidth / 2,
-            0
-        ]
-      }
-    });
-
-    animateOpacity(map, 0, 1000*0.75, 'wip-sections-done', 'line-opacity', 0.5, 1.0);
-  }
-
-  function plotPlannedSections({ map, features }: { map: Map; features: MultiColoredLineStringFeature[] }) {
-    const sections = features.filter(feature => feature.properties.status === 'planned');
-
-    if (sections.length === 0 && !map.getLayer('planned-sections')) {
-      return;
-    }
-    if (upsertMapSource(map, 'planned-sections', sections)) {
-      return;
-    }
-
-    let lineWidth = 4
-
-    map.addLayer({
-      id: 'planned-sections',
-      type: 'line',
-      source: 'planned-sections',
-      paint: {
-        'line-width': lineWidth,
-        'line-color': ["to-color", ['at', 0, ['get', 'colors']]],
-        'line-dasharray': [0.4, 1.1],
-        'line-offset': ["case",
-            ["==", ["length", ['get', 'colors']], 2], - lineWidth / 2,
-            0
-        ]
-      }
-    });
-    map.addLayer({
-      id: 'planned-sections-2',
-      type: 'line',
-      filter: [">", ["length", ['get', 'colors']], 1],
-      source: 'planned-sections',
-      paint: {
-        'line-width': lineWidth,
-        'line-color': ["to-color", ['at', 1, ['get', 'colors']]],
-        'line-dasharray': [0.4, 1.1],
-        'line-offset': ["case",
-            ["==", ["length", ['get', 'colors']], 2], + lineWidth / 2,
-            0
-        ]
-      }
-    });
+    addListnersForHovering(map);
   }
 
   function plotVarianteSections({ map, features }: { map: Map; features: MultiColoredLineStringFeature[] }) {
@@ -577,81 +395,6 @@ export const useMap = () => {
     map.on('mouseleave', 'unknown-sections', () => (map.getCanvas().style.cursor = ''));
   }
 
-  function plotPostponedSections({ map, features }: { map: Map; features: MultiColoredLineStringFeature[] }) {
-    const sections = features.filter(feature => feature.properties.status === 'postponed');
-
-    if (sections.length === 0) {
-      for (let line = 1; line <= 12; line++) {
-        upsertMapSource(map, `postponed-sections-${getLineColor(line)}`, []);
-      }
-      return;
-    }
-
-    let lineWidth = 4
-
-    if (upsertMapSource(map, `postponed-sections`, sections)) {
-      return;
-    }
-
-    let symbolSpacing = 25
-    let iconSize = 1.5
-
-    map.addLayer({
-      id: 'postponed-sections',
-      type: 'line',
-      source: 'postponed-sections',
-      paint: {
-        'line-width': lineWidth,
-        'line-color': ["to-color", ['at', 0, ['get', 'colors']]],
-        'line-dasharray': [0.4, 1.1],
-        'line-offset': ["case",
-            ["==", ["length", ['get', 'colors']], 2], - lineWidth / 2,
-            0
-        ]
-      }
-    });
-    map.addLayer({
-      id: 'postponed-sections-2',
-      type: 'line',
-      filter: [">", ["length", ['get', 'colors']], 1],
-      source: 'postponed-sections',
-      paint: {
-        'line-width': lineWidth,
-        'line-color': ["to-color", ['at', 1, ['get', 'colors']]],
-        'line-dasharray': [0.4, 1.1],
-        'line-offset': ["case",
-            ["==", ["length", ['get', 'colors']], 2], + lineWidth / 2,
-            0
-        ]
-      }
-    });
-
-    map.addLayer({
-      id: `postponed-text`,
-      type: 'symbol',
-      source: `postponed-sections`,
-      paint: {
-        'text-halo-color': '#fff',
-        'text-halo-width': 3,
-        "text-opacity": postPonedOpacity + 0.4
-      },
-      layout: {
-        'symbol-placement': 'line',
-        'symbol-spacing': 100,
-        'text-font': ['Open Sans Regular'],
-        'text-field': 'reporté',
-        'text-size': 14,
-      }
-    });
-
-    animateOpacity(map, 0, 1000*5.0, 'postponed-sections', 'line-opacity', 0.0, postPonedOpacity );
-    animateOpacity(map, 0, 1000*5.0, 'postponed-sections-2', 'line-opacity', 0.0, postPonedOpacity);
-    animateOpacity(map, 0, 1000*5.0, 'postponed-text', 'text-opacity',postPonedOpacity, postPonedOpacity + 0.4);
-
-    map.on('mouseenter', `postponed-symbols`, () => (map.getCanvas().style.cursor = 'pointer'));
-    map.on('mouseleave', `postponed-symbols`, () => (map.getCanvas().style.cursor = ''));
-  }
-
   function plotPerspective({ map, features }: { map: Map; features: Feature[] }) {
     const perspectives = features.filter(isPerspectiveFeature).map(feature => ({
       ...feature,
@@ -808,18 +551,7 @@ export const useMap = () => {
     subAnimateColor(timestamp)
   }
 
-  function animateOpacity(map: Map, timestamp: number, animationLength: number, attributeId: string, attributeOpacity: string, min: number, max: number) {
 
-    function subAnimateOpacity(timestamp: number) {
-      const opacity010 = Math.abs((((timestamp * 2) * (1 / animationLength)) % 2) - 1)
-      const opacity = opacity010 * (max - min) + min
-      map.setPaintProperty(attributeId, attributeOpacity, opacity);
-
-      // Request the next frame of the animation.
-      requestAnimationFrame(subAnimateOpacity);
-    }
-    subAnimateOpacity(timestamp)
-  }
 
   function plotFeatures({ map, features }: { map: Map; features: Feature[] }) {
     let lineStringFeatures = features.filter(isLineStringFeature).sort(sortByLine).map(addLineColor);
@@ -828,14 +560,11 @@ export const useMap = () => {
     plotQualityBackgroundNok({ map, features: lineStringFeatures });
     plotQualityBackgroundOk({ map, features: lineStringFeatures });
 
-    plotUnderlinedSections({ map, features: lineStringFeatures });
-    plotDoneSections({ map, features: lineStringFeatures });
-    plotPlannedSections({ map, features: lineStringFeatures });
-    plotVarianteSections({ map, features: lineStringFeatures });
-    plotVariantePostponedSections({ map, features: lineStringFeatures });
-    plotWipSections({ map, features: lineStringFeatures });
-    plotUnknownSections({ map, features: lineStringFeatures });
-    plotPostponedSections({ map, features: lineStringFeatures });
+    plotSections(map, lineStringFeatures);
+
+    // plotVarianteSections({ map, features: lineStringFeatures });
+    // plotVariantePostponedSections({ map, features: lineStringFeatures });
+    // plotUnknownSections({ map, features: lineStringFeatures });
 
     plotPerspective({ map, features });
     plotCompteurs({ map, features });
@@ -848,3 +577,217 @@ export const useMap = () => {
     fitBounds
   };
 };
+
+function animateOpacity(map: Map, timestamp: number, animationLength: number, attributeId: string, attributeOpacity: string, min: number, max: number) {
+
+  function subAnimateOpacity(timestamp: number) {
+    const opacity010 = Math.abs((((timestamp * 2) * (1 / animationLength)) % 2) - 1)
+    const opacity = opacity010 * (max - min) + min
+    map.setPaintProperty(attributeId, attributeOpacity, opacity);
+
+    // Request the next frame of the animation.
+    requestAnimationFrame(subAnimateOpacity);
+  }
+  subAnimateOpacity(timestamp)
+}
+
+function upsertMapSource(map: Map, sourceName: string, features: Feature[]) {
+  const source = map.getSource(sourceName) as GeoJSONSource;
+  if (source) {
+    source.setData({ type: 'FeatureCollection', features });
+    return true;
+  }
+  map.addSource(sourceName, {
+    type: 'geojson',
+    data: { type: 'FeatureCollection', features }
+  });
+  return false;
+}
+
+function drawLanesDone(map: Map, lanes: DisplayedLane[]) {
+
+  let lanes_done = lanes.filter(lane => lane.properties.status === "done");
+  if (upsertMapSource(map, 'all-lanes-done', lanes_done)) {
+    return;
+  }
+
+  map.addLayer({
+    id: `done-lanes`,
+    type: 'line',
+    source: 'all-lanes-done',
+    paint: {
+      'line-width': laneWidth,
+      'line-color': ["to-color", ['get', 'color']],
+      'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
+    }
+  });
+}
+
+function drawLanesPlanned(map: Map, lanes: DisplayedLane[]) {
+
+  let lanes_planned = lanes.filter(lane => lane.properties.status === "planned");
+  if (upsertMapSource(map, 'all-lanes-planned', lanes_planned)) {
+    return;
+  }
+
+  map.addLayer({
+    id: `planned-lanes`,
+    type: 'line',
+    source: 'all-lanes-planned',
+    paint: {
+      'line-width': laneWidth,
+      'line-color': ["to-color", ['get', 'color']],
+      'line-dasharray': [0.4, 1.1],
+      'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
+    }
+  });
+}
+
+function drawLanesPostponed(map: Map, lanes: DisplayedLane[]) {
+
+  let lanes_postponed = lanes.filter(lane => lane.properties.status === "postponed");
+  if (upsertMapSource(map, 'all-lanes-postponed', lanes_postponed)) {
+    return;
+  }
+
+  map.addLayer({
+    id: `postponed-lanes`,
+    type: 'line',
+    source: 'all-lanes-postponed',
+    paint: {
+      'line-width': laneWidth,
+      'line-color': ["to-color", ['get', 'color']],
+      'line-dasharray': [0.4, 1.1],
+      'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
+    }
+  });
+
+  map.addLayer({
+    id: `postponed-text`,
+    type: 'symbol',
+    source: `all-lanes-postponed`,
+    paint: {
+      'text-halo-color': '#fff',
+      'text-halo-width': 3,
+      "text-opacity": postPonedOpacity + 0.4
+    },
+    layout: {
+      'symbol-placement': 'line',
+      'symbol-spacing': 100,
+      'text-font': ['Open Sans Regular'],
+      'text-field': 'reporté',
+      'text-size': 14,
+    }
+  });
+
+    animateOpacity(map, 0, 1000*5.0, 'postponed-lanes', 'line-opacity', 0.0, postPonedOpacity );
+    animateOpacity(map, 0, 1000*5.0, 'postponed-text', 'text-opacity',postPonedOpacity, postPonedOpacity + 0.4);
+
+    map.on('mouseenter', `postponed-symbols`, () => (map.getCanvas().style.cursor = 'pointer'));
+    map.on('mouseleave', `postponed-symbols`, () => (map.getCanvas().style.cursor = ''));
+}
+
+
+function drawLanesWIP(map: Map, lanes: DisplayedLane[]) {
+
+  let lanes_wip = lanes.filter(lane => lane.properties.status === "wip");
+  if (upsertMapSource(map, 'all-lanes-wip', lanes_wip)) {
+    return;
+  }
+
+  map.addLayer({
+    id: `wip-lanes`,
+    type: 'line',
+    source: 'all-lanes-wip',
+    paint: {
+      'line-width': laneWidth,
+      'line-color': ["to-color", ['get', 'color']],
+      'line-dasharray': [0.2, 1.1],
+      'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
+    }
+  });
+
+  map.addLayer({
+    id: 'wip-sections-done',
+    type: 'line',
+    source: 'all-lanes-wip',
+    paint: {
+      'line-width': laneWidth,
+      'line-color': ["to-color", ['get', 'color']],
+      'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
+    }
+  });
+
+  animateOpacity(map, 0, 1000*0.75, 'wip-sections-done', 'line-opacity', 0.5, 0.9);
+}
+
+function addListnersForHovering(map: Map) {
+
+  // Add MouveMove event listner => maybe a section is hovered
+  let hoveredLineId: any = null;
+  map.on('mousemove', 'highlight', (e: any) => {
+    map.getCanvas().style.cursor = 'pointer';
+    if (e.features.length > 0) {
+      if (hoveredLineId !== null) {
+        map.setFeatureState({ source: 'all-sections', id: hoveredLineId }, { hover: false });
+      }
+      if (e.features[0].id !== undefined) {
+        hoveredLineId = e.features[0].id;
+        if (hoveredLineId !== null) {
+          map.setFeatureState({ source: 'all-sections', id: hoveredLineId }, { hover: true });
+        }
+      }
+    }
+  });
+
+  // Add MouveLeave event listner => all sections are no hovered
+  map.on('mouseleave', 'highlight', () => {
+    map.getCanvas().style.cursor = '';
+    if (hoveredLineId !== null) {
+      map.setFeatureState({ source: 'all-sections', id: hoveredLineId }, { hover: false });
+    }
+    hoveredLineId = null;
+  });
+}
+
+function drawSectionBackground(map: Map) {
+  map.addLayer({
+    id: 'underline',
+    type: 'line',
+    source: 'all-sections',
+    paint: {
+      'line-width': ["*", laneWidth, ['length', ['get', 'colors']]],
+      'line-color': '#ffffff',
+    }
+  });
+}
+
+function drawHoveredEffect(map: Map) {
+  map.addLayer({
+    id: 'highlight',
+    type: 'line',
+    source: 'all-sections',
+    layout: { 'line-cap': 'round' },
+    paint: {
+      'line-gap-width': 5,
+      'line-width': ["*", laneWidth, ['length', ['get', 'colors']]],
+      'line-color': ['case', ['boolean', ['feature-state', 'hover'], false], '#9ca3af', '#FFFFFF'],
+      "line-opacity": 0.5
+    }
+  });
+}
+
+function drawSectionContour(map: Map) {
+  map.addLayer({
+    id: 'contour',
+    type: 'line',
+    source: 'all-sections',
+    layout: { 'line-cap': 'round' },
+    paint: {
+      'line-gap-width': ["*", laneWidth, ['length', ['get', 'colors']]],
+      'line-width': 1,
+      'line-color': '#6b7280',
+    }
+  });
+}
+

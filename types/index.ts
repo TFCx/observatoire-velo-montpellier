@@ -35,6 +35,8 @@ export type LineStringFeature = {
   };
 };
 
+export type DisplayedLane = LineStringFeature & { properties: { color: string, lane_index: number, nb_lanes: number } };
+
 export type PerspectiveFeature = {
   type: 'Feature';
   properties: {
@@ -74,7 +76,7 @@ export type CompteurFeature = {
 };
 type PointFeature = PerspectiveFeature | CompteurFeature;
 
-export type Feature = LineStringFeature | PointFeature;
+export type Feature = LineStringFeature | PointFeature | DisplayedLane;
 
 export type Geojson = {
   type: string;
