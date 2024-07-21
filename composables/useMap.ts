@@ -231,6 +231,8 @@ export const useMap = () => {
 
     drawLanesUnknown(map, lanes)
 
+    drawLanesQuality(map, lanes)
+
     addListnersForHovering(map);
   }
 
@@ -437,6 +439,28 @@ function upsertMapSource(map: Map, sourceName: string, features: Feature[]) {
     data: { type: 'FeatureCollection', features }
   });
   return false;
+}
+
+function drawLanesQuality(map: Map, lanes: DisplayedLane[]) {
+
+  if (upsertMapSource(map, 'all-lanes-quality', lanes)) {
+    return;
+  }
+
+  map.addLayer({
+    id: `quality-lanes`,
+    type: 'line',
+    source: 'all-lanes-quality',
+    paint: {
+      'line-width': laneWidth,
+      'line-color': ["case",
+          ["==", ['get', 'quality'], "satisfaisant"], "#9CFFAF",
+          ["==", ['get', 'quality'], "non satisfaisant"], "#FFA3AF",
+          "white"
+      ],
+      'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
+    }
+  });
 }
 
 function drawLanesDone(map: Map, lanes: DisplayedLane[]) {
