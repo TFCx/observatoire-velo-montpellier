@@ -6,6 +6,9 @@ const shouldDisplayQuality = ref(false);
 
 const laneWidth = 4
 
+let layersForQuality: string[] = []
+let layersForNetwork: string[] = []
+
 const toggleShouldDisplayQuality = () => {
   shouldDisplayQuality.value = !shouldDisplayQuality.value;
 };
@@ -83,6 +86,7 @@ function groupFeaturesByColor(features: MultiColoredLineStringFeature[]) {
 }
 
 export const useMap = () => {
+
   const { getLineColor } = useColors();
 
   function addLineColor(feature: LineStringFeature): MultiColoredLineStringFeature {
@@ -130,11 +134,7 @@ export const useMap = () => {
         ]
       }
     });
-
-    // Watcher pour mettre à jour la propriété line-opacity du calque
-    watch(shouldDisplayQuality, (shouldDisplayQuality) => {
-      map.setPaintProperty('quality-non-satisfaisant', 'line-opacity', shouldDisplayQuality ? 1.0 : 0.0);
-    });
+    layersForQuality.push("quality-non-satisfaisant")
   }
 
   function plotQualityBackgroundOk({ map, features }: { map: Map; features: LineStringFeature[] }) {
@@ -163,11 +163,7 @@ export const useMap = () => {
         ]
       }
     });
-
-    // Watcher pour mettre à jour la propriété line-opacity du calque
-    watch(shouldDisplayQuality, (shouldDisplayQuality) => {
-      map.setPaintProperty('quality-satisfaisant', 'line-opacity', shouldDisplayQuality ? 1.0 : 0.0);
-    });
+    layersForQuality.push("quality-satisfaisant")
   }
 
   function separateSectionIntoLanes(features: MultiColoredLineStringFeature[]): DisplayedLane[] {
@@ -403,6 +399,16 @@ export const useMap = () => {
 
     plotSections(map, lineStringFeatures);
 
+    watch(shouldDisplayQuality, (shouldDisplayQuality) => {
+
+      layersForNetwork.forEach(l => {
+        map.setLayoutProperty(l, 'visibility', shouldDisplayQuality ? 'none' : 'visible')
+      });
+      layersForQuality.forEach(l => {
+        map.setLayoutProperty(l, 'visibility', shouldDisplayQuality ? 'visible' : 'none')
+      });
+    });
+
     plotPerspective({ map, features });
     plotCompteurs({ map, features });
   }
@@ -461,6 +467,7 @@ function drawLanesQuality(map: Map, lanes: DisplayedLane[]) {
       'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
     }
   });
+  layersForQuality.push("quality-lanes")
 }
 
 function drawLanesDone(map: Map, lanes: DisplayedLane[]) {
@@ -480,6 +487,7 @@ function drawLanesDone(map: Map, lanes: DisplayedLane[]) {
       'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
     }
   });
+  layersForNetwork.push("done-lanes")
 }
 
 function drawLanesPlanned(map: Map, lanes: DisplayedLane[]) {
@@ -500,6 +508,7 @@ function drawLanesPlanned(map: Map, lanes: DisplayedLane[]) {
       'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
     }
   });
+  layersForNetwork.push("planned-lanes")
 }
 
 function drawLanesVariante(map: Map, lanes: DisplayedLane[]) {
@@ -537,6 +546,8 @@ function drawLanesVariante(map: Map, lanes: DisplayedLane[]) {
       'text-size': 14
     }
   });
+  layersForNetwork.push("variante-sections")
+  layersForNetwork.push("variante-symbols")
 
   map.on('mouseenter', 'variante-sections', () => (map.getCanvas().style.cursor = 'pointer'));
   map.on('mouseleave', 'variante-sections', () => (map.getCanvas().style.cursor = ''));
@@ -578,6 +589,8 @@ function drawLanesVariantePostponed(map: Map, lanes: DisplayedLane[]) {
       'text-size': 14
     }
   });
+  layersForNetwork.push("variante-postponed-sections")
+  layersForNetwork.push("variante-postponed-symbols")
 
   map.on('mouseenter', 'variante-postponed-sections', () => (map.getCanvas().style.cursor = 'pointer'));
   map.on('mouseleave', 'variante-postponed-sections', () => (map.getCanvas().style.cursor = ''));
@@ -635,6 +648,7 @@ function drawLanesUnknown(map: Map, lanes: DisplayedLane[]) {
       'text-size': 14
     }
   });
+  layersForNetwork.push("unknown-sections")
 
   map.on('mouseenter', 'unknown-sections', () => (map.getCanvas().style.cursor = 'pointer'));
   map.on('mouseleave', 'unknown-sections', () => (map.getCanvas().style.cursor = ''));
@@ -676,12 +690,14 @@ function drawLanesPostponed(map: Map, lanes: DisplayedLane[]) {
       'text-size': 14,
     }
   });
+  layersForNetwork.push("postponed-lanes")
+  layersForNetwork.push("postponed-text")
 
-    animateOpacity(map, 0, 1000*5.0, 'postponed-lanes', 'line-opacity', 0.0, postPonedOpacity );
-    animateOpacity(map, 0, 1000*5.0, 'postponed-text', 'text-opacity',postPonedOpacity, postPonedOpacity + 0.4);
+  animateOpacity(map, 0, 1000*5.0, 'postponed-lanes', 'line-opacity', 0.0, postPonedOpacity );
+  animateOpacity(map, 0, 1000*5.0, 'postponed-text', 'text-opacity',postPonedOpacity, postPonedOpacity + 0.4);
 
-    map.on('mouseenter', `postponed-symbols`, () => (map.getCanvas().style.cursor = 'pointer'));
-    map.on('mouseleave', `postponed-symbols`, () => (map.getCanvas().style.cursor = ''));
+  map.on('mouseenter', `postponed-symbols`, () => (map.getCanvas().style.cursor = 'pointer'));
+  map.on('mouseleave', `postponed-symbols`, () => (map.getCanvas().style.cursor = ''));
 }
 
 
@@ -714,6 +730,8 @@ function drawLanesWIP(map: Map, lanes: DisplayedLane[]) {
       'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
     }
   });
+  layersForNetwork.push("wip-lanes")
+  layersForNetwork.push("wip-sections-done")
 
   animateOpacity(map, 0, 1000*0.75, 'wip-sections-done', 'line-opacity', 0.5, 0.9);
 }
