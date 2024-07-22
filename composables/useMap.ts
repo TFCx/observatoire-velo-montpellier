@@ -388,14 +388,14 @@ function upsertMapSource(map: Map, sourceName: string, features: Feature[]) {
 
 function drawLanesQuality(map: Map, lanes: DisplayedLane[]) {
 
-  if (upsertMapSource(map, 'all-lanes-quality', lanes)) {
+  if (upsertMapSource(map, 'source-all-lanes-quality', lanes)) {
     return;
   }
 
   map.addLayer({
-    id: `quality-lanes`,
+    id: `layer-lanes-quality`,
     type: 'line',
-    source: 'all-lanes-quality',
+    source: 'source-all-lanes-quality',
     layout: {
       "visibility": "none"
     },
@@ -409,40 +409,40 @@ function drawLanesQuality(map: Map, lanes: DisplayedLane[]) {
       'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
     }
   });
-  layersForQuality.push("quality-lanes")
+  layersForQuality.push("layer-lanes-quality")
 }
 
 function drawLanesDone(map: Map, lanes: DisplayedLane[]) {
 
   let lanes_done = lanes.filter(lane => lane.properties.status === "done");
-  if (upsertMapSource(map, 'all-lanes-done', lanes_done)) {
+  if (upsertMapSource(map, 'source-all-lanes-done', lanes_done)) {
     return;
   }
 
   map.addLayer({
-    id: `done-lanes`,
+    id: `layer-lanes-done`,
     type: 'line',
-    source: 'all-lanes-done',
+    source: 'source-all-lanes-done',
     paint: {
       'line-width': laneWidth,
       'line-color': ["to-color", ['get', 'color']],
       'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
     }
   });
-  layersForNetwork.push("done-lanes")
+  layersForNetwork.push("layer-lanes-done")
 }
 
 function drawLanesPlanned(map: Map, lanes: DisplayedLane[]) {
 
   let lanes_planned = lanes.filter(lane => lane.properties.status === "planned");
-  if (upsertMapSource(map, 'all-lanes-planned', lanes_planned)) {
+  if (upsertMapSource(map, 'source-all-lanes-planned', lanes_planned)) {
     return;
   }
 
   map.addLayer({
-    id: `planned-lanes`,
+    id: `layer-lanes-planned`,
     type: 'line',
-    source: 'all-lanes-planned',
+    source: 'source-all-lanes-planned',
     paint: {
       'line-width': laneWidth,
       'line-color': ["to-color", ['get', 'color']],
@@ -450,20 +450,20 @@ function drawLanesPlanned(map: Map, lanes: DisplayedLane[]) {
       'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
     }
   });
-  layersForNetwork.push("planned-lanes")
+  layersForNetwork.push("layer-lanes-planned")
 }
 
 function drawLanesVariante(map: Map, lanes: DisplayedLane[]) {
 
   let lanes_variante = lanes.filter(lane => lane.properties.status === "variante");
-  if (upsertMapSource(map, 'all-lanes-variante', lanes_variante)) {
+  if (upsertMapSource(map, 'source-all-lanes-variante', lanes_variante)) {
     return;
   }
 
   map.addLayer({
-    id: 'variante-sections',
+    id: 'layer-lanes-variante',
     type: 'line',
-    source: 'all-lanes-variante',
+    source: 'source-all-lanes-variante',
     paint: {
       'line-width': laneWidth,
       'line-color': ["to-color", ['get', 'color']],
@@ -473,9 +473,9 @@ function drawLanesVariante(map: Map, lanes: DisplayedLane[]) {
     }
   });
   map.addLayer({
-    id: 'variante-symbols',
+    id: 'layer-lanes-variante-symbols',
     type: 'symbol',
-    source: 'all-lanes-variante',
+    source: 'source-all-lanes-variante',
     paint: {
       'text-halo-color': '#fff',
       'text-halo-width': 4
@@ -488,24 +488,21 @@ function drawLanesVariante(map: Map, lanes: DisplayedLane[]) {
       'text-size': 14
     }
   });
-  layersForNetwork.push("variante-sections")
-  layersForNetwork.push("variante-symbols")
-
-  map.on('mouseenter', 'variante-sections', () => (map.getCanvas().style.cursor = 'pointer'));
-  map.on('mouseleave', 'variante-sections', () => (map.getCanvas().style.cursor = ''));
+  layersForNetwork.push("layer-lanes-variante")
+  layersForNetwork.push("layer-lanes-variante-symbols")
 }
 
 function drawLanesVariantePostponed(map: Map, lanes: DisplayedLane[]) {
 
   let lanes_variante_postponed = lanes.filter(lane => lane.properties.status === "variante-postponed");
-  if (upsertMapSource(map, 'all-lanes-variante-postponed', lanes_variante_postponed)) {
+  if (upsertMapSource(map, 'source-all-lanes-variante-postponed', lanes_variante_postponed)) {
     return;
   }
 
   map.addLayer({
-    id: 'variante-postponed-sections',
+    id: 'layer-lanes-variante-postponed',
     type: 'line',
-    source: 'all-lanes-variante-postponed',
+    source: 'source-all-lanes-variante-postponed',
     paint: {
       'line-width': laneWidth,
       'line-color': ["to-color", ['get', 'color']],
@@ -516,9 +513,9 @@ function drawLanesVariantePostponed(map: Map, lanes: DisplayedLane[]) {
   });
 
   map.addLayer({
-    id: 'variante-postponed-symbols',
+    id: 'layer-lanes-variante-postponed-symbols',
     type: 'symbol',
-    source: 'all-lanes-variante-postponed',
+    source: 'source-all-lanes-variante-postponed',
     paint: {
       'text-halo-color': '#fff',
       'text-halo-width': 4
@@ -531,24 +528,21 @@ function drawLanesVariantePostponed(map: Map, lanes: DisplayedLane[]) {
       'text-size': 14
     }
   });
-  layersForNetwork.push("variante-postponed-sections")
-  layersForNetwork.push("variante-postponed-symbols")
-
-  map.on('mouseenter', 'variante-postponed-sections', () => (map.getCanvas().style.cursor = 'pointer'));
-  map.on('mouseleave', 'variante-postponed-sections', () => (map.getCanvas().style.cursor = ''));
+  layersForNetwork.push("layer-lanes-variante-postponed")
+  layersForNetwork.push("layer-lanes-variante-postponed-symbols")
 }
 
 function drawLanesUnknown(map: Map, lanes: DisplayedLane[]) {
 
   let lanes_unknown = lanes.filter(lane => lane.properties.status === "unknown");
-  if (upsertMapSource(map, 'all-lanes-unknown', lanes_unknown)) {
+  if (upsertMapSource(map, 'source-all-lanes-unknown', lanes_unknown)) {
     return;
   }
 
   map.addLayer({
-    id: 'unknown-sections',
+    id: 'layer-lanes-unknown',
     type: 'line',
-    source: 'all-lanes-unknown',
+    source: 'source-all-lanes-unknown',
     layout: {
       'line-cap': 'round'
     },
@@ -575,9 +569,9 @@ function drawLanesUnknown(map: Map, lanes: DisplayedLane[]) {
     }
   });
   map.addLayer({
-    id: 'unknown-symbols',
+    id: 'layer-lanes-unknown-symbols',
     type: 'symbol',
-    source: 'all-lanes-unknown',
+    source: 'source-all-lanes-unknown',
     paint: {
       'text-halo-color': '#fff',
       'text-halo-width': 3
@@ -590,23 +584,21 @@ function drawLanesUnknown(map: Map, lanes: DisplayedLane[]) {
       'text-size': 14
     }
   });
-  layersForNetwork.push("unknown-sections")
-
-  map.on('mouseenter', 'unknown-sections', () => (map.getCanvas().style.cursor = 'pointer'));
-  map.on('mouseleave', 'unknown-sections', () => (map.getCanvas().style.cursor = ''));
+  layersForNetwork.push("layer-lanes-unknown")
+  layersForNetwork.push("layer-lanes-unknown-symbols")
 }
 
 function drawLanesPostponed(map: Map, lanes: DisplayedLane[]) {
 
   let lanes_postponed = lanes.filter(lane => lane.properties.status === "postponed");
-  if (upsertMapSource(map, 'all-lanes-postponed', lanes_postponed)) {
+  if (upsertMapSource(map, 'source-all-lanes-postponed', lanes_postponed)) {
     return;
   }
 
   map.addLayer({
-    id: `postponed-lanes`,
+    id: `layer-lanes-postponed`,
     type: 'line',
-    source: 'all-lanes-postponed',
+    source: 'source-all-lanes-postponed',
     paint: {
       'line-width': laneWidth,
       'line-color': ["to-color", ['get', 'color']],
@@ -616,9 +608,9 @@ function drawLanesPostponed(map: Map, lanes: DisplayedLane[]) {
   });
 
   map.addLayer({
-    id: `postponed-text`,
+    id: `layer-lanes-postponed-symbols`,
     type: 'symbol',
-    source: `all-lanes-postponed`,
+    source: `source-all-lanes-postponed`,
     paint: {
       'text-halo-color': '#fff',
       'text-halo-width': 3,
@@ -632,28 +624,25 @@ function drawLanesPostponed(map: Map, lanes: DisplayedLane[]) {
       'text-size': 14,
     }
   });
-  layersForNetwork.push("postponed-lanes")
-  layersForNetwork.push("postponed-text")
+  layersForNetwork.push("layer-lanes-postponed")
+  layersForNetwork.push("layer-lanes-postponed-symbols")
 
-  animateOpacity(map, 0, 1000*5.0, 'postponed-lanes', 'line-opacity', 0.0, postPonedOpacity );
-  animateOpacity(map, 0, 1000*5.0, 'postponed-text', 'text-opacity',postPonedOpacity, postPonedOpacity + 0.4);
-
-  map.on('mouseenter', `postponed-symbols`, () => (map.getCanvas().style.cursor = 'pointer'));
-  map.on('mouseleave', `postponed-symbols`, () => (map.getCanvas().style.cursor = ''));
+  animateOpacity(map, 0, 1000*5.0, 'layer-lanes-postponed', 'line-opacity', 0.0, postPonedOpacity );
+  animateOpacity(map, 0, 1000*5.0, 'layer-lanes-postponed-symbols', 'text-opacity',postPonedOpacity, postPonedOpacity + 0.4);
 }
 
 
 function drawLanesWIP(map: Map, lanes: DisplayedLane[]) {
 
   let lanes_wip = lanes.filter(lane => lane.properties.status === "wip");
-  if (upsertMapSource(map, 'all-lanes-wip', lanes_wip)) {
+  if (upsertMapSource(map, 'source-all-lanes-wip', lanes_wip)) {
     return;
   }
 
   map.addLayer({
-    id: `wip-lanes`,
+    id: `layer-lanes-wip`,
     type: 'line',
-    source: 'all-lanes-wip',
+    source: 'source-all-lanes-wip',
     paint: {
       'line-width': laneWidth,
       'line-color': ["to-color", ['get', 'color']],
@@ -663,19 +652,19 @@ function drawLanesWIP(map: Map, lanes: DisplayedLane[]) {
   });
 
   map.addLayer({
-    id: 'wip-sections-done',
+    id: 'layer-lanes-wip-done',
     type: 'line',
-    source: 'all-lanes-wip',
+    source: 'source-all-lanes-wip',
     paint: {
       'line-width': laneWidth,
       'line-color': ["to-color", ['get', 'color']],
       'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
     }
   });
-  layersForNetwork.push("wip-lanes")
-  layersForNetwork.push("wip-sections-done")
+  layersForNetwork.push("layer-lanes-wip")
+  layersForNetwork.push("layer-lanes-wip-done")
 
-  animateOpacity(map, 0, 1000*0.75, 'wip-sections-done', 'line-opacity', 0.5, 0.9);
+  animateOpacity(map, 0, 1000*0.75, 'layer-lanes-wip-done', 'line-opacity', 0.5, 0.9);
 }
 
 function addListnersForHovering(map: Map) {
