@@ -1,5 +1,5 @@
 import { GeoJSONSource, LngLatBounds, Map } from 'maplibre-gl';
-import { isCompteurFeature, isLineStringFeature, isPerspectiveFeature, isPointFeature, type Feature, type DisplayedLane, type LaneStatus, type LaneType, type LineStringFeature, type Quality } from '~/types';
+import { isCompteurFeature, isLineStringFeature, isPerspectiveFeature, isPointFeature, type Feature, type DisplayedLane, type LaneStatus, type LaneType, type LineStringFeature} from '~/types';
 import { ref } from 'vue';
 
 const shouldDisplayQuality = ref(false);
@@ -162,13 +162,11 @@ export const useMap = () => {
 
     drawLanesPostponed(map, lanes)
 
-    // drawLanesVariante(map, lanes)
+    drawLanesVariante(map, lanes)
 
-    // drawLanesVariantePostponed(map, lanes)
+    drawLanesVariantePostponed(map, lanes)
 
-    // drawLanesUnknown(map, lanes)
-
-    //drawLanesQuality(map, lanes)
+    drawLanesUnknown(map, lanes)
 
     addListnersForHovering(map);
   }
@@ -328,8 +326,9 @@ export const useMap = () => {
 
         if(shouldDisplayQuality) {
           map.setPaintProperty(l, "line-color", ["case",
-            ["==", ['get', 'quality'], "satisfaisant"], "#9CFFAF",
-            ["==", ['get', 'quality'], "non satisfaisant"], "#FFA3AF",
+            ["==", ['get', 'quality'], "bad"], "#FFA3AF",
+            ["==", ['get', 'quality'], "fair"], "#F9F06B",
+            ["==", ['get', 'quality'], "good"], "#9CFFAF",
             "white"
           ]);
         } else {

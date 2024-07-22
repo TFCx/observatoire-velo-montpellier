@@ -15,7 +15,7 @@ export type LaneType =
 
 export type LaneStatus = 'done' | 'wip' | 'planned' | 'postponed' | 'unknown' | 'variante' | 'variante-postponed';
 
-export type Quality = 'non satisfaisant' | 'satisfaisant';
+export type Quality = 'bad' | 'fair' | 'good';
 
 export type LineStringFeature = {
   type: 'Feature';

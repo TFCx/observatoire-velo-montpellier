@@ -54,7 +54,7 @@
             {{ typologyNames[feature.properties.type] ?? 'Inconnu' }}
           </div>
           <div class="italic text-right">
-            {{ feature.properties.quality }}
+            {{ qualityNames[feature.properties.quality] }}
           </div>
         </div>
       </div>
@@ -72,7 +72,7 @@ import type { LineStringFeature } from '~/types';
 
 const { getLineColor } = useColors();
 const { getRevName } = useConfig();
-const { getDistance, typologyNames } = useStats();
+const { getDistance, typologyNames, qualityNames } = useStats();
 const { getVoieCyclablePath } = useUrl();
 
 const { feature, lines } = defineProps<{
