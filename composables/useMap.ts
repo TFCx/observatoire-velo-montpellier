@@ -108,64 +108,6 @@ export const useMap = () => {
     map.addImage('cross-icon', cross.data, { sdf: true });
   }
 
-
-  function plotQualityBackgroundNok({ map, features }: { map: Map; features: LineStringFeature[] }) {
-    const sections = features.filter(feature => feature.properties.quality === 'non satisfaisant');
-
-    if (sections.length === 0 && !map.getLayer('quality-non-satisfaisant')) {
-      return;
-    }
-    if (upsertMapSource(map, 'quality-non-satisfaisant', sections)) {
-      return;
-    }
-
-    map.addLayer({
-      id: 'quality-non-satisfaisant',
-      type: 'line',
-      source: 'quality-non-satisfaisant',
-      layout: { 'line-cap': 'round' },
-      paint: {
-        'line-gap-width': 5,
-        'line-width': 8,
-        'line-color': '#ffa3af',
-        "line-opacity" : ["case",
-          ["==", shouldDisplayQuality.value, true], 1.0,
-          0.0
-        ]
-      }
-    });
-    layersForQuality.push("quality-non-satisfaisant")
-  }
-
-  function plotQualityBackgroundOk({ map, features }: { map: Map; features: LineStringFeature[] }) {
-    const sections = features.filter(feature => feature.properties.quality === 'satisfaisant');
-
-    if (sections.length === 0 && !map.getLayer('quality-satisfaisant')) {
-      return;
-    }
-    if (upsertMapSource(map, 'quality-satisfaisant', sections)) {
-      return;
-    }
-
-
-    map.addLayer({
-      id: 'quality-satisfaisant',
-      type: 'line',
-      source: 'quality-satisfaisant',
-      layout: { 'line-cap': 'round' },
-      paint: {
-        'line-gap-width': 5,
-        'line-width': 8,
-        'line-color': '#9cffaf',
-        "line-opacity" : ["case",
-          ["==", shouldDisplayQuality.value, true], 1.0,
-          0.0
-        ]
-      }
-    });
-    layersForQuality.push("quality-satisfaisant")
-  }
-
   function separateSectionIntoLanes(features: MultiColoredLineStringFeature[]): DisplayedLane[] {
     let lanes: DisplayedLane[] = []
     features.forEach(f => {
@@ -394,9 +336,6 @@ export const useMap = () => {
     let lineStringFeatures = features.filter(isLineStringFeature).sort(sortByLine).map(addLineColor);
     lineStringFeatures = addOtherLineColor(lineStringFeatures)
 
-    plotQualityBackgroundNok({ map, features: lineStringFeatures });
-    plotQualityBackgroundOk({ map, features: lineStringFeatures });
-
     plotSections(map, lineStringFeatures);
 
     watch(shouldDisplayQuality, (shouldDisplayQuality) => {
@@ -457,6 +396,9 @@ function drawLanesQuality(map: Map, lanes: DisplayedLane[]) {
     id: `quality-lanes`,
     type: 'line',
     source: 'all-lanes-quality',
+    layout: {
+      "visibility": "none"
+    },
     paint: {
       'line-width': laneWidth,
       'line-color': ["case",
