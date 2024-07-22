@@ -316,21 +316,6 @@ export const useMap = () => {
     return features
   }
 
-  function animateColor(map: Map, timestamp: number, animationLength: number, attribute: string) {
-
-    function subAnimateColor(timestamp: number) {
-      const t = (timestamp % animationLength) / animationLength
-      // WIP : trouver les index out of bounds
-      map.setPaintProperty(attribute, 'line-color', ["to-color", ['at', ['floor', ['*', t, ['length', ['get', 'colors']]]], ['get', 'colors']]]);
-
-      // Request the next frame of the animation.
-      requestAnimationFrame(subAnimateColor);
-    }
-    subAnimateColor(timestamp)
-  }
-
-
-
   function plotFeatures({ map, features }: { map: Map; features: Feature[] }) {
     let lineStringFeatures = features.filter(isLineStringFeature).sort(sortByLine).map(addLineColor);
     lineStringFeatures = addOtherLineColor(lineStringFeatures);
