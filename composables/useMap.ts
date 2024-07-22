@@ -6,8 +6,7 @@ const shouldDisplayQuality = ref(false);
 
 const laneWidth = 4
 
-let layersForQuality: string[] = []
-let layersForNetwork: string[] = []
+let layersWithLanes: string[] = []
 
 const toggleShouldDisplayQuality = () => {
   shouldDisplayQuality.value = !shouldDisplayQuality.value;
@@ -163,13 +162,13 @@ export const useMap = () => {
 
     drawLanesPostponed(map, lanes)
 
-    drawLanesVariante(map, lanes)
+    // drawLanesVariante(map, lanes)
 
-    drawLanesVariantePostponed(map, lanes)
+    // drawLanesVariantePostponed(map, lanes)
 
-    drawLanesUnknown(map, lanes)
+    // drawLanesUnknown(map, lanes)
 
-    drawLanesQuality(map, lanes)
+    //drawLanesQuality(map, lanes)
 
     addListnersForHovering(map);
   }
@@ -334,17 +333,23 @@ export const useMap = () => {
 
   function plotFeatures({ map, features }: { map: Map; features: Feature[] }) {
     let lineStringFeatures = features.filter(isLineStringFeature).sort(sortByLine).map(addLineColor);
-    lineStringFeatures = addOtherLineColor(lineStringFeatures)
+    lineStringFeatures = addOtherLineColor(lineStringFeatures);
 
     plotSections(map, lineStringFeatures);
 
     watch(shouldDisplayQuality, (shouldDisplayQuality) => {
 
-      layersForNetwork.forEach(l => {
-        map.setLayoutProperty(l, 'visibility', shouldDisplayQuality ? 'none' : 'visible')
-      });
-      layersForQuality.forEach(l => {
-        map.setLayoutProperty(l, 'visibility', shouldDisplayQuality ? 'visible' : 'none')
+      layersWithLanes.forEach(l => {
+
+        if(shouldDisplayQuality) {
+          map.setPaintProperty(l, "line-color", ["case",
+            ["==", ['get', 'quality'], "satisfaisant"], "#9CFFAF",
+            ["==", ['get', 'quality'], "non satisfaisant"], "#FFA3AF",
+            "white"
+          ]);
+        } else {
+          map.setPaintProperty(l, "line-color", ["to-color", ['get', 'color']]);
+        }
       });
     });
 
@@ -386,32 +391,6 @@ function upsertMapSource(map: Map, sourceName: string, features: Feature[]) {
   return false;
 }
 
-function drawLanesQuality(map: Map, lanes: DisplayedLane[]) {
-
-  if (upsertMapSource(map, 'source-all-lanes-quality', lanes)) {
-    return;
-  }
-
-  map.addLayer({
-    id: `layer-lanes-quality`,
-    type: 'line',
-    source: 'source-all-lanes-quality',
-    layout: {
-      "visibility": "none"
-    },
-    paint: {
-      'line-width': laneWidth,
-      'line-color': ["case",
-          ["==", ['get', 'quality'], "satisfaisant"], "#9CFFAF",
-          ["==", ['get', 'quality'], "non satisfaisant"], "#FFA3AF",
-          "white"
-      ],
-      'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
-    }
-  });
-  layersForQuality.push("layer-lanes-quality")
-}
-
 function drawLanesDone(map: Map, lanes: DisplayedLane[]) {
 
   let lanes_done = lanes.filter(lane => lane.properties.status === "done");
@@ -429,7 +408,7 @@ function drawLanesDone(map: Map, lanes: DisplayedLane[]) {
       'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
     }
   });
-  layersForNetwork.push("layer-lanes-done")
+  layersWithLanes.push("layer-lanes-done")
 }
 
 function drawLanesPlanned(map: Map, lanes: DisplayedLane[]) {
@@ -450,7 +429,7 @@ function drawLanesPlanned(map: Map, lanes: DisplayedLane[]) {
       'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
     }
   });
-  layersForNetwork.push("layer-lanes-planned")
+  layersWithLanes.push("layer-lanes-planned")
 }
 
 function drawLanesVariante(map: Map, lanes: DisplayedLane[]) {
@@ -488,8 +467,7 @@ function drawLanesVariante(map: Map, lanes: DisplayedLane[]) {
       'text-size': 14
     }
   });
-  layersForNetwork.push("layer-lanes-variante")
-  layersForNetwork.push("layer-lanes-variante-symbols")
+  layersWithLanes.push("layer-lanes-variante")
 }
 
 function drawLanesVariantePostponed(map: Map, lanes: DisplayedLane[]) {
@@ -528,8 +506,7 @@ function drawLanesVariantePostponed(map: Map, lanes: DisplayedLane[]) {
       'text-size': 14
     }
   });
-  layersForNetwork.push("layer-lanes-variante-postponed")
-  layersForNetwork.push("layer-lanes-variante-postponed-symbols")
+  layersWithLanes.push("layer-lanes-variante-postponed")
 }
 
 function drawLanesUnknown(map: Map, lanes: DisplayedLane[]) {
@@ -584,8 +561,7 @@ function drawLanesUnknown(map: Map, lanes: DisplayedLane[]) {
       'text-size': 14
     }
   });
-  layersForNetwork.push("layer-lanes-unknown")
-  layersForNetwork.push("layer-lanes-unknown-symbols")
+  layersWithLanes.push("layer-lanes-unknown")
 }
 
 function drawLanesPostponed(map: Map, lanes: DisplayedLane[]) {
@@ -624,8 +600,7 @@ function drawLanesPostponed(map: Map, lanes: DisplayedLane[]) {
       'text-size': 14,
     }
   });
-  layersForNetwork.push("layer-lanes-postponed")
-  layersForNetwork.push("layer-lanes-postponed-symbols")
+  layersWithLanes.push("layer-lanes-postponed")
 
   animateOpacity(map, 0, 1000*5.0, 'layer-lanes-postponed', 'line-opacity', 0.0, postPonedOpacity );
   animateOpacity(map, 0, 1000*5.0, 'layer-lanes-postponed-symbols', 'text-opacity',postPonedOpacity, postPonedOpacity + 0.4);
@@ -661,8 +636,8 @@ function drawLanesWIP(map: Map, lanes: DisplayedLane[]) {
       'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
     }
   });
-  layersForNetwork.push("layer-lanes-wip")
-  layersForNetwork.push("layer-lanes-wip-done")
+  layersWithLanes.push("layer-lanes-wip")
+  layersWithLanes.push("layer-lanes-wip-done")
 
   animateOpacity(map, 0, 1000*0.75, 'layer-lanes-wip-done', 'line-opacity', 0.5, 0.9);
 }
