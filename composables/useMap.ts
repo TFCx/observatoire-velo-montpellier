@@ -1,5 +1,5 @@
 import { GeoJSONSource, LngLatBounds, Map } from 'maplibre-gl';
-import { isCompteurFeature, isLineStringFeature, isPerspectiveFeature, isPointFeature, type Feature, type DisplayedLane, type LaneStatus, type LaneType, type LineStringFeature} from '~/types';
+import { isCompteurFeature, isLineStringFeature, isPerspectiveFeature, isPointFeature, type Feature, type DisplayedLane, type LaneStatus, type LaneType, type LineStringFeature, Quality} from '~/types';
 import { ref } from 'vue';
 
 const shouldDisplayQuality = ref(false);
@@ -331,8 +331,25 @@ export const useMap = () => {
             ["==", ['get', 'quality'], "good"], "#77dd77",
             "white"
           ]);
+        // } else {
+        //   map.setPaintProperty(l, "line-color", ["to-color", ['get', 'color']]);
         } else {
-          map.setPaintProperty(l, "line-color", ["to-color", ['get', 'color']]);
+          map.setPaintProperty(l, "line-color", ["case",
+            ["==", ['get', 'type'], "bidirectionnelle"], "#b3c6ff", // bleu
+            ["==", ['get', 'type'], "bilaterale"], "#b3fbff", // cyan
+            ["==", ['get', 'type'], "voie-bus"], "#fbb3ff", // violet
+            ["==", ['get', 'type'], "voie-bus-elargie"], "#e1b3ff", // violet
+            ["==", ['get', 'type'], "velorue"], "#fffbb3", // jaune
+            ["==", ['get', 'type'], "voie-verte"], "#b3ffb6", // vert
+            ["==", ['get', 'type'], "bandes-cyclables"], "#c1b3ff", // bleu-violet
+            ["==", ['get', 'type'], "zone-de-rencontre"], "#daffb3", // vert
+            ["==", ['get', 'type'], "heterogene"], "#797979", // gris foncé
+            ["==", ['get', 'type'], "aucun"], "#dedede", // gris
+            ["==", ['get', 'type'], "inconnu"], "#dedede", // gris
+            ["==", ['get', 'type'], "mixte"], "#ff9999", // rouge
+            ["==", ['get', 'type'], "chaucidou"], "#ffeab3", // orange
+            "white"
+          ]);
         }
       });
     });
