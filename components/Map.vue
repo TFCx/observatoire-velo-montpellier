@@ -21,7 +21,7 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 import style from '@/assets/style.json';
 import LegendControl from '@/maplibre/LegendControl';
 import FilterControl from '@/maplibre/FilterControl';
-import QualityControl from '@/maplibre/QualityControl';
+import ComboboxControl from '@/maplibre/ComboboxControl';
 import FullscreenControl from '@/maplibre/FullscreenControl';
 import ShrinkControl from '@/maplibre/ShrinkControl';
 import LineTooltip from '~/components/tooltips/LineTooltip.vue';
@@ -29,7 +29,7 @@ import CounterTooltip from '~/components/tooltips/CounterTooltip.vue';
 import PerspectiveTooltip from '~/components/tooltips/PerspectiveTooltip.vue';
 import { isLineStringFeature, type Feature, type LaneStatus, type LaneType } from '~/types';
 import config from '~/config.json';
-import { shouldDisplayQuality, toggleShouldDisplayQuality } from '~/composables/useMap'
+import { setDisplayedLayer } from '~/composables/useMap'
 
 // const config = useRuntimeConfig();
 // const maptilerKey = config.public.maptilerKey;
@@ -38,7 +38,6 @@ const defaultOptions = {
   logo: true,
   legend: true,
   filter: true,
-  show_quality: true,
   geolocation: false,
   fullscreen: false,
   onFullscreenControlClick: () => { },
@@ -89,6 +88,22 @@ onMounted(() => {
     zoom: config.zoom,
     attributionControl: false
   });
+
+  const selector = new ComboboxControl({
+    onChange: (e: any) => {
+      let s:string = e.target.value
+
+      if(s === "network") {
+        setDisplayedLayer(DisplayedLayer.Network)
+      } else if (s === "quality") {
+        setDisplayedLayer(DisplayedLayer.Quality)
+      } else if (s === "type") {
+        setDisplayedLayer(DisplayedLayer.Type)
+      }
+    }
+  });
+  map.addControl(selector, 'top-left')
+
   map.addControl(new NavigationControl({ showCompass: false }), 'top-left');
   map.addControl(new AttributionControl({ compact: false }), 'bottom-left');
   if (options.fullscreen) {
@@ -132,14 +147,6 @@ onMounted(() => {
       }
     });
     map.addControl(filterControl, 'top-right');
-  }
-  if (options.show_quality) {
-    const qualityControl = new QualityControl({
-      onClick: () => {
-        toggleShouldDisplayQuality()
-      }
-    });
-    map.addControl(qualityControl, 'top-right');
   }
 
   map.on('load', async() => {
@@ -281,11 +288,10 @@ onMounted(() => {
   background-size: 85%;
 }
 
-.maplibregl-quality {
+.maplibregl-combobox {
   background-repeat: no-repeat;
   background-position: center;
   pointer-events: auto;
-  background-image: url('~/maplibre/quality.svg');
   background-size: 85%;
 }
 

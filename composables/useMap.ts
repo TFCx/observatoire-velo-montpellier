@@ -1,22 +1,24 @@
 import { GeoJSONSource, LngLatBounds, Map } from 'maplibre-gl';
-import { isCompteurFeature, isLineStringFeature, isPerspectiveFeature, isPointFeature, type Feature, type DisplayedLane, type LaneStatus, type LaneType, type LineStringFeature, Quality} from '~/types';
+import { isCompteurFeature, isLineStringFeature, isPerspectiveFeature, isPointFeature, type Feature, type DisplayedLane, type LaneStatus, type LaneType, type LineStringFeature} from '~/types';
 import { ref } from 'vue';
 
-const shouldDisplayQuality = ref(false);
+enum DisplayedLayer {
+  Network = 1,
+  Quality,
+  Type,
+}
+
+const displayedLayer = ref(DisplayedLayer.Network);
 
 const laneWidth = 4
 
 let layersWithLanes: string[] = []
 
-const toggleShouldDisplayQuality = () => {
-  shouldDisplayQuality.value = !shouldDisplayQuality.value;
+const setDisplayedLayer = (value: DisplayedLayer) => {
+  displayedLayer.value = value;
 };
 
-const setShouldDisplayQuality = (value: boolean) => {
-  shouldDisplayQuality.value = value;
-};
-
-export { shouldDisplayQuality, toggleShouldDisplayQuality, setShouldDisplayQuality };
+export { DisplayedLayer, setDisplayedLayer };
 
 let postPonedOpacity = 0.5
 
@@ -320,20 +322,20 @@ export const useMap = () => {
 
     plotSections(map, lineStringFeatures);
 
-    watch(shouldDisplayQuality, (shouldDisplayQuality) => {
+    watch(displayedLayer, (displayedLayer) => {
 
       layersWithLanes.forEach(l => {
 
-        if(shouldDisplayQuality) {
+        if(displayedLayer == DisplayedLayer.Quality) {
           map.setPaintProperty(l, "line-color", ["case",
             ["==", ['get', 'quality'], "bad"], "#ff6961",
             ["==", ['get', 'quality'], "fair"], "#fdfd96",
             ["==", ['get', 'quality'], "good"], "#77dd77",
             "white"
           ]);
-        // } else {
-        //   map.setPaintProperty(l, "line-color", ["to-color", ['get', 'color']]);
-        } else {
+        } else if(displayedLayer == DisplayedLayer.Network) {
+           map.setPaintProperty(l, "line-color", ["to-color", ['get', 'color']]);
+        } else if(displayedLayer == DisplayedLayer.Type) {
           map.setPaintProperty(l, "line-color", ["case",
             ["==", ['get', 'type'], "bidirectionnelle"], "#b3c6ff", // bleu
             ["==", ['get', 'type'], "bilaterale"], "#b3fbff", // cyan
