@@ -2,22 +2,22 @@
 line: 2
 lineName: Ligne 2
 lineNameShort: 2
-description: Véloligne devant offrir (à terme) une jonction directe Montpellier<>Mauguio via Grammont
-trafic: 
-cover: 
+description: Véloligne devant offrir (à terme) une jonction directe Montpellier⇄Mauguio via Grammont
+trafic:
+cover:
 from: Mtpl Antigone
 to: Maugio
 ---
 
 ## Les tronçons (d'ouest en est)
 
-### Antigone <> Lez
+### Antigone ⇄ Lez
 
 ::banner{type="unsecured"}
 Section inexistante. Pas de projet en cours à la connaissance de Vélocité.
 ::
 
-### Lez <> Vieille Poste
+### Lez ⇄ Vieille Poste
 
 <span style="color:red;font-weight:bold">Non satisfaisant</span> Section très empruntée. Conflit piéton/vélo important. Les virages de la passerelle sont trop étroits.
 
@@ -36,13 +36,13 @@ streetView: 43.6098586,3.8987897,3a,75y,235.16h,87.95t
 La partie est a été mise en travaux depuis mars 2024 dans le cadre des travaux du Bustram.
 ::
 
-### Vieille Poste <> Grammont
+### Vieille Poste ⇄ Grammont
 
 
 
 <span style="color:red;font-weight:bold">Non satisfaisant</span> Section existante aux standards de confort, qualité, sécurité et attractivité dépassés non conformes aux exigences d'une Véloligne.
 
-### Grammont <> Maugio
+### Grammont ⇄ Maugio
 
 ::banner{type="unsecured"}
 Section non prévue au cours de ce mandat. Reportée à une échéance ultérieure.

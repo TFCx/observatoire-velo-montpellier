@@ -15,25 +15,25 @@ to: Saint-Gély / Montferrier
 
 ### Véloligne 10a vers Saint-Gély-du-Fesc
 
-#### Voie Domitienne <> Route de Ganges
+#### Voie Domitienne ⇄ Route de Ganges
 
-#### Rond-point de la Lyre <> La Valsière
+#### Rond-point de la Lyre ⇄ La Valsière
 
-#### La Valsière <> Saint-Gély-du-Fesc
+#### La Valsière ⇄ Saint-Gély-du-Fesc
 
 ### Véloligne 10b vers Montferrier-le-Lez
 
-#### Voie Domitienne <> rue Dunant
+#### Voie Domitienne ⇄ rue Dunant
 
 ::banner{type="unsecured"}
 Cette section aurait dû être réalisée avec le bustram 2, reporté après le mandat. En l'état c'est une discontinuité majeure de la Véloligne 10b, qui pourrait perdurer au delà du mandat.
 ::
 
-#### rue Dunant <> Place de la voie Domitienne
+#### rue Dunant ⇄ Place de la voie Domitienne
 
 Section réalisée récemment dans le cadre des travaux de la ligne 5 de tram. Bien que réalisées avec des bordures chanfreinées côté piéton, ces pistes bilatérales sont étroites (1m50), donc non conformes aux exigences d'une Véloligne.
 
-#### Place de la voie Domitienne <> avenue Arthur Young
+#### Place de la voie Domitienne ⇄ avenue Arthur Young
 
 ::banner{type="wip"}
 En travaux. Une piste bidirectionnelle sera réalisée dans le cadre des travaux de la ligne 5 de tramway.

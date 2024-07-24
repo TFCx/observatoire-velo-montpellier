@@ -3,7 +3,7 @@ line: A
 lineName: Ligne A
 lineNameShort: A
 description: Cette Véloligne est l'une des rocades cyclables qui reliera à terme Juvignac à Castelnau
-trafic: 
+trafic:
 cover: https://www.montpellier.fr/uploads/Image/98/IMF_FICHEEVT/GAB_MPL/43475_157_pers-DUBOUT.jpg
 from: Juvignac
 to: Castelnau
@@ -61,27 +61,27 @@ Sur cette section où se trouve une bretelle d'accès depuis Palavas (l'avenue D
 <span style="color:red;font-weight:bold">Non satisfaisant</span>
 Réalisation récente en bidirectionnelle se terminant par un sas vélo placé devant deux voies. La largeur disponible aurait permis un aménagement en bilatéral beaucoup plus sécurisé et confortable à l'intersection. Réalisation non conformes aux exigences d'une Véloligne.
 
-### Moularès <> Pont Zucarelli
+### Moularès ⇄ Pont Zucarelli
 
 ::banner{type="unsecured"}
 Pas de projet en cours à la connaissance de Vélocité.
 ::
 
-### Pont Zucarelli <> rond-point Ernest Granier
+### Pont Zucarelli ⇄ rond-point Ernest Granier
 
 Le projet prévoit un aménagement bilatéral.
 
-### Avenue du Mondial 98 (Granier<>Odysseum)
+### Avenue du Mondial 98 (Granier⇄Odysseum)
 
 ::banner{type="wip"}
 En travaux. Les pistes transitoires bilatérales seront perennisées.
 ::
 
-### Avenue du Mondial 98 (Odysseum <> Evariste Galois)
+### Avenue du Mondial 98 (Odysseum ⇄ Evariste Galois)
 
 Projet de piste bilatérales.
 
-### Evariste Galois <> Albert Einstein
+### Evariste Galois ⇄ Albert Einstein
 
 Projet de piste bidirectionnelle côté est.
 
