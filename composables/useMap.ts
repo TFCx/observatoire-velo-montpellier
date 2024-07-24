@@ -138,7 +138,6 @@ export const useMap = () => {
   }
 
   function plotSections(map: Map, features: MultiColoredLineStringFeature[]) {
-
     const lanes = separateSectionIntoLanes(features)
 
     const sections = features.map((feature, index) => ({ id: index, ...feature }));
@@ -146,15 +145,8 @@ export const useMap = () => {
     if (sections.length === 0 && !map.getLayer('highlight')) {
       return;
     }
-    if (upsertMapSource(map, 'all-sections', sections)) {
-      return;
-    }
 
-    drawHoveredEffect(map);
-
-    drawSectionContour(map);
-
-    drawSectionBackground(map);
+    drawSectionBase(map, sections)
 
     drawLanesPlanned(map, lanes)
 
@@ -672,6 +664,19 @@ function addListnersForHovering(map: Map) {
     }
     hoveredLineId = null;
   });
+}
+
+function drawSectionBase(map: Map, sections: Feature[]) {
+
+  if (upsertMapSource(map, 'all-sections', sections)) {
+    return;
+  }
+
+  drawHoveredEffect(map);
+
+  drawSectionContour(map);
+
+  drawSectionBackground(map);
 }
 
 function drawSectionBackground(map: Map) {
