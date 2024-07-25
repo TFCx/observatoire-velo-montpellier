@@ -323,6 +323,7 @@ export const useMap = () => {
             ["==", ['get', 'quality'], "bad"], "#ff6961",
             ["==", ['get', 'quality'], "fair"], "#fdfd96",
             ["==", ['get', 'quality'], "good"], "#77dd77",
+            ["==", ['get', 'status'], "done"], "#000000", // orange
             "white"
           ]);
         } else if(displayedLayer == DisplayedLayer.Network) {
@@ -342,6 +343,7 @@ export const useMap = () => {
             ["==", ['get', 'type'], "inconnu"], "#dedede", // gris
             ["==", ['get', 'type'], "mixte"], "#ff9999", // rouge
             ["==", ['get', 'type'], "chaucidou"], "#ffeab3", // orange
+            ["==", ['get', 'status'], "isDone"], "#000000", // orange
             "white"
           ]);
         }
