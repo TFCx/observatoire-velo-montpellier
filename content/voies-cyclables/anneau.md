@@ -37,7 +37,7 @@ Vélorue étroite dont l'important trafic motorisé de transit a pu être évacu
 
 ### Boulevard Gambetta
 
-<span style="color:orange;font-weight:bold">Non satisfaisant</span>
+<span style="color:orange;font-weight:bold">À améliorer</span>
 Aménagement hétérogène avec bordures boudins dangereuses. Manque de places de livraisons créant un conflit d'usage. Accueille déjà plus de 4000 vélos/jour. Pourrait être aménagé en véritable vélorue à circulation centrale, sans bordure boudin, avec un filtre modal au droit de la rue de la Raffinerie.
 
 ### Place Saint Denis
@@ -55,11 +55,11 @@ Prévue pour être piétonne sans matérialisation spécifique d'espaces piéton
 
 ### Quai Laurens
 
-<span style="color:orange;font-weight:bold">Non satisfaisant</span> Aménagement hétérogène. Côté ouest : très qualitatif. Piste cyclable séparée large et confortable avec bordures pardonnantes. Côté est : non satisfaisant. Circulation mixte des vélos avec un important trafic motorisé de transit. Les conditions de trafic ne sont pas réunies pour la vélorue qui n'a de vélorue que le panneau. Cette "vélorue" est un exemple de choses à ne pas faire.
+<span style="color:orange;font-weight:bold">À améliorer</span> Aménagement hétérogène. Côté ouest : très qualitatif. Piste cyclable séparée large et confortable avec bordures pardonnantes. Côté est : non satisfaisant. Circulation mixte des vélos avec un important trafic motorisé de transit. Les conditions de trafic ne sont pas réunies pour la vélorue qui n'a de vélorue que le panneau. Cette "vélorue" est un exemple de choses à ne pas faire.
 
 ### rue Blum Sud
 
-<span style="color:orange;font-weight:bold">Non satisfaisant</span> Pistes bilatérales anciennes en "canyon". Le Cerema utilise des photos de ces pistes pour illustrer les exemples d'aménagements à éviter.
+<span style="color:red;font-weight:bold">Dangereux</span> Pistes bilatérales anciennes en "canyon". Le Cerema utilise des photos de ces pistes pour illustrer les exemples d'aménagements à éviter. Piste sur trottoir sur Pont Juvénal dans le sens horaire. L'intersection de la rue du Pont Juvénal vers Blum n'est pas traitée
 
 ::content-image
 ---
@@ -76,7 +76,7 @@ streetView: 43.6058282,3.8896056,3a,15y,26.2h,88.67t
 
 ### Avenue Mermoz
 
-<span style="color:orange;font-weight:bold">Non satisfaisant</span>
+<span style="color:red;font-weight:bold">Non satisfaisant</span> Aucun trottoir côté ouest, qui est le seul côté où une piste est aménagée. Elle est donc naturellement utilisée par les piétons. Par ailleurs cette secition conserve 5 voies de circulation motorisée.
 
 ### Rue du Professeur Léon Vallois
 
@@ -84,4 +84,4 @@ streetView: 43.6058282,3.8896056,3a,15y,26.2h,88.67t
 
 ### Quai du Verdanson
 
-<span style="color:orange;font-weight:bold">Non satisfaisant</span> Aménagement ancien en bordure de trottoirs trop étroits. Conflits piétons/vélo. Change de côté régulièrement en perdant la priorité. Récentes améliorations avec suppression des obstacles sur certaines sections.
+<span style="color:orange;font-weight:bold">À améliorer</span> Aménagement ancien en bordure de trottoirs trop étroits. Conflits piétons/vélo. Change de côté régulièrement en perdant la priorité. Récentes améliorations avec suppression des obstacles sur certaines sections.

@@ -13,7 +13,7 @@ to: Castelnau / Jacou / Saint-Geniès
 
 ### Tronçon Corum ⇄ Castelnau
 
-<span style="color:orange;font-weight:bold">Non satisfaisant</span> Piste bidirectionnelle sur le côté nord de la route de Nîmes (Avenue Delmas). Étroite et à niveau de trottoir elle est dangereuse à cause de très nombreux potelets et est le siège de conflits vélos/piétons
+<span style="color:orange;font-weight:bold">À améliorer</span> Piste bidirectionnelle sur le côté nord de la route de Nîmes (Avenue Delmas). Étroite et à niveau de trottoir elle est dangereuse à cause de très nombreux potelets et est le siège de conflits vélos/piétons
 
 <br>À Castelnau la véloligne se sépare en deux tronçons :
 
@@ -29,7 +29,7 @@ Initialement prévue pour après 2026 dans la résolution mise au vote en consei
 
 #### Traversée de Clapiers et Jacou
 
-<span style="color:green;font-weight:bold">Satisfaisant</span>
+<span style="color:green;font-weight:bold">Globalement satisfaisant</span>
 L'itinéraire est existant, majoritairement sous forme de pistes séparées avec de courtes sections où l'itinéraire emprunte des rues avec une faible circulation automobile.
 
 

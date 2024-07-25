@@ -19,7 +19,7 @@ Section inexistante. Pas de projet en cours à la connaissance de Vélocité.
 
 ### Lez ⇄ Vieille Poste
 
-<span style="color:red;font-weight:bold">Non satisfaisant</span> Section très empruntée. Conflit piéton/vélo important. Les virages de la passerelle sont trop étroits.
+<span style="color:red;font-weight:bold">Dangereux</span> Section très empruntée. Conflit piéton/vélo important. Les virages de la passerelle sont trop étroits.
 
 ::content-image
 ---
@@ -40,7 +40,7 @@ La partie est a été mise en travaux depuis mars 2024 dans le cadre des travaux
 
 
 
-<span style="color:red;font-weight:bold">Non satisfaisant</span> Section existante aux standards de confort, qualité, sécurité et attractivité dépassés non conformes aux exigences d'une Véloligne.
+<span style="color:orange;font-weight:bold">À améliorer</span> Section existante aux standards de confort, qualité, sécurité et attractivité dépassés non conformes aux exigences d'une Véloligne.
 
 ### Grammont ⇄ Maugio
 

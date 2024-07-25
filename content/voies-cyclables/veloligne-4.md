@@ -33,7 +33,7 @@ Pas de projet en cours à la connaissance de Vélocité.
 
 #### Voie verte le long du Lez
 
-<span style="color:orange;font-weight:bold;">Non satisfaisant</span> Section existante (voie verte ancienne) aux standards de confort, qualité, sécurité et attractivité dépassés et non conformes aux exigences d'une Véloligne.
+<span style="color:orange;font-weight:bold;">À améliorer</span> Section existante (voie verte ancienne) aux standards de confort, qualité, sécurité et attractivité dépassés et non conformes aux exigences d'une Véloligne.
 Zone dangereuse au sud du port Ariane. La voie verte sature déjà les jours de plus grande affluence avec un trafic vélo dépassant les 3000 passages quotidiens.
 
 #### Branche vers Maurin
@@ -58,7 +58,7 @@ Tracé sinueux avec de forts facteurs de détour. Nécessité d'un franchissemen
 
 #### Desserte de l'aéroport
 
-<span style="color:orange;font-weight:bold;">Non satisfaisant</span> Pourtant récente, cette section existante aux standards de confort, qualité, sécurité et attractivité dépassés n'est pas conforme aux exigences d'une Véloligne.
+<span style="color:orange;font-weight:bold;">À améliorer</span> Pourtant récente, cette section existante aux standards de confort, qualité, sécurité et attractivité dépassés n'est pas conforme aux exigences d'une Véloligne.
 
 #### Pérols (Boulidou ⇄ Carnon)
 

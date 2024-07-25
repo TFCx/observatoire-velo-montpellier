@@ -50,20 +50,10 @@
               prévu pour 2026
             </div>
 
-<!--
-            <div class="my-auto h-4 rounded-md bg-velocite-yellow-5 opacity-20 px-1">
-              <div class="flex items-center justify-center h-full">
-                <div class="h-1 w-full rounded-md border-2 border-gray-500" />
-              </div>
-            </div>
-            <div>
-              linéaire inconnu
-            </div>
--->
             <div class="my-auto rounded-md border-gray-500 border relative">
               <div class="h-1 bg-white" />
-              <div class="text-velocite-yellow-5 font-bold leading-none absolute -top-2 leading-none">
-                x x x x x
+              <div class="text-black font-light leading-none absolute -top-2 leading-none">
+                reporté
               </div>
             </div>
             <div>
