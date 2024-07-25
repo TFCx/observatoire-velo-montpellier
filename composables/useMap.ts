@@ -321,9 +321,9 @@ export const useMap = () => {
         if(displayedLayer == DisplayedLayer.Quality) {
           map.setPaintProperty(l, "line-color", ["case",
             ["==", ['get', 'quality'], "bad"], "#ff6961",
-            ["==", ['get', 'quality'], "fair"], "#fdfd96",
+            ["==", ['get', 'quality'], "fair"], "#fafc74",
             ["==", ['get', 'quality'], "good"], "#77dd77",
-            ["==", ['get', 'status'], "done"], "#000000", // orange
+            ["==", ['get', 'status'], "done"], "#000000",
             "white"
           ]);
         } else if(displayedLayer == DisplayedLayer.Network) {
