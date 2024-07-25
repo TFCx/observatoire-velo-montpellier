@@ -3,15 +3,15 @@ line: 1
 lineName: Ligne 1
 lineNameShort: 1
 description: Véloligne desservant les communes du quart nord-est de la métropole
-trafic: 
-cover: 
+trafic:
+cover:
 from: Mtpl Corum
 to: Castelnau / Jacou / Saint-Geniès
 ---
 
-## Les tronçons 
+## Les tronçons
 
-### Tronçon Corum <> Castelnau
+### Tronçon Corum ⇄ Castelnau
 
 <span style="color:orange;font-weight:bold">Non satisfaisant</span> Piste bidirectionnelle sur le côté nord de la route de Nîmes (Avenue Delmas). Étroite et à niveau de trottoir elle est dangereuse à cause de très nombreux potelets et est le siège de conflits vélos/piétons
 
@@ -19,7 +19,7 @@ to: Castelnau / Jacou / Saint-Geniès
 
 ### Véloligne 1a
 
-#### Traversée de Castelnau 
+#### Traversée de Castelnau
 
 Le point noir est la traversée de Castelnau via Jean Jaurès.
 ::banner{type="info"}
@@ -29,13 +29,13 @@ Initialement prévue pour après 2026 dans la résolution mise au vote en consei
 
 #### Traversée de Clapiers et Jacou
 
-<span style="color:green;font-weight:bold">Satisfaisant</span> 
-L'itinéraire est existant, majoritairement sous forme de pistes séparées avec de courtes sections où l'itinéraire emprunte des rues avec une faible circulation automobile. 
+<span style="color:green;font-weight:bold">Satisfaisant</span>
+L'itinéraire est existant, majoritairement sous forme de pistes séparées avec de courtes sections où l'itinéraire emprunte des rues avec une faible circulation automobile.
 
 
-### Castelnau <> Vendargues
+### Castelnau ⇄ Vendargues
 
-#### Place Charles de Gaulle <> Clos de l'Armet
+#### Place Charles de Gaulle ⇄ Clos de l'Armet
 
 Projet de bilatérales
 
@@ -45,13 +45,13 @@ Projet de bilatérales
 
 #### Chemin du Clos de l'Armet
 
-<span style="color:green;font-weight:bold">Satisfaisant</span> Un filtre modal a été mis en place en milieu de section afin de supprimer la possibilité de raccourci et de limiter le trafic motorisé au trafic local 
+<span style="color:green;font-weight:bold">Satisfaisant</span> Un filtre modal a été mis en place en milieu de section afin de supprimer la possibilité de raccourci et de limiter le trafic motorisé au trafic local
 
-#### Sablassou <> Le Crès (Pointes)
+#### Sablassou ⇄ Le Crès (Pointes)
 
 En projet dans le cadre de l'extension de la ligne de Bustram 1
 
-#### Le Crès <> Vendargues
+#### Le Crès ⇄ Vendargues
 
 ::banner{type="wip"}
 Aménagement en tactique avec bandes cyclables protégées par des bordures Zicla
@@ -61,11 +61,11 @@ Aménagement en tactique avec bandes cyclables protégées par des bordures Zicl
 
 ### Véloligne 1b
 
-Vendargues <> Saint-Geniès-des-Mourgues : livraison prévue pour 2026
+Vendargues ⇄ Saint-Geniès-des-Mourgues : livraison prévue pour 2026
 
 ### Véloligne 1c
 
-Vendargues <> Saint-Bres  : seules quelques sections sont prévues avant 2026
+Vendargues ⇄ Saint-Bres  : seules quelques sections sont prévues avant 2026
 ::banner{type="unsecured"}
 Pas de projet en cours à la connaissance de Vélocité.
 ::

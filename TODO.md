@@ -4,7 +4,7 @@
 - Ajout tag : métropole de Montpellier oui/non => ***plus nécessaire car ce qui est hors métropole est aussi réalisé avant mandat***
 - Code Aurélien logo
 - 3 niveaux de qualité
-- Permettre de switch la visualisation
+- Permettre de switch la visualisation => voir https://www.transit.land/
 - Mettre la légende en bas
 - Vieilles sections : reprendre la branche & fix le bug
 - Stats qualité première page
