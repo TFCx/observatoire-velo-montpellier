@@ -24,7 +24,7 @@ module.exports = {
         'velocite-green-2': '#57E389',
         'velocite-green-3': '#33D17A',
         'velocite-green-4': '#2EC27E',
-        'velocite-green-5': '#26A269',
+        'velocite-green-5': '#77dd77',
         'velocite-yellow-1': '#F9F06B',
         'velocite-yellow-2': '#F8E45C',
         'velocite-yellow-3': '#F6D32D',
@@ -34,12 +34,12 @@ module.exports = {
         'velocite-orange-2': '#FFA348',
         'velocite-orange-3': '#FF7800',
         'velocite-orange-4': '#E66100',
-        'velocite-orange-5': '#C64600',
+        'velocite-orange-5': '#fafc74',
         'velocite-red-1': '#FFA3AF',
         'velocite-red-2': '#ED333B',
         'velocite-red-3': '#E01B24',
         'velocite-red-4': '#C01C28',
-        'velocite-red-5': '#A51D2D',
+        'velocite-red-5': '#ff6961',
         'velocite-purple-1': '#DC8ADD',
         'velocite-purple-2': '#C061CB',
         'velocite-purple-3': '#9141AC',
@@ -60,6 +60,10 @@ module.exports = {
         'velocite-dark-3': '#3D3846',
         'velocite-dark-4': '#241F31',
         'velocite-dark-5': '#000000',
+        'velocite-bidirectionnelle': "#b3c6ff", // bleu
+        'velocite-bilaterale': "#b3fbff", // cyan
+        'velocite-velorue': "#fffbb3", // jaune
+        'velocite-voie-verte': "#b3ffb6", // vert
       },
       typography: {
         DEFAULT: {

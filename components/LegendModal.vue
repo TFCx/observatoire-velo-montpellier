@@ -19,29 +19,13 @@
         <div class="mt-2">
           <div class="grid grid-cols-[64px_1fr] gap-x-4">
 
+            <div>Réseau</div>
+            <br>
             <div class="my-auto rounded-md border-gray-500 border">
               <div class="h-1 bg-velocite-yellow-5" />
             </div>
             <div>
               terminé
-            </div>
-
-            <div class="my-auto h-4 rounded-md bg-velocite-red-1 opacity-50 px-2">
-              <div class="flex items-center justify-center h-full">
-                <div class="h-2 w-full rounded-md bg-velocite-yellow-5 border-2 border-gray-500" />
-              </div>
-            </div>
-            <div>
-              non satisfaisant
-            </div>
-
-            <div class="my-auto h-4 rounded-md bg-velocite-green-1 opacity-50 px-2">
-              <div class="flex items-center justify-center h-full">
-                <div class="h-2 w-full rounded-md bg-velocite-yellow-5 border-2 border-gray-500" />
-              </div>
-            </div>
-            <div>
-              satisfaisant
             </div>
 
             <div class="my-auto rounded-md border-gray-500 border">
@@ -84,6 +68,59 @@
             </div>
             <div>
               reporté après 2026
+            </div>
+
+            <div>Qualité</div>
+            <br>
+            <div class="my-auto rounded-md border-gray-500 border">
+              <div class="h-1 bg-velocite-green-5" />
+            </div>
+            <div>
+              satisfaisant
+            </div>
+
+            <div class="my-auto rounded-md border-gray-500 border">
+              <div class="h-1 bg-velocite-orange-5" />
+            </div>
+            <div>
+              à améliorer
+            </div>
+
+            <div class="my-auto rounded-md border-gray-500 border">
+              <div class="h-1 bg-velocite-red-5" />
+            </div>
+            <div>
+              dangereux
+            </div>
+
+            <div>Types principaux</div>
+            <br>
+            <div class="my-auto rounded-md border-gray-500 border">
+              <div class="h-1 bg-velocite-bidirectionnelle" />
+            </div>
+            <div>
+              bidirectionnelle
+            </div>
+
+            <div class="my-auto rounded-md border-gray-500 border">
+              <div class="h-1 bg-velocite-bilaterale" />
+            </div>
+            <div>
+              bilatérale
+            </div>
+
+            <div class="my-auto rounded-md border-gray-500 border">
+              <div class="h-1 bg-velocite-voie-verte" />
+            </div>
+            <div>
+              voie verte
+            </div>
+
+            <div class="my-auto rounded-md border-gray-500 border">
+              <div class="h-1 bg-velocite-velorue" />
+            </div>
+            <div>
+              vélorue
             </div>
 
           </div>
