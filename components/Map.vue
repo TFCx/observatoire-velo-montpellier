@@ -21,7 +21,7 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 import style from '@/assets/style.json';
 import LegendControl from '@/maplibre/LegendControl';
 import FilterControl from '@/maplibre/FilterControl';
-import ComboboxControl from '@/maplibre/ComboboxControl';
+import LayerControl from '@/maplibre/LayerControl';
 import FullscreenControl from '@/maplibre/FullscreenControl';
 import ShrinkControl from '@/maplibre/ShrinkControl';
 import LineTooltip from '~/components/tooltips/LineTooltip.vue';
@@ -89,10 +89,8 @@ onMounted(() => {
     attributionControl: false
   });
 
-  const selector = new ComboboxControl({
-    onChange: (e: any) => {
-      let s:string = e.target.value
-
+  const layerControl = new LayerControl({
+    onChange: (s: string) => {
       if(s === "network") {
         setDisplayedLayer(DisplayedLayer.Network)
       } else if (s === "quality") {
@@ -102,7 +100,7 @@ onMounted(() => {
       }
     }
   });
-  map.addControl(selector, 'top-left')
+  map.addControl(layerControl, 'top-left')
 
   map.addControl(new NavigationControl({ showCompass: false }), 'top-left');
   map.addControl(new AttributionControl({ compact: false }), 'bottom-left');
@@ -320,5 +318,19 @@ onMounted(() => {
 
 .maplibregl-popup-anchor-right .maplibregl-popup-tip {
   border-left-color: transparent;
+}
+
+.layercontrol-title {
+    font-size: large;
+    font-weight: 700;
+}
+
+.layercontrol {
+    z-index: 1000;
+    background: #fff;
+    padding: 10px;
+    border-radius: 7px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 </style>
