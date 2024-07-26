@@ -3,9 +3,9 @@ import { isCompteurFeature, isLineStringFeature, isPerspectiveFeature, isPointFe
 import { ref } from 'vue';
 
 enum DisplayedLayer {
-  Network = 1,
-  Quality,
-  Type,
+  Network = 0,
+  Quality = 1,
+  Type = 2,
 }
 
 const displayedLayer = ref(DisplayedLayer.Network);
@@ -308,47 +308,17 @@ export const useMap = () => {
     return features
   }
 
-  function plotFeatures({ map, features }: { map: Map; features: Feature[] }) {
+  function plotFeatures({ map, features, initialLayer }: { map: Map; features: Feature[], initialLayer: DisplayedLayer }) {
     let lineStringFeatures = features.filter(isLineStringFeature).sort(sortByLine).map(addLineColor);
     lineStringFeatures = addOtherLineColor(lineStringFeatures);
 
     plotSections(map, lineStringFeatures);
 
-    watch(displayedLayer, (displayedLayer) => {
 
-      layersWithLanes.forEach(l => {
+    setDisplayedLayer(initialLayer)
+    setLanesColor(map, initialLayer)
 
-        if(displayedLayer == DisplayedLayer.Quality) {
-          map.setPaintProperty(l, "line-color", ["case",
-            ["==", ['get', 'quality'], "bad"], "#ff6961",
-            ["==", ['get', 'quality'], "fair"], "#fafc74",
-            ["==", ['get', 'quality'], "good"], "#77dd77",
-            ["==", ['get', 'status'], "done"], "#000000",
-            "white"
-          ]);
-        } else if(displayedLayer == DisplayedLayer.Network) {
-           map.setPaintProperty(l, "line-color", ["to-color", ['get', 'color']]);
-        } else if(displayedLayer == DisplayedLayer.Type) {
-          map.setPaintProperty(l, "line-color", ["case",
-            ["==", ['get', 'type'], "bidirectionnelle"], "#b3c6ff", // bleu
-            ["==", ['get', 'type'], "bilaterale"], "#b3fbff", // cyan
-            ["==", ['get', 'type'], "voie-bus"], "#fbb3ff", // violet
-            ["==", ['get', 'type'], "voie-bus-elargie"], "#e1b3ff", // violet
-            ["==", ['get', 'type'], "velorue"], "#fffbb3", // jaune
-            ["==", ['get', 'type'], "voie-verte"], "#b3ffb6", // vert
-            ["==", ['get', 'type'], "bandes-cyclables"], "#c1b3ff", // bleu-violet
-            ["==", ['get', 'type'], "zone-de-rencontre"], "#daffb3", // vert
-            ["==", ['get', 'type'], "heterogene"], "#797979", // gris foncé
-            ["==", ['get', 'type'], "aucun"], "#dedede", // gris
-            ["==", ['get', 'type'], "inconnu"], "#dedede", // gris
-            ["==", ['get', 'type'], "mixte"], "#ff9999", // rouge
-            ["==", ['get', 'type'], "chaucidou"], "#ffeab3", // orange
-            ["==", ['get', 'status'], "isDone"], "#000000", // orange
-            "white"
-          ]);
-        }
-      });
-    });
+    watch(displayedLayer, (displayedLayer) => setLanesColor(map, displayedLayer))
 
     plotPerspective({ map, features });
     plotCompteurs({ map, features });
@@ -361,6 +331,41 @@ export const useMap = () => {
     fitBounds
   };
 };
+
+function setLanesColor(map: Map, displayedLayer: DisplayedLayer) {
+  layersWithLanes.forEach(l => {
+
+    if (displayedLayer == DisplayedLayer.Quality) {
+      map.setPaintProperty(l, "line-color", ["case",
+        ["==", ['get', 'quality'], "bad"], "#ff6961",
+        ["==", ['get', 'quality'], "fair"], "#fafc74",
+        ["==", ['get', 'quality'], "good"], "#77dd77",
+        ["==", ['get', 'status'], "done"], "#000000",
+        "white"
+      ]);
+    } else if (displayedLayer == DisplayedLayer.Network) {
+      map.setPaintProperty(l, "line-color", ["to-color", ['get', 'color']]);
+    } else if (displayedLayer == DisplayedLayer.Type) {
+      map.setPaintProperty(l, "line-color", ["case",
+        ["==", ['get', 'type'], "bidirectionnelle"], "#b3c6ff", // bleu
+        ["==", ['get', 'type'], "bilaterale"], "#b3fbff", // cyan
+        ["==", ['get', 'type'], "voie-bus"], "#fbb3ff", // violet
+        ["==", ['get', 'type'], "voie-bus-elargie"], "#e1b3ff", // violet
+        ["==", ['get', 'type'], "velorue"], "#fffbb3", // jaune
+        ["==", ['get', 'type'], "voie-verte"], "#b3ffb6", // vert
+        ["==", ['get', 'type'], "bandes-cyclables"], "#c1b3ff", // bleu-violet
+        ["==", ['get', 'type'], "zone-de-rencontre"], "#daffb3", // vert
+        ["==", ['get', 'type'], "heterogene"], "#797979", // gris foncé
+        ["==", ['get', 'type'], "aucun"], "#dedede", // gris
+        ["==", ['get', 'type'], "inconnu"], "#dedede", // gris
+        ["==", ['get', 'type'], "mixte"], "#ff9999", // rouge
+        ["==", ['get', 'type'], "chaucidou"], "#ffeab3", // orange
+        ["==", ['get', 'status'], "isDone"], "#000000", // orange
+        "white"
+      ]);
+    }
+  });
+}
 
 function animateOpacity(map: Map, timestamp: number, animationLength: number, attributeId: string, attributeOpacity: string, min: number, max: number) {
 

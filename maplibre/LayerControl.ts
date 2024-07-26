@@ -1,9 +1,11 @@
 export default class LayerControl {
   _container: HTMLDivElement;
   _onChange: Function;
+  _initialLayer: number;
 
-  constructor({ onChange }: { onChange: Function }) {
+  constructor(onChange: Function, initialLayer: number = 0) {
     this._onChange = onChange;
+    this._initialLayer = initialLayer
   }
 
   onAdd() {
@@ -16,9 +18,9 @@ export default class LayerControl {
     title.appendChild(document.createTextNode("Visualisation"))
     title.className = "layercontrol-title"
     this._container.appendChild(title);
-    this.createRadioButton('network', 'du réseau', true);
-    this.createRadioButton('quality', 'de la qualité des aménagements');
-    this.createRadioButton('type', 'du type des aménagements');
+    this.createRadioButton('network', 'du réseau', this._initialLayer == 0);
+    this.createRadioButton('quality', 'de la qualité des aménagements', this._initialLayer == 1);
+    this.createRadioButton('type', 'du type des aménagements', this._initialLayer == 2);
 
     return this._container;
   }

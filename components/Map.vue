@@ -38,6 +38,7 @@ const defaultOptions = {
   logo: true,
   legend: true,
   filter: true,
+  initialLayer: 0,
   geolocation: false,
   fullscreen: false,
   onFullscreenControlClick: () => { },
@@ -89,8 +90,8 @@ onMounted(() => {
     attributionControl: false
   });
 
-  const layerControl = new LayerControl({
-    onChange: (s: string) => {
+  const layerControl = new LayerControl(
+    (s: string) => {
       if(s === "network") {
         setDisplayedLayer(DisplayedLayer.Network)
       } else if (s === "quality") {
@@ -98,8 +99,8 @@ onMounted(() => {
       } else if (s === "type") {
         setDisplayedLayer(DisplayedLayer.Type)
       }
-    }
-  });
+    }, options.initialLayer
+  );
   map.addControl(layerControl, 'top-left')
 
   map.addControl(new NavigationControl({ showCompass: false }), 'top-left');
@@ -149,7 +150,7 @@ onMounted(() => {
 
   map.on('load', async() => {
     await loadImages({ map });
-    plotFeatures({ map, features: features.value });
+    plotFeatures({ map, features: features.value, initialLayer: options.initialLayer });
     const tailwindMdBreakpoint = 768;
     if (window.innerWidth > tailwindMdBreakpoint) {
       fitBounds({ map, features: features.value });
@@ -159,14 +160,14 @@ onMounted(() => {
   watch(
     features,
     newFeatures => {
-      plotFeatures({ map, features: newFeatures });
+      plotFeatures({ map, features: newFeatures, initialLayer: options.initialLayer });
     }
   );
 
   watch(
     () => props.features,
     newFeatures => {
-      plotFeatures({ map, features: newFeatures });
+      plotFeatures({ map, features: newFeatures, initialLayer: options.initialLayer });
     }
   );
 
