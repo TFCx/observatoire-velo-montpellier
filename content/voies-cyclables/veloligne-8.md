@@ -35,7 +35,7 @@ Section inexistante. Pas de projet en cours à la connaissance de Vélocité.
 
 ### De l'avenue de Vanières au rond-point Paul Fajon
 
-<span style="color:red;font-weight:bold;font-style:italic">Non satisfaisant</span> Seule la partie près des écoles Savary et Boucher sont existantes. La partie la plus dangereuse, très routière, avec des bretelles desservant la 2x2 voies de l'avenue de Vanière, est sans équipement.
+<span style="color:red;font-weight:bold;font-style:italic">Dangereux</span> Seule la partie près des écoles Savary et Boucher sont existantes. La partie la plus dangereuse, très routière, avec des bretelles desservant la 2x2 voies de l'avenue de Vanière, est sans équipement.
 
 ### Du rond-point Paul Fajon au rond-point Maurice Gennevaux
 

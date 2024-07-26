@@ -9,4 +9,4 @@ from: Mtpl Château d'Ô
 to: Grabels
 ---
 
-<span style="color:orange;font-weight:bold;">Non satisfaisant</span> Équipement existant de longue date, aux standards de confort, qualité, sécurité et attractivité dépassés et non conformes aux exigences d'une Véloligne.
+<span style="color:orange;font-weight:bold;">À améliorer</span> Équipement existant de longue date, aux standards de confort, qualité, sécurité et attractivité dépassés et non conformes aux exigences d'une Véloligne.

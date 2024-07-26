@@ -146,8 +146,8 @@ export const useStats = () => {
 
   const qualityNames: Record<Quality, string> = {
     'bad': 'Non satisfaisant',
-    'fair': 'Satisfaisant',
-    'good': 'Recommandé',
+    'fair': 'À améliorer',
+    'good': 'Satisfaisant',
   };
 
   const typologyNames: Record<LaneType, string> = {

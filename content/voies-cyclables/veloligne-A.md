@@ -28,7 +28,7 @@ Reporté à après le mandat
 
 ### de l'avenue des Garrats aux rues Forgues et Fontcarrade
 
-<span style="color:orange;font-weight:bold">Plutôt non satisfaisant</span>
+<span style="color:orange;font-weight:bold">À améliorer</span>
 Réalisation récente ambitieuse de par la place prises aux motorisés, elle souffre cependant d'une très mauvaise connexion à l'existant, en particulier pour la desserte de toute la moitié sud (quartier de la Chamberte) possible uniquement via de rares et dangereux franchissements (pont de la Chamberte, traversée piétonne de la voie rapide face au chateau de la Piscine).<br>
 <span style="color:green">À noter :</span> cette section contient, à l'intersection Liberté/Forgues/Fontcarrade le premier carrefour d'inspiration hollandaise de la commune.
 
@@ -53,12 +53,12 @@ Réalisation récente en bidirectionnelle.
 
 ### avenue Dubout de l'avenue de Palavas à Antonelli
 
-<span style="color:orange;font-weight:bold">Non satisfaisant</span>
+<span style="color:red;font-weight:bold">Dangereux</span>
 Sur cette section où se trouve une bretelle d'accès depuis Palavas (l'avenue Dubout est une ancienne voie de chemin de fer qui fut convertie en voie express) la bordure boudin franchissable est insufisante pour la sécurisation des usagers.
 
 ### Antonelli
 
-<span style="color:red;font-weight:bold">Non satisfaisant</span>
+<span style="color:orange;font-weight:bold">À améliorer</span>
 Réalisation récente en bidirectionnelle se terminant par un sas vélo placé devant deux voies. La largeur disponible aurait permis un aménagement en bilatéral beaucoup plus sécurisé et confortable à l'intersection. Réalisation non conformes aux exigences d'une Véloligne.
 
 ### Moularès ⇄ Pont Zucarelli
@@ -87,14 +87,14 @@ Projet de piste bidirectionnelle côté est.
 
 ### Rues Becquerel et Pomessargues
 
-<span style="color:orange;font-weight:bold">Non satisfaisant</span> Aménagement existant en piste bidirectionelle sur trottoir, non conformes aux exigences d'une Véloligne.
+<span style="color:orange;font-weight:bold">À améliorer</span> Aménagement existant en piste bidirectionelle sur trottoir, non conformes aux exigences d'une Véloligne.
 ::banner{type="unsecured"}
 Pas de projet en cours à la connaissance de Vélocité.
 ::
 
 ### Avenue Georges Frêche
 
-<span style="color:orange;font-weight:bold">Non satisfaisant</span> Aménagement existant en pistes bilatérales étroites à niveau de trottoir, non conformes aux exigences d'une Véloligne.
+<span style="color:orange;font-weight:bold">À améliorer</span> Aménagement existant en pistes bilatérales étroites à niveau de trottoir, non conformes aux exigences d'une Véloligne.
 ::banner{type="unsecured"}
 Pas de projet en cours à la connaissance de Vélocité.
 ::
