@@ -131,11 +131,11 @@ onMounted(() => {
     const legendControl = new LegendControl({
       onClick: () => {
         if (legendModalComponent.value) {
-          (legendModalComponent.value as any).openModal();
+          (legendModalComponent.value as any).expandLegend();
         }
       }
     });
-    map.addControl(legendControl, 'top-right');
+    map.addControl(legendControl, 'bottom-left');
   }
   if (options.filter) {
     const filterControl = new FilterControl({
