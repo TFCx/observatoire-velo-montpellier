@@ -1,21 +1,17 @@
 <template>
-  <Dialog :open="isOpen" class="relative z-50" @close="closeModal">
-    <!-- backdrop-->
-    <div class="fixed inset-0 bg-black/30" aria-hidden="true" />
-
-    <!-- dialog itself-->
-    <div class="fixed inset-0 flex items-center justify-center p-4">
-      <DialogPanel class="relative p-4 w-full max-w-sm rounded bg-white">
+  <div class="relative z-50" v-show="isExpanded">
+    <div class="fixed p-2 bottom-5">
+      <div class="relative p-4 w-full max-w-sm rounded-xl bg-white">
         <button
           type="button"
           class="absolute top-1 right-1 bg-white rounded-md p-1 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100"
-          @click="closeModal"
+          @click="reduceLegend"
         >
           <Icon name="mdi:close" class="h-6 w-6" aria-hidden="true" />
         </button>
-        <DialogTitle class="text-lg font-medium leading-6 text-gray-900">
+        <div class="text-lg font-medium leading-6 text-gray-900">
           Légende
-        </DialogTitle>
+        </div>
         <div class="mt-2">
           <div class="grid grid-cols-[64px_1fr] gap-x-4">
 
@@ -30,8 +26,11 @@
 
             <div class="my-auto rounded-md border-gray-500 border">
               <div class="h-1 relative">
-                <div class="absolute h-full w-full">
-                  <div class="h-full bg-velocite-yellow-5 dashed-line animated-dashes" />
+                <div class="h-full w-full">
+                  <div class="myrelative h-full w-full">
+                    <div class="myabsolute h-full w-full bg-velocite-yellow-5 dashed-line" />
+                    <div class="myabsolute h-full w-full bg-velocite-yellow-5 animated-opacity" />
+                  </div>
                 </div>
               </div>
             </div>
@@ -52,7 +51,8 @@
 
             <div class="my-auto rounded-md border-gray-500 border relative">
               <div class="h-1 bg-white" />
-              <div class="text-black font-light leading-none absolute -top-2 leading-none">
+              <div class="myabsolute h-full w-full bg-velocite-yellow-5 dashed-line opacity-50 animated-opacity-slow" />
+              <div class="text-black animated-opacity-slow font-light leading-none absolute -top-2 leading-none">
                 reporté
               </div>
             </div>
@@ -115,25 +115,26 @@
 
           </div>
         </div>
-      </DialogPanel>
+      </div>
     </div>
-  </Dialog>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { Dialog, DialogPanel, DialogTitle } from '@headlessui/vue';
 
-const isOpen = ref(false);
+const isExpanded = ref(false);
 
-function closeModal() {
-  isOpen.value = false;
+function reduceLegend() {
+  console.debug("reduceLegend")
+  isExpanded.value = false;
 }
-function openModal() {
-  isOpen.value = true;
+function expandLegend() {
+  console.debug("expandLegend")
+  isExpanded.value = true;
 }
 
 defineExpose({
-  openModal
+  expandLegend
 });
 </script>
 
@@ -142,11 +143,31 @@ defineExpose({
   background-image: linear-gradient(to right, transparent 50%, white 50%);
   background-position: 0 0;
   background-repeat: repeat-x;
-  background-size: 12px 0.25rem;
+  background-size: 10px 0.25rem;
 }
 
-.animated-dashes {
-  animation: dash-animation 0.5s linear infinite;
+.animated-opacity {
+  animation: blinker 1s linear infinite;
+}
+
+.animated-opacity-slow {
+  animation: blinker 5s linear infinite;
+}
+
+.myrelative {
+  position:relative;
+}
+
+.myabsolute {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
 }
 
 @keyframes dash-animation {
