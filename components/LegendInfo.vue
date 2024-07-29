@@ -13,106 +13,115 @@
           Légende
         </div>
         <div class="mt-2">
-          <div class="grid grid-cols-[64px_1fr] gap-x-4">
+          <div v-if="true">
+            <div class="grid grid-cols-[64px_1fr] gap-x-4">
 
-            <div>Réseau</div>
-            <br>
-            <div class="my-auto rounded-md border-gray-500 border">
-              <div class="h-1 bg-velocite-yellow-5" />
-            </div>
-            <div>
-              terminé
-            </div>
+              <div>Réseau</div>
+              <br>
+              <div class="my-auto rounded-md border-gray-500 border">
+                <div class="h-1 bg-velocite-yellow-5" />
+              </div>
+              <div>
+                terminé
+              </div>
 
-            <div class="my-auto rounded-md border-gray-500 border">
-              <div class="h-1 relative">
-                <div class="h-full w-full">
-                  <div class="myrelative h-full w-full">
-                    <div class="myabsolute h-full w-full bg-velocite-yellow-5 dashed-line" />
-                    <div class="myabsolute h-full w-full bg-velocite-yellow-5 animated-opacity" />
+              <div class="my-auto rounded-md border-gray-500 border">
+                <div class="h-1 relative">
+                  <div class="h-full w-full">
+                    <div class="myrelative h-full w-full">
+                      <div class="myabsolute h-full w-full bg-velocite-yellow-5 dashed-line" />
+                      <div class="myabsolute h-full w-full bg-velocite-yellow-5 animated-opacity" />
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div>
-              en travaux
-            </div>
+              <div>
+                en travaux
+              </div>
 
-            <div class="my-auto rounded-md border-gray-500 border">
-              <div class="h-1 relative">
-                <div class="absolute h-full w-full">
-                  <div class="h-full bg-velocite-yellow-5 dashed-line" />
+              <div class="my-auto rounded-md border-gray-500 border">
+                <div class="h-1 relative">
+                  <div class="absolute h-full w-full">
+                    <div class="h-full bg-velocite-yellow-5 dashed-line" />
+                  </div>
                 </div>
               </div>
-            </div>
-            <div>
-              prévu pour 2026
-            </div>
+              <div>
+                prévu pour 2026
+              </div>
 
-            <div class="my-auto rounded-md border-gray-500 border relative">
-              <div class="h-1 bg-white" />
-              <div class="myabsolute h-full w-full bg-velocite-yellow-5 dashed-line opacity-50 animated-opacity-slow" />
-              <div class="text-black animated-opacity-slow font-light leading-none absolute -top-2 leading-none">
-                reporté
+              <div class="my-auto rounded-md border-gray-500 border relative">
+                <div class="h-1 bg-white" />
+                <div class="myabsolute h-full w-full bg-velocite-yellow-5 dashed-line opacity-50 animated-opacity-slow" />
+                <div class="text-black animated-opacity-slow font-light leading-none absolute -top-2 leading-none">
+                  reporté
+                </div>
+              </div>
+              <div>
+                reporté après 2026
               </div>
             </div>
-            <div>
-              reporté après 2026
-            </div>
+          </div>
 
-            <div>Qualité</div>
-            <br>
-            <div class="my-auto rounded-md border-gray-500 border">
-              <div class="h-1 bg-velocite-green-5" />
-            </div>
-            <div>
-              satisfaisant
-            </div>
+          <div v-if="layerDisplayed==1">
+            <div class="grid grid-cols-[64px_1fr] gap-x-4">
+              <div>Qualité</div>
+              <br>
+              <div class="my-auto rounded-md border-gray-500 border">
+                <div class="h-1 bg-velocite-green-5" />
+              </div>
+              <div>
+                satisfaisant
+              </div>
 
-            <div class="my-auto rounded-md border-gray-500 border">
-              <div class="h-1 bg-velocite-orange-5" />
-            </div>
-            <div>
-              à améliorer
-            </div>
+              <div class="my-auto rounded-md border-gray-500 border">
+                <div class="h-1 bg-velocite-orange-5" />
+              </div>
+              <div>
+                à améliorer
+              </div>
 
-            <div class="my-auto rounded-md border-gray-500 border">
-              <div class="h-1 bg-velocite-red-5" />
+              <div class="my-auto rounded-md border-gray-500 border">
+                <div class="h-1 bg-velocite-red-5" />
+              </div>
+              <div>
+                dangereux
+              </div>
             </div>
-            <div>
-              dangereux
-            </div>
+          </div>
 
-            <div>Types principaux</div>
-            <br>
-            <div class="my-auto rounded-md border-gray-500 border">
-              <div class="h-1 bg-velocite-bidirectionnelle" />
-            </div>
-            <div>
-              bidirectionnelle
-            </div>
+          <div v-if="layerDisplayed==2">
+            <div class="grid grid-cols-[64px_1fr] gap-x-4">
+              <div>Types principaux</div>
+              <br>
+              <div class="my-auto rounded-md border-gray-500 border">
+                <div class="h-1 bg-velocite-bidirectionnelle" />
+              </div>
+              <div>
+                bidirectionnelle
+              </div>
 
-            <div class="my-auto rounded-md border-gray-500 border">
-              <div class="h-1 bg-velocite-bilaterale" />
-            </div>
-            <div>
-              bilatérale
-            </div>
+              <div class="my-auto rounded-md border-gray-500 border">
+                <div class="h-1 bg-velocite-bilaterale" />
+              </div>
+              <div>
+                bilatérale
+              </div>
 
-            <div class="my-auto rounded-md border-gray-500 border">
-              <div class="h-1 bg-velocite-voie-verte" />
-            </div>
-            <div>
-              voie verte
-            </div>
+              <div class="my-auto rounded-md border-gray-500 border">
+                <div class="h-1 bg-velocite-voie-verte" />
+              </div>
+              <div>
+                voie verte
+              </div>
 
-            <div class="my-auto rounded-md border-gray-500 border">
-              <div class="h-1 bg-velocite-velorue" />
+              <div class="my-auto rounded-md border-gray-500 border">
+                <div class="h-1 bg-velocite-velorue" />
+              </div>
+              <div>
+                vélorue
+              </div>
             </div>
-            <div>
-              vélorue
-            </div>
-
           </div>
         </div>
       </div>
@@ -135,10 +144,17 @@ function toggleLegend() {
   isExpanded.value = !isExpanded.value;
 }
 
+const layerDisplayed = ref(0);
+
+function setWhichLayerIsDisplayed(newLayerDisplayed: number) {
+  layerDisplayed.value = newLayerDisplayed;
+}
+
 defineExpose({
   expandLegend,
   reduceLegend,
-  toggleLegend
+  toggleLegend,
+  setWhichLayerIsDisplayed
 });
 </script>
 

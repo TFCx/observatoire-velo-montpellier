@@ -78,6 +78,18 @@ function refreshFilters({ visibleStatuses, visibleTypes }: { visibleStatuses: La
   types.value = visibleTypes;
 }
 
+function convertIntoDisplayedLayerEnum(s: string) {
+  if(s === "network") {
+    return DisplayedLayer.Network
+  } else if (s === "quality") {
+    return DisplayedLayer.Quality
+  } else if (s === "type") {
+    return DisplayedLayer.Type
+  }
+  console.assert(s + " couldn't be convert into a DisplayedLayer enum")
+  return DisplayedLayer.Network
+}
+
 onMounted(() => {
   const map = new Map({
     container: 'map',
@@ -95,12 +107,10 @@ onMounted(() => {
       }
     },
     (s: string) => {
-      if(s === "network") {
-        setDisplayedLayer(DisplayedLayer.Network)
-      } else if (s === "quality") {
-        setDisplayedLayer(DisplayedLayer.Quality)
-      } else if (s === "type") {
-        setDisplayedLayer(DisplayedLayer.Type)
+      let dt = convertIntoDisplayedLayerEnum(s)
+      setDisplayedLayer(dt)
+      if (legendModalComponent.value) {
+        (legendModalComponent.value as any).setWhichLayerIsDisplayed(dt);
       }
     }, options.initialLayer
   );
