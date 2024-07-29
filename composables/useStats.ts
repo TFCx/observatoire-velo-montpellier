@@ -130,7 +130,7 @@ export const useStats = () => {
         class: 'text-velocite-yellow-5 font-normal'
       },
       planned: {
-        name: 'Prévus',
+        name: "Prévus d'ici 2026",
         distance: plannedDistance,
         percent: getPercent(plannedDistance),
         class: 'text-velocite-light-4 font-semibold'

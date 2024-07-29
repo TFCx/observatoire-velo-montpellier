@@ -76,7 +76,7 @@ streetView: 43.6058282,3.8896056,3a,15y,26.2h,88.67t
 
 ### Avenue Mermoz
 
-<span style="color:red;font-weight:bold">Non satisfaisant</span> Aucun trottoir côté ouest, qui est le seul côté où une piste est aménagée. Elle est donc naturellement utilisée par les piétons. Par ailleurs cette secition conserve 5 voies de circulation motorisée.
+<span style="color:red;font-weight:bold">Non satisfaisant</span> Aucun trottoir côté ouest, qui est le seul côté où une piste est aménagée. Elle est donc naturellement utilisée par les piétons. Ce manque d'espace alloué à la marche est au vélo est difficilement compréhension sur l'Anneau Vélo quand par ailleurs la section conserve 5 voies de circulation motorisée.
 
 ### Rue du Professeur Léon Vallois
 
