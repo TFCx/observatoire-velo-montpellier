@@ -13,7 +13,8 @@ Court terme :
 - Tester une catégorie "petits tronçons à faire en priorité"
 - Demander logo à Arthur
 - Pouvoir avoir un fond de carte avec lignes de vélos (voir Marseille)
--
+- Déplacer bouton légende dans radiobox
+
 Moyen terme :
 - Autres lignes majeures (BT, T, VL70, ...)
 - Avoir des groupes (vélolignes, majeures, connexions... ) ?
