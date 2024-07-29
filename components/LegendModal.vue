@@ -125,16 +125,20 @@
 const isExpanded = ref(false);
 
 function reduceLegend() {
-  console.debug("reduceLegend")
   isExpanded.value = false;
 }
 function expandLegend() {
-  console.debug("expandLegend")
   isExpanded.value = true;
 }
 
+function toggleLegend() {
+  isExpanded.value = !isExpanded.value;
+}
+
 defineExpose({
-  expandLegend
+  expandLegend,
+  reduceLegend,
+  toggleLegend
 });
 </script>
 
@@ -162,6 +166,12 @@ defineExpose({
   position: absolute;
   top: 0px;
   left: 0px;
+}
+
+.button-corner-top-right {
+  position: absolute;
+  top: 5px;
+  right: 5px;
 }
 
 @keyframes blinker {

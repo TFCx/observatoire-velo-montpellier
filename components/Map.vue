@@ -19,7 +19,6 @@ import { createApp, defineComponent, h, Suspense } from 'vue';
 import { Map, AttributionControl, GeolocateControl, NavigationControl, Popup, type StyleSpecification, type LngLatLike } from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import style from '@/assets/style.json';
-import LegendControl from '@/maplibre/LegendControl';
 import FilterControl from '@/maplibre/FilterControl';
 import LayerControl from '@/maplibre/LayerControl';
 import FullscreenControl from '@/maplibre/FullscreenControl';
@@ -36,7 +35,6 @@ import { setDisplayedLayer } from '~/composables/useMap'
 
 const defaultOptions = {
   logo: true,
-  legend: true,
   filter: true,
   initialLayer: 0,
   geolocation: false,
@@ -91,6 +89,11 @@ onMounted(() => {
   });
 
   const layerControl = new LayerControl(
+    () => {
+      if (legendModalComponent.value) {
+        (legendModalComponent.value as any).toggleLegend();
+      }
+    },
     (s: string) => {
       if(s === "network") {
         setDisplayedLayer(DisplayedLayer.Network)
@@ -126,16 +129,6 @@ onMounted(() => {
       onClick: () => options.onShrinkControlClick()
     });
     map.addControl(shrinkControl, 'top-right');
-  }
-  if (options.legend) {
-    const legendControl = new LegendControl({
-      onClick: () => {
-        if (legendModalComponent.value) {
-          (legendModalComponent.value as any).expandLegend();
-        }
-      }
-    });
-    map.addControl(legendControl, 'bottom-left');
   }
   if (options.filter) {
     const filterControl = new FilterControl({
