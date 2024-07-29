@@ -3,7 +3,6 @@ Court terme :
 - Ajout type : bande cyclable, bande cyclable sur trottoir, voirie mixte => encore nécessaire ?
 - Ajout visu frontière métropole
 - Code Aurélien logo
-- Legende dynamique en fonction du mode (v-if)
 - Vieilles sections (pré-mandat) : reprendre la branche & fix le bug
 - Stats qualité première page
 - Arriver à une bonne spec pour le tag aménagement "aucun"
@@ -13,7 +12,6 @@ Court terme :
 - Tester une catégorie "petits tronçons à faire en priorité"
 - Demander logo à Arthur
 - Pouvoir avoir un fond de carte avec lignes de vélos (voir Marseille)
-- Déplacer bouton légende dans radiobox
 
 Moyen terme :
 - Autres lignes majeures (BT, T, VL70, ...)
