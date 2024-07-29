@@ -53,7 +53,7 @@
               <div class="my-auto rounded-md border-gray-500 border relative">
                 <div class="h-1 bg-white" />
                 <div class="myabsolute h-full w-full bg-velocite-yellow-5 dashed-line opacity-50 animated-opacity-slow" />
-                <div class="text-black animated-opacity-slow font-light leading-none absolute -top-2 leading-none">
+                <div class="text-black animated-opacity-slow font-size-small leading-none absolute -top-2 leading-none">
                   reporté
                 </div>
               </div>
@@ -188,6 +188,14 @@ defineExpose({
   position: absolute;
   top: 5px;
   right: 5px;
+}
+
+.font-size-small {
+  background-color: white;
+  font-size: x-small;
+  position: absolute;
+  top: -5px;
+  left: 15px
 }
 
 @keyframes blinker {
