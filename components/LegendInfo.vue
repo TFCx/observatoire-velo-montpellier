@@ -14,6 +14,8 @@
         </div>
         <div class="mt-2">
           <div v-if="true">
+          </div>
+          <div v-if="layerDisplayed==0">
             <div class="grid grid-cols-[64px_1fr] gap-x-4">
 
               <div>Réseau</div>
