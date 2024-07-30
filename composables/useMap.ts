@@ -1,5 +1,5 @@
 import { GeoJSONSource, LngLatBounds, Map } from 'maplibre-gl';
-import { isCompteurFeature, isLineStringFeature, isPerspectiveFeature, isPointFeature, type Feature, type DisplayedLane, type LaneStatus, type LaneType, type LineStringFeature} from '~/types';
+import { isCompteurFeature, isLineStringFeature, isPerspectiveFeature, isPointFeature, type Feature, type PolygonFeature, type DisplayedLane, type LaneStatus, type LaneType, type LineStringFeature, isPolygonFeature} from '~/types';
 import { ref } from 'vue';
 
 enum DisplayedLayer {
@@ -21,6 +21,8 @@ const setDisplayedLayer = (value: DisplayedLayer) => {
 export { DisplayedLayer, setDisplayedLayer };
 
 let postPonedOpacity = 0.5
+
+let displayLimits = ref(false)
 
 type MultiColoredLineStringFeature = LineStringFeature & { properties: { colors: string[] } };
 
@@ -205,6 +207,26 @@ export const useMap = () => {
     });
   }
 
+  function plotLimits({ map, features }: { map: Map, features: Feature[] }) {
+
+    const limits = features.filter(isPolygonFeature);
+    if(limits.length == 0) {
+      return
+    }
+
+    const limitsWithId = limits.map((feature, index) => ({ id: index, ...feature }));
+
+    if (limitsWithId.length === 0 && !map.getLayer('limits')) {
+      return;
+    }
+
+    if (upsertMapSource(map, 'all-limits', limitsWithId)) {
+      return;
+    }
+
+    drawLimits(map)
+  }
+
   function plotCompteurs({ map, features }: { map: Map; features: Feature[] }) {
     const compteurs = features.filter(isCompteurFeature);
     if (compteurs.length === 0) {
@@ -308,29 +330,42 @@ export const useMap = () => {
     return features
   }
 
-  function plotFeatures({ map, features, initialLayer }: { map: Map; features: Feature[], initialLayer: DisplayedLayer }) {
-    let lineStringFeatures = features.filter(isLineStringFeature).sort(sortByLine).map(addLineColor);
-    lineStringFeatures = addOtherLineColor(lineStringFeatures);
+  function plotFeatures({ map, updated_features, initialLayer }: { map: Map; updated_features?: Feature[], initialLayer: DisplayedLayer }) {
+    if(updated_features) {
+      let lineStringFeatures = updated_features.filter(isLineStringFeature).sort(sortByLine).map(addLineColor);
+      lineStringFeatures = addOtherLineColor(lineStringFeatures);
 
-    plotSections(map, lineStringFeatures);
+      plotSections(map, lineStringFeatures);
 
+      setDisplayedLayer(initialLayer)
+      setLanesColor(map, initialLayer)
 
-    setDisplayedLayer(initialLayer)
-    setLanesColor(map, initialLayer)
+      watch(displayedLayer, (displayedLayer) => setLanesColor(map, displayedLayer))
 
-    watch(displayedLayer, (displayedLayer) => setLanesColor(map, displayedLayer))
+      plotPerspective({ map, features: updated_features });
+      plotCompteurs({ map, features: updated_features });
+      plotLimits({ map, features: updated_features });
 
-    plotPerspective({ map, features });
-    plotCompteurs({ map, features });
+      watch(displayLimits, (displayLimits) => toggleLimitsVisibility(map, displayLimits))
+    }
   }
 
   return {
     loadImages,
     plotFeatures,
     getCompteursFeatures,
-    fitBounds
+    fitBounds,
+    toggleLimits
   };
 };
+
+function toggleLimits() {
+  displayLimits.value = !displayLimits.value
+}
+
+function toggleLimitsVisibility(map: Map, displayLimits: boolean) {
+  map.setLayoutProperty("limits", "visibility", displayLimits ? "visible" : "none")
+}
 
 function setLanesColor(map: Map, displayedLayer: DisplayedLayer) {
   layersWithLanes.forEach(l => {
@@ -670,6 +705,23 @@ function addListnersForHovering(map: Map) {
       map.setFeatureState({ source: 'all-sections', id: hoveredLineId }, { hover: false });
     }
     hoveredLineId = null;
+  });
+}
+
+function drawLimits(map: Map) {
+  map.addLayer({
+    id: 'limits',
+    type: 'line',
+    source: 'all-limits',
+    layout: {
+      visibility: "none"
+    },
+    paint: {
+      'line-width': 1.5,
+      'line-dasharray': [2.2, 2.2],
+      'line-color': '#ff0000',
+      'line-opacity': 0.35
+    }
   });
 }
 
