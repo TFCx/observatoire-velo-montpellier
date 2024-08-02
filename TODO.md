@@ -1,7 +1,6 @@
 Court terme :
 - Problème perfs / leak
 - Ajout type : bande cyclable, bande cyclable sur trottoir, voirie mixte => encore nécessaire ?
-- Ajout visu frontière métropole
 - Code Aurélien logo
 - Vieilles sections (pré-mandat) : reprendre la branche & fix le bug
 - Stats qualité première page
@@ -14,6 +13,7 @@ Court terme :
 - Pouvoir avoir un fond de carte avec lignes de vélos (voir Marseille)
 
 Moyen terme :
+- Ajout "envoyer une remarque" sur un tronçon. Comment le gérer ? Mail ?
 - Autres lignes majeures (BT, T, VL70, ...)
 - Avoir des groupes (vélolignes, majeures, connexions... ) ?
 
