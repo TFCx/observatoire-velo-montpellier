@@ -14,6 +14,7 @@ Moyen terme :
 - Avoir des groupes (vélolignes, majeures, connexions... ) ?
 - Nouveau widget timeline
 - Changer la limite avec un greyout hors du polygone
+- Lib : pinia a l'air cool (utilisé par Marseille)
 
 Long terme :
 - Intégration topographie

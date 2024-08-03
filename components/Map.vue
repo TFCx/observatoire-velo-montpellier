@@ -21,6 +21,7 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 import style from '@/assets/style.json';
 import FilterControl from '@/maplibre/FilterControl';
 import LimitsControl from '@/maplibre/LimitsControl';
+import BikeInfraControl from '@/maplibre/BikeInfraControl';
 import LayerControl from '@/maplibre/LayerControl';
 import FullscreenControl from '@/maplibre/FullscreenControl';
 import ShrinkControl from '@/maplibre/ShrinkControl';
@@ -37,6 +38,7 @@ import { setDisplayedLayer } from '~/composables/useMap'
 const defaultOptions = {
   logo: true,
   limits: true,
+  bikeInfra: false,
   filter: true,
   initialLayer: 0,
   geolocation: false,
@@ -61,6 +63,7 @@ const {
   plotFeatures,
   fitBounds,
   toggleLimits,
+  toggleBikeInfra,
 } = useMap();
 
 const statuses = ref(['planned', 'variante', 'done', 'postponed', 'variante-postponed', 'unknown', 'wip']);
@@ -165,6 +168,15 @@ onMounted(() => {
       }
     });
     map.addControl(limitsControl, 'top-right');
+  }
+  if (options.bikeInfra) {
+    const bikeInfraControl = new BikeInfraControl({
+      onClick: () => {
+        toggleBikeInfra()
+        bikeInfraControl.toggleBackground()
+      }
+    });
+    map.addControl(bikeInfraControl, 'top-right');
   }
 
   map.on('load', async() => {
