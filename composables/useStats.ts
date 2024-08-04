@@ -161,7 +161,7 @@ export const useStats = () => {
     'zone-de-rencontre': 'Zone de rencontre',
     'chaucidou': 'Chaucidou',
     'heterogene': 'Héterogène',
-    'aucun': 'Aucun (mixité)',
+    'aucun': 'Aucun aménagement',
     'inconnu': 'Inconnu',
   };
 

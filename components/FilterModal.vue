@@ -91,7 +91,7 @@ const typeFilters = ref([
   { label: 'Chaucidou', isEnable: true, types: ['chaucidou'] },
   { label: 'Héterogène', isEnable: true, types: ['heterogene'] },
   { label: 'Inconnu', isEnable: true, types: ['inconnu'] },
-  { label: 'Aucun aménagement (mixité)', isEnable: true, types: ['aucun'] },
+  { label: 'Aucun aménagement', isEnable: true, types: ['aucun'] },
 ]);
 
 function toogleStatusFilter(index: number) {
