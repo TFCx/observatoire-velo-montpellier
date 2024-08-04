@@ -124,11 +124,10 @@ function checkGeoJsonDataHealth({ links }) {
                 'voie-verte',
                 'bandes-cyclables',
                 'zone-de-rencontre',
+                'chaucidou',
                 'heterogene',
                 'inconnu',
                 'aucun',
-                'chaucidou',
-                'mixte'
               ];
               if (!validTypes.includes(properties.type)) {
                 console.error(`Invalid type '${properties.type}' in LineString properties of file: ${filePath}`);

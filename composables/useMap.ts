@@ -390,11 +390,10 @@ function setLanesColor(map: Map, displayedLayer: DisplayedLayer) {
         ["==", ['get', 'type'], "voie-verte"], "#b3ffb6", // vert
         ["==", ['get', 'type'], "bandes-cyclables"], "#c1b3ff", // bleu-violet
         ["==", ['get', 'type'], "zone-de-rencontre"], "#daffb3", // vert
-        ["==", ['get', 'type'], "heterogene"], "#797979", // gris foncé
-        ["==", ['get', 'type'], "aucun"], "#dedede", // gris
-        ["==", ['get', 'type'], "inconnu"], "#dedede", // gris
-        ["==", ['get', 'type'], "mixte"], "#ff9999", // rouge
         ["==", ['get', 'type'], "chaucidou"], "#ffeab3", // orange
+        ["==", ['get', 'type'], "heterogene"], "#797979", // gris foncé
+        ["==", ['get', 'type'], "aucun"], "#ff9999", // gris
+        ["==", ['get', 'type'], "inconnu"], "#dedede", // gris
         ["==", ['get', 'status'], "isDone"], "#000000", // orange
         "white"
       ]);

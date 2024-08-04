@@ -7,11 +7,10 @@ export type LaneType =
 | 'voie-verte'
 | 'bandes-cyclables'
 | 'zone-de-rencontre'
+| 'chaucidou'
 | 'heterogene'
 | 'aucun'
-| 'inconnu'
-| 'mixte'
-| 'chaucidou';
+| 'inconnu';
 
 export type LaneStatus = 'done' | 'wip' | 'planned' | 'postponed' | 'unknown' | 'variante' | 'variante-postponed';
 

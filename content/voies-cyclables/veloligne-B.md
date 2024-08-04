@@ -3,8 +3,8 @@ line: B
 lineName: Ligne B
 lineNameShort: B
 description: Cette Véloligne est une rocade cyclable de près de 40km située au delà de la 2ème couronne de Montpellier
-trafic: 
-cover: 
+trafic:
+cover:
 from: Gare Sud de France
 to: Gare Sud de France
 ---
@@ -27,9 +27,9 @@ IL FAUDRAIT DÉCOUPER LA M65 AVENUE DES MOULINS ENTRE CHATEAU D'Ô ET LYRE
 
 Avec les infos ci-dessous on doit pouvoir faire facilement les descriptions des autres tronçons non décrits
 
-Pont Gagarinefair done type: bidirectionnelle   31\/12\/2010 
+Pont Gagarinefair done type: bidirectionnelle   31\/12\/2010
 
-Boirargues Nègue Cats postponed type: aucun
+Boirargues Nègue Cats postponed type: inconnu
 
 Boirargues (Lycée Champollion)bad done type: bidirectionnelle   31\/12\/ 2019
 
@@ -49,29 +49,29 @@ Avenue de l'Europe Lattes Port Ariane planned
 
 Franchissement échangeur 2x2 voies Palavas à Lattes postponed
 
-Saporta - St Pierre postponed type: aucun
+Saporta - St Pierre postponed type: inconnu
 
-Tournezy postponed type: aucun
+Tournezy postponed type: inconnu
 
-Avenue d'El Alamein planned type: aucun
+Avenue d'El Alamein planned type: inconnu
 
 Pavelet Mehul ⇄ Castellefair done type: bidirectionnelle   31\/12\/2019
 
 Pavelet Grand M ⇄ Mehulfair done type: bidirectionnelle   31\/12\/ 2019
 
-Vanières Bugarel ⇄ Grand M planned type: aucun
+Vanières Bugarel ⇄ Grand M planned type: inconnu
 
 Vanières Bvd Grand M ⇄ Paul Valery planned
 
-Vanières Spillaert Pagnol planned type: aucun
+Vanières Spillaert Pagnol planned type: inconnu
 
-Avenue de la Martelle planned type: aucun
+Avenue de la Martelle planned type: inconnu
 
-Liberté Garrats ⇄ Celleneuve postponed type: aucun
+Liberté Garrats ⇄ Celleneuve postponed type: inconnu
 
 Lodève Ouestfair done type: bilatérale   31\/12\/ 2019
 
-Parking Mosson planned type: aucun
+Parking Mosson planned type: inconnu
 
 Avenue de l'Europe (Mosson)fair done type: voie-verte   31\/12\/ 2019
 
@@ -85,11 +85,11 @@ M65 Girac ⇄ Fesquetgood done type: voie-verte   31\/12\/ 2019
 
 M65 Fesquet ⇄ Navitau planned type: inconnu
 
-Chemin des Alouettes planned type: aucun
+Chemin des Alouettes planned type: inconnu
 
 Chemin de Caylus ouest planned type: inconnu
 
-Chemin de Caylus est planned type: aucunCrès ⇄ Jacou via V70 fair done type: bidirectionnelle   31\/12\/ 2019
+Chemin de Caylus est planned type: inconnuCrès ⇄ Jacou via V70 fair done type: bidirectionnelle   31\/12\/ 2019
 
 Crès ⇄ Lamour partie nordgood done type: chaucidou   31\/12\/ 2019
 
@@ -103,6 +103,6 @@ Château de Flaugerguesfair done type: bidirectionnelle   31\/12\/ 2019
 
 Evariste Gallois planned type: bilaterale
 
-Boulevard Pénélope planned type: aucun
+Boulevard Pénélope planned type: inconnu
 
 -->

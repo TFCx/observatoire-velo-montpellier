@@ -1,7 +1,6 @@
 Court terme :
 - Problème perfs / leak
 - Ajout type : bande cyclable, bande cyclable sur trottoir, voirie mixte => encore nécessaire ?
-- Arriver à une bonne spec pour le tag aménagement "aucun"
 - Code Aurélien logo
 - Stats qualité première page
 - Pimper les couleurs (principalement pour les types qui n'ont pas assez de contraste)
