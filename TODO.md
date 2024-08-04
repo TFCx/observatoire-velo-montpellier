@@ -1,7 +1,6 @@
 Court terme :
 - Problème perfs / leak
 - Ajout type : bande cyclable, bande cyclable sur trottoir, voirie mixte => encore nécessaire ?
-- Code Aurélien logo
 - Stats qualité première page
 - Pimper les couleurs (principalement pour les types qui n'ont pas assez de contraste)
 - Demander logo à Arthur
