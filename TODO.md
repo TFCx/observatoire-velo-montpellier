@@ -4,9 +4,7 @@ Court terme :
 - Code Aurélien logo
 - Stats qualité première page
 - Pimper les couleurs (principalement pour les types qui n'ont pas assez de contraste)
-- Capsules avec les noms des lignes : gérer des strings > 1 char
 - Demander logo à Arthur
-- Pouvoir avoir un fond de carte avec lignes de vélos (voir Marseille)
 
 Moyen terme :
 - Intégrer les carrefours
