@@ -9,4 +9,14 @@ from: Clapiers Girac
 to: Prades-le-Lez
 ---
 
-*à venir*
+
+## Les tronçons (du sud au nord)
+
+### Rond-point de Girac ⇄ Rond-point de Baillarguet
+
+*Projet inconnu de Vélocité*
+
+### Rond-point de Baillarguet ⇄ Prades-le-Lez
+
+<span style="color:orange;font-weight:bold">À améliorer</span> 
+Section existante, à améliorer
