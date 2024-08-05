@@ -4,6 +4,7 @@ Court terme :
 - Stats qualité première page
 - Pimper les couleurs (principalement pour les types qui n'ont pas assez de contraste)
 - Demander logo à Arthur
+- Renseigner plus en détail Vélolignes B, C et D  (.md)
 
 Moyen terme :
 - Intégrer les carrefours
