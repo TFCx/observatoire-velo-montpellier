@@ -34,7 +34,7 @@ import { setDisplayedLayer } from '~/composables/useMap'
 const defaultOptions = {
   logo: true,
   limits: true,
-  bikeInfra: false,
+  bikeInfra: true,
   filter: true,
   geolocation: false,
   fullscreen: false,
