@@ -36,7 +36,7 @@ const defaultOptions = {
   defaultLayer: DisplayedLayer.Progress,
   logo: true,
   limits: true,
-  bikeInfra: false,
+  bikeInfra: true,
   displayLayerType: false,
   filter: true,
   geolocation: false,
