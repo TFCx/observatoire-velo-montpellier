@@ -13,6 +13,10 @@
   "zoom": 12,
   "colors": [
     {
+      "line": "Other",
+      "color": "#ebf0f0"
+    },
+    {
       "line": "Anneau",
       "color": "#9d9d9c"
     },

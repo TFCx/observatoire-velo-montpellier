@@ -42,7 +42,7 @@ type Compteur = {
 };
 
 // features plotted last are on top
-const sortOrder = ["Anneau", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "A", "B", "C", "D"].reverse();
+const sortOrder = ["Anneau", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "A", "B", "C", "D", "Other"].reverse();
 
 function sortByLine(featureA: LineStringFeature, featureB: LineStringFeature) {
   const lineA = featureA.properties.line;
