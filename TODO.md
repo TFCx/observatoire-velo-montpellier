@@ -5,6 +5,7 @@ Court terme :
 - Pimper les couleurs (principalement pour les types qui n'ont pas assez de contraste)
 - Demander logo à Arthur
 - Renseigner plus en détail Vélolignes B, C et D  (.md)
+- Tester recolorisation Adwaita, 4 grands directions (N/E/W/S) + rocades
 
 Moyen terme :
 - Intégrer les carrefours
