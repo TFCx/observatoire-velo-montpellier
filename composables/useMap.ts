@@ -1,4 +1,4 @@
-import { GeoJSONSource, LngLatBounds, Map } from 'maplibre-gl';
+import { GeoJSONSource, LngLatBounds, Map, type ExpressionSpecification } from 'maplibre-gl';
 import { isCompteurFeature, isLineStringFeature, isPerspectiveFeature, isPointFeature, type Feature, type PolygonFeature, type DisplayedLane, type LaneStatus, type LaneType, type LineStringFeature, isPolygonFeature} from '~/types';
 import { ref } from 'vue';
 
@@ -10,7 +10,17 @@ enum DisplayedLayer {
 
 const displayedLayer = ref(DisplayedLayer.Network);
 
-const laneWidth = 4
+const laneWidth = 4.5
+const secondaryLaneWidth = 2
+
+const laneWidthExpression: ExpressionSpecification = ['case',
+  ['!=', ['get', 'line'], "Other"], laneWidth,
+  secondaryLaneWidth
+]
+
+const laneColorExpression: ExpressionSpecification = ["to-color", ['get', 'color']]
+
+const nbLanesExpression: ExpressionSpecification = ['get', 'nb_lanes']
 
 let layersWithLanes: string[] = []
 
@@ -390,7 +400,7 @@ function setLanesColor(map: Map, displayedLayer: DisplayedLayer) {
         "white"
       ]);
     } else if (displayedLayer == DisplayedLayer.Network) {
-      map.setPaintProperty(l, "line-color", ["to-color", ['get', 'color']]);
+      map.setPaintProperty(l, "line-color", laneColorExpression);
     } else if (displayedLayer == DisplayedLayer.Type) {
       map.setPaintProperty(l, "line-color", ["case",
         ["==", ['get', 'type'], "bidirectionnelle"], "#b3c6ff", // bleu
@@ -450,9 +460,9 @@ function drawLanesDone(map: Map, lanes: DisplayedLane[]) {
     type: 'line',
     source: 'source-all-lanes-done',
     paint: {
-      'line-width': laneWidth,
-      'line-color': ["to-color", ['get', 'color']],
-      'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
+      'line-width': laneWidthExpression,
+      'line-color': laneColorExpression,
+      'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidthExpression], ['/', ['*', ['-', nbLanesExpression, 1], laneWidthExpression], 2]],
     }
   });
   layersWithLanes.push("layer-lanes-done")
@@ -470,10 +480,10 @@ function drawLanesPlanned(map: Map, lanes: DisplayedLane[]) {
     type: 'line',
     source: 'source-all-lanes-planned',
     paint: {
-      'line-width': laneWidth,
-      'line-color': ["to-color", ['get', 'color']],
+      'line-width': laneWidthExpression,
+      'line-color': laneColorExpression,
       'line-dasharray': [0.6, 1.2],
-      'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
+      'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidthExpression], ['/', ['*', ['-', nbLanesExpression, 1], laneWidthExpression], 2]],
     }
   });
   layersWithLanes.push("layer-lanes-planned")
@@ -491,11 +501,11 @@ function drawLanesVariante(map: Map, lanes: DisplayedLane[]) {
     type: 'line',
     source: 'source-all-lanes-variante',
     paint: {
-      'line-width': laneWidth,
-      'line-color': ["to-color", ['get', 'color']],
+      'line-width': laneWidthExpression,
+      'line-color': laneColorExpression,
       'line-dasharray': [2, 2],
       'line-opacity': 0.5,
-      'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
+      'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidthExpression], ['/', ['*', ['-', nbLanesExpression, 1], laneWidthExpression], 2]],
     }
   });
   map.addLayer({
@@ -529,11 +539,11 @@ function drawLanesVariantePostponed(map: Map, lanes: DisplayedLane[]) {
     type: 'line',
     source: 'source-all-lanes-variante-postponed',
     paint: {
-      'line-width': laneWidth,
-      'line-color': ["to-color", ['get', 'color']],
+      'line-width': laneWidthExpression,
+      'line-color': laneColorExpression,
       'line-dasharray': [2, 2],
       'line-opacity': 0.5,
-      'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
+      'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidthExpression], ['/', ['*', ['-', nbLanesExpression, 1], laneWidthExpression], 2]],
     }
   });
 
@@ -623,10 +633,10 @@ function drawLanesPostponed(map: Map, lanes: DisplayedLane[]) {
     type: 'line',
     source: 'source-all-lanes-postponed',
     paint: {
-      'line-width': laneWidth,
-      'line-color': ["to-color", ['get', 'color']],
+      'line-width': laneWidthExpression,
+      'line-color': laneColorExpression,
       'line-dasharray': [0.4, 1.1],
-      'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
+      'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidthExpression], ['/', ['*', ['-', nbLanesExpression, 1], laneWidthExpression], 2]],
     }
   });
 
@@ -666,10 +676,10 @@ function drawLanesWIP(map: Map, lanes: DisplayedLane[]) {
     type: 'line',
     source: 'source-all-lanes-wip',
     paint: {
-      'line-width': laneWidth,
-      'line-color': ["to-color", ['get', 'color']],
+      'line-width': laneWidthExpression,
+      'line-color': laneColorExpression,
       'line-dasharray': [0.2, 1.1],
-      'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
+      'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidthExpression], ['/', ['*', ['-', nbLanesExpression, 1], laneWidthExpression], 2]],
     }
   });
 
@@ -678,9 +688,9 @@ function drawLanesWIP(map: Map, lanes: DisplayedLane[]) {
     type: 'line',
     source: 'source-all-lanes-wip',
     paint: {
-      'line-width': laneWidth,
-      'line-color': ["to-color", ['get', 'color']],
-      'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
+      'line-width': laneWidthExpression,
+      'line-color': laneColorExpression,
+      'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidthExpression], ['/', ['*', ['-', nbLanesExpression, 1], laneWidthExpression], 2]],
     }
   });
   layersWithLanes.push("layer-lanes-wip")
@@ -754,7 +764,7 @@ function drawSectionBackground(map: Map) {
     type: 'line',
     source: 'all-sections',
     paint: {
-      'line-width': ["*", laneWidth, ['length', ['get', 'colors']]],
+      'line-width': ["*", laneWidthExpression, ['length', ['get', 'colors']]],
       'line-color': '#ffffff',
     }
   });
@@ -768,7 +778,7 @@ function drawHoveredEffect(map: Map) {
     layout: { 'line-cap': 'round' },
     paint: {
       'line-gap-width': 5,
-      'line-width': ["*", laneWidth, ['length', ['get', 'colors']]],
+      'line-width': ["*", laneWidthExpression, ['length', ['get', 'colors']]],
       'line-color': ['case', ['boolean', ['feature-state', 'hover'], false], '#9ca3af', '#FFFFFF'],
       "line-opacity": 0.5
     }
@@ -782,9 +792,15 @@ function drawSectionContour(map: Map) {
     source: 'all-sections',
     layout: { 'line-cap': 'round' },
     paint: {
-      'line-gap-width': ["*", laneWidth, ['length', ['get', 'colors']]],
+      'line-gap-width': ["*",
+        laneWidthExpression,
+        ['length', ['get', 'colors']]],
       'line-width': 1,
       'line-color': '#6b7280',
+      'line-opacity': ['case',
+        ['!=', ['get', 'line'], "Other"], 1.0,
+        0.5
+      ]
     }
   });
 }
