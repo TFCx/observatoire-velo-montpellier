@@ -42,6 +42,24 @@ export type LineStringFeature = {
   };
 };
 
+export type IntersectionFeature = {
+  type: 'Feature';
+  properties: {
+    id?: string
+    line: string;
+    name: string;
+    status: LaneStatus;
+    quality: Quality;
+    type: 'intersection';
+    doneAt?: string;
+    link?: string;
+  };
+  geometry: {
+    type: 'PointString';
+    coordinates: [number, number];
+  };
+};
+
 export type DisplayedLane = LineStringFeature & { properties: { color: string, lane_index: number, nb_lanes: number } };
 
 export type PerspectiveFeature = {
@@ -81,7 +99,7 @@ export type CompteurFeature = {
     coordinates: [number, number];
   };
 };
-type PointFeature = PerspectiveFeature | CompteurFeature;
+type PointFeature = PerspectiveFeature | CompteurFeature | IntersectionFeature;
 
 export type Feature = LineStringFeature | PointFeature | DisplayedLane | PolygonFeature;
 
@@ -99,6 +117,10 @@ export function isLineStringFeature(feature: Feature): feature is LineStringFeat
 
 export function isPointFeature(feature: Feature): feature is PointFeature {
   return feature.geometry.type === 'Point';
+}
+
+export function isIntersectionFeature(feature: Feature): feature is IntersectionFeature {
+  return isPointFeature(feature) && feature.properties.type === 'intersection';
 }
 
 export function isPolygonFeature(feature: Feature): feature is PolygonFeature {

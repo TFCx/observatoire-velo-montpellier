@@ -1,5 +1,5 @@
-import { GeoJSONSource, LngLatBounds, Map } from 'maplibre-gl';
-import { isCompteurFeature, isLineStringFeature, isPerspectiveFeature, isPointFeature, type Feature, type PolygonFeature, type DisplayedLane, type LaneStatus, type LaneType, type LineStringFeature, isPolygonFeature} from '~/types';
+import { GeoJSONSource, LngLatBounds, Map, ExpressionSpecification } from 'maplibre-gl';
+import { isCompteurFeature, isLineStringFeature, isPerspectiveFeature, isPointFeature, isIntersectionFeature, type Feature, type PolygonFeature, type DisplayedLane, type LaneStatus, type LaneType, type LineStringFeature, isPolygonFeature, type IntersectionFeature} from '~/types';
 import { ref } from 'vue';
 
 enum DisplayedLayer {
@@ -28,6 +28,10 @@ let displayBikeInfra = ref(false)
 
 type MultiColoredLineStringFeature = LineStringFeature & { properties: { colors: string[] } };
 
+type MultiColoredIntersectionFeature = IntersectionFeature & { properties: { colors: string[] } };
+
+const laneColorExpression: ExpressionSpecification = ["to-color", ['get', 'color']]
+
 type Compteur = {
   name: string;
   _path: string;
@@ -48,6 +52,12 @@ function sortByLine(featureA: LineStringFeature, featureB: LineStringFeature) {
   const lineA = featureA.properties.line;
   const lineB = featureB.properties.line;
   return sortOrder.indexOf(lineA) - sortOrder.indexOf(lineB);
+}
+
+function sortByLineIntersection(featureA: IntersectionFeature, featureB: IntersectionFeature) {
+  const intersectionA = featureA.properties.line;
+  const intersectionB = featureB.properties.line;
+  return sortOrder.indexOf(intersectionA) - sortOrder.indexOf(intersectionB);
 }
 
 function getCrossIconUrl(): string {
@@ -95,6 +105,16 @@ export const useMap = () => {
   const { getLineColor } = useColors();
 
   function addLineColor(feature: LineStringFeature): MultiColoredLineStringFeature {
+    return {
+      ...feature,
+      properties: {
+        colors: [getLineColor(feature.properties.line)],
+        ...feature.properties
+      }
+    };
+  }
+
+  function addLineColorIntersection(feature: IntersectionFeature): MultiColoredIntersectionFeature {
     return {
       ...feature,
       properties: {
@@ -270,6 +290,107 @@ export const useMap = () => {
     map.on('mouseleave', 'compteurs', () => (map.getCanvas().style.cursor = ''));
   }
 
+  function plotIntersections(map: Map, features: IntersectionFeature[]) {
+    const intersections = features.map(feature => ({
+      ...feature,
+      properties: {
+        color: getLineColor(feature.properties.line),
+        ...feature.properties
+      }
+    }));
+    if (intersections.length === 0) {
+      return;
+    }
+
+    if (upsertMapSource(map, 'source-intersections', intersections)) {
+      return;
+    }
+
+    // map.addSource('source-intersections', {
+    //   type: 'geojson',
+    //   data: {
+    //     type: 'FeatureCollection',
+    //     features: intersections
+    //   }
+    // });
+    map.addLayer({
+      id: 'layer-intersections-bg',
+      source: 'source-intersections',
+      type: 'circle',
+      layout: {
+        'circle-sort-key': ['get', 'circleSortKey']
+      },
+      paint: {
+        'circle-color': 'white',
+        'circle-stroke-color': 'black',
+        'circle-stroke-width': 1.5,
+        'circle-radius': ['get', 'circleRadius'],
+        'circle-stroke-opacity': [
+          'interpolate',
+          ['linear'],
+          ['zoom'],
+          12,
+          0.0,
+          13,
+          1.0
+        ],
+        'circle-opacity': [
+          'interpolate',
+          ['linear'],
+          ['zoom'],
+          12,
+          0.0,
+          13,
+          1.0
+        ],
+      }
+    });
+
+    map.addLayer({
+      id: 'layer-intersections',
+      source: 'source-intersections',
+      type: 'circle',
+      layout: {
+        'circle-sort-key': ['get', 'circleSortKey']
+      },
+      paint: {
+        'circle-color': laneColorExpression,
+        'circle-radius': 3.5,
+        'circle-stroke-opacity': [
+          'interpolate',
+          ['linear'],
+          ['zoom'],
+          12,
+          0.0,
+          13,
+          1.0
+        ],
+        'circle-opacity': [
+          'interpolate',
+          ['linear'],
+          ['zoom'],
+          12,
+          0.0,
+          13,
+          1.0
+        ],
+      }
+    });
+    map.on('mouseenter', 'compteurs', () => (map.getCanvas().style.cursor = 'pointer'));
+    map.on('mouseleave', 'compteurs', () => (map.getCanvas().style.cursor = ''));
+
+    map.on('zoom', () => {
+      const zoomLevel = map.getZoom();
+      if (zoomLevel > 12) {
+        map.setLayoutProperty('layer-intersections-bg', 'visibility', 'visible');
+        map.setLayoutProperty('layer-intersections', 'visibility', 'visible');
+      } else {
+        map.setLayoutProperty('layer-intersections-bg', 'visibility', 'none');
+        map.setLayoutProperty('layer-intersections', 'visibility', 'none');
+      }
+    });
+  }
+
   function getCompteursFeatures({
     counters,
     type
@@ -336,6 +457,7 @@ export const useMap = () => {
     plotBaseBikeInfrastructure(map)
 
     if(updated_features) {
+      let intersectionFeatures = updated_features.filter(isIntersectionFeature).sort(sortByLineIntersection).map(addLineColorIntersection);
       let lineStringFeatures = updated_features.filter(isLineStringFeature).sort(sortByLine).map(addLineColor);
       lineStringFeatures = addOtherLineColor(lineStringFeatures);
 
@@ -348,6 +470,8 @@ export const useMap = () => {
 
       plotPerspective({ map, features: updated_features });
       plotCompteurs({ map, features: updated_features });
+      plotIntersections(map, intersectionFeatures)
+
       plotLimits({ map, features: updated_features });
 
       watch(displayLimits, (displayLimits) => toggleLimitsVisibility(map, displayLimits))
