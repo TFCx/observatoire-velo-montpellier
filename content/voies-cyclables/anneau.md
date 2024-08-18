@@ -51,7 +51,7 @@ Prévue pour être piétonne sans matérialisation spécifique d'espaces piéton
 
 ### Boulevard de Strasbourg
 
-<span style="color:green;font-weight:bold">Satisfaisant</span> Côté Carntot : pistes bilatérales. Sur la section entre l'avenue de Palavas et la maison pour tous Voltaire : vélorue. Cette vélorue est quasi-exemplaire (n'eût été la bordure boudin centrale) et a été rendue faisable par un changement de plan de circulation (inversion du sens unique).
+<span style="color:green;font-weight:bold">Satisfaisant</span> Côté Carnot : pistes bilatérales. Sur la section entre l'avenue de Palavas et la maison pour tous Voltaire : vélorue. Cette vélorue est quasi-exemplaire (n'eût été la bordure boudin centrale) et a été rendue faisable par un changement de plan de circulation (inversion du sens unique).
 
 ### Quai Laurens
 
@@ -76,7 +76,7 @@ streetView: 43.6058282,3.8896056,3a,15y,26.2h,88.67t
 
 ### Avenue Mermoz
 
-<span style="color:red;font-weight:bold">Non satisfaisant</span> Aucun trottoir côté ouest, qui est le seul côté où une piste est aménagée. Elle est donc naturellement utilisée par les piétons. Ce manque d'espace alloué à la marche est au vélo est difficilement compréhension sur l'Anneau Vélo quand par ailleurs la section conserve 5 voies de circulation motorisée.
+<span style="color:red;font-weight:bold">Non satisfaisant</span> Aucun trottoir côté ouest, qui est le seul côté où une piste est aménagée. Elle est donc naturellement utilisée par les piétons. Ce manque d'espace alloué à la marche et au vélo est difficilement compréhensible sur l'Anneau Vélo quand par ailleurs la section conserve 5 voies de circulation motorisée.
 
 ### Rue du Professeur Léon Vallois
 
