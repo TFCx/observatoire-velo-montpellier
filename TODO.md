@@ -1,13 +1,30 @@
 Court terme :
+- Changer lien vers le communiqué officiel dans les news
+- Logo lyon présent sur mobile ?
+- Les changmements de taille du logo au scroll / sous mobile => bof
+- Texte :
+  - toutes les "vélolignes"
+  - suivre +et évaluer+ l'avancement
+  - Virer "fréquentation max 2030"
+  - du type des aménagements => du type d'aménagement
+  - adhérer à Vélocité => texte à changer
+  - lien adhérer mort
+  - liens cyclopolis
+  - Mtpl => Mtp
+  - "dangereux" => "non satisfaisant"
+  - Observatoire vélo de Montpellier
+- Déplacer sur observatoire.velocite-montpellier.fr
+- Héro image avenue de toulouse ?
 - Problème perfs / leak
-- Ajout type : bande cyclable, bande cyclable sur trottoir, voirie mixte => encore nécessaire ?
+- Cherry pick tableau de bord
 - Stats qualité première page
-- Pimper les couleurs (principalement pour les types qui n'ont pas assez de contraste)
-- Demander logo à Arthur
+- Refaire logo avec Artur
 - Renseigner plus en détail Vélolignes B, C et D  (.md)
-- Tester recolorisation Adwaita, 4 grands directions (N/E/W/S) + rocades
+- Tableau de bord : essayer
 
 Moyen terme :
+- Pimper les couleurs (principalement pour les types qui n'ont pas assez de contraste)
+- Tester recolorisation Adwaita, 4 grands directions (N/E/W/S) + rocades
 - Intégrer les carrefours
 - Tester une catégorie "petits tronçons à faire en priorité"
 - Ajout "envoyer une remarque" sur un tronçon. Comment le gérer ? Mail ?
@@ -15,6 +32,7 @@ Moyen terme :
 - Avoir des groupes (vélolignes, majeures, connexions... ) ?
 - Nouveau widget timeline
 - Changer la limite avec un greyout hors du polygone
+- Autres infos vélo (rue écoles, 30kmh, parking, ...)
 - Lib : pinia a l'air cool (utilisé par Marseille)
 
 Long terme :
