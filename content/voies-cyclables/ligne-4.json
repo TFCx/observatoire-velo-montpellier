@@ -164,7 +164,7 @@
           "name": "Saint Alban Barby",
           "status": "done",
           "type": "voie-verte",
-          "link": "/rev4#Saint-Alban-Leysse-à-Barby"
+          "link": "/rev-4#Saint-Alban-Leysse-à-Barby"
         },
         "geometry": {
           "type": "LineString",
@@ -295,7 +295,7 @@
           "name": "Barby",
           "status": "unknown",
           "type": "aucun",
-          "link": "/rev4#Barby"
+          "link": "/rev-4#Barby"
         },
         "geometry": {
           "type": "LineString",
