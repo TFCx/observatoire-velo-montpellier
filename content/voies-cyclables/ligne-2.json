@@ -105,7 +105,6 @@
     {
       "type": "Feature",
       "properties": {
-        "id": "variante2",
         "line": 2,
         "name": "Variante - Gde Rue de Saint Robert",
         "status": "variante",
