@@ -10,11 +10,17 @@ cover: https://cyclopolis.lavilleavelo.org/vl2/bd-vivier-merle.jpg
 
 ## Les tronçons (du Nord au Sud)
 
-### Chambéry à Bassens
+### Chambéry à Saint Alban Leysse
+Voie verte de la Leysse de largeur 3 mètres utilisée par les pietons et les cycles
 
+Elargissement et séparation des flux piétons cycles à réaliser
 
-### Bassens à Barby
+### Saint Alban Leysse à Barby
+voie verte
+largeur 3 mètres
 
+### Barby
+Secteur non aménagé
 
-#### Barby à Challes les Eaux
+### Barby à Challes les Eaux
 Voie verte historique des planeaux
