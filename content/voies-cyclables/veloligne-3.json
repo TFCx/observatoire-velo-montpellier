@@ -2,6 +2,6 @@
 "type": "FeatureCollection",
 "name": "veloligne-3",
 "features": [
-{ "type": "Feature", "properties": { "name": "Odysseum - Gare Sud de France", "quality": "", "doneAt": "", "status": "planned", "type": "aucun", "line": "3", "id": "BlvrdPenelope" }, "geometry": { "type": "LineString", "coordinates": [ [ 3.922547, 43.596691 ], [ 3.920233, 43.599094 ], [ 3.918869, 43.600479 ], [ 3.917799, 43.60181 ], [ 3.916339, 43.601906 ], [ 3.913676, 43.602922 ], [ 3.913408, 43.603351 ], [ 3.913154, 43.604329 ] ] } }
+{ "type": "Feature", "properties": { "name": "Odysseum - Gare Sud de France", "quality": "", "doneAt": "", "status": "planned", "type": "inconnu", "line": "3", "id": "BlvrdPenelope" }, "geometry": { "type": "LineString", "coordinates": [ [ 3.922547, 43.596691 ], [ 3.920233, 43.599094 ], [ 3.918869, 43.600479 ], [ 3.917799, 43.60181 ], [ 3.916339, 43.601906 ], [ 3.913676, 43.602922 ], [ 3.913408, 43.603351 ], [ 3.913154, 43.604329 ] ] } }
 ]
 }

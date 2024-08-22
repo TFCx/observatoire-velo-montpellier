@@ -88,11 +88,10 @@ const typeFilters = ref([
   { label: 'Vélorue', isEnable: true, types: ['velorue'] },
   { label: 'Bandes cyclables', isEnable: true, types: ['bandes-cyclables'] },
   { label: 'Zone de rencontre', isEnable: true, types: ['zone-de-rencontre'] },
+  { label: 'Chaucidou', isEnable: true, types: ['chaucidou'] },
   { label: 'Héterogène', isEnable: true, types: ['heterogene'] },
   { label: 'Inconnu', isEnable: true, types: ['inconnu'] },
-  { label: 'Aucun', isEnable: true, types: ['aucun'] },
-  { label: 'Chaucidou', isEnable: true, types: ['chaucidou'] },
-  { label: 'Mixte vélo / motorisés', isEnable: true, types: ['mixte'] }
+  { label: 'Aucun aménagement', isEnable: true, types: ['aucun'] },
 ]);
 
 function toogleStatusFilter(index: number) {

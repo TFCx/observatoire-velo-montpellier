@@ -7,15 +7,22 @@ export type LaneType =
 | 'voie-verte'
 | 'bandes-cyclables'
 | 'zone-de-rencontre'
+| 'chaucidou'
 | 'heterogene'
 | 'aucun'
-| 'inconnu'
-| 'mixte'
-| 'chaucidou';
+| 'inconnu';
 
 export type LaneStatus = 'done' | 'wip' | 'planned' | 'postponed' | 'unknown' | 'variante' | 'variante-postponed';
 
 export type Quality = 'bad' | 'fair' | 'good';
+
+export type PolygonFeature = {
+  type: 'Feature';
+  geometry: {
+    type: "Polygon",
+    coordinates: [number, number][];
+  }
+}
 
 export type LineStringFeature = {
   type: 'Feature';
@@ -76,7 +83,7 @@ export type CompteurFeature = {
 };
 type PointFeature = PerspectiveFeature | CompteurFeature;
 
-export type Feature = LineStringFeature | PointFeature | DisplayedLane;
+export type Feature = LineStringFeature | PointFeature | DisplayedLane | PolygonFeature;
 
 export type Geojson = {
   type: string;
@@ -94,6 +101,10 @@ export function isPointFeature(feature: Feature): feature is PointFeature {
   return feature.geometry.type === 'Point';
 }
 
+export function isPolygonFeature(feature: Feature): feature is PolygonFeature {
+  return feature.geometry.type === 'Polygon';
+}
+
 export function isPerspectiveFeature(feature: Feature): feature is PerspectiveFeature {
   return isPointFeature(feature) && feature.properties.type === 'perspective';
 }
@@ -101,3 +112,4 @@ export function isPerspectiveFeature(feature: Feature): feature is PerspectiveFe
 export function isCompteurFeature(feature: Feature): feature is CompteurFeature {
   return isPointFeature(feature) && ['compteur-velo', 'compteur-voiture'].includes(feature.properties.type);
 }
+

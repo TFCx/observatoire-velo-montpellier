@@ -27,7 +27,9 @@ const { getTotalDistance, displayDistanceInKm } = useStats();
 const { voie } = defineProps({ voie: Object });
 
 const mapOptions = {
-  fullscreen: true,
+  fullscreen: false, // if true, need to fix bug at link
+  logo: false,
+  initialLayer: 1,
   onFullscreenControlClick: () => {
     const route = useRoute();
     return navigateTo({ path: `${route.params._slug}/carte` });
