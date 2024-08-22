@@ -8,7 +8,7 @@
         <div
           v-for="line in lines"
           :key="line"
-          class="h-8 w-8 rounded-full flex items-center justify-center text-white text-base font-bold"
+          class="px-3 py-1 rounded-full flex items-center justify-center text-white text-base font-bold"
           :style="`background-color: ${getLineColor(line)}`"
         >
           {{ line }}
@@ -25,7 +25,7 @@
         </div>
       </div>
       <div class="py-1 flex items-center justify-between">
-        <div class="text-base font-bold">
+        <div class="text-sm font-bold">
           Statut
         </div>
         <div>
@@ -38,7 +38,7 @@
         </div>
       </div>
       <div class="py-1 flex items-center justify-between">
-        <div class="text-base font-bold">
+        <div class="text-sm font-bold">
           Longueur
         </div>
         <div class="text-sm">
@@ -46,13 +46,20 @@
         </div>
       </div>
       <div class="py-1 flex items-center justify-between">
-        <div class="text-base font-bold">
+        <div class="text-sm font-bold">
           Type
         </div>
         <div>
-          <div class="text-sm text-right">
-            {{ typologyNames[feature.properties.type] ?? 'Inconnu' }}
+          <div class="text-right">
+            {{ typologyNames[feature.properties.type] ?? 'ERREUR' }}
           </div>
+        </div>
+      </div>
+      <div class="py-1 flex items-center justify-between">
+        <div class="text-sm font-bold">
+          Qualité
+        </div>
+        <div>
           <div class="italic text-right">
             {{ qualityNames[feature.properties.quality] }}
           </div>

@@ -1,6 +1,6 @@
 <template>
   <div class="relative">
-    <LegendModal ref="legendModalComponent" />
+    <LegendInfo ref="legendModalComponent" />
     <FilterModal ref="filterModalComponent" @update="refreshFilters" />
     <div id="map" class="rounded-lg h-full w-full" />
     <img
@@ -19,15 +19,16 @@ import { createApp, defineComponent, h, Suspense } from 'vue';
 import { Map, AttributionControl, GeolocateControl, NavigationControl, Popup, type StyleSpecification, type LngLatLike } from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import style from '@/assets/style.json';
-import LegendControl from '@/maplibre/LegendControl';
 import FilterControl from '@/maplibre/FilterControl';
+import LimitsControl from '@/maplibre/LimitsControl';
+import BikeInfraControl from '@/maplibre/BikeInfraControl';
 import LayerControl from '@/maplibre/LayerControl';
 import FullscreenControl from '@/maplibre/FullscreenControl';
 import ShrinkControl from '@/maplibre/ShrinkControl';
 import LineTooltip from '~/components/tooltips/LineTooltip.vue';
 import CounterTooltip from '~/components/tooltips/CounterTooltip.vue';
 import PerspectiveTooltip from '~/components/tooltips/PerspectiveTooltip.vue';
-import { isLineStringFeature, type Feature, type LaneStatus, type LaneType } from '~/types';
+import { isLineStringFeature, isPolygonFeature, type Feature, type LaneStatus, type LaneType, type PolygonFeature } from '~/types';
 import config from '~/config.json';
 import { setDisplayedLayer } from '~/composables/useMap'
 
@@ -36,8 +37,10 @@ import { setDisplayedLayer } from '~/composables/useMap'
 
 const defaultOptions = {
   logo: true,
-  legend: true,
+  limits: true,
+  bikeInfra: false,
   filter: true,
+  initialLayer: 0,
   geolocation: false,
   fullscreen: false,
   onFullscreenControlClick: () => { },
@@ -58,25 +61,43 @@ const filterModalComponent = ref(null);
 const {
   loadImages,
   plotFeatures,
-  fitBounds
+  fitBounds,
+  toggleLimits,
+  toggleBikeInfra,
 } = useMap();
 
 const statuses = ref(['planned', 'variante', 'done', 'postponed', 'variante-postponed', 'unknown', 'wip']);
-const types = ref(['bidirectionnelle', 'bilaterale', 'voie-bus', 'voie-bus-elargie', 'velorue', 'voie-verte', 'bandes-cyclables', 'zone-de-rencontre', 'heterogene', 'aucun', 'inconnu','chaucidou','mixte']);
+const types = ref(['bidirectionnelle', 'bilaterale', 'voie-bus', 'voie-bus-elargie', 'velorue', 'voie-verte', 'bandes-cyclables', 'zone-de-rencontre', 'chaucidou', 'heterogene', 'aucun', 'inconnu']);
+const displayLimits = ref(true);
 const features = computed(() => {
-  return (props.features ?? []).filter(feature => {
+  let activeLineFeatures = (props.features ?? []).filter(feature => {
     if (isLineStringFeature(feature)) {
       return statuses.value.includes(feature.properties.status) &&
         types.value.includes(feature.properties.type);
     }
     return true;
   });
+  let activeLimitsFeatures = (props.features ?? []).filter(feature => displayLimits.value && isPolygonFeature(feature))
+  console.debug(activeLimitsFeatures.length)
+  return activeLineFeatures.concat(activeLimitsFeatures)
 });
 
 
 function refreshFilters({ visibleStatuses, visibleTypes }: { visibleStatuses: LaneStatus[]; visibleTypes: LaneType[] }) {
   statuses.value = visibleStatuses;
   types.value = visibleTypes;
+}
+
+function convertIntoDisplayedLayerEnum(s: string) {
+  if(s === "network") {
+    return DisplayedLayer.Network
+  } else if (s === "quality") {
+    return DisplayedLayer.Quality
+  } else if (s === "type") {
+    return DisplayedLayer.Type
+  }
+  console.assert(s + " couldn't be convert into a DisplayedLayer enum")
+  return DisplayedLayer.Network
 }
 
 onMounted(() => {
@@ -89,17 +110,20 @@ onMounted(() => {
     attributionControl: false
   });
 
-  const layerControl = new LayerControl({
-    onChange: (s: string) => {
-      if(s === "network") {
-        setDisplayedLayer(DisplayedLayer.Network)
-      } else if (s === "quality") {
-        setDisplayedLayer(DisplayedLayer.Quality)
-      } else if (s === "type") {
-        setDisplayedLayer(DisplayedLayer.Type)
+  const layerControl = new LayerControl(
+    () => {
+      if (legendModalComponent.value) {
+        (legendModalComponent.value as any).toggleLegend();
       }
-    }
-  });
+    },
+    (s: string) => {
+      let dt = convertIntoDisplayedLayerEnum(s)
+      setDisplayedLayer(dt)
+      if (legendModalComponent.value) {
+        (legendModalComponent.value as any).setWhichLayerIsDisplayed(dt);
+      }
+    }, options.initialLayer
+  );
   map.addControl(layerControl, 'top-left')
 
   map.addControl(new NavigationControl({ showCompass: false }), 'top-left');
@@ -126,16 +150,6 @@ onMounted(() => {
     });
     map.addControl(shrinkControl, 'top-right');
   }
-  if (options.legend) {
-    const legendControl = new LegendControl({
-      onClick: () => {
-        if (legendModalComponent.value) {
-          (legendModalComponent.value as any).openModal();
-        }
-      }
-    });
-    map.addControl(legendControl, 'top-right');
-  }
   if (options.filter) {
     const filterControl = new FilterControl({
       onClick: () => {
@@ -146,10 +160,28 @@ onMounted(() => {
     });
     map.addControl(filterControl, 'top-right');
   }
+  if (options.limits) {
+    const limitsControl = new LimitsControl({
+      onClick: () => {
+        toggleLimits()
+        limitsControl.toggleBackground()
+      }
+    });
+    map.addControl(limitsControl, 'top-right');
+  }
+  if (options.bikeInfra) {
+    const bikeInfraControl = new BikeInfraControl({
+      onClick: () => {
+        toggleBikeInfra()
+        bikeInfraControl.toggleBackground()
+      }
+    });
+    map.addControl(bikeInfraControl, 'top-right');
+  }
 
   map.on('load', async() => {
     await loadImages({ map });
-    plotFeatures({ map, features: features.value });
+    plotFeatures({ map, updated_features: features.value, initialLayer: options.initialLayer });
     const tailwindMdBreakpoint = 768;
     if (window.innerWidth > tailwindMdBreakpoint) {
       fitBounds({ map, features: features.value });
@@ -159,14 +191,14 @@ onMounted(() => {
   watch(
     features,
     newFeatures => {
-      plotFeatures({ map, features: newFeatures });
+      plotFeatures({ map, updated_features: newFeatures, initialLayer: options.initialLayer });
     }
   );
 
   watch(
     () => props.features,
     newFeatures => {
-      plotFeatures({ map, features: newFeatures });
+      plotFeatures({ map, updated_features: newFeatures, initialLayer: options.initialLayer });
     }
   );
 
@@ -182,8 +214,11 @@ onMounted(() => {
 
     const isPerspectiveLayerClicked = layers.some(({ layer }) => layer.id === 'perspectives');
     const isCompteurLayerClicked = layers.some(({ layer }) => layer.id === 'compteurs');
+    const isLimitsLayerClicked = layers.some(({ layer }) => layer.id === 'limits');
 
-    if (isPerspectiveLayerClicked) {
+    if(isLimitsLayerClicked) {
+      return
+    } else if (isPerspectiveLayerClicked) {
       const layer = layers.find(({ layer }) => layer.id === 'perspectives');
       const feature = features.value.find(f => {
         return f.properties.type === 'perspective' &&
@@ -284,6 +319,18 @@ onMounted(() => {
   pointer-events: auto;
   background-image: url('~/maplibre/filter.svg');
   background-size: 85%;
+}
+
+.maplibregl-limits {
+  background-repeat: no-repeat;
+  background-position: center;
+  pointer-events: auto;
+  background-image: url('~/maplibre/3M.png');
+  background-size: 85%;
+}
+
+.maplibregl-activated {
+  background: #ffeeee;
 }
 
 .maplibregl-combobox {

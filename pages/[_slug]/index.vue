@@ -8,11 +8,16 @@
         <h1 class="text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
           {{ getRevName('singular') }}
           <div
-            class="mt-2 h-12 w-12 rounded-full flex items-center justify-center text-white font-bold mx-auto"
-            :style="`background-color: ${getLineColor(voie.line)}`"
+            class="mt-2 px-3 py-1 rounded-full flex items-center justify-center text-white font-bold mx-auto"
+            :style="`background-color: white`"
           >
-            {{ voie.lineNameShort }}
+            <div
+              class="mt-2 px-3 py-1 rounded-full flex items-center justify-center text-white font-bold mx-auto"
+              :style="`background-color: ${getLineColor(voie.line)}`"
+            >
+            {{ voie.lineName }}
           </div>
+        </div>
         </h1>
       </template>
       <h2>Aperçu</h2>

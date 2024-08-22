@@ -130,7 +130,7 @@ export const useStats = () => {
         class: 'text-velocite-yellow-5 font-normal'
       },
       planned: {
-        name: 'Prévus',
+        name: "Prévus d'ici 2026",
         distance: plannedDistance,
         percent: getPercent(plannedDistance),
         class: 'text-velocite-light-4 font-semibold'
@@ -159,11 +159,10 @@ export const useStats = () => {
     'voie-verte': 'Voie verte',
     'bandes-cyclables': 'Bandes cyclables',
     'zone-de-rencontre': 'Zone de rencontre',
-    'heterogene': 'Héterogène',
-    'aucun': 'Aucun',
-    'inconnu': 'Inconnu',
     'chaucidou': 'Chaucidou',
-    'mixte': 'Mixte vélo/motorisé'
+    'heterogene': 'Héterogène',
+    'aucun': 'Aucun aménagement',
+    'inconnu': 'Inconnu',
   };
 
   function getStatsByTypology(voies: Geojson[]) {

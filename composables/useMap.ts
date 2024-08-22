@@ -1,11 +1,11 @@
 import { GeoJSONSource, LngLatBounds, Map } from 'maplibre-gl';
-import { isCompteurFeature, isLineStringFeature, isPerspectiveFeature, isPointFeature, type Feature, type DisplayedLane, type LaneStatus, type LaneType, type LineStringFeature} from '~/types';
+import { isCompteurFeature, isLineStringFeature, isPerspectiveFeature, isPointFeature, type Feature, type PolygonFeature, type DisplayedLane, type LaneStatus, type LaneType, type LineStringFeature, isPolygonFeature} from '~/types';
 import { ref } from 'vue';
 
 enum DisplayedLayer {
-  Network = 1,
-  Quality,
-  Type,
+  Network = 0,
+  Quality = 1,
+  Type = 2,
 }
 
 const displayedLayer = ref(DisplayedLayer.Network);
@@ -21,6 +21,10 @@ const setDisplayedLayer = (value: DisplayedLayer) => {
 export { DisplayedLayer, setDisplayedLayer };
 
 let postPonedOpacity = 0.5
+
+let displayLimits = ref(false)
+
+let displayBikeInfra = ref(false)
 
 type MultiColoredLineStringFeature = LineStringFeature & { properties: { colors: string[] } };
 
@@ -205,6 +209,26 @@ export const useMap = () => {
     });
   }
 
+  function plotLimits({ map, features }: { map: Map, features: Feature[] }) {
+
+    const limits = features.filter(isPolygonFeature);
+    if(limits.length == 0) {
+      return
+    }
+
+    const limitsWithId = limits.map((feature, index) => ({ id: index, ...feature }));
+
+    if (limitsWithId.length === 0 && !map.getLayer('limits')) {
+      return;
+    }
+
+    if (upsertMapSource(map, 'all-limits', limitsWithId)) {
+      return;
+    }
+
+    drawLimits(map)
+  }
+
   function plotCompteurs({ map, features }: { map: Map; features: Feature[] }) {
     const compteurs = features.filter(isCompteurFeature);
     if (compteurs.length === 0) {
@@ -308,59 +332,88 @@ export const useMap = () => {
     return features
   }
 
-  function plotFeatures({ map, features }: { map: Map; features: Feature[] }) {
-    let lineStringFeatures = features.filter(isLineStringFeature).sort(sortByLine).map(addLineColor);
-    lineStringFeatures = addOtherLineColor(lineStringFeatures);
+  function plotFeatures({ map, updated_features, initialLayer }: { map: Map; updated_features?: Feature[], initialLayer: DisplayedLayer }) {
+    plotBaseBikeInfrastructure(map)
 
-    plotSections(map, lineStringFeatures);
+    if(updated_features) {
+      let lineStringFeatures = updated_features.filter(isLineStringFeature).sort(sortByLine).map(addLineColor);
+      lineStringFeatures = addOtherLineColor(lineStringFeatures);
 
-    watch(displayedLayer, (displayedLayer) => {
+      plotSections(map, lineStringFeatures);
 
-      layersWithLanes.forEach(l => {
+      setDisplayedLayer(initialLayer)
+      setLanesColor(map, initialLayer)
 
-        if(displayedLayer == DisplayedLayer.Quality) {
-          map.setPaintProperty(l, "line-color", ["case",
-            ["==", ['get', 'quality'], "bad"], "#ff6961",
-            ["==", ['get', 'quality'], "fair"], "#fafc74",
-            ["==", ['get', 'quality'], "good"], "#77dd77",
-            ["==", ['get', 'status'], "done"], "#000000",
-            "white"
-          ]);
-        } else if(displayedLayer == DisplayedLayer.Network) {
-           map.setPaintProperty(l, "line-color", ["to-color", ['get', 'color']]);
-        } else if(displayedLayer == DisplayedLayer.Type) {
-          map.setPaintProperty(l, "line-color", ["case",
-            ["==", ['get', 'type'], "bidirectionnelle"], "#b3c6ff", // bleu
-            ["==", ['get', 'type'], "bilaterale"], "#b3fbff", // cyan
-            ["==", ['get', 'type'], "voie-bus"], "#fbb3ff", // violet
-            ["==", ['get', 'type'], "voie-bus-elargie"], "#e1b3ff", // violet
-            ["==", ['get', 'type'], "velorue"], "#fffbb3", // jaune
-            ["==", ['get', 'type'], "voie-verte"], "#b3ffb6", // vert
-            ["==", ['get', 'type'], "bandes-cyclables"], "#c1b3ff", // bleu-violet
-            ["==", ['get', 'type'], "zone-de-rencontre"], "#daffb3", // vert
-            ["==", ['get', 'type'], "heterogene"], "#797979", // gris foncé
-            ["==", ['get', 'type'], "aucun"], "#dedede", // gris
-            ["==", ['get', 'type'], "inconnu"], "#dedede", // gris
-            ["==", ['get', 'type'], "mixte"], "#ff9999", // rouge
-            ["==", ['get', 'type'], "chaucidou"], "#ffeab3", // orange
-            ["==", ['get', 'status'], "isDone"], "#000000", // orange
-            "white"
-          ]);
-        }
-      });
-    });
+      watch(displayedLayer, (displayedLayer) => setLanesColor(map, displayedLayer))
 
-    plotPerspective({ map, features });
-    plotCompteurs({ map, features });
+      plotPerspective({ map, features: updated_features });
+      plotCompteurs({ map, features: updated_features });
+      plotLimits({ map, features: updated_features });
+
+      watch(displayLimits, (displayLimits) => toggleLimitsVisibility(map, displayLimits))
+      watch(displayBikeInfra, (displayBikeInfra) => toggleBikeInfraVisibility(map, displayBikeInfra))
+    }
   }
 
   return {
     loadImages,
     plotFeatures,
     getCompteursFeatures,
-    fitBounds
+    fitBounds,
+    toggleLimits,
+    toggleBikeInfra,
   };
 };
+
+function toggleLimits() {
+  displayLimits.value = !displayLimits.value
+}
+
+function toggleBikeInfra() {
+  displayBikeInfra.value = !displayBikeInfra.value
+}
+
+function toggleLimitsVisibility(map: Map, displayLimits: boolean) {
+  map.setLayoutProperty("limits", "visibility", displayLimits ? "visible" : "none")
+}
+
+function toggleBikeInfraVisibility(map: Map, displayBikeInfra: boolean) {
+  map.setLayoutProperty("layer-underline-base-infrastructure", "visibility", displayBikeInfra ? "visible" : "none")
+}
+
+function setLanesColor(map: Map, displayedLayer: DisplayedLayer) {
+  layersWithLanes.forEach(l => {
+
+    if (displayedLayer == DisplayedLayer.Quality) {
+      map.setPaintProperty(l, "line-color", ["case",
+        ["==", ['get', 'quality'], "bad"], "#ff6961",
+        ["==", ['get', 'quality'], "fair"], "#fafc74",
+        ["==", ['get', 'quality'], "good"], "#77dd77",
+        ["==", ['get', 'status'], "done"], "#000000",
+        "white"
+      ]);
+    } else if (displayedLayer == DisplayedLayer.Network) {
+      map.setPaintProperty(l, "line-color", ["to-color", ['get', 'color']]);
+    } else if (displayedLayer == DisplayedLayer.Type) {
+      map.setPaintProperty(l, "line-color", ["case",
+        ["==", ['get', 'type'], "bidirectionnelle"], "#b3c6ff", // bleu
+        ["==", ['get', 'type'], "bilaterale"], "#b3fbff", // cyan
+        ["==", ['get', 'type'], "bandes-cyclables"], "#c1b3ff", // bleu-violet
+        ["==", ['get', 'type'], "voie-bus"], "#fbb3ff", // violet
+        ["==", ['get', 'type'], "voie-bus-elargie"], "#e1b3ff", // violet
+        ["==", ['get', 'type'], "velorue"], "#fffbb3", // jaune
+        ["==", ['get', 'type'], "voie-verte"], "#b3ffb6", // vert
+        ["==", ['get', 'type'], "zone-de-rencontre"], "#daffb3", // vert clair
+        ["==", ['get', 'type'], "chaucidou"], "#ffeab3", // orange
+        ["==", ['get', 'type'], "heterogene"], "#797979", // gris foncé
+        ["==", ['get', 'type'], "aucun"], "#ff9999", // rouge
+        ["==", ['get', 'status'], "done"], "#000000", // black
+        ["==", ['get', 'type'], "inconnu"], "#dedede", // gris
+        "white"
+      ]);
+    }
+  });
+}
 
 function animateOpacity(map: Map, timestamp: number, animationLength: number, attributeId: string, attributeOpacity: string, min: number, max: number) {
 
@@ -668,6 +721,23 @@ function addListnersForHovering(map: Map) {
   });
 }
 
+function drawLimits(map: Map) {
+  map.addLayer({
+    id: 'limits',
+    type: 'line',
+    source: 'all-limits',
+    layout: {
+      visibility: "none"
+    },
+    paint: {
+      'line-width': 1.5,
+      'line-dasharray': [2.2, 2.2],
+      'line-color': '#ff0000',
+      'line-opacity': 0.35
+    }
+  });
+}
+
 function drawSectionBase(map: Map, sections: Feature[]) {
 
   if (upsertMapSource(map, 'all-sections', sections)) {
@@ -722,3 +792,66 @@ function drawSectionContour(map: Map) {
   });
 }
 
+// plot base bike infrastructure from OSM API
+async function plotBaseBikeInfrastructure(map: Map) {
+
+  // Overpass request
+  const basehttp = 'https://overpass-api.de/api/interpreter?data=[out:json];'
+  const request = 'area["name"="Montpellier"]->.searchArea;(way["highway"~"cycleway|cycleway_lane|cycleway_track"](area.searchArea);way["bicycle"~"designated"](area.searchArea);way["cycleway:left"="track"](area.searchArea);way["cycleway:right"="track"](area.searchArea);way["cycleway:left"="opposite_track"](area.searchArea);way["cycleway:right"="opposite_track"](area.searchArea);way["cycleway:left"="lane"](area.searchArea);way["cycleway:right"="lane"](area.searchArea););out ids geom;>;out skel qt;'
+
+  const apiUrl = basehttp + encodeURI(request)
+  const data = await fetchBikeLanesGeojsonData(apiUrl);
+
+  map.addSource('source-base-infrastructure', {
+    type: 'geojson',
+    data: data
+  });
+
+  const lw = 2.2
+
+  map.addLayer({
+      id: 'layer-underline-base-infrastructure',
+      type: 'line',
+      source: 'source-base-infrastructure',
+      layout: {
+        visibility: "none"
+      },
+      paint: {
+        'line-width': lw,
+        'line-color': '#000055',
+        'line-opacity': 0.8
+      }
+    },
+    'highlight' // push layer to the background
+  );
+}
+
+async function fetchBikeLanesGeojsonData(apiUrl: string): Promise<any> {
+  const response = await fetch(apiUrl);
+  const data = await response.json();
+
+  const geojson = {
+    type: 'FeatureCollection',
+    features: data.elements.map((element: any) => {
+      if (!element.geometry) return [];
+      const feature = {
+        type: 'Feature',
+        properties: {
+          id: element.id,
+          tags: element.tags
+        },
+        geometry: {
+          type: 'LineString',
+          coordinates: element.geometry.map((geometry: any) => {
+            return [geometry.lon, geometry.lat];
+          })
+        }
+      };
+      return feature;
+    })
+  };
+
+  geojson.features = geojson.features.filter((feature: any) => feature.type);
+
+  return geojson;
+}
