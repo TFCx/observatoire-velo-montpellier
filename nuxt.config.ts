@@ -1,6 +1,6 @@
 import config from './config.json';
 
-const TITLE = `Observatoire Vélo Montpellier - Suivi des ${config.revName.plural} par ${config.assoName}`;
+const TITLE = `Observatoire Vélo de Montpellier - Suivi des ${config.revName.plural} par ${config.assoName}`;
 const DESCRIPTION =
   `Plateforme citoyenne et associative, par ${config.assoName}. État d'avancement, cartes interactives des itinéraires, détails, travaux : suivez le développement du réseau cyclable sécurisé montpelliérain`;
 const BASE_URL = 'https://cyclopolis.fr';

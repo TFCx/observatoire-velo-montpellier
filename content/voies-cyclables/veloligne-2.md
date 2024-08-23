@@ -5,7 +5,7 @@ lineNameShort: 2
 description: Véloligne devant offrir (à terme) une jonction directe Montpellier⇄Mauguio via Grammont
 trafic:
 cover:
-from: Mtpl Antigone
+from: Mtp Antigone
 to: Maugio
 ---
 

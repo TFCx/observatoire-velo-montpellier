@@ -4,16 +4,11 @@ Court terme :
 - Les changmements de taille du logo au scroll / sous mobile => bof
 - Texte :
   - toutes les "vélolignes"
-  - suivre +et évaluer+ l'avancement
-  - Virer "fréquentation max 2030"
-  - du type des aménagements => du type d'aménagement
   - adhérer à Vélocité => texte à changer
-  - lien adhérer mort
+  - lien adhérer mort => NON, testé ce jour
   - liens cyclopolis
-  - Mtpl => Mtp
-  - Observatoire vélo de Montpellier
 - Déplacer sur observatoire.velocite-montpellier.fr
-- Héro image avenue de toulouse ?
+- Héro image avenue de toulouse ? => mise pour la ligne 7 était-il prévu de la mettre plus haut ?
 - Problème perfs / leak
 - Cherry pick tableau de bord
 - Stats qualité première page

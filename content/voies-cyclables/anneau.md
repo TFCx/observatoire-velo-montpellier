@@ -5,8 +5,8 @@ lineNameShort: 𐍈
 description: L'Anneau vélo est le maillon central des Vélolignes, il permet de relier (presque) toutes les radiales
 trafic: 5k vélos/jour
 cover: https://www.montpellier.fr/uploads/Image/05/IMF_FICHEEVT/GAB_MPL/44302_803_vcsPRAsset_3165929_167415_03610949-a910-4ec3-860c-1c9d201008ff_0.jpeg
-from: Mtpl
-to: Mtpl
+from: Mtp
+to: Mtp
 ---
 
 ## Les tronçons (En partant d'Albert 1er dans le sens antihoraire)

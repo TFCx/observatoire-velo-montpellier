@@ -5,7 +5,7 @@ lineNameShort: 1
 description: Véloligne desservant les communes du quart nord-est de la métropole
 trafic:
 cover:
-from: Mtpl Corum
+from: Mtp Corum
 to: Castelnau / Jacou / Saint-Geniès
 ---
 

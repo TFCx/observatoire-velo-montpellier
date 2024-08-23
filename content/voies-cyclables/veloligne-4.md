@@ -5,7 +5,7 @@ lineNameShort: 4
 description: Basée à près de 80% sur des équipements anciens cette Véloligne à 4 branches desservira Lattes, Palavas, Pérols, Carnon et l'aéroport
 trafic:
 cover:
-from: Mtpl Antigone
+from: Mtp Antigone
 to: Lattes / Maurin / Palavas / Pérols / Aéroport / Carnon
 ---
 

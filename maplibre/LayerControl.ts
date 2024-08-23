@@ -30,7 +30,7 @@ export default class LayerControl {
 
     this.createRadioButton('network', 'du réseau', this._initialLayer == 0);
     this.createRadioButton('quality', 'de la qualité des aménagements', this._initialLayer == 1);
-    this.createRadioButton('type', 'du type des aménagements', this._initialLayer == 2);
+    this.createRadioButton('type', "du type d'aménagement", this._initialLayer == 2);
 
     return this._container;
   }

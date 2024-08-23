@@ -22,7 +22,7 @@ Lorsqu'un tronçon présente une différence d'aménagement cyclable entre les d
 
 Les autres types sont plus classiques : "*Bilatérale*" pour des pistes aménagées de chaque côté de la rue, "*Bidirectionnelle*" pour un piste à double-sens aménagée d'un seul côté de la rue, etc.
 
-Enfin, si une des typologie représente moins de 0.5% du linéaire total, il est masqué de l'écran des statistiques pour éviter d'afficher un pourcentage arrondi de 0% qui laisserait croire que cette typologie n'est pas présente.
+Enfin, si une des typologies représente moins de 0.5% du linéaire total, il est masqué de l'écran des statistiques pour éviter d'afficher un pourcentage arrondi de 0% qui laisserait croire que cette typologie n'est pas présente.
 
 ## Tronçon « satisfaisant / non-satisfaisant » ?
 
