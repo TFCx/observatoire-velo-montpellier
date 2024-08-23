@@ -87,7 +87,7 @@
                 <div class="h-1 bg-velocite-red-5" />
               </div>
               <div>
-                dangereux
+                non satisfaisant
               </div>
             </div>
           </div>

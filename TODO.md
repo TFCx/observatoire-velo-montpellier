@@ -11,7 +11,6 @@ Court terme :
   - lien adhérer mort
   - liens cyclopolis
   - Mtpl => Mtp
-  - "dangereux" => "non satisfaisant"
   - Observatoire vélo de Montpellier
 - Déplacer sur observatoire.velocite-montpellier.fr
 - Héro image avenue de toulouse ?
