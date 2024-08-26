@@ -73,8 +73,14 @@ Le projet prévoit un aménagement bilatéral.
 
 ### Avenue du Mondial 98 (Granier⇄Odysseum)
 
+::content-image
+---
+imageUrl: https://www.montpellier3m.fr/sites/default/files/vignettes/actualite/avenue_du_mondial_98.png
+---
+::
+
 ::banner{type="wip"}
-En travaux. Les pistes transitoires bilatérales seront perennisées.
+Actuellement en travaux. Les pistes transitoires bilatérales sont perennisées.
 ::
 
 ### Avenue du Mondial 98 (Odysseum ⇄ Evariste Galois)
