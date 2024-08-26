@@ -1,6 +1,6 @@
 ---
 line: 6
-lineName: Ligne 6
+lineName: Véloligne 6
 lineNameShort: 6
 description: Cette véloligne à 3 branches desservira Saint-Jean-de-Védas, Villeneuve-les-Maguelone et Maurin
 trafic:

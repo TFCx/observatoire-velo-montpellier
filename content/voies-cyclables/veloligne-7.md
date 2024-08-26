@@ -1,6 +1,6 @@
 ---
 line: 7
-lineName: Ligne 7
+lineName: Véloligne 7
 lineNameShort: 7
 description: Véloligne desservant Saint-Jean-de-Védas et Fabrègues
 trafic:

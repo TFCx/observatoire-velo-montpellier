@@ -1,6 +1,6 @@
 ---
 line: 5
-lineName: Ligne 5
+lineName: Véloligne 5
 lineNameShort: 5
 description: Véloligne reliant le centre ville à Tournezy via Moularès et Monteils l'Eglise
 trafic: 

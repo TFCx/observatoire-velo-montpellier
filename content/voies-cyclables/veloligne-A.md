@@ -1,6 +1,6 @@
 ---
 line: A
-lineName: Ligne A
+lineName: Véloligne A
 lineNameShort: A
 description: Cette Véloligne est l'une des rocades cyclables qui reliera à terme Juvignac à Castelnau
 trafic:

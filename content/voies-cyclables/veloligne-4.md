@@ -1,6 +1,6 @@
 ---
 line: 4
-lineName: Ligne 4
+lineName: Véloligne 4
 lineNameShort: 4
 description: Basée à près de 80% sur des équipements anciens cette Véloligne à 4 branches desservira Lattes, Palavas, Pérols, Carnon et l'aéroport
 trafic:

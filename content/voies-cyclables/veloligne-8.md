@@ -1,6 +1,6 @@
 ---
 line: 8
-lineName: Ligne 8
+lineName: Véloligne 8
 lineNameShort: 8
 description: Basée sur une voie verte existante à plus de 70% cette Véloligne doit desservir Lavérune, Pignan, Saussan, Cournonterral et Cournonsec
 trafic: 

@@ -21,7 +21,7 @@
       <div class="space-y-8 sm:space-y-12">
         <div class="space-y-5 sm:mx-auto sm:max-w-xl sm:space-y-4 lg:max-w-5xl text-center">
           <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl">
-            Avancement par ligne
+            Avancement par Véloligne
           </h2>
           <p class="text-xl text-gray-500">
             Choisissez une {{ getRevName('singular') }} pour connaitre le détail du projet et voir son niveau d'avancement.

@@ -1,6 +1,6 @@
 ---
 line: B
-lineName: Ligne B
+lineName: Véloligne B
 lineNameShort: B
 description: Cette Véloligne est une rocade cyclable de près de 40km située au delà de la 2ème couronne de Montpellier
 trafic:

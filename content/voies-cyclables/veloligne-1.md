@@ -1,6 +1,6 @@
 ---
 line: 1
-lineName: Ligne 1
+lineName: Véloligne 1
 lineNameShort: 1
 description: Véloligne desservant les communes du quart nord-est de la métropole
 trafic:

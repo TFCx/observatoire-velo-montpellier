@@ -1,6 +1,6 @@
 ---
 line: 9
-lineName: Ligne 9
+lineName: Véloligne 9
 lineNameShort: 9
 description: Cette véloligne desservira le nord-ouest de Montpellier et Grabels
 trafic: 
