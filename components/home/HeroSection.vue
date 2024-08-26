@@ -73,7 +73,7 @@
               <div
                 class="relative block w-full bg-white rounded-lg overflow-hidden"
               >
-                <img class="w-full" src="~/assets/hero.jpeg" :alt="`illustration des F`">
+                <img class="w-full" src="https://i0.wp.com/lemouvement.info/wp-content/uploads/2020/01/Montpellier-av-Toulouse-demain.png" :alt="`illustration des Vélolignes : avenue de Toulouse`">
               </div>
             </div>
           </div>

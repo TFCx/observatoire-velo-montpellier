@@ -18,7 +18,7 @@
             <dl class="rounded-lg bg-white shadow-lg sm:grid sm:grid-cols-3">
               <div class="flex flex-col border-b border-gray-100 p-6 text-center sm:border-0 sm:border-r">
                 <dt class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
-                  Lignes
+                  Vélolignes
                 </dt>
                 <dd class="order-1 text-5xl font-extrabold text-velocite-yellow-5">
                   16

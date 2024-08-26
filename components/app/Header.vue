@@ -66,7 +66,7 @@
 
           <Popover v-slot="{ open }" class="relative">
             <PopoverButton :class="[open ? 'text-gray-900' : 'text-gray-500', 'group inline-flex items-center rounded-md bg-white text-base font-medium hover:text-velocite-yellow-5 focus:outline-none focus:ring-2 focus:ring-velocite-yellow-5 focus:ring-offset-2']">
-              <span>Lignes</span>
+              <span>Vélolignes</span>
               <Icon name="mdi:chevron-down" :class="[open ? 'text-gray-600' : 'text-gray-400', 'ml-2 h-5 w-5 group-hover:text-gray-500']" aria-hidden="true" />
             </PopoverButton>
             <transition
@@ -133,7 +133,7 @@
           <div class="pt-5 pb-6 px-5">
             <div class="flex items-center justify-between">
               <NuxtLink to="/" @click="close()">
-                <img class="h-8 w-auto" src="https://cyclopolis.lavilleavelo.org/logo-la-ville-a-velo.png" :alt="`logo ${getAssoName()}`">
+                <img class="h-8 w-auto" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmhVxxaZmo-qSqIqhnj5ZrGoX0lP1UChF4dw&s" :alt="`logo ${getAssoName()}`">
               </NuxtLink>
               <div class="-mr-2">
                 <PopoverButton
@@ -171,7 +171,7 @@
           </div>
           <div class="py-6 px-5 space-y-6 bg-gray-50">
             <div class="ml-3 text-base font-medium text-gray-900">
-              Toutes les lignes
+              Toutes les Vélolignes
             </div>
             <div class="grid grid-cols-4 gap-y-4 gap-x-8">
               <NuxtLink v-for="voie in voies" :key="voie.line" :to="getVoieCyclablePath(voie.line)" class="-m-3 flex items-start rounded-lg p-3 hover:bg-gray-50" @click="close()">

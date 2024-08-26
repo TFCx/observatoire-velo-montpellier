@@ -1,14 +1,11 @@
 Court terme :
 - Changer lien vers le communiqué officiel dans les news
-- Logo lyon présent sur mobile ?
 - Les changmements de taille du logo au scroll / sous mobile => bof
 - Texte :
-  - toutes les "vélolignes"
-  - adhérer à Vélocité => texte à changer
+  - adhérer à Vélocité => texte à changer (nico le donnera)
   - lien adhérer mort => NON, testé ce jour
   - liens cyclopolis
 - Déplacer sur observatoire.velocite-montpellier.fr
-- Héro image avenue de toulouse ? => mise pour la ligne 7 était-il prévu de la mettre plus haut ?
 - Problème perfs / leak
 - Cherry pick tableau de bord
 - Stats qualité première page

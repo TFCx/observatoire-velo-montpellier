@@ -12,7 +12,7 @@ Que signifient les qualités « satisfaisant / non-satisfaisant » ?*
 On vous explique tout !
 
 ## Que signifient les types de chaque tronçon et les statistiques "Typologie 2026"
-Il s'agit de chacun des aménagements cyclables que rencontreront les cyclistes sur chacune des lignes à la fin du mandat en 2026. Mis bout-à-bout, et rapportés à la distance totale des différents itinéraires, on peut ensuite obtenir des statistiques détaillées.
+Il s'agit de chacun des aménagements cyclables que rencontreront les cyclistes sur chacune des Vélolignes à la fin du mandat en 2026. Mis bout-à-bout, et rapportés à la distance totale des différents itinéraires, on peut ensuite obtenir des statistiques détaillées.
 
 L'ensemble du linéaire des Vélolignes est utilisé, y compris les tronçons reportés après 2026. Dans ce cas, l'aménagement indiqué est celui présent actuellement, car il ne sera malheureusement pas amélioré avant la fin du mandat en cours. Lorsqu'il n'y a aucun aménagement actuellement c'est le type "*Aucun*" qui est utilisé.
 
