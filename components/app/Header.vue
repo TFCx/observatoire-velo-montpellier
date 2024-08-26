@@ -133,7 +133,7 @@
           <div class="pt-5 pb-6 px-5">
             <div class="flex items-center justify-between">
               <NuxtLink to="/" @click="close()">
-                <img class="h-8 w-auto" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmhVxxaZmo-qSqIqhnj5ZrGoX0lP1UChF4dw&s" :alt="`logo ${getAssoName()}`">
+                <img class="h-8 h-auto" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmhVxxaZmo-qSqIqhnj5ZrGoX0lP1UChF4dw&s" :alt="`logo ${getAssoName()}`">
               </NuxtLink>
               <div class="-mr-2">
                 <PopoverButton
