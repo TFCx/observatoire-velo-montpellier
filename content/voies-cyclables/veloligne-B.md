@@ -10,7 +10,7 @@ to: Gare Sud de France
 ---
 
 
-### Gare sud de France Cambacerès<>Boirargues
+### Gare sud de France Cambacerès ⇄ Boirargues
 <span style="color:orange;font-weight:bold">À améliorer</span> Aménagement existant en piste bidirectionelle sur trottoir, non conformes aux exigences d'une Véloligne.
 
 ### Entrée de Boirargues
