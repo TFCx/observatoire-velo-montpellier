@@ -23,7 +23,7 @@ Portion existante réalisée en bilatérales.
 ### de Celleneuve à l'avenue des Garrats
 
 ::banner{type="unsecured"}
-Reporté à après le mandat
+Reporté après le mandat
 ::
 
 ### de l'avenue des Garrats aux rues Forgues et Fontcarrade
@@ -43,7 +43,7 @@ credit: Ville de Montpellier
 ### avenue de la Liberté de Fontcarrade au boulevard de la Perruque
 
 ::banner{type="unsecured"}
-Reporté à après le mandat
+Reporté après le mandat
 ::
 
 ### avenue Dubout du Boulevard de la Perruque à l'avenue de Palavas
@@ -85,11 +85,11 @@ Actuellement en travaux. Les pistes transitoires bilatérales sont perennisées.
 
 ### Avenue du Mondial 98 (Odysseum ⇄ Evariste Galois)
 
-Projet de piste bilatérales.
+Projet de piste bilatérales. Cette section est commune avec la Véloligne B.
 
 ### Evariste Galois ⇄ Albert Einstein
 
-Projet de piste bidirectionnelle côté est.
+Projet de piste bidirectionnelle côté est. Cette section est commune avec la Véloligne B.
 
 ### Rues Becquerel et Pomessargues
 
