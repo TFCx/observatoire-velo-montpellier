@@ -2,7 +2,9 @@
 line: B
 lineName: Véloligne B
 lineNameShort: B
-description: Cette Véloligne est une rocade cyclable de près de 40km située au delà de la 2ème couronne de Montpellier
+description: Cette Véloligne constituera une rocade cyclable de près de 40km, située au delà de la 2ème couronne de Montpellier. Basée à moitié sur des aménagements anciens qui restent à améliorer pour la plupart, l'autre moitié du linéaire reste à créer.
+  
+Il est prévu que plus de 75% du linéaire total soit livré en 2026 au plus tard. Cela implique la création à venir d'un total d'au moins 10km de Véloligne, à l'ouest de Montpellier entre Croix d'Argent et Cévennes, à l'est de Montpellier entre la Gare Sud de France et le Millénaire et sur les communes de Clapiers, Castelnau-le-Lez et Jacou.
 trafic:
 cover:
 from: Gare Sud de France
