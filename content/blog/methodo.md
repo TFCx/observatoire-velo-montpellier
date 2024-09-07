@@ -4,7 +4,7 @@ description: Réponses aux questions fréquentes sur les données et la méthodo
 imageUrl: 
 ---
 
-*Pourquoi ce tronçon est marqué « terminé » alors qu’il n’y a eu aucuns travaux ?  
+*Pourquoi ce tronçon est marqué « terminé » alors qu’il n’y a eu aucun travaux ?  
 Pourquoi ma rue est considérée comme « prévue » alors qu’il y a déjà une piste ?  
 À quoi dois-je m’attendre sur les tronçons marqués « reporté après 2026 » ?  
 Que signifient les qualités « satisfaisant / non-satisfaisant » ?*
@@ -63,7 +63,7 @@ Les tronçons considérés comme "terminés" sont tous les tronçons aménagés 
 N'hésitez pas à nous contacter sur nos réseaux sociaux ou via [cette page](https://lavilleavelo.org/contact/).*-->
 
 ## Reporté après 2026
-Il s’agit des tronçons qui font partie du projet de Vélolignes voté en mai 2022 mais annoncé dès le départ comme n'étant pas prévu pour être réalisés pendant le mandat en cours.
+Il s’agit des tronçons qui font partie du projet de Vélolignes voté en mai 2022 mais annoncés dès le départ comme n'étant pas prévus pour être réalisés pendant le mandat en cours.
 
 <!--
 ## Tracé à définir / Linéaire inconnu
