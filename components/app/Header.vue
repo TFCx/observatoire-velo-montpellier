@@ -6,8 +6,7 @@
           <NuxtLink to="/" class="flex space-x-2">
             <span class="sr-only">Cyclopolis</span>
             <img
-              width="150px"
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmhVxxaZmo-qSqIqhnj5ZrGoX0lP1UChF4dw&s"
+              src="~/assets/logoCyclopolisVGM.png"
               alt="logo cyclopolis"
             >
           </NuxtLink>
