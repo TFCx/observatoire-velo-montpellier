@@ -73,7 +73,7 @@ Ces sections n’ont pas encore fait l’objet de concertations ou de communicat
 Pour obtenir les chiffres lisibles sur le tableau de bord de la page d’accueil du site, nous ne comptons qu’une seule fois les tronçons en commun avec plusieurs Vélolignes.
 
 ## 75 ou 80% ?
-Dans ses annonces officielles de mai 2022, la Métropole de Montpellier a évoqué une réalisation de 75% du réseau des Vélolignes d'ici 2026. En se basant sur les <a href="https://data.montpellier3m.fr/dataset/reseau-express-velo-de-montpellier-mediterranee-metropole">données diffusées en opendata par la métropole</a>, Vélocité obtient un chiffre de 80%. Le code source du site web est public et chacun est en mesure de reprendre nos informations géographiques pour vérifier leur exactitude.
+Dans ses annonces officielles de mai 2022, la Métropole de Montpellier a évoqué une réalisation de 75% du réseau des Vélolignes d'ici 2026. En se basant sur les <a href="https://data.montpellier3m.fr/dataset/reseau-express-velo-de-montpellier-mediterranee-metropole">données diffusées en opendata par la métropole</a>, Vélocité obtient un chiffre de 80%. Le <a href="https://github.com/TFCx/observatoire-velolignes/tree/montpellier/main">code source du site web</a> est public et chacun est en mesure de reprendre nos informations géographiques pour vérifier leur exactitude.
 
 ## Réutilisation du contenu du site
 Ce site est basé sur le site <a href="https://cyclopolis.fr" target="_blank">https://cyclopolis.fr</a>, réalisé par l’association FUB lyonnaise « La Ville à Vélo » <a href="https://lavilleavelo.org" target="_blank">https://lavilleavelo.org</a> et diffusé en opensource.
