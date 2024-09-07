@@ -15,12 +15,69 @@ to: Gare Sud de France
 
 ### Entrée de Boirargues
 ::banner{type="unsecured"}
+Reporté à après le mandat
+::
+
+### Boirargues (Lycée Champollion)
+::banner{type="unsecured"}
+Reporté à après le mandat
+::
+<span style="color:red;font-weight:bold">Non satisfaisant</span> L'aménagement existant en piste bidirectionelle sur trottoir, non conformes aux exigences d'une Véloligne.
+
+
+### Boirargues (Mc Donald)	
+::banner{type="unsecured"}
+Reporté à après le mandat
+::
+
+### Boirargues (zone commerciale Soriech)
+Prévu pour 2026
+::banner{type="unsecured"}
 Pas de projet en cours à la connaissance de Vélocité.
 ::
+<!--
+
+
+	
+Avenue de Boirargues Lironde	good	done	voie-verte	31/12/19
+Avenue de Boirargues (sortie de Lattes)	fair	done	bidirectionnelle	30/06/24
+Avenue de Boirargues (Lattes centre)	fair	done	bidirectionnelle	30/06/24
+Avenue de l'Europe Lattes Centre	good	done	bidirectionnelle	30/06/24
+Avenue de l'Europe Lattes Port Ariane		planned	inconnu	
+Franchissement échangeur 2x2 voies Palavas à Lattes		postponed	inconnu	
+Saporta - St Pierre		postponed	inconnu	
+Tournezy		postponed	inconnu	
+Avenue d'El Alamein		planned	inconnu	
+Pavelet Mehul ⇄ Castelle	fair	done	bidirectionnelle	31/12/19
+Pavelet Grand M ⇄ Mehul	fair	done	bidirectionnelle	31/12/19
+Vanières Bugarel ⇄ Grand M		planned	inconnu	
+Vanières Bvd Grand M ⇄ Paul Valery		planned	inconnu	
+Vanières Spillaert Pagnol		planned	inconnu	
+Avenue de la Martelle		planned	inconnu	
+Liberté Garrats ⇄ Celleneuve		postponed	inconnu	
+Lodève Ouest	fair	done	bilatérale	31/12/19
+Parking Mosson		planned	inconnu	
+Avenue de l'Europe (Mosson)	fair	done	voie-verte	31/12/19
+M65 Rue du professeur Blayac	good	done	bidirectionnelle	31/12/19
+Avenue des Moulins Monnet ⇄ Lyre	fair	done	bidirectionnelle	31/12/19
+M65 Lyre ⇄ Girac	good	done	voie-verte	31/12/19
+M65 Girac ⇄ Fesquet	good	done	voie-verte	31/12/19
+M65 Fesquet ⇄ Navitau		planned	inconnu	
+Chemin des Alouettes		planned	inconnu	
+Chemin de Caylus ouest		planned	inconnu	
+Chemin de Caylus est		planned	inconnu	
+Crès ⇄ Jacou via V70	fair	done	bidirectionnelle	31/12/19
+Crès ⇄ Lamour partie nord	good	done	chaucidou	31/12/19
+Crès ⇄ Lamour partie sud	good	done	bidirectionnelle	31/12/19
+Grammont ⇄ Philippe Lamour		postponed	inconnu	
+Route de Maugio		postponed	inconnu	
+Château de Flaugergues	fair	done	bidirectionnelle	31/12/19
+Evariste Gallois		planned	bilaterale	
+Boulevard Pénélope		planned	inconnu	
 
 *détails de la suite : à venir*
 
-<!--
+
 __________________________________________________________________________
 IL FAUDRAIT DÉCOUPER LA M65 AVENUE DES MOULINS ENTRE CHATEAU D'Ô ET LYRE
 --------------------------------------------------------------------------
