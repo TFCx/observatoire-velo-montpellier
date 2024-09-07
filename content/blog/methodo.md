@@ -1,6 +1,6 @@
 ---
 title: Méthodologie
-description: Réponses aux questions fréquentes sur les données et la méthodologie de Cyclopolis.
+description: Réponses aux questions fréquentes sur les données et la méthodologie de l'observatoire, basé sur l'outil Cyclopolis.
 imageUrl: 
 ---
 
@@ -45,8 +45,8 @@ Pour chaque tronçon de Véloligne, nous avons donc regardé s'il était conform
 
 Parmi les critères utilisés nous avons essentiellement retenu : la présence ou non d'un conflit piéton/vélo ; le confort ; la continuité et le caractère direct des trajets.
 
-## En travaux sur le terrain, mais pas sur Cyclopolis ?
-Vous pourriez constater que certains tronçons sont réellement en travaux, mais qu'ils n'apparaissent pas sous ce statut sur la carte interactive de Cyclopolis. Malgré nos efforts pour suivre au plus près l'avancement du chantier des Vélolignes, il est possible que nous n'ayons pas encore eu l'information de début des travaux. Dans ce cas, n'hésitez pas à nous le signaler sur [ce lien](https://www.velocite-montpellier.fr/asso/contact/).
+## En travaux sur le terrain, mais pas sur l'observatoire ?
+Vous pourriez constater que certains tronçons sont réellement en travaux, mais qu'ils n'apparaissent pas sous ce statut sur la carte interactive. Malgré nos efforts pour suivre au plus près l'avancement du chantier des Vélolignes, il est possible que nous n'ayons pas encore eu l'information de début des travaux. Dans ce cas, n'hésitez pas à nous le signaler sur [ce lien](https://www.velocite-montpellier.fr/asso/contact/).
 
 <!--
 ## Terminé ou Prévu ?
@@ -74,17 +74,6 @@ Pour obtenir les chiffres lisibles sur le tableau de bord de la page d’accueil
 
 ## 75 ou 80% ?
 Dans ses annonces officielles de mai 2022, la Métropole de Montpellier a évoqué une réalisation de 75% du réseau des Vélolignes d'ici 2026. En se basant sur les <a href="https://data.montpellier3m.fr/dataset/reseau-express-velo-de-montpellier-mediterranee-metropole">données diffusées en opendata par la métropole</a>, Vélocité obtient un chiffre de 80%. Le code source du site web est public et chacun est en mesure de reprendre nos informations géographiques pour vérifier leur exactitude.
-
-<!--
-## Précision des cartographies
-Nous nous sommes efforcés d’être le plus précis possible sur le positionnement de l’aménagement cyclable dans nos cartes interactives. Cependant, certains tronçons ont été dessinés à un moment où nous ignorions le côté d’insertion de la piste sur la rue. Ainsi, en zoomant beaucoup sur une rue en particulier, il est possible de retrouver des incohérences. C’est tout à fait normal, car la carte interactive a pour objectif principal de repérer les rues concernées par l’aménagement et pas son insertion précise. Nous travaillerons cependant à une amélioration de cette précision de manière à pouvoir intégrer les informations géographiques de la plateforme au sein de la communauté d’OpenStreetMap.
-
-## Réseau 2030
-La plateforme Cyclopolis a pour objectif de surveiller la bonne réalisation du réseau cyclable des Voies Lyonnaises sur le mandat en cours de la Métropole de Lyon. Ce mandat se termine en 2026. C’est sur ce projet précis que porte la plateforme Cyclopolis lancée à l’automne 2023.
-
-En cas de non-réélection de la majorité politique actuelle au Grand Lyon, les aménagements qui ne seront pas réalisés à l’été 2026 pourraient faire l’objet d’ajustements majeurs voire d’abandons purs et simples des nouveaux élus qui seront nommés lors de l’élection métropolitaine de 2026. Il n’est donc pas possible à ce stade d’affirmer que les tronçons reportés et ceux annoncés pour « 2030 » seront réellement réalisés à cette date.
-
-A l’occasion des campagnes pour les élections métropolitaines de 2026, la plateforme Cyclopolis évoluera pour comparer les programmes des différentes formations politiques candidates au sujet du réseau des Voies Lyonnaises à l’horizon 2032.-->
 
 ## Réutilisation du contenu du site
 Ce site est basé sur le site <a href="https://cyclopolis.fr" target="_blank">https://cyclopolis.fr</a>, réalisé par l’association FUB lyonnaise « La Ville à Vélo » <a href="https://lavilleavelo.org" target="_blank">https://lavilleavelo.org</a> et diffusé en opensource.

@@ -1,5 +1,5 @@
 ---
-title: Cyclopolis est Open Source et réutilisable
+title: L'outil Cyclopolis est Open Source et réutilisable
 description: Guide à destination des associations qui souhaiteraient réutiliser cyclopolis pour suivre les infrastructures cyclables de leur ville.
 imageUrl: https://cyclopolis.lavilleavelo.org/cyclopolis.png
 ---
