@@ -1,4 +1,6 @@
 Court terme :
+- bug page Overview : c'est la légende "réseau" qui s'affiche dans la page bien que ce soit la couche "quality" qui est affichée
+- bug page evolution : quand on clique sur les boutons des années ça fait foirer l'affichage des couches et les légendes. Bien décrit par François ici https://jesuisundesdeux.slack.com/archives/GTHR882AZ/p1725814869592089?thread_ts=1725738385.649359&cid=GTHR882AZ
 - Changer lien vers le communiqué officiel dans les news
 - changer const BASE_URL = 'https://velocite-montpellier.fr';
 const COVER_IMAGE_URL = 'https://observatoire-velo-montpellier.netlify.app/_nuxt/logoCyclopolisVGM.CzJjkGQi.png'; quand ce sere hébergé proprement
