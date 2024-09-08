@@ -36,7 +36,7 @@ Pas de projet en cours à la connaissance de Vélocité.
 <span style="color:#FFEB3B;font-weight:bold;">À améliorer</span> Section existante (voie verte ancienne) aux standards de confort, qualité, sécurité et attractivité dépassés et non conformes aux exigences d'une Véloligne.
 Zone dangereuse au sud du port Ariane. La voie verte sature déjà les jours de plus grande affluence avec un trafic vélo dépassant les 3000 passages quotidiens.
 
-#### Branche vers Maurin
+#### Desserte de Maurin
 
 ::banner{type="unsecured"}
 Pas de projet en cours à la connaissance de Vélocité.

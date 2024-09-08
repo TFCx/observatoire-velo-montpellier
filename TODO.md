@@ -1,5 +1,7 @@
 Court terme :
 - Changer lien vers le communiqué officiel dans les news
+- changer const BASE_URL = 'https://velocite-montpellier.fr';
+const COVER_IMAGE_URL = 'https://observatoire-velo-montpellier.netlify.app/_nuxt/logoCyclopolisVGM.CzJjkGQi.png'; quand ce sere hébergé proprement
 - Les changmements de taille du logo au scroll / sous mobile => bof
 - Texte :
   - adhérer à Vélocité => texte à changer (nico le donnera)
@@ -11,7 +13,7 @@ Court terme :
 - Cherry pick tableau de bord
 - Stats qualité première page
 - Renseigner un peu plus en détail Vélolignes C et D  (.md)
-- Tableau de bord : essayer
+- Tableau de bord : essaye
 
 Moyen terme :
 - résoudre le bug de :line-link{line=X}
