@@ -41,7 +41,7 @@ Pas de projet en cours à la connaissance de Vélocité.
 
 #### La Valsière ⇄ Saint-Gély-du-Fesc
 
-<span style="color:green;font-weight:bold">Satisfaisant</span> 
+<span style="color:#77DD77;font-weight:bold">Satisfaisant</span> 
 L'essentiel de cette partie a été réalisé en 2023 sous forme de chaucidous et de piste séparée. La toute dernière partie à l'arrivée à Saint Gély est encore en travaux
 
 
@@ -66,7 +66,7 @@ En travaux. Une piste bidirectionnelle sera réalisée dans le cadre des travaux
 
 #### Route de Mende de l'avenue Arthur Young à la RM65
 
-<span style="color:green;font-weight:bold;font-style:italic">Satisfaisant</span>
+<span style="color:#77DD77;font-weight:bold;font-style:italic">Satisfaisant</span>
 Voie verte existante de longue date
 
 #### Route de Mende de la RM65 à Montferrier-sur-Lez (Fescau)

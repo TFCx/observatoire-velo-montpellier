@@ -89,7 +89,7 @@ const typeFilters = ref([
   { label: 'Bandes cyclables', isEnable: true, types: ['bandes-cyclables'] },
   { label: 'Zone de rencontre', isEnable: true, types: ['zone-de-rencontre'] },
   { label: 'Chaucidou', isEnable: true, types: ['chaucidou'] },
-  { label: 'Héterogène', isEnable: true, types: ['heterogene'] },
+  { label: 'Hétérogène', isEnable: true, types: ['heterogene'] },
   { label: 'Inconnu', isEnable: true, types: ['inconnu'] },
   { label: 'Aucun aménagement', isEnable: true, types: ['aucun'] },
 ]);

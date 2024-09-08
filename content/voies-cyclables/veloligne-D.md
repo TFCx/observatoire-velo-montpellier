@@ -10,7 +10,7 @@ to: Castries
 ---
 
 ### Pont Gagarine
-<span style="color:orange;font-weight:bold">À améliorer</span> Piste bidirectionnelle sur trottoir existante, réalisée avant mandat, non conforme aux exigences d'une Véloligne. Cette section est commune avec la Véloligne B
+<span style="color:gold;font-weight:bold">À améliorer</span> Piste bidirectionnelle sur trottoir existante, réalisée avant mandat, non conforme aux exigences d'une Véloligne. Cette section est commune avec la Véloligne B
 
 
 ### de Montpellier Sud de France au canal Philippe Lamour

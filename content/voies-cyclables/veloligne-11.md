@@ -18,5 +18,5 @@ to: Prades-le-Lez
 
 ### Rond-point de Baillarguet ⇄ Prades-le-Lez
 
-<span style="color:orange;font-weight:bold">À améliorer</span> 
+<span style="color:gold;font-weight:bold">À améliorer</span> 
 Section existante, à améliorer

@@ -127,7 +127,7 @@ export const useStats = () => {
         name: 'En travaux',
         distance: wipDistance,
         percent: getPercent(wipDistance),
-        class: 'text-velocite-yellow-5 font-normal'
+        class: 'text-velocite-brown-1 font-semibold'
       },
       planned: {
         name: "Prévus d'ici 2026",
@@ -160,7 +160,7 @@ export const useStats = () => {
     'bandes-cyclables': 'Bandes cyclables',
     'zone-de-rencontre': 'Zone de rencontre',
     'chaucidou': 'Chaucidou',
-    'heterogene': 'Héterogène',
+    'heterogene': 'Hétérogène',
     'aucun': 'Aucun aménagement',
     'inconnu': 'Inconnu',
   };

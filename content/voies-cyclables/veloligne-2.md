@@ -6,7 +6,7 @@ description: Véloligne devant offrir (à terme) une jonction directe Montpellie
 trafic:
 cover:
 from: Mtp Antigone
-to: Maugio
+to: Mauguio
 ---
 
 ## Les tronçons (d'ouest en est)
@@ -19,7 +19,7 @@ Section inexistante. Pas de projet en cours à la connaissance de Vélocité.
 
 ### Lez ⇄ Vieille Poste
 
-<span style="color:red;font-weight:bold">Dangereux</span> Section très empruntée. Conflit piéton/vélo important. Les virages de la passerelle sont trop étroits.
+<span style="color:#ff6961;font-weight:bold">Dangereux</span> Section très empruntée. Conflit piéton/vélo important. Les virages de la passerelle sont trop étroits.
 
 ::content-image
 ---
@@ -40,9 +40,9 @@ La partie est a été mise en travaux depuis mars 2024 dans le cadre des travaux
 
 
 
-<span style="color:orange;font-weight:bold">À améliorer</span> Section existante aux standards de confort, qualité, sécurité et attractivité dépassés non conformes aux exigences d'une Véloligne.
+<span style="color:gold;font-weight:bold">À améliorer</span> Section existante aux standards de confort, qualité, sécurité et attractivité dépassés non conformes aux exigences d'une Véloligne.
 
-### Grammont ⇄ Maugio
+### Grammont ⇄ Mauguio
 
 ::banner{type="unsecured"}
 Section non prévue au cours de ce mandat. Reportée à une échéance ultérieure.

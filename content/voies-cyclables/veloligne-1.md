@@ -11,9 +11,9 @@ to: Castelnau / Jacou / Saint-Geniès
 
 ## Les tronçons
 
-### Tronçon Corum ⇄ Castelnau
+### Corum ⇄ Castelnau
 
-<span style="color:orange;font-weight:bold">À améliorer</span> Piste bidirectionnelle sur le côté nord de la route de Nîmes (Avenue Delmas). Étroite et à niveau de trottoir elle est dangereuse à cause de très nombreux potelets et est le siège de conflits vélos/piétons
+<span style="color:gold;font-weight:bold">À améliorer</span> Piste bidirectionnelle sur le côté nord de la route de Nîmes (Avenue Delmas). Étroite et à niveau de trottoir elle est dangereuse à cause de très nombreux potelets et est le siège de conflits vélos/piétons
 
 <br>À Castelnau la véloligne se sépare en deux tronçons :
 
@@ -29,7 +29,7 @@ Initialement prévue pour après 2026 dans la résolution mise au vote en consei
 
 #### Traversée de Clapiers et Jacou
 
-<span style="color:green;font-weight:bold">Globalement satisfaisant</span>
+<span style="color:#77DD77;font-weight:bold">Globalement satisfaisant</span>
 L'itinéraire est existant, majoritairement sous forme de pistes séparées avec de courtes sections où l'itinéraire emprunte des rues avec une faible circulation automobile.
 
 
@@ -41,11 +41,11 @@ Projet de bilatérales
 
 #### Chemin de Verchant
 
-<span style="color:green;font-weight:bold">Satisfaisant</span> La voie verte existante a été rénovée et élargie. La jonction côté Marcel Dassault n'est plus accessible aux motorisés.
+<span style="color:#77DD77;font-weight:bold">Satisfaisant</span> La voie verte existante a été rénovée et élargie. La jonction côté Marcel Dassault n'est plus accessible aux motorisés.
 
 #### Chemin du Clos de l'Armet
 
-<span style="color:green;font-weight:bold">Satisfaisant</span> Un filtre modal a été mis en place en milieu de section afin de supprimer la possibilité de raccourci et de limiter le trafic motorisé au trafic local
+<span style="color:#77DD77;font-weight:bold">Satisfaisant</span> Un filtre modal a été mis en place en milieu de section afin de supprimer la possibilité de raccourci et de limiter le trafic motorisé au trafic local
 
 #### Sablassou ⇄ Le Crès (Pointes)
 
