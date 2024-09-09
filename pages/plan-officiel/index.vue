@@ -12,7 +12,7 @@
 const { getRevName } = useConfig();
 
 const description = `Découvrez le plan officiel des ${getRevName()}, le futur réseau vélo montpelliérain de 235km.`;
-const COVER_IMAGE_URL = 'https://cyclopolis.lavilleavelo.org/cyclopolis.png';
+const COVER_IMAGE_URL = 'https://observatoire-velo-montpellier.netlify.app/_nuxt/logoCyclopolisVGM.CzJjkGQi.png';
 
 useHead({
   title: `Plan des ${getRevName()}`,

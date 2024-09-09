@@ -4,7 +4,6 @@ Court terme :
 - Changer lien vers le communiqué officiel dans les news
 - changer const BASE_URL = 'https://velocite-montpellier.fr';
 const COVER_IMAGE_URL = 'https://observatoire-velo-montpellier.netlify.app/_nuxt/logoCyclopolisVGM.CzJjkGQi.png'; quand ce sere hébergé proprement
-- virer les https://cyclopolis.lavilleavelo.org/cyclopolis.png qui traînent
 - Les changmements de taille du logo au scroll / sous mobile => bof
 - Texte :
   - adhérer à Vélocité => texte à changer (nico le donnera)
