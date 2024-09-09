@@ -2,7 +2,7 @@
 line: 4
 lineName: Véloligne 4
 lineNameShort: 4
-description: Basée à près de 80% sur des équipements anciens cette Véloligne à 4 branches desservira Lattes, Palavas, Pérols, Carnon et l'aéroport
+description: Basée à près de 80% sur des équipements anciens cette Véloligne à 4 branches desservira Lattes, Palavas, Pérols, Carnon et l'aéroport.
 trafic:
 cover:
 from: Mtp Antigone
@@ -16,12 +16,12 @@ to: Lattes / Maurin / Palavas / Pérols / Aéroport / Carnon
 #### Antigone ⇄ Rond-point Christophe Colomb
 
 ::banner{type="wip"}
-En travaux dans le cadre des travaux du bustram. Sera aménagée en bilatérales
+En travaux dans le cadre des travaux du bustram. Le projet prévoit des pistes bilatérales.
 ::
 
 #### Rond-point Christophe Colomb ⇄ Place Ernest Granier
 
-Aménagement bilatéral prévu
+Aménagement bilatéral prévu.
 
 #### Place Ernest Granier ⇄ Marché du Lez
 
@@ -54,7 +54,7 @@ Tracé sinueux avec de forts facteurs de détour. Nécessité d'un franchissemen
 #### Marché du Lez ⇄ Pérols (Boulidou)
 
 <span style="color:#77DD77;font-weight:bold;">Satisfaisant</span> Bien qu'étroite cette section est globalement satisfaisante.
-<span style="color:#FFEB3B;font-weight:bold;"><br>/!\ Point d'attention /!\ </span>Dans le sens Lattes>Montpellier la fin est inexistante, ce qui conduit une très grande partie des usagers à utiliser la piste située de l'autre côté, circulant ainsi à l'envers sur un espace déjà partagé avec des piétons.
+<span style="color:#FFEB3B;font-weight:bold;"><br>/!\ Point d'attention /!\ </span>Dans le sens "retour" (soit les trajets Lattes>Montpellier) il n'y a pas de piste à la fin. Cela conduit une très grande partie des usagers à utiliser la piste située de l'autre côté, circulant ainsi à l'envers sur un espace déjà étroit et partagé avec des piétons.
 
 #### Desserte de l'aéroport
 
@@ -62,4 +62,4 @@ Tracé sinueux avec de forts facteurs de détour. Nécessité d'un franchissemen
 
 #### Pérols (Boulidou ⇄ Carnon)
 
-<span style="color:#ff6961;font-weight:bold;">Dangereux</span> Étroite, avec un fort conflit piéton/vélo, réalisée - sans protection physique - en bordure de voies à grande circulation automobile, cette section n'est absolument pas conforme aux exigences d'une Véloligne.
+<span style="color:#ff6961;font-weight:bold;">Dangereux</span> Étroite, avec un fort conflit piéton/vélo, réalisée en bordure de voies à grande circulation automobile et sans protection physique, cette section n'est absolument pas conforme aux exigences d'une Véloligne.

@@ -2,19 +2,19 @@
 line: Anneau
 lineName: Anneau
 lineNameShort: 𐍈
-description: L'Anneau vélo est le maillon central des Vélolignes, il permet de relier (presque) toutes les radiales
+description: L'Anneau vélo est le maillon central des Vélolignes, il permet de relier (presque) toutes les radiales.
 trafic: 5k vélos/jour
 cover: https://www.montpellier.fr/uploads/Image/05/IMF_FICHEEVT/GAB_MPL/44302_803_vcsPRAsset_3165929_167415_03610949-a910-4ec3-860c-1c9d201008ff_0.jpeg
 from: Mtp
 to: Mtp
 ---
 
-## Les tronçons (En partant d'Albert 1er dans le sens antihoraire)
+## Les tronçons (en partant d'Albert 1er, dans le sens antihoraire)
 
 ### Rue Henri Serre 
 
 <span style="color:#77dd77;font-weight:bold;">Satisfaisant</span>
-Piste bidirectionnelle large avec bordure chanfreinée<br>
+Piste bidirectionnelle large avec bordure chanfreinée.<br>
 <span style="color:gold;font-weight:bold;">/!\ Point d'attention /!\ </span>Jonction Serre-Bonnard dangereuse.
 
 ### Rue Bonnard
@@ -57,9 +57,9 @@ Prévue pour être piétonne sans matérialisation spécifique d'espaces piéton
 
 <span style="color:gold;font-weight:bold">À améliorer</span> Aménagement hétérogène. Côté ouest : très qualitatif. Piste cyclable séparée large et confortable avec bordures pardonnantes. Côté est : non satisfaisant. Circulation mixte des vélos avec un important trafic motorisé de transit. Les conditions de trafic ne sont pas réunies pour la vélorue qui n'a de vélorue que le panneau. Cette "vélorue" est un exemple de choses à ne pas faire.
 
-### rue Blum, partie Sud
+### Rue Blum, partie sud
 
-<span style="color:#ff6961;font-weight:bold">Dangereux</span> Pistes bilatérales anciennes en "canyon". Le Cerema utilise des photos de ces pistes pour illustrer les exemples d'aménagements à éviter. Piste sur trottoir sur Pont Juvénal dans le sens horaire. L'intersection de la rue du Pont Juvénal vers Blum n'est pas traitée
+<span style="color:#ff6961;font-weight:bold">Dangereux</span> Pistes bilatérales anciennes en "canyon". Le Cerema utilise des photos de ces pistes pour illustrer les exemples d'aménagements à éviter. Piste sur trottoir sur Pont Juvénal dans le sens horaire. L'intersection de la rue du Pont Juvénal vers Blum n'est pas sécurisée.
 
 ::content-image
 ---

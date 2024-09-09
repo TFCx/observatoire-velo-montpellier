@@ -10,16 +10,16 @@ to: Castries
 ---
 
 ### Pont Gagarine
-<span style="color:gold;font-weight:bold">À améliorer</span> Piste bidirectionnelle sur trottoir existante, réalisée avant mandat, non conforme aux exigences d'une Véloligne. Cette section est commune avec la Véloligne B
+<span style="color:gold;font-weight:bold">À améliorer</span> Piste bidirectionnelle sur trottoir existante, réalisée avant mandat, non conforme aux exigences d'une Véloligne. Cette section est commune avec la Véloligne B.
 
 
 ### de Montpellier Sud de France au canal Philippe Lamour
 
-Prévue pour 2026. La réalisation d'un pont-cadre sous la RM66 doit permettre de ménager le franchissement manquant entre Montpellier et Mauguio. Études engagées. Date des travaux non connues.
+Prévue pour 2026. La réalisation d'un pont-cadre sous la RM66 doit permettre de ménager le franchissement manquant entre Montpellier et Mauguio. Études engagées. Date des travaux non connue.
 
 ### canal Philippe Lamour
 
-Voie verte existante, réalisée par l'agglomération Pays de l'Or
+<span style="color:#77dd77;font-weight:bold">Satisfaisant</span> Voie verte existante, réalisée par l'agglomération Pays de l'Or.
 
 ### Mauguio ⇄ Baillargues
 Prévue pour 2026.

@@ -2,7 +2,7 @@
 line: 1
 lineName: Véloligne 1
 lineNameShort: 1
-description: Véloligne desservant les communes du quart nord-est de la métropole
+description: Véloligne desservant les communes du quart nord-est de la métropole.
 trafic:
 cover:
 from: Mtp Corum
@@ -25,7 +25,7 @@ Le point noir est la traversée de Castelnau via Jean Jaurès.
 ::banner{type="info"}
 Initialement prévue pour après 2026 dans la résolution mise au vote en conseil de Métrople, le maire de Castelnau Frédéric Lafforgue a annoncé, lors du même conseil, souhaiter la réaliser avant 2026.
 ::
-<a href="https://www.synople.tv/Montpellier3M/2022/vodC3M_220531.php">Conseil de métrople du 21 mai 2022 - intervention de M. Lafforque à 1:04:20</a>
+<a href="https://www.synople.tv/Montpellier3M/2022/vodC3M_220531.php">Conseil de métropole du 21 mai 2022 - intervention de M. Lafforgue à 1:04:20</a>
 
 #### Traversée de Clapiers et Jacou
 
@@ -54,7 +54,7 @@ En projet dans le cadre de l'extension de la ligne de Bustram 1
 #### Le Crès ⇄ Vendargues
 
 ::banner{type="wip"}
-Aménagement en tactique avec bandes cyclables protégées par des bordures Zicla
+Aménagement tactique avec bandes cyclables protégées par des bordures Zicla
 ::
 
 <br>À l'entrée de Vendargues la véloligne se sépare à nouveau en deux tronçons :

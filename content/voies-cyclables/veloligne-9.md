@@ -2,7 +2,7 @@
 line: 9
 lineName: Véloligne 9
 lineNameShort: 9
-description: Cette véloligne desservira le nord-ouest de Montpellier et Grabels
+description: Cette véloligne desservira le nord-ouest de Montpellier et Grabels.
 trafic: 
 cover: 
 from: Mtp Château d'Ô

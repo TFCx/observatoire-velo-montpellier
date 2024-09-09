@@ -2,7 +2,7 @@
 line: 10
 lineName: Véloligne 10
 lineNameShort: 10
-description: Cette Véloligne desservira le nord de Montpellier, Grabels (La Valsière), Saint-Gely-du-Fesc et Montferrier-sur-Lez
+description: Cette Véloligne desservira le nord de Montpellier, Grabels (La Valsière), Saint-Gely-du-Fesc et Montferrier-sur-Lez.
 trafic: 0k vélos/jour
 cover: https://toutmontpellier.fr/wp-content/uploads/2023/07/preparation-des-travaux-pour-la-veloligne-10-installation-dun-collecteur-separatif-rue-charles-flahault.jpg
 from: Mtp Les Arceaux
@@ -13,11 +13,11 @@ to: Saint-Gély / Montferrier
 
 ### Anneau vélo ⇄ Place Jules Rimet
 
-Cette section existante est aménagée en piste bidirectionnelle avec un peu moins de mille passages par jour en moyenne
+Cette section existante est aménagée en piste bidirectionnelle avec un peu moins de mille passages par jour en moyenne.
 
 <a href="https://compteurs.velocite-montpellier.fr/detail/saint-jaumes-nord">Données du compteur "Faubourg Saint Jaumes Nord"</a>
 
-### Flahault entre Jules Rimet et Voie Domitienne
+### Flahault entre la place Jules Rimet et la Voie Domitienne
 
 Sur cette section il est prévu d'aménager de larges pistes séparées de chaque côté de la rue de manière à finaliser et protéger les aménagements actuels.
 
@@ -27,7 +27,7 @@ Au niveau de la voie Domitienne la Véloligne 10 se sépare en deux branches.
 
 #### Voie Domitienne ⇄ Lapeyronie
 
-Cette section sera aménagée en continuité de la section précédente avec de larges pistes séparées de chaque côté de la route jusqu'à l'hôpital Lapeyronie
+Cette section sera aménagée en continuité de la section précédente avec de larges pistes séparées de chaque côté de la route jusqu'à l'hôpital Lapeyronie.
 
 #### Lapeyronie ⇄ Rond-point de la Lyre
 
@@ -42,36 +42,36 @@ Pas de projet en cours à la connaissance de Vélocité.
 #### La Valsière ⇄ Saint-Gély-du-Fesc
 
 <span style="color:#77DD77;font-weight:bold">Satisfaisant</span> 
-L'essentiel de cette partie a été réalisé en 2023 sous forme de chaucidous et de piste séparée. La toute dernière partie à l'arrivée à Saint Gély est encore en travaux
+L'essentiel de cette partie a été réalisé en 2023 sous forme de chaucidous et de piste séparée. La toute dernière partie à l'arrivée à Saint Gély est encore en travaux.
 
 
 
-### Véloligne 10b vers Montferrier-le-Lez
+### Véloligne 10b vers Montferrier-sur-Lez
 
-#### Voie Domitienne ⇄ rue Dunant
+#### Voie Domitienne ⇄ Rue Dunant
 
 ::banner{type="unsecured"}
 Cette section aurait dû être réalisée avec le bustram 2, reporté après le mandat. En l'état c'est une discontinuité majeure de la Véloligne 10b, qui pourrait perdurer au delà du mandat.
 ::
 
-#### rue Dunant ⇄ Place de la voie Domitienne
+#### Rue Dunant ⇄ Place de la Voie Domitienne
 
 Section réalisée récemment dans le cadre des travaux de la ligne 5 de tram. Bien que réalisées avec des bordures chanfreinées côté piéton, ces pistes bilatérales sont étroites (1m50), donc non conformes aux exigences d'une Véloligne.
 
-#### Place de la voie Domitienne ⇄ avenue Arthur Young
+#### Place de la Voie Domitienne ⇄ Avenue Arthur Young
 
 ::banner{type="wip"}
 En travaux. Une piste bidirectionnelle sera réalisée dans le cadre des travaux de la ligne 5 de tramway.
 ::
 
-#### Route de Mende de l'avenue Arthur Young à la RM65
+#### Route de Mende de l'Avenue Arthur Young à la RM65
 
 <span style="color:#77DD77;font-weight:bold;font-style:italic">Satisfaisant</span>
-Voie verte existante de longue date
+Voie verte existante de longue date.
 
 #### Route de Mende de la RM65 à Montferrier-sur-Lez (Fescau)
 
-Section non existante. Prévue au cours du mandat
+Section non existante. Prévue au cours du mandat.
 
 #### Route de St Clément (du rond point du Fescau à St Clément)
 

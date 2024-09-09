@@ -2,7 +2,7 @@
   <div>
     <div>
       <div class="text-center text-xl text-gray-900">
-        Distance totale: <span class="font-bold" :style="`color: ${color}`">{{ displayDistanceInKm(distance, 1) }}</span>
+        Distance totale : <span class="font-bold" :style="`color: ${color}`">{{ displayDistanceInKm(distance, 1) }}</span>
       </div>
       <ProgressBar :voies="[geojson]" />
       <Stats :voies="[geojson]" :precision="1" />

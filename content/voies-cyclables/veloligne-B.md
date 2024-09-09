@@ -11,26 +11,26 @@ to: Gare Sud de France
 
 
 ### Gare sud de France Cambacerès ⇄ Boirargues (pont Gagarine)
-<span style="color:gold;font-weight:bold">À améliorer</span> Aménagement existant en piste bidirectionelle sur trottoir, non conforme aux exigences d'une Véloligne.  Cette section est commune avec la Véloligne D
+<span style="color:gold;font-weight:bold">À améliorer</span> Aménagement existant en piste bidirectionnelle sur trottoir, non conforme aux exigences d'une Véloligne.  Cette section est commune avec la Véloligne D.
 
 ### Entrée de Boirargues
 ::banner{type="unsecured"}
-Aucun aménagement à l'heure actuelle. Reporté après le mandat
+Aucun aménagement à l'heure actuelle. Reporté après le mandat.
 ::
 
 ### Boirargues (Lycée Champollion)
 <span style="color:#ff6961;font-weight:bold">Non satisfaisant</span> Aménagement existant non conforme aux exigences d'une Véloligne.
 ::banner{type="unsecured"}
-Reporté après le mandat
+Reporté après le mandat.
 ::
 
 ### Boirargues (Mc Donald)	
 ::banner{type="unsecured"}
-Aucun aménagement à l'heure actuelle. Reporté après le mandat
+Aucun aménagement à l'heure actuelle. Reporté après le mandat.
 ::
 
 ### Boirargues (zone commerciale Soriech)
-Prévu pour 2026
+Prévu pour 2026.
 ::banner{type="unsecured"}
 Pas de projet en cours à la connaissance de Vélocité.
 ::
@@ -38,13 +38,13 @@ Pas de projet en cours à la connaissance de Vélocité.
 ### Boirargues Lironde
 <span style="color:#77DD77;font-weight:bold">Satisfaisant</span> L'aménagement existant, bien qu'ancien, est correct.
 
-### Avenue de Boirargues de l'entrée de Lattes à la place de l'Europe
+### Avenue de Boirargues, de l'entrée de Lattes à la Place de l'Europe
 <span style="color:gold;font-weight:bold">À améliorer</span> Réalisé récemment à l'été 2024, l'aménagement est très loin des plus hauts standards cyclables avec des intersections inconfortables, des obstacles sur le linéaire et un risque important de conflit piéton vélo. Le niveau de standard n'est pas conforme aux exigences d'une Véloligne.
 
-### Lattes centre - avenue de l'Europe
+### Lattes centre - Avenue de l'Europe
 <span style="color:#77DD77;font-weight:bold">Satisfaisant</span> Même s'il pourrait être amélioré, notamment dans ses connexions et en particulier celle de l'extrémité ouest, totalement inexistante aujourd'hui et créant un impasse cyclable, cet aménagement réalisé à l'été 2024 est globalement satisfaisant.
 
-### Lattes dernière section de l'avenue de l'Europe côté port Ariane
+### Lattes, dernière section de l'Avenue de l'Europe côté Port Ariane
 Prévu pour 2026. Nécessaire à la connexion entre la section réalisée à l'été 2024 et les équipements existants côté Lez.
 ::banner{type="unsecured"}
 Pas de projet en cours à la connaissance de Vélocité.
@@ -52,29 +52,29 @@ Pas de projet en cours à la connaissance de Vélocité.
 
 ### Franchissement échangeur 2x2 voies
 ::banner{type="unsecured"}
-Aménagements existants insuffisants malgré les légères améliorations récentes. Reporté après le mandat
+Aménagements existants insuffisants malgré les légères améliorations récentes. Reporté après le mandat.
 ::
 
 ### Liaison Lattes ⇄ Montpellier par Saporta
 ::banner{type="unsecured"}
-Reporté après le mandat
+Reporté après le mandat.
 ::
 
 ### Section Tournezy (jonction Saporta ⇄ rond-point Paul-Louis Bret)
 ::banner{type="unsecured"}
-Reporté après le mandat
+Reporté après le mandat.
 ::
 
 ### Avenue d'El Alamein
 ::banner{type="unsecured"}
-Reporté après le mandat
+Reporté après le mandat.
 ::
 
 ### Avenue de Pavelet entre Castelle et Mehul
-<span style="color:gold;font-weight:bold">À améliorer</span> Aménagement existant en piste bidirectionelle sur trottoir, non conforme aux exigences d'une Véloligne.
+<span style="color:gold;font-weight:bold">À améliorer</span> Aménagement existant en piste bidirectionnelle sur trottoir, non conforme aux exigences d'une Véloligne.
 
 ### Avenue de Pavelet entre Mehul et le Grand M
-<span style="color:gold;font-weight:bold">À améliorer</span> Aménagement existant en piste bidirectionelle sur trottoir, non conforme aux exigences d'une Véloligne. Les travaux récents sur la partie nord n'ont pas apporté d'amélioration significative et n'ont pas eu d'influence sur le rat run par la contre-allée
+<span style="color:gold;font-weight:bold">À améliorer</span> Aménagement existant en piste bidirectionnelle sur trottoir, non conforme aux exigences d'une Véloligne. Les travaux récents sur la partie nord n'ont pas apporté d'amélioration significative et n'ont pas eu d'influence sur le rat run par la contre-allée.
 
 ### Avenue de Vanières entre le Grand M et Bugarel
 Prévu pour 2026.
@@ -84,7 +84,7 @@ Pas de projet en cours à la connaissance de Vélocité.
 
 ### Avenue de Vanières entre Bugarel et Paul Valéry
 ::banner{type="wip"}
-En travaux dans le cadre du chantier de la ligne 5 de tramway
+En travaux dans le cadre du chantier de la ligne 5 de tramway.
 ::
 
 ### Avenue de Vanières entre Paul Valéry et la piscine Spillaert
@@ -99,19 +99,19 @@ Prévu pour 2026.
 Pas de projet en cours à la connaissance de Vélocité.
 ::
 
-### Avenue de la recambale - la Martelle
+### Avenue de la Recambale - la Martelle
 Prévu pour 2026.
 ::banner{type="unsecured"}
 Pas de projet en cours à la connaissance de Vélocité.
 ::
 
-### Avenue de la liberté entre carrefour des Garrats et Celleneuve
+### Avenue de la Liberté entre carrefour des Garrats et Celleneuve
 ::banner{type="unsecured"}
 Reporté après le mandat.
 ::
 
-### Ouest de l'avenue de Lodève
-<span style="color:gold;font-weight:bold">À améliorer</span> Aménagement existant en pistes bilatérales. Nécessiterait des travaux pour être conforme aux exigences d'une Véloligne (sécurité, confort, largeur, gestion des intersections)
+### Ouest de l'Avenue de Lodève
+<span style="color:gold;font-weight:bold">À améliorer</span> Aménagement existant en pistes bilatérales. Nécessiterait des travaux pour être conforme aux exigences d'une Véloligne (sécurité, confort, largeur, gestion des intersections).
 
 ### Parking de la Mosson
 Prévu pour 2026.
@@ -126,13 +126,13 @@ Pas de projet en cours à la connaissance de Vélocité.
 ### Rue du professeur Blayac
 <span style="color:#77DD77;font-weight:bold">Satisfaisant</span> Aménagement existant globalement satisfaisant.
 
-### Avenue des Moulins entre le Lycée Jean Monnet et le rond-point de la Lyre
+### Avenue des Moulins, entre le Lycée Jean Monnet et le rond-point de la Lyre
 <span style="color:gold;font-weight:bold">À améliorer</span> Aménagement existant non conforme aux exigences d'une Véloligne.
 
 ### M65 entre le rond-point de la Lyre et le rond-point de Girac
 <span style="color:#77DD77;font-weight:bold">Satisfaisant</span> Aménagement existant globalement satisfaisant.
 ::banner{type="wip"}
-Environs du rond-point de Girac en travaux dans le cadre du chantier de la ligne 5 de tramway
+Environs du rond-point de Girac en travaux dans le cadre du chantier de la ligne 5 de tramway.
 ::
 
 ### M65 entre le rond-point de Girac et le Fesquet
@@ -162,7 +162,7 @@ Pas de projet en cours à la connaissance de Vélocité.
 <span style="color:gold;font-weight:bold">À améliorer</span> Aménagement existant de standards anciens empruntant pour partie un équipement réalisé pour la Véloligne 70.
 
 ### Jonction le Crès ⇄ boulevard Philippe Lamour 
-<span style="color:#77DD77;font-weight:bold">Satisfaisant</span> Aménagement globalement satisfaisant sous forme de chaucidou dans une zone à très faible trafic pour la partie nord et sous forme d'une piste bidirectionelle récemment rénovée dans la partie sud. La traversée du boulevard Philippe Lamour reste problématique et le traitement de cette intersection avec une voie à très grande circulation n'est pas aux standards d'une Véloligne.
+<span style="color:#77DD77;font-weight:bold">Satisfaisant</span> Aménagement globalement satisfaisant sous forme de chaucidou dans une zone à très faible trafic pour la partie nord et sous forme d'une piste bidirectionnelle récemment rénovée dans la partie sud. La traversée du boulevard Philippe Lamour reste problématique et le traitement de cette intersection avec une voie à très grande circulation n'est pas aux standards d'une Véloligne.
 
 ### Jonction Philippe Lamour ⇄ Grammont
 ::banner{type="unsecured"}
@@ -171,7 +171,7 @@ Reporté après le mandat.
 <!-- à découper en deux si ça bouge sur la route de Mauguio ou sur l'itinéraire à créer
 -->
 
-### Avenue Einstein entre Grammont et l'avenue Becquerel
+### Avenue Einstein, entre Grammont et l'avenue Becquerel
 <span style="color:gold;font-weight:bold">À améliorer</span> Aménagement existant aux standards anciens non conformes aux exigences d'une Véloligne.
 
 ### Jonction Einstein ⇄ Pénélope par Evariste Gallois

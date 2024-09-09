@@ -9,7 +9,7 @@
             Où en est le projet ?
           </h2>
           <p class="text-xl text-gray-500">
-          Basé sur un réseau pré-existant (plus de 80km réalisés avant le mandat) les premiers travaux ont débuté en 2022
+          Basé sur un réseau préexistant (plus de 80km réalisés avant le mandat) les premiers travaux ont débuté en 2022.
           </p>
         </div>
       </div>

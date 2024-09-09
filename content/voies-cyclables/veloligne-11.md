@@ -2,7 +2,7 @@
 line: 11
 lineName: Véloligne 11
 lineNameShort: 11
-description: Cette Véloligne reliera le nord de Montpellier à Prades-le-Lez
+description: Cette Véloligne reliera le nord de Montpellier à Prades-le-Lez.
 trafic: 
 cover: 
 from: Clapiers Girac
@@ -19,4 +19,4 @@ to: Prades-le-Lez
 ### Rond-point de Baillarguet ⇄ Prades-le-Lez
 
 <span style="color:gold;font-weight:bold">À améliorer</span> 
-Section existante, à améliorer
+Section existante, à améliorer.
