@@ -80,7 +80,7 @@ streetView: 43.6058282,3.8896056,3a,15y,26.2h,88.67t
 
 ### Rue du Professeur Léon Vallois
 
-<span style="color:#77DD77;font-weight:bold">Satisfaisant</span>
+<span style="color:#77DD77;font-weight:bold">Globalement satisfaisant</span> La traversée du carrefour du Corum est un des gros points noirs de la commune, régulièrement pointé comme tel via le baromètre de la FUB.
 
 ### Quai du Verdanson
 
