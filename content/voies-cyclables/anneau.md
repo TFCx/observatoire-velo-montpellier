@@ -13,7 +13,7 @@ to: Mtp
 
 ### Rue Henri Serre 
 
-<span style="color:#77dd77;font-weight:bold;">Satisfaisant</span>
+<span style="color:#77dd77;font-weight:bold;">Globalement satisfaisant</span>
 Piste bidirectionnelle large avec bordure chanfreinée.<br>
 <span style="color:gold;font-weight:bold;">/!\ Point d'attention /!\ </span>Jonction Serre-Bonnard dangereuse.
 
@@ -55,7 +55,7 @@ Prévue pour être piétonne sans matérialisation spécifique d'espaces piéton
 <span style="color:gold;font-weight:bold;">/!\ Point d'attention /!\ </span>Bordure boudin dangereuse, notamment entre Palavas et Voltaire.
 ### Quai Laurens
 
-<span style="color:gold;font-weight:bold">À améliorer</span> Aménagement hétérogène. Côté ouest : très qualitatif. Piste cyclable séparée large et confortable avec bordures pardonnantes. Côté est : non satisfaisant. Circulation mixte des vélos avec un important trafic motorisé de transit. Les conditions de trafic ne sont pas réunies pour la vélorue qui n'a de vélorue que le panneau. Cette "vélorue" est un exemple de choses à ne pas faire.
+<span style="color:#ff6961;font-weight:bold">Non satisfaisant</span> Aménagement hétérogène. Le côté ouest est très qualitatif, la piste cyclable séparée est large et confortable avec bordures pardonnantes sur une bonne partie du linéaire. Côté est les vélos circulent au milieu d'un très important trafic motorisé de transit. Les conditions de trafic ne sont pas réunies pour la vélorue qui n'a de vélorue que le panneau. Cette "vélorue" est un excellent exemple de choses à ne pas faire.
 
 ### Rue Blum, partie sud
 
@@ -72,7 +72,7 @@ streetView: 43.6058282,3.8896056,3a,15y,26.2h,88.67t
 
 ### rue Blum
 
-<span style="color:#77DD77;font-weight:bold">Satisfaisant</span> Vélorue.
+<span style="color:#77DD77;font-weight:bold">Satisfaisant</span> Vélorue. Chaussée réalisée avec une différence de niveau pour marquer l'espace de circulation et le différencier de l'espace piéton. L'espace dévolu à l'anneau vélo est placé au centre afin de maximiser les co-visibilités et réduire les zones de conflit potentiel. En revanche l'intersection au niveau où l'anneau vélo traverse Cartier n'est pas du tout sécurisée ni marquée.
 
 ### Avenue Mermoz
 
@@ -84,4 +84,4 @@ streetView: 43.6058282,3.8896056,3a,15y,26.2h,88.67t
 
 ### Quai du Verdanson
 
-<span style="color:gold;font-weight:bold">À améliorer</span> Aménagement ancien en bordure de trottoirs trop étroits. Conflits piétons/vélo. Change de côté régulièrement en perdant la priorité. Récentes améliorations avec suppression des obstacles sur certaines sections.
+<span style="color:gold;font-weight:bold">À améliorer</span> Aménagement ancien situé à proximité immédiate de trottoirs souvent trop étroits. Conflits piétons/vélo. Change de côté régulièrement en perdant la priorité. Récentes améliorations avec suppression des obstacles sur certaines sections.
