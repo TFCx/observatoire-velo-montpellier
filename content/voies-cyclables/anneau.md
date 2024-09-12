@@ -24,11 +24,11 @@ En travaux. Elle sera aménagée comme la rue Saint-Louis en vélorue.
 ::
 
 
-### Rues Gerhardt et Doria
+### Rues Gerhardt et Doria de Bonnard à Assas
+<span style="color:#77DD77;font-weight:bold;">Satisfaisant</span> Aménagement quasi-exemplaire en pistes bilatérales. Points de vigilance au niveau de l'arrêt de bus côté Assas et au niveau de l'intersection Gerhardt/Bonnard/Saint Jaumes.
 
-::banner{type="wip"}
-En travaux. Aménagement bilatéral sauf sur la toute première section de Doria où les vélos seront avec les voitures dans le sens du sud vers le nord.
-::
+### Rue Doria de Assas à Paladhile
+<span style="color:#ff6961;font-weight:bold">Non satisfaisant</span> Le double-sens est confortable et bien protégé mais dans le sens de la circulation l'aménagement n'est pas au niveau d'exigence d'une véloligne. Du fait du choix de conserver le stationnement à cet endroit plutôt que de le reporter du côté de la place Max Rouquette ou dans les rues adjacentes, les vélos sont mêlés aux motorisés dans un trafic encore beaucoup trop important pour permettre la mixité.
 
 ### Rue Saint-Louis
 
