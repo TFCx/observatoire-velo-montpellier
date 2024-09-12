@@ -47,12 +47,12 @@ Prévue pour être piétonne sans matérialisation spécifique d'espaces piéton
 
 ### Rue du Grand Saint-Jean
 
-<span style="color:#77DD77;font-weight:bold">Satisfaisant</span> Aménagement hétérogène avec vélos dans la circulation dans le sens horaire et piste séparée dans le sens anti-horaire.
+<span style="color:gold;font-weight:bold">À améliorer</span> Aménagement hétérogène avec vélos dans la circulation dans le sens horaire et piste séparée dans le sens anti-horaire.
 
 ### Boulevard de Strasbourg
 
-<span style="color:#77DD77;font-weight:bold">Satisfaisant</span> Côté Carnot : pistes bilatérales. Sur la section entre l'avenue de Palavas et la maison pour tous Voltaire : vélorue. Cette vélorue est quasi-exemplaire (n'eût été la bordure boudin centrale) et a été rendue faisable par un changement de plan de circulation (inversion du sens unique).
-
+<span style="color:#77DD77;font-weight:bold">Globalement satisfaisant</span> Côté Carnot : pistes bilatérales. Sur la section entre l'avenue de Palavas et la maison pour tous Voltaire : vélorue. Cette vélorue est quasi-exemplaire (n'eût été la bordure boudin centrale) et a été rendue faisable par un changement de plan de circulation (inversion du sens unique).
+<span style="color:gold;font-weight:bold;">/!\ Point d'attention /!\ </span>Bordure boudin dangereuse, notamment entre Palavas et Voltaire.
 ### Quai Laurens
 
 <span style="color:gold;font-weight:bold">À améliorer</span> Aménagement hétérogène. Côté ouest : très qualitatif. Piste cyclable séparée large et confortable avec bordures pardonnantes. Côté est : non satisfaisant. Circulation mixte des vélos avec un important trafic motorisé de transit. Les conditions de trafic ne sont pas réunies pour la vélorue qui n'a de vélorue que le panneau. Cette "vélorue" est un exemple de choses à ne pas faire.
