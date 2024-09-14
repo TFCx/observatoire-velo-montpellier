@@ -332,7 +332,7 @@ export const useMap = () => {
     return features
   }
 
-  function plotFeatures({ map, updated_features, initialLayer }: { map: Map; updated_features?: Feature[], initialLayer: DisplayedLayer }) {
+  function plotFeatures({ map, updated_features }: { map: Map; updated_features?: Feature[] }) {
     plotBaseBikeInfrastructure(map)
 
     if(updated_features) {
@@ -340,9 +340,6 @@ export const useMap = () => {
       lineStringFeatures = addOtherLineColor(lineStringFeatures);
 
       plotSections(map, lineStringFeatures);
-
-      setDisplayedLayer(initialLayer)
-      setLanesColor(map, initialLayer)
 
       watch(displayedLayer, (displayedLayer) => setLanesColor(map, displayedLayer))
 

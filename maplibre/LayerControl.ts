@@ -3,12 +3,10 @@ export default class LayerControl {
   _onChange: Function;
   _btn_legend: HTMLButtonElement;
   _onClick: Function;
-  _initialLayer: number;
 
 
-  constructor(onClick: Function, onChange: Function, initialLayer: number = 0) {
+  constructor(onClick: Function, onChange: Function) {
     this._onChange = onChange;
-    this._initialLayer = initialLayer
     this._onClick = onClick;
   }
 
@@ -28,9 +26,9 @@ export default class LayerControl {
     this._btn_legend.onclick = () => this._onClick();
     title.appendChild(this._btn_legend);
 
-    this.createRadioButton('network', 'du réseau', this._initialLayer == 0);
-    this.createRadioButton('quality', 'de la qualité des aménagements', this._initialLayer == 1);
-    this.createRadioButton('type', "du type d'aménagement", this._initialLayer == 2);
+    this.createRadioButton('network', 'du réseau', true);
+    this.createRadioButton('quality', 'de la qualité des aménagements', false);
+    this.createRadioButton('type', "du type d'aménagement", false);
 
     return this._container;
   }

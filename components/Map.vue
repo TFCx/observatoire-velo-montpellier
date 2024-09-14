@@ -40,7 +40,6 @@ const defaultOptions = {
   limits: true,
   bikeInfra: false,
   filter: true,
-  initialLayer: 0,
   geolocation: false,
   fullscreen: false,
   onFullscreenControlClick: () => { },
@@ -122,7 +121,7 @@ onMounted(() => {
       if (legendModalComponent.value) {
         (legendModalComponent.value as any).setWhichLayerIsDisplayed(dt);
       }
-    }, options.initialLayer
+    }
   );
   map.addControl(layerControl, 'top-left')
 
@@ -181,7 +180,7 @@ onMounted(() => {
 
   map.on('load', async() => {
     await loadImages({ map });
-    plotFeatures({ map, updated_features: features.value, initialLayer: options.initialLayer });
+    plotFeatures({ map, updated_features: features.value });
     const tailwindMdBreakpoint = 768;
     if (window.innerWidth > tailwindMdBreakpoint) {
       fitBounds({ map, features: features.value });
@@ -191,14 +190,14 @@ onMounted(() => {
   watch(
     features,
     newFeatures => {
-      plotFeatures({ map, updated_features: newFeatures, initialLayer: options.initialLayer });
+      plotFeatures({ map, updated_features: newFeatures });
     }
   );
 
   watch(
     () => props.features,
     newFeatures => {
-      plotFeatures({ map, updated_features: newFeatures, initialLayer: options.initialLayer });
+      plotFeatures({ map, updated_features: newFeatures });
     }
   );
 
