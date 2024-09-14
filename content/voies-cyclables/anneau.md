@@ -15,7 +15,7 @@ to: Mtp
 
 <span style="color:#77dd77;font-weight:bold;">Globalement satisfaisant</span>
 Piste bidirectionnelle large avec bordure chanfreinée.<br>
-<span style="color:gold;font-weight:bold;">/!\ Point d'attention /!\ </span>Jonction Serre-Bonnard dangereuse.
+<span style="color:gold;font-weight:bold;">/!\ Point d'attention /!\ </span>Jonction Serre-Bonnard dangereuse. Virages serrés et étroits à proximité de la traversée du tram.
 
 ### Rue Bonnard
 
@@ -30,10 +30,14 @@ En travaux. Elle sera aménagée comme la rue Saint-Louis en vélorue.
 ### Rue Doria de Assas à Paladhile
 <span style="color:#ff6961;font-weight:bold">Non satisfaisant</span> Le double-sens est confortable et bien protégé mais dans le sens de la circulation l'aménagement n'est pas au niveau d'exigence d'une véloligne. Du fait du choix de conserver le stationnement à cet endroit plutôt que de le reporter du côté de la place Max Rouquette ou dans les rues adjacentes, les vélos sont mêlés aux motorisés dans un trafic encore beaucoup trop important pour permettre la mixité.
 
+### Rue Saint-Louis sur la place Max Rouquette
+
+Aucun aménagement.
+
 ### Rue Saint-Louis
 
 <span style="color:#77DD77;font-weight:bold;">Satisfaisant</span>
-Vélorue étroite dont l'important trafic motorisé de transit a pu être évacué grâce à un changement du plan de circulation, au bénéfice de la qualité de vie du quartier, des piétons, et des vélos. La rue Saint-Louis est un <a href="http://www.velocite-montpellier.fr/wp-content/uploads/2013/10/2013-10-Dossier-de-presse-V%C3%A9lo-Rue-St-Louis.pdf">lieu de combat militant de Vélocité depuis les débuts de l'association (1999)</a>.
+La rue Saint-Louis a pu être libérée de son important trafic motorisé de transit grâce à un changement du plan de circulation, au bénéfice de la qualité de vie du quartier, des piétons, et des vélos. La rue Saint-Louis est un <a href="http://www.velocite-montpellier.fr/wp-content/uploads/2013/10/2013-10-Dossier-de-presse-V%C3%A9lo-Rue-St-Louis.pdf" target="_blank">lieu de combat militant de Vélocité depuis les débuts de l'association (1999)</a>. Bien qu'étroite Saint-Louis est un exemple très intéressant de rue qui fonctionne en vélorue : les piétons ont des espaces sécurisés et les vélos sont les usagers majoritaire de l'espace de circulation. Saint-Louis a un statut de zone de rencontre bien que ce ne soit <a href="https://www.cerema.fr/fr/actualites/concevoir-sa-velorue-cyclistes-nombre-circulation-apaisee" target="_blank">pas recommandé par le Cerema pour une vélorue</a>.
 
 ### Boulevard Gambetta
 
@@ -53,6 +57,11 @@ Prévue pour être piétonne sans matérialisation spécifique d'espaces piéton
 
 <span style="color:#77DD77;font-weight:bold">Globalement satisfaisant</span> Côté Carnot : pistes bilatérales. Sur la section entre l'avenue de Palavas et la maison pour tous Voltaire : vélorue. Cette vélorue est quasi-exemplaire (n'eût été la bordure boudin centrale) et a été rendue faisable par un changement de plan de circulation (inversion du sens unique).
 <span style="color:gold;font-weight:bold;">/!\ Point d'attention /!\ </span>Bordure boudin dangereuse, notamment entre Palavas et Voltaire.
+
+### Boulevard de Strasbourg - Voltaire
+
+<span style="color:gold;font-weight:bold">À améliorer</span> L'aménagement est qualitatif dans le sens horaire (de Quai Laurens vers la gare) mais dans le sens antihoraire il ne répond à aucune des exigences d'une Véloligne.
+
 ### Quai Laurens
 
 <span style="color:#ff6961;font-weight:bold">Non satisfaisant</span> Aménagement hétérogène. Le côté ouest est très qualitatif, la piste cyclable séparée est large et confortable avec bordures pardonnantes sur une bonne partie du linéaire. Côté est les vélos circulent au milieu d'un très important trafic motorisé de transit. Les conditions de trafic ne sont pas réunies pour la vélorue qui n'a de vélorue que le panneau. Cette "vélorue" est un excellent exemple de choses à ne pas faire.

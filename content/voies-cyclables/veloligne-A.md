@@ -54,7 +54,8 @@ Réalisation récente en bidirectionnelle.
 ### Avenue Dubout, de l'Avenue de Palavas à Antonelli
 
 <span style="color:#ff6961;font-weight:bold">Dangereux</span>
-Sur cette section où se trouve une bretelle d'accès depuis Palavas (l'avenue Dubout est une ancienne voie de chemin de fer qui fut convertie en voie express) la bordure boudin franchissable est insufisante pour la sécurisation des usagers.
+Sur cette section où se trouve une bretelle d'accès depuis Palavas (l'avenue Dubout est une ancienne voie de chemin de fer qui fut convertie en voie express) la bordure boudin franchissable est insufisante pour la sécurisation des usagers. Par ailleurs sur cette section le conflit piéton-vélo n'est pas négligeable, les piétons n'ayant d'autre choix que de marcher sur la Véloligne.
+
 
 ### Antonelli
 
