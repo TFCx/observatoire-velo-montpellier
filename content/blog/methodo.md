@@ -7,7 +7,9 @@ imageUrl:
 *Pourquoi ce tronçon est marqué « terminé » alors qu’il n’y a eu aucun travaux ?  
 Pourquoi ma rue est considérée comme « prévue » alors qu’il y a déjà une piste ?  
 À quoi dois-je m’attendre sur les tronçons marqués « reporté après 2026 » ?  
-Que signifient les qualités « satisfaisant / non-satisfaisant » ?*
+Que signifient les qualités « satisfaisant / non-satisfaisant » ?
+Pourquoi ce tronçon est marqué comme « satisfaisant » alors que l'intersection est dangereuse ?
+Pourquoi ce tronçon est marqué comme « à améliorer » alors que la piste semble très bien ?*
 
 On vous explique tout !
 
@@ -26,7 +28,7 @@ Enfin, si une des typologies représente moins de 0.5% du linéaire total, il es
 
 ## Tronçon « satisfaisant / non-satisfaisant » ?
 
-Comme décrit dans les actes administratifs du conseil de Métropole de Montpellier, les Vélolignes sont le nom de baptême du futur **Réseau Express Vélo** de Montpellier. Il sera l’ « épine dorsale » du maillage cyclable de la Métropole.
+Comme décrit dans les actes administratifs du conseil de Métropole de Montpellier, les Vélolignes sont le nom de baptême du futur **Réseau Express Vélo** de Montpellier. Il sera l’ « épine dorsale » du maillage cyclable de la Métropole. Les Vélolignes sont donc un réseau prévu pour être au plus haut niveau de standard cyclable.
 
 *Extrait de la délibération n°M2022-151 du conseil de métropole du 31 mai 2022 :*
 >Afin de pouvoir jouer pleinement son rôle et être exemplaire, afin de donner envie aux personnes hésitantes de sauter le pas, ce Réseau Express Vélo, à haut niveau de service, s’engage à assurer les qualités
@@ -41,9 +43,11 @@ suivantes :
 >
 >Le Réseau Express Vélo a pour objectif d’offrir une expérience qualitative aux personnes se déplaçant à vélo sur un réseau cyclable identifié comme structurant. Il permettra également de répondre à tous les nouvelles pratiques, dont la cyclo-logistique en forte croissance sur le territoire, et tous les gabarits de cycles.
 
-Pour chaque tronçon de Véloligne, nous avons donc regardé s'il était conforme aux qualités annoncées pour le réseau. Si un tronçon n'est pas conforme à ces qualités, il est classé comme « non-satisfaisant ». S'il est conforme à ces qualités, il est classé come « satisfaisant ».  
+Pour chaque tronçon de Véloligne, nous avons donc regardé s'il était conforme aux qualités annoncées pour le réseau. Si un tronçon n'est pas du tout conforme à ces qualités, il est classé comme « non-satisfaisant ». S'il est globalement conforme à ces qualités, il est classé comme « satisfaisant ». S'il présente des défauts qui l'éloignent de ces qualités, il est classé comme « à améliorer ». Le détail est souvent donné dans les pages décrivant les lignes tronçon par tronçon.
 
-Parmi les critères utilisés nous avons essentiellement retenu : la présence ou non d'un conflit piéton/vélo ; le confort ; la continuité et le caractère direct des trajets.
+Attention un tronçon classé comme « satisfaisant » *ne veut pas dire qu'il est parfait*. Par exemple certains tronçons avec des bordures boudins (non satisfaisantes !), qui doivent être retirées (ou remplacées par des bordures chanfreinées selon le cas) ont été classés comme « satisfaisant » car dans sa globalité le tronçons répond à l'essentiel des critères d'une Véloligne.
+
+Parmi les critères utilisés nous avons essentiellement utilisé : la sécurisation ; la présence ou non d'un conflit piéton/vélo ; le confort et la lisibilité ; la continuité et le caractère direct et efficace des trajets.
 
 ## En travaux sur le terrain, mais pas sur l'observatoire ?
 Vous pourriez constater que certains tronçons sont réellement en travaux, mais qu'ils n'apparaissent pas sous ce statut sur la carte interactive. Malgré nos efforts pour suivre au plus près l'avancement du chantier des Vélolignes, il est possible que nous n'ayons pas encore eu l'information de début des travaux. Dans ce cas, n'hésitez pas à nous le signaler sur [ce lien](https://www.velocite-montpellier.fr/asso/contact/).
