@@ -66,33 +66,23 @@ const socials = {
   ],
   lvv: [
     {
-      name: 'Twitter',
-      href: 'https://twitter.com/LaVilleaVelo',
-      icon: 'mdi:twitter'
+      name: 'Mastodon',
+      href: 'https://mastodon.iriseden.eu/@RoueLibreSavoie',
+      icon: 'mdi:mastodon'
     },
     {
       name: 'Facebook',
-      href: 'https://www.facebook.com/lavilleavelolyon/',
+      href: 'https://www.facebook.com/RoueLibreSavoie/',
       icon: 'mdi:facebook'
     },
     {
-      name: 'LinkedIn',
-      href: 'https://www.linkedin.com/company/la-ville-%C3%A0-v%C3%A9lo',
-      icon: 'mdi:linkedin'
-    },
-    {
-      name: 'Instagram',
-      href: 'https://www.instagram.com/lavilleavelolyon',
-      icon: 'mdi:instagram'
-    },
-    {
       name: 'Site web',
-      href: 'https://lavilleavelo.org/',
+      href: 'https://rouelibre.net',
       icon: 'mdi:link'
     },
     {
       name: 'Email',
-      href: 'mailto:contact_at_lavilleavelo.org',
+      href: 'mailto:contact_at_rouelibre.net',
       icon: 'mdi:email-outline'
     }
   ]

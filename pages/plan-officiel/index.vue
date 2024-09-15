@@ -11,7 +11,7 @@
 <script setup lang="ts">
 const { getRevName } = useConfig();
 
-const description = `Découvrez le plan officiel des ${getRevName()}, le futur réseau vélo lyonnais de 260km.`;
+const description = `Découvrez le plan officiel des ${getRevName()}, le réseau vélo de Grand Chambéry.`;
 const COVER_IMAGE_URL = 'https://cyclopolis.lavilleavelo.org/cyclopolis.png';
 
 useHead({
