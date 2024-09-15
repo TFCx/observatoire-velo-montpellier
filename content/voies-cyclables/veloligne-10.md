@@ -21,7 +21,19 @@ Cette section existante est aménagée en piste bidirectionnelle avec un peu moi
 
 Sur cette section il est prévu d'aménager de larges pistes séparées de chaque côté de la rue de manière à finaliser et protéger les aménagements actuels.
 
-Au niveau de la voie Domitienne la Véloligne 10 se sépare en deux branches.
+::banner{type="wip"}
+Les travaux sont annoncés pour démarrer le 16 septembre. Les pistes transitoires bilatérales seront pérennisées.
+::
+::content-image
+---
+imageUrl: https://travaux.montpellier.fr/sites/default/files/styles/large/public/chantiers/image_0.png
+caption: Vue projet de la Véloligne 10 au niveau de la faculté de Pharmacie
+credit: Ville de Montpellier
+streetView: 43.623059,3.8632682,3a,75y,308.78h,90.76t   
+---
+::
+
+*Au niveau de la voie Domitienne la Véloligne 10 se sépare en deux branches.*
 
 ### Véloligne 10a vers Saint-Gély-du-Fesc
 
