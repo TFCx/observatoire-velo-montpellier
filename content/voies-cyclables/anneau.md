@@ -89,7 +89,7 @@ streetView: 43.6058282,3.8896056,3a,15y,26.2h,88.67t
 
 ### Jonction entre l'Avenue Mermoz et la Rue du Professeur Léon Vallois
 
-Section comprenant des aménagements anciens, hétérogènes, discontinus, trop étroits, aménagés via peinture sur trottoir voire en prenant l'intégralité du trottoir et avec des intersections très dangereuses.
+<span style="color:#ff6961;font-weight:bold">Non satisfaisant</span> Section comprenant des aménagements anciens, hétérogènes, discontinus, trop étroits, aménagés via peinture sur trottoir voire en prenant l'intégralité du trottoir et avec des intersections très dangereuses.
 
 ### Rue du Professeur Léon Vallois
 
