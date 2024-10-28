@@ -24,5 +24,5 @@ largeur 3 mètres
 ### Barby
 Secteur non aménagé
 
-### Barby à Challes les Eaux
+### Voie verte des planeurs. De Barby à Challes les Eaux
 Voie verte historique des planeurs

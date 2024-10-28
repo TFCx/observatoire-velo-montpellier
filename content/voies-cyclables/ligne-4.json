@@ -9,7 +9,7 @@
           "name": "Voie Verte de la Leysse Bassens Saint Alban Leysse",
           "status": "unknown",
           "type": "voie-verte",
-          "link": "/rev-4#Chambéry-à-Saint-Alban-Leysse"
+          "link": "/rev-4#chambery-a-saint-alban-leysse"
         },
         "geometry": {
           "type": "LineString",
@@ -165,7 +165,7 @@
           "status": "done",
           "doneAt": "01/01/2020",
           "type": "voie-verte",
-          "link": "/rev-4#Saint-Alban-Leysse-à-Barby"
+          "link": "/rev-4#saint-alban-leysse-a-barby"
         },
         "geometry": {
           "type": "LineString",
@@ -284,7 +284,7 @@
           "name": "Barby",
           "status": "unknown",
           "type": "aucun",
-          "link": "/rev-4#Barby"
+          "link": "/rev-4#barby"
         },
         "geometry": {
           "type": "LineString",
@@ -388,7 +388,7 @@
           "name": "Voie verte des Planeurs",
           "status": "done",
           "type": "voie-verte",
-          "link": "/rev-4#Planneurs"
+          "link": "/rev-4#planneurs"
         },
         "geometry": {
           "type": "LineString",
