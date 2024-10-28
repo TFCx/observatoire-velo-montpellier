@@ -9,7 +9,7 @@
           "name": "Voie Verte de la Leysse Bassens Saint Alban Leysse",
           "status": "unknown",
           "type": "voie-verte",
-          "link": "/rev-4#chambery-a-saint-alban-leysse"
+          "link": "/rev-4#chambéry-à-saint-alban-leysse"
         },
         "geometry": {
           "type": "LineString",
@@ -388,7 +388,7 @@
           "name": "Voie verte des Planeurs",
           "status": "done",
           "type": "voie-verte",
-          "link": "/rev-4#planneurs"
+          "link": "/rev-4#planeurs"
         },
         "geometry": {
           "type": "LineString",
