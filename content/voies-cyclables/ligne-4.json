@@ -165,7 +165,7 @@
           "status": "done",
           "doneAt": "01/01/2020",
           "type": "voie-verte",
-          "link": "/rev-4#saint-alban-leysse-a-barby"
+          "link": "/rev-4#saint-alban-leysse-à-barby"
         },
         "geometry": {
           "type": "LineString",
@@ -388,7 +388,7 @@
           "name": "Voie verte des Planeurs",
           "status": "done",
           "type": "voie-verte",
-          "link": "/rev-4#planeurs"
+          "link": "/rev-4#voie-verte-des-planeurs-de-barby-à-challes-les-eaux"
         },
         "geometry": {
           "type": "LineString",
