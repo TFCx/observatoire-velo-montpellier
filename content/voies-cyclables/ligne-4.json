@@ -387,6 +387,7 @@
           "line": 4,
           "name": "Voie verte des Planeurs",
           "status": "done",
+          "doneAt": "01/01/2020",
           "type": "voie-verte",
           "link": "/rev-4#voie-verte-des-planeurs-de-barby-à-challes-les-eaux"
         },
