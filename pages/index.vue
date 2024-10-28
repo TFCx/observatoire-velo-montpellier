@@ -9,7 +9,7 @@
             Où en est le projet ?
           </h2>
           <p class="text-xl text-gray-500">
-            Grand Chambéry a inauguré le mercredi 5 juin 2024 les « pistes bleues » de son réseau cyclable. Pour l’association Roue Libre, ce jalonnement de 9 itinéraires identifiés comme “pistes” par Grand Chambéry avec des panneaux et un futur marquage en peinture au sol est prématuré au vu du manque de sécurisation et de continuité de ces itinéraires pour toutes les usagères et usagers et tous les types d’usages. Ce réseau de “pistes” doit donc être considéré comme une indication des secteurs prioritaires à aménager, et la réalisation d’aménagements cyclables continus et sécurisés pour toutes et tous doit être une urgente priorité.<br> Roue Libre se mobilise pour la réalisation d'un réseau cyclable continue, capacité, lisible et sécurisé sur l'ensemble de l'agglomération.
+            Après une phase d'étude et de concertation en 2022 et 2023, le projet entre en phase de réalisation.<br> Les travaux devraient se multiplier en 2024 et 2025.
           </p>
         </div>
       </div>
