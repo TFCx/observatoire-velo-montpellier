@@ -36,7 +36,7 @@ Piste cyclable chemin des vieux capucins puis aucun aménagement dans le centre 
 
 ## Fil d'actu
 
-### Fausse inauguration Piste Rouge Cognin Chambéry par l'association Roue Libre
+### Fausse inauguration Piste Rouge Cognin Chambéry par Roue Libre
 15 octobre 2024
 
 ::banner{type="info"}
@@ -51,15 +51,12 @@ credit: Roue Libre
 ---
 ::
 
-Communiqué, revue de presse, photos : https://rouelibre.net/2024/10/15/15-oct-2024-roue-libre-inaugure-la-piste-rouge-n8-cognin-chambery/
+[Communiqué, revue de presse, photos](https://rouelibre.net/2024/10/15/15-oct-2024-roue-libre-inaugure-la-piste-rouge-n8-cognin-chambery/){:target="_blank"}
 
-### Lancement d'une étude de faisabilité d'un aménagement cyclable entre Cognin et Chambéry (place Caffe) par Grand Chambéry
+### Lancement d'une étude de faisabilité Cognin et Chambéry par Grand Chambéry
 mars 2024
 
 ### Vélorution Cognin - Chambéry
 26 mars 2022
 
-250 participants et 19 organisations co-signataires de cette vélorution pour la création d'un itinéaire continu et sécurisé.
-Présentation d'une proposition technique réalisée par Roue Libre 
-
-Photos, communiqué, afficge, proposition technique : https://rouelibre.net/2024/07/03/26-mars-2022-velorution-cognin-chambery/
+[Photos, communiqué, signataires, proposition technique](https://rouelibre.net/2024/07/03/26-mars-2022-velorution-cognin-chambery/){:target="_blank"}
