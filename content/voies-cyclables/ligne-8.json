@@ -5,7 +5,7 @@
     {
       "type": "Feature",
       "properties": {
-        "line": 2,
+        "line": 8,
         "name": "Test",
         "status": "planned",
         "type": "bidirectionnelle",
