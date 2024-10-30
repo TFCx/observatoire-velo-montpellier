@@ -7,7 +7,9 @@ description: La Piste Bleue 8 permet de relier Chambéry (Buisson Rond) à Cogni
 trafic: 1000 vélos/jour
 cover: https://rouelibre.net/wp-content/uploads/2024/10/Avenue-de-Lyon-liaison-Cognin-Chambery2.jpg
 ---
+::banner{type="info"}
 Conformément au référentiel des pistes de ski, Roue Libre classe cette piste en couleur rouge : il s’agit d’une piste difficile qui ne respecte pas les recommandations du CEREMA en matière de sécurisation. En effet, les bandes cyclables, dépourvues de séparateurs de la chaussée automobile, exposent les cyclistes à un trafic routier de près de 8000 véhicules par jour. De plus, la présence de plusieurs points noirs identifiés comme dangereux par les usagers du vélo, notamment aux intersections et giratoires, justifie son caractère technique, pour cyclistes expérimentés.
+::
 
 ::content-image
 ---
@@ -16,10 +18,6 @@ caption: Action Roue Libre du 15 octobre 2024
 credit: Roue Libre
 ---
 ::
-
-Pour l’association Roue Libre, cet itinéraire ne présente pas encore un niveau de sécurisation et de continuité suffisant pour toutes et tous, quel que soit leur niveau d’expérience ou leur type de déplacement à vélo. Roue Libre estime que cette piste est « rouge » en attendant la création d’un itinéraire continu et physiquement séparé de la chaussée (cf vélorution du 26 mars 2022).
-
-Roue Libre demande à Grand Chambéry d’améliorer la sécurité en travaillant sur la qualité et la continuité des itinéraires cyclables, l’aménagement des intersections dangereuses, la priorisation des mouvements des cyclistes sur les itinéraires principaux, dans le respect des recommandations du CEREMA. Cela permettra de répondre aux attentes des cyclistes (cf baromètre des villes cyclables) et de faire face à la forte augmentation de la pratique du vélo dans l’agglomération.
 
 ## Les tronçons (du Sud au Nord)
 
