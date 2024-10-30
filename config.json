@@ -14,15 +14,15 @@
   "colors": [
     {
       "line": 1,
-      "color": "#60A75B"
+      "color": "#007FFF"
     },
     {
       "line": 2,
-      "color": "#AC4D35"
+      "color": "#007FFF"
     },
     {
       "line": 3,
-      "color": "#3B7B64"
+      "color": "#007FFF"
     },
     {
       "line": 4,
@@ -30,35 +30,35 @@
     },
     {
       "line": 5,
-      "color": "#AF7392"
+      "color": "#007FFF"
     },
     {
       "line": 6,
-      "color": "#396083"
+      "color": "#007FFF"
     },
     {
       "line": 7,
-      "color": "#75BCAE"
+      "color": "#007FFF"
     },
     {
       "line": 8,
-      "color": "#7E6D98"
+      "color": "#007FFF"
     },
     {
       "line": 9,
-      "color": "#EAAB50"
+      "color": "#007FFF"
     },
     {
       "line": 10,
-      "color": "#9A8A4B"
+      "color": "#007FFF"
     },
     {
       "line": 11,
-      "color": "#4DADC9"
+      "color": "#007FFF"
     },
     {
       "line": 12,
-      "color": "#DBABB7"
+      "color": "#007FFF"
     }
   ],
   "transports": [
