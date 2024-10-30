@@ -3,21 +3,10 @@ name: Piste Bleue 8
 line: 8
 from: Chambéry
 to: Cognin
-description: La Piste Bleue 8 permet de relier Chambéry (Buisson Rond) à Cognin (Rond point des Pyramides via l'Hôpital de Chambéry.
+description: La Piste Bleue 8 permet de relier Chambéry (Buisson Rond) à Cognin (Rond point des Pyramides via l'Hôpital de Chambéry).
 trafic: 1000 vélos/jour
 cover: https://rouelibre.net/wp-content/uploads/2024/10/Avenue-de-Lyon-liaison-Cognin-Chambery2.jpg
 ---
-::banner{type="info"}
-Conformément au référentiel des pistes de ski, Roue Libre classe cette piste en couleur rouge : il s’agit d’une piste difficile qui ne respecte pas les recommandations du CEREMA en matière de sécurisation. En effet, les bandes cyclables, dépourvues de séparateurs de la chaussée automobile, exposent les cyclistes à un trafic routier de près de 8000 véhicules par jour. De plus, la présence de plusieurs points noirs identifiés comme dangereux par les usagers du vélo, notamment aux intersections et giratoires, justifie son caractère technique, pour cyclistes expérimentés.
-::
-
-::content-image
----
-imageUrl: https://rouelibre.net/wp-content/uploads/2024/10/IMG_3605r.jpg
-caption: Action Roue Libre du 15 octobre 2024
-credit: Roue Libre
----
-::
 
 ## Les tronçons (du Sud au Nord)
 
@@ -34,22 +23,35 @@ credit: Roue Libre
 ::
 
 ### Place Monge Place Caffe
-nouvelle piste cyclable bidirectionnelle provisoire créée en 2021
-largeur 3 mètres
-En attente de sa pérénnisation et de la mise en place de continuités cyclables aux entrées et sorties de cette piste
+::banner{type="wip"}
+Piste cyclable bidirectionnelle provisoire créée en 2021
+Pérénnisation et mise en place de continuités cyclables entrée et sortie attendues
+::
 
 ### Avenue de Lyon
 Bandes cyclables incompatibles avec un trafic automobile de près de 8000 véhicules jours
 
 ### Cognin
-piste cyclable chemin des vieux capucins puis aucun aménagement dans le centre ville de Cognin
+Piste cyclable chemin des vieux capucins puis aucun aménagement dans le centre ville de Cognin
 
 ## Fil d'actu
 
 ### Fausse inauguration Piste Rouge Cognin Chambéry par l'association Roue Libre
 15 octobre 2024
 
-Communiqué, revnue de presse, photos : https://rouelibre.net/2024/10/15/15-oct-2024-roue-libre-inaugure-la-piste-rouge-n8-cognin-chambery/
+::banner{type="info"}
+Conformément au référentiel des pistes de ski, Roue Libre classe cette piste en couleur rouge : il s’agit d’une piste difficile qui ne respecte pas les recommandations du CEREMA en matière de sécurisation. En effet, les bandes cyclables, dépourvues de séparateurs de la chaussée automobile, exposent les cyclistes à un trafic routier de près de 8000 véhicules par jour. De plus, la présence de plusieurs points noirs identifiés comme dangereux par les usagers du vélo, notamment aux intersections et giratoires, justifie son caractère technique, pour cyclistes expérimentés.
+::
+
+::content-image
+---
+imageUrl: https://rouelibre.net/wp-content/uploads/2024/10/IMG_3605r.jpg
+caption: Action Roue Libre du 15 octobre 2024
+credit: Roue Libre
+---
+::
+
+Communiqué, revue de presse, photos : https://rouelibre.net/2024/10/15/15-oct-2024-roue-libre-inaugure-la-piste-rouge-n8-cognin-chambery/
 
 ### Lancement d'une étude de faisabilité d'un aménagement cyclable entre Cognin et Chambéry (place Caffe) par Grand Chambéry
 mars 2024
