@@ -6,7 +6,7 @@
       "type": "Feature",
       "properties": {
         "line": 8,
-        "name": "Test",
+        "name": "Costa de Beauregard - Republique",
         "status": "unknown",
         "type": "bandes-cyclables",
         "link": "/rev-8#chamb%C3%A9ry-buisson-rond-%C3%A0-la-m%C3%A9diath%C3%A8que-jean-jacques-rousseau"
@@ -70,7 +70,7 @@
       "type": "Feature",
       "properties": {
         "line": 8,
-        "name": "test",
+        "name": "Place Caffe - place Monge",
         "status": "wip",
         "type": "bidirectionnelle",
         "link": "/rev-8#place-monge-place-caffe"
@@ -141,7 +141,7 @@
       "type": "Feature",
       "properties": {
         "line": 8,
-        "name": "Test",
+        "name": "Avenue de Lyon",
         "status": "unknown",
         "type": "bandes-cyclables",
         "link": "/rev-8#avenue-de-lyon"
@@ -209,7 +209,7 @@
       "type": "Feature",
       "properties": {
         "line": 8,
-        "name": "test",
+        "name": "Cognin",
         "status": "done",
         "type": "bidirectionnelle",
         "link": "/rev-8#cognin"
