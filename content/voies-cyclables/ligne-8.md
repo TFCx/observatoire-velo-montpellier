@@ -3,7 +3,7 @@ name: Piste Bleue 8
 line: 8
 from: Chambéry
 to: Cognin
-description: La Piste Bleue 8 permet de relier Chambéry (Buisson Rond) à Cognin (Rond point des Pyramides via l'Hôpital de Chambéry).
+description: La Piste Bleue 8 permet de relier Chambéry (Buisson Rond) à Cognin (Rond point des Pyramides) via l'Hôpital de Chambéry.
 trafic: 1000 vélos/jour
 cover: https://rouelibre.net/wp-content/uploads/2024/10/Avenue-de-Lyon-liaison-Cognin-Chambery2.jpg
 ---
@@ -24,12 +24,15 @@ credit: Roue Libre
 
 ### Place Monge Place Caffe
 ::banner{type="wip"}
-Piste cyclable bidirectionnelle provisoire créée en 2021
-Pérénnisation et mise en place de continuités cyclables entrée et sortie attendues
+Piste cyclable bidirectionnelle provisoire créée en 2021.
+En attente de la pérénnisation et de la mise en place de continuités cyclables aux entrées et sorties
 ::
 
 ### Avenue de Lyon
 Bandes cyclables incompatibles avec un trafic automobile de près de 8000 véhicules jours
+::banner{type="info"}
+Avril 2024 Lancement d'une étude de faisabilité Cognin et Chambéry par Grand Chambéry
+::
 
 ### Cognin
 Piste cyclable chemin des vieux capucins puis aucun aménagement dans le centre ville de Cognin
@@ -53,10 +56,26 @@ credit: Roue Libre
 
 [Communiqué, revue de presse, photos](https://rouelibre.net/2024/10/15/15-oct-2024-roue-libre-inaugure-la-piste-rouge-n8-cognin-chambery/){:target="_blank"}
 
+### Action Roue Libre lors du passage du Tour de France. 3 juillet 2024
+juillet 2024
+---
+imageUrl: https://rouelibre.net/wp-content/uploads/2024/07/Tour-de-France-Cognin-1536x700.jpg
+caption: Image Tour de France 2024
+credit: France 3
+---
+
 ### Lancement d'une étude de faisabilité Cognin et Chambéry par Grand Chambéry
 mars 2024
+Roue Libre a été invité à une réunion de travail avec le Bureau d'Etude en charge de l'étude
 
 ### Vélorution Cognin - Chambéry
 26 mars 2022
 
 [Photos, communiqué, signataires, proposition technique](https://rouelibre.net/2024/07/03/26-mars-2022-velorution-cognin-chambery/){:target="_blank"}
+::content-image
+---
+imageUrl: https://rouelibre.net/wp-content/uploads/2022/03/IMG_6172-scaled.jpg
+caption: Vélorution 26 mars 2022
+credit: Roue Libre
+---
+::
