@@ -13,7 +13,7 @@ to: Saint-Gély / Montferrier
 
 ### Anneau vélo ⇄ Place Jules Rimet
 
-Cette section existante est aménagée en piste bidirectionnelle avec un peu moins de mille passages par jour en moyenne.
+<span style="color:gold;font-weight:bold">À améliorer</span> Cette section existante est aménagée en piste bidirectionnelle avec un peu moins de mille passages par jour en moyenne. L'intersection avec l'anneau vélo au niveau des rues Chancel, Saint Jaumes, Gerhardt et Bonnard est un point noir.
 
 <a href="https://compteurs.velocite-montpellier.fr/detail/saint-jaumes-nord">Données du compteur "Faubourg Saint Jaumes Nord"</a>
 
@@ -22,7 +22,7 @@ Cette section existante est aménagée en piste bidirectionnelle avec un peu moi
 Sur cette section il est prévu d'aménager de larges pistes séparées de chaque côté de la rue de manière à finaliser et protéger les aménagements actuels.
 
 ::banner{type="wip"}
-Les travaux sont annoncés pour démarrer le 16 septembre. Les pistes transitoires bilatérales seront pérennisées.
+Les travaux ont démarré le 16 septembre 2024. Les pistes transitoires bilatérales seront pérennisées.
 ::
 ::content-image
 ---
@@ -63,12 +63,12 @@ L'essentiel de cette partie a été réalisé en 2023 sous forme de chaucidous e
 #### Voie Domitienne ⇄ Rue Dunant
 
 ::banner{type="unsecured"}
-Cette section aurait dû être réalisée avec le bustram 2, reporté après le mandat. En l'état c'est une discontinuité majeure de la Véloligne 10b, qui pourrait perdurer au delà du mandat.
+<span style="color:red;font-weight:bold">Non satisfaisant</span> Cette section aurait dû être réalisée avec le bustram 2, reporté après le mandat. En l'état c'est une discontinuité majeure de la Véloligne 10b, qui pourrait perdurer au delà du mandat.
 ::
 
 #### Rue Dunant ⇄ Place de la Voie Domitienne
 
-Section réalisée récemment dans le cadre des travaux de la ligne 5 de tram. Bien que réalisées avec des bordures chanfreinées côté piéton, ces pistes bilatérales sont étroites (1m50), donc non conformes aux exigences d'une Véloligne.
+<span style="color:gold;font-weight:bold">À améliorer</span> Section réalisée récemment dans le cadre des travaux de la ligne 5 de tram. Bien que réalisées avec des bordures chanfreinées côté piéton, ces pistes bilatérales sont étroites (1m50), donc non conformes aux exigences d'une Véloligne.
 
 #### Place de la Voie Domitienne ⇄ Avenue Arthur Young
 
