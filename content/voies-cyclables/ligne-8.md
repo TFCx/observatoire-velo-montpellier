@@ -56,13 +56,15 @@ credit: Roue Libre
 
 [Communiqué, revue de presse, photos](https://rouelibre.net/2024/10/15/15-oct-2024-roue-libre-inaugure-la-piste-rouge-n8-cognin-chambery/){:target="_blank"}
 
-### Action Roue Libre lors du passage du Tour de France. 3 juillet 2024
-juillet 2024
+### Action Roue Libre lors du passage du Tour de France
+3 juillet 2024
+::content-image
 ---
 imageUrl: https://rouelibre.net/wp-content/uploads/2024/07/Tour-de-France-Cognin-1536x700.jpg
 caption: Image Tour de France 2024
 credit: France 3
 ---
+::
 
 ### Lancement d'une étude de faisabilité Cognin et Chambéry par Grand Chambéry
 juin 2024
