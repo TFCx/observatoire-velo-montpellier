@@ -66,8 +66,9 @@ Reporté après le mandat.
 ::
 
 ### Avenue d'El Alamein
+Prévu pour 2026.
 ::banner{type="unsecured"}
-Reporté après le mandat.
+Pas de projet en cours à la connaissance de Vélocité.
 ::
 
 ### Avenue de Pavelet entre Castelle et Mehul
@@ -87,13 +88,7 @@ Pas de projet en cours à la connaissance de Vélocité.
 En travaux dans le cadre du chantier de la ligne 5 de tramway.
 ::
 
-### Avenue de Vanières entre Paul Valéry et la piscine Spillaert
-Prévu pour 2026.
-::banner{type="unsecured"}
-Pas de projet en cours à la connaissance de Vélocité.
-::
-
-### Avenue de Vanières entre la piscine Spillaert et le collège Marcel Pagnol
+### Avenue de Vanières - collège Marcel Pagnol
 Prévu pour 2026.
 ::banner{type="unsecured"}
 Pas de projet en cours à la connaissance de Vélocité.
@@ -139,10 +134,20 @@ Environs du rond-point de Girac en travaux dans le cadre du chantier de la ligne
 <span style="color:lightgreen;font-weight:bold">Satisfaisant</span> Aménagement existant globalement satisfaisant.
 
 ### M65 entre le Fesquet et Navitau
-Prévu pour 2026.
-::banner{type="unsecured"}
-Pas de projet en cours à la connaissance de Vélocité.
+
+::banner{type="wip"}
+::content-image
+---
+imageUrl: https://travaux.montpellier.fr/sites/default/files/styles/large/public/pdfpreview/366-Closades_av_du_Martinet-Clapiers_09_2024.png
+caption: 
+credit: Ville de Montpellier
+streetView: 43.648121,3.8848679,3a,75y,116.82h,70.4t
+---
 ::
+<br>
+Les travaux sont annoncés (novembre 2024 à octobre 2025). Le projet n'est pas connu de Vélocité.
+::
+
 
 ### Chemin des Alouettes à Castelnau-le-Lez
 Prévu pour 2026.
