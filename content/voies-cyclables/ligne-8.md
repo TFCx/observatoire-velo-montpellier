@@ -65,8 +65,8 @@ credit: France 3
 ---
 
 ### Lancement d'une étude de faisabilité Cognin et Chambéry par Grand Chambéry
-mars 2024
-Roue Libre a été invité à une réunion de travail avec le Bureau d'Etude en charge de l'étude
+juin 2024
+Roue Libre a été convié à une réunion de travail avec le Bureau d'Etude
 
 ### Vélorution Cognin - Chambéry
 26 mars 2022
