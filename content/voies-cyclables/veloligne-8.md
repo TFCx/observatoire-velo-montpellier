@@ -21,13 +21,13 @@ to: Cournonsec
 Section inexistante. Pas de projet en cours à la connaissance de Vélocité.
 ::
 
-### De la rue des Chasseurs à la rue du Pas-du-Loup
+### De la rue des Chasseurs au boulevard Paul Valéry
 
 ::banner{type="wip"}
 Section actuellement en travaux dans le cadre de la construction de la ligne 5 de tramway. Sera réalisée sous forme de pistes bilatérales.
 ::
 
-### De la rue du Pas du Loup à l'avenue de Vanières
+### Du boulevard Paul Valéry à l'avenue de Vanières
 
 ::banner{type="unsecured"}
 Section inexistante. Pas de projet en cours à la connaissance de Vélocité.
