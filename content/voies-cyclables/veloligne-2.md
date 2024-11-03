@@ -19,7 +19,7 @@ Section inexistante. Pas de projet en cours à la connaissance de Vélocité.
 
 ### Lez ⇄ Vieille Poste
 
-<span style="color:#ff6961;font-weight:bold">Dangereux</span> Section très empruntée. Conflit piéton/vélo important. Les virages de la passerelle sont trop étroits.
+<span style="color:red;font-weight:bold">Dangereux</span> Section très empruntée. Conflit piéton/vélo important. Les virages de la passerelle sont trop étroits.
 
 ::content-image
 ---

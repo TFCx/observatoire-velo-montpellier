@@ -9,4 +9,4 @@ from: Mtp Château d'Ô
 to: Grabels
 ---
 
-<span style="color:#FFEB3B;font-weight:bold;">À améliorer</span> Équipement existant de longue date, aux standards de confort, qualité, sécurité et attractivité dépassés et non conformes aux exigences d'une Véloligne.
+<span style="color:gold;font-weight:bold;">À améliorer</span> Équipement existant de longue date, aux standards de confort, qualité, sécurité et attractivité dépassés et non conformes aux exigences d'une Véloligne.

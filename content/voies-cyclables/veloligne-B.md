@@ -19,7 +19,7 @@ Aucun aménagement à l'heure actuelle. Reporté après le mandat.
 ::
 
 ### Boirargues (Lycée Champollion)
-<span style="color:#ff6961;font-weight:bold">Non satisfaisant</span> Aménagement existant non conforme aux exigences d'une Véloligne.
+<span style="color:red;font-weight:bold">Non satisfaisant</span> Aménagement existant non conforme aux exigences d'une Véloligne.
 ::banner{type="unsecured"}
 Reporté après le mandat.
 ::
@@ -36,13 +36,13 @@ Pas de projet en cours à la connaissance de Vélocité.
 ::
 
 ### Boirargues Lironde
-<span style="color:#77DD77;font-weight:bold">Satisfaisant</span> L'aménagement existant, bien qu'ancien, est correct.
+<span style="color:lightgreen;font-weight:bold">Satisfaisant</span> L'aménagement existant, bien qu'ancien, est correct.
 
 ### Avenue de Boirargues, de l'entrée de Lattes à la Place de l'Europe
 <span style="color:gold;font-weight:bold">À améliorer</span> Réalisé récemment à l'été 2024, l'aménagement est très loin des plus hauts standards cyclables avec des intersections inconfortables, des obstacles sur le linéaire et un risque important de conflit piéton vélo. Le niveau de standard n'est pas conforme aux exigences d'une Véloligne.
 
 ### Lattes centre - Avenue de l'Europe
-<span style="color:#77DD77;font-weight:bold">Satisfaisant</span> Même s'il pourrait être amélioré, notamment dans ses connexions et en particulier celle de l'extrémité ouest, totalement inexistante aujourd'hui et créant un impasse cyclable, cet aménagement réalisé à l'été 2024 est globalement satisfaisant.
+<span style="color:lightgreen;font-weight:bold">Satisfaisant</span> Même s'il pourrait être amélioré, notamment dans ses connexions et en particulier celle de l'extrémité ouest, totalement inexistante aujourd'hui et créant un impasse cyclable, cet aménagement réalisé à l'été 2024 est globalement satisfaisant.
 
 ### Lattes, dernière section de l'Avenue de l'Europe côté Port Ariane
 Prévu pour 2026. Nécessaire à la connexion entre la section réalisée à l'été 2024 et les équipements existants côté Lez.
@@ -124,19 +124,19 @@ Pas de projet en cours à la connaissance de Vélocité.
 <span style="color:gold;font-weight:bold">À améliorer</span> Aménagement existant sous forme de voie verte. Nécessiterait des travaux pour être conforme aux exigences d'une Véloligne (sécurité, confort, largeur, gestion des intersections).
 
 ### Rue du professeur Blayac
-<span style="color:#77DD77;font-weight:bold">Satisfaisant</span> Aménagement existant globalement satisfaisant.
+<span style="color:lightgreen;font-weight:bold">Satisfaisant</span> Aménagement existant globalement satisfaisant.
 
 ### Avenue des Moulins, entre le Lycée Jean Monnet et le rond-point de la Lyre
 <span style="color:gold;font-weight:bold">À améliorer</span> Aménagement existant non conforme aux exigences d'une Véloligne.
 
 ### M65 entre le rond-point de la Lyre et le rond-point de Girac
-<span style="color:#77DD77;font-weight:bold">Satisfaisant</span> Aménagement existant globalement satisfaisant.
+<span style="color:lightgreen;font-weight:bold">Satisfaisant</span> Aménagement existant globalement satisfaisant.
 ::banner{type="wip"}
 Environs du rond-point de Girac en travaux dans le cadre du chantier de la ligne 5 de tramway.
 ::
 
 ### M65 entre le rond-point de Girac et le Fesquet
-<span style="color:#77DD77;font-weight:bold">Satisfaisant</span> Aménagement existant globalement satisfaisant.
+<span style="color:lightgreen;font-weight:bold">Satisfaisant</span> Aménagement existant globalement satisfaisant.
 
 ### M65 entre le Fesquet et Navitau
 Prévu pour 2026.
@@ -162,7 +162,7 @@ Pas de projet en cours à la connaissance de Vélocité.
 <span style="color:gold;font-weight:bold">À améliorer</span> Aménagement existant de standards anciens empruntant pour partie un équipement réalisé pour la Véloligne 70.
 
 ### Jonction le Crès ⇄ boulevard Philippe Lamour 
-<span style="color:#77DD77;font-weight:bold">Satisfaisant</span> Aménagement globalement satisfaisant sous forme de chaucidou dans une zone à très faible trafic pour la partie nord et sous forme d'une piste bidirectionnelle récemment rénovée dans la partie sud. La traversée du boulevard Philippe Lamour reste problématique et le traitement de cette intersection avec une voie à très grande circulation n'est pas aux standards d'une Véloligne.
+<span style="color:lightgreen;font-weight:bold">Satisfaisant</span> Aménagement globalement satisfaisant sous forme de chaucidou dans une zone à très faible trafic pour la partie nord et sous forme d'une piste bidirectionnelle récemment rénovée dans la partie sud. La traversée du boulevard Philippe Lamour reste problématique et le traitement de cette intersection avec une voie à très grande circulation n'est pas aux standards d'une Véloligne.
 
 ### Jonction Philippe Lamour ⇄ Grammont
 ::banner{type="unsecured"}

@@ -19,7 +19,7 @@ Prévue pour 2026. La réalisation d'un pont-cadre sous la RM66 doit permettre d
 
 ### canal Philippe Lamour
 
-<span style="color:#77dd77;font-weight:bold">Satisfaisant</span> Voie verte existante, réalisée par l'agglomération Pays de l'Or.
+<span style="color:lightgreen;font-weight:bold">Satisfaisant</span> Voie verte existante, réalisée par l'agglomération Pays de l'Or.
 
 ### Mauguio ⇄ Baillargues
 Prévue pour 2026.

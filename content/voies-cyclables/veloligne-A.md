@@ -17,7 +17,7 @@ Pas de projet en cours à la connaissance de Vélocité.
 
 ### de La Mosson à Celleneuve
 
-<span style="color:#77DD77;font-weight:bold">Satisfaisant</span>
+<span style="color:lightgreen;font-weight:bold">Satisfaisant</span>
 Portion existante réalisée en bilatérales.
 
 ### de Celleneuve à l'Avenue des Garrats
@@ -48,12 +48,12 @@ Reporté après le mandat.
 
 ### Avenue Dubout, du Boulevard de la Perruque à l'Avenue de Palavas
 
-<span style="color:#77DD77;font-weight:bold">Plutôt satisfaisant</span>
+<span style="color:lightgreen;font-weight:bold">Plutôt satisfaisant</span>
 Réalisation récente en bidirectionnelle.
 
 ### Avenue Dubout, de l'Avenue de Palavas à Antonelli
 
-<span style="color:#ff6961;font-weight:bold">Dangereux</span>
+<span style="color:red;font-weight:bold">Dangereux</span>
 Sur cette section où se trouve une bretelle d'accès depuis Palavas (l'avenue Dubout est une ancienne voie de chemin de fer qui fut convertie en voie express) la bordure boudin franchissable est insufisante pour la sécurisation des usagers. Par ailleurs sur cette section le conflit piéton-vélo n'est pas négligeable, les piétons n'ayant d'autre choix que de marcher sur la Véloligne.
 
 
