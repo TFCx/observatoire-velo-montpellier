@@ -79,9 +79,15 @@ streetView: 43.6058282,3.8896056,3a,15y,26.2h,88.67t
 ---
 ::
 
-### rue Blum
+### Rue Blum
 
 <span style="color:#77DD77;font-weight:bold">Satisfaisant</span> Vélorue. Chaussée réalisée avec une différence de niveau pour marquer l'espace de circulation et le différencier de l'espace piéton. L'espace dévolu à l'anneau vélo est placé au centre afin de maximiser les co-visibilités et réduire les zones de conflit potentiel. En revanche l'intersection où l'anneau vélo traverse Cartier n'est pas du tout sécurisée ni marquée.
+
+### Rue Blum, partie nord
+
+::banner{type="wip"}
+En travaux.
+::
 
 ### Avenue Mermoz
 
