@@ -14,51 +14,51 @@
   "colors": [
     {
       "line": 1,
-      "color": "#007FFF"
+      "color": "#60A75B"
     },
     {
       "line": 2,
-      "color": "#007FFF"
+      "color": "#AC4D35"
     },
     {
       "line": 3,
-      "color": "#007FFF"
+      "color": "#3B7B64"
     },
     {
       "line": 4,
-      "color": "#007FFF"
+      "color": "#DC8953"
     },
     {
       "line": 5,
-      "color": "#007FFF"
+      "color": "#AF7392"
     },
     {
       "line": 6,
-      "color": "#007FFF"
+      "color": "#396083"
     },
     {
       "line": 7,
-      "color": "#007FFF"
+      "color": "#75BCAE"
     },
     {
       "line": 8,
-      "color": "#007FFF"
+      "color": "#7E6D98"
     },
     {
       "line": 9,
-      "color": "#007FFF"
+      "color": "#EAAB50"
     },
     {
       "line": 10,
-      "color": "#007FFF"
+      "color": "#9A8A4B"
     },
     {
       "line": 11,
-      "color": "#007FFF"
+      "color": "#4DADC9"
     },
     {
       "line": 12,
-      "color": "#007FFF"
+      "color": "#DBABB7"
     }
   ],
   "transports": [
