@@ -76,5 +76,37 @@
       "line": "D",
       "color": "#c22d1d"
     }
+  ],
+  "transports": [
+    {
+      "type": "tram",
+      "line": "1",
+      "color": "#0072bc",
+      "link": "https://www.tam-voyages.com/presentation/?rub_code=1&thm_id=13&gpl_id=&part_id="
+    },
+    {
+      "type": "tram",
+      "line": "2",
+      "color": "#f7931d",
+      "link": "https://www.tam-voyages.com/presentation/?rub_code=1&thm_id=14&gpl_id=&part_id="
+    },
+    {
+      "type": "tram",
+      "line": "3",
+      "color": "#c1d72f",
+      "link": "https://www.tam-voyages.com/presentation/?rub_code=1&thm_id=15&gpl_id=&part_id="
+    },
+    {
+      "type": "tram",
+      "line": "4",
+      "color": "#442308",
+      "link": "https://www.tam-voyages.com/presentation/?rub_code=1&thm_id=16&gpl_id=&part_id="
+    },
+    {
+      "type": "tram",
+      "line": "5",
+      "color": "#e22350",
+      "link": "https://tram5-montpellier3m.fr/"
+    }    
   ]
 }
