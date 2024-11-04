@@ -7,12 +7,12 @@
             <span class="sr-only">Cyclopolis</span>
             <img
               class="h-7 w-auto sm:h-8"
-              src="https://cyclopolis.lavilleavelo.org/logo-la-ville-a-velo.png"
+              src="https://rouelibre.net/wp-content/uploads/2020/05/RL_Logo_10X10.png"
               :alt="`logo ${getAssoName()}`"
             >
             <img
               class="h-8 w-auto sm:h-10"
-              src="https://cyclopolis.lavilleavelo.org/logo-cyclopolis-header.png"
+              src="hhttps://rouelibre.net/wp-content/uploads/2024/11/RL_Logo_2X10_Couleur_HD.png"
               alt="logo cyclopolis"
             >
           </NuxtLink>
@@ -138,7 +138,7 @@
           <div class="pt-5 pb-6 px-5">
             <div class="flex items-center justify-between">
               <NuxtLink to="/" @click="close()">
-                <img class="h-8 w-auto" src="https://cyclopolis.lavilleavelo.org/logo-la-ville-a-velo.png" :alt="`logo ${getAssoName()}`">
+                <img class="h-8 w-auto" src="https://rouelibre.net/wp-content/uploads/2020/05/RL_Logo_10X10.png" :alt="`logo ${getAssoName()}`">
               </NuxtLink>
               <div class="-mr-2">
                 <PopoverButton
