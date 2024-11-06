@@ -184,7 +184,7 @@ export const useMap = () => {
       source: 'done-sections',
       paint: {
         'line-width': 4,
-        'line-color': '#0c2d42'
+        'line-color': ['get', 'color']
       }
     });
   }
