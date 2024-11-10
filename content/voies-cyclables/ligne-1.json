@@ -23,24 +23,40 @@
     ]
   }
 },
+{
+  "type": "Feature",
+  "properties": {
+    "id": "CroixLuizet-commun",
+    "line": 1,
+    "name": "Voie Verte Belle Via",
+    "status": "unknown",
+    "type": "aucun",
+    "link": "/rev-1"
+  },
+  "geometry": {
+    "type": "LineString",
+    "coordinates": [
+      [5.914882,45.575518],
+      [5.913777,45.575212],
+      [5.91249,45.575032],
+      [5.911589,45.575032],
+      [5.910505,45.57527]
+    ]
+  }
+},
     {
       "type": "Feature",
       "properties": {
         "id": "CroixLuizet-commun",
         "line": 1,
         "name": "Voie Verte Belle Via",
-        "status": "aucun",
-        "type": "unknown",
+        "status": "done",
+        "type": "bidirectionnelle",
         "link": "/rev-1"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
-          [5.914882,45.575518],
-          [5.913777,45.575212],
-          [5.91249,45.575032],
-          [5.911589,45.575032],
-          [5.910505,45.57527],
           [5.90661,45.575961],
           [5.909185,45.575485],
           [5.9105,45.57527]
@@ -60,10 +76,10 @@
       "geometry":{
       "type": "LineString",
       "coordinates":[
-        [5.907844,45.580579],
-        [5.908187,45.579745],
-        [5.908058,45.578544],
         [5.907779,45.578101],
+        [5.908058,45.578544],
+        [5.908187,45.579745],
+        [5.907844,45.580579],
         [5.906589,45.575976],
         [5.907812,45.580587],
         [5.907769,45.580647],
