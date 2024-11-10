@@ -82,10 +82,10 @@ export type CompteurFeature = {
   };
 };
 
-export type InflatorFeature = {
+export type PumpFeature = {
   type: 'Feature';
   properties: {
-    type: 'inflator',
+    type: 'pump',
     name: string
   }
   geometry: {
@@ -106,7 +106,7 @@ export type DangerFeature = {
   };
 }
 
-type PointFeature = PerspectiveFeature | CompteurFeature | InflatorFeature | DangerFeature;
+type PointFeature = PerspectiveFeature | CompteurFeature | PumpFeature | DangerFeature;
 
 export type Feature = LineStringFeature | PointFeature | DisplayedLane | PolygonFeature;
 
@@ -138,8 +138,8 @@ export function isDangerFeature(feature: Feature): feature is PerspectiveFeature
   return isPointFeature(feature) && feature.properties.type === 'danger';
 }
 
-export function isInflatorFeature(feature: Feature): feature is InflatorFeature {
-  return isPointFeature(feature) && feature.properties.type === 'inflator';
+export function isPumpFeature(feature: Feature): feature is PumpFeature {
+  return isPointFeature(feature) && feature.properties.type === 'pump';
 }
 
 export function isCompteurFeature(feature: Feature): feature is CompteurFeature {

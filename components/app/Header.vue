@@ -224,7 +224,7 @@ const navItems = [
   { name: 'Carte interactive', path: '/carte-interactive' },
   { name: 'Plan officiel', path: '/plan-officiel' },
   { name: 'Évolution du réseau', path: '/evolution' },
-  { name: 'Services', path: '/services' },
+  // { name: 'Services', path: '/services' },
   { name: 'Compteurs', path: '/compteurs/velo' }
 ];
 

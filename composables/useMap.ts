@@ -1,5 +1,5 @@
 import { GeoJSONSource, LngLatBounds, Map } from 'maplibre-gl';
-import { isCompteurFeature, isDangerFeature, isInflatorFeature, isLineStringFeature, isPerspectiveFeature, isPointFeature, type Feature, type PolygonFeature, type DisplayedLane, type LaneStatus, type LaneType, type LineStringFeature, isPolygonFeature} from '~/types';
+import { isCompteurFeature, isDangerFeature, isPumpFeature, isLineStringFeature, isPerspectiveFeature, isPointFeature, type Feature, type PolygonFeature, type DisplayedLane, type LaneStatus, type LaneType, type LineStringFeature, isPolygonFeature} from '~/types';
 import { ref } from 'vue';
 
 enum DisplayedLayer {
@@ -108,8 +108,8 @@ export const useMap = () => {
     const camera = await map.loadImage('/icons/camera.png');
     map.addImage('camera-icon', camera.data, { sdf: true });
 
-    const inflator = await map.loadImage('/icons/inflator.png');
-    map.addImage('inflator-icon', inflator.data, { sdf: true });
+    const pump = await map.loadImage('/icons/pump.png');
+    map.addImage('pump-icon', pump.data, { sdf: true });
 
     const danger = await map.loadImage('/icons/danger.png');
     map.addImage('danger-icon', danger.data, { sdf: false });
@@ -265,20 +265,20 @@ export const useMap = () => {
     });
   }
 
-  function plotInflators({ map, features }: { map: Map; features: Feature[] }) {
-    const inflators = features.filter(isInflatorFeature);
-    if (inflators.length === 0) {
+  function plotPumps({ map, features }: { map: Map; features: Feature[] }) {
+    const pumps = features.filter(isPumpFeature);
+    if (pumps.length === 0) {
       return;
     }
-    if (upsertMapSource(map, 'inflators', inflators)) {
+    if (upsertMapSource(map, 'pumps', pumps)) {
       return;
     }
     map.addLayer({
-      id: 'inflators',
-      source: 'inflators',
+      id: 'pumps',
+      source: 'pumps',
       type: 'symbol',
       layout: {
-        'icon-image': 'inflator-icon',
+        'icon-image': 'pump-icon',
         'icon-size': 0.5,
         'icon-offset': [-25, -25]
       },
@@ -404,7 +404,7 @@ export const useMap = () => {
 
       plotPerspective({ map, features: updated_features });
       plotCompteurs({ map, features: updated_features });
-      plotInflators({ map, features: updated_features });
+      plotPumps({ map, features: updated_features });
       plotDangers({ map, features: updated_features });
       plotLimits({ map, features: updated_features });
 
