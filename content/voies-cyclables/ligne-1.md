@@ -54,7 +54,7 @@ Son dernier tronçon entre Villarcher et le lac du Bourget a été réalisé sui
 ::content-image
 ---
 imageUrl: https://rouelibre.net/wp-content/uploads/2021/11/1995-Image-au-Lac-%C3%A0-v%C3%A9lo2--1024x584.png
-caption [Vélorution "Au Lac à vélo en 1996" du 21 octobre 1995](https://rouelibre.net/2021/08/04/21-octobre-1995-velorution-au-lac-a-velo-en-96/)
-crédit: Magazine Roue libre automne hiver 1995 – 1996
+caption: Magazine Roue libre automne hiver 1995 – 1996
 ---
 ::
+[Vélorution "Au Lac à vélo en 1996" du 21 octobre 1995](https://rouelibre.net/2021/08/04/21-octobre-1995-velorution-au-lac-a-velo-en-96/)
