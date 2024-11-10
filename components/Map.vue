@@ -27,6 +27,7 @@ import FullscreenControl from '@/maplibre/FullscreenControl';
 import ShrinkControl from '@/maplibre/ShrinkControl';
 import LineTooltip from '~/components/tooltips/LineTooltip.vue';
 import CounterTooltip from '~/components/tooltips/CounterTooltip.vue';
+import InflatorTooltip from '~/components/tooltips/InflatorTooltip.vue';
 import PerspectiveTooltip from '~/components/tooltips/PerspectiveTooltip.vue';
 import { isLineStringFeature, isPolygonFeature, type Feature, type LaneStatus, type LaneType, type PolygonFeature } from '~/types';
 import config from '~/config.json';
@@ -214,6 +215,7 @@ onMounted(() => {
     const isPerspectiveLayerClicked = layers.some(({ layer }) => layer.id === 'perspectives');
     const isCompteurLayerClicked = layers.some(({ layer }) => layer.id === 'compteurs');
     const isLimitsLayerClicked = layers.some(({ layer }) => layer.id === 'limits');
+    const isInflatorLayerClicked = layers.some(({ layer }) => layer.id === 'inflators');
 
     if(isLimitsLayerClicked) {
       return
@@ -240,6 +242,25 @@ onMounted(() => {
             fallback: 'Chargement...'
           })
         }).mount('#perspective-tooltip-content');
+      });
+    } else if (isInflatorLayerClicked) {
+      const layer = layers.find(({ layer }) => layer.id === 'inflators');
+      const feature = features.value.find(f => f.properties.name === layer!.properties.name);
+      new Popup({ closeButton: false, closeOnClick: true })
+        .setLngLat(e.lngLat)
+        .setHTML('<div id="inflator-tooltip-content"></div>')
+        .addTo(map);
+
+      // @ts-ignore:next
+      const InflatorTooltipComponent = defineComponent(InflatorTooltip);
+      nextTick(() => {
+        // eslint-disable-next-line vue/one-component-per-file
+        createApp({
+          render: () => h(Suspense, null, {
+            default: h(InflatorTooltipComponent, { feature }),
+            fallback: 'Chargement...'
+          })
+        }).mount('#inflator-tooltip-content');
       });
     } else if (isCompteurLayerClicked) {
       const layer = layers.find(({ layer }) => layer.id === 'compteurs');

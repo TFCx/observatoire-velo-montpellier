@@ -81,7 +81,20 @@ export type CompteurFeature = {
     coordinates: [number, number];
   };
 };
-type PointFeature = PerspectiveFeature | CompteurFeature;
+
+export type InflatorFeature = {
+  type: 'Feature';
+  properties: {
+    type: 'inflator',
+    name: string
+  }
+  geometry: {
+    type: 'Point';
+    coordinates: [number, number];
+  };
+}
+
+type PointFeature = PerspectiveFeature | CompteurFeature | InflatorFeature;
 
 export type Feature = LineStringFeature | PointFeature | DisplayedLane | PolygonFeature;
 
@@ -107,6 +120,10 @@ export function isPolygonFeature(feature: Feature): feature is PolygonFeature {
 
 export function isPerspectiveFeature(feature: Feature): feature is PerspectiveFeature {
   return isPointFeature(feature) && feature.properties.type === 'perspective';
+}
+
+export function isInflatorFeature(feature: Feature): feature is InflatorFeature {
+  return isPointFeature(feature) && feature.properties.type === 'inflator';
 }
 
 export function isCompteurFeature(feature: Feature): feature is CompteurFeature {

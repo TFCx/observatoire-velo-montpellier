@@ -57,6 +57,13 @@
                     >
                       Plan officiel
                     </NuxtLink>
+                    <!-- <NuxtLink
+                      to="/services"
+                      class="text-base font-medium text-gray-500 hover:text-lvv-blue-600"
+                      @click="close()"
+                    >
+                      Services
+                    </NuxtLink> -->
                   </div>
                 </div>
               </PopoverPanel>
@@ -216,7 +223,9 @@ const { getAssoName } = useConfig();
 const navItems = [
   { name: 'Carte interactive', path: '/carte-interactive' },
   { name: 'Plan officiel', path: '/plan-officiel' },
-  { name: 'Évolution du réseau', path: '/evolution' }
+  { name: 'Évolution du réseau', path: '/evolution' },
+  { name: 'Services', path: '/services' },
+  { name: 'Compteurs', path: '/compteurs/velo' }
 ];
 
 const { data: voies } = await useAsyncData(() => {
