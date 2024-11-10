@@ -33,7 +33,7 @@ const { data: voie } = await useAsyncData(() => {
     .findOne();
 });
 
-const description = `Carte de la ${getRevName('singular')} ${line}. Découvrez les tronçons prévus, déjà réalisés, en travaux et ceux reportés après 2026.`;
+const description = `Carte de la ${getRevName('singular')} ${line} ${voie.value.from} ${voie.value.to}. Découvrez les tronçons prévus, déjà réalisés, en travaux et ceux reportés après 2026.`;
 useHead({
   title: `Carte de la ${getRevName('singular')} ${line}`,
   meta: [

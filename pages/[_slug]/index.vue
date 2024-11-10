@@ -50,7 +50,7 @@ const { data: voie } = await useAsyncData(`${path}`, () => {
   return queryContent('voies-cyclables').where({ _type: 'markdown', line: lineId }).findOne();
 });
 
-const description = `Tout savoir sur la ${getRevName('singular')} ${voie.value.line}. Avancement, carte interactive, détail rue par rue, calendrier des travaux et photos du projet.`;
+const description = `Tout savoir sur la ${getRevName('singular')} ${voie.value.line} ${voie.value.from} ${voie.value.to}. Avancement, carte interactive, détail rue par rue, calendrier des travaux et photos du projet.`;
 const coverImage = voie.value.cover;
 useHead({
   title: `${getRevName('singular')} ${voie.value.line} ${voie.value.from} ${voie.value.to}`,
