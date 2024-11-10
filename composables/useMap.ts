@@ -1,5 +1,5 @@
 import { GeoJSONSource, LngLatBounds, Map } from 'maplibre-gl';
-import { isCompteurFeature, isInflatorFeature, isLineStringFeature, isPerspectiveFeature, isPointFeature, type Feature, type PolygonFeature, type DisplayedLane, type LaneStatus, type LaneType, type LineStringFeature, isPolygonFeature} from '~/types';
+import { isCompteurFeature, isDangerFeature, isInflatorFeature, isLineStringFeature, isPerspectiveFeature, isPointFeature, type Feature, type PolygonFeature, type DisplayedLane, type LaneStatus, type LaneType, type LineStringFeature, isPolygonFeature} from '~/types';
 import { ref } from 'vue';
 
 enum DisplayedLayer {
@@ -110,6 +110,9 @@ export const useMap = () => {
 
     const inflator = await map.loadImage('/icons/inflator.png');
     map.addImage('inflator-icon', inflator.data, { sdf: true });
+
+    const danger = await map.loadImage('/icons/danger.png');
+    map.addImage('danger-icon', danger.data, { sdf: false });
 
     const crossIconUrl = getCrossIconUrl();
     const cross = await map.loadImage(crossIconUrl);
@@ -230,6 +233,36 @@ export const useMap = () => {
     }
 
     drawLimits(map)
+  }
+
+  function plotDangers({ map, features }: { map: Map; features: Feature[] }) {
+    const dangers = features.filter(isDangerFeature);
+    if (dangers.length === 0) {
+      return;
+    }
+
+    if (upsertMapSource(map, 'dangers', dangers)) {
+      return;
+    }
+
+    map.addLayer({
+      id: 'dangers',
+      source: 'dangers',
+      type: 'symbol',
+      layout: {
+        'icon-image': 'danger-icon',
+        'icon-size': 0.5
+      }
+    });
+    map.setLayoutProperty('perspectives', 'visibility', 'none');
+    map.on('zoom', () => {
+      const zoomLevel = map.getZoom();
+      if (zoomLevel > 14) {
+        map.setLayoutProperty('dangers', 'visibility', 'visible');
+      } else {
+        map.setLayoutProperty('dangers', 'visibility', 'none');
+      }
+    });
   }
 
   function plotInflators({ map, features }: { map: Map; features: Feature[] }) {
@@ -372,6 +405,7 @@ export const useMap = () => {
       plotPerspective({ map, features: updated_features });
       plotCompteurs({ map, features: updated_features });
       plotInflators({ map, features: updated_features });
+      plotDangers({ map, features: updated_features });
       plotLimits({ map, features: updated_features });
 
       watch(displayLimits, (displayLimits) => toggleLimitsVisibility(map, displayLimits))

@@ -28,6 +28,7 @@ import ShrinkControl from '@/maplibre/ShrinkControl';
 import LineTooltip from '~/components/tooltips/LineTooltip.vue';
 import CounterTooltip from '~/components/tooltips/CounterTooltip.vue';
 import InflatorTooltip from '~/components/tooltips/InflatorTooltip.vue';
+import DangerTooltip from '~/components/tooltips/DangerTooltip.vue';
 import PerspectiveTooltip from '~/components/tooltips/PerspectiveTooltip.vue';
 import { isLineStringFeature, isPolygonFeature, type Feature, type LaneStatus, type LaneType, type PolygonFeature } from '~/types';
 import config from '~/config.json';
@@ -216,6 +217,7 @@ onMounted(() => {
     const isCompteurLayerClicked = layers.some(({ layer }) => layer.id === 'compteurs');
     const isLimitsLayerClicked = layers.some(({ layer }) => layer.id === 'limits');
     const isInflatorLayerClicked = layers.some(({ layer }) => layer.id === 'inflators');
+    const isDangerLayerClicked = layers.some(({ layer }) => layer.id === 'dangers');
 
     if(isLimitsLayerClicked) {
       return
@@ -261,6 +263,25 @@ onMounted(() => {
             fallback: 'Chargement...'
           })
         }).mount('#inflator-tooltip-content');
+      });
+    } else if (isDangerLayerClicked) {
+      const layer = layers.find(({ layer }) => layer.id === 'dangers');
+      const feature = features.value.find(f => f.properties.name === layer!.properties.name);
+      new Popup({ closeButton: false, closeOnClick: true })
+        .setLngLat(e.lngLat)
+        .setHTML('<div id="danger-tooltip-content"></div>')
+        .addTo(map);
+
+      // @ts-ignore:next
+      const DangerTooltipComponent = defineComponent(DangerTooltip);
+      nextTick(() => {
+        // eslint-disable-next-line vue/one-component-per-file
+        createApp({
+          render: () => h(Suspense, null, {
+            default: h(DangerTooltipComponent, { feature }),
+            fallback: 'Chargement...'
+          })
+        }).mount('#danger-tooltip-content');
       });
     } else if (isCompteurLayerClicked) {
       const layer = layers.find(({ layer }) => layer.id === 'compteurs');
