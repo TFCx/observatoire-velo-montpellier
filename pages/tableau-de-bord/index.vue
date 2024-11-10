@@ -22,7 +22,7 @@
               {{ displayDistanceInKm(getTotalDistance([voie]), 1) }}
             </span>
           </div>
-          <div class="text-center text-sm text-gray-900">
+          <div v-if="hasTrafic(voie)" class="text-center text-sm text-gray-900">
             Fréquentation max 2030: <span class="font-bold" :style="`color: ${getLineColor(getLine(voie))}`">
               {{ getTrafic(voie) }}
             </span>
@@ -61,6 +61,12 @@ const { data: mds } = await useAsyncData(() => {
 
 function getLine(voie: Geojson): string {
   return voie.features[0].properties.line;
+}
+
+function hasTrafic(voie: Geojson): bool {
+  const line = getLine(voie);
+  const trafic = mds.value?.find((md) => md.line === line)?.trafic;
+  return trafic != null;
 }
 
 function getTrafic(voie: Geojson): string {
