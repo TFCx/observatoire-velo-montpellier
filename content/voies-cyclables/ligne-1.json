@@ -87,134 +87,38 @@
       "properties": {
         "id": "EinsteinE-commun",
         "line": 1,
-        "name": "Einstein Est",
-        "status": "planned",
-        "type": "bidirectionnelle",
-        "link": "/voie-lyonnaise-1#sud-du-campus-de-la-doua"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [5.910505,45.57527]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": "EinsteinI-commun",
-        "line": 1,
-        "name": "Einstein INSA",
-        "status": "planned",
-        "type": "bidirectionnelle",
-        "link": "/voie-lyonnaise-1#sud-du-campus-de-la-doua"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [5.910505,45.57527]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": "EinsteinO-commun",
-        "line": 1,
-        "name": "Einstein Ouest",
-        "status": "planned",
-        "type": "bidirectionnelle",
-        "link": "/voie-lyonnaise-1#sud-du-campus-de-la-doua"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [5.910505,45.57527]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": "11Nov-commun",
-        "line": 1,
-        "name": "Boulevard du 11 Nov. 1918",
-        "status": "planned",
-        "type": "bidirectionnelle",
-        "link": "/voie-lyonnaise-1#sud-du-campus-de-la-doua"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [5.910505,45.57527]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": "StalingradNord-commun",
-        "line": 1,
-        "name": "Stalingrad Nord",
-        "status": "planned",
-        "type": "bidirectionnelle",
-        "link": "/voie-lyonnaise-2#boulevard-stalingrad-nord"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [5.910505,45.57527]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": "Bonnevay127-commun",
-        "line": 1,
-        "name": "Transbordeur",
-        "status": "planned",
-        "type": "bidirectionnelle",
-        "link": "/voie-lyonnaise-2#boulevard-stalingrad-nord"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [5.910505,45.57527]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": "Lignon-commun",
-        "line": 1,
-        "name": "Allée Achille Lignon",
-        "status": "planned",
-        "type": "bidirectionnelle",
-        "link": "/voie-lyonnaise-1#allée-achille-lignon"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
-          [5.910505,45.57527]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "id": "TetedOr157-commun",
-        "line": 1,
-        "name": "Tête d'Or",
-        "status": "planned",
+        "name": "Quai des Allobroges",
+        "status": "done",
         "type": "bidirectionnelle",
         "link": "/rev-1"
       },
       "geometry": {
         "type": "LineString",
         "coordinates": [
-          [5.910505,45.57527]
+          [5.924227,45.567318],
+          [5.923551,45.567371],
+          [5.921985,45.568076],
+          [5.921392,45.568251],
+          [5.921306,45.568204],
+          [5.921175,45.568221],
+          [5.920912,45.56821],
+          [5.920671,45.568188],
+          [5.919271,45.568721],
+          [5.918562,45.569217],
+          [5.917763,45.570212],
+          [5.917516,45.570516],
+          [5.917404,45.570677],
+          [5.917516,45.57079],
+          [5.917248,45.570929],
+          [5.916964,45.571207],
+          [5.91603,45.572438],
+          [5.915247,45.57388],
+          [5.915097,45.574564],
+          [5.914915,45.575495],
+          [5.924281,45.567316],
+          [5.926791,45.567406],
+          [5.929466,45.567102],
+          [5.929675,45.567087]
         ]
       }
     }
