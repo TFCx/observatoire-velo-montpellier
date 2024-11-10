@@ -6,7 +6,7 @@
           Les {{ getRevName() }}, c'est quoi ?
         </h2>
         <p class="mt-3 text-xl text-gray-500 sm:mt-4">
-          C'est le nom du projet de Réseau Express Vélo voté en 2022 par la Métropole de Montpellier.<br>Concrètement, une {{ getRevName('singular') }} est une voie cyclable large (typiquement plus de 2 mètres par sens), sécurisée, efficace, attractive et confortable, souvent sous forme de piste séparée des voitures. L'ensemble doit créer un maillage cyclable sans discontinuité qui connecte les quartiers montpelliérains aux communes de la périphérie de la métropole.
+          C'est le nom du projet de Réseau Express Vélo voté en 2022 par la Métropole de Montpellier<a href="https://www.montpellier3m.fr/v%C3%A9lolignes" target="_blank">🔗</a>.<br>Concrètement, une {{ getRevName('singular') }} est une voie cyclable large (typiquement plus de 2 mètres par sens), sécurisée, efficace, attractive et confortable, souvent sous forme de piste séparée des voitures. L'ensemble doit créer un maillage cyclable sans discontinuité qui connecte les quartiers montpelliérains aux communes de la périphérie de la métropole.
         </p>
       </div>
     </div>
