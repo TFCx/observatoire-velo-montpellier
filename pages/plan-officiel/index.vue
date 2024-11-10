@@ -12,7 +12,7 @@
 const { getRevName } = useConfig();
 
 const description = `Découvrez le plan officiel des ${getRevName()}, le réseau vélo de Grand Chambéry.`;
-const COVER_IMAGE_URL = 'const COVER_IMAGE_URL = 'https://cyclopolis.lavilleavelo.org/carte-voies-lyonnaises-2026.png';
+const COVER_IMAGE_URL = 'https://cyclopolis.lavilleavelo.org/cyclopolis.png';
 
 useHead({
   title: `Plan des ${getRevName()}`,
