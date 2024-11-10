@@ -19,8 +19,10 @@ Elle est aménagé avec une piste cyclable bidirectionnelle de 3 à 3,5m de larg
 Elle longe ensuite la rivière la Leysse par le Quai des Allogroges.
 
 ::banner{type="modified"}
-En 2024, la jonction entre la Voie Verte Nord et la Voie Verte de la Leysse a été réalisée avec l'aménagement d'une piste bidirectionnelle (largeur 3,5m) sur l'avenue des Ducs.
+En 2023, la jonction entre la Voie Verte Nord et la Voie Verte de la Leysse a été réalisée avec l'aménagement d'une piste bidirectionnelle (largeur 3,5m) sur l'avenue des Ducs.
 ::
+[Présentation du projet sur le site chambery.fr](
+https://www.chambery.fr/3672-amenagement-de-l-avenue-des-ducs-des-quais-ravet-et-borrel.htm)
 
 ::banner{type="wip"}
 En 2024, les carrefours n'ont pas été modifiés et les connexions avec le réseau secondaires n'ont pas été traitées.

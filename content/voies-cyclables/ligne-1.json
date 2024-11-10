@@ -5,12 +5,14 @@
     {
   "type": "Feature",
   "properties": {
-    "id": "EinsteinE-commun",
+    "id": "",
     "line": 1,
-    "name": "Quai des Allobroges",
+    "name": "Avenue des Ducs",
+    "quality": "good",
+    "doneAt": "31\/04\/2023",
     "status": "done",
     "type": "bidirectionnelle",
-    "link": "/rev-1"
+    "link": "/rev-1#avenue-des-ducs"
   },
   "geometry": {
     "type": "LineString",
@@ -26,12 +28,13 @@
 {
   "type": "Feature",
   "properties": {
-    "id": "CroixLuizet-commun",
+    "id": "",
     "line": 1,
     "name": "Voie Verte Belle Via",
+    "quality": "",
     "status": "unknown",
     "type": "aucun",
-    "link": "/rev-1"
+    "link": "/rev-1#rue-de-la-savoisienne"
   },
   "geometry": {
     "type": "LineString",
@@ -47,12 +50,13 @@
     {
       "type": "Feature",
       "properties": {
-        "id": "CroixLuizet-commun",
+        "id": "",
         "line": 1,
         "name": "Voie Verte Belle Via",
+        "quality": "good",
         "status": "done",
         "type": "bidirectionnelle",
-        "link": "/rev-1"
+        "link": "/rev-1#avenue-des-chevaliers-tireurs"
       },
       "geometry": {
         "type": "LineString",
@@ -66,12 +70,14 @@
     {
       "type": "Feature",
       "properties": {
-        "id": "PeriCanal-commun",
+        "id": "",
         "line": 1,
         "name": "Voie Verte Belle Via",
+        "quality": "good",
+        "doneAt": "31\/12\/1997",
         "status": "done",
         "type": "voie-verte",
-        "link": "/rev-1"
+        "link": "/rev-1#voie-verte-nord"
       },
       "geometry":{
       "type": "LineString",
