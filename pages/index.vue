@@ -24,7 +24,7 @@
             Avancement par ligne
           </h2>
           <p class="text-xl text-gray-500">
-            Choisissez une {{ getRevName('singular') }} pour connaître la découvrir et voir son niveau d'avancement.
+            Choisissez une {{ getRevName('singular') }} pour la découvrir et voir son niveau d'avancement.
           </p>
         </div>
         <HomeLinesSection class="mt-5" />
