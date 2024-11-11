@@ -1,7 +1,7 @@
 <template>
   <div class="max-w-4xl mx-auto mt-14 px-4 sm:px-6 lg:px-8 lg:mt-24">
     <h1 class="text-center text-3xl text-lvv-blue-600 font-bold mb-8">
-      Tableau de bord de suivi des Vélolignes
+      Tableau de bord de suivi des {{ config.revName.plural }}
     </h1>
     <div v-if="!voies">
       Chargement ...
@@ -41,6 +41,7 @@
 <script setup lang="ts">
 import type { ParsedContent } from '@nuxt/content';
 import type { Feature } from '../../types';
+import config from '../../config.json';
 interface Geojson extends ParsedContent {
   type: string;
   features: Feature[];
@@ -75,9 +76,9 @@ function getTrafic(voie: Geojson): string {
   return trafic || 'Inconnu';
 }
 
-const description = 'Tableau de bord de suivi des vélolignes en temps réel.';
+const description = `Tableau de bord de suivi des ${config.revName.plural} en temps réel.`;
 useHead({
-  title: 'Tableau de bord de suivi des Vélolignes',
+  title: `Tableau de bord de suivi des ${config.revName.plural}`,
   meta: [
     { hid: 'description', name: 'description', content: description },
     { hid: 'og:description', property: 'og:description', content: description },
