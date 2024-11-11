@@ -3,11 +3,11 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-4xl mx-auto text-center">
         <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-          Une {{ getRevName() }}, c'est quoi ?
+          Les {{ getRevName() }}, c'est quoi ?
         </h2>
         <p class="mt-3 text-xl text-gray-500 sm:mt-4">
           C'est le nom du projet de réseau structurant lancé en 2024 par la Communauté d'agglomération de Grand Chambéry.
-          Concrètement, pour les usagers, une {{ getRevName('singular') }} doit être une voie cyclable large (3 à 4m), sécurisée, efficace, attractive et confortable, souvent sous forme de piste bidirectionnelle et séparée du trafic routier. L'ensemble doit créer un maillage cyclable sans discontinuités qui connecte l'ensemble des villes de l'agglomération de Grand Chambéry.
+          <br> Concrètement, pour les usagers, une {{ getRevName('singular') }} doit être une voie cyclable large (3 à 4m), sécurisée, efficace, attractive et confortable, souvent sous forme de piste bidirectionnelle et séparée du trafic routier. L'ensemble doit créer un maillage cyclable sans discontinuités qui connecte l'ensemble des villes de l'agglomération de Grand Chambéry.
         </p>
       </div>
     </div>
