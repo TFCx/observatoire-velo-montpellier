@@ -39,6 +39,13 @@ credit: Roue Libre
 
 <span style="color:gold;font-weight:bold">À améliorer</span> Rue à faible trafic automobile mais sans aménagement et traversée du quai des Allobroges non sécurisée.
 
+::content-image
+---
+imageUrl: https://rouelibre.net/wp-content/uploads/2024/11/REV.-Quai-Allobroges.jpg
+caption: Traversée non sécurisée du quai des Allobroges
+credit: Roue Libre
+---
+
 ### Avenue des Chevaliers Tireurs
 <span style="color:lightgreen;font-weight:bold">Satisfaisant</span> Deux pistes unidirectionnelles.
 
