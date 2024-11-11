@@ -1,5 +1,6 @@
 import { GeoJSONSource, LngLatBounds, Map } from 'maplibre-gl';
-import { isCompteurFeature, isDangerFeature, isPumpFeature, isLineStringFeature, isPerspectiveFeature, isPointFeature, type Feature, type PolygonFeature, type DisplayedLane, type LaneStatus, type LaneType, type LineStringFeature, isPolygonFeature} from '~/types';
+import type { CounterParsedContent } from '../types/counters';
+import { isCompteurFeature, isDangerFeature, isPumpFeature, isLineStringFeature, isPerspectiveFeature, isPointFeature, type Feature, type PolygonFeature, type DisplayedLane, type LaneStatus, type LaneType, type LineStringFeature, isPolygonFeature, type CompteurFeature} from '~/types';
 import { ref } from 'vue';
 
 enum DisplayedLayer {
@@ -333,12 +334,11 @@ export const useMap = () => {
     counters,
     type
   }: {
-    counters: Compteur[];
+    counters: CounterParsedContent[] | null;
     type: 'compteur-velo' | 'compteur-voiture';
-  }) {
-    if (counters.length === 0) {
-      return;
-    }
+  }): CompteurFeature[] {
+    if (!counters) { return []; }
+    if (counters.length === 0) { return []; }
 
     return counters.map(counter => ({
       type: 'Feature',
@@ -350,7 +350,7 @@ export const useMap = () => {
       },
       geometry: {
         type: 'Point',
-        coordinates: counter.coordinates
+        coordinates: [counter.coordinates[0], counter.coordinates[1]]
       }
     }));
   }
