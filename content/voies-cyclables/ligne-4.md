@@ -1,8 +1,8 @@
 ---
 name: Piste Bleue 4
 line: 4
-from: Chambéry
-to: Challes les Eaux
+from: Chambéry (Quai de la Rize)
+to: Challes les Eaux (Plan d'Eau)
 description: La Piste Bleue 4 permet de relier Chambéry à Challes les Eaux via Bassens, Saint Alban Leysse et Barby. Après avoir longé la Leysse jusqu'à Barby, elle relie Challes les Eaux par la voie verte des planeurs, le long de l'aérodrome de Challes les Eaux.
 trafic: 1500 vélos/jour
 cover: https://rouelibre.net/wp-content/uploads/2024/09/IMG_3054.jpg
