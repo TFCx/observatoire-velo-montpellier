@@ -10,7 +10,7 @@
       </nav>
       <div class="mt-4 border-t border-gray-200 pt-4 md:flex md:items-center md:justify-between">
         <div class="flex justify-center space-x-6 md:order-2">
-          <a v-for="item in socials.lvv" :key="item.name" :href="item.href" target="_blank" class="text-gray-500 hover:text-gray-500">
+          <a v-for="item in socials" :key="item.name" :href="item.href" target="_blank" class="text-gray-500 hover:text-gray-500">
             <span class="sr-only">{{ item.name }}</span>
             <Icon :name="item.icon" class="h-6 w-6" aria-hidden="true" />
           </a>
@@ -33,40 +33,31 @@ const links = [
   { name: 'Historique', path: '/historique' }
 ];
 
-const socials = {
-  cyclopolis: [
-    {
-      name: 'Twitter',
-      href: 'https://twitter.com/_TFCx_',
-      icon: 'mdi:twitter'
-    },
-    {
-      name: 'Github',
-      href: 'https://github.com/TFCx/observatoire-velolignes',
-      icon: 'mdi:github'
-    }
-  ],
-  lvv: [
-    {
-      name: 'Twitter',
-      href: 'https://twitter.com/VelociteMtp',
-      icon: 'mdi:twitter'
-    },
-    {
-      name: 'Facebook',
-      href: 'https://www.facebook.com/VelociteMontpellier/',
-      icon: 'mdi:facebook'
-    },
-    {
-      name: 'Site web',
-      href: 'https://www.velocite-montpellier.fr/',
-      icon: 'mdi:link'
-    },
-    {
-      name: 'Email',
-      href: 'mailto:velocite-montpellier@fub.fr',
-      icon: 'mdi:email-outline'
-    }
-  ]
-};
+const socials = [
+  {
+    name: 'Github',
+    href: 'https://github.com/TFCx/observatoire-velolignes',
+    icon: 'mdi:github'
+  },
+  {
+    name: 'Twitter',
+    href: 'https://twitter.com/VelociteMtp',
+    icon: 'mdi:twitter'
+  },
+  {
+    name: 'Facebook',
+    href: 'https://www.facebook.com/VelociteMontpellier/',
+    icon: 'mdi:facebook'
+  },
+  {
+    name: 'Site web',
+    href: 'https://www.velocite-montpellier.fr/',
+    icon: 'mdi:link'
+  },
+  {
+    name: 'Email',
+    href: 'mailto:velocite-montpellier@fub.fr',
+    icon: 'mdi:email-outline'
+  }
+];
 </script>
