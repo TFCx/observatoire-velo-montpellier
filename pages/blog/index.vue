@@ -6,7 +6,7 @@
           Blog de Cyclopolis
         </h2>
         <p class="mt-3 text-xl text-gray-500 sm:mt-4">
-          Quelques articles et autres réflexions sur la plateforme de {{ getAssoName() }}.
+          Quelques articles et autres réflexions sur l'observatoire de suivi de {{ getAssoName() }}.
         </p>
       </div>
       <div class="mt-12 grid gap-16 pt-12 lg:grid-cols-3 lg:gap-x-5 lg:gap-y-4">

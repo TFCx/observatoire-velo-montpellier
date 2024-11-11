@@ -2,7 +2,7 @@ import config from './config.json';
 
 const TITLE = `Cyclopolis - Suivi des ${config.revName.plural} par ${config.assoName}`;
 const DESCRIPTION =
-  `Plateforme citoyenne et associative, par ${config.assoName}. État d'avancement, cartes interactives des itinéraires, détails, travaux : suivez le développement du réseau cyclable sécurisé lyonnais`;
+  `Observatoire citoyen et associatif, par ${config.assoName}. État d'avancement, cartes interactives des itinéraires, détails, travaux : suivez le développement du réseau cyclable sécurisé sur le territoire de Grand Chambéry`;
 const BASE_URL = 'https://cyclopolis.fr';
 const COVER_IMAGE_URL = 'https://rouelibre.net/wp-content/uploads/2020/05/cropped-RL_Logo_10X10.png';
 

@@ -6,7 +6,7 @@
           Historique des changements
         </h1>
         <div class="mx-auto mt-4 text-gray-500 prose prose-lg text-center">
-          Suivez tous les changements qui sont réalisés sur la plateforme.
+          Suivez tous les changements qui sont réalisés sur l'observatoire.
         </div>
       </div>
     </div>

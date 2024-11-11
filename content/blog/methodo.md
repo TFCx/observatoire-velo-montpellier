@@ -50,18 +50,16 @@ Ces sections n’ont pas encore fait l’objet de concertations ou de communicat
 ## Calcul des statistiques du site
 Pour obtenir les chiffres lisibles sur le tableau de bord de la page d’accueil du site, nous ne comptons qu’une seule des variantes sur les tronçons concernés, et nous ne comptons qu’une seule fois les tronçons en commun avec plusieurs pistes.
 
-## 250 ou 260km ?
-Dans ses annonces officielles de septembre 2021, la Métropole de Lyon a évoqué un réseau des Voies Lyonnaises de 250km. Après avoir fait son propre décompte du réseau annoncé pour 2026, La Ville à Vélo a obtenu une distance totale autour de 260km. Nous avons souhaité rester factuel, c’est pourquoi toutes les distances qui figurent sur la plateforme Cyclopolis correspondent aux distances réelles calculées par nos bénévoles. Le code source du site web est public et chacun est en mesure de reprendre nos informations géographiques pour vérifier leur exactitude.
+## 57 ou 64 km ?
+Lors de l'inauguration des Pistes Bleues par Grand Chambéry en juin 2024, 9 lignes et 57 kilomètres d'itinéraires cyclables ont été présentés. Plusieurs secteurs n'étant pas desservis par ce réseau, Roue Libre propose la réalisation de 2 Pistes supplémentaires pour connecter Jacob - Bellecombette (:line-link{line=10}) et Barby via Bassens et Chambéry-Mérande via la :line-link{line=11}.
 
 ## Précision des cartographies
-Nous nous sommes efforcés d’être le plus précis possible sur le positionnement de l’aménagement cyclable dans nos cartes interactives. Cependant, certains tronçons ont été dessinés à un moment où nous ignorions le côté d’insertion de la piste sur la rue. Ainsi, en zoomant beaucoup sur une rue en particulier, il est possible de retrouver des incohérences. C’est tout à fait normal, car la carte interactive a pour objectif principal de repérer les rues concernées par l’aménagement et pas son insertion précise. Nous travaillerons cependant à une amélioration de cette précision de manière à pouvoir intégrer les informations géographiques de la plateforme au sein de la communauté d’OpenStreetMap.
+Nous nous sommes efforcés d’être le plus précis possible sur le positionnement de l’aménagement cyclable dans nos cartes interactives. Cependant, certains tronçons ont été dessinés à un moment où nous ignorions le côté d’insertion de la piste sur la rue. Ainsi, en zoomant beaucoup sur une rue en particulier, il est possible de retrouver des incohérences. C’est tout à fait normal, car la carte interactive a pour objectif principal de repérer les rues concernées par l’aménagement et pas son insertion précise. Nous travaillerons cependant à une amélioration de cette précision de manière à pouvoir intégrer les informations géographiques de l'observatoire au sein de la communauté d’OpenStreetMap.
 
 ## Réseau 2030
-La plateforme Cyclopolis a pour objectif de surveiller la bonne réalisation du réseau cyclable de Grand Chambéry sur le mandat en cours. Ce mandat se termine en 2026. C’est sur ce projet précis que porte la plateforme Cyclopolis lancée à l’automne 2023.
+L'observatoire Cyclopolis a pour objectif de surveiller la sécurisation du réseau cyclable de Grand Chambéry sur le mandat en cours. Ce mandat se termine en 2026. C’est sur ce projet précis que porte l'observatoire Cyclopolis lancée à l’automne 2024.
 
-En cas de non-réélection de la majorité politique actuelle au Grand Lyon, les aménagements qui ne seront pas réalisés à l’été 2026 pourraient faire l’objet d’ajustements majeurs voire d’abandons purs et simples des nouveaux élus qui seront nommés lors de l’élection métropolitaine de 2026. Il n’est donc pas possible à ce stade d’affirmer que les tronçons reportés et ceux annoncés pour « 2030 » seront réellement réalisés à cette date.
-
-A l’occasion des campagnes pour les élections communautaires de 2026, la plateforme Cyclopolis évoluera pour comparer les programmes des différentes formations politiques candidates au sujet du Réseau Express Vélo GRand Chambéry à l’horizon 2032.
+A l’occasion des campagnes pour les élections communautaires de 2026, l'observatoire Cyclopolis évoluera pour comparer les programmes des différentes formations politiques candidates au sujet du Réseau Express Vélo Grand Chambéry à l’horizon 2032.
 
 ## Réutilisation du contenu du site
 Toute réutilisation brute des cartographies interactives du site, des chiffres du tableau de bord et des détails écrits des tronçons de chaque ligne doivent faire systématiquement mention du nom de la plateforme « Cyclopolis » (avec lien vers <a href="https://cyclopolis.fr" target="_blank">https://cyclopolis.fr</a>) et du nom de l’association contributrice « Roue Libre » (avec lien vers <a href="https://rouelibre.net/" target="_blank">https://rouelibre.net/</a>).
