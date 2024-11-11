@@ -70,7 +70,7 @@
         "name": "Avenue des Chevaliers Tireurs",
         "quality": "good",
         "status": "done",
-        "type": "bilaterale",
+        "type": "bandes-cyclables",
         "link": "/rev-1#avenue-des-chevaliers-tireurs"
       },
       "geometry": {
