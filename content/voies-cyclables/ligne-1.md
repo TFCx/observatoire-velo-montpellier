@@ -14,7 +14,7 @@ cover: https://rouelibre.net/wp-content/uploads/2022/11/IMG_1555.jpg
 
 <span style="color:lightgreen;font-weight:bold">Satisfaisant</span> La Piste 1 débute sur l'avenue des Ducs, à la hauteur de la place des Elephants de Chambéry. 
 
-Elle est aménagé par une piste cyclable bidirectionnelle de 3 à 3,5m de large. Elle croise le départ de la :line-link{line=2} Landiers au niveau du palais de Justice de Chambéry puis celui de la :line-link{line=8} La Motte Servolex au niveau du giratoire de la Poste.
+Elle est aménagé par une piste cyclable bidirectionnelle de 3 à 3,5m de large. Elle croise le départ de la :line-link{line=2} Landiers au niveau du palais de Justice de Chambéry puis celui de la :line-link{line=9} La Motte Servolex au niveau du giratoire de la Poste.
 
 Elle longe ensuite la rivière la Leysse par le Quai des Allobroges.
 
@@ -28,10 +28,9 @@ Lors de cet aménagement, les carrefours n'ont pas été modifiés et les connex
 
 ::content-image
 ---
-imageUrl: https://cyclopolis.lavilleavelo.org/vl1/vaulx-en-velin.jpg
-caption: Aperçu de la Voie Lyonnaise 1 le long du tram T9 - avenue Einstein (Villeurbanne)
-credit: SYTRAL Mobilités
-streetView: 45.7842013,4.8861424,3a,75y,259.87h,90t
+imageUrl: https://rouelibre.net/wp-content/uploads/2024/11/hero.jpeg
+caption: Avenue des Ducs. Connexion entre la Piste Bleue 7 et la Piste Bleue 1
+credit: Roue Libre
 ---
 ::
 
