@@ -45,6 +45,7 @@ imageUrl: https://rouelibre.net/wp-content/uploads/2024/11/REV.-Quai-Allobroges.
 caption: Traversée non sécurisée du quai des Allobroges
 credit: Roue Libre
 ---
+::
 
 ### Avenue des Chevaliers Tireurs
 <span style="color:lightgreen;font-weight:bold">Satisfaisant</span> Deux pistes unidirectionnelles.
