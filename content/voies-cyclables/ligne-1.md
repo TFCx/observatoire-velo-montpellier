@@ -3,7 +3,7 @@ name: Piste 1
 line: 1
 from: Chambéry
 to: Bourget du Lac
-description: La Piste 1 permet de relier Chambéry au Bourget du Lac par la voie verte Nord - Belle Via (ex V63). Cette ligne a la particularité d'accueillir le trafic vélo le plus élevé de la Métropole, au niveau du compteur du palais de justice de Chambéry.
+description: La Piste Bleue 1 permet de relier Chambéry au Bourget du Lac par la voie verte Nord - Belle Via (ex V63). Cette ligne a la particularité d'accueillir le trafic vélo le plus élevé de la Métropole, au niveau du compteur du palais de justice de Chambéry.
 trafic: 2500 vélos/jour
 cover: https://rouelibre.net/wp-content/uploads/2022/11/IMG_1555.jpg
 ---
@@ -14,15 +14,14 @@ cover: https://rouelibre.net/wp-content/uploads/2022/11/IMG_1555.jpg
 
 <span style="color:lightgreen;font-weight:bold">Satisfaisant</span> La Piste 1 débute sur l'avenue des Ducs, à la hauteur de la place des Elephants de Chambéry. 
 
-Elle est aménagé par une piste cyclable bidirectionnelle de 3 à 3,5m de large. Elle croise le départ de la :line-link{line=2} au niveau du palais de Justice de Chambéry puis celui de la :line-link{line=8}.
+Elle est aménagé par une piste cyclable bidirectionnelle de 3 à 3,5m de large. Elle croise le départ de la :line-link{line=2} Landiers au niveau du palais de Justice de Chambéry puis celui de la :line-link{line=8} La Motte Servolex au niveau du giratoire de la Poste.
 
-Elle longe ensuite la rivière la Leysse par le Quai des Allogroges.
+Elle longe ensuite la rivière la Leysse par le Quai des Allobroges.
 
 ::banner{type="modified"}
-En 2023, la jonction entre la Voie Verte Nord et la Voie Verte de la Leysse a été réalisée avec l'aménagement d'une piste bidirectionnelle (largeur 3,5m) sur l'avenue des Ducs.
+En 2023, [l'aménagement d'une piste bidirectionnelle -largeur 3,5m- sur l'avenue des Ducs(https://www.chambery.fr/3672-amenagement-de-l-avenue-des-ducs-des-quais-ravet-et-borrel.htm)] a permis la jonction entre la Voie Verte Nord et la Voie Verte de la Leysse.
 ::
-[Présentation du projet sur le site chambery.fr](
-https://www.chambery.fr/3672-amenagement-de-l-avenue-des-ducs-des-quais-ravet-et-borrel.htm)
+
 
 ::banner{type="wip"}
 Lors de cet aménagement, les carrefours n'ont pas été modifiés et les connexions avec le réseau secondaires n'ont pas été traitées.
