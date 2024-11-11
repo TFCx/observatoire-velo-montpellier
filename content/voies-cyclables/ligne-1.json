@@ -3,6 +3,19 @@
   "features": [
 
     {
+      "type": "Feature",
+      "properties": {
+        "type": "perspective",
+        "name": "Chambéry - Quai des Allobroges",
+        "line": 1,
+        "imgUrl": "https://rouelibre.net/wp-content/uploads/2024/11/REV.-Quai-Allobroges.jpg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [5.914882,45.575518]
+      }
+    },
+    {
   "type": "Feature",
   "properties": {
     "line": 1,
