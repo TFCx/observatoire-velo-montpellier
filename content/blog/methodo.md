@@ -15,7 +15,7 @@ On vous explique tout !
 ## Que signifient les types de chaque tronçon et les statistiques "Typologie 2026"
 Il s'agit de chacun des aménagements cyclables que rencontreront les cyclistes sur chacune des lignes à la fin du mandat en 2026. Mis bout-à-bout, et rapportés à la distance totale des différents itinéraires, on peut ensuite obtenir des statistiques détaillées.
 
-L'ensemble du linéaire du Réseau Express Grand Chambéry est utilisé, y compris les tronçons reportés après 2026. Dans ce cas, l'aménagement indiqué est celui présent actuellement, car il ne sera malheureusement pas amélioré avant la fin du mandat en cours.
+L'ensemble du linéaire des Pistes Bleues Grand Chambéry est utilisé, y compris les nouvelles pistes demandées par Roue Libre et les tronçons reportés après 2026. Dans ce cas, l'aménagement indiqué est celui présent actuellement, car il ne sera malheureusement pas amélioré avant la fin du mandat en cours.
 
 Quand un tronçon est prévu mais qu'il n'y a toujours eu aucune communication publique à son sujet, il est considéré comme "Inconnu" même s'il peut déjà comporter des aménagements cyclables aujourd'hui. A ce stade, nous ne sommes pas en mesure de dire si ce tronçon sera reporté après 2026 ou s'il sera réaménagé et sécurisé d'ici la fin du mandat. La typologie sera évidemment mise à jour dès que nous aurons obtenu une information.
 
@@ -42,10 +42,10 @@ Les tronçons considérés comme "terminés" sont tous les tronçons aménagés 
 N'hésitez pas à nous contacter sur nos réseaux sociaux ou via [cette page](https://rouelibre.net/#anchor-contact).*
 
 ## Reporté après 2026
-Il s’agit des tronçons qui faisaient partie des promesses politiques annoncées en septembre 2021, puis qui ont fait l’objet d’une communication de la Métropole (via un dossier de concertation ou une communication médiatique) expliquant qu’ils ne seraient pas sécurisés, mis aux normes ou marqués en Voie Lyonnaise d’ici la fin du mandat en cours. Nous indiquons « après 2026 » et pas « 2030 », car tout ce qui ne sera pas réalisé en 2026 relève d’une promesse de campagne électorale et pas d’un projet réel (cf. paragraphe « Réseau 2030 »).
+Il s’agit des tronçons qui ne seront pas réalisés avant 2026 faute d'étude et ou d'engagement financier au cours de ce mandat.
 
 ## Tracé à définir / Linéaire inconnu
-Ces sections n’ont pas encore fait l’objet de concertations ou de communications publiques, et nous considérons qu’il existe différents itinéraires possibles pour y faire passer la Voie Lyonnaise. Dans l’attente d’informations plus détaillées, nous préférons donc ne pas privilégier un itinéraire sur un autre. Cependant, pour améliorer la lecture cartographique et éviter l'illusion de la "ligne droite", nous privilégions de manière arbitraire certains itinéraire de manière à obtenir un rendu et des statistiques plus fiables sur la ligne.
+Ces sections n’ont pas encore fait l’objet de concertations ou de communications publiques, et nous considérons qu’il existe différents itinéraires possibles pour y faire passer une Piste Bleue. Dans l’attente d’informations plus détaillées, nous préférons donc ne pas privilégier un itinéraire sur un autre. Cependant, pour améliorer la lecture cartographique et éviter l'illusion de la "ligne droite", nous privilégions de manière arbitraire certains itinéraire de manière à obtenir un rendu et des statistiques plus fiables sur la ligne.
 
 ## Calcul des statistiques du site
 Pour obtenir les chiffres lisibles sur le tableau de bord de la page d’accueil du site, nous ne comptons qu’une seule des variantes sur les tronçons concernés, et nous ne comptons qu’une seule fois les tronçons en commun avec plusieurs pistes.
