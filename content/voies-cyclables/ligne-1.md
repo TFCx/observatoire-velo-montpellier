@@ -22,7 +22,6 @@ Elle longe ensuite la rivière la Leysse par le Quai des Allobroges.
 En 2023, [l'aménagement d'une piste bidirectionnelle -largeur 3,5m- sur l'avenue des Ducs (https://www.chambery.fr/3672-amenagement-de-l-avenue-des-ducs-des-quais-ravet-et-borrel.htm)] a permis la jonction entre la Voie Verte Nord et la Voie Verte de la Leysse.
 ::
 
-
 ::banner{type="wip"}
 Lors de cet aménagement, les carrefours n'ont pas été modifiés et les connexions avec le réseau secondaires n'ont pas été traitées.
 ::
