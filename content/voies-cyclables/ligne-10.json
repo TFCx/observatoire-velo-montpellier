@@ -6,10 +6,10 @@
       "type": "Feature",
       "properties": {
         "line": 10,
-        "name": "test",
-        "status": "unknown",
-        "type": "bandes-cyclables",
-        "link": "/rev-8#chamb%C3%A9ry-buisson-rond-%C3%A0-la-m%C3%A9diath%C3%A8que-jean-jacques-rousseau"
+        "name": "Boulevard de Bellevue",
+        "status": "postponed",
+        "type": "aucun",
+        "link": "/rev-10"
     },
     "geometry": {
       "type": "LineString",

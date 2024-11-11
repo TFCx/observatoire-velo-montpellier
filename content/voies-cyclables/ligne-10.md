@@ -6,5 +6,5 @@ to: Jacob Bellecombette (Mairie)
 description: Proposition additionnelle au réseau de pistes bleues de Grand Chambéry pour desservir Jacob Bellecombette et le campus universitaire.
 ---
 
-### Chambéry Caffe - Jacob Bellecombette
+### Boulevard de Bellevue
 <span style="color:#ff6961;font-weight:bold">Non satisfaisant</span> Aménagement cyclable sécurisé à créer
