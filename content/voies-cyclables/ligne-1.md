@@ -45,8 +45,8 @@ credit: Roue Libre
 ### Voie Verte Nord
 *tronçon de la Belle Via*
 
-<span style="color:lightgreen;font-weight:bold">Satisfaisant</span> Voie verte historique de Grand Chambéry jusqu'au Lac du Bourget.
-Son dernier tronçon entre Villarcher et le lac du Bourget a été réalisé suite à la Vélorution organisée par Roue Libre et une vingtaine d’autres organisations le 21 octobre 1995 (1200 participants). 
+<span style="color:lightgreen;font-weight:bold">Satisfaisant</span> Voie verte historique de Grand Chambéry jusqu'au Bourget du Lac.
+Son dernier tronçon entre Villarcher (commune de La Motte Servolex) et le lac du Bourget a été réalisé suite à la Vélorution organisée par Roue Libre et une vingtaine d’autres organisations le 21 octobre 1995 (1200 participants). 
 
 ::content-image
 ---
