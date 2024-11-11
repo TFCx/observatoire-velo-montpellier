@@ -5,7 +5,7 @@
     {
   "type": "Feature",
   "properties": {
-    "id": "",
+    "id": "Avenue des Ducs",
     "line": 1,
     "name": "Avenue des Ducs",
     "quality": "good",
@@ -45,7 +45,7 @@
   "properties": {
     "id": "",
     "line": 1,
-    "name": "Voie Verte Belle Via",
+    "name": "Rue de la Savoisienne",
     "quality": "",
     "status": "unknown",
     "type": "aucun",
@@ -67,10 +67,10 @@
       "properties": {
         "id": "",
         "line": 1,
-        "name": "Voie Verte Belle Via",
+        "name": "Avenue des Chevaliers Tireurs",
         "quality": "good",
         "status": "done",
-        "type": "bidirectionnelle",
+        "type": "bilaterale",
         "link": "/rev-1#avenue-des-chevaliers-tireurs"
       },
       "geometry": {
