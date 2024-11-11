@@ -67,7 +67,7 @@ const socials = {
   lvv: [
     {
       name: 'Mastodon',
-      href: 'https://mastodon.iriseden.eu/@RoueLibreSavoie',
+      href: 'https://masto.bike/deck/@RoueLibreSavoie',
       icon: 'mdi:mastodon'
     },
     {
