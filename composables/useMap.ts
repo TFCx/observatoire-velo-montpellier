@@ -11,6 +11,7 @@ import DangerTooltip from '~/components/tooltips/DangerTooltip.vue';
 import LineTooltip from '~/components/tooltips/LineTooltip.vue';
 
 type ColoredLineStringFeature = LineStringFeature & { properties: { color: string } };
+const { getNbVoiesCyclables } = useConfig();
 enum DisplayedLayer {
   Network = 0,
   Quality = 1,
