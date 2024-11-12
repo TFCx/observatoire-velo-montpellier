@@ -5,61 +5,58 @@ from: Chambéry (Château des Ducs)
 to: Sonnaz (Maison Brulée)
 description: La Piste Bleue 3 permet de rejoindre Sonnaz via les Hauts de Chambéry. Cette piste a une pente moyenne de 4% sur une distance d'environ 2,5 kilomètres.
 trafic: faible faute d'aménagement cyclable sécurisé
-cover: https://rouelibre.net/wp-content/uploads/2022/11/IMG_1555.jpg
+cover: https://rouelibre.net/wp-content/uploads/2024/11/IMG_3960r.jpg
 ---
 
 ## Les tronçons (du Sud au Nord)
 
-### Avenue des Ducs
+### Avenue des Boigne
 
-<span style="color:lightgreen;font-weight:bold">Satisfaisant</span> La Piste 1 débute sur l'avenue des Ducs, à la hauteur de la place des Elephants de Chambéry. 
+*Rue du chateau - avenue de Boigne - Rue Favre - Rue Saint Antoine*
 
-Elle est aménagé par une piste cyclable bidirectionnelle de 3 à 3,5m de large. Elle croise le départ de la :line-link{line=2} Landiers au niveau du palais de Justice de Chambéry puis celui de la :line-link{line=9} La Motte Servolex au niveau du giratoire de la Poste.
+<span style="color:red;font-weight:bold">Non satisfaisant</span> La Piste 3 débute place Caffe où passe également la :line-link{line=8}. 
 
-Elle longe ensuite la rivière la Leysse par le Quai des Allobroges.
-
-::banner{type="modified"}
-En 2023, [l'aménagement d'une piste bidirectionnelle -largeur 3,5m- sur l'avenue des Ducs (https://www.chambery.fr/3672-amenagement-de-l-avenue-des-ducs-des-quais-ravet-et-borrel.htm)] a permis la jonction entre la Voie Verte Nord et la Voie Verte de la Leysse.
-::
-
-::banner{type="wip"}
-Lors de cet aménagement, les carrefours n'ont pas été modifiés et les connexions avec le réseau secondaires n'ont pas été traitées.
-::
+Aucun aménagement cyclable n'existe pour cette traversée du centre ville de Chambéry. Une variante en partie plus sécurisée pour les cyclistes par le Boulevard de la colonne et la place des Elephants engendre des conflits avec les pietons.
 
 ::content-image
 ---
 imageUrl: https://rouelibre.net/wp-content/uploads/2024/11/hero.jpeg
-caption: Avenue des Ducs. Connexion entre la Piste Bleue 7 et la Piste Bleue 1
+caption: Avenue de Boigne
 credit: Roue Libre
 ---
 ::
 
+### Faubourg Reclus
 
-### Rue de la Savoisienne
-
-<span style="color:gold;font-weight:bold">À améliorer</span> Rue à faible trafic automobile mais sans aménagement et traversée du quai des Allobroges non sécurisée.
+<span style="color:red;font-weight:bold">Non satisfaisant</span> La Piste traverse le carrefour du centenaire où elle croise la :line-link{line=1} puis emprunte le Faubourg Reclus, sans aménagement.
 
 ::content-image
 ---
-imageUrl: https://rouelibre.net/wp-content/uploads/2024/11/REV.-Quai-Allobroges.jpg
-caption: Traversée non sécurisée du quai des Allobroges
+imageUrl: https://rouelibre.net/wp-content/uploads/2023/02/IMG_8490-768x511.jpg
+caption: Faubourg Reclus
 credit: Roue Libre
 ---
 ::
 
-### Avenue des Chevaliers Tireurs
-<span style="color:lightgreen;font-weight:bold">Satisfaisant</span> Deux pistes unidirectionnelles.
-
-### Voie Verte Nord
-*tronçon de la Belle Via*
-
-<span style="color:lightgreen;font-weight:bold">Satisfaisant</span> Voie verte historique de Grand Chambéry jusqu'au Bourget du Lac.
-Son dernier tronçon entre Villarcher (commune de La Motte Servolex) et le lac du Bourget a été réalisé suite à la Vélorution organisée par Roue Libre et une vingtaine d’autres organisations le 21 octobre 1995 (1200 participants). 
+### Avenue d'Aix les Bains
+<span style="color:red;font-weight:bold">Non satisfaisant</span> Une cheminement des cycles sur le trottoir est conseillée.
 
 ::content-image
 ---
-imageUrl: https://rouelibre.net/wp-content/uploads/2021/11/1995-Image-au-Lac-%C3%A0-v%C3%A9lo2--1024x584.png
-caption: Magazine Roue libre automne hiver 1995 – 1996
+imageUrl: https://rouelibre.net/wp-content/uploads/2023/02/IMG_8497-768x511.jpg
+caption: Itinéraire cyclable conseillée sur l'Avenue d'Aix les Bains
+credit: Roue Libre
 ---
 ::
-[Vélorution "Au Lac à vélo en 1996" du 21 octobre 1995](https://rouelibre.net/2021/08/04/21-octobre-1995-velorution-au-lac-a-velo-en-96/)
+
+<span style="color:gold;font-weight:bold">À améliorer</span> Absence de traversée cyclable sécurisée.
+Les deux bandes cyclables aménagées sur la partie supérieure de l'Avenue d'Aix les Bains ne respectent pas les recommandations du CEREMA en présence d'une trafic automobile supérieur à 9000 véhicules / jour.
+
+Sur la partie supérieure de l'Avenue d'Aix les Bains, une seule bande cyclable montant est présente.
+
+### Rue Daniel Rops
+*Hauts de Chambéry*
+
+<span style="color:gold;font-weight:bold">À améliorer</span> 
+A rédiger
+
