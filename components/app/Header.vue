@@ -57,6 +57,24 @@
                     >
                       Plan officiel
                     </NuxtLink>
+                    <NuxtLink
+                      to="https://barometre.parlons-velo.fr/2021/carte/#11.88/43.61007/3.87324"
+                      target="_blank"
+                      class="flex align-center space-x-2 text-base font-medium text-gray-500 hover:text-lvv-blue-600"
+                      @click="close()"
+                    >
+                      <span>Baromètre FUB</span>
+                      <div class="flex items-center">
+                        <Icon name="mdi:launch" class="h-4 w-4" aria-hidden="true" />
+                      </div>
+                    </NuxtLink>
+                    <!-- <NuxtLink
+                      to="/services"
+                      class="text-base font-medium text-gray-500 hover:text-lvv-blue-600"
+                      @click="close()"
+                    >
+                      Services
+                    </NuxtLink> -->
                   </div>
                 </div>
               </PopoverPanel>
@@ -90,17 +108,59 @@
                       </div>
                     </NuxtLink>
                   </div>
+                  <div class="bg-lvv-blue-600 text-white text-center py-1">
+                    <NuxtLink to="/tableau-de-bord" class="hover:underline" @click="close()">
+                      Tableau de bord
+                    </NuxtLink>
+                  </div>
                 </div>
               </PopoverPanel>
             </transition>
           </Popover>
 
-          <!-- <NuxtLink
-            to="/compteurs/velo"
-            class="text-base font-medium text-gray-500 hover:text-velocite-yellow-5"
-          >
-            Compteurs
-          </NuxtLink> -->
+          <!-- Compteurs -->
+          <!-- <Popover v-slot="{ open }" class="relative">
+            <PopoverButton :class="[open ? 'text-gray-900' : 'text-gray-500', 'group inline-flex items-center rounded-md bg-white text-base font-medium hover:text-lvv-blue-600 focus:outline-none focus:ring-2 focus:ring-lvv-blue-600 focus:ring-offset-2']">
+              <span>Compteurs</span>
+              <Icon name="mdi:chevron-down" :class="[open ? 'text-gray-600' : 'text-gray-400', 'ml-2 h-5 w-5 group-hover:text-gray-500']" aria-hidden="true" />
+            </PopoverButton>
+            <transition
+              enter-active-class="transition ease-out duration-200"
+              enter-from-class="opacity-0 translate-y-1"
+              enter-to-class="opacity-100 translate-y-0"
+              leave-active-class="transition ease-in duration-150"
+              leave-from-class="opacity-100 translate-y-0"
+              leave-to-class="opacity-0 translate-y-1"
+            >
+              <PopoverPanel v-slot="{ close }" class="absolute left-1/2 z-10 mt-3 w-screen md:w-max max-w-md -translate-x-1/2 transform px-2 sm:px-0">
+                <div class="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white">
+                  <div class="p-4 flex flex-col gap-2">
+                    <NuxtLink
+                      to="/compteurs/velo"
+                      class="text-base font-medium text-gray-500 hover:text-lvv-blue-600"
+                      @click="close()"
+                    >
+                      Compteurs vélo
+                    </NuxtLink>
+                    <NuxtLink
+                      to="/compteurs/voiture"
+                      class="text-base font-medium text-gray-500 hover:text-lvv-blue-600"
+                      @click="close()"
+                    >
+                      Compteurs voiture
+                    </NuxtLink>
+                    <NuxtLink
+                      to="/compteurs/comparaison"
+                      class="text-base font-medium text-gray-500 hover:text-lvv-blue-600"
+                      @click="close()"
+                    >
+                      Comparaison voiture/vélo
+                    </NuxtLink>
+                  </div>
+                </div>
+              </PopoverPanel>
+            </transition>
+          </Popover> -->
         </PopoverGroup>
         <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
           <NuxtLink
@@ -112,6 +172,8 @@
         </div>
       </div>
     </div>
+
+    <!-- Header mobile -->
 
     <transition
       enter-active-class="duration-200 ease-out"
@@ -144,11 +206,13 @@
               </div>
             </div>
             <div class="mt-6">
-              <nav class="grid gap-y-8">
+              <nav class="grid gap-y-6">
+                <!-- Cartes -->
                 <NuxtLink
                   v-for="navItem in navItems"
                   :key="navItem.name"
                   :to="navItem.path"
+                  :target="navItem.target"
                   class="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
                   @click="close()"
                 >
@@ -156,6 +220,41 @@
                     {{ navItem.name }}
                   </span>
                 </NuxtLink>
+
+                <!-- Compteurs -->
+                <hr class="h-px bg-gray-200 border-0">
+
+                <!-- <NuxtLink
+                  to="/compteurs/velo"
+                  class="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
+                  @click="close()"
+                >
+                  <span class="ml-3 text-base font-medium text-gray-900">
+                    Compteurs vélo
+                  </span>
+                </NuxtLink>
+                <NuxtLink
+                  to="/compteurs/voiture"
+                  class="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
+                  @click="close()"
+                >
+                  <span class="ml-3 text-base font-medium text-gray-900">
+                    Compteurs voiture
+                  </span>
+                </NuxtLink>
+                <NuxtLink
+                  to="/compteurs/comparaison"
+                  class="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
+                  @click="close()"
+                >
+                  <span class="ml-3 text-base font-medium text-gray-900">
+                    Comparaison voiture/vélo
+                  </span>
+                </NuxtLink> -->
+
+                <!-- Autres -->
+                <hr class="h-px bg-gray-200 border-0">
+
                 <NuxtLink
                   to="/blog"
                   class="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
@@ -163,6 +262,15 @@
                 >
                   <span class="ml-3 text-base font-medium text-gray-900">
                     Blog
+                  </span>
+                </NuxtLink>
+                <NuxtLink
+                  to="/tableau-de-bord"
+                  class="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
+                  @click="close()"
+                >
+                  <span class="ml-3 text-base font-medium text-gray-900">
+                    Tableau de bord
                   </span>
                 </NuxtLink>
               </nav>
@@ -198,9 +306,11 @@ const { getVoieCyclablePath } = useUrl();
 const { getAssoName } = useConfig();
 
 const navItems = [
-  { name: 'Carte interactive', path: '/carte-interactive' },
-  { name: 'Plan officiel', path: '/plan-officiel' },
-  { name: 'Évolution du réseau', path: '/evolution' }
+  { name: 'Carte interactive', path: '/carte-interactive', target: '_self' },
+  { name: 'Plan officiel', path: '/plan-officiel', target: '_self' },
+  { name: 'Évolution du réseau', path: '/evolution', target: '_self' },
+  { name: 'Baromètre FUB', path: 'https://barometre.parlons-velo.fr/2021/carte/#11.88/43.61007/3.87324', target: '_blank' }
+  // { name: 'Services', path: '/services' },
 ];
 
 const { data: voies } = await useAsyncData(() => {

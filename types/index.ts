@@ -12,7 +12,7 @@ export type LaneType =
 | 'aucun'
 | 'inconnu';
 
-export type LaneStatus = 'done' | 'wip' | 'planned' | 'postponed' | 'unknown' | 'variante' | 'variante-postponed';
+export type LaneStatus = 'done' | 'wip' | 'planned' | 'tested' | 'postponed' | 'unknown' | 'variante' | 'variante-postponed';
 
 export type Quality = 'bad' | 'fair' | 'good';
 
@@ -61,8 +61,8 @@ export type PerspectiveFeature = {
 export type CompteurFeature = {
   type: 'Feature';
   properties: {
-    type: 'compteur-velo' | 'compteur-voiture',
-    line: number;
+    type: 'compteur-velo' | 'compteur-voiture';
+    line?: number;
     name: string;
     link?: string;
     counts: Array<{
@@ -81,7 +81,32 @@ export type CompteurFeature = {
     coordinates: [number, number];
   };
 };
-type PointFeature = PerspectiveFeature | CompteurFeature;
+
+export type PumpFeature = {
+  type: 'Feature';
+  properties: {
+    type: 'pump',
+    name: string
+  }
+  geometry: {
+    type: 'Point';
+    coordinates: [number, number];
+  };
+}
+
+export type DangerFeature = {
+  type: 'Feature';
+  properties: {
+    type: 'danger',
+    name: string
+  }
+  geometry: {
+    type: 'Point';
+    coordinates: [number, number];
+  };
+}
+
+type PointFeature = PerspectiveFeature | CompteurFeature | PumpFeature | DangerFeature;
 
 export type Feature = LineStringFeature | PointFeature | DisplayedLane | PolygonFeature;
 
@@ -107,6 +132,14 @@ export function isPolygonFeature(feature: Feature): feature is PolygonFeature {
 
 export function isPerspectiveFeature(feature: Feature): feature is PerspectiveFeature {
   return isPointFeature(feature) && feature.properties.type === 'perspective';
+}
+
+export function isDangerFeature(feature: Feature): feature is PerspectiveFeature {
+  return isPointFeature(feature) && feature.properties.type === 'danger';
+}
+
+export function isPumpFeature(feature: Feature): feature is PumpFeature {
+  return isPointFeature(feature) && feature.properties.type === 'pump';
 }
 
 export function isCompteurFeature(feature: Feature): feature is CompteurFeature {

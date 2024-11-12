@@ -1,7 +1,17 @@
-import { GeoJSONSource, LngLatBounds, Map } from 'maplibre-gl';
-import { isCompteurFeature, isLineStringFeature, isPerspectiveFeature, isPointFeature, type Feature, type PolygonFeature, type DisplayedLane, type LaneStatus, type LaneType, type LineStringFeature, isPolygonFeature} from '~/types';
+import { GeoJSONSource, LngLatBounds, Map, Popup } from 'maplibre-gl';
+import { createApp, defineComponent, h, Suspense } from 'vue';
+import type { CounterParsedContent } from '../types/counters';
+import { isCompteurFeature, isDangerFeature, isPumpFeature, isLineStringFeature, isPerspectiveFeature, isPointFeature, type Feature, type PolygonFeature, type DisplayedLane, type LaneStatus, type LaneType, type LineStringFeature, isPolygonFeature, type CompteurFeature} from '~/types';
 import { ref } from 'vue';
 
+// Tooltips
+import PerspectiveTooltip from '~/components/tooltips/PerspectiveTooltip.vue';
+import CounterTooltip from '~/components/tooltips/CounterTooltip.vue';
+import DangerTooltip from '~/components/tooltips/DangerTooltip.vue';
+import LineTooltip from '~/components/tooltips/LineTooltip.vue';
+
+type ColoredLineStringFeature = LineStringFeature & { properties: { color: string } };
+const { getNbVoiesCyclables } = useConfig();
 enum DisplayedLayer {
   Network = 0,
   Quality = 1,
@@ -108,6 +118,12 @@ export const useMap = () => {
     const camera = await map.loadImage('/icons/camera.png');
     map.addImage('camera-icon', camera.data, { sdf: true });
 
+    const pump = await map.loadImage('/icons/pump.png');
+    map.addImage('pump-icon', pump.data, { sdf: true });
+
+    const danger = await map.loadImage('/icons/danger.png');
+    map.addImage('danger-icon', danger.data, { sdf: false });
+
     const crossIconUrl = getCrossIconUrl();
     const cross = await map.loadImage(crossIconUrl);
     map.addImage('cross-icon', cross.data, { sdf: true });
@@ -143,7 +159,6 @@ export const useMap = () => {
 
   function plotSections(map: Map, features: MultiColoredLineStringFeature[]) {
     const lanes = separateSectionIntoLanes(features)
-
     const sections = features.map((feature, index) => ({ id: index, ...feature }));
 
     if (sections.length === 0 && !map.getLayer('highlight')) {
@@ -198,6 +213,9 @@ export const useMap = () => {
         'icon-color': ["to-color", ['at', 0, ['get', 'colors']]]
       }
     });
+
+    // on n'affiche les perspectives qu'à partir d'un certain zoom.
+    // ceci pour éviter de surcharger la map.
     map.setLayoutProperty('perspectives', 'visibility', 'none');
     map.on('zoom', () => {
       const zoomLevel = map.getZoom();
@@ -206,6 +224,14 @@ export const useMap = () => {
       } else {
         map.setLayoutProperty('perspectives', 'visibility', 'none');
       }
+    });
+
+    // la souris devient un pointer au survol
+    map.on('mouseenter', 'perspectives', () => {
+      map.getCanvas().style.cursor = 'pointer';
+    });
+    map.on('mouseleave', 'perspectives', () => {
+      map.getCanvas().style.cursor = '';
     });
   }
 
@@ -227,6 +253,59 @@ export const useMap = () => {
     }
 
     drawLimits(map)
+  }
+
+  function plotDangers({ map, features }: { map: Map; features: Feature[] }) {
+    const dangers = features.filter(isDangerFeature);
+    if (dangers.length === 0) {
+      return;
+    }
+
+    if (upsertMapSource(map, 'dangers', dangers)) {
+      return;
+    }
+
+    map.addLayer({
+      id: 'dangers',
+      source: 'dangers',
+      type: 'symbol',
+      layout: {
+        'icon-image': 'danger-icon',
+        'icon-size': 0.5
+      }
+    });
+    map.setLayoutProperty('perspectives', 'visibility', 'none');
+    map.on('zoom', () => {
+      const zoomLevel = map.getZoom();
+      if (zoomLevel > 14) {
+        map.setLayoutProperty('dangers', 'visibility', 'visible');
+      } else {
+        map.setLayoutProperty('dangers', 'visibility', 'none');
+      }
+    });
+  }
+
+  function plotPumps({ map, features }: { map: Map; features: Feature[] }) {
+    const pumps = features.filter(isPumpFeature);
+    if (pumps.length === 0) {
+      return;
+    }
+    if (upsertMapSource(map, 'pumps', pumps)) {
+      return;
+    }
+    map.addLayer({
+      id: 'pumps',
+      source: 'pumps',
+      type: 'symbol',
+      layout: {
+        'icon-image': 'pump-icon',
+        'icon-size': 0.5,
+        'icon-offset': [-25, -25]
+      },
+      paint: {
+        'icon-color': '#152B68'
+      }
+    });
   }
 
   function plotCompteurs({ map, features }: { map: Map; features: Feature[] }) {
@@ -274,12 +353,11 @@ export const useMap = () => {
     counters,
     type
   }: {
-    counters: Compteur[];
+    counters: CounterParsedContent[] | null;
     type: 'compteur-velo' | 'compteur-voiture';
-  }) {
-    if (counters.length === 0) {
-      return;
-    }
+  }): CompteurFeature[] {
+    if (!counters) { return []; }
+    if (counters.length === 0) { return []; }
 
     return counters.map(counter => ({
       type: 'Feature',
@@ -291,7 +369,7 @@ export const useMap = () => {
       },
       geometry: {
         type: 'Point',
-        coordinates: counter.coordinates
+        coordinates: [counter.coordinates[0], counter.coordinates[1]]
       }
     }));
   }
@@ -345,11 +423,124 @@ export const useMap = () => {
 
       plotPerspective({ map, features: updated_features });
       plotCompteurs({ map, features: updated_features });
+      plotPumps({ map, features: updated_features });
+      plotDangers({ map, features: updated_features });
       plotLimits({ map, features: updated_features });
 
       watch(displayLimits, (displayLimits) => toggleLimitsVisibility(map, displayLimits))
       watch(displayBikeInfra, (displayBikeInfra) => toggleBikeInfraVisibility(map, displayBikeInfra))
     }
+  }
+
+  function handleMapClick({ map, features, clickEvent }: { map: Map; features: Feature[]; clickEvent: any }) {
+    const layers = [
+      {
+        id: 'linestring', // not really a layer id. gather all linestrings.
+        isClicked: () => {
+          const mapFeature = map.queryRenderedFeatures(clickEvent.point, {
+            filter: [
+              'all',
+              ['==', ['geometry-type'], 'LineString'],
+              ['!=', ['get', 'source'], 'openmaptiles'], // Exclude base map features
+              ['has', 'status'] // All sections in geojson LineStrings have a status
+            ]
+          });
+          return mapFeature.length > 0;
+        },
+        getTooltipProps: () => {
+          const mapFeature = map.queryRenderedFeatures(clickEvent.point, {
+            filter: [
+              'all',
+              ['==', ['geometry-type'], 'LineString'],
+              ['!=', ['get', 'source'], 'openmaptiles'], // Exclude base map features
+              ['has', 'status'] // All sections in geojson LineStrings have a status
+            ]
+          })[0];
+
+          const line = mapFeature.properties.line;
+          const name = mapFeature.properties.name;
+
+          const lineStringFeatures = features.filter(isLineStringFeature);
+
+          const feature = lineStringFeatures
+            .find(f => f.properties.line === line && f.properties.name === name);
+
+          const lines = feature!.properties.id
+            ? [...new Set(lineStringFeatures.filter(f => f.properties.id === feature!.properties.id).map(f => f.properties.line))]
+            : [feature!.properties.line];
+
+          return { feature, lines };
+        },
+        component: LineTooltip
+      },
+      {
+        id: 'perspectives',
+        isClicked: () => {
+          if (!map.getLayer('perspectives')) { return false; }
+          const mapFeature = map.queryRenderedFeatures(clickEvent.point, { layers: ['perspectives'] });
+          return mapFeature.length > 0;
+        },
+        getTooltipProps: () => {
+          const mapFeature = map.queryRenderedFeatures(clickEvent.point, { layers: ['perspectives'] })[0];
+          const feature = features.find(f => {
+            return f.properties.type === 'perspective' &&
+            f.properties.line === mapFeature.properties.line &&
+            f.properties.imgUrl === mapFeature.properties.imgUrl;
+          });
+
+          return { feature };
+        },
+        component: PerspectiveTooltip
+      },
+      {
+        id: 'compteurs',
+        isClicked: () => {
+          if (!map.getLayer('compteurs')) { return false; }
+          const mapFeature = map.queryRenderedFeatures(clickEvent.point, { layers: ['compteurs'] });
+          return mapFeature.length > 0;
+        },
+        getTooltipProps: () => {
+          const mapFeature = map.queryRenderedFeatures(clickEvent.point, { layers: ['compteurs'] })[0];
+          const feature = features.find(f => f.properties.name === mapFeature.properties.name);
+          return { feature };
+        },
+        component: CounterTooltip
+      },
+      {
+        id: 'dangers',
+        isClicked: () => {
+          if (!map.getLayer('dangers')) { return false; }
+          const mapFeature = map.queryRenderedFeatures(clickEvent.point, { layers: ['dangers'] });
+          return mapFeature.length > 0;
+        },
+        getTooltipProps: () => {
+          const mapFeature = map.queryRenderedFeatures(clickEvent.point, { layers: ['dangers'] })[0];
+          const feature = features.find(f => f.properties.name === mapFeature.properties.name);
+          return { feature };
+        },
+        component: DangerTooltip
+      }
+    ];
+
+    const clickedLayer = layers.find(layer => layer.isClicked());
+    if (!clickedLayer) { return; }
+
+    new Popup({ closeButton: false, closeOnClick: true })
+      .setLngLat(clickEvent.lngLat)
+      .setHTML(`<div id="${clickedLayer.id}-tooltip-content"></div>`)
+      .addTo(map);
+
+    const props = clickedLayer.getTooltipProps();
+    // @ts-ignore:next
+    const component = defineComponent(clickedLayer.component);
+    nextTick(() => {
+      createApp({
+        render: () => h(Suspense, null, {
+          default: h(component, props),
+          fallback: 'Chargement...'
+        })
+      }).mount(`#${clickedLayer.id}-tooltip-content`);
+    });
   }
 
   return {
@@ -359,6 +550,7 @@ export const useMap = () => {
     fitBounds,
     toggleLimits,
     toggleBikeInfra,
+    handleMapClick
   };
 };
 
@@ -656,7 +848,7 @@ function drawLanesPostponed(map: Map, lanes: DisplayedLane[]) {
 
 function drawLanesWIP(map: Map, lanes: DisplayedLane[]) {
 
-  let lanes_wip = lanes.filter(lane => lane.properties.status === "wip");
+  let lanes_wip = lanes.filter(lane => lane.properties.status === "wip" || lane.properties.status === "tested");
   if (upsertMapSource(map, 'source-all-lanes-wip', lanes_wip)) {
     return;
   }

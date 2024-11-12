@@ -6,7 +6,7 @@ export const useUrl = () => {
   }
 
   function getVoieCyclablePath(lineId: string) {
-    return `${config.slug}-${lineId}`;
+    return `/${config.slug}-${lineId}`;
   }
 
   function getLineIdRegex() {

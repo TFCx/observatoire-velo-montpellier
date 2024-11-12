@@ -15,8 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { createApp, defineComponent, h, Suspense } from 'vue';
-import { Map, AttributionControl, GeolocateControl, NavigationControl, Popup, type StyleSpecification, type LngLatLike } from 'maplibre-gl';
+import { Map, AttributionControl, GeolocateControl, NavigationControl, type StyleSpecification, type LngLatLike } from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import style from '@/assets/style.json';
 import FilterControl from '@/maplibre/FilterControl';
@@ -25,9 +24,6 @@ import BikeInfraControl from '@/maplibre/BikeInfraControl';
 import LayerControl from '@/maplibre/LayerControl';
 import FullscreenControl from '@/maplibre/FullscreenControl';
 import ShrinkControl from '@/maplibre/ShrinkControl';
-import LineTooltip from '~/components/tooltips/LineTooltip.vue';
-import CounterTooltip from '~/components/tooltips/CounterTooltip.vue';
-import PerspectiveTooltip from '~/components/tooltips/PerspectiveTooltip.vue';
 import { isLineStringFeature, isPolygonFeature, type Feature, type LaneStatus, type LaneType, type PolygonFeature } from '~/types';
 import config from '~/config.json';
 import { setDisplayedLayer } from '~/composables/useMap'
@@ -49,7 +45,7 @@ const defaultOptions = {
 
 const props = defineProps<{
   features: Feature[];
-  options: typeof defaultOptions;
+  options: Partial<typeof defaultOptions>;
 }>();
 
 const options = { ...defaultOptions, ...props.options };
@@ -63,9 +59,10 @@ const {
   fitBounds,
   toggleLimits,
   toggleBikeInfra,
+  handleMapClick
 } = useMap();
 
-const statuses = ref(['planned', 'variante', 'done', 'postponed', 'variante-postponed', 'unknown', 'wip']);
+const statuses = ref(['planned', 'variante', 'done', 'postponed', 'variante-postponed', 'unknown', 'wip', 'tested']);
 const types = ref(['bidirectionnelle', 'bilaterale', 'voie-bus', 'voie-bus-elargie', 'velorue', 'voie-verte', 'bandes-cyclables', 'zone-de-rencontre', 'chaucidou', 'heterogene', 'aucun', 'inconnu']);
 const displayLimits = ref(true);
 const features = computed(() => {
@@ -201,93 +198,9 @@ onMounted(() => {
     }
   );
 
-  // must do this to avoid multiple popups
-  map.on('click', e => {
-    const layers = map
-      .queryRenderedFeatures(e.point)
-      .filter(({ layer }) => !['maptiler_planet', 'openmaptiles'].includes(layer.source));
 
-    if (layers.length === 0) {
-      return;
-    }
-
-    const isPerspectiveLayerClicked = layers.some(({ layer }) => layer.id === 'perspectives');
-    const isCompteurLayerClicked = layers.some(({ layer }) => layer.id === 'compteurs');
-    const isLimitsLayerClicked = layers.some(({ layer }) => layer.id === 'limits');
-
-    if(isLimitsLayerClicked) {
-      return
-    } else if (isPerspectiveLayerClicked) {
-      const layer = layers.find(({ layer }) => layer.id === 'perspectives');
-      const feature = features.value.find(f => {
-        return f.properties.type === 'perspective' &&
-          f.properties.line === layer!.properties.line &&
-          f.properties.imgUrl === layer!.properties.imgUrl;
-      });
-
-      new Popup({ closeButton: false, closeOnClick: true })
-        .setLngLat(e.lngLat)
-        .setHTML('<div id="perspective-tooltip-content"></div>')
-        .addTo(map);
-
-      // @ts-ignore:next
-      const PerspectiveTooltipComponent = defineComponent(PerspectiveTooltip);
-      nextTick(() => {
-        // eslint-disable-next-line vue/one-component-per-file
-        createApp({
-          render: () => h(Suspense, null, {
-            default: h(PerspectiveTooltipComponent, { feature }),
-            fallback: 'Chargement...'
-          })
-        }).mount('#perspective-tooltip-content');
-      });
-    } else if (isCompteurLayerClicked) {
-      const layer = layers.find(({ layer }) => layer.id === 'compteurs');
-      const feature = features.value.find(f => f.properties.name === layer!.properties.name);
-
-      new Popup({ closeButton: false, closeOnClick: true })
-        .setLngLat(e.lngLat)
-        .setHTML('<div id="counter-tooltip-content"></div>')
-        .addTo(map);
-
-      // @ts-ignore:next
-      const CounterTooltipComponent = defineComponent(CounterTooltip);
-      nextTick(() => {
-        // eslint-disable-next-line vue/one-component-per-file
-        createApp({
-          render: () => h(Suspense, null, {
-            default: h(CounterTooltipComponent, { feature }),
-            fallback: 'Chargement...'
-          })
-        }).mount('#counter-tooltip-content');
-      });
-    } else {
-      const { line, name } = layers[0].properties;
-      // take care layers[0].geometry is truncated (to fit tile size). We need to find the full feature.
-      const feature = features.value
-        .filter(isLineStringFeature)
-        .find(feature => feature.properties.line === line && feature.properties.name === name);
-      const lines = feature!.properties.id
-        ? [...new Set(layers.filter(f => f.properties.id === feature!.properties.id).map(f => f.properties.line))]
-        : [feature!.properties.line];
-
-      new Popup({ closeButton: false, closeOnClick: true })
-        .setLngLat(e.lngLat)
-        .setHTML('<div id="line-tooltip-content"></div>')
-        .addTo(map);
-
-      // @ts-ignore:next
-      const LineTooltipComponent = defineComponent(LineTooltip);
-      nextTick(() => {
-        // eslint-disable-next-line vue/one-component-per-file
-        createApp({
-          render: () => h(Suspense, null, {
-            default: h(LineTooltipComponent, { feature, lines }),
-            fallback: 'Chargement...'
-          })
-        }).mount('#line-tooltip-content');
-      });
-    }
+  map.on('click', clickEvent => {
+    handleMapClick({ map, features: features.value, clickEvent });
   });
 });
 </script>
