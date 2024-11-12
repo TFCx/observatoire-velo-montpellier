@@ -57,6 +57,17 @@
                     >
                       Plan officiel
                     </NuxtLink>
+                    <NuxtLink
+                      to="https://barometre.parlons-velo.fr/2021/carte/#11.88/43.61007/3.87324"
+                      target="_blank"
+                      class="flex align-center space-x-2 text-base font-medium text-gray-500 hover:text-lvv-blue-600"
+                      @click="close()"
+                    >
+                      <span>Baromètre FUB</span>
+                      <div class="flex items-center">
+                        <Icon name="mdi:launch" class="h-4 w-4" aria-hidden="true" />
+                      </div>
+                    </NuxtLink>
                     <!-- <NuxtLink
                       to="/services"
                       class="text-base font-medium text-gray-500 hover:text-lvv-blue-600"
@@ -195,12 +206,13 @@
               </div>
             </div>
             <div class="mt-6">
-              <nav class="grid gap-y-8">
+              <nav class="grid gap-y-6">
                 <!-- Cartes -->
                 <NuxtLink
                   v-for="navItem in navItems"
                   :key="navItem.name"
                   :to="navItem.path"
+                  :target="navItem.target"
                   class="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
                   @click="close()"
                 >
@@ -294,9 +306,10 @@ const { getVoieCyclablePath } = useUrl();
 const { getAssoName } = useConfig();
 
 const navItems = [
-  { name: 'Carte interactive', path: '/carte-interactive' },
-  { name: 'Plan officiel', path: '/plan-officiel' },
-  { name: 'Évolution du réseau', path: '/evolution' }
+  { name: 'Carte interactive', path: '/carte-interactive', target: '_self' },
+  { name: 'Plan officiel', path: '/plan-officiel', target: '_self' },
+  { name: 'Évolution du réseau', path: '/evolution', target: '_self' },
+  { name: 'Baromètre FUB', path: 'https://barometre.parlons-velo.fr/2021/carte/#11.88/43.61007/3.87324', target: '_blank' }
   // { name: 'Services', path: '/services' },
 ];
 
