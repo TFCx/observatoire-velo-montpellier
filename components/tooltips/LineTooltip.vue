@@ -123,6 +123,10 @@ function getStatus(properties: LineStringFeature['properties']): { label: string
       label: 'prévu',
       class: 'text-velocite-yellow-5 rounded-xl px-2 border border-velocite-yellow-5'
     },
+    tested: {
+      label: 'en test',
+      class: 'text-lvv-blue-600 rounded-xl px-2 border border-dashed border-lvv-blue-600'
+    },
     postponed: {
       label: 'reporté',
       date: 'après 2026',

@@ -150,7 +150,6 @@ export const useMap = () => {
 
   function plotSections(map: Map, features: MultiColoredLineStringFeature[]) {
     const lanes = separateSectionIntoLanes(features)
-
     const sections = features.map((feature, index) => ({ id: index, ...feature }));
 
     if (sections.length === 0 && !map.getLayer('highlight')) {
@@ -717,7 +716,7 @@ function drawLanesPostponed(map: Map, lanes: DisplayedLane[]) {
 
 function drawLanesWIP(map: Map, lanes: DisplayedLane[]) {
 
-  let lanes_wip = lanes.filter(lane => lane.properties.status === "wip");
+  let lanes_wip = lanes.filter(lane => lane.properties.status === "wip" || lane.properties.status === "tested");
   if (upsertMapSource(map, 'source-all-lanes-wip', lanes_wip)) {
     return;
   }
