@@ -79,6 +79,7 @@
         "line": 1,
         "name": "Avenue des Chevaliers Tireurs",
         "quality": "good",
+        "doneAt": "01\/01\/2000",
         "status": "done",
         "type": "bilaterale",
         "link": "/rev-1#avenue-des-chevaliers-tireurs"
