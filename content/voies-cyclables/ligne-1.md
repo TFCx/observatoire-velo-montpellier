@@ -12,7 +12,7 @@ cover: https://rouelibre.net/wp-content/uploads/2022/11/IMG_1555.jpg
 
 ### Avenue des Ducs
 
-<span style="color:lightgreen;font-weight:bold">Satisfaisant</span> La Piste 1 débute sur l'avenue des Ducs, à la hauteur de la place des Elephants de Chambéry. 
+<span style="color:blue;font-weight:bold">Satisfaisant</span> La Piste 1 débute sur l'avenue des Ducs, à la hauteur de la place des Elephants de Chambéry. 
 
 Elle est aménagé par une piste cyclable bidirectionnelle de 3 à 3,5m de large. Elle croise le départ de la :line-link{line=2} Landiers au niveau du palais de Justice de Chambéry puis celui de la :line-link{line=9} La Motte Servolex au niveau du giratoire de la Poste.
 
@@ -37,7 +37,7 @@ credit: Roue Libre
 
 ### Rue de la Savoisienne
 
-<span style="color:gold;font-weight:bold">À améliorer</span> Rue à faible trafic automobile mais sans aménagement et traversée du quai des Allobroges non sécurisée.
+<span style="color:red;font-weight:bold">À améliorer</span> Rue à faible trafic automobile mais sans aménagement et traversée du quai des Allobroges non sécurisée.
 
 ::content-image
 ---
@@ -48,12 +48,12 @@ credit: Roue Libre
 ::
 
 ### Avenue des Chevaliers Tireurs
-<span style="color:lightgreen;font-weight:bold">Satisfaisant</span> Deux pistes unidirectionnelles.
+<span style="color:blue;font-weight:bold">Satisfaisant</span> Deux pistes unidirectionnelles.
 
 ### Voie Verte Nord
 *tronçon de la Belle Via*
 
-<span style="color:lightgreen;font-weight:bold">Satisfaisant</span> Voie verte historique de Grand Chambéry jusqu'au Bourget du Lac.
+<span style="color:blue;font-weight:bold">Satisfaisant</span> Voie verte historique de Grand Chambéry jusqu'au Bourget du Lac.
 Son dernier tronçon entre Villarcher (commune de La Motte Servolex) et le lac du Bourget a été réalisé suite à la Vélorution organisée par Roue Libre et une vingtaine d’autres organisations le 21 octobre 1995 (1200 participants). 
 
 ::content-image

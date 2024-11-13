@@ -16,7 +16,7 @@ La Piste 3 débute place Caffe où passe également la :line-link{line=8}.
 
 *Rue du chateau - Avenue de Boigne - Rue Favre - Rue Saint Antoine*
 
-<span style="color:red;font-weight:bold">Non satisfaisant</span> Aucun aménagement cyclable n'existe pour cette traversée du centre ville de Chambéry. Une variante en partie plus sécurisée pour les cyclistes par le Boulevard de la colonne et la place des Elephants engendre des conflits avec les pietons.
+<span style="color:black;font-weight:bold">Non satisfaisant</span> Aucun aménagement cyclable n'existe pour cette traversée du centre ville de Chambéry. Une variante en partie plus sécurisée pour les cyclistes par le Boulevard de la colonne et la place des Elephants engendre des conflits avec les pietons.
 
 ::content-image
 ---
@@ -28,7 +28,7 @@ credit: Roue Libre
 
 ### Faubourg Reclus
 
-<span style="color:red;font-weight:bold">Non satisfaisant</span> La Piste traverse le carrefour du centenaire où elle croise la :line-link{line=1} puis emprunte le Faubourg Reclus, sans aménagement.
+<span style="color:black;font-weight:bold">Non satisfaisant</span> La Piste traverse le carrefour du centenaire où elle croise la :line-link{line=1} puis emprunte le Faubourg Reclus, sans aménagement.
 
 ::content-image
 ---
@@ -40,7 +40,7 @@ credit: Roue Libre
 
 ### Avenue d'Aix les Bains
 
-<span style="color:red;font-weight:bold">Non satisfaisant</span> Une cheminement des cycles sur le trottoir est conseillée.
+<span style="color:black;font-weight:bold">Non satisfaisant</span> Une cheminement des cycles sur le trottoir est conseillée.
 
 ::content-image
 ---
@@ -50,7 +50,7 @@ credit: Roue Libre
 ---
 ::
 
-<span style="color:gold;font-weight:bold">À améliorer</span> Absence de traversée cyclable sécurisée.
+<span style="color:red;font-weight:bold">À améliorer</span> Absence de traversée cyclable sécurisée.
 
 ::content-image
 ---
@@ -60,7 +60,7 @@ credit: Roue Libre
 ---
 ::
 
-<span style="color:gold;font-weight:bold">À améliorer</span> Les deux bandes cyclables aménagées sur la partie supérieure de l'Avenue d'Aix les Bains ne respectent pas les recommandations du CEREMA en présence d'une trafic automobile supérieur à 9000 véhicules / jour.
+<span style="color:red;font-weight:bold">À améliorer</span> Les deux bandes cyclables aménagées sur la partie supérieure de l'Avenue d'Aix les Bains ne respectent pas les recommandations du CEREMA en présence d'une trafic automobile supérieur à 9000 véhicules / jour.
 
 ::content-image
 ---
@@ -76,7 +76,7 @@ Sur la partie supérieure de l'Avenue d'Aix les Bains, une seule bande cyclable 
 
 *Hauts de Chambéry*
 
-<span style="color:gold;font-weight:bold">À améliorer</span> 
+<span style="color:red;font-weight:bold">À améliorer</span> 
 A rédiger
 
 ## Fil d'actu
