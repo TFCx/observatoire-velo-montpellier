@@ -71,3 +71,33 @@ Sur la partie supérieure de l'Avenue d'Aix les Bains, une seule bande cyclable 
 <span style="color:gold;font-weight:bold">À améliorer</span> 
 A rédiger
 
+## Fil d'actu
+
+### Action Roue Libre lors du passage du Tour de France
+20 juillet 2023
+::content-image
+---
+imageUrl: https://rouelibre.net/wp-content/uploads/2023/07/REV2-768x410.jpg
+caption: Capture image Tour de France 2023
+credit: France 3
+---
+::
+
+### Lancement d'une étude de faisabilité Hauts de Chambéry via Avenue Aix les Bains par Grand Chambéry
+décembre 2024
+
+### Lancement d'une étude de faisabilité Hauts de Chambéry via Avenue Mendès France par Grand Chambéry
+janvier 2024
+
+### Vélorution Les Hauts à vélo
+18 mars 2023
+
+[Photos, communiqué, signataires, proposition technique](https://rouelibre.net/2023/02/16/18-mars-2023-velorution-chambery-hauts-de-chambery/){:target="_blank"}
+
+::content-image
+---
+imageUrl: https://rouelibre.net/wp-content/uploads/2023/03/IMG_8944-scaled.jpg
+caption: Vélorution 18 mars 2023
+credit: Roue Libre
+---
+::
