@@ -10,13 +10,13 @@ cover: https://rouelibre.net/wp-content/uploads/2024/11/IMG_3960r.jpg
 
 ## Les tronçons (du Sud au Nord)
 
+La Piste 3 débute place Caffe où passe également la :line-link{line=8}.
+
 ### Avenue des Boigne
 
 *Rue du chateau - Avenue de Boigne - Rue Favre - Rue Saint Antoine*
 
-<span style="color:red;font-weight:bold">Non satisfaisant</span> La Piste 3 débute place Caffe où passe également la :line-link{line=8}. 
-
-Aucun aménagement cyclable n'existe pour cette traversée du centre ville de Chambéry. Une variante en partie plus sécurisée pour les cyclistes par le Boulevard de la colonne et la place des Elephants engendre des conflits avec les pietons.
+<span style="color:red;font-weight:bold">Non satisfaisant</span> Aucun aménagement cyclable n'existe pour cette traversée du centre ville de Chambéry. Une variante en partie plus sécurisée pour les cyclistes par le Boulevard de la colonne et la place des Elephants engendre des conflits avec les pietons.
 
 ::content-image
 ---
@@ -61,6 +61,14 @@ credit: Roue Libre
 ::
 
 <span style="color:gold;font-weight:bold">À améliorer</span> Les deux bandes cyclables aménagées sur la partie supérieure de l'Avenue d'Aix les Bains ne respectent pas les recommandations du CEREMA en présence d'une trafic automobile supérieur à 9000 véhicules / jour.
+
+::content-image
+---
+imageUrl: https://rouelibre.net/wp-content/uploads/2024/11/REV-ligne3-av-Aix.jpg
+caption: Bandes cyclables - Avenue d'Aix les Bains
+credit: Roue Libre
+---
+::
 
 Sur la partie supérieure de l'Avenue d'Aix les Bains, une seule bande cyclable montant est présente.
 
