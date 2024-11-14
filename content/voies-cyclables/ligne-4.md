@@ -13,7 +13,7 @@ cover: https://rouelibre.net/wp-content/uploads/2024/07/IMG_2585r-930x619.jpg
 ### Chambéry à Saint Alban Leysse
 La Piste Bleue 4 débute à Chambéry sur le quai de la Rize, au croisement avec la :line-link{line=7}.
 
-<span style="color:red;font-weight:bold"> Sa première portion est la Voie verte de la Leysse de largeur 3 mètres utilisée par les pietons et les cycles, largeur insuffisante pour gérer à la fois le trafic cycliste journalier (supérieur à 1 500 cyclistes par jour) et la présence de piétons.
+<span style="color:red;font-weight:bold">À améliorer</span> Sa première portion est la Voie verte de la Leysse de largeur 3 mètres utilisée par les pietons et les cycles, largeur insuffisante pour gérer à la fois le trafic cycliste journalier (supérieur à 1 500 cyclistes par jour) et la présence de piétons.
 
 ::banner{type="info"}
 En 2022, lors du réaménagement routier de la RD1006 le long de cette voie verte, Roue Libre s’était mobilisée pour demander la réalisation d’une bande cyclable dédiée. Lors de l’enquête publique, l’étude de l'élargissement de la voie verte a été proposée par la Grand Chambéry comme réponse à cette demande. Délibération Grand Chambéry du 17 mars 2022 https://rouelibre.net/2022/04/06/3-20-janvier-enquete-publique-rd-1006-grand-chambery-exigez-des-amenagements-cyclables-continus-et-securises/. Les cylistes sont encore actuellement dans l’attente de l’engagement de cet engagement.
@@ -37,7 +37,7 @@ credit: Roue Libre
 ---
 ::
 
-<span style="color:blue;font-weight:bold"> La voie verte de la Leysse se prolonge depuis le carrefour de la Trousse jusqu'à Barby. Sa largeur de 3 mètres est satisfaisante avec un trafic pieton et cycle plus faible que sur la section précédente.
+<span style="color:blue;font-weight:bold">Satisfaisant</span> La voie verte de la Leysse se prolonge depuis le carrefour de la Trousse jusqu'à Barby. Sa largeur de 3 mètres est satisfaisante avec un trafic pieton et cycle plus faible que sur la section précédente.
 
 ::content-image
 ---
@@ -48,7 +48,7 @@ credit: Roue Libre
 ::
 
 ### Barby
-<span style="color:black;font-weight:bold"> Ce tronçon n'est pas aménagé pour les cycles.
+<span style="color:black;font-weight:bold">Non satisfaisant</span> Ce tronçon n'est pas aménagé pour les cycles.
 
 ::content-image
 ---
@@ -59,7 +59,7 @@ credit: Roue Libre
 ::
 
 ### Voie verte des planeurs. De Barby à Challes les Eaux
-<span style="color:blue;font-weight:bold"> La Voie verte historique des planeurs permet de rejoindre en toute sécurité la commune de Challes les Eaux. 
+<span style="color:blue;font-weight:bold">Satisfaisant</span> La Voie verte historique des planeurs permet de rejoindre en toute sécurité la commune de Challes les Eaux. 
 
 Le centre ville de Challes les Eaux n'a pas d'aménagement cyclable sécurisé pour rejoindre cette piste.
 
