@@ -20,7 +20,7 @@ La Piste 3 débute place Caffe où passe également la :line-link{line=8}.
 
 ::content-image
 ---
-imageUrl: https://rouelibre.net/wp-content/uploads/2024/11/hero.jpeg
+imageUrl: https://rouelibre.net/wp-content/uploads/2024/11/IMG_4053r.jpg
 caption: Avenue de Boigne
 credit: Roue Libre
 ---
