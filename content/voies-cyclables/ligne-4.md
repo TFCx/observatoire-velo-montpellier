@@ -65,7 +65,7 @@ Le centre ville de Challes les Eaux n'a pas d'aménagement cyclable sécurisé p
 
 ::content-image
 ---
-imageUrl: https://rouelibre.net/wp-content/uploads/2024/11/Piste4-IMG_2680.jpg
+imageUrl: https://rouelibre.net/wp-content/uploads/2024/11/Piste4-IMG_2701.jpg
 caption: Roue de la Trousse (Barby)
 credit: Roue Libre
 ---
