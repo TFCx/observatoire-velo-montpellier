@@ -5,7 +5,7 @@ from: Chambéry (Quai de la Rize)
 to: Challes les Eaux (Plan d'Eau)
 description: La Piste Bleue 4 permet de relier Chambéry à Challes les Eaux via Bassens, Saint Alban Leysse et Barby. Après avoir longé la Leysse jusqu'à Barby, elle relie Challes les Eaux par la voie verte des planeurs, le long de l'aérodrome de Challes les Eaux.
 trafic: 1500 vélos/jour
-cover: https://rouelibre.net/wp-content/uploads/2024/09/IMG_3054.jpg
+cover: https://rouelibre.net/wp-content/uploads/2024/07/IMG_2585r-930x619.jpg
 ---
 
 ## Les tronçons (du Nord au Sud)
@@ -21,22 +21,55 @@ En 2022, lors du réaménagement routier de la RD1006 le long de cette voie vert
 
 ::content-image
 ---
-imageUrl: https://rouelibre.net/wp-content/uploads/2024/09/IMG_3048.jpg
-caption: Aperçu de la Piste bleue 4 - voie verte de la Leysse (Bassens)
+imageUrl: https://rouelibre.net/wp-content/uploads/2024/09/IMG_3054.jpg
+caption: Voie verte de la Leysse (Bassens)
 credit: Roue Libre
 ---
 ::
 
 ### Saint Alban Leysse à Barby
-<span style="color:blue;font-weight:bold"> La voie verte de la Leysse se prolonge jusqu'à Barby. Sa largeur de 3 mètres est satisfaisante avec un trafic pieton et cycle plus faible que sur la section précédente.
+
+::content-image
+---
+imageUrl: https://rouelibre.net/wp-content/uploads/2024/09/IMG_3040-768x576.jpg
+caption: Voie verte de la Leysse (Bassens)
+credit: Roue Libre
+---
+::
+
+<span style="color:blue;font-weight:bold"> La voie verte de la Leysse se prolonge depuis le carrefour de la Trousse jusqu'à Barby. Sa largeur de 3 mètres est satisfaisante avec un trafic pieton et cycle plus faible que sur la section précédente.
+
+::content-image
+---
+imageUrl: https://rouelibre.net/wp-content/uploads/2024/11/Piste4-IMG_2655.jpg
+caption: Voie verte de la Leysse (Saint Alban Leysse)
+credit: Roue Libre
+---
+::
 
 ### Barby
 <span style="color:black;font-weight:bold"> Ce tronçon n'est pas aménagé pour les cycles.
+
+::content-image
+---
+imageUrl: https://rouelibre.net/wp-content/uploads/2024/11/Piste4-IMG_2680.jpg
+caption: Rue du Nivolet (Barby)
+credit: Roue Libre
+---
+::
 
 ### Voie verte des planeurs. De Barby à Challes les Eaux
 <span style="color:blue;font-weight:bold"> La Voie verte historique des planeurs permet de rejoindre en toute sécurité la commune de Challes les Eaux. 
 
 Le centre ville de Challes les Eaux n'a pas d'aménagement cyclable sécurisé pour rejoindre cette piste.
+
+::content-image
+---
+imageUrl: https://rouelibre.net/wp-content/uploads/2024/11/Piste4-IMG_2680.jpg
+caption: Roue de la Trousse (Barby)
+credit: Roue Libre
+---
+::
 
 ## Fil d'actu
 
