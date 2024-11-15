@@ -16,19 +16,14 @@ La Piste Bleue 4 débute à Chambéry sur le quai de la Rize, au croisement avec
 <span style="color:red;font-weight:bold">À améliorer</span> Sa première portion est la Voie verte de la Leysse de largeur 3 mètres utilisée par les pietons et les cycles, largeur insuffisante pour gérer à la fois le trafic cycliste journalier (supérieur à 1 500 cyclistes par jour) et la présence de piétons.
 
 ::banner{type="info"}
-En 2022, lors du réaménagement routier de la RD1006 le long de cette voie verte, Roue Libre s’était mobilisée pour demander la réalisation d’une bande cyclable dédiée. Lors de l’enquête publique, l’étude de l'élargissement de la voie verte a été proposée par la Grand Chambéry comme réponse à cette demande. [Délibération Grand Chambéry du 17 mars 2022](https://rouelibre.net/2022/04/06/3-20-janvier-enquete-publique-rd-1006-grand-chambery-exigez-des-amenagements-cyclables-continus-et-securises/). Les cylistes sont encore actuellement dans l’attente de l’engagement de cet engagement.
+En 2022, lors du réaménagement routier de la RD1006 le long de cette voie verte, Roue Libre s’était mobilisée pour demander la réalisation d’une bande cyclable dédiée. Lors de l’enquête publique, l’étude de l'élargissement de la voie verte a été proposée par la Grand Chambéry comme réponse à cette demande. [Délibération Grand Chambéry du 17 mars 2022] (https://rouelibre.net/2022/04/06/3-20-janvier-enquete-publique-rd-1006-grand-chambery-exigez-des-amenagements-cyclables-continus-et-securises/). Les cylistes sont encore actuellement dans l’attente de l’engagement de cet engagement.
 ::
-
-[<img src="https://rouelibre.net/wp-content/uploads/2023/03/IMG_8944-scaled.jpg">](https://rouelibre.net/2023/02/16/18-mars-2023-velorution-chambery-hauts-de-chambery/)
-
-
-[![Vélorution](https://rouelibre.net/wp-content/uploads/2023/03/IMG_8944-scaled.jpg)](https://rouelibre.net/2023/02/16/18-mars-2023-velorution-chambery-hauts-de-chambery/)
 
 ::content-image
 ---
 imageUrl: https://rouelibre.net/wp-content/uploads/2024/09/IMG_3054.jpg
 caption: Voie verte de la Leysse (Bassens)
-credit: [Roue Libre](https://rouelibre.net/2023/02/16/18-mars-2023-velorution-chambery-hauts-de-chambery/)
+credit: Roue Libre
 ---
 ::
 
