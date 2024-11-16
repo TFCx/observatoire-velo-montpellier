@@ -38,12 +38,12 @@ La partie est a été mise en travaux depuis mars 2024 dans le cadre des travaux
 
 ### Vieille Poste ⇄ Grammont
 
-
-
-<span style="color:gold;font-weight:bold">À améliorer</span> Section existante aux standards de confort, qualité, sécurité et attractivité dépassés non conformes aux exigences d'une Véloligne.
+Section commune avec la :line-link{line=B anchor=avenue-einstein-entre-grammont-et-lavenue-becquerel}
+<br><span style="color:gold;font-weight:bold">À améliorer</span> Section existante aux standards de confort, qualité, sécurité et attractivité dépassés non conformes aux exigences d'une Véloligne.
 
 ### Grammont ⇄ Mauguio
 
 ::banner{type="unsecured"}
 Section non prévue au cours de ce mandat. Reportée à une échéance ultérieure.
 ::
+Le début est commun avec la :line-link{line=B anchor=jonction-philippe-lamour-grammont}

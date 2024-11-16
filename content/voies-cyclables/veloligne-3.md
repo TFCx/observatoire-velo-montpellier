@@ -10,3 +10,5 @@ to: Gare Sud de France
 ---
 
 #### *pas de descriptif spécifique*
+
+Voir la page de la :line-link{line=B anchor=boulevard-pénélope} avec laquelle elle partage 100% de son parcours.

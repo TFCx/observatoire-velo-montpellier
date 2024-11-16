@@ -21,7 +21,7 @@ Pas de projet en cours à la connaissance de Vélocité.
 Portion existante réalisée en bilatérales.
 
 ### de Celleneuve à l'Avenue des Garrats
-
+Section commune avec la :line-link{line=B anchor=avenue-de-la-liberté-entre-carrefour-des-garrats-et-celleneuve}
 ::banner{type="unsecured"}
 Reporté après le mandat.
 ::
@@ -94,7 +94,7 @@ Projet de piste bilatérales. Cette section est commune avec la Véloligne B.
 
 ### Evariste Galois ⇄ Albert Einstein
 
-Projet de piste bidirectionnelle côté est. Cette section est commune avec la Véloligne B.
+Projet de piste bidirectionnelle côté est. Cette section est commune avec la :line-link{line=B anchor=jonction-einstein-pénélope-par-evariste-gallois}.
 
 ### Rues Becquerel et Pomessargues
 

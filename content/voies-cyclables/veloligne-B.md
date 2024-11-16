@@ -11,7 +11,7 @@ to: Gare Sud de France
 
 
 ### Gare sud de France Cambacerès ⇄ Boirargues (pont Gagarine)
-<span style="color:gold;font-weight:bold">À améliorer</span> Aménagement existant en piste bidirectionnelle sur trottoir, non conforme aux exigences d'une Véloligne.  Cette section est commune avec la Véloligne D.
+<span style="color:gold;font-weight:bold">À améliorer</span> Aménagement existant en piste bidirectionnelle sur trottoir, non conforme aux exigences d'une Véloligne.  Cette section est commune avec la :line-link{line=D anchor=pont-gagarine}.
 
 ### Entrée de Boirargues
 ::banner{type="unsecured"}
@@ -64,6 +64,7 @@ Reporté après le mandat.
 ::banner{type="unsecured"}
 Reporté après le mandat.
 ::
+Section commune avec la :line-link{line=5}
 
 ### Avenue d'El Alamein
 Prévu pour 2026.
@@ -101,6 +102,8 @@ Pas de projet en cours à la connaissance de Vélocité.
 ::
 
 ### Avenue de la Liberté entre carrefour des Garrats et Celleneuve
+
+Section commune avec la :line-link{line=A anchor=de-celleneuve-à-lavenue-des-garrats}
 ::banner{type="unsecured"}
 Reporté après le mandat.
 ::
@@ -173,14 +176,16 @@ Pas de projet en cours à la connaissance de Vélocité.
 ::banner{type="unsecured"}
 Reporté après le mandat.
 ::
+Section commune avec la :line-link{line=2 anchor=grammont-mauguio}
 <!-- à découper en deux si ça bouge sur la route de Mauguio ou sur l'itinéraire à créer
 -->
 
 ### Avenue Einstein, entre Grammont et l'avenue Becquerel
-<span style="color:gold;font-weight:bold">À améliorer</span> Aménagement existant aux standards anciens non conformes aux exigences d'une Véloligne.
+Section commune avec la :line-link{line=2 anchor=vieille-poste-grammont}
+<br><span style="color:gold;font-weight:bold">À améliorer</span> Aménagement existant aux standards anciens non conformes aux exigences d'une Véloligne.
 
 ### Jonction Einstein ⇄ Pénélope par Evariste Gallois
-Prévu pour 2026. Section commune avec la Véloligne A.
+Prévu pour 2026. Section commune avec la :line-link{line=A anchor=evariste-galois-albert-einstein}.
 Projet de piste bidirectionnelle côté est pour le passage sous la voie rapide au nord et projet de pistes bilatérales au sud.
 
 ### Boulevard Pénélope
