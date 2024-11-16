@@ -13,12 +13,13 @@ import LineTooltip from '~/components/tooltips/LineTooltip.vue';
 type ColoredLineStringFeature = LineStringFeature & { properties: { color: string } };
 const { getNbVoiesCyclables } = useConfig();
 enum DisplayedLayer {
-  Network = 0,
+  Progress = 0,
   Quality = 1,
   Type = 2,
+  FinalizedProject = 3,
 }
 
-const displayedLayer = ref(DisplayedLayer.Network);
+const displayedLayer = ref(DisplayedLayer.Progress);
 
 const laneWidth = 4
 
@@ -418,6 +419,7 @@ export const useMap = () => {
       lineStringFeatures = addOtherLineColor(lineStringFeatures);
 
       plotSections(map, lineStringFeatures);
+      setLanesColor(map, displayedLayer.value)
 
       watch(displayedLayer, (displayedLayer) => setLanesColor(map, displayedLayer))
 
@@ -581,7 +583,15 @@ function setLanesColor(map: Map, displayedLayer: DisplayedLayer) {
         ["==", ['get', 'status'], "done"], "#000000",
         "white"
       ]);
-    } else if (displayedLayer == DisplayedLayer.Network) {
+    } else if (displayedLayer == DisplayedLayer.Progress) {
+      map.setPaintProperty(l, "line-color", ["case",
+        ["==", ['get', 'status'], "done"], "#92c5de",
+        ["==", ['get', 'status'], "wip"], "#fddbc7",
+        ["==", ['get', 'status'], "planned"], "#f4a582",
+        ["==", ['get', 'status'], "postponed"], "#d6604d",
+        "white"
+      ]);
+    } else if (displayedLayer == DisplayedLayer.FinalizedProject) {
       map.setPaintProperty(l, "line-color", ["to-color", ['get', 'color']]);
     } else if (displayedLayer == DisplayedLayer.Type) {
       map.setPaintProperty(l, "line-color", ["case",
@@ -602,19 +612,6 @@ function setLanesColor(map: Map, displayedLayer: DisplayedLayer) {
       ]);
     }
   });
-}
-
-function animateOpacity(map: Map, timestamp: number, animationLength: number, attributeId: string, attributeOpacity: string, min: number, max: number) {
-
-  function subAnimateOpacity(timestamp: number) {
-    const opacity010 = Math.abs((((timestamp * 2) * (1 / animationLength)) % 2) - 1)
-    const opacity = opacity010 * (max - min) + min
-    map.setPaintProperty(attributeId, attributeOpacity, opacity);
-
-    // Request the next frame of the animation.
-    requestAnimationFrame(subAnimateOpacity);
-  }
-  subAnimateOpacity(timestamp)
 }
 
 function upsertMapSource(map: Map, sourceName: string, features: Feature[]) {
@@ -664,7 +661,6 @@ function drawLanesPlanned(map: Map, lanes: DisplayedLane[]) {
     paint: {
       'line-width': laneWidth,
       'line-color': ["to-color", ['get', 'color']],
-      'line-dasharray': [0.6, 1.2],
       'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
     }
   });
@@ -690,22 +686,6 @@ function drawLanesVariante(map: Map, lanes: DisplayedLane[]) {
       'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
     }
   });
-  map.addLayer({
-    id: 'layer-lanes-variante-symbols',
-    type: 'symbol',
-    source: 'source-all-lanes-variante',
-    paint: {
-      'text-halo-color': '#fff',
-      'text-halo-width': 4
-    },
-    layout: {
-      'symbol-placement': 'line',
-      'symbol-spacing': 120,
-      'text-font': ['Open Sans Regular'],
-      'text-field': ['coalesce', ['get', 'text'], 'variante'],
-      'text-size': 14
-    }
-  });
   layersWithLanes.push("layer-lanes-variante")
 }
 
@@ -726,23 +706,6 @@ function drawLanesVariantePostponed(map: Map, lanes: DisplayedLane[]) {
       'line-dasharray': [2, 2],
       'line-opacity': 0.5,
       'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
-    }
-  });
-
-  map.addLayer({
-    id: 'layer-lanes-variante-postponed-symbols',
-    type: 'symbol',
-    source: 'source-all-lanes-variante-postponed',
-    paint: {
-      'text-halo-color': '#fff',
-      'text-halo-width': 4
-    },
-    layout: {
-      'symbol-placement': 'line',
-      'symbol-spacing': 120,
-      'text-font': ['Open Sans Regular'],
-      'text-field': ['coalesce', ['get', 'text'], 'variante reportée'],
-      'text-size': 14
     }
   });
   layersWithLanes.push("layer-lanes-variante-postponed")
@@ -784,22 +747,6 @@ function drawLanesUnknown(map: Map, lanes: DisplayedLane[]) {
       ]
     }
   });
-  map.addLayer({
-    id: 'layer-lanes-unknown-symbols',
-    type: 'symbol',
-    source: 'source-all-lanes-unknown',
-    paint: {
-      'text-halo-color': '#fff',
-      'text-halo-width': 3
-    },
-    layout: {
-      'symbol-placement': 'line',
-      'symbol-spacing': 120,
-      'text-font': ['Open Sans Regular'],
-      'text-field': 'tracé à définir',
-      'text-size': 14
-    }
-  });
   layersWithLanes.push("layer-lanes-unknown")
 }
 
@@ -817,32 +764,10 @@ function drawLanesPostponed(map: Map, lanes: DisplayedLane[]) {
     paint: {
       'line-width': laneWidth,
       'line-color': ["to-color", ['get', 'color']],
-      'line-dasharray': [0.4, 1.1],
       'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
     }
   });
-
-  map.addLayer({
-    id: `layer-lanes-postponed-symbols`,
-    type: 'symbol',
-    source: `source-all-lanes-postponed`,
-    paint: {
-      'text-halo-color': '#fff',
-      'text-halo-width': 3,
-      "text-opacity": postPonedOpacity + 0.4
-    },
-    layout: {
-      'symbol-placement': 'line',
-      'symbol-spacing': 100,
-      'text-font': ['Open Sans Regular'],
-      'text-field': 'reporté',
-      'text-size': 14,
-    }
-  });
   layersWithLanes.push("layer-lanes-postponed")
-
-  animateOpacity(map, 0, 1000*5.0, 'layer-lanes-postponed', 'line-opacity', 0.0, postPonedOpacity );
-  animateOpacity(map, 0, 1000*5.0, 'layer-lanes-postponed-symbols', 'text-opacity',postPonedOpacity, postPonedOpacity + 0.4);
 }
 
 
@@ -860,25 +785,10 @@ function drawLanesWIP(map: Map, lanes: DisplayedLane[]) {
     paint: {
       'line-width': laneWidth,
       'line-color': ["to-color", ['get', 'color']],
-      'line-dasharray': [0.2, 1.1],
-      'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
-    }
-  });
-
-  map.addLayer({
-    id: 'layer-lanes-wip-done',
-    type: 'line',
-    source: 'source-all-lanes-wip',
-    paint: {
-      'line-width': laneWidth,
-      'line-color': ["to-color", ['get', 'color']],
       'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
     }
   });
   layersWithLanes.push("layer-lanes-wip")
-  layersWithLanes.push("layer-lanes-wip-done")
-
-  animateOpacity(map, 0, 1000*0.75, 'layer-lanes-wip-done', 'line-opacity', 0.5, 0.9);
 }
 
 function addListnersForHovering(map: Map) {

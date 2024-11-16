@@ -26,9 +26,10 @@ export default class LayerControl {
     this._btn_legend.onclick = () => this._onClick();
     title.appendChild(this._btn_legend);
 
-    this.createRadioButton('network', 'du réseau', true);
+    this.createRadioButton('progress', 'de l\'avancement du projet', true);
     this.createRadioButton('quality', 'de la qualité des aménagements', false);
     this.createRadioButton('type', "du type d'aménagement", false);
+    this.createRadioButton('finalizedProject', 'du futur réseau', false);
 
     return this._container;
   }

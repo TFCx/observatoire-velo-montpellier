@@ -85,15 +85,17 @@ function refreshFilters({ visibleStatuses, visibleTypes }: { visibleStatuses: La
 }
 
 function convertIntoDisplayedLayerEnum(s: string) {
-  if(s === "network") {
-    return DisplayedLayer.Network
+  if(s === "progress") {
+    return DisplayedLayer.Progress
+  } else if (s === "finalizedProject") {
+    return DisplayedLayer.FinalizedProject
   } else if (s === "quality") {
     return DisplayedLayer.Quality
   } else if (s === "type") {
     return DisplayedLayer.Type
   }
   console.assert(s + " couldn't be convert into a DisplayedLayer enum")
-  return DisplayedLayer.Network
+  return DisplayedLayer.Progress
 }
 
 onMounted(() => {
