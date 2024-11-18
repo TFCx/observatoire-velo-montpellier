@@ -7,6 +7,15 @@ const COVER_IMAGE_URL = 'https://observatoire-velo-montpellier.netlify.app/_nuxt
 - Cherry pick tableau de bord
 - Renseigner un peu plus en détail Vélolignes C et D  (.md)
 
+Nouvelle infobulle :
+- Statut : terminé / terminé ? / en travaux / prévu / reporté
+- Longueur : XXXm
+- Aménagement actuel : Piste birdirectionnelle (réalisé avant 2021)
+- Aménagement prévu : Inconnu
+- Situation : non-satisfaisante
+
+
+
 Moyen terme :
 - Stats qualité première page
 - Tableau de bord : essayer de rappatrier

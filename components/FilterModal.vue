@@ -75,8 +75,8 @@ defineExpose({
 const statusFilters = ref([
   { label: 'Terminé', isEnable: true, statuses: ['done'] },
   { label: 'En travaux', isEnable: true, statuses: ['wip'] },
-  { label: 'Prévu pour 2026', isEnable: true, statuses: ['planned', 'variante'] },
-  { label: 'Reporté', isEnable: true, statuses: ['postponed', 'variante-postponed'] },
+  { label: 'Prévu pour 2026', isEnable: true, statuses: ['planned-2026', 'hasted-2026'] },
+  { label: 'Reporté', isEnable: true, statuses: ['planned-later', 'postponed-later'] },
   { label: 'Inconnu', isEnable: true, statuses: ['unknown'] }
 ]);
 

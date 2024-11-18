@@ -2,17 +2,18 @@ export type LaneType =
 | 'bidirectionnelle'
 | 'bilaterale'
 | 'voie-bus'
-| 'voie-bus-elargie'
 | 'velorue'
+| 'zone-de-rencontre'
 | 'voie-verte'
 | 'bandes-cyclables'
-| 'zone-de-rencontre'
+| 'trottoirs-cyclables'
+| 'aire-pietonne'
 | 'chaucidou'
 | 'heterogene'
 | 'aucun'
 | 'inconnu';
 
-export type LaneStatus = 'done' | 'wip' | 'planned' | 'postponed' | 'unknown' | 'variante' | 'variante-postponed';
+export type LaneStatus = 'done' | 'done?' | 'wip' | 'planned-2026' | 'planned-later' | 'postponed-later' | 'hasted-2026' | 'unknown';
 
 export type Quality = 'bad' | 'fair' | 'good';
 

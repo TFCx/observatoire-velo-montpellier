@@ -91,7 +91,7 @@ function checkGeoJsonDataHealth({ links }) {
               }
 
               // 3 - check if status is valid
-              const validStatus = ['done', 'wip', 'planned', 'postponed', 'unknown', 'variante', 'variante-postponed'];
+              const validStatus = ['done', 'wip', 'planned-2026', 'hasted-2026', 'postponed-later', 'planned-later', 'unknown'];
               if (!validStatus.includes(properties.status)) {
                 console.error(`Invalid status '${properties.status}' in LineString properties of file: ${filePath}`);
                 process.exit(1);

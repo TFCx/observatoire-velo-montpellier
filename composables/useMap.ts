@@ -20,7 +20,7 @@ const setDisplayedLayer = (value: DisplayedLayer) => {
 
 export { DisplayedLayer, setDisplayedLayer };
 
-let postPonedOpacity = 0.5
+let plannedLaterTextOpacity = 0.5
 
 let displayLimits = ref(false)
 
@@ -152,7 +152,7 @@ export const useMap = () => {
 
     drawSectionBase(map, sections)
 
-    drawLanesPlanned(map, lanes)
+    drawLanesPlanned2026(map, lanes)
 
     drawLanesWIP(map, lanes)
 
@@ -160,9 +160,9 @@ export const useMap = () => {
 
     drawLanesPostponed(map, lanes)
 
-    drawLanesVariante(map, lanes)
+    // drawLanesVariante(map, lanes)
 
-    drawLanesVariantePostponed(map, lanes)
+    // drawLanesVariantePostponed(map, lanes)
 
     drawLanesUnknown(map, lanes)
 
@@ -396,11 +396,12 @@ function setLanesColor(map: Map, displayedLayer: DisplayedLayer) {
         ["==", ['get', 'type'], "bidirectionnelle"], "#b3c6ff", // bleu
         ["==", ['get', 'type'], "bilaterale"], "#b3fbff", // cyan
         ["==", ['get', 'type'], "bandes-cyclables"], "#c1b3ff", // bleu-violet
+        ["==", ['get', 'type'], "trottoirs-cyclables"], "#ff9999", // rouge
         ["==", ['get', 'type'], "voie-bus"], "#fbb3ff", // violet
-        ["==", ['get', 'type'], "voie-bus-elargie"], "#e1b3ff", // violet
-        ["==", ['get', 'type'], "velorue"], "#fffbb3", // jaune
+        ["==", ['get', 'type'], "velorue"], "#daffb3", // jaune
+        ["==", ['get', 'type'], "zone-de-recontre"], "#daffb3", // jaune
         ["==", ['get', 'type'], "voie-verte"], "#b3ffb6", // vert
-        ["==", ['get', 'type'], "zone-de-rencontre"], "#daffb3", // vert clair
+        ["==", ['get', 'type'], "aire-pietonne"], "#ff9999", // vert
         ["==", ['get', 'type'], "chaucidou"], "#ffeab3", // orange
         ["==", ['get', 'type'], "heterogene"], "#797979", // gris foncé
         ["==", ['get', 'type'], "aucun"], "#ff9999", // rouge
@@ -440,7 +441,7 @@ function upsertMapSource(map: Map, sourceName: string, features: Feature[]) {
 
 function drawLanesDone(map: Map, lanes: DisplayedLane[]) {
 
-  let lanes_done = lanes.filter(lane => lane.properties.status === "done");
+  let lanes_done = lanes.filter(lane => lane.properties.status === "done" | lane.properties.status === "done?");
   if (upsertMapSource(map, 'source-all-lanes-done', lanes_done)) {
     return;
   }
@@ -458,17 +459,17 @@ function drawLanesDone(map: Map, lanes: DisplayedLane[]) {
   layersWithLanes.push("layer-lanes-done")
 }
 
-function drawLanesPlanned(map: Map, lanes: DisplayedLane[]) {
+function drawLanesPlanned2026(map: Map, lanes: DisplayedLane[]) {
 
-  let lanes_planned = lanes.filter(lane => lane.properties.status === "planned");
-  if (upsertMapSource(map, 'source-all-lanes-planned', lanes_planned)) {
+  let lanes_planned_2026 = lanes.filter(lane => lane.properties.status === "planned-2026" || lane.properties.status === "hasted-2026");
+  if (upsertMapSource(map, 'source-all-lanes-planned-2026', lanes_planned_2026)) {
     return;
   }
 
   map.addLayer({
-    id: `layer-lanes-planned`,
+    id: `layer-lanes-planned-2026`,
     type: 'line',
-    source: 'source-all-lanes-planned',
+    source: 'source-all-lanes-planned-2026',
     paint: {
       'line-width': laneWidth,
       'line-color': ["to-color", ['get', 'color']],
@@ -476,85 +477,85 @@ function drawLanesPlanned(map: Map, lanes: DisplayedLane[]) {
       'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
     }
   });
-  layersWithLanes.push("layer-lanes-planned")
+  layersWithLanes.push("layer-lanes-planned-2026")
 }
 
-function drawLanesVariante(map: Map, lanes: DisplayedLane[]) {
+// function drawLanesVariante(map: Map, lanes: DisplayedLane[]) {
 
-  let lanes_variante = lanes.filter(lane => lane.properties.status === "variante");
-  if (upsertMapSource(map, 'source-all-lanes-variante', lanes_variante)) {
-    return;
-  }
+//   let lanes_variante = lanes.filter(lane => lane.properties.status === "variante");
+//   if (upsertMapSource(map, 'source-all-lanes-variante', lanes_variante)) {
+//     return;
+//   }
 
-  map.addLayer({
-    id: 'layer-lanes-variante',
-    type: 'line',
-    source: 'source-all-lanes-variante',
-    paint: {
-      'line-width': laneWidth,
-      'line-color': ["to-color", ['get', 'color']],
-      'line-dasharray': [2, 2],
-      'line-opacity': 0.5,
-      'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
-    }
-  });
-  map.addLayer({
-    id: 'layer-lanes-variante-symbols',
-    type: 'symbol',
-    source: 'source-all-lanes-variante',
-    paint: {
-      'text-halo-color': '#fff',
-      'text-halo-width': 4
-    },
-    layout: {
-      'symbol-placement': 'line',
-      'symbol-spacing': 120,
-      'text-font': ['Open Sans Regular'],
-      'text-field': ['coalesce', ['get', 'text'], 'variante'],
-      'text-size': 14
-    }
-  });
-  layersWithLanes.push("layer-lanes-variante")
-}
+//   map.addLayer({
+//     id: 'layer-lanes-variante',
+//     type: 'line',
+//     source: 'source-all-lanes-variante',
+//     paint: {
+//       'line-width': laneWidth,
+//       'line-color': ["to-color", ['get', 'color']],
+//       'line-dasharray': [2, 2],
+//       'line-opacity': 0.5,
+//       'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
+//     }
+//   });
+//   map.addLayer({
+//     id: 'layer-lanes-variante-symbols',
+//     type: 'symbol',
+//     source: 'source-all-lanes-variante',
+//     paint: {
+//       'text-halo-color': '#fff',
+//       'text-halo-width': 4
+//     },
+//     layout: {
+//       'symbol-placement': 'line',
+//       'symbol-spacing': 120,
+//       'text-font': ['Open Sans Regular'],
+//       'text-field': ['coalesce', ['get', 'text'], 'variante'],
+//       'text-size': 14
+//     }
+//   });
+//   layersWithLanes.push("layer-lanes-variante")
+// }
 
-function drawLanesVariantePostponed(map: Map, lanes: DisplayedLane[]) {
+// function drawLanesVariantePostponed(map: Map, lanes: DisplayedLane[]) {
 
-  let lanes_variante_postponed = lanes.filter(lane => lane.properties.status === "variante-postponed");
-  if (upsertMapSource(map, 'source-all-lanes-variante-postponed', lanes_variante_postponed)) {
-    return;
-  }
+//   let lanes_variante_postponed = lanes.filter(lane => lane.properties.status === "variante-postponed");
+//   if (upsertMapSource(map, 'source-all-lanes-variante-postponed', lanes_variante_postponed)) {
+//     return;
+//   }
 
-  map.addLayer({
-    id: 'layer-lanes-variante-postponed',
-    type: 'line',
-    source: 'source-all-lanes-variante-postponed',
-    paint: {
-      'line-width': laneWidth,
-      'line-color': ["to-color", ['get', 'color']],
-      'line-dasharray': [2, 2],
-      'line-opacity': 0.5,
-      'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
-    }
-  });
+//   map.addLayer({
+//     id: 'layer-lanes-variante-postponed',
+//     type: 'line',
+//     source: 'source-all-lanes-variante-postponed',
+//     paint: {
+//       'line-width': laneWidth,
+//       'line-color': ["to-color", ['get', 'color']],
+//       'line-dasharray': [2, 2],
+//       'line-opacity': 0.5,
+//       'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
+//     }
+//   });
 
-  map.addLayer({
-    id: 'layer-lanes-variante-postponed-symbols',
-    type: 'symbol',
-    source: 'source-all-lanes-variante-postponed',
-    paint: {
-      'text-halo-color': '#fff',
-      'text-halo-width': 4
-    },
-    layout: {
-      'symbol-placement': 'line',
-      'symbol-spacing': 120,
-      'text-font': ['Open Sans Regular'],
-      'text-field': ['coalesce', ['get', 'text'], 'variante reportée'],
-      'text-size': 14
-    }
-  });
-  layersWithLanes.push("layer-lanes-variante-postponed")
-}
+//   map.addLayer({
+//     id: 'layer-lanes-variante-postponed-symbols',
+//     type: 'symbol',
+//     source: 'source-all-lanes-variante-postponed',
+//     paint: {
+//       'text-halo-color': '#fff',
+//       'text-halo-width': 4
+//     },
+//     layout: {
+//       'symbol-placement': 'line',
+//       'symbol-spacing': 120,
+//       'text-font': ['Open Sans Regular'],
+//       'text-field': ['coalesce', ['get', 'text'], 'variante reportée'],
+//       'text-size': 14
+//     }
+//   });
+//   layersWithLanes.push("layer-lanes-variante-postponed")
+// }
 
 function drawLanesUnknown(map: Map, lanes: DisplayedLane[]) {
 
@@ -613,15 +614,15 @@ function drawLanesUnknown(map: Map, lanes: DisplayedLane[]) {
 
 function drawLanesPostponed(map: Map, lanes: DisplayedLane[]) {
 
-  let lanes_postponed = lanes.filter(lane => lane.properties.status === "postponed");
-  if (upsertMapSource(map, 'source-all-lanes-postponed', lanes_postponed)) {
+  let lanes_postponed = lanes.filter(lane => lane.properties.status === "planned-later");
+  if (upsertMapSource(map, 'source-all-lanes-planned-later', lanes_postponed)) {
     return;
   }
 
   map.addLayer({
-    id: `layer-lanes-postponed`,
+    id: `layer-lanes-planned-later`,
     type: 'line',
-    source: 'source-all-lanes-postponed',
+    source: 'source-all-lanes-planned-later',
     paint: {
       'line-width': laneWidth,
       'line-color': ["to-color", ['get', 'color']],
@@ -631,26 +632,26 @@ function drawLanesPostponed(map: Map, lanes: DisplayedLane[]) {
   });
 
   map.addLayer({
-    id: `layer-lanes-postponed-symbols`,
+    id: `layer-lanes-planned-later-symbols`,
     type: 'symbol',
-    source: `source-all-lanes-postponed`,
+    source: `source-all-lanes-planned-later`,
     paint: {
       'text-halo-color': '#fff',
       'text-halo-width': 3,
-      "text-opacity": postPonedOpacity + 0.4
+      "text-opacity": plannedLaterTextOpacity + 0.4
     },
     layout: {
       'symbol-placement': 'line',
       'symbol-spacing': 100,
       'text-font': ['Open Sans Regular'],
-      'text-field': 'reporté',
+      'text-field': 'après 2026',
       'text-size': 14,
     }
   });
-  layersWithLanes.push("layer-lanes-postponed")
+  layersWithLanes.push("layer-lanes-planned-later")
 
-  animateOpacity(map, 0, 1000*5.0, 'layer-lanes-postponed', 'line-opacity', 0.0, postPonedOpacity );
-  animateOpacity(map, 0, 1000*5.0, 'layer-lanes-postponed-symbols', 'text-opacity',postPonedOpacity, postPonedOpacity + 0.4);
+  animateOpacity(map, 0, 1000*5.0, 'layer-lanes-planned-later', 'line-opacity', 0.0, plannedLaterTextOpacity );
+  animateOpacity(map, 0, 1000*5.0, 'layer-lanes-planned-later-symbols', 'text-opacity',plannedLaterTextOpacity, plannedLaterTextOpacity + 0.4);
 }
 
 

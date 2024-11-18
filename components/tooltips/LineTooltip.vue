@@ -115,27 +115,32 @@ function getStatus(properties: LineStringFeature['properties']): { label: string
       date: properties.doneAt && getDoneAtText(properties.doneAt),
       class: 'text-white bg-velocite-yellow-5 rounded-xl px-2 w-fit'
     },
+    'done?': {
+      label: 'terminé ?',
+      date: properties.doneAt && getDoneAtText(properties.doneAt),
+      class: 'text-white bg-velocite-yellow-5 rounded-xl px-2 w-fit'
+    },
     wip: {
       label: 'en travaux',
       class: 'text-velocite-yellow-5 rounded-xl px-2 border border-dashed border-velocite-yellow-5'
     },
-    planned: {
-      label: 'prévu',
+    'planned-2026': {
+      label: 'à réaliser',
       class: 'text-velocite-yellow-5 rounded-xl px-2 border border-velocite-yellow-5'
     },
-    postponed: {
+    'hasted-2026': {
+      label: 'prévu (avancé)',
+      class: 'text-velocite-yellow-5 rounded-xl px-2 border border-velocite-yellow-5'
+    },
+    'postponed-later': {
       label: 'reporté',
       date: 'après 2026',
       class: 'text-white bg-lvv-pink rounded-xl px-2'
     },
-    variante: {
-      label: 'variante',
-      class: ''
-    },
-    'variante-postponed': {
-      label: 'variante reportée',
+    'planned-later': {
+      label: 'prévu',
       date: 'après 2026',
-      class: 'text-white bg-lvv-pink rounded-xl px-2'
+      class: 'text-white bg-velocite-blue-2 rounded-xl px-3'
     },
     unknown: {
       label: 'à définir',

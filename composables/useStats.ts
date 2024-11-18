@@ -93,10 +93,10 @@ export const useStats = () => {
     const doneFeatures = features.filter(feature => feature.properties.status === 'done');
     const wipFeatures = features.filter(feature => feature.properties.status === 'wip');
     const plannedFeatures = features.filter(feature =>
-      ['planned', 'unknown', 'variante'].includes(feature.properties.status)
+      ['planned-2026', 'hasted-2026', 'unknown', 'variante'].includes(feature.properties.status)
     );
-    const postponedFeatures = features.filter(feature =>
-      ['postponed', 'variante-postponed'].includes(feature.properties.status)
+    const laterFeatures = features.filter(feature =>
+      ['planned-later', 'postponed-later'].includes(feature.properties.status)
     );
 
     const totalDistance = getDistance(features);
@@ -104,7 +104,7 @@ export const useStats = () => {
     const alreadyExistingDistance = getDistance(doneFeatures, f => isBeforeMandat(f));
     const wipDistance = getDistance(wipFeatures);
     const plannedDistance = getDistance(plannedFeatures);
-    const postponedDistance = getDistance(postponedFeatures);
+    const laterDistance = getDistance(laterFeatures);
 
     function getPercent(distance: number) {
       return Math.round((distance / totalDistance) * 100);
@@ -135,10 +135,10 @@ export const useStats = () => {
         percent: getPercent(plannedDistance),
         class: 'text-velocite-light-4 font-semibold'
       },
-      postponed: {
+      later: {
         name: 'Après 2026',
-        distance: postponedDistance,
-        percent: getPercent(postponedDistance),
+        distance: laterDistance,
+        percent: getPercent(laterDistance),
         class: 'text-lvv-pink font-semibold'
       }
     };
