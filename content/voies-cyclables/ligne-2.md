@@ -3,7 +3,7 @@ name: Piste Bleue 2
 line: 2
 from: Chambéry (Palais de Justice)
 to: Chambéry (Landiers)
-description: La Piste Bleue 2 permettra de relier le centre ville de Chambéry à la zone des Landiers Sud via la gare de Chambéry.
+description: La Piste Bleue 2 permet de relier le centre ville de Chambéry à la zone des Landiers Sud via la gare de Chambéry.
 trafic: non connu
 cover: https://rouelibre.net/wp-content/uploads/2024/11/REV2-IMG_3959.jpg
 ---
@@ -50,7 +50,7 @@ credit: Roue Libre
 ---
 ::
 
-Le passage non sécurisé à contresens du rond point Landiers Sud (Carrefour, Boulanger...) est cependant un point noir pour les cyclistes.
+Le passage non sécurisé à contresens du rond point Landiers Sud (Carrefour, Boulanger...) est un point noir pour les cyclistes.
 
 ::content-image
 ---
