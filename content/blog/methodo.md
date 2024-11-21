@@ -12,6 +12,15 @@ Où est la Piste Bleue 10 et les autres tronçons annoncés pour 2030 ?*
 
 On vous explique tout !
 
+## Tronçon « satisfaisant / non-satisfaisant » ?
+Pour chaque tronçon de Piste Bleue, nous avons regardé s'il était conforme aux caractéristiques préconisées pour le réseau à Haut Niveau de Service (aussi appelé Reseau Express Vélo) par le CEREMA. 
+
+Ainsi, parmi les critères utilisés nous avons essentiellement évalué : la sécurisation ; la présence ou non d'un conflit piéton/vélo ; le confort et la lisibilité ; la continuité et le caractère direct et efficace des trajets.
+
+Si un tronçon n'est pas du tout conforme à ces qualités, il est classé comme « non-satisfaisant ». S'il est globalement conforme à ces qualités, il est classé comme « satisfaisant ». S'il présente des défauts qui l'éloignent de ces qualités, il est classé comme « à améliorer ». Le détail est souvent donné dans les pages décrivant les lignes tronçon par tronçon.
+
+Attention un tronçon classé comme « satisfaisant » ne veut pas dire qu'il est parfait. Par exemple certains tronçons ont une largeur insuffisante, des liaisons avec le réseau secondaire incomplètes, des traversées de chaussée insuffisamment sécurisées... ont pu être classés en « satisfaisant » car dans sa globalité le tronçon répond à l'essentiel des critères définis par le CEREMA. Ce sont les limites d'une typologie en trois classes, pratique pour une visualisation rapide mais qui sont ensuite complétées dans la description de chaque ligne.
+
 ## Que signifient les types de chaque tronçon et les statistiques "Typologie 2026"
 Il s'agit de chacun des aménagements cyclables que rencontreront les cyclistes sur chacune des lignes à la fin du mandat en 2026. Mis bout-à-bout, et rapportés à la distance totale des différents itinéraires, on peut ensuite obtenir des statistiques détaillées.
 
