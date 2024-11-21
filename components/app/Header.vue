@@ -12,7 +12,7 @@
             >
             <img
               class="h-8 w-auto sm:h-10"
-              src="https://rouelibre.net/wp-content/uploads/2024/11/texteRL_Logo_2X8_Couleur_HD.png"
+              src="https://rouelibre.net/wp-content/uploads/2024/11/logo-Observatoire-Pistes-Bleues-v1.jpg"
               alt="logo cyclopolis"
             >
           </NuxtLink>
