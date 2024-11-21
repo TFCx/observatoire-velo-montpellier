@@ -37,19 +37,6 @@ Vous pourrez peut-être constater que certains tronçons sont réellement en tra
 
 En revanche, nous considérons qu'un tronçon est en travaux si et seulement si ceux-ci ont réellement lieu sur le terrain, et si ils concernent réellement l'aménagement d'une piste cyclable. Ainsi, la présence d'un "totem travaux" de l'agglo n'est pas suffisant. En outre, tous les travaux préalables ne sont pas considérés. Ainsi, le désamiantage préalable de la chaussée ou la déviation des réseaux souterrains ne sont pas retenus.
 
-## Terminé ou Prévu ?
-Les tronçons considérés comme "terminés" sont tous les tronçons aménagés depuis 2020 dont on est certain qu’ils accueilleront une piste continue et sécurisée en 2026 ou ayant déjà fait l’objet d’une concertation qui mentionnait explicitement que l’aménagement cyclable sécurisé existant serait conservé en l’état.
-
-**Exemples :**
-
-- La rue Victor Hugo à Tassin a été aménagée en 2021. Elle n’a pas fait l’objet d’une concertation Voie Lyonnaise, mais nous savons qu’elle accueillera la Voie Lyonnaise 5.
-- Le quai Fulchiron à Lyon 5 a été aménagé en 2019. La concertation de la Voie Lyonnaise 3 sur ce tronçon stipule que l’aménagement sera conservé en l’état.
-- Le tunnel mode doux de la Croix-Rousse à Lyon 4 a été aménagé en 2013. Nous savons qu’il accueillera plusieurs Voies Lyonnaises, mais avant que la concertation sur ce tronçon n’ait eu lieu, nous ne savions pas si la Métropole de Lyon a prévu d’y faire des modifications dans le cadre du projet des Voies Lyonnaises. Il était donc resté en « prévu » jusqu’à ce que l’information ait été rendue publique.
-- L’avenue du Dauphiné à Chassieu entre l’avenue du Progrès et le chemin de Trèves comporte déjà une voie verte étroite, mais la Métropole de Lyon a annoncé dans son dossier de concertation qu’il ne serait pas jalonné en Voie Lyonnaise du fait du report du réaménagement du giratoire d’Usingen.
-
-*Une information sur le démarrage de nouveaux travaux ? Besoin de faire remonter une information ou une remarque sur le contenu du site ?  
-N'hésitez pas à nous contacter sur nos réseaux sociaux ou via [cette page](https://rouelibre.net/#anchor-contact).*
-
 ## Reporté après 2026
 Il s’agit des tronçons qui ne seront pas réalisés avant 2026 faute d'étude et ou d'engagement financier au cours de ce mandat.
 
@@ -66,7 +53,7 @@ Lors de l'inauguration des Pistes Bleues par Grand Chambéry en juin 2024, 9 lig
 Nous nous sommes efforcés d’être le plus précis possible sur le positionnement de l’aménagement cyclable dans nos cartes interactives. Cependant, certains tronçons ont été dessinés à un moment où nous ignorions le côté d’insertion de la piste sur la rue. Ainsi, en zoomant beaucoup sur une rue en particulier, il est possible de retrouver des incohérences. C’est tout à fait normal, car la carte interactive a pour objectif principal de repérer les rues concernées par l’aménagement et pas son insertion précise. Nous travaillerons cependant à une amélioration de cette précision de manière à pouvoir intégrer les informations géographiques de l'observatoire au sein de la communauté d’OpenStreetMap.
 
 ## Réseau 2030
-L'observatoire Cyclopolis a pour objectif de surveiller la sécurisation du réseau cyclable de Grand Chambéry sur le mandat en cours. Ce mandat se termine en 2026. C’est sur ce projet précis que porte l'observatoire Cyclopolis lancée à l’automne 2024.
+L'observatoire des Pistes Bleues a pour objectif de suivre la réalisation du réseau cyclable structurant continu et sécurisé sur le territoire de Grand Chambéry.
 
 A l’occasion des campagnes pour les élections communautaires de 2026, l'observatoire Cyclopolis évoluera pour comparer les programmes des différentes formations politiques candidates au sujet du Réseau Express Vélo Grand Chambéry à l’horizon 2032.
 
