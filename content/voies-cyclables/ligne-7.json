@@ -2,7 +2,20 @@
     "type": "FeatureCollection",
     "features": [
   
-      {
+        {
+            "type": "Feature",
+            "properties": {
+              "type": "perspective",
+              "name": "Giratoire Paul Chevallier non sécurisé",
+              "line": 7,
+              "imgUrl": "https://rouelibre.net/wp-content/uploads/2024/11/REV7-IMG_4206.jpg"
+            },
+            "geometry": {
+              "type": "Point",
+              "coordinates": [5.934261,45.56606]
+            }
+          },
+          {
         "type": "Feature",
         "properties": {
           "type": "perspective",
