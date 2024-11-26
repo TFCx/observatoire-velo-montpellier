@@ -3,7 +3,7 @@ name: Piste 7
 line: 7
 from: Chambéry (Eléphants) 
 to: Myans
-description: La Piste Bleue 7 est dessinée sur la voie Verte Belle Via (ex V63) et permet de relier Chambéry à Saint Baldoph sur le territoire de Grand Chambéry, puis de poursuivre vers Myans puis vers le lac Saint André. A terme elle permettra de connecter Albertville et Grenoble à vélo (projet).
+description: La Piste Bleue 7 est dessinée sur la voie Verte Belle Via (ex V63). Elle permet de relier Chambéry à Saint Baldoph sur le territoire de Grand Chambéry, puis de poursuivre vers Myans puis vers le lac Saint André. Elle permettra de rejoindre par des aménagements sécurisés Albertville et Grenoble (projet du Département de la Savoie).
 trafic: 1000 vélos/jour
 cover: https://rouelibre.net/wp-content/uploads/2024/11/REV-7-IMG_4183.jpg
 ---
@@ -66,7 +66,7 @@ caption: Voie verte Sud
 ---
 ::
 
-<span style="color:blue;font-weight:bold">Satisfaisant</span> Voie verte historique de Grand Chambéry. Elle croise le départ de la :line-link{line=5} au carrefour de La Vilette.
+<span style="color:blue;font-weight:bold">Satisfaisant</span> Voie verte historique de Grand Chambéry. Elle croise le départ de la :line-link{line=5} au carrefour de La Villette puis se poursuit vers Saint Baldoph et Myans.
 
 ::content-image
 ---
