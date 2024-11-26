@@ -5,7 +5,7 @@ from: Chambéry (Eléphants)
 to: Myans
 description: La Piste Bleue 7 est dessinée sur la voie Verte Belle Via (ex V63) et permet de relier Chambéry à Saint Baldoph sur le territoire de Grand Chambéry, puis de poursuivre vers Myans puis vers le lac Saint André. A terme elle permettra de connecter Albertville et Grenoble à vélo (projet).
 trafic: 1000 vélos/jour
-cover: https://rouelibre.net/wp-content/uploads/2022/11/IMG_1555.jpg
+cover: https://rouelibre.net/wp-content/uploads/2024/11/REV-7-IMG_4183.jpg
 ---
 
 ## Les tronçons (du Nord au Sud)
@@ -37,8 +37,8 @@ credit: Roue Libre
 
 ::content-image
 ---
-imageUrl: https://rouelibre.net/wp-content/uploads/2024/11/REV.-Quai-Allobroges.jpg
-caption: Traversée non sécurisée du quai des Allobroges
+imageUrl: https://rouelibre.net/wp-content/uploads/2024/11/REV7-IMG_0356.jpg
+caption: Double sens cyclable quai de la Rize
 credit: Roue Libre
 ---
 ::
@@ -46,16 +46,31 @@ credit: Roue Libre
 ### Rue de Serbie
 <span style="color:black;font-weight:bold">Non satisfaisant</span> Aucun aménagement sur ce tronçons liaison entre les deux voies vertes de Chambéry. Le giratoire Paul Chevallier est un point noir.
 
+::content-image
+---
+imageUrl: https://rouelibre.net/wp-content/uploads/2024/11/REV7-IMG_0365.jpg
+caption: Rue de Serbie
+credit: Roue Libre
+---
+::
+
 ### Voie Verte Sud
 *tronçon de la Belle Via*
 
 <span style="color:red;font-weight:bold">À améliorer</span> La voie verte est bosselée avec des candélabres situés au centre de celle-ci.
 
+::content-image
+---
+imageUrl: https://rouelibre.net/wp-content/uploads/2024/11/REV7-IMG_4201.jpg
+caption: Voie verte Sud
+---
+::
+
 <span style="color:blue;font-weight:bold">Satisfaisant</span> Voie verte historique de Grand Chambéry. Elle croise le départ de la :line-link{line=5} au carrefour de La Vilette.
 
 ::content-image
 ---
-imageUrl: https://rouelibre.net/wp-content/uploads/2021/11/1995-Image-au-Lac-%C3%A0-v%C3%A9lo2--1024x584.png
-caption: Magazine Roue libre automne hiver 1995 – 1996
+imageUrl: https://rouelibre.net/wp-content/uploads/2024/11/REV-7-IMG_4193.jpg
+caption: Voie verte Sud - Belle Via - Traversée de Buisson Rond
 ---
 ::
