@@ -12,7 +12,15 @@ cover: https://rouelibre.net/wp-content/uploads/2024/11/REV-7-IMG_4183.jpg
 
 ### Quai Borrel
 
-<span style="color:blue;font-weight:bold">Satisfaisant</span> La Piste 1 débute sur l'avenue des Ducs, à la hauteur de la place des Elephants de Chambéry et rejoint le quai Borrel par une piste cyclable bidirectionnelle de 3 à 3,5m de large.
+<span style="color:blue;font-weight:bold">Satisfaisant</span> La Piste 1 débute sur l'avenue des Ducs, à la hauteur de la place des Elephants de Chambéry.
+
+::content-image
+---
+imageUrl: https://rouelibre.net/wp-content/uploads/2024/11/REV7-IMG_4249.jpg
+caption: Avenue des Ducs. Connexion entre la Piste Bleue 7 et la Piste Bleue 1
+credit: Roue Libre
+---
+::
 
 ::banner{type="modified"}
 En 2023, [l'aménagement d'une piste bidirectionnelle -largeur 3,5m- sur l'avenue des Ducs (https://www.chambery.fr/3672-amenagement-de-l-avenue-des-ducs-des-quais-ravet-et-borrel.htm)] a permis la jonction entre la Voie Verte Nord et la Voie Verte de la Leysse.
@@ -22,10 +30,13 @@ En 2023, [l'aménagement d'une piste bidirectionnelle -largeur 3,5m- sur l'avenu
 Lors de cet aménagement, les carrefours n'ont pas été modifiés et les connexions avec le réseau secondaires n'ont pas été traitées.
 ::
 
+### Quai Borrel
+Elle rejoint le quai Borrel par une piste cyclable bidirectionnelle de 3 à 3,5m de large.
+
 ::content-image
 ---
-imageUrl: https://rouelibre.net/wp-content/uploads/2024/11/hero.jpeg
-caption: Avenue des Ducs. Connexion entre la Piste Bleue 7 et la Piste Bleue 1
+imageUrl: https://rouelibre.net/wp-content/uploads/2024/11/REV7-IMG_4259.jpg
+caption: Quai Borrel
 credit: Roue Libre
 ---
 ::
