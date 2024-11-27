@@ -6,9 +6,9 @@
         "type": "Feature",
         "properties": {
           "type": "perspective",
-          "name": "Carrefour de la Libération",
-          "line": 7,
-          "imgUrl": "https://rouelibre.net/wp-content/uploads/2024/11/REV7-IMG_4257.jpg"
+          "name": "Rond Point du stade",
+          "line": 9,
+          "imgUrl": "https://rouelibre.net/wp-content/uploads/2024/06/IMG_1096-300x225.jpg"
         },
         "geometry": {
           "type": "Point",
@@ -16,154 +16,107 @@
         }
       },
       {
-            "type": "Feature",
-            "properties": {
-              "type": "perspective",
-              "name": "Giratoire Paul Chevallier non sécurisé",
-              "line": 7,
-              "imgUrl": "https://rouelibre.net/wp-content/uploads/2024/11/REV7-IMG_4206.jpg"
-            },
-            "geometry": {
-              "type": "Point",
-              "coordinates": [5.934261,45.56606]
-            }
-          },
-          {
-        "type": "Feature",
-        "properties": {
-          "type": "perspective",
-          "name": "Traversée quai Borrel",
-          "line": 7,
-          "imgUrl": "https://rouelibre.net/wp-content/uploads/2024/11/REV7-IMG_4269.jpg"
-        },
-        "geometry": {
-          "type": "Point",
-          "coordinates": [5.927943879997457,45.56727695419508]
-        }
-      },
-      {
-        "type": "Feature",
-        "properties": {
-          "type": "perspective",
-          "name": "Pont des Carmes",
-          "line": 7,
-          "imgUrl": "https://rouelibre.net/wp-content/uploads/2024/11/REV7-IMG_4271.jpg"
-        },
-        "geometry": {
-          "type": "Point",
-          "coordinates": [5.929719552199174,45.56720755356375]
-        }
-      },
-      {
     "type": "Feature",
     "properties": {
-      "line": 7,
-      "name": "Quai Borrel",
+      "line": 9,
+      "name": "Avenue du Maréchal Leclerc",
       "quality": "good",
-      "doneAt": "31\/04\/2023",
+      "doneAt": "01\/01\/2020",
       "status": "done",
-      "type": "bidirectionnelle",
-      "link": "/rev-7"
+      "type": "bilaterale",
+      "link": "/rev-9"
     },
     "geometry": {
       "type": "LineString",
       "coordinates": [
-        [5.924281,45.567316],
-        [5.926791,45.567406],
-        [5.929466,45.567102],
-        [5.929675,45.567087]
+        [5.917516,45.570518],
+        [5.916063,45.570093],
+        [5.915961,45.57008],
+        [5.915853,45.570024]
       ]
     }
   },
   {
     "type": "Feature",
     "properties": {
-      "line": 7,
-      "name": "Quai de la Rize",
-      "quality": "",
-      "status": "postponed",
-      "type": "bandes-cyclables",
-      "link": "/rev-7"
+      "line": 9,
+      "name": "Rue du Bon Pasteur",
+      "quality": "good",
+      "doneAt": "01\/01\/2020",
+      "status": "done",
+      "type": "bidirectionnelle",
+      "link": "/rev-9"
     },
     "geometry": {
       "type": "LineString",
       "coordinates": [
-        [5.92968,45.567082],
-        [5.929699,45.567217],
-        [5.929758,45.567374],
-        [5.931078,45.56738],
-        [5.932338,45.567455],
-        [5.933359,45.567505],
-        [5.93358,45.567521],
-        [5.933661,45.567528],
-        [5.933693,45.56748],
-        [5.933733,45.567266]
+        [5.912329,45.569768],
+        [5.91544,45.569949],
+        [5.915741,45.569968],
+        [5.915864,45.570013]
       ]
     }
   },
       {
         "type": "Feature",
         "properties": {
-          "line": 7,
-          "name": "Rue de Serbie",
+          "line": 9,
+          "name": "Avenue Jean Jaures",
           "quality": "",
           "status": "postponed",
-          "type": "aucun",
-          "link": "/rev-7"
+          "type": "bidirectionnelle",
+          "link": "/rev-9"
         },
         "geometry": {
           "type": "LineString",
           "coordinates": [
-            [5.933733,45.567259],
-            [5.933738,45.567228],
-            [5.933754,45.56713],
-            [5.933851,45.566558],
-            [5.933915,45.566439],
-            [5.934017,45.566364],
-            [5.934165,45.566327],
-            [5.934272,45.566299],
-            [5.934339,45.56624],
-            [5.934358,45.566188],
-            [5.934328,45.566135],
-            [5.934261,45.56606]
+            [5.910172,45.572371],
+            [5.910376,45.57207],
+            [5.910655,45.571687],
+            [5.91131,45.570974],
+            [5.912334,45.569765]
           ]
         }
       },
       {
         "type": "Feature",
         "properties": {
-          "line": 7,
-          "name": "Voie Verte Belle Via",
+          "line": 9,
+          "name": "Avenue du Comte Vert",
           "quality": "good",
-          "doneAt": "31\/12\/1997",
+          "doneAt": "01\/01\/2020",
           "status": "done",
-          "type": "voie-verte",
-          "link": "/rev-7"
+          "type": "bilaterale",
+          "link": "/rev-9"
         },
         "geometry":{
         "type": "LineString",
         "coordinates":[
-            [5.934248,45.566068],
-            [5.93432,45.566007],
-            [5.934693,45.565859],
-            [5.935267,45.565619],
-            [5.935986,45.565333],
-            [5.936174,45.565236],
-            [5.936345,45.565239],
-            [5.936608,45.565221]
+            [5.907276,45.573184],
+            [5.907072,45.573265],
+            [5.907007,45.573302],
+            [5.906965,45.573422],
+            [5.906879,45.573527],
+            [5.906707,45.573565],
+            [5.906525,45.573512],
+            [5.906256,45.573445],
+            [5.905892,45.573422],
+            [5.905334,45.573549],
+            [5.905033,45.57364],
+            [5.904897,45.573696]
           ]
         }
       },
       {
         "type": "Feature",
         "properties": {
-          "line": 7,
-          "name": "Voie Verte Belle Via",
+          "line": 9,
+          "name": "Avenue Général Cartier",
           "quality": "good",
           "doneAt": "31\/12\/1997",
           "status": "done",
-          "type": "voie-verte",
-          "link": "/rev-7"
+          "type": "bandes-cyclables",
+          "link": "/rev-9"
         },
         "geometry":{
         "type": "LineString",
