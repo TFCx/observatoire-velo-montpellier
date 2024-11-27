@@ -2,7 +2,20 @@
     "type": "FeatureCollection",
     "features": [
   
-        {
+      {
+        "type": "Feature",
+        "properties": {
+          "type": "perspective",
+          "name": "Carrefour de la Libération",
+          "line": 7,
+          "imgUrl": "https://rouelibre.net/wp-content/uploads/2024/11/REV7-IMG_4257.jpg"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [5.924832814115547,45.567340231460236]
+        }
+      },
+      {
             "type": "Feature",
             "properties": {
               "type": "perspective",
@@ -19,13 +32,26 @@
         "type": "Feature",
         "properties": {
           "type": "perspective",
-          "name": "Traversée non sécurisée du quai des Allobroges",
+          "name": "Traversée quai Borrel",
           "line": 7,
-          "imgUrl": "https://rouelibre.net/wp-content/uploads/2024/11/REV.-Quai-Allobroges.jpg"
+          "imgUrl": "https://rouelibre.net/wp-content/uploads/2024/11/REV7-IMG_4269.jpg"
         },
         "geometry": {
           "type": "Point",
-          "coordinates": [5.914882,45.575518]
+          "coordinates": [5.927943879997457,45.56727695419508]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "type": "perspective",
+          "name": "Pont des Carmes",
+          "line": 7,
+          "imgUrl": "https://rouelibre.net/wp-content/uploads/2024/11/REV7-IMG_4269.jpg"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [5.929719552199174,45.56720755356375]
         }
       },
       {
