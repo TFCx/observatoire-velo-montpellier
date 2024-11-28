@@ -17,6 +17,19 @@
     {
       "type": "Feature",
       "properties": {
+        "type": "perspective",
+        "name": "Giratoire Chamnord",
+        "line": 2,
+        "imgUrl": "https://rouelibre.net/wp-content/uploads/2024/11/REV2-IMG_4023.jpg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [5.906503,45.587708]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "line": 2,
         "name": "Rue de la gare",
         "quality": "good",
