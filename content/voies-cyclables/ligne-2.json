@@ -19,6 +19,8 @@
       "properties": {
         "line": 2,
         "name": "Rue de la gare",
+        "quality": "good",
+        "doneAt": "01\/11\/2019",
         "status": "done",
         "type": "bidirectionnelle",
         "link": "/rev-2"
@@ -26,11 +28,84 @@
       "geometry": {
         "type": "LineString",
         "coordinates": [
-          [5.914836,45.577225],
-          [5.919624,45.570756],
           [5.919871,45.569802],
+          [5.919791,45.569436],
           [5.919603,45.569141],
           [5.919217,45.568773]
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "line": 2,
+        "name": "Place de la gare",
+        "quality": "",
+        "doneAt": "01\/11\/2019",
+        "status": "postponed",
+        "type": "aucun",
+        "link": "/rev-2"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [5.919885,45.569804],
+          [5.919941,45.569893],
+          [5.91982,45.569917],
+          [5.919705,45.570033],
+          [5.91956,45.570228],
+          [5.919464,45.570345],
+          [5.919485,45.5704],
+          [5.919651,45.570473],
+          [5.919716,45.570535]
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "line": 2,
+        "name": "Avenue de la Boisse",
+        "quality": "",
+        "doneAt": "01\/11\/2019",
+        "status": "done",
+        "type": "voie-bus",
+        "link": "/rev-2"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [5.919716,45.570544],
+          [5.91971,45.570677],
+          [5.919694,45.570723],
+          [5.919555,45.570893],
+          [5.919405,45.571098],
+          [5.919123,45.571438],
+          [5.918941,45.571663],
+          [5.918849,45.571774],
+          [5.918809,45.571836],
+          [5.918876,45.571881]
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "line": 2,
+        "name": "Avenue de la Boisse",
+        "quality": "",
+        "doneAt": "01\/01\/2000",
+        "status": "done",
+        "type": "voie-verte",
+        "link": "/rev-2"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [5.918879,45.571883],
+          [5.918774,45.572018],
+          [5.918131,45.572846],
+          [5.914834,45.577232]
           ]
       }
     },
