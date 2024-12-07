@@ -1,0 +1,25 @@
+Motorway : #968181 (#7c6b6b / #c8adad)
+Trunk : #bfb9b6 (#a5a09e / #d8d2ce)
+Primary : #bfb9b6 (#a5a09e / #d8d2ce)
+Secondary : #cac7c3 (#b0aeaa / #e3e0dc)
+Tertiary : #cac7c3 (#b0aeaa / #e3e0dc)
+Minor : #d7d9d4 (#bec0bb / #f0f3ed)
+Unclassified : #d7d9d4 (#bec0bb / #f0f3ed)
+
+--------
+
+highway-area : non displayed
+highway-motorway-link-casing : contour des voies d'accès d'autoroute
+highway-link-casing : contour des voies d'accès vers voies rapides
+
+--------
+
+Classification OSM
+Toutes les routes = highway + qualif
+- motorway = autoroute
+- trunk = voie rapide ou voie express
+- primary = nationales (ou déclassifiés en 2006)
+- secondary = départementales principales
+- tertiary = départementales secondaires
+- unclassified = routes mineures (communales)
+
