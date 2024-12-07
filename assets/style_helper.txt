@@ -3,8 +3,8 @@ Trunk : #bfb9b6 (#a5a09e / #d8d2ce)
 Primary : #bfb9b6 (#a5a09e / #d8d2ce)
 Secondary : #cac7c3 (#b0aeaa / #e3e0dc)
 Tertiary : #cac7c3 (#b0aeaa / #e3e0dc)
-Minor : #d7d9d4 (#bec0bb / #f0f3ed)
-Unclassified : #d7d9d4 (#bec0bb / #f0f3ed)
+Minor : #caccc8 (#bec0bb / #f0f3ed)
+Unclassified : #caccc8 (#bec0bb / #f0f3ed)
 
 --------
 
