@@ -701,9 +701,9 @@
       "source-layer": "transportation",
       "filter": ["all", ["==", "brunnel", "tunnel"], ["==", "class", "rail"]],
       "paint": {
-        "line-color": "#bbb",
+        "line-color": "#555",
         "line-dasharray": [2, 2],
-        "line-width": {"base": 1.4, "stops": [[14, 0.4], [15, 0.75], [20, 2]]}
+        "line-width": {"base": 1.4, "stops": [[14, 1.4], [15, 1.75], [20, 4]]}
       }
     },
     {
@@ -1263,7 +1263,7 @@
         ["has", "service"]
       ],
       "paint": {
-        "line-color": "hsla(0, 0%, 73%, 0.77)",
+        "line-color": "hsla(0, 0%, 20%, 0.77)",
         "line-width": {"base": 1.4, "stops": [[14, 0.4], [20, 1]]}
       }
     },
@@ -1281,7 +1281,7 @@
       ],
       "layout": {"visibility": "visible"},
       "paint": {
-        "line-color": "hsla(0, 0%, 73%, 0.68)",
+        "line-color": "hsla(0, 0%, 20%, 0.68)",
         "line-dasharray": [0.2, 8],
         "line-width": {"base": 1.4, "stops": [[14.5, 0], [15, 2], [20, 6]]}
       }
@@ -1300,7 +1300,7 @@
         ["==", "class", "rail"]
       ],
       "paint": {
-        "line-color": "#bbb",
+        "line-color": "#555",
         "line-width": {"base": 1.4, "stops": [[14, 0.4], [15, 0.75], [20, 2]]}
       }
     },
@@ -1318,7 +1318,7 @@
         ["==", "class", "rail"]
       ],
       "paint": {
-        "line-color": "#bbb",
+        "line-color": "#555",
         "line-dasharray": [0.2, 8],
         "line-width": {"base": 1.4, "stops": [[14.5, 0], [15, 3], [20, 8]]}
       }
@@ -1612,7 +1612,7 @@
       "source-layer": "transportation",
       "filter": ["all", ["==", "brunnel", "bridge"], ["==", "class", "rail"]],
       "paint": {
-        "line-color": "#bbb",
+        "line-color": "#555",
         "line-width": {"base": 1.4, "stops": [[14, 0.4], [15, 0.75], [20, 2]]}
       }
     },
@@ -1624,7 +1624,7 @@
       "source-layer": "transportation",
       "filter": ["all", ["==", "brunnel", "bridge"], ["==", "class", "rail"]],
       "paint": {
-        "line-color": "#bbb",
+        "line-color": "#555",
         "line-dasharray": [0.2, 8],
         "line-width": {"base": 1.4, "stops": [[14.5, 0], [15, 3], [20, 8]]}
       }
@@ -1969,7 +1969,7 @@
         "symbol-placement": "line",
         "symbol-spacing": 75
       },
-      "paint": {"icon-opacity": 0.5}
+      "paint": {"icon-opacity": 0.9}
     },
     {
       "id": "road_oneway_opposite",
@@ -2001,7 +2001,7 @@
         "symbol-placement": "line",
         "symbol-spacing": 75
       },
-      "paint": {"icon-opacity": 0.5}
+      "paint": {"icon-opacity": 0.9}
     },
     {
       "id": "highway-name-path",
@@ -2059,12 +2059,10 @@
         "text-field": "{name:latin} {name:nonlatin}",
         "text-font": ["Noto Sans Regular"],
         "text-rotation-alignment": "map",
-        "text-size": {"base": 1, "stops": [[13, 12], [14, 13]]}
+        "text-size": {"base": 1, "stops": [[13, 13], [14, 14]]}
       },
       "paint": {
-        "text-color": "#765",
-        "text-halo-blur": 0.5,
-        "text-halo-width": 1
+        "text-color": "#543"
       }
     },
     {
@@ -2200,7 +2198,7 @@
       "paint": {
         "text-color": "#633",
         "text-halo-color": "rgba(255,255,255,0.8)",
-        "text-halo-width": 1.2
+        "text-halo-width": 3.5
       }
     },
     {
