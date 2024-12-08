@@ -187,6 +187,8 @@ export const useMap = () => {
 
     // drawLanesUnknown(map, lanes)
 
+    drawLanesAsDone(map, lanes);
+
     addListnersForHovering(map);
   }
 
@@ -587,21 +589,15 @@ function setLanesColor(map: Map, displayedLayer: DisplayedLayer) {
   // })
 
   for(let layerName of layersBase) {
-    let layer = map.getLayer(layerName)
-    if(layer) {
-      layer.visibility = "visible"
-    }
+    map.setLayoutProperty(layerName, 'visibility', "visible")
   }
+  map.setLayoutProperty('layer-lanes-asdone', 'visibility', (displayedLayer === DisplayedLayer.FinalizedProject) ? "visible" : "none")
 
   layersWithLanes.forEach(l => {
 
     if (displayedLayer == DisplayedLayer.Quality) {
       for(let layerName of layersBase) {
-        let layer = map.getLayer(layerName)
-        if(layer) {
-          layer.visibility = "none"
-        }
-
+        map.setLayoutProperty(layerName, 'visibility', "none")
       }
       map.setPaintProperty(l, "line-color", ["case",
         ["==", ['get', 'quality'], "bad"], "#ff6961",
@@ -618,7 +614,7 @@ function setLanesColor(map: Map, displayedLayer: DisplayedLayer) {
     //     ["==", ['get', 'status'], "postponed"], "#d6604d",
     //     "white"
     //   ]);
-    } else if (displayedLayer == DisplayedLayer.FinalizedProject || displayedLayer == DisplayedLayer.Progress) {
+    } else if (displayedLayer == DisplayedLayer.Progress) {
       map.setPaintProperty(l, "line-color", ["to-color", ['get', 'color']]);
     } else if (displayedLayer == DisplayedLayer.Type) {
       map.setPaintProperty(l, "line-color", ["case",
@@ -792,6 +788,24 @@ function drawLanesDone(map: Map, lanes: DisplayedLane[]) {
     }
   });
   layersWithLanes.push("layer-lanes-done")
+}
+
+function drawLanesAsDone(map: Map, lanes: DisplayedLane[]) {
+
+  if (upsertMapSource(map, 'source-all-lanes-asdone', lanes)) {
+    return;
+  }
+
+  map.addLayer({
+    id: `layer-lanes-asdone`,
+    type: 'line',
+    source: 'source-all-lanes-asdone',
+    paint: {
+      'line-width': laneWidth,
+      'line-color': ["to-color", ['get', 'color']],
+      'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
+    }
+  });
 }
 
 function drawLanesWIP(map: Map, lanes: DisplayedLane[]) {
