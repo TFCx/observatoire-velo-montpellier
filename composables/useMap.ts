@@ -795,7 +795,7 @@ function drawLanesWIP(map: Map, lanes: DisplayedLane[]) {
 
 function drawLanesPlanned(map: Map, lanes: DisplayedLane[]) {
 
-  let lanes_planned = lanes.filter(lane => lane.properties.status === "planned");
+  let lanes_planned = lanes.filter(lane => lane.properties.status === "planned" || lane.properties.status === "postponed");
   if (upsertMapSource(map, 'source-all-lanes-planned', lanes_planned)) {
     return;
   }
