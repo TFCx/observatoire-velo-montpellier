@@ -40,6 +40,8 @@ let displayLimits = ref(false)
 
 let displayBikeInfra = ref(false)
 
+let layersBase: string[] = []
+
 type MultiColoredLineStringFeature = LineStringFeature & { properties: { colors: string[] } };
 
 type Compteur = {
@@ -169,7 +171,7 @@ export const useMap = () => {
       return;
     }
 
-    drawLanesBase(map, lanesWithId)
+    drawLanesBase(map, features, lanesWithId)
 
     drawLanesPlanned(map, lanes)
 
@@ -583,9 +585,24 @@ function setLanesColor(map: Map, displayedLayer: DisplayedLayer) {
   //     map.setPaintProperty(l, "line-opacity", 1.0);
   //   }
   // })
+
+  for(let layerName of layersBase) {
+    let layer = map.getLayer(layerName)
+    if(layer) {
+      layer.visibility = "visible"
+    }
+  }
+
   layersWithLanes.forEach(l => {
 
     if (displayedLayer == DisplayedLayer.Quality) {
+      for(let layerName of layersBase) {
+        let layer = map.getLayer(layerName)
+        if(layer) {
+          layer.visibility = "none"
+        }
+
+      }
       map.setPaintProperty(l, "line-color", ["case",
         ["==", ['get', 'quality'], "bad"], "#ff6961",
         ["==", ['get', 'quality'], "fair"], "#F3F32A",
@@ -638,15 +655,17 @@ function upsertMapSource(map: Map, sourceName: string, features: Feature[]) {
 }
 
 
-function drawLanesBase(map: Map, lanes: LineStringFeature[]) {
+function drawLanesBase(map: Map, features: MultiColoredLineStringFeature[], lanes: LineStringFeature[]) {
 
   const sections_sure = lanes.filter(s => s.properties.status !== "postponed")
   const sections_real = sections_sure.filter(s => s.properties.status !== "planned")
 
+
+  let wasUpdatingAllMultiLane = upsertMapSource(map, 'all-multilanes', features)
   let wasUpdatingAllSection = upsertMapSource(map, 'all-sections', lanes)
   let wasUpdatingAllSectionSure = upsertMapSource(map, 'all-sections-sure', sections_sure)
   let wasUpdatingAllSectionReal = upsertMapSource(map, 'all-sections-real', sections_real)
-  if (wasUpdatingAllSection && wasUpdatingAllSectionSure && wasUpdatingAllSectionReal) {
+  if (wasUpdatingAllMultiLane && wasUpdatingAllSection && wasUpdatingAllSectionSure && wasUpdatingAllSectionReal) {
     return;
   }
 
@@ -658,6 +677,19 @@ function drawLanesBase(map: Map, lanes: LineStringFeature[]) {
 }
 
 function drawSectionBackground(map: Map) {
+  let scaleUpFactor = 2
+  map.addLayer({
+    id: 'layer-grey-dashes',
+    type: 'line',
+    source: 'all-multilanes',
+    paint: {
+      'line-width': laneWidth,
+      'line-color': "#000",
+      'line-opacity': 0.25,
+      'line-dasharray': [1.0, 0.5]
+    }
+  });
+
   map.addLayer({
     id: 'layer-background',
     type: 'line',
@@ -669,8 +701,8 @@ function drawSectionBackground(map: Map) {
       'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
     }
   });
+  layersBase.push("layer-background")
 
-  let scaleUpFactor = 2
   map.addLayer({
     id: 'layer-background-sure',
     type: 'line',
@@ -682,6 +714,7 @@ function drawSectionBackground(map: Map) {
       'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth * scaleUpFactor], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth * scaleUpFactor], 2]],
     }
   });
+  layersBase.push("layer-background-sure")
 
   map.addLayer({
     id: 'layer-background-white',
@@ -693,6 +726,7 @@ function drawSectionBackground(map: Map) {
       'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]]
     }
   });
+  layersBase.push("layer-background-white")
 
   map.addLayer({
     id: 'layer-background-white-line',
@@ -704,7 +738,7 @@ function drawSectionBackground(map: Map) {
       'line-opacity': 0.9
     }
   });
-  //layersBase.push("layer-background")
+  layersBase.push("layer-background-white-line")
 }
 
 function drawHoveredEffect(map: Map) {
@@ -778,6 +812,7 @@ function drawLanesWIP(map: Map, lanes: DisplayedLane[]) {
       'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
     }
   });
+  layersWithLanes.push("layer-lanes-wip")
   map.addLayer({
     id: 'layer-lanes-wip-done',
     type: 'line',
@@ -788,7 +823,7 @@ function drawLanesWIP(map: Map, lanes: DisplayedLane[]) {
       'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
     }
   });
-  layersWithLanes.push("layer-lanes-wip")
+  layersWithLanes.push("layer-lanes-wip-done")
   animateOpacity(map, 0, 1000*1.50, 'layer-lanes-wip-done', 'line-opacity', 0.0, 1.0);
 }
 
@@ -813,6 +848,7 @@ function drawLanesPlanned(map: Map, lanes: DisplayedLane[]) {
     }
   });
   layersWithLanes.push("layer-lanes-planned")
+  layersBase.push("layer-lanes-planned")
 }
 
 function drawLanesPostponed(map: Map, lanes: DisplayedLane[]) {
@@ -821,37 +857,6 @@ function drawLanesPostponed(map: Map, lanes: DisplayedLane[]) {
   if (upsertMapSource(map, 'source-all-lanes-postponed', lanes_postponed)) {
     return;
   }
-
-  // map.addLayer({
-  //   id: `layer-lanes-postponed`,
-  //   type: 'line',
-  //   source: 'source-all-lanes-postponed',
-  //   paint: {
-  //     'line-width': laneWidth,
-  //     'line-color': ["to-color", ['get', 'color']],
-  //     'line-opacity': 0.0,
-  //     'line-dasharray': [0.5, 1.05],
-  //     'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
-  //   }
-  // });
-  // layersWithLanes.push("layer-lanes-postponed")
-
-  // map.addLayer({
-  //   id: 'layer-lanes-postponed',
-  //   type: 'line',
-  //   source: 'source-all-lanes-postponed',
-  //   layout: {
-  //     'line-cap': 'round'
-  //   },
-  //   paint: {
-  //     'line-width': laneWidth * 1.75,
-  //     'line-color': ["to-color", ['get', 'color']],
-  //     'line-opacity': 0.7,
-  //     'line-blur': 3,
-  //     'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
-  //   }
-  // });
-  // layersWithLanes.push("layer-lanes-postponed")
 
   let farZoom = 11
   let closeZoom = 14
@@ -863,7 +868,7 @@ function drawLanesPostponed(map: Map, lanes: DisplayedLane[]) {
       'icon-color': '#000',
       'icon-halo-width': 2.5,
       'icon-halo-color': "#fff",
-      'icon-opacity': 0.25
+      'icon-opacity': 0.30
     },
     layout: {
       'symbol-placement': 'line',
