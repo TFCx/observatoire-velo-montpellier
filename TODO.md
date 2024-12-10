@@ -1,4 +1,5 @@
 Court terme :
+- Ligne Marché du Lez
 - Changer lien vers le communiqué officiel dans les news
 - changer const BASE_URL = 'https://velocite-montpellier.fr';
 const COVER_IMAGE_URL = 'https://observatoire-velo-montpellier.netlify.app/_nuxt/logoCyclopolisVGM.CzJjkGQi.png'; quand ce sere hébergé proprement
@@ -32,3 +33,45 @@ Long terme :
 - Intégration compteurs
 - Intégration Vigilo
 - Intégration Baromètre des villes cyclables
+
+
+
+
+
+
+
+
+================
+
+Une section = 1 à N lanes
+
+Actuellement :
+
+- Des grey-dashes sur toutes les sections qui sont WIP ou Postponed :
+- Un fond de couleur de la ligne pour toutes les sections en fin
+- Un fond de couleur de la ligne pour toutes les sections sauf Postponed
+- Un fond blanc légèrement plus petit sur toutes les sections sauf Postponed
+- Un fond blanc très fin sur toutes les sections
+- Un hover effect sur toutes les sections
+
+
+
+
+
+
+Ce qu'on veut :
+- Si avancement du projet :
+  - Toutes les lanes Done en couleur ligne pleine
+  - Toutes les lanes WIP en couleur ligne + blink
+  - Bord noir en union Done + WIP
+  - Toutes les lanes Planned en bord couleur ligne + dashes
+  - Toutes les lanes Postponed en bord couleur ligne + dashes + transparence + /2 size + croix
+- Si qualité :
+  - Section done en couleur qualité avec bord nord
+  - Section WIP en couleur qualité avec bord nord + blink
+  - Le bord noir en union Done + WIP
+  - Grey dashes sur Planned
+  - Grey dashes + croix sur Postponed
+- Si futur réseau :
+  - Toutes les lanes en couleur ligne
+  - Bord noir en union Done + WIP + Planned + Postponned
