@@ -25,7 +25,7 @@ const setDisplayedLayer = (value: DisplayedLayer) => {
 
 import { upsertMapSource } from './utils';
 
-export { DisplayedLayer, setDisplayedLayer, drawLanesBase, drawLanesDone, drawLanesPlanned, drawLanesWIP, drawLanesPostponed, drawLanesAsDone, addListnersForHovering, setLanesColor };
+export { DisplayedLayer, setDisplayedLayer, drawFinishedNetwork, drawLanesDone, drawLanesPlanned, drawLanesWIP, drawLanesPostponed, drawLanesAsDone, addListnersForHovering, setLanesColor };
 
 
 
@@ -37,25 +37,52 @@ let layersBase: string[] = []
 
 
 
-function drawLanesBase(map: Map, features: MultiColoredLineStringFeature[], lanes: LineStringFeature[]) {
+function drawFinishedNetwork(map: Map, lanes: MultiColoredLineStringFeature[], sections: LineStringFeature[]) {
 
-    const sections_sure = lanes.filter(s => s.properties.status !== "postponed")
+    const sections_sure = sections.filter(s => s.properties.status !== "postponed")
     const sections_real = sections_sure.filter(s => s.properties.status !== "planned")
 
 
-    let wasUpdatingAllMultiLane = upsertMapSource(map, 'all-multilanes', features)
-    let wasUpdatingAllSection = upsertMapSource(map, 'all-sections', lanes)
+    let wasUpdatingAllMultiLane = upsertMapSource(map, 'all-multilanes', lanes)
+    let wasUpdatingAllSection = upsertMapSource(map, 'all-sections', sections)
     let wasUpdatingAllSectionSure = upsertMapSource(map, 'all-sections-sure', sections_sure)
     let wasUpdatingAllSectionReal = upsertMapSource(map, 'all-sections-real', sections_real)
     if (wasUpdatingAllMultiLane && wasUpdatingAllSection && wasUpdatingAllSectionSure && wasUpdatingAllSectionReal) {
         return;
     }
 
-    drawSectionBackground(map);
+    if (upsertMapSource(map, 'source-finished-network-all-lanes', lanes)) {
+        return;
+    }
 
-    drawSectionContour(map);
+    map.addLayer({
+        id: `layer-finished-network-all-lanes`,
+        type: 'line',
+        source: 'source-finished-network-all-lanes',
+        paint: {
+        'line-width': laneWidth,
+        'line-color': ["to-color", ['at', 0, ['get', 'colors']]],
+        'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
+        }
+    });
 
-    drawHoveredEffect(map);
+    map.addLayer({
+        id: 'layer-finished-network-contour',
+        type: 'line',
+        source: 'source-finished-network-all-lanes',
+        layout: { 'line-cap': 'round' },
+        paint: {
+        'line-gap-width': ["*", laneWidth, ['get', 'nb_lanes']],
+        'line-width': 1.3,
+        'line-color': '#000000',
+        }
+    });
+
+    // drawSectionBackground(map);
+
+    // drawSectionContour(map);
+
+    // drawHoveredEffect(map);
 }
 
 function drawSectionBackground(map: Map) {

@@ -4,7 +4,7 @@ import type { CounterParsedContent } from '../types/counters';
 import { isLineStringFeature, type Feature, type DisplayedLane, type LineStringFeature, type CompteurFeature} from '~/types';
 import { ref } from 'vue';
 
-import { drawLanesBase, drawLanesDone, drawLanesPlanned, drawLanesWIP, drawLanesPostponed, drawLanesAsDone, addListnersForHovering, setLanesColor } from "./map/network";
+import { drawFinishedNetwork, drawLanesDone, drawLanesPlanned, drawLanesWIP, drawLanesPostponed, drawLanesAsDone, addListnersForHovering, setLanesColor } from "./map/network";
 import { plotPerspective, plotCompteurs, plotDangers, plotLimits, plotPumps, plotBaseBikeInfrastructure } from "./map/features";
 
 // Tooltips
@@ -96,15 +96,15 @@ export const useMap = () => {
       return;
     }
 
-    drawLanesBase(map, features, lanesWithId)
+    drawFinishedNetwork(map, features, lanesWithId)
 
-    drawLanesPlanned(map, lanes)
+    // drawLanesPlanned(map, lanes)
 
-    drawLanesWIP(map, lanes)
+    // drawLanesWIP(map, lanes)
 
-    drawLanesDone(map, lanes);
+    // drawLanesDone(map, lanes);
 
-    drawLanesPostponed(map, lanes)
+    // drawLanesPostponed(map, lanes)
 
     // drawLanesVariante(map, lanes)
 
@@ -112,7 +112,7 @@ export const useMap = () => {
 
     // drawLanesUnknown(map, lanes)
 
-    drawLanesAsDone(map, lanes);
+    // drawLanesAsDone(map, lanes);
 
     addListnersForHovering(map);
   }
