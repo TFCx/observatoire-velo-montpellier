@@ -1,18 +1,18 @@
-import { LngLatBounds, Map, Popup } from 'maplibre-gl';
+import { Map, Popup } from 'maplibre-gl';
 import { createApp, defineComponent, h, Suspense } from 'vue';
 import type { CounterParsedContent } from '../types/counters';
-import { isLineStringFeature, isPointFeature, type Feature, type DisplayedLane, type LineStringFeature, type CompteurFeature} from '~/types';
+import { isLineStringFeature, type Feature, type DisplayedLane, type LineStringFeature, type CompteurFeature} from '~/types';
 import { ref } from 'vue';
 
-import { drawLanesBase, drawLanesDone, drawLanesPlanned, drawLanesWIP, drawLanesPostponed, drawLanesAsDone, addListnersForHovering, setLanesColor } from "./map/plotNetwork";
-import { plotPerspective, plotCompteurs, plotDangers, plotLimits, plotPumps, plotBaseBikeInfrastructure } from "./map/plotOther";
+import { drawLanesBase, drawLanesDone, drawLanesPlanned, drawLanesWIP, drawLanesPostponed, drawLanesAsDone, addListnersForHovering, setLanesColor } from "./map/network";
+import { plotPerspective, plotCompteurs, plotDangers, plotLimits, plotPumps, plotBaseBikeInfrastructure } from "./map/features";
 
 // Tooltips
 import PerspectiveTooltip from '~/components/tooltips/PerspectiveTooltip.vue';
 import CounterTooltip from '~/components/tooltips/CounterTooltip.vue';
 import DangerTooltip from '~/components/tooltips/DangerTooltip.vue';
 import LineTooltip from '~/components/tooltips/LineTooltip.vue';
-import { getCrossIconUrl, sortByLine } from './map/plotUtils';
+import { getCrossIconUrl, sortByLine, fitBounds } from './map/utils';
 
 enum DisplayedLayer {
   Progress = 0,
@@ -40,6 +40,22 @@ let displayBikeInfra = ref(false)
 type MultiColoredLineStringFeature = LineStringFeature & { properties: { colors: string[] } };
 
 
+function toggleLimits() {
+  displayLimits.value = !displayLimits.value
+}
+
+function toggleBikeInfra() {
+  displayBikeInfra.value = !displayBikeInfra.value
+}
+
+function toggleLimitsVisibility(map: Map, displayLimits: boolean) {
+  map.setLayoutProperty("limits", "visibility", displayLimits ? "visible" : "none")
+}
+
+function toggleBikeInfraVisibility(map: Map, displayBikeInfra: boolean) {
+  map.setLayoutProperty("layer-underline-base-infrastructure", "visibility", displayBikeInfra ? "visible" : "none")
+}
+
 
 // function groupFeaturesByColor(features: MultiColoredLineStringFeature[]) {
 //   const featuresByColor: Record<string, Feature[]> = {};
@@ -57,31 +73,86 @@ type MultiColoredLineStringFeature = LineStringFeature & { properties: { colors:
 
 export const useMap = () => {
 
-  const { getLineColor } = useColors();
+  function plotEverything({ map, updated_features }: { map: Map; updated_features?: Feature[] }) {
+    plotBaseBikeInfrastructure(map)
 
-  function addLineColor(feature: LineStringFeature): MultiColoredLineStringFeature {
-    return {
-      ...feature,
-      properties: {
-        colors: [getLineColor(feature.properties.line)],
-        ...feature.properties
-      }
-    };
+    if(updated_features) {
+      let lineStringFeatures = updated_features.filter(isLineStringFeature).sort(sortByLine).map(addLineColor);
+      lineStringFeatures = addOtherLineColor(lineStringFeatures);
+
+      plotNetwork(map, lineStringFeatures);
+      setLanesColor(map, displayedLayer.value)
+      watch(displayedLayer, (displayedLayer) => setLanesColor(map, displayedLayer))
+
+      plotFeatures({map, updated_features})
+    }
   }
 
-  async function loadImages({ map }: { map: Map }) {
-    const camera = await map.loadImage('/icons/camera.png');
-    map.addImage('camera-icon', camera.data, { sdf: true });
+  function plotNetwork(map: Map, features: MultiColoredLineStringFeature[]) {
+    const lanes = separateSectionIntoLanes(features)
+    const lanesWithId = lanes.map((feature, index) => ({ id: index, ...feature }));
 
-    const pump = await map.loadImage('/icons/pump.png');
-    map.addImage('pump-icon', pump.data, { sdf: true });
+    if (lanesWithId.length === 0 && !map.getLayer('highlight')) {
+      return;
+    }
 
-    const danger = await map.loadImage('/icons/danger.png');
-    map.addImage('danger-icon', danger.data, { sdf: false });
+    drawLanesBase(map, features, lanesWithId)
 
-    const crossIconUrl = getCrossIconUrl();
-    const cross = await map.loadImage(crossIconUrl);
-    map.addImage('cross-icon', cross.data, { sdf: true });
+    drawLanesPlanned(map, lanes)
+
+    drawLanesWIP(map, lanes)
+
+    drawLanesDone(map, lanes);
+
+    drawLanesPostponed(map, lanes)
+
+    // drawLanesVariante(map, lanes)
+
+    // drawLanesVariantePostponed(map, lanes)
+
+    // drawLanesUnknown(map, lanes)
+
+    drawLanesAsDone(map, lanes);
+
+    addListnersForHovering(map);
+  }
+
+  function plotFeatures({ map, updated_features }: { map: Map; updated_features: Feature[] }) {
+
+    plotPerspective({ map, features: updated_features });
+    plotCompteurs({ map, features: updated_features });
+    plotPumps({ map, features: updated_features });
+    plotDangers({ map, features: updated_features });
+    plotLimits({ map, features: updated_features });
+
+    watch(displayLimits, (displayLimits) => toggleLimitsVisibility(map, displayLimits))
+    watch(displayBikeInfra, (displayBikeInfra) => toggleBikeInfraVisibility(map, displayBikeInfra))
+  }
+
+
+  function getCompteursFeatures({
+    counters,
+    type
+  }: {
+    counters: CounterParsedContent[] | null;
+    type: 'compteur-velo' | 'compteur-voiture';
+  }): CompteurFeature[] {
+    if (!counters) { return []; }
+    if (counters.length === 0) { return []; }
+
+    return counters.map(counter => ({
+      type: 'Feature',
+      properties: {
+        type,
+        name: counter.name,
+        link: counter._path,
+        counts: counter.counts
+      },
+      geometry: {
+        type: 'Point',
+        coordinates: [counter.coordinates[0], counter.coordinates[1]]
+      }
+    }));
   }
 
   function separateSectionIntoLanes(features: MultiColoredLineStringFeature[]): DisplayedLane[] {
@@ -112,82 +183,16 @@ export const useMap = () => {
     return lanes
   }
 
-  function plotSections(map: Map, features: MultiColoredLineStringFeature[]) {
-    const lanes = separateSectionIntoLanes(features)
-    const lanesWithId = lanes.map((feature, index) => ({ id: index, ...feature }));
+  const { getLineColor } = useColors();
 
-    if (lanesWithId.length === 0 && !map.getLayer('highlight')) {
-      return;
-    }
-
-    drawLanesBase(map, features, lanesWithId)
-
-    drawLanesPlanned(map, lanes)
-
-    drawLanesWIP(map, lanes)
-
-    drawLanesDone(map, lanes);
-
-    drawLanesPostponed(map, lanes)
-
-    // drawLanesVariante(map, lanes)
-
-    // drawLanesVariantePostponed(map, lanes)
-
-    // drawLanesUnknown(map, lanes)
-
-    drawLanesAsDone(map, lanes);
-
-    addListnersForHovering(map);
-  }
-
-
-  function getCompteursFeatures({
-    counters,
-    type
-  }: {
-    counters: CounterParsedContent[] | null;
-    type: 'compteur-velo' | 'compteur-voiture';
-  }): CompteurFeature[] {
-    if (!counters) { return []; }
-    if (counters.length === 0) { return []; }
-
-    return counters.map(counter => ({
-      type: 'Feature',
+  function addLineColor(feature: LineStringFeature): MultiColoredLineStringFeature {
+    return {
+      ...feature,
       properties: {
-        type,
-        name: counter.name,
-        link: counter._path,
-        counts: counter.counts
-      },
-      geometry: {
-        type: 'Point',
-        coordinates: [counter.coordinates[0], counter.coordinates[1]]
+        colors: [getLineColor(feature.properties.line)],
+        ...feature.properties
       }
-    }));
-  }
-
-  function fitBounds({ map, features }: { map: Map; features: Feature[] }) {
-    const allLineStringsCoordinates = features
-      .filter(isLineStringFeature)
-      .map(feature => feature.geometry.coordinates)
-      .flat();
-
-    const allPointsCoordinates = features.filter(isPointFeature).map(feature => feature.geometry.coordinates);
-
-    if (allPointsCoordinates.length === 0 && allLineStringsCoordinates.length === 0) {
-      return;
-    }
-
-    if (features.length === 1 && allPointsCoordinates.length === 1) {
-      map.flyTo({ center: allPointsCoordinates[0] });
-    } else {
-      const bounds = new LngLatBounds(allLineStringsCoordinates[0], allLineStringsCoordinates[0]);
-      for (const coord of [...allLineStringsCoordinates, ...allPointsCoordinates]) {
-        bounds.extend(coord);
-      }
-      map.fitBounds(bounds, { padding: 20 });
-    }
+    };
   }
 
   function addOtherLineColor(features: MultiColoredLineStringFeature[]) {
@@ -201,29 +206,6 @@ export const useMap = () => {
       }
     }
     return features
-  }
-
-  function plotFeatures({ map, updated_features }: { map: Map; updated_features?: Feature[] }) {
-    plotBaseBikeInfrastructure(map)
-
-    if(updated_features) {
-      let lineStringFeatures = updated_features.filter(isLineStringFeature).sort(sortByLine).map(addLineColor);
-      lineStringFeatures = addOtherLineColor(lineStringFeatures);
-
-      plotSections(map, lineStringFeatures);
-      setLanesColor(map, displayedLayer.value)
-
-      watch(displayedLayer, (displayedLayer) => setLanesColor(map, displayedLayer))
-
-      plotPerspective({ map, features: updated_features });
-      plotCompteurs({ map, features: updated_features });
-      plotPumps({ map, features: updated_features });
-      plotDangers({ map, features: updated_features });
-      plotLimits({ map, features: updated_features });
-
-      watch(displayLimits, (displayLimits) => toggleLimitsVisibility(map, displayLimits))
-      watch(displayBikeInfra, (displayBikeInfra) => toggleBikeInfraVisibility(map, displayBikeInfra))
-    }
   }
 
   function handleMapClick({ map, features, clickEvent }: { map: Map; features: Feature[]; clickEvent: any }) {
@@ -337,9 +319,24 @@ export const useMap = () => {
     });
   }
 
+  async function loadImages({ map }: { map: Map }) {
+    const camera = await map.loadImage('/icons/camera.png');
+    map.addImage('camera-icon', camera.data, { sdf: true });
+
+    const pump = await map.loadImage('/icons/pump.png');
+    map.addImage('pump-icon', pump.data, { sdf: true });
+
+    const danger = await map.loadImage('/icons/danger.png');
+    map.addImage('danger-icon', danger.data, { sdf: false });
+
+    const crossIconUrl = getCrossIconUrl();
+    const cross = await map.loadImage(crossIconUrl);
+    map.addImage('cross-icon', cross.data, { sdf: true });
+  }
+
   return {
     loadImages,
-    plotFeatures,
+    plotFeatures: plotEverything,
     getCompteursFeatures,
     fitBounds,
     toggleLimits,
@@ -347,19 +344,3 @@ export const useMap = () => {
     handleMapClick
   };
 };
-
-function toggleLimits() {
-  displayLimits.value = !displayLimits.value
-}
-
-function toggleBikeInfra() {
-  displayBikeInfra.value = !displayBikeInfra.value
-}
-
-function toggleLimitsVisibility(map: Map, displayLimits: boolean) {
-  map.setLayoutProperty("limits", "visibility", displayLimits ? "visible" : "none")
-}
-
-function toggleBikeInfraVisibility(map: Map, displayBikeInfra: boolean) {
-  map.setLayoutProperty("layer-underline-base-infrastructure", "visibility", displayBikeInfra ? "visible" : "none")
-}

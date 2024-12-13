@@ -1,7 +1,7 @@
-import { GeoJSONSource, Map } from 'maplibre-gl';
-import { type Feature, type LineStringFeature} from '~/types';
+import { LngLatBounds, GeoJSONSource, Map } from 'maplibre-gl';
+import { isLineStringFeature, isPointFeature, type Feature, type LineStringFeature} from '~/types';
 
-export { sortOrder, sortByLine, getCrossIconUrl, upsertMapSource };
+export { sortOrder, sortByLine, getCrossIconUrl, upsertMapSource, fitBounds };
 
 function upsertMapSource(map: Map, sourceName: string, features: Feature[]) {
     const source = map.getSource(sourceName) as GeoJSONSource;
@@ -50,4 +50,27 @@ function getCrossIconUrl(): string {
   context.stroke();
 
   return canvas.toDataURL();
+}
+
+function fitBounds({ map, features }: { map: Map; features: Feature[] }) {
+  const allLineStringsCoordinates = features
+    .filter(isLineStringFeature)
+    .map(feature => feature.geometry.coordinates)
+    .flat();
+
+  const allPointsCoordinates = features.filter(isPointFeature).map(feature => feature.geometry.coordinates);
+
+  if (allPointsCoordinates.length === 0 && allLineStringsCoordinates.length === 0) {
+    return;
+  }
+
+  if (features.length === 1 && allPointsCoordinates.length === 1) {
+    map.flyTo({ center: allPointsCoordinates[0] });
+  } else {
+    const bounds = new LngLatBounds(allLineStringsCoordinates[0], allLineStringsCoordinates[0]);
+    for (const coord of [...allLineStringsCoordinates, ...allPointsCoordinates]) {
+      bounds.extend(coord);
+    }
+    map.fitBounds(bounds, { padding: 20 });
+  }
 }

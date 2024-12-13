@@ -23,7 +23,7 @@ const setDisplayedLayer = (value: DisplayedLayer) => {
   displayedLayer.value = value;
 };
 
-import { upsertMapSource } from './plotUtils';
+import { upsertMapSource } from './utils';
 
 export { DisplayedLayer, setDisplayedLayer, drawLanesBase, drawLanesDone, drawLanesPlanned, drawLanesWIP, drawLanesPostponed, drawLanesAsDone, addListnersForHovering, setLanesColor };
 
@@ -37,7 +37,7 @@ let layersBase: string[] = []
 
 
 
-    function drawLanesBase(map: Map, features: MultiColoredLineStringFeature[], lanes: LineStringFeature[]) {
+function drawLanesBase(map: Map, features: MultiColoredLineStringFeature[], lanes: LineStringFeature[]) {
 
     const sections_sure = lanes.filter(s => s.properties.status !== "postponed")
     const sections_real = sections_sure.filter(s => s.properties.status !== "planned")
@@ -56,9 +56,9 @@ let layersBase: string[] = []
     drawSectionContour(map);
 
     drawHoveredEffect(map);
-    }
+}
 
-    function drawSectionBackground(map: Map) {
+function drawSectionBackground(map: Map) {
     let scaleUpFactor = 2
     map.addLayer({
         id: 'layer-grey-dashes',
@@ -121,9 +121,9 @@ let layersBase: string[] = []
         }
     });
     layersBase.push("layer-background-white-line")
-    }
+}
 
-    function drawHoveredEffect(map: Map) {
+function drawHoveredEffect(map: Map) {
     map.addLayer({
         id: 'highlight',
         type: 'line',
@@ -139,9 +139,9 @@ let layersBase: string[] = []
         "line-opacity": ['case', ['boolean', ['feature-state', 'hover'], false], 0.9, 0.0],
         }
     });
-    }
+}
 
-    function drawSectionContour(map: Map) {
+function drawSectionContour(map: Map) {
     map.addLayer({
         id: 'layer-contour',
         type: 'line',
@@ -154,9 +154,9 @@ let layersBase: string[] = []
         }
     });
     layerContour.push("layer-contour")
-    }
+}
 
-    function drawLanesDone(map: Map, lanes: DisplayedLane[]) {
+function drawLanesDone(map: Map, lanes: DisplayedLane[]) {
 
     let lanes_done = lanes.filter(lane => lane.properties.status === "done");
     if (upsertMapSource(map, 'source-all-lanes-done', lanes_done)) {
@@ -174,9 +174,9 @@ let layersBase: string[] = []
         }
     });
     layersWithLanes.push("layer-lanes-done")
-    }
+}
 
-    function drawLanesAsDone(map: Map, lanes: DisplayedLane[]) {
+function drawLanesAsDone(map: Map, lanes: DisplayedLane[]) {
 
     if (upsertMapSource(map, 'source-all-lanes-asdone', lanes)) {
         return;
@@ -192,9 +192,9 @@ let layersBase: string[] = []
         'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
         }
     });
-    }
+}
 
-    function drawLanesWIP(map: Map, lanes: DisplayedLane[]) {
+function drawLanesWIP(map: Map, lanes: DisplayedLane[]) {
 
     let lanes_wip = lanes.filter(lane => lane.properties.status === "wip" || lane.properties.status === "tested");
     if (upsertMapSource(map, 'source-all-lanes-wip', lanes_wip)) {
@@ -225,10 +225,10 @@ let layersBase: string[] = []
     });
     layersWithLanes.push("layer-lanes-wip-done")
     animateOpacity(map, 0, 1000*1.50, 'layer-lanes-wip-done', 'line-opacity', 0.0, 1.0);
-    }
+}
 
 
-    function drawLanesPlanned(map: Map, lanes: DisplayedLane[]) {
+function drawLanesPlanned(map: Map, lanes: DisplayedLane[]) {
 
     let lanes_planned = lanes.filter(lane => lane.properties.status === "planned" || lane.properties.status === "postponed");
     if (upsertMapSource(map, 'source-all-lanes-planned', lanes_planned)) {
@@ -249,9 +249,9 @@ let layersBase: string[] = []
     });
     layersWithLanes.push("layer-lanes-planned")
     layersBase.push("layer-lanes-planned")
-    }
+}
 
-    function drawLanesPostponed(map: Map, lanes: DisplayedLane[]) {
+function drawLanesPostponed(map: Map, lanes: DisplayedLane[]) {
 
     let lanes_postponed = lanes.filter(lane => lane.properties.status === "postponed");
     if (upsertMapSource(map, 'source-all-lanes-postponed', lanes_postponed)) {
@@ -289,21 +289,21 @@ let layersBase: string[] = []
             ],
         }
     });
+}
+
+
+function animateOpacity(map: Map, timestamp: number, animationLength: number, attributeId: string, attributeOpacity: string, min: number, max: number) {
+
+    function subAnimateOpacity(timestamp: number) {
+        const opacity010 = Math.abs((((timestamp * 2) * (1 / animationLength)) % 2) - 1)
+        const opacity = opacity010 * (max - min) + min
+        map.setPaintProperty(attributeId, attributeOpacity, opacity);
+
+        // Request the next frame of the animation.
+        requestAnimationFrame(subAnimateOpacity);
     }
-
-
-    function animateOpacity(map: Map, timestamp: number, animationLength: number, attributeId: string, attributeOpacity: string, min: number, max: number) {
-
-        function subAnimateOpacity(timestamp: number) {
-          const opacity010 = Math.abs((((timestamp * 2) * (1 / animationLength)) % 2) - 1)
-          const opacity = opacity010 * (max - min) + min
-          map.setPaintProperty(attributeId, attributeOpacity, opacity);
-
-          // Request the next frame of the animation.
-          requestAnimationFrame(subAnimateOpacity);
-        }
-        subAnimateOpacity(timestamp)
-      }
+    subAnimateOpacity(timestamp)
+}
 
 
     // function drawLanesVariante(map: Map, lanes: DisplayedLane[]) {
@@ -389,7 +389,7 @@ let layersBase: string[] = []
     //   layersWithLanes.push("layer-lanes-unknown")
     // }
 
-    function addListnersForHovering(map: Map) {
+function addListnersForHovering(map: Map) {
 
     // Add MouveMove event listner => maybe a section is hovered
     let hoveredLineId: any = null;
@@ -416,7 +416,7 @@ let layersBase: string[] = []
         }
         hoveredLineId = null;
     });
-    }
+}
 
 
 
@@ -509,59 +509,59 @@ let layersBase: string[] = []
 // }
 
 function setLanesColor(map: Map, displayedLayer: DisplayedLayer) {
-        // layerContour.forEach(l => {
-        //   if(displayedLayer !== DisplayedLayer.Progress) {
-        //     map.setPaintProperty(l, "line-opacity", 0.1);
-        //   } else {
-        //     map.setPaintProperty(l, "line-opacity", 1.0);
-        //   }
-        // })
+    // layerContour.forEach(l => {
+    //   if(displayedLayer !== DisplayedLayer.Progress) {
+    //     map.setPaintProperty(l, "line-opacity", 0.1);
+    //   } else {
+    //     map.setPaintProperty(l, "line-opacity", 1.0);
+    //   }
+    // })
 
+    for(let layerName of layersBase) {
+        map.setLayoutProperty(layerName, 'visibility', "visible")
+    }
+    map.setLayoutProperty('layer-lanes-asdone', 'visibility', (displayedLayer === DisplayedLayer.FinalizedProject) ? "visible" : "none")
+
+    layersWithLanes.forEach(l => {
+
+        if (displayedLayer == DisplayedLayer.Quality) {
         for(let layerName of layersBase) {
-          map.setLayoutProperty(layerName, 'visibility', "visible")
+            map.setLayoutProperty(layerName, 'visibility', "none")
         }
-        map.setLayoutProperty('layer-lanes-asdone', 'visibility', (displayedLayer === DisplayedLayer.FinalizedProject) ? "visible" : "none")
-
-        layersWithLanes.forEach(l => {
-
-          if (displayedLayer == DisplayedLayer.Quality) {
-            for(let layerName of layersBase) {
-              map.setLayoutProperty(layerName, 'visibility', "none")
-            }
-            map.setPaintProperty(l, "line-color", ["case",
-              ["==", ['get', 'quality'], "bad"], "#ff6961",
-              ["==", ['get', 'quality'], "fair"], "#F3F32A",
-              ["==", ['get', 'quality'], "good"], "#77dd77",
-              ["==", ['get', 'status'], "done"], "#000000",
-              "white"
-            ]);
-          // } else if (displayedLayer == DisplayedLayer.Progress) {
-          //   map.setPaintProperty(l, "line-color", ["case",
-          //     ["==", ['get', 'status'], "done"], "#92c5de",
-          //     ["==", ['get', 'status'], "wip"], "#92c5de",
-          //     ["==", ['get', 'status'], "planned"], "#f4a582",
-          //     ["==", ['get', 'status'], "postponed"], "#d6604d",
-          //     "white"
-          //   ]);
-          } else if (displayedLayer == DisplayedLayer.Progress) {
-            map.setPaintProperty(l, "line-color", ["to-color", ['get', 'color']]);
-          } else if (displayedLayer == DisplayedLayer.Type) {
-            map.setPaintProperty(l, "line-color", ["case",
-              ["==", ['get', 'type'], "bidirectionnelle"], "#b3c6ff", // bleu
-              ["==", ['get', 'type'], "bilaterale"], "#b3fbff", // cyan
-              ["==", ['get', 'type'], "bandes-cyclables"], "#c1b3ff", // bleu-violet
-              ["==", ['get', 'type'], "voie-bus"], "#fbb3ff", // violet
-              ["==", ['get', 'type'], "voie-bus-elargie"], "#e1b3ff", // violet
-              ["==", ['get', 'type'], "velorue"], "#fffbb3", // jaune
-              ["==", ['get', 'type'], "voie-verte"], "#b3ffb6", // vert
-              ["==", ['get', 'type'], "zone-de-rencontre"], "#daffb3", // vert clair
-              ["==", ['get', 'type'], "chaucidou"], "#ffeab3", // orange
-              ["==", ['get', 'type'], "heterogene"], "#797979", // gris foncé
-              ["==", ['get', 'type'], "aucun"], "#ff9999", // rouge
-              ["==", ['get', 'status'], "done"], "#000000", // black
-              ["==", ['get', 'type'], "inconnu"], "#dedede", // gris
-              "white"
-            ]);
-          }
-        });
-      }
+        map.setPaintProperty(l, "line-color", ["case",
+            ["==", ['get', 'quality'], "bad"], "#ff6961",
+            ["==", ['get', 'quality'], "fair"], "#F3F32A",
+            ["==", ['get', 'quality'], "good"], "#77dd77",
+            ["==", ['get', 'status'], "done"], "#000000",
+            "white"
+        ]);
+        // } else if (displayedLayer == DisplayedLayer.Progress) {
+        //   map.setPaintProperty(l, "line-color", ["case",
+        //     ["==", ['get', 'status'], "done"], "#92c5de",
+        //     ["==", ['get', 'status'], "wip"], "#92c5de",
+        //     ["==", ['get', 'status'], "planned"], "#f4a582",
+        //     ["==", ['get', 'status'], "postponed"], "#d6604d",
+        //     "white"
+        //   ]);
+        } else if (displayedLayer == DisplayedLayer.Progress) {
+        map.setPaintProperty(l, "line-color", ["to-color", ['get', 'color']]);
+        } else if (displayedLayer == DisplayedLayer.Type) {
+        map.setPaintProperty(l, "line-color", ["case",
+            ["==", ['get', 'type'], "bidirectionnelle"], "#b3c6ff", // bleu
+            ["==", ['get', 'type'], "bilaterale"], "#b3fbff", // cyan
+            ["==", ['get', 'type'], "bandes-cyclables"], "#c1b3ff", // bleu-violet
+            ["==", ['get', 'type'], "voie-bus"], "#fbb3ff", // violet
+            ["==", ['get', 'type'], "voie-bus-elargie"], "#e1b3ff", // violet
+            ["==", ['get', 'type'], "velorue"], "#fffbb3", // jaune
+            ["==", ['get', 'type'], "voie-verte"], "#b3ffb6", // vert
+            ["==", ['get', 'type'], "zone-de-rencontre"], "#daffb3", // vert clair
+            ["==", ['get', 'type'], "chaucidou"], "#ffeab3", // orange
+            ["==", ['get', 'type'], "heterogene"], "#797979", // gris foncé
+            ["==", ['get', 'type'], "aucun"], "#ff9999", // rouge
+            ["==", ['get', 'status'], "done"], "#000000", // black
+            ["==", ['get', 'type'], "inconnu"], "#dedede", // gris
+            "white"
+        ]);
+        }
+    });
+}

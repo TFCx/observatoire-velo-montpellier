@@ -4,7 +4,7 @@ import { isCompteurFeature, isDangerFeature, isPumpFeature, isPerspectiveFeature
 import { ref } from 'vue';
 
 
-import { upsertMapSource } from './plotUtils';
+import { upsertMapSource } from './utils';
 
 enum DisplayedLayer {
   Progress = 0,
