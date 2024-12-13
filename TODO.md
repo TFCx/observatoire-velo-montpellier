@@ -61,17 +61,20 @@ Actuellement :
 
 Ce qu'on veut :
 - Si avancement du projet :
-  - Toutes les lanes Done en couleur ligne pleine
-  - Toutes les lanes WIP en couleur ligne + blink
-  - Bord noir en union Done + WIP
-  - Toutes les lanes Planned en bord couleur ligne + dashes
-  - Toutes les lanes Postponed en bord couleur ligne + dashes + transparence + /2 size + croix
+  - Chaque lane WIP, Planned, Postponed en blanc
+  - Chaque lane Done en couleur ligne pleine
+  - Chaque lane WIP en couleur ligne + blink
+  - Chaque section de l'union Done + WIP en bord noir
+  - Chaque lane Planned en bord couleur ligne + dashes couleur ligne
+  - Chaque lane Postponed en bord couleur ligne + dashes couleur ligne + transparence + /2 size + croix
 - Si qualité :
-  - Section done en couleur qualité avec bord nord
+  - Chaque section Done, en couleur qualité
+  - Chaque section WIP en blanc
+  - Chaque section WIP en couleur qualité + blink
+  - Chaque section de l'union Done + WIP en bord noir
   - Section WIP en couleur qualité avec bord nord + blink
-  - Le bord noir en union Done + WIP
-  - Grey dashes sur Planned
-  - Grey dashes + croix sur Postponed
+  - Chaque section Planned en grey dashes
+  - Chaque section Postponed en grey dashes + transparence + croix
 - Si futur réseau :
   - Toutes les lanes en couleur ligne
   - Bord noir en union Done + WIP + Planned + Postponned
