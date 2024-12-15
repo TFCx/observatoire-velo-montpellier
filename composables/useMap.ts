@@ -4,7 +4,7 @@ import type { CounterParsedContent } from '../types/counters';
 import { isLineStringFeature, type Feature, type DisplayedLane, type LineStringFeature, type CompteurFeature} from '~/types';
 import { ref } from 'vue';
 
-import { drawFinishedNetwork, drawLanesDone, drawLanesPlanned, drawLanesWIP, drawLanesPostponed, drawLanesAsDone, addListnersForHovering, setLanesColor } from "./map/network";
+import { drawCurrentNetwork, drawFinishedNetwork, drawLanesDone, drawLanesPlanned, drawLanesWIP, drawLanesPostponed, drawLanesAsDone, addListnersForHovering, setLanesColor } from "./map/network";
 import { plotPerspective, plotCompteurs, plotDangers, plotLimits, plotPumps, plotBaseBikeInfrastructure } from "./map/features";
 
 // Tooltips
@@ -57,20 +57,6 @@ function toggleBikeInfraVisibility(map: Map, displayBikeInfra: boolean) {
 }
 
 
-// function groupFeaturesByColor(features: MultiColoredLineStringFeature[]) {
-//   const featuresByColor: Record<string, Feature[]> = {};
-//   for (const feature of features) {
-//     const color = feature.properties.colors[0];
-
-//     if (featuresByColor[color]) {
-//       featuresByColor[color].push(feature);
-//     } else {
-//       featuresByColor[color] = [feature];
-//     }
-//   }
-//   return featuresByColor;
-// }
-
 export const useMap = () => {
 
   function plotEverything({ map, updated_features }: { map: Map; updated_features?: Feature[] }) {
@@ -79,8 +65,9 @@ export const useMap = () => {
     if(updated_features) {
       let lineStringFeatures = updated_features.filter(isLineStringFeature).sort(sortByLine).map(addLineColor);
       lineStringFeatures = addOtherLineColor(lineStringFeatures);
+      const lanes = separateSectionIntoLanes(lineStringFeatures)
 
-      plotNetwork(map, lineStringFeatures);
+      plotNetwork(map, lanes);
       setLanesColor(map, displayedLayer.value)
       watch(displayedLayer, (displayedLayer) => setLanesColor(map, displayedLayer))
 
@@ -88,15 +75,17 @@ export const useMap = () => {
     }
   }
 
-  function plotNetwork(map: Map, features: MultiColoredLineStringFeature[]) {
-    const lanes = separateSectionIntoLanes(features)
+  function plotNetwork(map: Map, lanes: DisplayedLane[]) {
     const lanesWithId = lanes.map((feature, index) => ({ id: index, ...feature }));
 
     if (lanesWithId.length === 0 && !map.getLayer('highlight')) {
       return;
     }
 
-    drawFinishedNetwork(map, features, lanesWithId)
+    // DONE
+    //drawFinishedNetwork(map, lanesWithId)
+
+    drawCurrentNetwork(map, lanesWithId)
 
     // drawLanesPlanned(map, lanes)
 

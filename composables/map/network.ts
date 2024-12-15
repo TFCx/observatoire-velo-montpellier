@@ -25,26 +25,141 @@ const setDisplayedLayer = (value: DisplayedLayer) => {
 
 import { upsertMapSource } from './utils';
 
-export { DisplayedLayer, setDisplayedLayer, drawFinishedNetwork, drawLanesDone, drawLanesPlanned, drawLanesWIP, drawLanesPostponed, drawLanesAsDone, addListnersForHovering, setLanesColor };
-
-
-
-type MultiColoredLineStringFeature = LineStringFeature & { properties: { colors: string[] } };
+export { DisplayedLayer, setDisplayedLayer, drawCurrentNetwork, drawFinishedNetwork, drawLanesDone, drawLanesPlanned, drawLanesWIP, drawLanesPostponed, drawLanesAsDone, addListnersForHovering, setLanesColor };
 
 let layersBase: string[] = []
 
+function filterSections(lanes: DisplayedLane[], options: {done: boolean, wip: boolean, planned: boolean, postponed: boolean}): DisplayedLane[] {
+    lanes = options.done ? lanes : lanes.filter(s => s.properties.status !== "done")
+    lanes = options.wip ? lanes : lanes.filter(s => s.properties.status !== "wip")
+    lanes = options.planned ? lanes : lanes.filter(s => s.properties.status !== "planned")
+    lanes = options.postponed ? lanes : lanes.filter(s => s.properties.status !== "postponed")
+    return lanes
+}
 
 
+function drawCurrentNetwork(map: Map, lanes: DisplayedLane[]) {
+
+    let wasUpdatingAllSection = upsertMapSource(map, 'all-sections', lanes)
+    let wasUpdatingAllSectionsDone = upsertMapSource(map, 'all-sections-done', filterSections(lanes, {done:true, wip:false, planned:false, postponed:false}))
+    let wasUpdatingAllSectionWIP = upsertMapSource(map, 'all-sections-wip', filterSections(lanes, {done:false, wip:true, planned:false, postponed:false}))
+    let wasUpdatingAllSectionPlanned = upsertMapSource(map, 'all-sections-planned', filterSections(lanes, {done:false, wip:false, planned:true, postponed:false}))
+    let wasUpdatingAllSectionsNotPostponed = upsertMapSource(map, 'all-sections-not-postponed', filterSections(lanes, {done:true, wip:true, planned:true, postponed:false}))
+    let wasUpdatingAllSectionDoneAndWip = upsertMapSource(map, 'all-sections-done-and-wip', filterSections(lanes, {done:true, wip:true, planned:false, postponed:false}))
+
+    if (wasUpdatingAllSectionsDone && wasUpdatingAllSectionWIP && wasUpdatingAllSectionPlanned && wasUpdatingAllSection && wasUpdatingAllSectionsNotPostponed && wasUpdatingAllSectionDoneAndWip) {
+        return;
+    }
+
+    if (upsertMapSource(map, 'source-current-network-all-lanes', lanes)) {
+        return;
+    }
+
+    map.addLayer({
+        id: 'layer-current-network-contour',
+        type: 'line',
+        source: 'all-sections-done-and-wip',
+        layout: { 'line-cap': 'round' },
+        paint: {
+        'line-gap-width': ["*", laneWidth, ['get', 'nb_lanes']],
+        'line-width': 1.3,
+        'line-color': '#000000',
+        }
+    });
+
+    map.addLayer({
+        id: `layer-current-network-all-lanes-done`,
+        type: 'line',
+        source: 'all-sections-done',
+        paint: {
+        'line-width': laneWidth,
+        'line-color': ["to-color", ['get', 'color']],
+        'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
+        }
+    });
+
+    map.addLayer({
+        id: `layer-current-network-all-lanes-wip-background`,
+        type: 'line',
+        source: 'all-sections-wip',
+        paint: {
+            'line-width': laneWidth,
+            'line-color': "#fff",
+            'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
+            }
+    });
+
+    map.addLayer({
+        id: `layer-current-network-all-lanes-wip-dashed`,
+        type: 'line',
+        source: 'all-sections-wip',
+        paint: {
+            'line-width': laneWidth,
+            'line-color': ["to-color", ['get', 'color']],
+            'line-dasharray': laneDashWIP,
+            'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
+            }
+    });
+
+    map.addLayer({
+        id: `layer-current-network-all-lanes-wip-as-done`,
+        type: 'line',
+        source: 'all-sections-wip',
+        paint: {
+            'line-width': laneWidth,
+            'line-color': ["to-color", ['get', 'color']],
+            'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
+            }
+    });
+    animateOpacity(map, 0, 1000*1.50, 'layer-current-network-all-lanes-wip-as-done', 'line-opacity', 0.0, 1.0);
+
+    map.addLayer({
+        id: 'layer-current-network-all-lanes-planned-contour',
+        type: 'line',
+        source: 'all-sections-planned',
+        layout: { 'line-cap': 'round' },
+        paint: {
+        'line-gap-width': ["*", laneWidth, ['get', 'nb_lanes']],
+        'line-width': 1.3,
+        'line-opacity' : 0.9,
+        'line-color': ["to-color", ['get', 'color']],
+        }
+    });
+
+    map.addLayer({
+        id: `layer-current-network-all-lanes-planned-background`,
+        type: 'line',
+        source: 'all-sections-planned',
+        paint: {
+            'line-width': laneWidth,
+            'line-color': "#fff",
+            'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
+            }
+    });
+
+    map.addLayer({
+        id: `layer-current-network-all-lanes-planned-dashed`,
+        type: 'line',
+        source: 'all-sections-planned',
+        paint: {
+            'line-width': laneWidth,
+            'line-color': ["to-color", ['get', 'color']],
+            'line-opacity' : 0.5,
+            'line-dasharray': laneDashPlanned,
+            'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
+            }
+    });
+}
 
 
-function drawFinishedNetwork(map: Map, lanes: MultiColoredLineStringFeature[], sections: LineStringFeature[]) {
+function drawFinishedNetwork(map: Map, lanes: DisplayedLane[]) {
 
-    const sections_sure = sections.filter(s => s.properties.status !== "postponed")
+    const sections_sure = lanes.filter(s => s.properties.status !== "postponed")
     const sections_real = sections_sure.filter(s => s.properties.status !== "planned")
 
 
     let wasUpdatingAllMultiLane = upsertMapSource(map, 'all-multilanes', lanes)
-    let wasUpdatingAllSection = upsertMapSource(map, 'all-sections', sections)
+    let wasUpdatingAllSection = upsertMapSource(map, 'all-sections', lanes)
     let wasUpdatingAllSectionSure = upsertMapSource(map, 'all-sections-sure', sections_sure)
     let wasUpdatingAllSectionReal = upsertMapSource(map, 'all-sections-real', sections_real)
     if (wasUpdatingAllMultiLane && wasUpdatingAllSection && wasUpdatingAllSectionSure && wasUpdatingAllSectionReal) {
@@ -56,17 +171,6 @@ function drawFinishedNetwork(map: Map, lanes: MultiColoredLineStringFeature[], s
     }
 
     map.addLayer({
-        id: `layer-finished-network-all-lanes`,
-        type: 'line',
-        source: 'source-finished-network-all-lanes',
-        paint: {
-        'line-width': laneWidth,
-        'line-color': ["to-color", ['at', 0, ['get', 'colors']]],
-        'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
-        }
-    });
-
-    map.addLayer({
         id: 'layer-finished-network-contour',
         type: 'line',
         source: 'source-finished-network-all-lanes',
@@ -75,6 +179,17 @@ function drawFinishedNetwork(map: Map, lanes: MultiColoredLineStringFeature[], s
         'line-gap-width': ["*", laneWidth, ['get', 'nb_lanes']],
         'line-width': 1.3,
         'line-color': '#000000',
+        }
+    });
+
+    map.addLayer({
+        id: `layer-finished-network-all-lanes`,
+        type: 'line',
+        source: 'source-finished-network-all-lanes',
+        paint: {
+        'line-width': laneWidth,
+        'line-color': ["to-color", ['get', 'color']],
+        'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
         }
     });
 

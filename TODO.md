@@ -1,4 +1,5 @@
 Court terme :
+- Nom des vélolignes sur les lignes
 - Ligne Marché du Lez
 - Changer lien vers le communiqué officiel dans les news
 - changer const BASE_URL = 'https://velocite-montpellier.fr';
@@ -67,6 +68,7 @@ Ce qu'on veut :
   - Chaque section de l'union Done + WIP en bord noir
   - Chaque lane Planned en bord couleur ligne + dashes couleur ligne
   - Chaque lane Postponed en bord couleur ligne + dashes couleur ligne + transparence + /2 size + croix
+  - Chaque section en selection noir
 - Si qualité :
   - Chaque section Done, en couleur qualité
   - Chaque section WIP en blanc
@@ -75,6 +77,8 @@ Ce qu'on veut :
   - Section WIP en couleur qualité avec bord nord + blink
   - Chaque section Planned en grey dashes
   - Chaque section Postponed en grey dashes + transparence + croix
+  - Chaque section en selection noir
 - Si futur réseau :
   - Toutes les lanes en couleur ligne
   - Bord noir en union Done + WIP + Planned + Postponned
+  - Chaque section en selection noir
