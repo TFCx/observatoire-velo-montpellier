@@ -19,8 +19,14 @@ const laneDashPlanned = [1.7, 0.5]
 const laneDashPostponed = [laneDashPlanned[0] / scaleDownPostponed, laneDashPlanned[1] / scaleDownPostponed]
 const laneDashWIP = [1.0, 1.05]
 
-const sectionwidth: ExpressionSpecification = ["*", laneWidth, ['get', 'nb_lanes']]
+const nbLanes: ExpressionSpecification = ['get', 'nb_lanes']
+const laneIndex: ExpressionSpecification = ['get', 'lane_index']
+const sectionWidth: ExpressionSpecification = ["*", laneWidth, nbLanes]
+const halfLaneWidth: ExpressionSpecification = ["/", laneWidth, 2]
+const halfSectionWidth: ExpressionSpecification = ["/", sectionWidth, 2]
 const laneColor: ExpressionSpecification = ["to-color", ['get', 'color']]
+const leftmostOffset: ExpressionSpecification = ['+', ['-', 0, halfSectionWidth], halfLaneWidth]
+const offsetLane: ExpressionSpecification = ['+', leftmostOffset, ['*', laneIndex, laneWidth]]
 
 
 let layersWithLanes: string[] = []
@@ -71,7 +77,7 @@ function drawCurrentNetwork(map: Map, lanes: DisplayedLane[]) {
         source: 'all-sections-postponed',
         layout: { 'line-cap': 'round' },
         paint: {
-        'line-gap-width': ["*", sectionwidth, scaleDownPostponed],
+        'line-gap-width': ["*", sectionWidth, scaleDownPostponed],
         'line-width': 1.3 / 2,
         'line-opacity' : 0.75,
         'line-color': laneColor,
@@ -86,7 +92,7 @@ function drawCurrentNetwork(map: Map, lanes: DisplayedLane[]) {
             'line-width': laneWidth * scaleDownPostponed,
             'line-color': laneColor,
             'line-opacity' : 0.75,
-            'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
+            'line-offset': offsetLane,
             }
     });
 
@@ -98,7 +104,7 @@ function drawCurrentNetwork(map: Map, lanes: DisplayedLane[]) {
             'line-width': laneWidth * scaleDownPostponed,
             'line-color': "#fff",
             'line-opacity' : 0.75 * 0.5,
-            'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
+            'line-offset': offsetLane,
             }
     });
 
@@ -111,7 +117,7 @@ function drawCurrentNetwork(map: Map, lanes: DisplayedLane[]) {
             'line-color': "#fff",
             'line-opacity' : 0.9,
             'line-dasharray': laneDashPostponed,
-            'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
+            'line-offset': offsetLane,
             }
     });
 
@@ -157,7 +163,7 @@ function drawCurrentNetwork(map: Map, lanes: DisplayedLane[]) {
         paint: {
         'line-width': 1.3,
         'line-color': laneColor,
-        'line-gap-width': sectionwidth,
+        'line-gap-width': sectionWidth,
         }
     });
 
@@ -168,7 +174,7 @@ function drawCurrentNetwork(map: Map, lanes: DisplayedLane[]) {
         paint: {
             'line-width': ["+", laneWidth, 3.0],
             'line-color': laneColor,
-            'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
+            'line-offset': offsetLane,
             }
     });
 
@@ -180,7 +186,7 @@ function drawCurrentNetwork(map: Map, lanes: DisplayedLane[]) {
             'line-width': ["+", laneWidth, 1.3 * 2],
             'line-color': "#fff",
             'line-opacity' : 0.40,
-            'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
+            'line-offset': offsetLane,
             }
     });
 
@@ -192,7 +198,7 @@ function drawCurrentNetwork(map: Map, lanes: DisplayedLane[]) {
             'line-width': laneWidth * 0.90,
             'line-color': "#fff",
             'line-dasharray': laneDashPlanned,
-            'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
+            'line-offset': offsetLane,
             }
     });
 
@@ -205,7 +211,7 @@ function drawCurrentNetwork(map: Map, lanes: DisplayedLane[]) {
         paint: {
             'line-width': laneWidth,
             'line-color': "#fff",
-            'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
+            'line-offset': offsetLane,
             }
     });
 
@@ -217,7 +223,7 @@ function drawCurrentNetwork(map: Map, lanes: DisplayedLane[]) {
             'line-width': laneWidth,
             'line-color': laneColor,
             'line-dasharray': laneDashWIP,
-            'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
+            'line-offset': offsetLane,
             }
     });
 
@@ -228,7 +234,7 @@ function drawCurrentNetwork(map: Map, lanes: DisplayedLane[]) {
         paint: {
             'line-width': laneWidth,
             'line-color': laneColor,
-            'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
+            'line-offset': offsetLane,
             }
     });
     animateOpacity(map, 0, 1000*1.50, 'layer-current-network-all-lanes-wip-as-done', 'line-opacity', 0.0, 1.0);
@@ -241,7 +247,7 @@ function drawCurrentNetwork(map: Map, lanes: DisplayedLane[]) {
         source: 'all-sections-done-and-wip',
         layout: { 'line-cap': 'round' },
         paint: {
-        'line-gap-width': sectionwidth,
+        'line-gap-width': sectionWidth,
         'line-width': 1.3,
         'line-color': '#000000',
         }
@@ -254,7 +260,7 @@ function drawCurrentNetwork(map: Map, lanes: DisplayedLane[]) {
         paint: {
         'line-width': laneWidth,
         'line-color': laneColor,
-        'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
+        'line-offset': offsetLane,
         }
     });
 }
@@ -284,7 +290,7 @@ function drawFinishedNetwork(map: Map, lanes: DisplayedLane[]) {
         source: 'source-finished-network-all-lanes',
         layout: { 'line-cap': 'round' },
         paint: {
-        'line-gap-width': sectionwidth,
+        'line-gap-width': sectionWidth,
         'line-width': 1.3,
         'line-color': '#000000',
         }
@@ -297,7 +303,7 @@ function drawFinishedNetwork(map: Map, lanes: DisplayedLane[]) {
         paint: {
         'line-width': laneWidth,
         'line-color': laneColor,
-        'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
+        'line-offset': offsetLane,
         }
     });
 
