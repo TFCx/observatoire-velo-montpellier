@@ -1,7 +1,7 @@
 import { Map, Popup } from 'maplibre-gl';
 import { createApp, defineComponent, h, Suspense } from 'vue';
 import type { CounterParsedContent } from '../types/counters';
-import { isLineStringFeature, type Feature, type DisplayedLane, type LineStringFeature, type CompteurFeature} from '~/types';
+import { isLineStringFeature, type Feature, type LaneFeature, type LineStringFeature, type CompteurFeature, type SectionFeature, type MultiColoredLineStringFeature} from '~/types';
 import { ref } from 'vue';
 
 import { drawCurrentNetwork, drawFinishedNetwork, addListnersForHovering } from "./map/network";
@@ -12,7 +12,7 @@ import PerspectiveTooltip from '~/components/tooltips/PerspectiveTooltip.vue';
 import CounterTooltip from '~/components/tooltips/CounterTooltip.vue';
 import DangerTooltip from '~/components/tooltips/DangerTooltip.vue';
 import LineTooltip from '~/components/tooltips/LineTooltip.vue';
-import { getCrossIconUrl, sortByLine, fitBounds } from './map/utils';
+import { getCrossIconUrl, sortByLine, fitBounds, upsertMapSource } from './map/utils';
 
 enum DisplayedLayer {
   Progress = 0,
@@ -35,9 +35,6 @@ export { DisplayedLayer, setDisplayedLayer };
 let displayLimits = ref(false)
 
 let displayBikeInfra = ref(false)
-
-
-type MultiColoredLineStringFeature = LineStringFeature & { properties: { colors: string[] } };
 
 
 function toggleLimits() {
@@ -64,10 +61,10 @@ export const useMap = () => {
 
     if(updated_features) {
       let lineStringFeatures = updated_features.filter(isLineStringFeature).sort(sortByLine).map(addLineColor);
-      lineStringFeatures = addOtherLineColor(lineStringFeatures);
-      const lanes = separateSectionIntoLanes(lineStringFeatures)
+      let sections = regroupIntoSections(lineStringFeatures)
+      const lanes = separateSectionsIntoLanes(sections)
 
-      plotNetwork(map, lanes);
+      plotNetwork(map, sections, lanes);
       // setLanesColor(map, displayedLayer.value)
       // watch(displayedLayer, (displayedLayer) => setLanesColor(map, displayedLayer))
 
@@ -75,7 +72,7 @@ export const useMap = () => {
     }
   }
 
-  function plotNetwork(map: Map, lanes: DisplayedLane[]) {
+  function plotNetwork(map: Map, sections: SectionFeature[], lanes: LaneFeature[]) {
     const lanesWithId = lanes.map((feature, index) => ({ id: index, ...feature }));
 
     if (lanesWithId.length === 0 && !map.getLayer('highlight')) {
@@ -85,7 +82,21 @@ export const useMap = () => {
     // DONE
     //drawFinishedNetwork(map, lanesWithId)
 
-    drawCurrentNetwork(map, lanesWithId)
+    upsertMapSource(map, 'all-sections', sections)
+
+    map.addLayer({
+      id: 'layer-all-sections-debug',
+      type: 'line',
+      source: 'all-sections',
+      layout: { 'line-cap': 'round' },
+      paint: {
+      'line-width': 10,
+      'line-opacity' : 0.5,
+      'line-color': "#000",
+      }
+  });
+
+    //drawCurrentNetwork(map, lanesWithId)
 
     // drawLanesPlanned(map, lanes)
 
@@ -144,15 +155,15 @@ export const useMap = () => {
     }));
   }
 
-  function separateSectionIntoLanes(features: MultiColoredLineStringFeature[]): DisplayedLane[] {
-    let lanes: DisplayedLane[] = []
+  function separateSectionsIntoLanes(features: SectionFeature[]): LaneFeature[] {
+    let lanes: LaneFeature[] = []
     features.forEach(f => {
       f.properties.colors.forEach((c, index) => {
-        let lane: DisplayedLane = {
+        let lane: LaneFeature = {
           type: f.type,
           properties: {
             id: f.properties.id,
-            line: f.properties.line,
+            line: f.properties.lines,
             name: f.properties.name,
             lane_index: index,
             nb_lanes: f.properties.colors.length,
@@ -184,7 +195,7 @@ export const useMap = () => {
     };
   }
 
-  function addOtherLineColor(features: MultiColoredLineStringFeature[]) {
+  function addOtherLineColor(features: MultiColoredLineStringFeature[]): MultiColoredLineStringFeature[] {
     for(let f of features) {
       if(f.properties.id) {
         for(let o of features) {
@@ -195,6 +206,35 @@ export const useMap = () => {
       }
     }
     return features
+  }
+
+  function regroupIntoSections(features: MultiColoredLineStringFeature[]): SectionFeature[] {
+    let sections: SectionFeature[] = []
+    for(let f of features) {
+      let newSection =
+      {
+        type: f.type,
+        properties:
+        {
+          lines: [f.properties.line],
+          name: f.properties.name,
+          quality: f.properties.quality,
+          status: f.properties.status,
+          type: f.properties.type,
+          doneAt: f.properties.doneAt,
+        },
+        geometry: f.geometry
+      }
+      if(f.properties.id) {
+        for(let o of features) {
+          if(o != f && f.properties.id == o.properties.id) {
+            newSection.properties.lines.push(o.properties.line)
+          }
+        }
+      }
+      sections.push(newSection)
+    }
+    return [...new Set(sections)]
   }
 
   function handleMapClick({ map, features, clickEvent }: { map: Map; features: Feature[]; clickEvent: any }) {

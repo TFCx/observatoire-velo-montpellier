@@ -42,7 +42,25 @@ export type LineStringFeature = {
   };
 };
 
-export type DisplayedLane = LineStringFeature & { properties: { color: string, lane_index: number, nb_lanes: number } };
+export type SectionFeature = {
+  type: 'Feature';
+  properties: {
+    lines: string[];
+    name: string;
+    status: LaneStatus;
+    quality: Quality;
+    type: LaneType;
+    doneAt?: string;
+  };
+  geometry: {
+    type: 'LineString';
+    coordinates: [number, number][];
+  };
+};
+
+export type MultiColoredLineStringFeature = LineStringFeature & { properties: { colors: string[] } };
+//export type SectionFeature = LineStringFeature & { properties: { colors: string[] } };
+export type LaneFeature = LineStringFeature & { properties: { color: string, lane_index: number, nb_lanes: number } };
 
 export type PerspectiveFeature = {
   type: 'Feature';
@@ -108,7 +126,7 @@ export type DangerFeature = {
 
 type PointFeature = PerspectiveFeature | CompteurFeature | PumpFeature | DangerFeature;
 
-export type Feature = LineStringFeature | PointFeature | DisplayedLane | PolygonFeature;
+export type Feature = LineStringFeature | PointFeature | LaneFeature | PolygonFeature;
 
 export type Geojson = {
   type: string;

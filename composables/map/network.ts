@@ -1,5 +1,5 @@
 import { GeoJSONSource, Map, type ExpressionSpecification } from 'maplibre-gl';
-import { type Feature, type DisplayedLane, type LineStringFeature} from '~/types';
+import { type Feature, type LaneFeature, type LineStringFeature} from '~/types';
 import { ref } from 'vue';
 
 const { getNbVoiesCyclables } = useConfig();
@@ -42,7 +42,7 @@ export { DisplayedLayer, setDisplayedLayer, drawCurrentNetwork, drawFinishedNetw
 
 let layersBase: string[] = []
 
-function filterSections(lanes: DisplayedLane[], options: {done: boolean, wip: boolean, planned: boolean, postponed: boolean}): DisplayedLane[] {
+function filterSections(lanes: LaneFeature[], options: {done: boolean, wip: boolean, planned: boolean, postponed: boolean}): LaneFeature[] {
     lanes = options.done ? lanes : lanes.filter(s => s.properties.status !== "done")
     lanes = options.wip ? lanes : lanes.filter(s => s.properties.status !== "wip")
     lanes = options.planned ? lanes : lanes.filter(s => s.properties.status !== "planned")
@@ -51,7 +51,7 @@ function filterSections(lanes: DisplayedLane[], options: {done: boolean, wip: bo
 }
 
 
-function drawCurrentNetwork(map: Map, lanes: DisplayedLane[]) {
+function drawCurrentNetwork(map: Map, lanes: LaneFeature[]) {
 
     let wasUpdatingAllSection = upsertMapSource(map, 'all-sections', lanes)
     let wasUpdatingAllSectionsDone = upsertMapSource(map, 'all-sections-done', filterSections(lanes, {done:true, wip:false, planned:false, postponed:false}))
@@ -266,7 +266,7 @@ function drawCurrentNetwork(map: Map, lanes: DisplayedLane[]) {
 }
 
 
-function drawFinishedNetwork(map: Map, lanes: DisplayedLane[]) {
+function drawFinishedNetwork(map: Map, lanes: LaneFeature[]) {
 
     const sections_sure = lanes.filter(s => s.properties.status !== "postponed")
     const sections_real = sections_sure.filter(s => s.properties.status !== "planned")
