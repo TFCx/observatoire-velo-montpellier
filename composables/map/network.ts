@@ -12,9 +12,9 @@ enum DisplayedLayer {
 
 const displayedLayer = ref(DisplayedLayer.Progress);
 
-const scaleDownPostponed = 0.6
+const scaleDownPostponed = 0.70
 const laneWidth = 4
-const laneDashPlanned = [1.5, 0.4]
+const laneDashPlanned = [1.7, 0.5]
 const laneDashPostponed = [laneDashPlanned[0] / scaleDownPostponed, laneDashPlanned[1] / scaleDownPostponed]
 const laneDashWIP = [1.0, 1.05]
 
@@ -127,7 +127,6 @@ function drawCurrentNetwork(map: Map, lanes: DisplayedLane[]) {
         paint: {
         'line-width': 1.3,
         'line-color': ["to-color", ['get', 'color']],
-        'line-opacity' : 0.9,
         'line-gap-width': ["*", laneWidth, ['get', 'nb_lanes']],
         }
     });
@@ -137,8 +136,20 @@ function drawCurrentNetwork(map: Map, lanes: DisplayedLane[]) {
         type: 'line',
         source: 'all-sections-planned',
         paint: {
-            'line-width': laneWidth,
+            'line-width': ["+", laneWidth, 3.0],
             'line-color': ["to-color", ['get', 'color']],
+            'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
+            }
+    });
+
+    map.addLayer({
+        id: `layer-current-network-all-lanes-planned-background-white-scrim`,
+        type: 'line',
+        source: 'all-sections-planned',
+        paint: {
+            'line-width': ["+", laneWidth, 1.3 * 2],
+            'line-color': "#fff",
+            'line-opacity' : 0.40,
             'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
             }
     });
@@ -148,7 +159,7 @@ function drawCurrentNetwork(map: Map, lanes: DisplayedLane[]) {
         type: 'line',
         source: 'all-sections-planned',
         paint: {
-            'line-width': laneWidth * 0.95,
+            'line-width': laneWidth * 0.90,
             'line-color': "#fff",
             'line-dasharray': laneDashPlanned,
             'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
@@ -164,7 +175,7 @@ function drawCurrentNetwork(map: Map, lanes: DisplayedLane[]) {
         paint: {
         'line-gap-width': ["*", laneWidth * scaleDownPostponed, ['get', 'nb_lanes']],
         'line-width': 1.3 / 2,
-        'line-opacity' : 0.9,
+        'line-opacity' : 0.75,
         'line-color': ["to-color", ['get', 'color']],
         }
     });
@@ -175,7 +186,20 @@ function drawCurrentNetwork(map: Map, lanes: DisplayedLane[]) {
         source: 'all-sections-postponed',
         paint: {
             'line-width': laneWidth * scaleDownPostponed,
+            'line-color': ["to-color", ['get', 'color']],
+            'line-opacity' : 0.75,
+            'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
+            }
+    });
+
+    map.addLayer({
+        id: `layer-current-network-all-lanes-postponed-background-white-scrim`,
+        type: 'line',
+        source: 'all-sections-postponed',
+        paint: {
+            'line-width': laneWidth * scaleDownPostponed,
             'line-color': "#fff",
+            'line-opacity' : 0.75 * 0.5,
             'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
             }
     });
@@ -186,8 +210,8 @@ function drawCurrentNetwork(map: Map, lanes: DisplayedLane[]) {
         source: 'all-sections-postponed',
         paint: {
             'line-width': laneWidth * scaleDownPostponed,
-            'line-color': ["to-color", ['get', 'color']],
-            'line-opacity' : 0.5,
+            'line-color': "#fff",
+            'line-opacity' : 0.9,
             'line-dasharray': laneDashPostponed,
             'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
             }
