@@ -4,7 +4,7 @@ import type { CounterParsedContent } from '../types/counters';
 import { isLineStringFeature, type Feature, type DisplayedLane, type LineStringFeature, type CompteurFeature} from '~/types';
 import { ref } from 'vue';
 
-import { drawCurrentNetwork, drawFinishedNetwork, drawLanesDone, drawLanesPlanned, drawLanesWIP, drawLanesPostponed, drawLanesAsDone, addListnersForHovering, setLanesColor } from "./map/network";
+import { drawCurrentNetwork, drawFinishedNetwork, addListnersForHovering } from "./map/network";
 import { plotPerspective, plotCompteurs, plotDangers, plotLimits, plotPumps, plotBaseBikeInfrastructure } from "./map/features";
 
 // Tooltips
@@ -68,8 +68,8 @@ export const useMap = () => {
       const lanes = separateSectionIntoLanes(lineStringFeatures)
 
       plotNetwork(map, lanes);
-      setLanesColor(map, displayedLayer.value)
-      watch(displayedLayer, (displayedLayer) => setLanesColor(map, displayedLayer))
+      // setLanesColor(map, displayedLayer.value)
+      // watch(displayedLayer, (displayedLayer) => setLanesColor(map, displayedLayer))
 
       plotFeatures({map, updated_features})
     }
