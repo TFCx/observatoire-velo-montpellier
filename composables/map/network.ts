@@ -12,8 +12,10 @@ enum DisplayedLayer {
 
 const displayedLayer = ref(DisplayedLayer.Progress);
 
+const scaleDownPostponed = 0.6
 const laneWidth = 4
-const laneDashPlanned = [0.4, 1.5]
+const laneDashPlanned = [1.5, 0.4]
+const laneDashPostponed = [laneDashPlanned[0] / scaleDownPostponed, laneDashPlanned[1] / scaleDownPostponed]
 const laneDashWIP = [1.0, 1.05]
 
 let layersWithLanes: string[] = []
@@ -44,10 +46,11 @@ function drawCurrentNetwork(map: Map, lanes: DisplayedLane[]) {
     let wasUpdatingAllSectionsDone = upsertMapSource(map, 'all-sections-done', filterSections(lanes, {done:true, wip:false, planned:false, postponed:false}))
     let wasUpdatingAllSectionWIP = upsertMapSource(map, 'all-sections-wip', filterSections(lanes, {done:false, wip:true, planned:false, postponed:false}))
     let wasUpdatingAllSectionPlanned = upsertMapSource(map, 'all-sections-planned', filterSections(lanes, {done:false, wip:false, planned:true, postponed:false}))
+    let wasUpdatingAllSectionPostponed = upsertMapSource(map, 'all-sections-postponed', filterSections(lanes, {done:false, wip:false, planned:false, postponed:true}))
     let wasUpdatingAllSectionsNotPostponed = upsertMapSource(map, 'all-sections-not-postponed', filterSections(lanes, {done:true, wip:true, planned:true, postponed:false}))
     let wasUpdatingAllSectionDoneAndWip = upsertMapSource(map, 'all-sections-done-and-wip', filterSections(lanes, {done:true, wip:true, planned:false, postponed:false}))
 
-    if (wasUpdatingAllSectionsDone && wasUpdatingAllSectionWIP && wasUpdatingAllSectionPlanned && wasUpdatingAllSection && wasUpdatingAllSectionsNotPostponed && wasUpdatingAllSectionDoneAndWip) {
+    if (wasUpdatingAllSectionsDone && wasUpdatingAllSectionWIP && wasUpdatingAllSectionPlanned && wasUpdatingAllSection && wasUpdatingAllSectionsNotPostponed && wasUpdatingAllSectionPostponed && wasUpdatingAllSectionDoneAndWip) {
         return;
     }
 
@@ -55,6 +58,7 @@ function drawCurrentNetwork(map: Map, lanes: DisplayedLane[]) {
         return;
     }
 
+    // Done
     map.addLayer({
         id: 'layer-current-network-contour',
         type: 'line',
@@ -78,6 +82,7 @@ function drawCurrentNetwork(map: Map, lanes: DisplayedLane[]) {
         }
     });
 
+    // WIP
     map.addLayer({
         id: `layer-current-network-all-lanes-wip-background`,
         type: 'line',
@@ -113,16 +118,17 @@ function drawCurrentNetwork(map: Map, lanes: DisplayedLane[]) {
     });
     animateOpacity(map, 0, 1000*1.50, 'layer-current-network-all-lanes-wip-as-done', 'line-opacity', 0.0, 1.0);
 
+    // Planned
     map.addLayer({
         id: 'layer-current-network-all-lanes-planned-contour',
         type: 'line',
         source: 'all-sections-planned',
         layout: { 'line-cap': 'round' },
         paint: {
-        'line-gap-width': ["*", laneWidth, ['get', 'nb_lanes']],
         'line-width': 1.3,
-        'line-opacity' : 0.9,
         'line-color': ["to-color", ['get', 'color']],
+        'line-opacity' : 0.9,
+        'line-gap-width': ["*", laneWidth, ['get', 'nb_lanes']],
         }
     });
 
@@ -132,7 +138,7 @@ function drawCurrentNetwork(map: Map, lanes: DisplayedLane[]) {
         source: 'all-sections-planned',
         paint: {
             'line-width': laneWidth,
-            'line-color': "#fff",
+            'line-color': ["to-color", ['get', 'color']],
             'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
             }
     });
@@ -142,12 +148,81 @@ function drawCurrentNetwork(map: Map, lanes: DisplayedLane[]) {
         type: 'line',
         source: 'all-sections-planned',
         paint: {
-            'line-width': laneWidth,
-            'line-color': ["to-color", ['get', 'color']],
-            'line-opacity' : 0.5,
+            'line-width': laneWidth * 0.95,
+            'line-color': "#fff",
             'line-dasharray': laneDashPlanned,
             'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
             }
+    });
+
+    // Postponed
+    map.addLayer({
+        id: 'layer-current-network-all-lanes-postponed-contour',
+        type: 'line',
+        source: 'all-sections-postponed',
+        layout: { 'line-cap': 'round' },
+        paint: {
+        'line-gap-width': ["*", laneWidth * scaleDownPostponed, ['get', 'nb_lanes']],
+        'line-width': 1.3 / 2,
+        'line-opacity' : 0.9,
+        'line-color': ["to-color", ['get', 'color']],
+        }
+    });
+
+    map.addLayer({
+        id: `layer-current-network-all-lanes-postponed-background`,
+        type: 'line',
+        source: 'all-sections-postponed',
+        paint: {
+            'line-width': laneWidth * scaleDownPostponed,
+            'line-color': "#fff",
+            'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
+            }
+    });
+
+    map.addLayer({
+        id: `layer-current-network-all-lanes-postponed-dashed`,
+        type: 'line',
+        source: 'all-sections-postponed',
+        paint: {
+            'line-width': laneWidth * scaleDownPostponed,
+            'line-color': ["to-color", ['get', 'color']],
+            'line-opacity' : 0.5,
+            'line-dasharray': laneDashPostponed,
+            'line-offset': ['-', ['*', ['get', 'lane_index'], laneWidth], ['/', ['*', ['-', ['get', 'nb_lanes'], 1], laneWidth], 2]],
+            }
+    });
+
+    let farZoom = 11
+    let closeZoom = 14
+    map.addLayer({
+        id: `layer-current-network-all-lanes-postponed-symbols`,
+        type: 'symbol',
+        source: `all-sections-postponed`,
+        paint: {
+        'icon-color': '#000',
+        'icon-halo-width': 2.5,
+        'icon-halo-color': "#fff",
+        'icon-opacity': 0.30
+        },
+        layout: {
+        'symbol-placement': 'line',
+        'symbol-spacing': [
+            'interpolate',
+            ['linear'],
+            ['zoom'],
+            farZoom, 1,
+            closeZoom, 60
+        ],
+        'icon-image': "cross-icon",
+        'icon-size': [
+            'interpolate',
+            ['linear'],
+            ['zoom'],
+            farZoom, 1,
+            closeZoom, 2
+            ],
+        }
     });
 }
 
