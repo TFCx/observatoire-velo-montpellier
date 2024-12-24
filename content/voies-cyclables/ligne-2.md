@@ -10,8 +10,21 @@ cover: https://rouelibre.net/wp-content/uploads/2024/11/REV2-IMG_3959.jpg
 
 ## Les tronçons (du Sud au Nord)
 
-### Chambéry (Palais de Justice) - Chambéry (Pont des Chèvres)
-<span style="color:blue;font-weight:bold">Satisfaisant</span> La piste démarre de la :line-link{line=1} sur la place du Palais de Justice. Elle rejoint la gare de Chambéry puis se poursuit en voie verte sur l'avenue de la Boisse et passe sous la VRU (Voie Rapide Urbaine) au niveau du Pont des chèvres.
+### Chambéry (Palais de Justice) - Chambéry (gare)
+<span style="color:blue;font-weight:bold">Satisfaisant</span> La piste démarre de la :line-link{line=1} sur la place du Palais de Justice par une piste cyclable puis une voie de bus partagée.
+
+::content-image
+---
+imageUrl: https://rouelibre.net/wp-content/uploads/2024/12/Piste2gare.jpg
+caption: Place de la gare (Chambéry)
+credit: Roue Libre
+---
+::
+
+### Chambéry (Gare) - Chambéry (Pont des Chèvres)
+<span style="color:red;font-weight:bold">A améliorer</span> De la gare de Chambéry la piste se poursuit en trottoir partagé sur l'avenue de la Boisse, aménagement mixte non adpaté au flux pietons et cycles.
+
+<span style="color:blue;font-weight:bold">Satisfaisant</span> Après la liaison Cassine - Vetrotex la piste se en voie verte sur l'avenue de la Boisse puis passe sous la VRU (Voie Rapide Urbaine) au niveau du Pont des chèvres.
 
 ::content-image
 ---
@@ -22,7 +35,7 @@ credit: Roue Libre
 ::
 
 ::banner{type="info"}
-Passerelle Vetrotex. Au moment de l’inauguration de la nouvelle passerelle Vetrotex, Roue Libre a adressé un courrier à la Mairie de Chambéry pour demander la mise en place d’une connexion cyclable continue, cohérente et sécurisée avec les quartiers Cassine et Vétrotex. Sans aménagement satisfaisant observé à ce jour. <a href="https://rouelibre.net/wp-content/uploads/2023/05/2021-03-Courrier-RL-a-Chambery.-Liaison-Vetrotex-Cassine-BAT.pdf/" target="_blank">Courrier du 9 mars 2021</a>
+Passerelle Vetrotex. En mars 2021, lors de l’inauguration de la nouvelle passerelle Vetrotex, Roue Libre a adressé un courrier à la Mairie de Chambéry pour demander la mise en place d’une connexion cyclable continue, cohérente et sécurisée avec les quartiers Cassine et Vétrotex. Sans aménagement satisfaisant observé à ce jour. <a href="https://rouelibre.net/wp-content/uploads/2023/05/2021-03-Courrier-RL-a-Chambery.-Liaison-Vetrotex-Cassine-BAT.pdf/" target="_blank">Courrier du 9 mars 2021</a>
 ::
 
 ### Passage à niveau - Chambéry (avenue des Landiers)

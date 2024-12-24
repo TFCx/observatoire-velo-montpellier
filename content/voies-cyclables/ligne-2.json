@@ -54,9 +54,9 @@
         "line": 2,
         "name": "Place de la gare",
         "quality": "",
-        "doneAt": "01\/11\/2019",
-        "status": "postponed",
-        "type": "aucun",
+        "doneAt": "01\/12\/2024",
+        "status": "done",
+        "type": "voie-bus",
         "link": "/rev-2"
       },
       "geometry": {
@@ -64,12 +64,6 @@
         "coordinates": [
           [5.919885,45.569804],
           [5.919941,45.569893],
-          [5.91982,45.569917],
-          [5.919705,45.570033],
-          [5.91956,45.570228],
-          [5.919464,45.570345],
-          [5.919485,45.5704],
-          [5.919651,45.570473],
           [5.919716,45.570535]
           ]
       }
@@ -78,11 +72,11 @@
       "type": "Feature",
       "properties": {
         "line": 2,
-        "name": "Avenue de la Boisse",
+        "name": "Avenue de la Boisse Sud",
         "quality": "",
         "doneAt": "01\/11\/2019",
-        "status": "done",
-        "type": "voie-bus",
+        "status": "unknown",
+        "type": "voie-verte",
         "link": "/rev-2"
       },
       "geometry": {
@@ -105,7 +99,7 @@
       "type": "Feature",
       "properties": {
         "line": 2,
-        "name": "Avenue de la Boisse",
+        "name": "Avenue de la Boisse 2",
         "quality": "",
         "doneAt": "01\/01\/2000",
         "status": "done",
@@ -126,7 +120,7 @@
       "type": "Feature",
       "properties": {
         "line": 2,
-        "name": "Avenue de la Boisse",
+        "name": "Avenue de la Boisse 3",
         "status": "done",
         "type": "voie-verte",
         "link": "/rev-2"
