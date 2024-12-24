@@ -85,7 +85,7 @@
         "name": "Avenue de la Boisse Sud",
         "quality": "",
         "doneAt": "01\/01\/2000",
-        "status": "unknown",
+        "status": "postponed",
         "type": "voie-verte",
         "link": "/rev-2#avenue-de-la-boisse-sud"
       },
@@ -131,7 +131,7 @@
         "name": "Avenue des landiers - Passage à niveau",
         "status": "postponed",
         "type": "bandes-cyclables",
-        "link": "/rev-2#passage-a-niveau"
+        "link": "/rev-2#passage-à-niveau"
       },
       "geometry": {
         "type": "LineString",
