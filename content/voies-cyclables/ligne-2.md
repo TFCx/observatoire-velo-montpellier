@@ -79,3 +79,5 @@ credit: Roue Libre
 ### Landiers Nord
 
 La voie verte et la Piste Bleue n°2 se terminent quelques dizaines de mètres avant le siège de Grand Chambéry.
+
+A ce niveau, il est possible de rejoindre la :line-link{line=1} via un aménagement sécurisé le long de la rue du Nant Bruyant et le passage au dessus la Voie Rapide Urbaine.
