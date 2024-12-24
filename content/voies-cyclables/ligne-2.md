@@ -21,8 +21,10 @@ credit: Roue Libre
 ---
 ::
 
-### Chambéry (Gare) - Chambéry (Pont des Chèvres)
+### Avenue de la Boisse Sud
 <span style="color:red;font-weight:bold">A améliorer</span> De la gare de Chambéry la piste se poursuit en trottoir partagé sur l'avenue de la Boisse, aménagement mixte non adpaté au flux pietons et cycles.
+
+### Avenue de la Boisse Nord
 
 <span style="color:blue;font-weight:bold">Satisfaisant</span> Après la liaison Cassine - Vetrotex la piste se en voie verte sur l'avenue de la Boisse puis passe sous la VRU (Voie Rapide Urbaine) au niveau du Pont des chèvres.
 
@@ -38,7 +40,7 @@ credit: Roue Libre
 Passerelle Vetrotex. En mars 2021, lors de l’inauguration de la nouvelle passerelle Vetrotex, Roue Libre a adressé un courrier à la Mairie de Chambéry pour demander la mise en place d’une connexion cyclable continue, cohérente et sécurisée avec les quartiers Cassine et Vétrotex. Sans aménagement satisfaisant observé à ce jour. <a href="https://rouelibre.net/wp-content/uploads/2023/05/2021-03-Courrier-RL-a-Chambery.-Liaison-Vetrotex-Cassine-BAT.pdf/" target="_blank">Courrier du 9 mars 2021</a>
 ::
 
-### Passage à niveau - Chambéry (avenue des Landiers)
+### Passage à niveau
 
 <span style="color:red;font-weight:bold">À améliorer</span> Bandes cyclables mixte avec la circulation des piétons.
 Les traversées cyclables et jonctions avec la voie verte de la Boisse et la voie verte des Landiers ne sont pas satisfaisantes. La manoeuvre pour rejoindre la voie verte des Landiers est particulièrement dangereuse.

@@ -64,24 +64,7 @@
         "coordinates": [
           [5.919885,45.569804],
           [5.919941,45.569893],
-          [5.919716,45.570535]
-          ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "line": 2,
-        "name": "Avenue de la Boisse Sud",
-        "quality": "",
-        "doneAt": "01\/11\/2019",
-        "status": "unknown",
-        "type": "voie-verte",
-        "link": "/rev-2"
-      },
-      "geometry": {
-        "type": "LineString",
-        "coordinates": [
+          [5.919716,45.570535],
           [5.919716,45.570544],
           [5.91971,45.570677],
           [5.919694,45.570723],
@@ -99,12 +82,12 @@
       "type": "Feature",
       "properties": {
         "line": 2,
-        "name": "Avenue de la Boisse 2",
+        "name": "Avenue de la Boisse Sud",
         "quality": "",
         "doneAt": "01\/01\/2000",
-        "status": "done",
+        "status": "unknown",
         "type": "voie-verte",
-        "link": "/rev-2"
+        "link": "/rev-2#avenue-de-la-boisse-sud"
       },
       "geometry": {
         "type": "LineString",
@@ -120,10 +103,10 @@
       "type": "Feature",
       "properties": {
         "line": 2,
-        "name": "Avenue de la Boisse 3",
+        "name": "Avenue de la Boisse Nord",
         "status": "done",
         "type": "voie-verte",
-        "link": "/rev-2"
+        "link": "/rev-2#avenue-de-la-boisse-nord"
       },
       "geometry": {
         "type": "LineString",
@@ -148,7 +131,7 @@
         "name": "Avenue des landiers - Passage à niveau",
         "status": "postponed",
         "type": "bandes-cyclables",
-        "link": "/rev-2"
+        "link": "/rev-2#passage-a-niveau"
       },
       "geometry": {
         "type": "LineString",
@@ -164,7 +147,7 @@
         "name": "Avenue des landiers",
         "status": "done",
         "type": "voie-verte",
-        "link": "/rev-2"
+        "link": "/rev-2#avenue-des-landiers"
       },
       "geometry": {
         "type": "LineString",
