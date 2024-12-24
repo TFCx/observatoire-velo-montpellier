@@ -4,7 +4,7 @@ line: 2
 from: Chambéry (Palais de Justice)
 to: Chambéry (Landiers)
 description: La Piste Bleue 2 permet de relier le centre ville de Chambéry à la zone des Landiers Sud via la gare de Chambéry.
-trafic: non connu
+trafic: 560 vélos/jour
 cover: https://rouelibre.net/wp-content/uploads/2024/11/REV2-IMG_3959.jpg
 ---
 
