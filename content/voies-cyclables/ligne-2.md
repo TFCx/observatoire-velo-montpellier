@@ -57,6 +57,7 @@ credit: Roue Libre
 
 <span style="color:blue;font-weight:bold">Satisfaisant</span> La voie verte est continue du passage à niveau au carrefour du Nant Bruyant.
 Les traversées des carrefours et des sorties de commerces sont matérialisés par un simple marquage au sol.
+Une bande cyclable est également présente sur la chaussée dans le sens Sud-Nord.
 ::content-image
 ---
 imageUrl: https://rouelibre.net/wp-content/uploads/2024/11/REV2-IMG_4019.jpg
