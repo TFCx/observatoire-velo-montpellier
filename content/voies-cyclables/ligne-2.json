@@ -36,7 +36,7 @@
         "doneAt": "01\/11\/2019",
         "status": "done",
         "type": "bidirectionnelle",
-        "link": "/rev-2"
+        "link": "/rev-2#rue-de-la-gare"
       },
       "geometry": {
         "type": "LineString",

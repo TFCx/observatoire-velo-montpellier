@@ -10,8 +10,8 @@ cover: https://rouelibre.net/wp-content/uploads/2024/11/REV2-IMG_3959.jpg
 
 ## Les tronçons (du Sud au Nord)
 
-### Chambéry (Palais de Justice) - Chambéry (gare)
-<span style="color:blue;font-weight:bold">Satisfaisant</span> La piste démarre de la :line-link{line=1} sur la place du Palais de Justice par une piste cyclable puis une voie de bus partagée.
+### Rue de la gare
+<span style="color:blue;font-weight:bold">Satisfaisant</span> La piste démarre de la :line-link{line=1} sur la place du Palais de Justice par une piste cyclable puis une voie de bus partagée devant la gare de Chambéry.
 
 ::content-image
 ---
@@ -22,11 +22,11 @@ credit: Roue Libre
 ::
 
 ### Avenue de la Boisse Sud
-<span style="color:red;font-weight:bold">A améliorer</span> De la gare de Chambéry la piste se poursuit en trottoir partagé sur l'avenue de la Boisse, aménagement mixte non adpaté au flux pietons et cycles.
+<span style="color:red;font-weight:bold">A améliorer</span> De la gare de Chambéry, la piste se poursuit sur l'avenue de la Boisse en voie verte tracée sur le trottoir jusqu'à la jonction vers la Cassine / Vetrotex. Ce trottoir mixte pietons cycles n'est pas adapté aux flux de déplacements.
 
 ### Avenue de la Boisse Nord
 
-<span style="color:blue;font-weight:bold">Satisfaisant</span> Après la liaison Cassine - Vetrotex la piste se en voie verte sur l'avenue de la Boisse puis passe sous la VRU (Voie Rapide Urbaine) au niveau du Pont des chèvres.
+<span style="color:blue;font-weight:bold">Satisfaisant</span> La piste se en voie verte sur l'avenue de la Boisse puis passe sous la VRU (Voie Rapide Urbaine) au niveau du Pont des chèvres.
 
 ::content-image
 ---
@@ -70,7 +70,7 @@ Le passage non sécurisé à contresens du rond point Landiers Sud (Carrefour, B
 ::content-image
 ---
 imageUrl: https://rouelibre.net/wp-content/uploads/2024/11/REV2-IMG_4023.jpg
-caption: Giratoire Carrefour - Avenue des Landiers(Chambéry)
+caption: Giratoire Chamnord - Avenue des Landiers (Chambéry)
 credit: Roue Libre
 ---
 ::
