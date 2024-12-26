@@ -8,11 +8,12 @@
         "type": "perspective",
         "name": "Carrefour du Biollay",
         "line": 7,
-        "imgUrl": "https://rouelibre.net/wp-content/uploads/2024/11/REV7-IMG_4271.jpg"
+        "imgUrl": "https://rouelibre.net/wp-content/uploads/2024/12/REV8-carrefour-du-biollay.jpg"
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [5.929719552199174,45.56720755356375]
+        "coordinates": [5.908176318332551,
+        45.562913181553114]
       }
     },
     {
