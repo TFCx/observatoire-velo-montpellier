@@ -11,7 +11,7 @@ cover: https://rouelibre.net/wp-content/uploads/2024/10/Avenue-de-Lyon-liaison-C
 ## Les tronçons (du Sud au Nord)
 
 ### Chambéry Buisson Rond à la Médiathèque Jean-Jacques Rousseau
-Bandes cyclables, pistes sur trottoir puis aucun aménagement Rue de la République (Manège).
+<span style="color:red;font-weight:bold">A améliorer</span> Bandes cyclables, pistes sur trottoir puis aucun aménagement Rue de la République (Manège).
 Tronçon direct mais discontinu, peu capacitaire et peu lisible
 
 ::content-image
@@ -23,19 +23,24 @@ credit: Roue Libre
 ::
 
 ### Place Monge Place Caffe
+<span style="color:red;font-weight:bold">A améliorer</span> 
+
 ::banner{type="wip"}
 Piste cyclable bidirectionnelle provisoire créée en 2021.
 En attente de la pérénnisation et de la mise en place de continuités cyclables aux entrées et sorties
 ::
 
 ### Avenue de Lyon
-Bandes cyclables incompatibles avec un trafic automobile de près de 8000 véhicules jours
+<span style="color:red;font-weight:bold">A améliorer</span> Bandes cyclables incompatibles avec un trafic automobile de près de 8000 véhicules jours
 ::banner{type="info"}
 Avril 2024 Lancement d'une étude de faisabilité Cognin et Chambéry par Grand Chambéry
 ::
 
+### Chemin des Capucins
+<span style="color:blue;font-weight:bold">Satisfaisant</span> Piste cyclable bidirectionelle
+
 ### Cognin
-Piste cyclable chemin des vieux capucins puis aucun aménagement dans le centre ville de Cognin
+<span style="color:red;font-weight:bold">A améliorer</span> Piste cyclable chemin des vieux capucins puis aucun aménagement dans le centre ville de Cognin
 
 
 
