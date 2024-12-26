@@ -90,4 +90,8 @@ caption: Voie verte Sud - Belle Via - Traversée de Buisson Rond
 
 ### Avenue Verte Sud Barberaz
 
-<span style="color:blue;font-weight:bold">Satisfaisant</span>  Après la traversée de Buisson Rond, la piste suit toujours la Voie Verte Belle Via, puis croise le départ de la :line-link{line=5} au carrefour de La Villette et se poursuit vers Saint Baldoph et Myans.
+<span style="color:blue;font-weight:bold">Satisfaisant</span> Après la traversée de Buisson Rond, la piste suit toujours la Voie Verte Belle Via, puis croise le départ de la :line-link{line=5} au carrefour de La Villette.
+
+### Avenue Verte Sud La Ravoire
+
+<span style="color:blue;font-weight:bold">Satisfaisant</span> Du carrefour de La Villette, point de départ de la :line-link{line=5}, la piste se poursuit vers Saint Baldoph puis Myans.
