@@ -63,7 +63,7 @@
       "doneAt": "31\/04\/2023",
       "status": "done",
       "type": "bidirectionnelle",
-      "link": "/rev-7"
+      "link": "/rev-7#qaui-borrel"
     },
     "geometry": {
       "type": "LineString",
@@ -83,7 +83,7 @@
       "quality": "",
       "status": "postponed",
       "type": "bandes-cyclables",
-      "link": "/rev-7"
+      "link": "/rev-7#quai-de-la-rize"
     },
     "geometry": {
       "type": "LineString",
@@ -109,7 +109,7 @@
           "quality": "",
           "status": "postponed",
           "type": "aucun",
-          "link": "/rev-7"
+          "link": "/rev-7#rue-de-serbie"
         },
         "geometry": {
           "type": "LineString",
@@ -133,12 +133,11 @@
         "type": "Feature",
         "properties": {
           "line": 7,
-          "name": "Voie Verte Belle Via",
-          "quality": "good",
-          "doneAt": "31\/12\/1997",
-          "status": "done",
+          "name": "Voie Verte sud - Belle Via",
+          "quality": "",
+          "status": "postponed",
           "type": "voie-verte",
-          "link": "/rev-7"
+          "link": "/rev-7#avenue-verte-sud"
         },
         "geometry":{
         "type": "LineString",
@@ -158,12 +157,11 @@
         "type": "Feature",
         "properties": {
           "line": 7,
-          "name": "Voie Verte Belle Via",
-          "quality": "good",
-          "doneAt": "31\/12\/1997",
-          "status": "done",
+          "name": "Parc de Buisson Rond",
+          "quality": "",
+          "status": "postponed",
           "type": "voie-verte",
-          "link": "/rev-7"
+          "link": "/rev-7#parc-buisson-rond"
         },
         "geometry":{
         "type": "LineString",
@@ -221,7 +219,7 @@
           "doneAt": "31\/12\/1997",
           "status": "done",
           "type": "voie-verte",
-          "link": "/rev-7"
+          "link": "/rev-7#avenue-verte-sud-barberaz"
         },
         "geometry":{
         "type": "LineString",

@@ -3,7 +3,7 @@ name: Piste 7
 line: 7
 from: Chambéry (Eléphants) 
 to: Myans
-description: La Piste Bleue 7 est dessinée sur la voie Verte Belle Via (ex V63). Elle permet de relier Chambéry à Saint Baldoph sur le territoire de Grand Chambéry, puis de poursuivre vers Myans puis vers le lac Saint André. Elle permettra de rejoindre par des aménagements sécurisés Albertville et Grenoble (projet du Département de la Savoie).
+description: La Piste Bleue 7 est dessinée sur la voie Verte Belle Via (ex V63). Elle permet de relier Chambéry à Saint Baldoph sur le territoire de Grand Chambéry, puis de poursuivre vers Myans et le lac Saint André. L'aménagement de la Belle Via vers Montmélian puis Albertville ou Grenoble est en cours de réflexion (projet porté par le Département de la Savoie).
 trafic: 1000 vélos/jour
 cover: https://rouelibre.net/wp-content/uploads/2024/11/REV-7-IMG_4183.jpg
 ---
@@ -31,7 +31,7 @@ Lors de cet aménagement, les carrefours n'ont pas été modifiés et les connex
 ::
 
 ### Quai Borrel
-Elle rejoint le quai Borrel par une piste cyclable bidirectionnelle de 3 à 3,5m de large.
+Elle dessert le quai Borrel par une piste cyclable bidirectionnelle de 3,5m de large.
 
 ::content-image
 ---
@@ -55,7 +55,7 @@ credit: Roue Libre
 ::
 
 ### Rue de Serbie
-<span style="color:black;font-weight:bold">Non satisfaisant</span> Aucun aménagement sur ce tronçons liaison entre les deux voies vertes de Chambéry. Le giratoire Paul Chevallier est un point noir.
+<span style="color:black;font-weight:bold">Non satisfaisant</span> Aucun aménagement cyclable sur cette jonction entre les deux voies vertes de Chambéry (Voie verte de la Leysse et Voie verte Sud-Belle Via) via la rue de Serbie et le giratoire Paul Chevalier.
 
 ::content-image
 ---
@@ -65,19 +65,21 @@ credit: Roue Libre
 ---
 ::
 
-### Voie Verte Sud
+### Avenue Verte Sud
 *tronçon de la Belle Via*
 
-<span style="color:red;font-weight:bold">À améliorer</span> La voie verte est bosselée avec des candélabres situés au centre de celle-ci.
+<span style="color:red;font-weight:bold">À améliorer</span> Ce tronçon, entre le giratoire Paul Chevalier est bosselée avec des candélabres situés au centre de celle-ci.
 
 ::content-image
 ---
 imageUrl: https://rouelibre.net/wp-content/uploads/2024/11/REV7-IMG_4201.jpg
-caption: Voie verte Sud
+caption: Avenue Verte Sud
 ---
 ::
 
-<span style="color:blue;font-weight:bold">Satisfaisant</span> Voie verte historique de Grand Chambéry. Elle croise le départ de la :line-link{line=5} au carrefour de La Villette puis se poursuit vers Saint Baldoph et Myans.
+### Parc Buisson Rond
+
+<span style="color:red;font-weight:bold">A améliorer</span> L'Avenue Verte Sud est une voie verte historique de Grand Chambéry. Elle traverse actuellement le Parc de Buisson Rond avec un aménagement de largeur 3 mètres en mixité pietons - cycles. Ce tracé sineux, de largeur de 3 mètres avec la présence de nombreux promeneurs est à améliorer.
 
 ::content-image
 ---
@@ -85,3 +87,7 @@ imageUrl: https://rouelibre.net/wp-content/uploads/2024/11/REV-7-IMG_4193.jpg
 caption: Voie verte Sud - Belle Via - Traversée de Buisson Rond
 ---
 ::
+
+### Avenue Verte Sud Barberaz
+
+<span style="color:blue;font-weight:bold">Satisfaisant</span>  Après la traversée de Buisson Rond, la piste suit toujours la Voie Verte Belle Via, puis croise le départ de la :line-link{line=5} au carrefour de La Villette et se poursuit vers Saint Baldoph et Myans.
