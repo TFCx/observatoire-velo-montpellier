@@ -42,7 +42,10 @@ Avril 2024 Lancement d'une étude de faisabilité Cognin et Chambéry par Grand 
 ### Cognin
 <span style="color:red;font-weight:bold">A améliorer</span> Piste cyclable chemin des vieux capucins puis aucun aménagement dans le centre ville de Cognin
 
+## Fil d'actu
 
+### Lancement d'une étude de faisabilité Cognin et Chambéry par Grand Chambéry
+Depuis le printemps 2024, suite à la mobilisation de Roue Libre et des organisations locales, une étude de fasabilité d'une liaison cyclable à Haut Niveau de Service entre Cognin et la Préfecture (place Caffe) est en cours. Roue Libre a été convié à deux réunions de travail avec le Bureau d'Etude.
 
 ### Fausse inauguration Piste Rouge Cognin Chambéry par Roue Libre
 15 octobre 2024
@@ -60,7 +63,7 @@ credit: Roue Libre
 ::
 
 [Communiqué, revue de presse, photos](https://rouelibre.net/2024/10/15/15-oct-2024-roue-libre-inaugure-la-piste-rouge-n8-cognin-chambery/){:target="_blank"}
-## Fil d'actu
+
 ### Action Roue Libre lors du passage du Tour de France
 3 juillet 2024
 ::content-image
@@ -70,10 +73,6 @@ caption: Image Tour de France 2024
 credit: France 3
 ---
 ::
-
-### Lancement d'une étude de faisabilité Cognin et Chambéry par Grand Chambéry
-juin 2024
-Roue Libre a été convié à une réunion de travail avec le Bureau d'Etude
 
 ### Vélorution Cognin - Chambéry
 26 mars 2022
