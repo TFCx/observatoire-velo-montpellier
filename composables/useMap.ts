@@ -57,12 +57,12 @@ function toggleBikeInfraVisibility(map: Map, displayBikeInfra: boolean) {
 export const useMap = () => {
 
   function plotEverything({ map, updated_features }: { map: Map; updated_features?: Feature[] }) {
-    plotBaseBikeInfrastructure(map)
+    //plotBaseBikeInfrastructure(map)
 
     if(updated_features) {
       let lineStringFeatures = updated_features.filter(isLineStringFeature).sort(sortByLine).map(addLineColor);
       let sections = regroupIntoSections(lineStringFeatures)
-      const lanes = separateSectionsIntoLanes(sections)
+      let lanes = separateSectionsIntoLanes(sections)
 
       plotNetwork(map, sections, lanes);
       // setLanesColor(map, displayedLayer.value)
@@ -158,21 +158,19 @@ export const useMap = () => {
   function separateSectionsIntoLanes(features: SectionFeature[]): LaneFeature[] {
     let lanes: LaneFeature[] = []
     features.forEach(f => {
-      f.properties.colors.forEach((c, index) => {
+      f.properties.lines.forEach((lineNo, index) => {
         let lane: LaneFeature = {
           type: f.type,
           properties: {
-            id: f.properties.id,
-            line: f.properties.lines,
+            line: lineNo,
             name: f.properties.name,
             lane_index: index,
-            nb_lanes: f.properties.colors.length,
-            color: c,
+            nb_lanes: f.properties.lines.length,
+            color: getLineColor(lineNo),
             status: f.properties.status,
             quality: f.properties.quality,
             type: f.properties.type,
             doneAt: f.properties.doneAt,
-            link: f.properties.link
           },
           geometry: f.geometry
         }
@@ -210,12 +208,14 @@ export const useMap = () => {
 
   function regroupIntoSections(features: MultiColoredLineStringFeature[]): SectionFeature[] {
     let sections: SectionFeature[] = []
+    let sectionsWithDuplicates = []
     for(let f of features) {
       let newSection =
       {
         type: f.type,
         properties:
         {
+          id: f.properties.id,
           lines: [f.properties.line],
           name: f.properties.name,
           quality: f.properties.quality,
@@ -232,9 +232,20 @@ export const useMap = () => {
           }
         }
       }
-      sections.push(newSection)
+      newSection.properties.lines.sort()
+      sectionsWithDuplicates.push(newSection)
     }
-    return [...new Set(sections)]
+    let treatedId: string[] = []
+    for(let s of sectionsWithDuplicates) {
+      if(s.properties.id && treatedId.includes(s.properties.id)) {
+        continue
+      }
+      sections.push(s)
+      if(s.properties.id) {
+        treatedId.push(s.properties.id)
+      }
+    }
+    return sections
   }
 
   function handleMapClick({ map, features, clickEvent }: { map: Map; features: Feature[]; clickEvent: any }) {

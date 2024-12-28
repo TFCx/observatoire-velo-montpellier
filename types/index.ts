@@ -126,7 +126,7 @@ export type DangerFeature = {
 
 type PointFeature = PerspectiveFeature | CompteurFeature | PumpFeature | DangerFeature;
 
-export type Feature = LineStringFeature | PointFeature | LaneFeature | PolygonFeature;
+export type Feature = SectionFeature | LineStringFeature | PointFeature | LaneFeature | PolygonFeature;
 
 export type Geojson = {
   type: string;
@@ -137,6 +137,10 @@ export type Geojson = {
  * type helpers
  */
 export function isLineStringFeature(feature: Feature): feature is LineStringFeature {
+  return feature.geometry.type === 'LineString';
+}
+
+export function isSectionFeature(feature: Feature): feature is SectionFeature {
   return feature.geometry.type === 'LineString';
 }
 
