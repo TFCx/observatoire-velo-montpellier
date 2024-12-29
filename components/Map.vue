@@ -24,9 +24,10 @@ import BikeInfraControl from '@/maplibre/BikeInfraControl';
 import LayerControl from '@/maplibre/LayerControl';
 import FullscreenControl from '@/maplibre/FullscreenControl';
 import ShrinkControl from '@/maplibre/ShrinkControl';
-import { isLineStringFeature, isPolygonFeature, isSectionFeature, type Feature, type LaneStatus, type LaneType, type PolygonFeature } from '~/types';
+import { isLineStringFeature, isPolygonFeature, isSectionFeature, type Feature, type LaneStatus, type LaneType, type LineStringFeature, type PolygonFeature, type SectionFeature } from '~/types';
 import config from '~/config.json';
 import { setDisplayedLayer } from '~/composables/useMap'
+import { sortByLine } from '~/composables//map/utils';
 
 // const config = useRuntimeConfig();
 // const maptilerKey = config.public.maptilerKey;
@@ -77,19 +78,6 @@ const features = computed(() => {
   console.debug(activeLimitsFeatures.length)
   return activeLineFeatures.concat(activeLimitsFeatures)
 });
-const sections = computed(() => {
-  let activeLineFeatures = (props.features ?? []).filter(feature => {
-    if (isSectionFeature(feature)) {
-      return statuses.value.includes(feature.properties.status) &&
-        types.value.includes(feature.properties.type);
-    }
-    return true;
-  });
-  let activeLimitsFeatures = (props.features ?? []).filter(feature => displayLimits.value && isPolygonFeature(feature))
-  console.debug(activeLimitsFeatures.length)
-  return activeLineFeatures.concat(activeLimitsFeatures)
-});
-
 
 function refreshFilters({ visibleStatuses, visibleTypes }: { visibleStatuses: LaneStatus[]; visibleTypes: LaneType[] }) {
   statuses.value = visibleStatuses;
@@ -191,7 +179,11 @@ onMounted(() => {
 
   map.on('load', async() => {
     await loadImages({ map });
-    plotFeatures({ map, updated_features: features.value });
+
+    let lineStringFeatures = features.value.filter(isLineStringFeature).sort(sortByLine);
+    let sections = regroupIntoSections(lineStringFeatures)
+
+    plotFeatures({ map, updated_sections: sections, updated_features: features.value });
     const tailwindMdBreakpoint = 768;
     if (window.innerWidth > tailwindMdBreakpoint) {
       fitBounds({ map, features: features.value });
@@ -201,21 +193,75 @@ onMounted(() => {
   watch(
     features,
     newFeatures => {
-      plotFeatures({ map, updated_features: newFeatures });
+
+      let lineStringFeatures = newFeatures.filter(isLineStringFeature).sort(sortByLine);
+      let sections = regroupIntoSections(lineStringFeatures)
+
+      plotFeatures({ map, updated_sections: sections, updated_features: newFeatures });
     }
   );
 
   watch(
     () => props.features,
     newFeatures => {
-      plotFeatures({ map, updated_features: newFeatures });
+
+      let lineStringFeatures = newFeatures.filter(isLineStringFeature).sort(sortByLine);
+      let sections = regroupIntoSections(lineStringFeatures)
+
+      plotFeatures({ map, updated_sections: sections, updated_features: newFeatures });
     }
   );
 
 
   map.on('click', clickEvent => {
-    handleMapClick({ map, features: sections.value, clickEvent });
+
+    let lineStringFeatures = features.value.filter(isLineStringFeature).sort(sortByLine);
+    let sections = regroupIntoSections(lineStringFeatures)
+
+    handleMapClick({ map, sections: sections, features: features.value, clickEvent });
   });
+
+  function regroupIntoSections(features: LineStringFeature[]): SectionFeature[] {
+    let sections: SectionFeature[] = []
+    let sectionsWithDuplicates = []
+    for(let f of features) {
+      let newSection =
+      {
+        type: f.type,
+        properties:
+        {
+          id: f.properties.id,
+          lines: [f.properties.line],
+          name: f.properties.name,
+          quality: f.properties.quality,
+          status: f.properties.status,
+          type: f.properties.type,
+          doneAt: f.properties.doneAt,
+        },
+        geometry: f.geometry
+      }
+      if(f.properties.id) {
+        for(let o of features) {
+          if(o != f && f.properties.id == o.properties.id) {
+            newSection.properties.lines.push(o.properties.line)
+          }
+        }
+      }
+      newSection.properties.lines.sort()
+      sectionsWithDuplicates.push(newSection)
+    }
+    let treatedId: string[] = []
+    for(let s of sectionsWithDuplicates) {
+      if(s.properties.id && treatedId.includes(s.properties.id)) {
+        continue
+      }
+      sections.push(s)
+      if(s.properties.id) {
+        treatedId.push(s.properties.id)
+      }
+    }
+    return sections
+  }
 });
 </script>
 

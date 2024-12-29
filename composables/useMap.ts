@@ -56,17 +56,17 @@ function toggleBikeInfraVisibility(map: Map, displayBikeInfra: boolean) {
 
 export const useMap = () => {
 
-  function plotEverything({ map, updated_features }: { map: Map; updated_features?: Feature[] }) {
+  function plotEverything({ map, updated_sections, updated_features }: { map: Map; updated_sections?: SectionFeature[], updated_features?: Feature[] }) {
     //plotBaseBikeInfrastructure(map)
 
-    if(updated_features) {
-      let lineStringFeatures = updated_features.filter(isLineStringFeature).sort(sortByLine);
-      let sections = regroupIntoSections(lineStringFeatures)
-      let lanes = separateSectionsIntoLanes(sections)
+    if(updated_sections) {
+      let lanes = separateSectionsIntoLanes(updated_sections)
 
-      plotNetwork(map, sections, lanes);
+      plotNetwork(map, updated_sections, lanes);
       // setLanesColor(map, displayedLayer.value)
       // watch(displayedLayer, (displayedLayer) => setLanesColor(map, displayedLayer))
+    }
+    if(updated_features) {
 
       plotFeatures({map, updated_features})
     }
@@ -183,49 +183,9 @@ export const useMap = () => {
 
   const { getLineColor } = useColors();
 
-  function regroupIntoSections(features: LineStringFeature[]): SectionFeature[] {
-    let sections: SectionFeature[] = []
-    let sectionsWithDuplicates = []
-    for(let f of features) {
-      let newSection =
-      {
-        type: f.type,
-        properties:
-        {
-          id: f.properties.id,
-          lines: [f.properties.line],
-          name: f.properties.name,
-          quality: f.properties.quality,
-          status: f.properties.status,
-          type: f.properties.type,
-          doneAt: f.properties.doneAt,
-        },
-        geometry: f.geometry
-      }
-      if(f.properties.id) {
-        for(let o of features) {
-          if(o != f && f.properties.id == o.properties.id) {
-            newSection.properties.lines.push(o.properties.line)
-          }
-        }
-      }
-      newSection.properties.lines.sort()
-      sectionsWithDuplicates.push(newSection)
-    }
-    let treatedId: string[] = []
-    for(let s of sectionsWithDuplicates) {
-      if(s.properties.id && treatedId.includes(s.properties.id)) {
-        continue
-      }
-      sections.push(s)
-      if(s.properties.id) {
-        treatedId.push(s.properties.id)
-      }
-    }
-    return sections
-  }
 
-  function handleMapClick({ map, features, clickEvent }: { map: Map; features: Feature[]; clickEvent: any }) {
+
+  function handleMapClick({ map, sections, features, clickEvent }: { map: Map; sections: SectionFeature[], features: Feature[]; clickEvent: any }) {
     const layers = [
       {
         id: 'linestring', // not really a layer id. gather all linestrings.
@@ -254,9 +214,7 @@ export const useMap = () => {
 
           console.debug("name = " + name)
 
-          const allSections = features.filter(isSectionFeature);
-
-          const section = allSections
+          const section = sections
             .find(f => f.properties.name === name);
 
           console.debug("section = " + section?.properties.name)
