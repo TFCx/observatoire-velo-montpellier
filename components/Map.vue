@@ -24,7 +24,7 @@ import BikeInfraControl from '@/maplibre/BikeInfraControl';
 import LayerControl from '@/maplibre/LayerControl';
 import FullscreenControl from '@/maplibre/FullscreenControl';
 import ShrinkControl from '@/maplibre/ShrinkControl';
-import { isLineStringFeature, isPolygonFeature, type Feature, type LaneStatus, type LaneType, type PolygonFeature } from '~/types';
+import { isLineStringFeature, isPolygonFeature, isSectionFeature, type Feature, type LaneStatus, type LaneType, type PolygonFeature } from '~/types';
 import config from '~/config.json';
 import { setDisplayedLayer } from '~/composables/useMap'
 
@@ -68,6 +68,18 @@ const displayLimits = ref(true);
 const features = computed(() => {
   let activeLineFeatures = (props.features ?? []).filter(feature => {
     if (isLineStringFeature(feature)) {
+      return statuses.value.includes(feature.properties.status) &&
+        types.value.includes(feature.properties.type);
+    }
+    return true;
+  });
+  let activeLimitsFeatures = (props.features ?? []).filter(feature => displayLimits.value && isPolygonFeature(feature))
+  console.debug(activeLimitsFeatures.length)
+  return activeLineFeatures.concat(activeLimitsFeatures)
+});
+const sections = computed(() => {
+  let activeLineFeatures = (props.features ?? []).filter(feature => {
+    if (isSectionFeature(feature)) {
       return statuses.value.includes(feature.properties.status) &&
         types.value.includes(feature.properties.type);
     }
@@ -202,7 +214,7 @@ onMounted(() => {
 
 
   map.on('click', clickEvent => {
-    handleMapClick({ map, features: features.value, clickEvent });
+    handleMapClick({ map, features: sections.value, clickEvent });
   });
 });
 </script>

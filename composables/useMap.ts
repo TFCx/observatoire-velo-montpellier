@@ -1,7 +1,7 @@
 import { Map, Popup } from 'maplibre-gl';
 import { createApp, defineComponent, h, Suspense } from 'vue';
 import type { CounterParsedContent } from '../types/counters';
-import { isLineStringFeature, type Feature, type LaneFeature, type LineStringFeature, type CompteurFeature, type SectionFeature, type MultiColoredLineStringFeature} from '~/types';
+import { isLineStringFeature, type Feature, type LaneFeature, type LineStringFeature, type CompteurFeature, type SectionFeature, type MultiColoredLineStringFeature, isSectionFeature} from '~/types';
 import { ref } from 'vue';
 
 import { drawCurrentNetwork, drawFinishedNetwork, addListnersForHovering } from "./map/network";
@@ -60,7 +60,7 @@ export const useMap = () => {
     //plotBaseBikeInfrastructure(map)
 
     if(updated_features) {
-      let lineStringFeatures = updated_features.filter(isLineStringFeature).sort(sortByLine).map(addLineColor);
+      let lineStringFeatures = updated_features.filter(isLineStringFeature).sort(sortByLine);
       let sections = regroupIntoSections(lineStringFeatures)
       let lanes = separateSectionsIntoLanes(sections)
 
@@ -183,30 +183,7 @@ export const useMap = () => {
 
   const { getLineColor } = useColors();
 
-  function addLineColor(feature: LineStringFeature): MultiColoredLineStringFeature {
-    return {
-      ...feature,
-      properties: {
-        colors: [getLineColor(feature.properties.line)],
-        ...feature.properties
-      }
-    };
-  }
-
-  function addOtherLineColor(features: MultiColoredLineStringFeature[]): MultiColoredLineStringFeature[] {
-    for(let f of features) {
-      if(f.properties.id) {
-        for(let o of features) {
-          if(o != f && f.properties.id == o.properties.id) {
-            f.properties.colors.push(o.properties.colors[0])
-          }
-        }
-      }
-    }
-    return features
-  }
-
-  function regroupIntoSections(features: MultiColoredLineStringFeature[]): SectionFeature[] {
+  function regroupIntoSections(features: LineStringFeature[]): SectionFeature[] {
     let sections: SectionFeature[] = []
     let sectionsWithDuplicates = []
     for(let f of features) {
@@ -273,19 +250,22 @@ export const useMap = () => {
             ]
           })[0];
 
-          const line = mapFeature.properties.line;
           const name = mapFeature.properties.name;
 
-          const lineStringFeatures = features.filter(isLineStringFeature);
+          console.debug("name = " + name)
 
-          const feature = lineStringFeatures
-            .find(f => f.properties.line === line && f.properties.name === name);
+          const allSections = features.filter(isSectionFeature);
 
-          const lines = feature!.properties.id
-            ? [...new Set(lineStringFeatures.filter(f => f.properties.id === feature!.properties.id).map(f => f.properties.line))]
-            : [feature!.properties.line];
+          const section = allSections
+            .find(f => f.properties.name === name);
 
-          return { feature, lines };
+          console.debug("section = " + section?.properties.name)
+
+          const lines = section?.properties.lines;
+
+          console.debug("lines = " + lines)
+
+          return { section, lines };
         },
         component: LineTooltip
       },
