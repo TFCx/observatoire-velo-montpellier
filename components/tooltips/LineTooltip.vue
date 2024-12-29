@@ -75,7 +75,7 @@
 </template>
 
 <script setup lang="ts">
-import type { LineStringFeature } from '~/types';
+import type { LineStringFeature, SectionFeature } from '~/types';
 
 const { getLineColor } = useColors();
 const { getRevName } = useConfig();
@@ -83,7 +83,7 @@ const { getDistance, typologyNames, qualityNames } = useStats();
 const { getVoieCyclablePath } = useUrl();
 
 const { feature, lines } = defineProps<{
-  feature: LineStringFeature;
+  feature: SectionFeature;
   lines: number[];
 }>();
 
@@ -91,11 +91,11 @@ const title = computed(() => {
   return lines.length > 1 ? getRevName() : getRevName('singular');
 });
 
-function getSectionDetailsUrl(properties: LineStringFeature['properties']): string {
-  if (properties.link) {
-    return properties.link;
-  }
-  return getVoieCyclablePath(properties.line);
+function getSectionDetailsUrl(properties: SectionFeature['properties']): string {
+  // if (properties.link) {
+  //   return properties.link;
+  // }
+  return getVoieCyclablePath(properties.lines[0]);
 }
 
 function getDoneAtText(doneAt: string): string {
@@ -108,7 +108,7 @@ function getDoneAtText(doneAt: string): string {
   return `le ${doneAt}`;
 }
 
-function getStatus(properties: LineStringFeature['properties']): { label: string, class: string; date?: string } {
+function getStatus(properties: SectionFeature['properties']): { label: string, class: string; date?: string } {
   const statusMapping = {
     done: {
       label: 'terminé',

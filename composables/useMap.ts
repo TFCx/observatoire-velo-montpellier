@@ -1,7 +1,7 @@
 import { Map, Popup } from 'maplibre-gl';
 import { createApp, defineComponent, h, Suspense } from 'vue';
 import type { CounterParsedContent } from '../types/counters';
-import { isLineStringFeature, type Feature, type LaneFeature, type LineStringFeature, type CompteurFeature, type SectionFeature, type MultiColoredLineStringFeature, isSectionFeature} from '~/types';
+import { isLineStringFeature, type Feature, type LaneFeature, type LineStringFeature, type CompteurFeature, type PerspectiveFeature, type SectionFeature, type MultiColoredLineStringFeature, isSectionFeature, type DangerFeature} from '~/types';
 import { ref } from 'vue';
 
 import { drawCurrentNetwork, drawFinishedNetwork, addListnersForHovering } from "./map/network";
@@ -183,7 +183,13 @@ export const useMap = () => {
 
   const { getLineColor } = useColors();
 
+  function ensure<T>(argument: T | undefined | null, message: string = 'This value was promised to be there.'): T {
+    if (argument === undefined || argument === null) {
+      throw new TypeError(message);
+    }
 
+    return argument;
+  }
 
   function handleMapClick({ map, sections, features, clickEvent }: { map: Map; sections: SectionFeature[], features: Feature[]; clickEvent: any }) {
     const layers = [
@@ -212,18 +218,11 @@ export const useMap = () => {
 
           const name = mapFeature.properties.name;
 
-          console.debug("name = " + name)
+          const section = ensure(sections.find(f => f.properties.name === name));
 
-          const section = sections
-            .find(f => f.properties.name === name);
+          const lines = section.properties.lines;
 
-          console.debug("section = " + section?.properties.name)
-
-          const lines = section?.properties.lines;
-
-          console.debug("lines = " + lines)
-
-          return { section, lines };
+          return { feature: section, lines: lines };
         },
         component: LineTooltip
       },
@@ -237,9 +236,10 @@ export const useMap = () => {
         getTooltipProps: () => {
           const mapFeature = map.queryRenderedFeatures(clickEvent.point, { layers: ['perspectives'] })[0];
           const feature = features.find(f => {
-            return f.properties.type === 'perspective' &&
-            f.properties.line === mapFeature.properties.line &&
-            f.properties.imgUrl === mapFeature.properties.imgUrl;
+            let ftyped = <PerspectiveFeature> f
+            return ftyped.properties.type === 'perspective' &&
+            ftyped.properties.line === mapFeature.properties.line &&
+            ftyped.properties.imgUrl === mapFeature.properties.imgUrl;
           });
 
           return { feature };
@@ -255,7 +255,10 @@ export const useMap = () => {
         },
         getTooltipProps: () => {
           const mapFeature = map.queryRenderedFeatures(clickEvent.point, { layers: ['compteurs'] })[0];
-          const feature = features.find(f => f.properties.name === mapFeature.properties.name);
+          const feature = features.find(f => {
+            let ftyped = <CompteurFeature> f
+            ftyped.properties.name === mapFeature.properties.name
+          });
           return { feature };
         },
         component: CounterTooltip
@@ -269,7 +272,10 @@ export const useMap = () => {
         },
         getTooltipProps: () => {
           const mapFeature = map.queryRenderedFeatures(clickEvent.point, { layers: ['dangers'] })[0];
-          const feature = features.find(f => f.properties.name === mapFeature.properties.name);
+          const feature = features.find(f => {
+            let ftyped = <DangerFeature> f
+            ftyped.properties.name === mapFeature.properties.name
+          });
           return { feature };
         },
         component: DangerTooltip
