@@ -1,5 +1,5 @@
 import { GeoJSONSource, Map, type ExpressionSpecification } from 'maplibre-gl';
-import { type Feature, type LaneFeature, type LineStringFeature} from '~/types';
+import { type Feature, type LaneFeature, type LineStringFeature, type SectionFeature} from '~/types';
 import { ref } from 'vue';
 
 const { getNbVoiesCyclables } = useConfig();
@@ -21,11 +21,11 @@ const laneDashWIP = [1.0, 1.05]
 
 const nbLanes: ExpressionSpecification = ['get', 'nb_lanes']
 const laneIndex: ExpressionSpecification = ['get', 'lane_index']
-const sectionWidth: ExpressionSpecification = ["*", laneWidth, nbLanes]
+const allLanesWidth: ExpressionSpecification = ["*", laneWidth, nbLanes]
+const sectionWidth: ExpressionSpecification = ['*', laneWidth, ['length', ['get', 'lines']]]
 const halfLaneWidth: ExpressionSpecification = ["/", laneWidth, 2]
-const halfSectionWidth: ExpressionSpecification = ["/", sectionWidth, 2]
 const laneColor: ExpressionSpecification = ["to-color", ['get', 'color']]
-const leftmostOffset: ExpressionSpecification = ['+', ['-', 0, halfSectionWidth], halfLaneWidth]
+const leftmostOffset: ExpressionSpecification = ['+', ['-', 0, ["/", allLanesWidth, 2]], halfLaneWidth]
 const offsetLane: ExpressionSpecification = ['+', leftmostOffset, ['*', laneIndex, laneWidth]]
 
 
@@ -51,7 +51,7 @@ function filterSections(lanes: LaneFeature[], options: {done: boolean, wip: bool
 }
 
 
-function drawCurrentNetwork(map: Map, lanes: LaneFeature[]) {
+function drawCurrentNetwork(map: Map, sections: SectionFeature[], lanes: LaneFeature[]) {
 
     let wasUpdatingAllSection = upsertMapSource(map, 'all-sections', lanes)
     let wasUpdatingAllSectionsDone = upsertMapSource(map, 'all-sections-done', filterSections(lanes, {done:true, wip:false, planned:false, postponed:false}))
@@ -266,28 +266,17 @@ function drawCurrentNetwork(map: Map, lanes: LaneFeature[]) {
 }
 
 
-function drawFinishedNetwork(map: Map, lanes: LaneFeature[]) {
-
-    const sections_sure = lanes.filter(s => s.properties.status !== "postponed")
-    const sections_real = sections_sure.filter(s => s.properties.status !== "planned")
-
-
-    let wasUpdatingAllMultiLane = upsertMapSource(map, 'all-multilanes', lanes)
-    let wasUpdatingAllSection = upsertMapSource(map, 'all-sections', lanes)
-    let wasUpdatingAllSectionSure = upsertMapSource(map, 'all-sections-sure', sections_sure)
-    let wasUpdatingAllSectionReal = upsertMapSource(map, 'all-sections-real', sections_real)
-    if (wasUpdatingAllMultiLane && wasUpdatingAllSection && wasUpdatingAllSectionSure && wasUpdatingAllSectionReal) {
-        return;
-    }
-
-    if (upsertMapSource(map, 'source-finished-network-all-lanes', lanes)) {
+function drawFinishedNetwork(map: Map, sections: SectionFeature[], lanes: LaneFeature[]) {
+    let wasOnlyUpdatingLanes = upsertMapSource(map, 'src-lanes', lanes)
+    let wasOnlyUpdatingSections = upsertMapSource(map, 'src-sections', sections)
+    if (wasOnlyUpdatingLanes && wasOnlyUpdatingSections) {
         return;
     }
 
     map.addLayer({
         id: 'layer-finished-network-contour',
         type: 'line',
-        source: 'source-finished-network-all-lanes',
+        source: 'src-sections',
         layout: { 'line-cap': 'round' },
         paint: {
         'line-gap-width': sectionWidth,
@@ -299,7 +288,8 @@ function drawFinishedNetwork(map: Map, lanes: LaneFeature[]) {
     map.addLayer({
         id: `layer-finished-network-all-lanes`,
         type: 'line',
-        source: 'source-finished-network-all-lanes',
+        source: 'src-lanes',
+        layout: { 'line-cap': 'round' },
         paint: {
         'line-width': laneWidth,
         'line-color': laneColor,
@@ -307,11 +297,7 @@ function drawFinishedNetwork(map: Map, lanes: LaneFeature[]) {
         }
     });
 
-    // drawSectionBackground(map);
-
-    // drawSectionContour(map);
-
-    // drawHoveredEffect(map);
+    //drawHoveredEffect(map);
 }
 
 

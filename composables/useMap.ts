@@ -80,23 +80,23 @@ export const useMap = () => {
     }
 
     // DONE
-    //drawFinishedNetwork(map, lanesWithId)
+    //drawFinishedNetwork(map, sections, lanesWithId)
 
-    upsertMapSource(map, 'all-sections', sections)
+  //   upsertMapSource(map, 'all-sections', sections)
 
-    map.addLayer({
-      id: 'layer-all-sections-debug',
-      type: 'line',
-      source: 'all-sections',
-      layout: { 'line-cap': 'round' },
-      paint: {
-      'line-width': 10,
-      'line-opacity' : 0.5,
-      'line-color': "#000",
-      }
-  });
+  //   map.addLayer({
+  //     id: 'layer-all-sections-debug',
+  //     type: 'line',
+  //     source: 'all-sections',
+  //     layout: { 'line-cap': 'round' },
+  //     paint: {
+  //     'line-width': 10,
+  //     'line-opacity' : 0.5,
+  //     'line-color': "#000",
+  //     }
+  // });
 
-    //drawCurrentNetwork(map, lanesWithId)
+    drawCurrentNetwork(map, sections, lanesWithId)
 
     // drawLanesPlanned(map, lanes)
 
