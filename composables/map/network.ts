@@ -90,6 +90,7 @@ function drawCurrentNetwork(map: Map, sections: SectionFeature[], lanes: LaneFea
 
     // ------------------------------------------------------------------------
     // Postponed
+    // TODO : refaire postponed comme planned
     map.addLayer({
         id: 'layer-current-network-all-lanes-postponed-contour',
         type: 'line',
