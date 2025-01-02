@@ -13,9 +13,12 @@ enum DisplayedLayer {
 const displayedLayer = ref(DisplayedLayer.Progress);
 
 
+const contourWidth = 1.75
+const blackContourWidth = contourWidth - 0.5
+const dashesWidthRatio = 0.75
 const scaleDownPostponed = 0.70
-const laneWidth = 4
-const laneDashPlanned = [1.7, 0.5]
+const laneWidth = 5
+const laneDashPlanned = [1.5, 0.7]
 const laneDashPostponed = [laneDashPlanned[0] / scaleDownPostponed, laneDashPlanned[1] / scaleDownPostponed]
 const laneDashWIP = [1.0, 1.05]
 
@@ -98,7 +101,7 @@ function drawCurrentNetwork(map: Map, sections: SectionFeature[], lanes: LaneFea
         layout: { 'line-cap': 'round' },
         paint: {
         'line-gap-width': ["*", sectionWidth, scaleDownPostponed],
-        'line-width': 1.3 / 2,
+        'line-width': contourWidth / 2,
         'line-opacity' : 0.75,
         'line-color': laneColor,
         }
@@ -121,7 +124,7 @@ function drawCurrentNetwork(map: Map, sections: SectionFeature[], lanes: LaneFea
         type: 'line',
         source: 'all-sections-postponed',
         paint: {
-            'line-width': ["+", ["*", sectionWidth, scaleDownPostponed], 1.3 * 2 * 0.5],
+            'line-width': ["+", ["*", sectionWidth, scaleDownPostponed], contourWidth * 2 * 0.5],
             'line-color': "#fff",
             'line-opacity' : 0.75 * 0.5,
             }
@@ -132,7 +135,7 @@ function drawCurrentNetwork(map: Map, sections: SectionFeature[], lanes: LaneFea
         type: 'line',
         source: 'all-lanes-postponed',
         paint: {
-            'line-width': laneWidth * scaleDownPostponed,
+            'line-width': laneWidth * scaleDownPostponed * dashesWidthRatio,
             'line-color': "#fff",
             'line-opacity' : 0.9,
             'line-dasharray': laneDashPostponed,
@@ -179,7 +182,7 @@ function drawCurrentNetwork(map: Map, sections: SectionFeature[], lanes: LaneFea
         type: 'line',
         source: 'all-lanes-planned',
         paint: {
-        'line-width': ["+", laneWidth, 1.3 * 2],
+        'line-width': ["+", laneWidth, contourWidth * 2],
         'line-color': laneColor,
         'line-offset': offsetLane,
         }
@@ -202,7 +205,7 @@ function drawCurrentNetwork(map: Map, sections: SectionFeature[], lanes: LaneFea
         source: 'all-sections-planned',
         layout: { 'line-cap': 'round' },
         paint: {
-            'line-width': ["+", sectionWidth, 1.3 * 2],
+            'line-width': ["+", sectionWidth, contourWidth * 2],
             'line-color': "#fff",
             'line-opacity' : 0.75 * 0.5,
             }
@@ -213,7 +216,7 @@ function drawCurrentNetwork(map: Map, sections: SectionFeature[], lanes: LaneFea
         type: 'line',
         source: 'all-lanes-planned',
         paint: {
-            'line-width': laneWidth * 0.9,
+            'line-width': laneWidth * dashesWidthRatio,
             'line-color': "#fff",
             'line-dasharray': laneDashPlanned,
             'line-offset': offsetLane,
@@ -231,7 +234,7 @@ function drawCurrentNetwork(map: Map, sections: SectionFeature[], lanes: LaneFea
         layout: { 'line-cap': 'round' },
         paint: {
         'line-gap-width': sectionWidth,
-        'line-width': 1.3,
+        'line-width': blackContourWidth,
         'line-color': '#000000',
         }
     });
