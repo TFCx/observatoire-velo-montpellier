@@ -42,7 +42,15 @@ export { DisplayedLayer, setDisplayedLayer, drawCurrentNetwork, drawFinishedNetw
 
 let layersBase: string[] = []
 
-function filterSections(lanes: LaneFeature[], options: {done: boolean, wip: boolean, planned: boolean, postponed: boolean}): LaneFeature[] {
+function filterSections(sections: SectionFeature[], options: {done: boolean, wip: boolean, planned: boolean, postponed: boolean}): SectionFeature[] {
+    sections = options.done ? sections : sections.filter(s => s.properties.status !== "done")
+    sections = options.wip ? sections : sections.filter(s => s.properties.status !== "wip")
+    sections = options.planned ? sections : sections.filter(s => s.properties.status !== "planned")
+    sections = options.postponed ? sections : sections.filter(s => s.properties.status !== "postponed")
+    return sections
+}
+
+function filterLanes(lanes: LaneFeature[], options: {done: boolean, wip: boolean, planned: boolean, postponed: boolean}): LaneFeature[] {
     lanes = options.done ? lanes : lanes.filter(s => s.properties.status !== "done")
     lanes = options.wip ? lanes : lanes.filter(s => s.properties.status !== "wip")
     lanes = options.planned ? lanes : lanes.filter(s => s.properties.status !== "planned")
@@ -53,15 +61,26 @@ function filterSections(lanes: LaneFeature[], options: {done: boolean, wip: bool
 
 function drawCurrentNetwork(map: Map, sections: SectionFeature[], lanes: LaneFeature[]) {
 
-    let wasUpdatingAllSection = upsertMapSource(map, 'all-sections', lanes)
-    let wasUpdatingAllSectionsDone = upsertMapSource(map, 'all-sections-done', filterSections(lanes, {done:true, wip:false, planned:false, postponed:false}))
-    let wasUpdatingAllSectionWIP = upsertMapSource(map, 'all-sections-wip', filterSections(lanes, {done:false, wip:true, planned:false, postponed:false}))
-    let wasUpdatingAllSectionPlanned = upsertMapSource(map, 'all-sections-planned', filterSections(lanes, {done:false, wip:false, planned:true, postponed:false}))
-    let wasUpdatingAllSectionPostponed = upsertMapSource(map, 'all-sections-postponed', filterSections(lanes, {done:false, wip:false, planned:false, postponed:true}))
-    let wasUpdatingAllSectionsNotPostponed = upsertMapSource(map, 'all-sections-not-postponed', filterSections(lanes, {done:true, wip:true, planned:true, postponed:false}))
-    let wasUpdatingAllSectionDoneAndWip = upsertMapSource(map, 'all-sections-done-and-wip', filterSections(lanes, {done:true, wip:true, planned:false, postponed:false}))
+    let wasUpdatingAllSection = upsertMapSource(map, 'all-sections', sections)
+    let wasOnlyUpdatingAllLanesDone = upsertMapSource(map, 'all-lanes-done', filterLanes(lanes, {done:true, wip:false, planned:false, postponed:false}))
+    let wasOnlyUpdatingAllLanesWIP = upsertMapSource(map, 'all-lanes-wip', filterLanes(lanes, {done:false, wip:true, planned:false, postponed:false}))
+    let wasOnlyUpdatingAllLanesPlanned = upsertMapSource(map, 'all-lanes-planned', filterLanes(lanes, {done:false, wip:false, planned:true, postponed:false}))
+    let wasOnlyUpdatingAllLanesPostponed = upsertMapSource(map, 'all-lanes-postponed', filterLanes(lanes, {done:false, wip:false, planned:false, postponed:true}))
+    let wasOnlyUpdatingAllLanesNotPostponed = upsertMapSource(map, 'all-lanes-not-postponed', filterLanes(lanes, {done:true, wip:true, planned:true, postponed:false}))
+    let wasOnlyUpdatingAllLanesDoneAndWip = upsertMapSource(map, 'all-lanes-done-and-wip', filterLanes(lanes, {done:true, wip:true, planned:false, postponed:false}))
 
-    if (wasUpdatingAllSectionsDone && wasUpdatingAllSectionWIP && wasUpdatingAllSectionPlanned && wasUpdatingAllSection && wasUpdatingAllSectionsNotPostponed && wasUpdatingAllSectionPostponed && wasUpdatingAllSectionDoneAndWip) {
+    let wasOnlyUpdatingAllSectionsDone = upsertMapSource(map, 'all-sections-done', filterSections(sections, {done:true, wip:false, planned:false, postponed:false}))
+    let wasOnlyUpdatingAllSectionsWIP = upsertMapSource(map, 'all-sections-wip', filterSections(sections, {done:false, wip:true, planned:false, postponed:false}))
+    let wasOnlyUpdatingAllSectionsPlanned = upsertMapSource(map, 'all-sections-planned', filterSections(sections, {done:false, wip:false, planned:true, postponed:false}))
+    let wasOnlyUpdatingAllSectionsPostponed = upsertMapSource(map, 'all-sections-postponed', filterSections(sections, {done:false, wip:false, planned:false, postponed:true}))
+    let wasOnlyUpdatingAllSectionsNotPostponed = upsertMapSource(map, 'all-sections-not-postponed', filterSections(sections, {done:true, wip:true, planned:true, postponed:false}))
+    let wasOnlyUpdatingAllSectionsDoneAndWip = upsertMapSource(map, 'all-sections-done-and-wip', filterSections(sections, {done:true, wip:true, planned:false, postponed:false}))
+
+    if (wasOnlyUpdatingAllLanesDone && wasOnlyUpdatingAllLanesWIP && wasOnlyUpdatingAllLanesPlanned && wasUpdatingAllSection && wasOnlyUpdatingAllLanesNotPostponed && wasOnlyUpdatingAllLanesPostponed && wasOnlyUpdatingAllLanesDoneAndWip) {
+        return;
+    }
+
+    if (wasOnlyUpdatingAllSectionsDone && wasOnlyUpdatingAllSectionsWIP && wasOnlyUpdatingAllSectionsPlanned && wasOnlyUpdatingAllSectionsPostponed && wasOnlyUpdatingAllSectionsNotPostponed && wasOnlyUpdatingAllSectionsDoneAndWip) {
         return;
     }
 
@@ -74,7 +93,7 @@ function drawCurrentNetwork(map: Map, sections: SectionFeature[], lanes: LaneFea
     map.addLayer({
         id: 'layer-current-network-all-lanes-postponed-contour',
         type: 'line',
-        source: 'all-sections-postponed',
+        source: 'all-lanes-postponed',
         layout: { 'line-cap': 'round' },
         paint: {
         'line-gap-width': ["*", sectionWidth, scaleDownPostponed],
@@ -87,7 +106,7 @@ function drawCurrentNetwork(map: Map, sections: SectionFeature[], lanes: LaneFea
     map.addLayer({
         id: `layer-current-network-all-lanes-postponed-background`,
         type: 'line',
-        source: 'all-sections-postponed',
+        source: 'all-lanes-postponed',
         paint: {
             'line-width': laneWidth * scaleDownPostponed,
             'line-color': laneColor,
@@ -101,17 +120,16 @@ function drawCurrentNetwork(map: Map, sections: SectionFeature[], lanes: LaneFea
         type: 'line',
         source: 'all-sections-postponed',
         paint: {
-            'line-width': laneWidth * scaleDownPostponed,
+            'line-width': ["+", ["*", sectionWidth, scaleDownPostponed], 1.3 * 2 * 0.5],
             'line-color': "#fff",
             'line-opacity' : 0.75 * 0.5,
-            'line-offset': offsetLane,
             }
     });
 
     map.addLayer({
         id: `layer-current-network-all-lanes-postponed-dashed`,
         type: 'line',
-        source: 'all-sections-postponed',
+        source: 'all-lanes-postponed',
         paint: {
             'line-width': laneWidth * scaleDownPostponed,
             'line-color': "#fff",
@@ -156,91 +174,55 @@ function drawCurrentNetwork(map: Map, sections: SectionFeature[], lanes: LaneFea
     // ------------------------------------------------------------------------
     // Planned
     map.addLayer({
-        id: 'layer-current-network-all-lanes-planned-contour',
+        id: 'layer-current-network-all-lanes-planned-contour-expanded',
         type: 'line',
-        source: 'all-sections-planned',
-        layout: { 'line-cap': 'round' },
+        source: 'all-lanes-planned',
         paint: {
-        'line-width': 1.3,
+        'line-width': ["+", laneWidth, 1.3 * 2],
         'line-color': laneColor,
-        'line-gap-width': sectionWidth,
+        'line-offset': offsetLane,
         }
     });
 
     map.addLayer({
-        id: `layer-current-network-all-lanes-planned-background`,
+        id: 'layer-current-network-all-lanes-planned-contour',
         type: 'line',
-        source: 'all-sections-planned',
+        source: 'all-lanes-planned',
         paint: {
-            'line-width': ["+", laneWidth, 3.0],
-            'line-color': laneColor,
-            'line-offset': offsetLane,
-            }
+        'line-width': laneWidth,
+        'line-color': laneColor,
+        'line-offset': offsetLane,
+        }
     });
 
     map.addLayer({
         id: `layer-current-network-all-lanes-planned-background-white-scrim`,
         type: 'line',
         source: 'all-sections-planned',
+        layout: { 'line-cap': 'round' },
         paint: {
-            'line-width': ["+", laneWidth, 1.3 * 2],
+            'line-width': ["+", sectionWidth, 1.3 * 2],
             'line-color': "#fff",
-            'line-opacity' : 0.40,
-            'line-offset': offsetLane,
+            'line-opacity' : 0.75 * 0.5,
             }
     });
 
     map.addLayer({
         id: `layer-current-network-all-lanes-planned-dashed`,
         type: 'line',
-        source: 'all-sections-planned',
+        source: 'all-lanes-planned',
         paint: {
-            'line-width': laneWidth * 0.90,
+            'line-width': laneWidth * 0.9,
             'line-color': "#fff",
             'line-dasharray': laneDashPlanned,
             'line-offset': offsetLane,
             }
     });
 
-    // ------------------------------------------------------------------------
-    // WIP
-    map.addLayer({
-        id: `layer-current-network-all-lanes-wip-background`,
-        type: 'line',
-        source: 'all-sections-wip',
-        paint: {
-            'line-width': laneWidth,
-            'line-color': "#fff",
-            'line-offset': offsetLane,
-            }
-    });
 
-    map.addLayer({
-        id: `layer-current-network-all-lanes-wip-dashed`,
-        type: 'line',
-        source: 'all-sections-wip',
-        paint: {
-            'line-width': laneWidth,
-            'line-color': laneColor,
-            'line-dasharray': laneDashWIP,
-            'line-offset': offsetLane,
-            }
-    });
-
-    map.addLayer({
-        id: `layer-current-network-all-lanes-wip-as-done`,
-        type: 'line',
-        source: 'all-sections-wip',
-        paint: {
-            'line-width': laneWidth,
-            'line-color': laneColor,
-            'line-offset': offsetLane,
-            }
-    });
-    animateOpacity(map, 0, 1000*1.50, 'layer-current-network-all-lanes-wip-as-done', 'line-opacity', 0.0, 1.0);
 
     // ------------------------------------------------------------------------
-    // Done
+    // Done & WIP
     map.addLayer({
         id: 'layer-current-network-contour',
         type: 'line',
@@ -253,10 +235,50 @@ function drawCurrentNetwork(map: Map, sections: SectionFeature[], lanes: LaneFea
         }
     });
 
+    // ------------------------------------------------------------------------
+    // WIP
+    map.addLayer({
+        id: `layer-current-network-all-lanes-wip-background`,
+        type: 'line',
+        source: 'all-lanes-wip',
+        paint: {
+            'line-width': laneWidth,
+            'line-color': "#fff",
+            'line-offset': offsetLane,
+            }
+    });
+
+    map.addLayer({
+        id: `layer-current-network-all-lanes-wip-dashed`,
+        type: 'line',
+        source: 'all-lanes-wip',
+        paint: {
+            'line-width': laneWidth,
+            'line-color': laneColor,
+            'line-dasharray': laneDashWIP,
+            'line-offset': offsetLane,
+            }
+    });
+
+    map.addLayer({
+        id: `layer-current-network-all-lanes-wip-as-done`,
+        type: 'line',
+        source: 'all-lanes-wip',
+        paint: {
+            'line-width': laneWidth,
+            'line-color': laneColor,
+            'line-offset': offsetLane,
+            }
+    });
+    animateOpacity(map, 0, 1000*1.50, 'layer-current-network-all-lanes-wip-as-done', 'line-opacity', 0.0, 1.0);
+
+    // ------------------------------------------------------------------------
+    // Done
     map.addLayer({
         id: `layer-current-network-all-lanes-done`,
         type: 'line',
-        source: 'all-sections-done',
+        source: 'all-lanes-done',
+        layout: { 'line-cap': 'round' },
         paint: {
         'line-width': laneWidth,
         'line-color': laneColor,
