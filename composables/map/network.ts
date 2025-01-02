@@ -178,6 +178,18 @@ function drawCurrentNetwork(map: Map, sections: SectionFeature[], lanes: LaneFea
     // ------------------------------------------------------------------------
     // Planned
     map.addLayer({
+        id: 'layer-current-network-all-lanes-planned-black-contour',
+        type: 'line',
+        source: 'all-sections-planned',
+        paint: {
+        'line-gap-width': ["+", sectionWidth, 2.0],
+        'line-width': 2.2,
+        'line-color': '#000000',
+        'line-opacity': 0.33
+        }
+    });
+
+    map.addLayer({
         id: 'layer-current-network-all-lanes-planned-contour-expanded',
         type: 'line',
         source: 'all-lanes-planned',
