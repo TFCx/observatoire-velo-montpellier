@@ -17,6 +17,7 @@ const contourWidth = 1.75
 const blackContourWidth = contourWidth - 0.5
 const dashesWidthRatio = 0.75
 const laneWidth = 5
+const fixedSectionWidth = laneWidth + 1
 const laneDashes = [1.5, 0.7]
 const laneDashWIP = [1.0, 1.05]
 
@@ -28,6 +29,22 @@ const halfLaneWidth: ExpressionSpecification = ["/", laneWidth, 2]
 const laneColor: ExpressionSpecification = ["to-color", ['get', 'color']]
 const leftmostOffset: ExpressionSpecification = ['+', ['-', 0, ["/", allLanesWidth, 2]], halfLaneWidth]
 const offsetLane: ExpressionSpecification = ['+', leftmostOffset, ['*', laneIndex, laneWidth]]
+const sectionQualityColor: ExpressionSpecification = [
+    "case",
+        ["==", ['get', 'quality'], "bad"], "#ff6961",
+        ["==", ['get', 'quality'], "fair"], "#F3F32A",
+        ["==", ['get', 'quality'], "good"], "#77dd77",
+        ["==", ['get', 'status'], "done"], "#000000",
+        "white"
+    ]
+const sectionQualityColorBis: ExpressionSpecification = [
+    "case",
+        ["==", ['get', 'quality'], "fair"], "#ff6961",
+        ["==", ['get', 'quality'], "good"], "#F3F32A",
+        ["==", ['get', 'quality'], "bad"], "#77dd77",
+        ["==", ['get', 'status'], "done"], "#000000",
+        "white"
+    ]
 
 
 let layersWithLanes: string[] = []
@@ -39,7 +56,7 @@ const setDisplayedLayer = (value: DisplayedLayer) => {
 
 import { upsertMapSource } from './utils';
 
-export { DisplayedLayer, setDisplayedLayer, drawCurrentNetwork, drawFinishedNetwork, addListnersForHovering };
+export { DisplayedLayer, setDisplayedLayer, drawCurrentNetwork, drawFinishedNetwork, drawQualityNetwork, addListnersForHovering };
 
 let layersBase: string[] = []
 
@@ -330,6 +347,53 @@ function drawFinishedNetwork(map: Map, sections: SectionFeature[], lanes: LaneFe
         'line-width': laneWidth,
         'line-color': laneColor,
         'line-offset': offsetLane,
+        }
+    });
+
+    //drawHoveredEffect(map);
+}
+
+
+function drawQualityNetwork(map: Map, sections: SectionFeature[], lanes: LaneFeature[]) {
+    let wasOnlyUpdatingLanes = upsertMapSource(map, 'src-lanes', lanes)
+    let wasOnlyUpdatingSections = upsertMapSource(map, 'src-sections', sections)
+    if (wasOnlyUpdatingLanes && wasOnlyUpdatingSections) {
+        return;
+    }
+
+    map.addLayer({
+        id: 'layer-quality-network-contour',
+        type: 'line',
+        source: 'src-sections',
+        layout: { 'line-cap': 'round' },
+        paint: {
+        'line-gap-width': fixedSectionWidth,
+        'line-width': 1.3,
+        'line-color': '#000000',
+        }
+    });
+
+    map.addLayer({
+        id: `layer-quality-network-section-side-1`,
+        type: 'line',
+        source: 'src-sections',
+        layout: { 'line-cap': 'round' },
+        paint: {
+        'line-width': fixedSectionWidth / 2,
+        'line-color': sectionQualityColor,
+        'line-offset': -fixedSectionWidth / 4,
+        }
+    });
+
+    map.addLayer({
+        id: `layer-quality-network-section-side-2`,
+        type: 'line',
+        source: 'src-sections',
+        layout: { 'line-cap': 'round' },
+        paint: {
+        'line-width': fixedSectionWidth / 2,
+        'line-color': sectionQualityColorBis,
+        'line-offset': fixedSectionWidth / 4,
         }
     });
 
