@@ -32,6 +32,7 @@ export type LineStringFeature = {
     name: string;
     status: LaneStatus;
     quality: Quality;
+    qualityB?: Quality;
     type: LaneType;
     doneAt?: string;
     link?: string;
@@ -49,6 +50,7 @@ export type SectionFeature = {
     name: string;
     status: LaneStatus;
     quality: Quality;
+    qualityB?: Quality;
     type: LaneType;
     doneAt?: string;
   };

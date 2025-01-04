@@ -171,6 +171,7 @@ export const useMap = () => {
             color: getLineColor(lineNo),
             status: f.properties.status,
             quality: f.properties.quality,
+            qualityB: f.properties.qualityB,
             type: f.properties.type,
             doneAt: f.properties.doneAt,
           },

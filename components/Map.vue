@@ -234,6 +234,7 @@ onMounted(() => {
           lines: [f.properties.line],
           name: f.properties.name,
           quality: f.properties.quality,
+          qualityB: f.properties.qualityB,
           status: f.properties.status,
           type: f.properties.type,
           doneAt: f.properties.doneAt,

@@ -17,7 +17,7 @@ const contourWidth = 1.75
 const blackContourWidth = contourWidth - 0.5
 const dashesWidthRatio = 0.75
 const laneWidth = 5
-const fixedSectionWidth = laneWidth + 1
+const fixedSectionWidth = laneWidth + 2
 const laneDashes = [1.5, 0.7]
 const laneDashWIP = [1.0, 1.05]
 
@@ -37,11 +37,12 @@ const sectionQualityColor: ExpressionSpecification = [
         ["==", ['get', 'status'], "done"], "#000000",
         "white"
     ]
-const sectionQualityColorBis: ExpressionSpecification = [
+const sectionQualityColorB: ExpressionSpecification = [
     "case",
-        ["==", ['get', 'quality'], "fair"], "#ff6961",
-        ["==", ['get', 'quality'], "good"], "#F3F32A",
-        ["==", ['get', 'quality'], "bad"], "#77dd77",
+        ["!", ['has', 'qualityB']], sectionQualityColor,
+        ["==", ['get', 'qualityB'], "bad"], "#ff6961",
+        ["==", ['get', 'qualityB'], "fair"], "#F3F32A",
+        ["==", ['get', 'qualityB'], "good"], "#77dd77",
         ["==", ['get', 'status'], "done"], "#000000",
         "white"
     ]
@@ -374,26 +375,26 @@ function drawQualityNetwork(map: Map, sections: SectionFeature[], lanes: LaneFea
     });
 
     map.addLayer({
-        id: `layer-quality-network-section-side-1`,
+        id: `layer-quality-network-section-sideA`,
         type: 'line',
         source: 'src-sections',
         layout: { 'line-cap': 'round' },
         paint: {
         'line-width': fixedSectionWidth / 2,
         'line-color': sectionQualityColor,
-        'line-offset': -fixedSectionWidth / 4,
+        'line-offset': fixedSectionWidth / 4,
         }
     });
 
     map.addLayer({
-        id: `layer-quality-network-section-side-2`,
+        id: `layer-quality-network-section-sideB`,
         type: 'line',
         source: 'src-sections',
         layout: { 'line-cap': 'round' },
         paint: {
         'line-width': fixedSectionWidth / 2,
-        'line-color': sectionQualityColorBis,
-        'line-offset': fixedSectionWidth / 4,
+        'line-color': sectionQualityColorB,
+        'line-offset': -fixedSectionWidth / 4,
         }
     });
 
