@@ -28,7 +28,7 @@
           "doneAt": "01\/01\/2020",
           "status": "done",
           "type": "voie-verte",
-          "link": "/rev-6#Rue-des-barreaux"
+          "link": "/rev-6#rue-des-barreaux"
         },
         "geometry": {
           "type": "LineString",
