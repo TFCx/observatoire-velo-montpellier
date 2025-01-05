@@ -12,7 +12,7 @@ cover: https://rouelibre.net/wp-content/uploads/2024/11/REV-7-IMG_4183.jpg
 
 ### Quai Borrel
 
-<span style="color:blue;font-weight:bold">Satisfaisant</span> La Piste 1 débute sur l'avenue des Ducs, à la hauteur de la place des Elephants de Chambéry.
+<span style="color:blue;font-weight:bold">Satisfaisant</span> La Piste 7 débute de la :line-link{line=1} sur l'avenue des Ducs, à la hauteur de la place des Elephants de Chambéry.
 
 ::content-image
 ---
