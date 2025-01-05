@@ -48,15 +48,16 @@ const sectionQualityColorB: ExpressionSpecification = [
     ]
 const sectionTypeColor: ExpressionSpecification = [
     "case",
-        ["==", ['get', 'type'], "monodirectionnelle"], "#0000ff", // bleu
+        ["==", ['get', 'type'], "unidirectionnelle"], "#b3c6ff", // bleu
         ["==", ['get', 'type'], "bidirectionnelle"], "#b3c6ff", // bleu
-        ["==", ['get', 'type'], "bilaterale"], "#b3fbff", // cyan
-        ["==", ['get', 'type'], "bandes-cyclables"], "#c1b3ff", // bleu-violet
-        ["==", ['get', 'type'], "voie-bus"], "#fbb3ff", // violet
-        ["==", ['get', 'type'], "voie-bus-elargie"], "#e1b3ff", // violet
-        ["==", ['get', 'type'], "velorue"], "#fffbb3", // jaune
+        ["==", ['get', 'type'], "bilaterale"], "#b3dbff", // cyan
+        ["==", ['get', 'type'], "bandes-cyclables"], "#b3c6ff", // bleu-violet
+        ["==", ['get', 'type'], "voie-bus"], "#c497f7", // violet
+        ["==", ['get', 'type'], "voie-bus-elargie"], "#c497f7", // violet
+        ["==", ['get', 'type'], "velorue"], "#f797e7", // jaune
         ["==", ['get', 'type'], "voie-verte"], "#b3ffb6", // vert
-        ["==", ['get', 'type'], "zone-de-rencontre"], "#daffb3", // vert clair
+        ["==", ['get', 'type'], "zone-de-rencontre"], "#97f7d6", // vert clair
+        ["==", ['get', 'type'], "aire-pietonne"], "#ffc399", // orange
         ["==", ['get', 'type'], "chaucidou"], "#ffeab3", // orange
         ["==", ['get', 'type'], "aucun"], "#ff9999", // rouge
         ["==", ['get', 'status'], "done"], "#000000", // black
@@ -66,15 +67,16 @@ const sectionTypeColor: ExpressionSpecification = [
 const sectionTypeColorB: ExpressionSpecification = [
     "case",
         ["!", ['has', 'typeB']], sectionTypeColor,
-        ["==", ['get', 'typeB'], "monodirectionnelle"], "#0000ff", // bleu
+        ["==", ['get', 'typeB'], "unidirectionnelle"], "#b3c6ff", // bleu
         ["==", ['get', 'typeB'], "bidirectionnelle"], "#b3c6ff", // bleu
-        ["==", ['get', 'typeB'], "bilaterale"], "#b3fbff", // cyan
-        ["==", ['get', 'typeB'], "bandes-cyclables"], "#c1b3ff", // bleu-violet
-        ["==", ['get', 'typeB'], "voie-bus"], "#fbb3ff", // violet
-        ["==", ['get', 'typeB'], "voie-bus-elargie"], "#e1b3ff", // violet
-        ["==", ['get', 'typeB'], "velorue"], "#fffbb3", // jaune
+        ["==", ['get', 'typeB'], "bilaterale"], "#b3dbff", // cyan
+        ["==", ['get', 'typeB'], "bandes-cyclables"], "#b3c6ff", // bleu-violet
+        ["==", ['get', 'typeB'], "voie-bus"], "#c497f7", // violet
+        ["==", ['get', 'typeB'], "voie-bus-elargie"], "#c497f7", // violet
+        ["==", ['get', 'typeB'], "velorue"], "#f797e7", // jaune
         ["==", ['get', 'typeB'], "voie-verte"], "#b3ffb6", // vert
-        ["==", ['get', 'typeB'], "zone-de-rencontre"], "#daffb3", // vert clair
+        ["==", ['get', 'typeB'], "zone-de-rencontre"], "#97f7d6", // vert clair
+        ["==", ['get', 'typeB'], "aire-pietonne"], "#ffc399", // orange
         ["==", ['get', 'typeB'], "chaucidou"], "#ffeab3", // orange
         ["==", ['get', 'typeB'], "aucun"], "#ff9999", // rouge
         ["==", ['get', 'status'], "done"], "#000000", // black

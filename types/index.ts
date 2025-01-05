@@ -1,5 +1,5 @@
 export type LaneType =
-| 'monodirectionnelle'
+| 'unidirectionnelle'
 | 'bidirectionnelle'
 | 'bilaterale'
 | 'voie-bus'
@@ -8,6 +8,7 @@ export type LaneType =
 | 'voie-verte'
 | 'bandes-cyclables'
 | 'zone-de-rencontre'
+| 'aire-pietonne'
 | 'chaucidou'
 | 'aucun'
 | 'inconnu';

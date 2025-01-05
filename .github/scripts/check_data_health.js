@@ -116,7 +116,7 @@ function checkGeoJsonDataHealth({ links }) {
 
               // 4.3 - Check if all sections have a type property
               const validTypes = [
-                'monodirectionnelle',
+                'unidirectionnelle',
                 'bidirectionnelle',
                 'bilaterale',
                 'voie-bus',
@@ -125,6 +125,7 @@ function checkGeoJsonDataHealth({ links }) {
                 'voie-verte',
                 'bandes-cyclables',
                 'zone-de-rencontre',
+                'aire-pietonne',
                 'chaucidou',
                 'inconnu',
                 'aucun',
