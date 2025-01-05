@@ -151,6 +151,7 @@ export const useStats = () => {
   };
 
   const typologyNames: Record<LaneType, string> = {
+    'monodirectionnelle': 'Piste monodirectionnelle',
     'bidirectionnelle': 'Piste bidirectionnelle',
     'bilaterale': 'Piste bilatérale',
     'voie-bus': 'Voie bus',
@@ -160,7 +161,6 @@ export const useStats = () => {
     'bandes-cyclables': 'Bandes cyclables',
     'zone-de-rencontre': 'Zone de rencontre',
     'chaucidou': 'Chaucidou',
-    'heterogene': 'Hétérogène',
     'aucun': 'Aucun aménagement',
     'inconnu': 'Inconnu',
   };

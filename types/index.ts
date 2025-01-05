@@ -1,4 +1,5 @@
 export type LaneType =
+| 'monodirectionnelle'
 | 'bidirectionnelle'
 | 'bilaterale'
 | 'voie-bus'
@@ -8,7 +9,6 @@ export type LaneType =
 | 'bandes-cyclables'
 | 'zone-de-rencontre'
 | 'chaucidou'
-| 'heterogene'
 | 'aucun'
 | 'inconnu';
 
@@ -34,6 +34,7 @@ export type LineStringFeature = {
     quality: Quality;
     qualityB?: Quality;
     type: LaneType;
+    typeB?: LaneType;
     doneAt?: string;
     link?: string;
   };
@@ -52,6 +53,7 @@ export type SectionFeature = {
     quality: Quality;
     qualityB?: Quality;
     type: LaneType;
+    typeB?: LaneType;
     doneAt?: string;
   };
   geometry: {

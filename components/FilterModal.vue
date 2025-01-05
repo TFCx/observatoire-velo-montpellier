@@ -81,6 +81,7 @@ const statusFilters = ref([
 ]);
 
 const typeFilters = ref([
+  { label: 'Monodirectionnelle', isEnable: true, types: ['monodirectionnelle'] },
   { label: 'Bidirectionnelle', isEnable: true, types: ['bidirectionnelle'] },
   { label: 'Bilaterale', isEnable: true, types: ['bilaterale'] },
   { label: 'Voie Bus', isEnable: true, types: ['voie-bus', 'voie-bus-elargie'] },
@@ -89,7 +90,6 @@ const typeFilters = ref([
   { label: 'Bandes cyclables', isEnable: true, types: ['bandes-cyclables'] },
   { label: 'Zone de rencontre', isEnable: true, types: ['zone-de-rencontre'] },
   { label: 'Chaucidou', isEnable: true, types: ['chaucidou'] },
-  { label: 'Hétérogène', isEnable: true, types: ['heterogene'] },
   { label: 'Inconnu', isEnable: true, types: ['inconnu'] },
   { label: 'Aucun aménagement', isEnable: true, types: ['aucun'] },
 ]);

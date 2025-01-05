@@ -4,7 +4,7 @@ import type { CounterParsedContent } from '../types/counters';
 import { isLineStringFeature, type Feature, type LaneFeature, type LineStringFeature, type CompteurFeature, type PerspectiveFeature, type SectionFeature, type MultiColoredLineStringFeature, isSectionFeature, type DangerFeature} from '~/types';
 import { ref } from 'vue';
 
-import { drawCurrentNetwork, drawFinishedNetwork, drawQualityNetwork, addListnersForHovering } from "./map/network";
+import { drawCurrentNetwork, drawFinishedNetwork, drawQualityNetwork, drawTypeNetwork, addListnersForHovering } from "./map/network";
 import { plotPerspective, plotCompteurs, plotDangers, plotLimits, plotPumps, plotBaseBikeInfrastructure } from "./map/features";
 
 // Tooltips
@@ -98,7 +98,9 @@ export const useMap = () => {
 
     //drawCurrentNetwork(map, sections, lanesWithId)
 
-    drawQualityNetwork(map, sections, lanesWithId)
+    //drawQualityNetwork(map, sections, lanesWithId)
+
+    drawTypeNetwork(map, sections, lanesWithId)
 
     // drawLanesPlanned(map, lanes)
 
@@ -173,6 +175,7 @@ export const useMap = () => {
             quality: f.properties.quality,
             qualityB: f.properties.qualityB,
             type: f.properties.type,
+            typeB: f.properties.typeB,
             doneAt: f.properties.doneAt,
           },
           geometry: f.geometry

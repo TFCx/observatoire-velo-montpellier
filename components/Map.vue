@@ -64,7 +64,7 @@ const {
 } = useMap();
 
 const statuses = ref(['planned', 'variante', 'done', 'postponed', 'variante-postponed', 'unknown', 'wip', 'tested']);
-const types = ref(['bidirectionnelle', 'bilaterale', 'voie-bus', 'voie-bus-elargie', 'velorue', 'voie-verte', 'bandes-cyclables', 'zone-de-rencontre', 'chaucidou', 'heterogene', 'aucun', 'inconnu']);
+const types = ref(['monodirectionnelle', 'bidirectionnelle', 'bilaterale', 'voie-bus', 'voie-bus-elargie', 'velorue', 'voie-verte', 'bandes-cyclables', 'zone-de-rencontre', 'chaucidou', 'aucun', 'inconnu']);
 const displayLimits = ref(true);
 const features = computed(() => {
   let activeLineFeatures = (props.features ?? []).filter(feature => {
@@ -237,6 +237,7 @@ onMounted(() => {
           qualityB: f.properties.qualityB,
           status: f.properties.status,
           type: f.properties.type,
+          typeB: f.properties.typeB,
           doneAt: f.properties.doneAt,
         },
         geometry: f.geometry

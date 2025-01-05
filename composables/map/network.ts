@@ -46,6 +46,41 @@ const sectionQualityColorB: ExpressionSpecification = [
         ["==", ['get', 'status'], "done"], "#000000",
         "white"
     ]
+const sectionTypeColor: ExpressionSpecification = [
+    "case",
+        ["==", ['get', 'type'], "monodirectionnelle"], "#0000ff", // bleu
+        ["==", ['get', 'type'], "bidirectionnelle"], "#b3c6ff", // bleu
+        ["==", ['get', 'type'], "bilaterale"], "#b3fbff", // cyan
+        ["==", ['get', 'type'], "bandes-cyclables"], "#c1b3ff", // bleu-violet
+        ["==", ['get', 'type'], "voie-bus"], "#fbb3ff", // violet
+        ["==", ['get', 'type'], "voie-bus-elargie"], "#e1b3ff", // violet
+        ["==", ['get', 'type'], "velorue"], "#fffbb3", // jaune
+        ["==", ['get', 'type'], "voie-verte"], "#b3ffb6", // vert
+        ["==", ['get', 'type'], "zone-de-rencontre"], "#daffb3", // vert clair
+        ["==", ['get', 'type'], "chaucidou"], "#ffeab3", // orange
+        ["==", ['get', 'type'], "aucun"], "#ff9999", // rouge
+        ["==", ['get', 'status'], "done"], "#000000", // black
+        ["==", ['get', 'type'], "inconnu"], "#dedede", // gris
+        "black"
+  ]
+const sectionTypeColorB: ExpressionSpecification = [
+    "case",
+        ["!", ['has', 'typeB']], sectionTypeColor,
+        ["==", ['get', 'typeB'], "monodirectionnelle"], "#0000ff", // bleu
+        ["==", ['get', 'typeB'], "bidirectionnelle"], "#b3c6ff", // bleu
+        ["==", ['get', 'typeB'], "bilaterale"], "#b3fbff", // cyan
+        ["==", ['get', 'typeB'], "bandes-cyclables"], "#c1b3ff", // bleu-violet
+        ["==", ['get', 'typeB'], "voie-bus"], "#fbb3ff", // violet
+        ["==", ['get', 'typeB'], "voie-bus-elargie"], "#e1b3ff", // violet
+        ["==", ['get', 'typeB'], "velorue"], "#fffbb3", // jaune
+        ["==", ['get', 'typeB'], "voie-verte"], "#b3ffb6", // vert
+        ["==", ['get', 'typeB'], "zone-de-rencontre"], "#daffb3", // vert clair
+        ["==", ['get', 'typeB'], "chaucidou"], "#ffeab3", // orange
+        ["==", ['get', 'typeB'], "aucun"], "#ff9999", // rouge
+        ["==", ['get', 'status'], "done"], "#000000", // black
+        ["==", ['get', 'typeB'], "inconnu"], "#dedede", // gris
+        "black"
+    ]
 
 
 let layersWithLanes: string[] = []
@@ -57,7 +92,7 @@ const setDisplayedLayer = (value: DisplayedLayer) => {
 
 import { upsertMapSource } from './utils';
 
-export { DisplayedLayer, setDisplayedLayer, drawCurrentNetwork, drawFinishedNetwork, drawQualityNetwork, addListnersForHovering };
+export { DisplayedLayer, setDisplayedLayer, drawCurrentNetwork, drawFinishedNetwork, drawQualityNetwork, drawTypeNetwork, addListnersForHovering };
 
 let layersBase: string[] = []
 
@@ -394,6 +429,51 @@ function drawQualityNetwork(map: Map, sections: SectionFeature[], lanes: LaneFea
         paint: {
         'line-width': fixedSectionWidth / 2,
         'line-color': sectionQualityColorB,
+        'line-offset': -fixedSectionWidth / 4,
+        }
+    });
+
+    //drawHoveredEffect(map);
+}
+function drawTypeNetwork(map: Map, sections: SectionFeature[], lanes: LaneFeature[]) {
+    let wasOnlyUpdatingLanes = upsertMapSource(map, 'src-lanes', lanes)
+    let wasOnlyUpdatingSections = upsertMapSource(map, 'src-sections', sections)
+    if (wasOnlyUpdatingLanes && wasOnlyUpdatingSections) {
+        return;
+    }
+
+    map.addLayer({
+        id: 'layer-type-network-contour',
+        type: 'line',
+        source: 'src-sections',
+        layout: { 'line-cap': 'round' },
+        paint: {
+        'line-gap-width': fixedSectionWidth,
+        'line-width': 1.3,
+        'line-color': '#000000',
+        }
+    });
+
+    map.addLayer({
+        id: `layer-type-network-section-sideA`,
+        type: 'line',
+        source: 'src-sections',
+        layout: { 'line-cap': 'round' },
+        paint: {
+        'line-width': fixedSectionWidth / 2,
+        'line-color': sectionTypeColor,
+        'line-offset': fixedSectionWidth / 4,
+        }
+    });
+
+    map.addLayer({
+        id: `layer-type-network-section-sideB`,
+        type: 'line',
+        source: 'src-sections',
+        layout: { 'line-cap': 'round' },
+        paint: {
+        'line-width': fixedSectionWidth / 2,
+        'line-color': sectionTypeColorB,
         'line-offset': -fixedSectionWidth / 4,
         }
     });
