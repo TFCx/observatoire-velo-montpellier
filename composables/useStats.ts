@@ -129,7 +129,7 @@ export const useStats = () => {
         class: 'text-black font-semibold'
       },
       postponed: {
-        name: 'Reportés',
+        name: 'Manquants',
         distance: postponedDistance,
         percent: getPercent(postponedDistance),
         class: 'text-lvv-pink font-semibold'
