@@ -73,7 +73,7 @@
             <div
               class="relative mx-auto w-full rounded-lg shadow-lg lg:max-w-md"
             >
-              <NuxtLink to="/carte-interactive"
+              <div
                 class="relative block w-full bg-white rounded-lg overflow-hidden"
               >
                 <img class="w-full" src="https://rouelibre.net/wp-content/uploads/2024/11/hero.jpeg" :alt="`illustration des ${getRevName()}`">
