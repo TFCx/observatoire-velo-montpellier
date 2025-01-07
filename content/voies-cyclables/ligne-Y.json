@@ -1,0 +1,22 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+
+      {
+      "type": "Feature",
+      "properties": {
+        "line": "Y",
+        "name": "Rue de la Banque",
+        "status": "postponed",
+        "type": "aucun",
+        "link": "/rev-Y"
+    },
+    "geometry": {
+      "type": "LineString",
+          "coordinates": [
+            [5.924656,45.567571],[5.925654,45.566369],[5.925858,45.565738],[5.925761,45.564747],[5.92559,45.564462],[5.92531,45.564304],[5.925132,45.564172]
+        ]
+      }
+    }
+  ]
+}
