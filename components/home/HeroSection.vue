@@ -59,7 +59,7 @@
                   to="/evolution"
                   class="flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-lvv-blue-600 hover:shadow-lg sm:px-8 transition duration-300 transform hover:scale-105"
                 >
-                  Évolution
+                  Évolution du réseau
                 </NuxtLink>
                 <NuxtLink to="/plan-officiel" class="flex items-center justify-center px-4 py-3 text-base font-medium rounded-md shadow-sm text-lvv-blue-600 border border-lvv-blue-600 hover:shadow-lg sm:px-8 transition duration-300 transform hover:scale-105">
                   Plan officiel
@@ -73,7 +73,7 @@
             <div
               class="relative mx-auto w-full rounded-lg shadow-lg lg:max-w-md"
             >
-              <div
+              <NuxtLink to="/carte-interactive"
                 class="relative block w-full bg-white rounded-lg overflow-hidden"
               >
                 <img class="w-full" src="https://rouelibre.net/wp-content/uploads/2024/11/hero.jpeg" :alt="`illustration des ${getRevName()}`">
