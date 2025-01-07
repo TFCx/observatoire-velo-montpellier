@@ -57,7 +57,7 @@
                 </NuxtLink>
                 <NuxtLink
                   to="/evolution"
-                  class="flex items-center justify-center px-4 py-3 text-base font-medium rounded-md text-cvv-blue-600 border border-cvv-blue-600 sm:px-8 duration-100 hover:bg-cvv-blue-600 hover:text-white"
+                  class="flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-lvv-blue-600 hover:shadow-lg sm:px-8 transition duration-300 transform hover:scale-105"
                 >
                   Évolution
                 </NuxtLink>
