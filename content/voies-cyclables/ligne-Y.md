@@ -1,6 +1,6 @@
 ---
 name: Piste Bleue Y
-line: Y
+line: "Y"
 from: Chambéry (Caffe)
 to: Chambéry (Médiathèque)
 description: Proposition additionnelle au réseau de pistes bleues de Grand Chambéry pour desservir Mérande, Bassens et Bary.

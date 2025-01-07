@@ -1,7 +1,6 @@
 {
     "type": "FeatureCollection",
     "features": [
-
       {
       "type": "Feature",
       "properties": {
@@ -14,9 +13,121 @@
     "geometry": {
       "type": "LineString",
           "coordinates": [
-            [5.924656,45.567571],[5.925654,45.566369],[5.925858,45.565738],[5.925761,45.564747],[5.92559,45.564462],[5.92531,45.564304],[5.925132,45.564172]
+            [5.925279,45.566854],[5.925284,45.56679],[5.925375,45.566753],[5.925697,45.566422],[5.92574,45.566047],[5.925912,45.565882],[5.925761,45.564747],[5.92559,45.564462],[5.92531,45.564304],[5.925132,45.564172]
         ]
       }
-    }
+    },
+    {
+        "type": "Feature",
+        "properties": {
+          "line": "Y",
+          "name": "Rue Saint François de Sales",
+          "status": "postponed",
+          "type": "bandes-cyclables",
+          "link": "/rev-Y"
+      },
+      "geometry": {
+        "type": "LineString",
+            "coordinates": [
+                [5.925273,45.566862],[5.925053,45.567121],[5.924753,45.567459],[5.924646,45.567583]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "line": "Y",
+          "name": "Pont des Amours",
+          "status": "postponed",
+          "type": "bandes-cyclables",
+          "link": "/rev-Y"
+      },
+      "geometry": {
+        "type": "LineString",
+            "coordinates": [
+                [5.924672,45.567576],[5.924485,45.568101],[5.92449,45.568184],[5.92449,45.568184]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "line": "Y",
+          "name": "Avenue de Mérande Nord",
+          "status": "postponed",
+          "type": "aucun",
+          "link": "/rev-Y"
+      },
+      "geometry": {
+        "type": "LineString",
+            "coordinates": [
+                [5.929849,45.572254],[5.929313,45.572073],[5.928712,45.571833],[5.927982,45.571743],[5.927467,45.571653],[5.926781,45.571203],[5.926073,45.570647],[5.925171,45.569732],[5.924828,45.569386],[5.924463,45.56817]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "line": "Y",
+          "name": "Avenue de Mérande Sud",
+          "status": "postponed",
+          "type": "bandes-cyclables",
+          "link": "/rev-Y"
+      },
+      "geometry": {
+        "type": "LineString",
+            "coordinates": [
+                [5.924672,45.567576],[5.924485,45.568101],[5.92449,45.568184],[5.92449,45.568184]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "line": "Y",
+          "name": "Avenue de Bassens",
+          "status": "postponed",
+          "type": "inconnu",
+          "link": "/rev-Y"
+      },
+      "geometry": {
+        "type": "LineString",
+            "coordinates": [
+                [5.937396,45.574602],[5.938845,45.576017],[5.939462,45.576502],[5.939966,45.576471]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "line": "Y",
+          "name": "Bassens",
+          "status": "postponed",
+          "type": "bandes-cyclables",
+          "link": "/rev-Y"
+      },
+      "geometry": {
+        "type": "LineString",
+            "coordinates": [
+                [5.94414,45.576847],[5.94414,45.576531],[5.943915,45.576351],[5.940009,45.576471]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "line": "Y",
+          "name": "Saint Alban Leysse",
+          "status": "postponed",
+          "type": "aucun",
+          "link": "/rev-Y"
+      },
+      "geometry": {
+        "type": "LineString",
+            "coordinates": [
+                [5.968022,45.575342],[5.965898,45.577023],[5.963345,45.57902],[5.961864,45.57971],[5.959997,45.580055],[5.957143,45.580911],[5.956049,45.57929],[5.954955,45.578724],[5.954118,45.57916],[5.953291,45.579698],[5.952807,45.57982],[5.95229,45.579831],[5.950628,45.579363],[5.950878,45.578629],[5.948281,45.578014],[5.946672,45.577579],[5.944118,45.576888]
+          ]
+        }
+      }
   ]
 }
