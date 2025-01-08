@@ -57,7 +57,7 @@
   "properties": {
     "line": 1,
     "name": "Rue de la Savoisienne",
-    "quality": "",
+    "quality": "fair",
     "status": "postponed",
     "type": "aucun",
     "link": "/rev-1#rue-de-la-savoisienne"
