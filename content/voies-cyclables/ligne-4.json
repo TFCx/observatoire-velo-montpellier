@@ -7,6 +7,7 @@
         "properties": {
           "line": 4,
           "name": "Voie Verte de la Leysse Bassens Saint Alban Leysse",
+          "doneAt": "01\/01\/2000",
           "status": "postponed",
           "type": "voie-verte",
           "link": "/rev-4#chambéry-à-saint-alban-leysse"
@@ -163,7 +164,7 @@
           "line": 4,
           "name": "Saint Alban Barby",
           "status": "done",
-          "doneAt": "01/01/2020",
+          "doneAt": "01/01/2000",
           "type": "voie-verte",
           "link": "/rev-4#saint-alban-leysse-à-barby"
         },
@@ -387,7 +388,7 @@
           "line": 4,
           "name": "Voie verte des Planeurs",
           "status": "done",
-          "doneAt": "01/01/2020",
+          "doneAt": "01/01/2000",
           "type": "voie-verte",
           "link": "/rev-4#voie-verte-des-planeurs-de-barby-à-challes-les-eaux"
         },

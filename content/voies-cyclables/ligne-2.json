@@ -53,7 +53,7 @@
       "properties": {
         "line": 2,
         "name": "Place de la gare",
-        "quality": "",
+        "quality": "good",
         "doneAt": "01\/12\/2024",
         "status": "done",
         "type": "voie-bus",
@@ -104,6 +104,7 @@
       "properties": {
         "line": 2,
         "name": "Avenue de la Boisse Nord",
+        "doneAt": "01\/01\/2000",
         "status": "done",
         "type": "voie-verte",
         "link": "/rev-2#avenue-de-la-boisse-nord"
@@ -145,6 +146,7 @@
       "properties": {
         "line": 2,
         "name": "Avenue des landiers",
+        "doneAt": "01\/01\/2000",
         "status": "done",
         "type": "voie-verte",
         "link": "/rev-2#avenue-des-landiers"

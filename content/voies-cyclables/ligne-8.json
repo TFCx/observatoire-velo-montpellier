@@ -224,6 +224,7 @@
       "properties": {
         "line": 8,
         "name": "Cognin",
+        "doneAt": "01\/01\/2000",
         "status": "done",
         "type": "bidirectionnelle",
         "link": "/rev-8#cognin"
@@ -241,7 +242,7 @@
       "properties": {
         "line": 8,
         "name": "Cognin",
-        "status": "postponed",
+        "status": "planned",
         "type": "aucun",
         "link": "/rev-8#cognin"
       },

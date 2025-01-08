@@ -7,7 +7,7 @@
           "line": 5,
           "name": "Voie Verte des Planeurs",
           "quality": "good",
-          "doneAt": "01\/01\/2020",
+          "doneAt": "01\/01\/2000",
           "status": "done",
           "type": "voie-verte",
           "link": "/rev-5#voie-verte-des-planeurs"
@@ -24,8 +24,8 @@
         "properties": {
           "line": 5,
           "name": "Voie Verte de la Mère",
-          "quality": "",
-          "doneAt": "01\/01\/2020",
+          "quality": "good",
+          "doneAt": "01\/01\/2000",
           "status": "done",
           "type": "voie-verte",
           "link": "/rev-5#voie-verte-de-la-mere"
@@ -76,7 +76,7 @@
           "line": 5,
           "name": "Le Crest",
           "quality": "good",
-          "doneAt": "01\/01\/2020",
+          "doneAt": "01\/01\/2000",
           "status": "done",
           "type": "voie-verte",
           "link": "/rev-5#le-crest"
@@ -110,7 +110,7 @@
           "line": 5,
           "name": "Liaison Voie Verte Sud",
           "quality": "good",
-          "doneAt": "01\/01\/2020",
+          "doneAt": "01\/01\/2000",
           "status": "done",
           "type": "voie-verte",
           "link": "/rev-5#liaison-voie-verte"

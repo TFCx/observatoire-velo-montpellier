@@ -21,7 +21,7 @@
     "line": 9,
     "name": "Avenue du Maréchal Leclerc",
     "quality": "good",
-    "doneAt": "01\/01\/2020",
+    "doneAt": "01\/04\/2019",
     "status": "done",
     "type": "bilaterale",
     "link": "/rev-9"
@@ -42,7 +42,7 @@
     "line": 9,
     "name": "Rue du Bon Pasteur",
     "quality": "good",
-    "doneAt": "01\/01\/2020",
+    "doneAt": "01\/01\/2000",
     "status": "done",
     "type": "bidirectionnelle",
     "link": "/rev-9"
@@ -62,6 +62,7 @@
       "properties": {
         "line": 9,
         "name": "Avenue Jean Jaures",
+        "doneAt": "01\/01\/2000",        
         "quality": "",
         "status": "postponed",
         "type": "bidirectionnelle",
@@ -84,7 +85,7 @@
         "line": 9,
         "name": "Avenue du Comte Vert",
         "quality": "good",
-        "doneAt": "01\/01\/2020",
+        "doneAt": "01\/06\/2019",
         "status": "done",
         "type": "bilaterale",
         "link": "/rev-9"
