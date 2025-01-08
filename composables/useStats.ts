@@ -120,13 +120,13 @@ export const useStats = () => {
         name: 'En travaux',
         distance: wipDistance,
         percent: getPercent(wipDistance),
-        class: 'text-lvv-blue-600 font-normal'
+        class: 'text-lvv-blue-400 font-normal'
       },
       planned: {
-        name: 'Prévus',
+        name: 'Etudes en cours',
         distance: plannedDistance,
         percent: getPercent(plannedDistance),
-        class: 'text-black font-semibold'
+        class: 'text-lvv-blue-200 font-normal'
       },
       postponed: {
         name: 'Manquants',
