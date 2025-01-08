@@ -8,8 +8,8 @@
     </div>
     <div
       v-if="stats.wip.distance"
-      class="bg-lvv-blue-400 text-white text-center"
-      :style="`width: ${stats.wip.percent}%; background: repeating-linear-gradient(to right, #152B68, #152B68 1px, transparent 1px, transparent 3px)`"
+      class="bg-lvv-blue-400 text-xs font-medium text-white text-center p-1 leading-none"
+      :style="`width: ${stats.done.percent}%`"
     />
     <div
       v-if="stats.postponed.distance"
