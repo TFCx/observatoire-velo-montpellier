@@ -39,12 +39,10 @@ definePageMeta({
 });
 
 const years = ref([
-  { label: '< 2014', match: (year) => year < 2014, isChecked: true },
-  { label: '2014-2020', match: year => year >= 2014 && year < 2020, isChecked: false },
-  { label: '2021', match: (year) => year === 2021, isChecked: false },
-  { label: '2022', match: (year) => year === 2022, isChecked: false },
-  { label: '2023', match: (year) => year === 2023, isChecked: false },
-  { label: '2024', match: (year) => year === 2024, isChecked: false }
+  { label: '< 2002', match: (year) => year < 2002, isChecked: true },
+  { label: '2002-2014', match: year => year >= 2002 && year < 2015, isChecked: false },
+  { label: '2015-2020', match: year => year >= 2015 && year < 2021, isChecked: false },
+  { label: '2021-2026', match: year => year >= 2021 && year < 2026, isChecked: false }
 ]);
 
 const { data: voies } = await useAsyncData(() => {
