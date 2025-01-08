@@ -1,17 +1,20 @@
 Court Terme :
 Fond
-    Tracer les lignes manquantes (5, 6, 7, 9, 11)
-    Decrire les lignes manquantes
-    Valider les tronçons
+    Relire toutes les lignes
+    Ajouter lignes X et Y
+    Decrire la ligne 5
+    Ajouter photos voie verte Nord
+    Ajouter dates de réalisations pour avoir historique à jour
+    Définir l'affichage et le statut des voies vertes réalisées mais de qualité insuffisante (piste 4, buisson rond...) et leur comptage dans le suivi de la réalisation (est ce réalisé ou manquant ?)
     Valider la qualité des tronçons et leurs couleurs (définir les critères)
     Valider les états (travaux / programmés/ en cours / en attente / demandé / reporté...) et les faire correspondre avec ceux de LVV
-    Valider la définition de l'observatoire (Pistes Bleues / REV /)
-    Gérer les compteurs
+    Valider le titre de l'observatoire (Pistes Bleues / REV /) et le futur lien d'accès
+    OPTION Gérer les compteurs si on le souhaite
     Relire les explications / questions / explication REV
 
 Forme
     intégrer "issues" sur notre "fork"
-    définir forme et contenu page d'accueil
+    finaliser forme et contenu page d'accueil
     intégrer carto avec choix couleurs
 
 Moyen Terme
