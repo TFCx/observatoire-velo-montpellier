@@ -1,5 +1,5 @@
 ---
-name: Piste 1
+name: Piste 1 -Bourget du Lac
 line: 1
 from: Chambéry (Eléphants) 
 to: Bourget du Lac (Plage)
