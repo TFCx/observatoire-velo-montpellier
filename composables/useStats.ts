@@ -126,7 +126,7 @@ export const useStats = () => {
         name: 'Etudes en cours',
         distance: plannedDistance,
         percent: getPercent(plannedDistance),
-        class: 'text-lvv-blue-200 font-normal'
+        class: 'text-lvv-blue-300 font-normal'
       },
       postponed: {
         name: 'Manquants',
