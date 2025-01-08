@@ -42,8 +42,8 @@
 const { getAssoName } = useConfig();
 
 const links = [
+  { name: 'Méthodologie', path: '/methodologie' },
   { name: 'Mentions légales', path: '/mentions-legales' },
-  { name: 'Historique', path: '/historique' }
 ];
 
 const socials = {
