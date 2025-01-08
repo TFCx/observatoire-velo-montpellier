@@ -8,13 +8,13 @@
     </div>
     <div
       v-if="stats.wip.distance"
-      class="bg-lvv-blue-200 text-xs font-medium text-white text-center p-1 leading-none"
-      :style="`width: ${stats.planned.percent}%`"
-    />
-        <div
-      v-if="stats.wip.distance"
       class="bg-lvv-blue-400 text-xs font-medium text-white text-center p-1 leading-none"
       :style="`width: ${stats.wip.percent}%`"
+    />
+    <div
+      v-if="stats.wip.distance"
+      class="bg-lvv-blue-200 text-xs font-medium text-white text-center p-1 leading-none"
+      :style="`width: ${stats.planned.percent}%`"
     />
     <div
       v-if="stats.postponed.distance"
