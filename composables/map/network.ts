@@ -85,16 +85,33 @@ const sectionTypeColorB: ExpressionSpecification = [
     ]
 
 
-let layersWithLanes: string[] = []
-let layerContour: string[] = []
+let layersForFinishedNetwork: string[] = []
+let layersForCurrentNetwork: string[] = []
+let layersForQualityNetwork: string[] = []
+let layersForTypeNetwork: string[] = []
 
 const setDisplayedLayer = (value: DisplayedLayer) => {
   displayedLayer.value = value;
 };
 
+function changeLayer(map: Map, displayedLayer: DisplayedLayer) {
+    for(const layerName of layersForFinishedNetwork) {
+        map.setLayoutProperty(layerName, "visibility", (displayedLayer == DisplayedLayer.FinalizedProject) ? "visible" : "none")
+    }
+    for(const layerName of layersForCurrentNetwork) {
+        map.setLayoutProperty(layerName, "visibility", (displayedLayer == DisplayedLayer.Progress) ? "visible" : "none")
+    }
+    for(const layerName of layersForQualityNetwork) {
+        map.setLayoutProperty(layerName, "visibility", (displayedLayer == DisplayedLayer.Quality) ? "visible" : "none")
+    }
+    for(const layerName of layersForTypeNetwork) {
+        map.setLayoutProperty(layerName, "visibility", (displayedLayer == DisplayedLayer.Type) ? "visible" : "none")
+    }
+  }
+
 import { upsertMapSource } from './utils';
 
-export { DisplayedLayer, setDisplayedLayer, drawCurrentNetwork, drawFinishedNetwork, drawQualityNetwork, drawTypeNetwork, addListnersForHovering };
+export { DisplayedLayer, setDisplayedLayer, drawCurrentNetwork, drawFinishedNetwork, drawQualityNetwork, drawTypeNetwork, changeLayer, addListnersForHovering };
 
 let layersBase: string[] = []
 
@@ -132,17 +149,17 @@ function drawCurrentNetwork(map: Map, sections: SectionFeature[], lanes: LaneFea
     let wasOnlyUpdatingAllSectionsNotPostponed = upsertMapSource(map, 'all-sections-not-postponed', filterSections(sections, {done:true, wip:true, planned:true, postponed:false}))
     let wasOnlyUpdatingAllSectionsDoneAndWip = upsertMapSource(map, 'all-sections-done-and-wip', filterSections(sections, {done:true, wip:true, planned:false, postponed:false}))
 
-    if (wasOnlyUpdatingAllLanesDone && wasOnlyUpdatingAllLanesWIP && wasOnlyUpdatingAllLanesPlanned && wasUpdatingAllSection && wasOnlyUpdatingAllLanesNotPostponed && wasOnlyUpdatingAllLanesPostponed && wasOnlyUpdatingAllLanesDoneAndWip) {
-        return;
-    }
+    // if (wasOnlyUpdatingAllLanesDone && wasOnlyUpdatingAllLanesWIP && wasOnlyUpdatingAllLanesPlanned && wasUpdatingAllSection && wasOnlyUpdatingAllLanesNotPostponed && wasOnlyUpdatingAllLanesPostponed && wasOnlyUpdatingAllLanesDoneAndWip) {
+    //     return;
+    // }
 
-    if (wasOnlyUpdatingAllSectionsDone && wasOnlyUpdatingAllSectionsWIP && wasOnlyUpdatingAllSectionsPlanned && wasOnlyUpdatingAllSectionsPostponed && wasOnlyUpdatingAllSectionsNotPostponed && wasOnlyUpdatingAllSectionsDoneAndWip) {
-        return;
-    }
+    // if (wasOnlyUpdatingAllSectionsDone && wasOnlyUpdatingAllSectionsWIP && wasOnlyUpdatingAllSectionsPlanned && wasOnlyUpdatingAllSectionsPostponed && wasOnlyUpdatingAllSectionsNotPostponed && wasOnlyUpdatingAllSectionsDoneAndWip) {
+    //     return;
+    // }
 
-    if (upsertMapSource(map, 'source-current-network-all-lanes', lanes)) {
-        return;
-    }
+    // if (upsertMapSource(map, 'source-current-network-all-lanes', lanes)) {
+    //     return;
+    // }
 
     // ------------------------------------------------------------------------
     // Postponed
@@ -159,6 +176,7 @@ function drawCurrentNetwork(map: Map, sections: SectionFeature[], lanes: LaneFea
         'line-color': laneColor,
         }
     });
+    layersForCurrentNetwork.push("layer-current-network-all-lanes-postponed-contour")
 
     map.addLayer({
         id: `layer-current-network-all-lanes-postponed-background`,
@@ -171,6 +189,7 @@ function drawCurrentNetwork(map: Map, sections: SectionFeature[], lanes: LaneFea
             'line-offset': offsetLane,
             }
     });
+    layersForCurrentNetwork.push("layer-current-network-all-lanes-postponed-background")
 
     map.addLayer({
         id: `layer-current-network-all-lanes-postponed-background-white-scrim`,
@@ -182,6 +201,7 @@ function drawCurrentNetwork(map: Map, sections: SectionFeature[], lanes: LaneFea
             'line-opacity' : 0.75 * 0.5,
             }
     });
+    layersForCurrentNetwork.push("layer-current-network-all-lanes-postponed-background-white-scrim")
 
     map.addLayer({
         id: `layer-current-network-all-lanes-postponed-dashed`,
@@ -195,6 +215,7 @@ function drawCurrentNetwork(map: Map, sections: SectionFeature[], lanes: LaneFea
             'line-offset': offsetLane,
             }
     });
+    layersForCurrentNetwork.push("layer-current-network-all-lanes-postponed-dashed")
 
     let farZoom = 11
     let closeZoom = 14
@@ -227,6 +248,7 @@ function drawCurrentNetwork(map: Map, sections: SectionFeature[], lanes: LaneFea
             ],
         }
     });
+    layersForCurrentNetwork.push("layer-current-network-all-lanes-postponed-symbols")
 
     // ------------------------------------------------------------------------
     // Planned
@@ -241,6 +263,7 @@ function drawCurrentNetwork(map: Map, sections: SectionFeature[], lanes: LaneFea
         'line-opacity': 0.5
         }
     });
+    layersForCurrentNetwork.push("layer-current-network-all-lanes-planned-black-contour")
 
     map.addLayer({
         id: 'layer-current-network-all-lanes-planned-contour-expanded',
@@ -252,6 +275,7 @@ function drawCurrentNetwork(map: Map, sections: SectionFeature[], lanes: LaneFea
         'line-offset': offsetLane,
         }
     });
+    layersForCurrentNetwork.push("layer-current-network-all-lanes-planned-contour-expanded")
 
     map.addLayer({
         id: 'layer-current-network-all-lanes-planned-contour',
@@ -263,6 +287,7 @@ function drawCurrentNetwork(map: Map, sections: SectionFeature[], lanes: LaneFea
         'line-offset': offsetLane,
         }
     });
+    layersForCurrentNetwork.push("layer-current-network-all-lanes-planned-contour")
 
     map.addLayer({
         id: `layer-current-network-all-lanes-planned-background-white-scrim`,
@@ -275,6 +300,7 @@ function drawCurrentNetwork(map: Map, sections: SectionFeature[], lanes: LaneFea
             'line-opacity' : 0.75 * 0.5,
             }
     });
+    layersForCurrentNetwork.push("layer-current-network-all-lanes-planned-background-white-scrim")
 
     map.addLayer({
         id: `layer-current-network-all-lanes-planned-dashed`,
@@ -287,6 +313,7 @@ function drawCurrentNetwork(map: Map, sections: SectionFeature[], lanes: LaneFea
             'line-offset': offsetLane,
             }
     });
+    layersForCurrentNetwork.push("layer-current-network-all-lanes-planned-dashed")
 
 
 
@@ -303,6 +330,7 @@ function drawCurrentNetwork(map: Map, sections: SectionFeature[], lanes: LaneFea
         'line-color': '#000000',
         }
     });
+    layersForCurrentNetwork.push("layer-current-network-contour")
 
     // ------------------------------------------------------------------------
     // WIP
@@ -316,6 +344,7 @@ function drawCurrentNetwork(map: Map, sections: SectionFeature[], lanes: LaneFea
             'line-offset': offsetLane,
             }
     });
+    layersForCurrentNetwork.push("layer-current-network-all-lanes-wip-background")
 
     map.addLayer({
         id: `layer-current-network-all-lanes-wip-dashed`,
@@ -328,6 +357,7 @@ function drawCurrentNetwork(map: Map, sections: SectionFeature[], lanes: LaneFea
             'line-offset': offsetLane,
             }
     });
+    layersForCurrentNetwork.push("layer-current-network-all-lanes-wip-dashed")
 
     map.addLayer({
         id: `layer-current-network-all-lanes-wip-as-done`,
@@ -340,6 +370,7 @@ function drawCurrentNetwork(map: Map, sections: SectionFeature[], lanes: LaneFea
             }
     });
     animateOpacity(map, 0, 1000*1.50, 'layer-current-network-all-lanes-wip-as-done', 'line-opacity', 0.0, 1.0);
+    layersForCurrentNetwork.push("layer-current-network-all-lanes-wip-as-done")
 
     // ------------------------------------------------------------------------
     // Done
@@ -354,15 +385,16 @@ function drawCurrentNetwork(map: Map, sections: SectionFeature[], lanes: LaneFea
         'line-offset': offsetLane,
         }
     });
+    layersForCurrentNetwork.push("layer-current-network-all-lanes-done")
 }
 
 
 function drawFinishedNetwork(map: Map, sections: SectionFeature[], lanes: LaneFeature[]) {
     let wasOnlyUpdatingLanes = upsertMapSource(map, 'src-lanes', lanes)
     let wasOnlyUpdatingSections = upsertMapSource(map, 'src-sections', sections)
-    if (wasOnlyUpdatingLanes && wasOnlyUpdatingSections) {
-        return;
-    }
+    // if (wasOnlyUpdatingLanes && wasOnlyUpdatingSections) {
+    //     return;
+    // }
 
     map.addLayer({
         id: 'layer-finished-network-contour',
@@ -375,6 +407,7 @@ function drawFinishedNetwork(map: Map, sections: SectionFeature[], lanes: LaneFe
         'line-color': '#000000',
         }
     });
+    layersForFinishedNetwork.push("layer-finished-network-contour")
 
     map.addLayer({
         id: `layer-finished-network-all-lanes`,
@@ -387,6 +420,7 @@ function drawFinishedNetwork(map: Map, sections: SectionFeature[], lanes: LaneFe
         'line-offset': offsetLane,
         }
     });
+    layersForFinishedNetwork.push("layer-finished-network-all-lanes")
 
     //drawHoveredEffect(map);
 }
@@ -395,9 +429,9 @@ function drawFinishedNetwork(map: Map, sections: SectionFeature[], lanes: LaneFe
 function drawQualityNetwork(map: Map, sections: SectionFeature[], lanes: LaneFeature[]) {
     let wasOnlyUpdatingLanes = upsertMapSource(map, 'src-lanes', lanes)
     let wasOnlyUpdatingSections = upsertMapSource(map, 'src-sections', sections)
-    if (wasOnlyUpdatingLanes && wasOnlyUpdatingSections) {
-        return;
-    }
+    // if (wasOnlyUpdatingLanes && wasOnlyUpdatingSections) {
+    //     return;
+    // }
 
     map.addLayer({
         id: 'layer-quality-network-contour',
@@ -410,6 +444,7 @@ function drawQualityNetwork(map: Map, sections: SectionFeature[], lanes: LaneFea
         'line-color': '#000000',
         }
     });
+    layersForQualityNetwork.push("layer-quality-network-contour")
 
     map.addLayer({
         id: `layer-quality-network-section-sideA`,
@@ -422,6 +457,7 @@ function drawQualityNetwork(map: Map, sections: SectionFeature[], lanes: LaneFea
         'line-offset': fixedSectionWidth / 4,
         }
     });
+    layersForQualityNetwork.push("layer-quality-network-section-sideA")
 
     map.addLayer({
         id: `layer-quality-network-section-sideB`,
@@ -434,15 +470,16 @@ function drawQualityNetwork(map: Map, sections: SectionFeature[], lanes: LaneFea
         'line-offset': -fixedSectionWidth / 4,
         }
     });
+    layersForQualityNetwork.push("layer-quality-network-section-sideB")
 
     //drawHoveredEffect(map);
 }
 function drawTypeNetwork(map: Map, sections: SectionFeature[], lanes: LaneFeature[]) {
     let wasOnlyUpdatingLanes = upsertMapSource(map, 'src-lanes', lanes)
     let wasOnlyUpdatingSections = upsertMapSource(map, 'src-sections', sections)
-    if (wasOnlyUpdatingLanes && wasOnlyUpdatingSections) {
-        return;
-    }
+    // if (wasOnlyUpdatingLanes && wasOnlyUpdatingSections) {
+    //     return;
+    // }
 
     map.addLayer({
         id: 'layer-type-network-contour',
@@ -455,6 +492,7 @@ function drawTypeNetwork(map: Map, sections: SectionFeature[], lanes: LaneFeatur
         'line-color': '#000000',
         }
     });
+    layersForTypeNetwork.push("layer-type-network-contour")
 
     map.addLayer({
         id: `layer-type-network-section-sideA`,
@@ -467,6 +505,7 @@ function drawTypeNetwork(map: Map, sections: SectionFeature[], lanes: LaneFeatur
         'line-offset': fixedSectionWidth / 4,
         }
     });
+    layersForTypeNetwork.push("layer-type-network-section-sideA")
 
     map.addLayer({
         id: `layer-type-network-section-sideB`,
@@ -479,6 +518,7 @@ function drawTypeNetwork(map: Map, sections: SectionFeature[], lanes: LaneFeatur
         'line-offset': -fixedSectionWidth / 4,
         }
     });
+    layersForTypeNetwork.push("layer-type-network-section-sideB")
 
     //drawHoveredEffect(map);
 }

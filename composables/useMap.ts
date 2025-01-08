@@ -4,7 +4,7 @@ import type { CounterParsedContent } from '../types/counters';
 import { isLineStringFeature, type Feature, type LaneFeature, type LineStringFeature, type CompteurFeature, type PerspectiveFeature, type SectionFeature, type MultiColoredLineStringFeature, isSectionFeature, type DangerFeature} from '~/types';
 import { ref } from 'vue';
 
-import { drawCurrentNetwork, drawFinishedNetwork, drawQualityNetwork, drawTypeNetwork, addListnersForHovering } from "./map/network";
+import { drawCurrentNetwork, drawFinishedNetwork, drawQualityNetwork, drawTypeNetwork, changeLayer, addListnersForHovering } from "./map/network";
 import { plotPerspective, plotCompteurs, plotDangers, plotLimits, plotPumps, plotBaseBikeInfrastructure } from "./map/features";
 
 // Tooltips
@@ -79,44 +79,13 @@ export const useMap = () => {
       return;
     }
 
-    // DONE
-    //drawFinishedNetwork(map, sections, lanesWithId)
+    drawFinishedNetwork(map, sections, lanesWithId)
 
-  //   upsertMapSource(map, 'all-sections', sections)
+    drawCurrentNetwork(map, sections, lanesWithId)
 
-  //   map.addLayer({
-  //     id: 'layer-all-sections-debug',
-  //     type: 'line',
-  //     source: 'all-sections',
-  //     layout: { 'line-cap': 'round' },
-  //     paint: {
-  //     'line-width': 10,
-  //     'line-opacity' : 0.5,
-  //     'line-color': "#000",
-  //     }
-  // });
-
-    //drawCurrentNetwork(map, sections, lanesWithId)
-
-    //drawQualityNetwork(map, sections, lanesWithId)
+    drawQualityNetwork(map, sections, lanesWithId)
 
     drawTypeNetwork(map, sections, lanesWithId)
-
-    // drawLanesPlanned(map, lanes)
-
-    // drawLanesWIP(map, lanes)
-
-    // drawLanesDone(map, lanes);
-
-    // drawLanesPostponed(map, lanes)
-
-    // drawLanesVariante(map, lanes)
-
-    // drawLanesVariantePostponed(map, lanes)
-
-    // drawLanesUnknown(map, lanes)
-
-    // drawLanesAsDone(map, lanes);
 
     addListnersForHovering(map);
   }
@@ -129,8 +98,11 @@ export const useMap = () => {
     plotDangers({ map, features: updated_features });
     plotLimits({ map, features: updated_features });
 
+    changeLayer(map, DisplayedLayer.Progress)
+
     watch(displayLimits, (displayLimits) => toggleLimitsVisibility(map, displayLimits))
     watch(displayBikeInfra, (displayBikeInfra) => toggleBikeInfraVisibility(map, displayBikeInfra))
+    watch(displayedLayer, (displayedLayer) => changeLayer(map, displayedLayer))
   }
 
 

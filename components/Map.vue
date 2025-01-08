@@ -36,7 +36,7 @@ const defaultOptions = {
   logo: true,
   limits: true,
   bikeInfra: false,
-  filter: true,
+  filter: false,
   geolocation: false,
   fullscreen: false,
   onFullscreenControlClick: () => { },
