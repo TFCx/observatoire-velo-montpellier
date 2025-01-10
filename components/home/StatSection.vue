@@ -7,7 +7,7 @@
         </h2>
         <p class="mt-3 text-xl text-gray-500 sm:mt-4">
           C'est le nom du projet de réseau structurant lancé en 2024 par la Communauté d'agglomération de Grand Chambéry.
-          <br> Concrètement, pour les usagers, une {{ getRevName('singular') }} doit être une voie cyclable large (3 à 4m), sécurisée, efficace, attractive et confortable, souvent sous forme de piste bidirectionnelle et séparée du trafic routier. L'ensemble doit créer un maillage cyclable sans discontinuités qui connecte l'ensemble des villes de l'agglomération de Grand Chambéry.
+          <br> Concrètement, une {{ getRevName('singular') }} doit être une voie cyclable large (3 à 4m), sécurisée, efficace, attractive et confortable, souvent sous forme de piste bidirectionnelle et séparée du trafic routier. L'ensemble doit créer un maillage cyclable sans discontinuités qui connecte l'ensemble des villes de l'agglomération de Grand Chambéry.
         </p>
       </div>
     </div>
