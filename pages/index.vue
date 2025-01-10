@@ -10,7 +10,7 @@
           </h2>
           <p class="text-xl text-gray-500">
             Grand Chambéry a inauguré le mercredi 5 juin 2024 le jalonnement (panneaux et marquages) de 9 « pistes bleues » de son réseau structurant.
-            Pour l’association Roue Libre, ce réseau de 9 “pistes” ainsi que les deux liaisons Chambery - Jacob-Bellecombette et Chambéry-Mérande-Bassens-Barby doivent être considéré comme une indication des secteurs prioritaires à aménager, et la réalisation d’aménagements cyclables continus et sécurisés pour toutes et tous doit être une urgente priorité.
+            Pour l’association Roue Libre, ce réseau de 9 “pistes” ainsi que les deux liaisons Chambery - Jacob-Bellecombette et Chambéry-Mérande-Bassens-Barby doivent être considérés comme des secteurs prioritaires à aménager et sécuriser.
           </p>
         </div>
       </div>
