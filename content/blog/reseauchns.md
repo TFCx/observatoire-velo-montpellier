@@ -1,3 +1,9 @@
+---
+title: RCHNS
+description: Qu'est ce qu'un RCHNS - Réseau Cyclable à Haut Niveau de Service ?
+imageUrl: https://rouelibre.net/wp-content/uploads/2025/01/rev.jpg
+---
+
 Un <strong>Réseau Cyclable à Haut Niveau de Service (RCHNS)</strong>  ou <strong>Réseau Express Velo (REV)</strong> est un réseau de pistes cyclables continus et sécurisés qui permet à toutes et tous de se déplacer à vélo de manière efficace à travers votre ville. Loin de l’image de pistes pour vélotaffeurs pressés, ce Réseau rend accessible le vélo au plus grand nombre, à tous les âges de la vie. Extrait de la note de position de la FUB. Nov 2024.
 
 Nommé Pistes Bleues à Grand Chambéry, ce réseau constitue une partie du réseau cyclable d'une agglomération, mais supporte la majorité
