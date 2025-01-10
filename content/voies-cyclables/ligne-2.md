@@ -11,7 +11,10 @@ cover: https://rouelibre.net/wp-content/uploads/2024/11/REV2-IMG_3959.jpg
 ## Les tronçons (du Sud au Nord)
 
 ### Rue de la gare
-<span style="color:blue;font-weight:bold">Satisfaisant</span> La piste démarre de la :line-link{line=1} sur la place du Palais de Justice par une piste cyclable puis une voie de bus partagée devant la gare de Chambéry.
+<span style="color:blue;font-weight:bold">Satisfaisant</span> La piste démarre de la :line-link{line=1} sur la place du Palais de Justice par une piste cyclable.
+
+### Rue de la gare
+<span style="color:blue;font-weight:bold">Satisfaisant</span> La piste se prolonge devant la gare de Chambéry en voie de bus partagée, marquage cycles réalisé fin 2024.
 
 ::content-image
 ---
