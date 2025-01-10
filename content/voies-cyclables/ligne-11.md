@@ -8,3 +8,7 @@ description: Proposition additionnelle au réseau de pistes bleues de Grand Cham
 
 ### Rue de la Banque
 <span style="color:#ff6961;font-weight:bold">Non satisfaisant</span> Aménagement cyclable sécurisé à créer
+
+
+
+En cours de rédaction
