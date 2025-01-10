@@ -119,6 +119,8 @@
         "properties": {
           "line": 3,
           "name": "Avenue Daniel Rops Haut",
+          "quality": "good",
+          "doneAt": "01\/01\/2000",
           "status": "done",
           "type": "bandes-cyclables",
           "link": "/rev-3"

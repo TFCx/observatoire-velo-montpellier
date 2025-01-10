@@ -6,6 +6,7 @@
       "properties": {
         "line": "A",
         "name": "Rue de la Banque",
+        "quality": "",
         "status": "postponed",
         "type": "aucun",
         "link": "/rev-Y"
@@ -22,6 +23,7 @@
         "properties": {
           "line": "A",
           "name": "Rue Saint François de Sales",
+          "quality": "",
           "status": "postponed",
           "type": "bandes-cyclables",
           "link": "/rev-Y"
@@ -38,6 +40,7 @@
         "properties": {
           "line": "A",
           "name": "Pont des Amours",
+          "quality": "",
           "status": "postponed",
           "type": "bandes-cyclables",
           "link": "/rev-Y"
@@ -54,6 +57,7 @@
         "properties": {
           "line": "A",
           "name": "Avenue de Mérande Nord",
+          "quality": "",
           "status": "postponed",
           "type": "aucun",
           "link": "/rev-Y"
@@ -70,6 +74,7 @@
         "properties": {
           "line": "A",
           "name": "Avenue de Mérande Sud",
+          "quality": "",
           "status": "postponed",
           "type": "bandes-cyclables",
           "link": "/rev-Y"
@@ -86,6 +91,7 @@
         "properties": {
           "line": "A",
           "name": "Avenue de Bassens",
+          "quality": "",
           "status": "postponed",
           "type": "inconnu",
           "link": "/rev-Y"
@@ -102,6 +108,7 @@
         "properties": {
           "line": "A",
           "name": "Bassens",
+          "quality": "",
           "status": "postponed",
           "type": "bandes-cyclables",
           "link": "/rev-Y"
@@ -118,6 +125,7 @@
         "properties": {
           "line": "A",
           "name": "Saint Alban Leysse",
+          "quality": "",
           "status": "postponed",
           "type": "aucun",
           "link": "/rev-Y"

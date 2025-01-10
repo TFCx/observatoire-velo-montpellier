@@ -7,8 +7,9 @@
         "properties": {
           "line": 4,
           "name": "Voie Verte de la Leysse",
+          "quality": "fair",
           "doneAt": "01\/01\/2000",
-          "status": "postponed",
+          "status": "done",
           "type": "voie-verte",
           "link": "/rev-4#chambéry-à-saint-alban-leysse"
         },
@@ -163,6 +164,7 @@
         "properties": {
           "line": 4,
           "name": "Saint Alban Barby",
+          "quality": "good",
           "status": "done",
           "doneAt": "01/01/2000",
           "type": "voie-verte",
@@ -387,6 +389,7 @@
           "id": "EinsteinI-commun",
           "line": 4,
           "name": "Voie verte des Planeurs",
+          "quality": "good",
           "status": "done",
           "doneAt": "01/01/2000",
           "type": "voie-verte",

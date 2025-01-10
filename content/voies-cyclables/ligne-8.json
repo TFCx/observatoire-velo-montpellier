@@ -223,7 +223,8 @@
       "type": "Feature",
       "properties": {
         "line": 8,
-        "name": "Cognin",
+        "name": "Chemin des Vieux Capucins",
+        "quality": "good",
         "doneAt": "01\/01\/2000",
         "status": "done",
         "type": "bidirectionnelle",
@@ -242,6 +243,7 @@
       "properties": {
         "line": 8,
         "name": "Cognin",
+        "quality": "",
         "status": "planned",
         "type": "aucun",
         "link": "/rev-8#cognin"

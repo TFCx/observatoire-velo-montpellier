@@ -134,9 +134,9 @@
         "properties": {
           "line": 7,
           "name": "Voie Verte sud - Belle Via",
-          "quality": "",
+          "quality": "fair",
           "doneAt": "01\/01\/2000",
-          "status": "postponed",
+          "status": "done",
           "type": "voie-verte",
           "link": "/rev-7#avenue-verte-sud"
         },
@@ -160,8 +160,8 @@
           "line": 7,
           "name": "Parc de Buisson Rond",
           "doneAt": "01\/01\/2000",
-          "quality": "",
-          "status": "postponed",
+          "quality": "fair",
+          "status": "done",
           "type": "voie-verte",
           "link": "/rev-7#parc-buisson-rond"
         },

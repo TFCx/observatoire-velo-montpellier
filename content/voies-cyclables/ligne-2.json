@@ -83,9 +83,9 @@
       "properties": {
         "line": 2,
         "name": "Avenue de la Boisse Sud",
-        "quality": "",
+        "quality": "fair",
         "doneAt": "01\/01\/2000",
-        "status": "postponed",
+        "status": "done",
         "type": "voie-verte",
         "link": "/rev-2#avenue-de-la-boisse-sud"
       },
@@ -104,6 +104,7 @@
       "properties": {
         "line": 2,
         "name": "Avenue de la Boisse Nord",
+        "quality": "good",
         "doneAt": "01\/01\/2000",
         "status": "done",
         "type": "voie-verte",
@@ -146,6 +147,7 @@
       "properties": {
         "line": 2,
         "name": "Avenue des landiers",
+        "quality": "good",
         "doneAt": "01\/01\/2000",
         "status": "done",
         "type": "voie-verte",

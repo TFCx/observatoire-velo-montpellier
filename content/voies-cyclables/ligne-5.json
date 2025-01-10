@@ -59,6 +59,7 @@
         "properties": {
           "line": 5,
           "name": "Rue de la Concorde",
+          "quality": "",
           "status": "postponed",
           "type": "aucun",
           "link": "/rev-5"
@@ -93,6 +94,7 @@
         "properties": {
           "line": 5,
           "name": "Rue Duguesclin",
+          "quality": "",
           "status": "postponed",
           "type": "aucun",
           "link": "/rev-5#rue-duguesclin"
