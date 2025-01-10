@@ -13,11 +13,11 @@ enum DisplayedLayer {
 const displayedLayer = ref(DisplayedLayer.Progress);
 
 
-const contourWidth = 1.75
+const contourWidth = 1.5
 const blackContourWidth = contourWidth - 0.5
 const dashesWidthRatio = 0.75
-const laneWidth = 5
-const fixedSectionWidth = laneWidth + 2
+const laneWidth = 4
+const fixedSectionWidth = laneWidth + 0.5
 const laneDashes = [1.5, 0.7]
 const laneDashWIP = [1.0, 1.05]
 
@@ -227,7 +227,7 @@ function drawCurrentNetwork(map: Map, sections: SectionFeature[], lanes: LaneFea
         'icon-color': '#000',
         'icon-halo-width': 2.5,
         'icon-halo-color': "#fff",
-        'icon-opacity': 0.30
+        'icon-opacity': 0.20
         },
         layout: {
         'symbol-placement': 'line',
