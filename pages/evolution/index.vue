@@ -39,7 +39,8 @@ definePageMeta({
 });
 
 const years = ref([
-  { label: '< 2002', match: (year) => year < 2002, isChecked: true },
+  { label: '< 2000', match: (year) => year < 2000, isChecked: true },
+  { label: 'A DATER', match: (year) => year === 2000, isChecked: false },
   { label: '2002-2014', match: year => year >= 2002 && year < 2015, isChecked: false },
   { label: '2015-2020', match: year => year >= 2015 && year < 2021, isChecked: false },
   { label: '2021-2026', match: year => year >= 2021 && year < 2026, isChecked: false }
