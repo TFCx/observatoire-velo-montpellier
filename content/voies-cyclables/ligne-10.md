@@ -7,4 +7,4 @@ description: Proposition additionnelle au réseau de pistes bleues de Grand Cham
 ---
 
 ### Boulevard de Bellevue
-<span style="color:#ff6961;font-weight:bold">Non satisfaisant</span> Aménagement cyclable sécurisé à créer
+<span style="color:black;font-weight:bold">Non satisfaisant</span> Aménagement cyclable sécurisé à créer
