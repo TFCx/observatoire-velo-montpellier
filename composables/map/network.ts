@@ -22,6 +22,31 @@ const fixedSectionWidth = laneWidth + 0.5
 const laneDashes = [1.5, 0.7]
 const laneDashWIP = [1.0, 1.05]
 
+const colorsByTag = {
+    "unidirectionnelle": "#b3c6ff",
+    "bidirectionnelle": "#b3c6ff",
+    "bilaterale": "#b3dbff",
+    "bandes-cyclables": "#b3c6ff",
+    "voie-bus": "#c497f7",
+    "voie-bus-elargie": "#c497f7",
+    "velorue": "#f797e7",
+    "voie-verte": "#b3ffb6",
+    "zone-de-rencontre": "#97f7d6",
+    "aire-pietonne": "#ffc399",
+    "chaucidou": "#ffeab3",
+    "aucun": "#ff9999",
+    "done": "#000000",
+    "inconnu": "#dedede",
+    "bad": "#ff6961",
+    "fair": "#F3F32A",
+    "good": "#77dd77",
+    "dédié": "#b3c6ff",
+    "mixité-motorisé-good": "#97f7d6",
+    "mixité-motorisé-bad": "#f797e7",
+    "mixité-piétonne-good": "#e6ffb3",
+    "mixité-piétonne-bad": "#f2cd7c",
+}
+
 const nbLanes: ExpressionSpecification = ['get', 'nb_lanes']
 const laneIndex: ExpressionSpecification = ['get', 'lane_index']
 const allLanesWidth: ExpressionSpecification = ["*", laneWidth, nbLanes]
@@ -32,79 +57,79 @@ const leftmostOffset: ExpressionSpecification = ['+', ['-', 0, ["/", allLanesWid
 const offsetLane: ExpressionSpecification = ['+', leftmostOffset, ['*', laneIndex, laneWidth]]
 const sectionQualityColor: ExpressionSpecification = [
     "case",
-        ["==", ['get', 'quality'], "bad"], "#ff6961",
-        ["==", ['get', 'quality'], "fair"], "#F3F32A",
-        ["==", ['get', 'quality'], "good"], "#77dd77",
-        ["==", ['get', 'status'], "done"], "#000000",
+        ["==", ['get', 'quality'], "bad"], colorsByTag["bad"],
+        ["==", ['get', 'quality'], "fair"], colorsByTag["fair"],
+        ["==", ['get', 'quality'], "good"], colorsByTag["good"],
+        ["==", ['get', 'status'], "done"], colorsByTag["done"],
         "white"
     ]
 const sectionQualityColorB: ExpressionSpecification = [
     "case",
         ["!", ['has', 'qualityB']], sectionQualityColor,
-        ["==", ['get', 'qualityB'], "bad"], "#ff6961",
-        ["==", ['get', 'qualityB'], "fair"], "#F3F32A",
-        ["==", ['get', 'qualityB'], "good"], "#77dd77",
-        ["==", ['get', 'status'], "done"], "#000000",
+        ["==", ['get', 'qualityB'], "bad"], colorsByTag["bad"],
+        ["==", ['get', 'qualityB'], "fair"], colorsByTag["fair"],
+        ["==", ['get', 'qualityB'], "good"], colorsByTag["good"],
+        ["==", ['get', 'status'], "done"], colorsByTag["done"],
         "white"
     ]
 const sectionTypeFamilyColor: ExpressionSpecification = [
     "case",
-        ["==", ['get', 'typeFamily'], "dédié"], "#b3c6ff", // bleu
-        ["==", ['get', 'typeFamily'], "mixité-motorisé-good"], "#97f7d6", // bleu-vert
-        ["==", ['get', 'typeFamily'], "mixité-motorisé-bad"], "#f797e7", // rouge
-        ["==", ['get', 'typeFamily'], "mixité-piétonne-good"], "#e6ffb3", // bleu-violet
-        ["==", ['get', 'typeFamily'], "mixité-piétonne-bad"], "#f2cd7c", // orange
-        ["==", ['get', 'status'], "done"], "#000000", // black
-        ["==", ['get', 'typeFamily'], "inconnu"], "#dedede", // gris
+        ["==", ['get', 'typeFamily'], "dédié"], colorsByTag["dédié"],
+        ["==", ['get', 'typeFamily'], "mixité-motorisé-good"], colorsByTag["mixité-motorisé-good"],
+        ["==", ['get', 'typeFamily'], "mixité-motorisé-bad"], colorsByTag["mixité-motorisé-bad"],
+        ["==", ['get', 'typeFamily'], "mixité-piétonne-good"], colorsByTag["mixité-piétonne-good"],
+        ["==", ['get', 'typeFamily'], "mixité-piétonne-bad"], colorsByTag["mixité-piétonne-bad"],
+        ["==", ['get', 'status'], "done"], colorsByTag["done"],
+        ["==", ['get', 'typeFamily'], "inconnu"], colorsByTag["inconnu"],
         "black"
   ]
 const sectionTypeFamilyBColor: ExpressionSpecification = [
     "case",
         ["!", ['has', 'typeFamilyB']], sectionTypeFamilyColor,
-        ["==", ['get', 'typeFamilyB'], "dédié"], "#b3c6ff", // bleu
-        ["==", ['get', 'typeFamilyB'], "mixité-motorisé-good"], "#97f7d6", // bleu-vert
-        ["==", ['get', 'typeFamilyB'], "mixité-motorisé-bad"], "#f797e7", // rouge
-        ["==", ['get', 'typeFamilyB'], "mixité-piétonne-good"], "#e6ffb3", // bleu-violet
-        ["==", ['get', 'typeFamilyB'], "mixité-piétonne-bad"], "#f2cd7c", // orange
-        ["==", ['get', 'status'], "done"], "#000000", // black
-        ["==", ['get', 'typeFamilyB'], "inconnu"], "#dedede", // gris
+        ["==", ['get', 'typeFamilyB'], "dédié"], colorsByTag["dédié"],
+        ["==", ['get', 'typeFamilyB'], "mixité-motorisé-good"], colorsByTag["mixité-motorisé-good"],
+        ["==", ['get', 'typeFamilyB'], "mixité-motorisé-bad"], colorsByTag["mixité-motorisé-bad"],
+        ["==", ['get', 'typeFamilyB'], "mixité-piétonne-good"], colorsByTag["mixité-piétonne-good"],
+        ["==", ['get', 'typeFamilyB'], "mixité-piétonne-bad"], colorsByTag["mixité-piétonne-bad"],
+        ["==", ['get', 'status'], "done"], colorsByTag["done"],
+        ["==", ['get', 'typeFamilyB'], "inconnu"], colorsByTag["inconnu"],
         "black"
     ]
 const sectionTypeColor: ExpressionSpecification = [
     "case",
-        ["==", ['get', 'type'], "unidirectionnelle"], "#b3c6ff", // bleu
-        ["==", ['get', 'type'], "bidirectionnelle"], "#b3c6ff", // bleu
-        ["==", ['get', 'type'], "bilaterale"], "#b3dbff", // cyan
-        ["==", ['get', 'type'], "bandes-cyclables"], "#b3c6ff", // bleu-violet
-        ["==", ['get', 'type'], "voie-bus"], "#c497f7", // violet
-        ["==", ['get', 'type'], "voie-bus-elargie"], "#c497f7", // violet
-        ["==", ['get', 'type'], "velorue"], "#f797e7", // jaune
-        ["==", ['get', 'type'], "voie-verte"], "#b3ffb6", // vert
-        ["==", ['get', 'type'], "zone-de-rencontre"], "#97f7d6", // vert clair
-        ["==", ['get', 'type'], "aire-pietonne"], "#ffc399", // orange
-        ["==", ['get', 'type'], "chaucidou"], "#ffeab3", // orange
-        ["==", ['get', 'type'], "aucun"], "#ff9999", // rouge
-        ["==", ['get', 'status'], "done"], "#000000", // black
-        ["==", ['get', 'type'], "inconnu"], "#dedede", // gris
+        ["==", ['get', 'type'], "unidirectionnelle"], colorsByTag["unidirectionnelle"],
+        ["==", ['get', 'type'], "bidirectionnelle"], colorsByTag["bidirectionnelle"],
+        ["==", ['get', 'type'], "bilaterale"], colorsByTag["bilaterale"],
+        ["==", ['get', 'type'], "bandes-cyclables"], colorsByTag["bandes-cyclables"],
+        ["==", ['get', 'type'], "voie-bus"], colorsByTag["voie-bus"],
+        ["==", ['get', 'type'], "voie-bus-elargie"], colorsByTag["voie-bus-elargie"],
+        ["==", ['get', 'type'], "velorue"], colorsByTag["velorue"],
+        ["==", ['get', 'type'], "voie-verte"], colorsByTag["voie-verte"],
+        ["==", ['get', 'type'], "zone-de-rencontre"], colorsByTag["zone-de-rencontre"],
+        ["==", ['get', 'type'], "aire-pietonne"], colorsByTag["aire-pietonne"],
+        ["==", ['get', 'type'], "chaucidou"], colorsByTag["chaucidou"],
+        ["==", ['get', 'type'], "aucun"], colorsByTag["aucun"],
+        ["==", ['get', 'status'], "done"], colorsByTag["done"],
+        ["==", ['get', 'type'], "inconnu"], colorsByTag["inconnu"],
         "black"
     ]
 const sectionTypeBColor: ExpressionSpecification = [
     "case",
         ["!", ['has', 'typeB']], sectionTypeColor,
-        ["==", ['get', 'typeB'], "unidirectionnelle"], "#b3c6ff", // bleu
-        ["==", ['get', 'typeB'], "bidirectionnelle"], "#b3c6ff", // bleu
-        ["==", ['get', 'typeB'], "bilaterale"], "#b3dbff", // cyan
-        ["==", ['get', 'typeB'], "bandes-cyclables"], "#b3c6ff", // bleu-violet
-        ["==", ['get', 'typeB'], "voie-bus"], "#c497f7", // violet
-        ["==", ['get', 'typeB'], "voie-bus-elargie"], "#c497f7", // violet
-        ["==", ['get', 'typeB'], "velorue"], "#f797e7", // jaune
-        ["==", ['get', 'typeB'], "voie-verte"], "#b3ffb6", // vert
-        ["==", ['get', 'typeB'], "zone-de-rencontre"], "#97f7d6", // vert clair
-        ["==", ['get', 'typeB'], "aire-pietonne"], "#ffc399", // orange
-        ["==", ['get', 'typeB'], "chaucidou"], "#ffeab3", // orange
-        ["==", ['get', 'typeB'], "aucun"], "#ff9999", // rouge
-        ["==", ['get', 'status'], "done"], "#000000", // black
-        ["==", ['get', 'typeB'], "inconnu"], "#dedede", // gris
+        ["==", ['get', 'typeB'], "unidirectionnelle"], colorsByTag["unidirectionnelle"],
+        ["==", ['get', 'typeB'], "bidirectionnelle"], colorsByTag["bidirectionnelle"],
+        ["==", ['get', 'typeB'], "bilaterale"], colorsByTag["bilaterale"],
+        ["==", ['get', 'typeB'], "bandes-cyclables"], colorsByTag["bandes-cyclables"],
+        ["==", ['get', 'typeB'], "voie-bus"], colorsByTag["voie-bus"],
+        ["==", ['get', 'typeB'], "voie-bus-elargie"], colorsByTag["voie-bus-elargie"],
+        ["==", ['get', 'typeB'], "velorue"], colorsByTag["velorue"],
+        ["==", ['get', 'typeB'], "voie-verte"], colorsByTag["voie-verte"],
+        ["==", ['get', 'typeB'], "zone-de-rencontre"], colorsByTag["zone-de-rencontre"],
+        ["==", ['get', 'typeB'], "aire-pietonne"], colorsByTag["aire-pietonne"],
+        ["==", ['get', 'typeB'], "chaucidou"], colorsByTag["chaucidou"],
+        ["==", ['get', 'typeB'], "aucun"], colorsByTag["aucun"],
+        ["==", ['get', 'status'], "done"], colorsByTag["done"],
+        ["==", ['get', 'typeB'], "inconnu"], colorsByTag["inconnu"],
         "black"
     ]
 
