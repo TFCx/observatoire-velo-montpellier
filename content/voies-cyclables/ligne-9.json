@@ -1,7 +1,22 @@
 {
   "type": "FeatureCollection",
   "features": [
-
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "perspective",
+        "name": "Ecole Jean Jaurès",
+        "line": 9,
+        "imgUrl": "https://rouelibre.net/wp-content/uploads/2025/01/REV9-IMG_4282.jpg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.913014462883268,
+          45.56982722325415
+        ]
+      }
+    },
     {
       "type": "Feature",
       "properties": {
@@ -12,7 +27,10 @@
       },
       "geometry": {
         "type": "Point",
-        "coordinates": [5.924832814115547,45.567340231460236]
+        "coordinates": [
+          5.910430926431815,
+          45.5722183065198
+        ]
       }
     },
     {
