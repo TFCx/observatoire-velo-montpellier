@@ -22,6 +22,16 @@ const fixedSectionWidth = laneWidth + 0.5
 const laneDashes = [1.5, 0.7]
 const laneDashWIP = [1.0, 1.05]
 
+const nbLanes: ExpressionSpecification = ['get', 'nb_lanes']
+const laneIndex: ExpressionSpecification = ['get', 'lane_index']
+const allLanesWidth: ExpressionSpecification = ["*", laneWidth, nbLanes]
+const sectionWidth: ExpressionSpecification = ['*', laneWidth, ['length', ['get', 'lines']]]
+const halfLaneWidth: ExpressionSpecification = ["/", laneWidth, 2]
+const laneColor: ExpressionSpecification = ["to-color", ['get', 'color']]
+const leftmostOffset: ExpressionSpecification = ['+', ['-', 0, ["/", allLanesWidth, 2]], halfLaneWidth]
+const offsetLane: ExpressionSpecification = ['+', leftmostOffset, ['*', laneIndex, laneWidth]]
+
+// ----------------------------
 const colorsByTag = {
     "unidirectionnelle": "#b3c6ff",
     "bidirectionnelle": "#b3c6ff",
@@ -47,92 +57,69 @@ const colorsByTag = {
     "mixité-piétonne-bad": "#f2cd7c",
 }
 
-const nbLanes: ExpressionSpecification = ['get', 'nb_lanes']
-const laneIndex: ExpressionSpecification = ['get', 'lane_index']
-const allLanesWidth: ExpressionSpecification = ["*", laneWidth, nbLanes]
-const sectionWidth: ExpressionSpecification = ['*', laneWidth, ['length', ['get', 'lines']]]
-const halfLaneWidth: ExpressionSpecification = ["/", laneWidth, 2]
-const laneColor: ExpressionSpecification = ["to-color", ['get', 'color']]
-const leftmostOffset: ExpressionSpecification = ['+', ['-', 0, ["/", allLanesWidth, 2]], halfLaneWidth]
-const offsetLane: ExpressionSpecification = ['+', leftmostOffset, ['*', laneIndex, laneWidth]]
-const sectionQualityColor: ExpressionSpecification = [
-    "case",
-        ["==", ['get', 'quality'], "bad"], colorsByTag["bad"],
-        ["==", ['get', 'quality'], "fair"], colorsByTag["fair"],
-        ["==", ['get', 'quality'], "good"], colorsByTag["good"],
-        ["==", ['get', 'status'], "done"], colorsByTag["done"],
-        "white"
+function compSectionQualityColor(attribute: string): ExpressionSpecification {
+    return [
+        "case",
+            ["==", ['get', attribute], "bad"], colorsByTag["bad"],
+            ["==", ['get', attribute], "fair"], colorsByTag["fair"],
+            ["==", ['get', attribute], "good"], colorsByTag["good"],
+            ["==", ['get', 'status'], "done"], colorsByTag["done"],
+            "white"
     ]
-const sectionQualityColorB: ExpressionSpecification = [
+}
+const sectionQualityColor: ExpressionSpecification = compSectionQualityColor('quality')
+const sectionQualityColor2ndHalf: ExpressionSpecification = [
     "case",
         ["!", ['has', 'qualityB']], sectionQualityColor,
-        ["==", ['get', 'qualityB'], "bad"], colorsByTag["bad"],
-        ["==", ['get', 'qualityB'], "fair"], colorsByTag["fair"],
-        ["==", ['get', 'qualityB'], "good"], colorsByTag["good"],
-        ["==", ['get', 'status'], "done"], colorsByTag["done"],
-        "white"
+        compSectionQualityColor('qualityB')
     ]
-const sectionTypeFamilyColor: ExpressionSpecification = [
-    "case",
-        ["==", ['get', 'typeFamily'], "dédié"], colorsByTag["dédié"],
-        ["==", ['get', 'typeFamily'], "mixité-motorisé-good"], colorsByTag["mixité-motorisé-good"],
-        ["==", ['get', 'typeFamily'], "mixité-motorisé-bad"], colorsByTag["mixité-motorisé-bad"],
-        ["==", ['get', 'typeFamily'], "mixité-piétonne-good"], colorsByTag["mixité-piétonne-good"],
-        ["==", ['get', 'typeFamily'], "mixité-piétonne-bad"], colorsByTag["mixité-piétonne-bad"],
-        ["==", ['get', 'status'], "done"], colorsByTag["done"],
-        ["==", ['get', 'typeFamily'], "inconnu"], colorsByTag["inconnu"],
-        "black"
-  ]
-const sectionTypeFamilyBColor: ExpressionSpecification = [
+function compSectionTypeFamilyColor(attribute: string): ExpressionSpecification {
+    return [
+        "case",
+            ["==", ['get', attribute], "dédié"], colorsByTag["dédié"],
+            ["==", ['get', attribute], "mixité-motorisé-good"], colorsByTag["mixité-motorisé-good"],
+            ["==", ['get', attribute], "mixité-motorisé-bad"], colorsByTag["mixité-motorisé-bad"],
+            ["==", ['get', attribute], "mixité-piétonne-good"], colorsByTag["mixité-piétonne-good"],
+            ["==", ['get', attribute], "mixité-piétonne-bad"], colorsByTag["mixité-piétonne-bad"],
+            ["==", ['get', 'status'], "done"], colorsByTag["done"],
+            ["==", ['get', attribute], "inconnu"], colorsByTag["inconnu"],
+            "white"
+    ]
+}
+const sectionTypeFamilyColor: ExpressionSpecification = compSectionTypeFamilyColor('typeFamily')
+const sectionTypeFamilyColor2ndHalf: ExpressionSpecification = [
     "case",
         ["!", ['has', 'typeFamilyB']], sectionTypeFamilyColor,
-        ["==", ['get', 'typeFamilyB'], "dédié"], colorsByTag["dédié"],
-        ["==", ['get', 'typeFamilyB'], "mixité-motorisé-good"], colorsByTag["mixité-motorisé-good"],
-        ["==", ['get', 'typeFamilyB'], "mixité-motorisé-bad"], colorsByTag["mixité-motorisé-bad"],
-        ["==", ['get', 'typeFamilyB'], "mixité-piétonne-good"], colorsByTag["mixité-piétonne-good"],
-        ["==", ['get', 'typeFamilyB'], "mixité-piétonne-bad"], colorsByTag["mixité-piétonne-bad"],
+        compSectionTypeFamilyColor('typeFamilyB')
+    ]
+function compSectionTypeColor(attribute: string): ExpressionSpecification {
+    return [
+        "case",
+        ["==", ['get', attribute], "unidirectionnelle"], colorsByTag["unidirectionnelle"],
+        ["==", ['get', attribute], "bidirectionnelle"], colorsByTag["bidirectionnelle"],
+        ["==", ['get', attribute], "bilaterale"], colorsByTag["bilaterale"],
+        ["==", ['get', attribute], "bandes-cyclables"], colorsByTag["bandes-cyclables"],
+        ["==", ['get', attribute], "voie-bus"], colorsByTag["voie-bus"],
+        ["==", ['get', attribute], "voie-bus-elargie"], colorsByTag["voie-bus-elargie"],
+        ["==", ['get', attribute], "velorue"], colorsByTag["velorue"],
+        ["==", ['get', attribute], "voie-verte"], colorsByTag["voie-verte"],
+        ["==", ['get', attribute], "zone-de-rencontre"], colorsByTag["zone-de-rencontre"],
+        ["==", ['get', attribute], "aire-pietonne"], colorsByTag["aire-pietonne"],
+        ["==", ['get', attribute], "chaucidou"], colorsByTag["chaucidou"],
+        ["==", ['get', attribute], "aucun"], colorsByTag["aucun"],
         ["==", ['get', 'status'], "done"], colorsByTag["done"],
-        ["==", ['get', 'typeFamilyB'], "inconnu"], colorsByTag["inconnu"],
+        ["==", ['get', attribute], "inconnu"], colorsByTag["inconnu"],
         "black"
     ]
-const sectionTypeColor: ExpressionSpecification = [
-    "case",
-        ["==", ['get', 'type'], "unidirectionnelle"], colorsByTag["unidirectionnelle"],
-        ["==", ['get', 'type'], "bidirectionnelle"], colorsByTag["bidirectionnelle"],
-        ["==", ['get', 'type'], "bilaterale"], colorsByTag["bilaterale"],
-        ["==", ['get', 'type'], "bandes-cyclables"], colorsByTag["bandes-cyclables"],
-        ["==", ['get', 'type'], "voie-bus"], colorsByTag["voie-bus"],
-        ["==", ['get', 'type'], "voie-bus-elargie"], colorsByTag["voie-bus-elargie"],
-        ["==", ['get', 'type'], "velorue"], colorsByTag["velorue"],
-        ["==", ['get', 'type'], "voie-verte"], colorsByTag["voie-verte"],
-        ["==", ['get', 'type'], "zone-de-rencontre"], colorsByTag["zone-de-rencontre"],
-        ["==", ['get', 'type'], "aire-pietonne"], colorsByTag["aire-pietonne"],
-        ["==", ['get', 'type'], "chaucidou"], colorsByTag["chaucidou"],
-        ["==", ['get', 'type'], "aucun"], colorsByTag["aucun"],
-        ["==", ['get', 'status'], "done"], colorsByTag["done"],
-        ["==", ['get', 'type'], "inconnu"], colorsByTag["inconnu"],
-        "black"
-    ]
-const sectionTypeBColor: ExpressionSpecification = [
+}
+const sectionTypeColor: ExpressionSpecification = compSectionTypeColor('type')
+const sectionTypeColor2ndHalf: ExpressionSpecification = [
     "case",
         ["!", ['has', 'typeB']], sectionTypeColor,
-        ["==", ['get', 'typeB'], "unidirectionnelle"], colorsByTag["unidirectionnelle"],
-        ["==", ['get', 'typeB'], "bidirectionnelle"], colorsByTag["bidirectionnelle"],
-        ["==", ['get', 'typeB'], "bilaterale"], colorsByTag["bilaterale"],
-        ["==", ['get', 'typeB'], "bandes-cyclables"], colorsByTag["bandes-cyclables"],
-        ["==", ['get', 'typeB'], "voie-bus"], colorsByTag["voie-bus"],
-        ["==", ['get', 'typeB'], "voie-bus-elargie"], colorsByTag["voie-bus-elargie"],
-        ["==", ['get', 'typeB'], "velorue"], colorsByTag["velorue"],
-        ["==", ['get', 'typeB'], "voie-verte"], colorsByTag["voie-verte"],
-        ["==", ['get', 'typeB'], "zone-de-rencontre"], colorsByTag["zone-de-rencontre"],
-        ["==", ['get', 'typeB'], "aire-pietonne"], colorsByTag["aire-pietonne"],
-        ["==", ['get', 'typeB'], "chaucidou"], colorsByTag["chaucidou"],
-        ["==", ['get', 'typeB'], "aucun"], colorsByTag["aucun"],
-        ["==", ['get', 'status'], "done"], colorsByTag["done"],
-        ["==", ['get', 'typeB'], "inconnu"], colorsByTag["inconnu"],
-        "black"
+        compSectionTypeColor('typeB')
     ]
 
+// ----------------------------
 
 let layersForFinishedNetwork: string[] = []
 let layersForCurrentNetwork: string[] = []
@@ -520,7 +507,7 @@ function drawQualityNetwork(map: Map, sections: SectionFeature[], lanes: LaneFea
         layout: { 'line-cap': 'round' },
         paint: {
         'line-width': fixedSectionWidth / 2,
-        'line-color': sectionQualityColorB,
+        'line-color': sectionQualityColor2ndHalf,
         'line-offset': -fixedSectionWidth / 4,
         }
     });
@@ -568,7 +555,7 @@ function drawTypeFamilyNetwork(map: Map, sections: SectionFeature[], lanes: Lane
         layout: { 'line-cap': 'round' },
         paint: {
         'line-width': fixedSectionWidth / 2,
-        'line-color': sectionTypeFamilyBColor,
+        'line-color': sectionTypeFamilyColor2ndHalf,
         'line-offset': -fixedSectionWidth / 4,
         }
     });
@@ -617,7 +604,7 @@ function drawTypeNetwork(map: Map, sections: SectionFeature[], lanes: LaneFeatur
         layout: { 'line-cap': 'round' },
         paint: {
         'line-width': fixedSectionWidth / 2,
-        'line-color': sectionTypeBColor,
+        'line-color': sectionTypeColor2ndHalf,
         'line-offset': -fixedSectionWidth / 4,
         }
     });
