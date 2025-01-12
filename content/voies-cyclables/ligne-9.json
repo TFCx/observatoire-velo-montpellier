@@ -5,6 +5,22 @@
       "type": "Feature",
       "properties": {
         "type": "perspective",
+        "name": "Carrefour Comte Vert",
+        "line": 9,
+        "imgUrl": "https://rouelibre.net/wp-content/uploads/2025/01/REV9-IMG_4278.jpg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9159212664051495,
+          45.570051753896905
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "perspective",
         "name": "Ecole Jean Jaurès",
         "line": 9,
         "imgUrl": "https://rouelibre.net/wp-content/uploads/2025/01/REV9-IMG_4282.jpg"

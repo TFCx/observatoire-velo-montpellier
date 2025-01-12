@@ -5,7 +5,7 @@ from: Chambéry (Poste du Vernay)
 to: La Motte Servolex (Pré Marquis)
 description: La Piste Bleue 9 permet de relier Chambéry à La Motte Servolex par La Mairie de Bissy et la Croix de Bissy.
 trafic: 1100 vélos/jour
-cover: https://rouelibre.net/wp-content/uploads/2024/06/IMG_1079-300x225.jpg
+cover: https://rouelibre.net/wp-content/uploads/2025/01/REV9-IMG_4307.jpg
 ---
 
 ## Les tronçons (du Sud au Nord)
@@ -21,7 +21,10 @@ credit: Roue Libre
 ---
 ::
 
+
+::banner{type="info"}
 Traversée du carrefour Comte Vert à améliorer dans les deux sens
+::
 
 ::content-image
 ---
@@ -46,7 +49,15 @@ credit: Roue Libre
 ::
 
 ### Avenue du Comte Vert
-<span style="color:blue;font-weight:bold">Satisfaisant</span> Trottoir partagé en voie verte dans le sens Sud Nord et bande cyclable dans le sens Nord -Sud
+<span style="color:blue;font-weight:bold">Satisfaisant</span> Trottoir partagé en voie verte dans le sens Sud Nord et bande cyclable dans le sens Nord -Sud. Giratoire sécurisé pour les cyclistes créé en 2019.
+
+::content-image
+---
+imageUrl: https://rouelibre.net/wp-content/uploads/2025/01/REV9-IMG_4300.jpg
+caption: Giratoire Comte Vert (Chambéry)
+credit: Roue Libre
+---
+::
 
 ### Avenue du Général Cartier
 <span style="color:blue;font-weight:bold">Satisfaisant</span> Une piste unidirectionnelle dans chaque sens de circulation, la piste Sud-Nord mériterait d'être élargie pour permettre les dépassements
