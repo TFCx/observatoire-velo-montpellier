@@ -24,7 +24,7 @@ import BikeInfraControl from '@/maplibre/BikeInfraControl';
 import LayerControl from '@/maplibre/LayerControl';
 import FullscreenControl from '@/maplibre/FullscreenControl';
 import ShrinkControl from '@/maplibre/ShrinkControl';
-import { isLineStringFeature, isPolygonFeature, isSectionFeature, type Feature, type LaneStatus, type LaneType, type LineStringFeature, type PolygonFeature, type SectionFeature } from '~/types';
+import { isLineStringFeature, isPolygonFeature, isSectionFeature, type Feature, type LaneStatus, type LaneType, type LaneTypeFamily, type LineStringFeature, type PolygonFeature, type SectionFeature } from '~/types';
 import config from '~/config.json';
 import { setDisplayedLayer } from '~/composables/useMap'
 import { sortByLine } from '~/composables//map/utils';
@@ -65,6 +65,7 @@ const {
 
 const statuses = ref(['planned', 'variante', 'done', 'postponed', 'variante-postponed', 'unknown', 'wip', 'tested']);
 const types = ref(['unidirectionnelle', 'bidirectionnelle', 'bilaterale', 'voie-bus', 'voie-bus-elargie', 'velorue', 'voie-verte', 'bandes-cyclables', 'zone-de-rencontre', 'aire-pietonne', 'chaucidou', 'aucun', 'inconnu']);
+const families = ref(['dédié', 'cohabitation motorisée', 'cohabitation piétonne', 'mixité motorisée', 'mixité piétonne'])
 const displayLimits = ref(true);
 const features = computed(() => {
   let activeLineFeatures = (props.features ?? []).filter(feature => {
@@ -79,9 +80,10 @@ const features = computed(() => {
   return activeLineFeatures.concat(activeLimitsFeatures)
 });
 
-function refreshFilters({ visibleStatuses, visibleTypes }: { visibleStatuses: LaneStatus[]; visibleTypes: LaneType[] }) {
+function refreshFilters({ visibleStatuses, visibleTypes, visibleTypesFamily }: { visibleStatuses: LaneStatus[]; visibleTypes: LaneType[], visibleTypesFamily: LaneTypeFamily[] }) {
   statuses.value = visibleStatuses;
   types.value = visibleTypes;
+  families.value = visibleTypesFamily;
 }
 
 function convertIntoDisplayedLayerEnum(s: string) {
@@ -91,6 +93,8 @@ function convertIntoDisplayedLayerEnum(s: string) {
     return DisplayedLayer.FinalizedProject
   } else if (s === "quality") {
     return DisplayedLayer.Quality
+  } else if (s === "typeFamily") {
+    return DisplayedLayer.TypeFamily
   } else if (s === "type") {
     return DisplayedLayer.Type
   }
@@ -238,6 +242,8 @@ onMounted(() => {
           status: f.properties.status,
           type: f.properties.type,
           typeB: f.properties.typeB,
+          typeFamily: f.properties.typeFamily,
+          typeFamilyB: f.properties.typeFamilyB,
           doneAt: f.properties.doneAt,
         },
         geometry: f.geometry

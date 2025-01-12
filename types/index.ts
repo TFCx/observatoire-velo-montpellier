@@ -13,6 +13,14 @@ export type LaneType =
 | 'aucun'
 | 'inconnu';
 
+export type LaneTypeFamily =
+| 'dédié'
+| 'mixité-motorisé-good'
+| 'mixité-motorisé-bad'
+| 'mixité-piétonne-good'
+| 'mixité-piétonne-bad'
+| 'inconnu';
+
 export type LaneStatus = 'done' | 'wip' | 'planned' | 'tested' | 'postponed' | 'unknown' | 'variante' | 'variante-postponed';
 
 export type Quality = 'bad' | 'fair' | 'good';
@@ -36,6 +44,8 @@ export type LineStringFeature = {
     qualityB?: Quality;
     type: LaneType;
     typeB?: LaneType;
+    typeFamily: LaneTypeFamily;
+    typeFamilyB?: LaneTypeFamily;
     doneAt?: string;
     link?: string;
   };
@@ -55,6 +65,8 @@ export type SectionFeature = {
     qualityB?: Quality;
     type: LaneType;
     typeB?: LaneType;
+    typeFamily: LaneTypeFamily;
+    typeFamilyB?: LaneTypeFamily;
     doneAt?: string;
   };
   geometry: {

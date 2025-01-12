@@ -6,8 +6,9 @@ const { getNbVoiesCyclables } = useConfig();
 enum DisplayedLayer {
   Progress = 0,
   Quality = 1,
-  Type = 2,
+  TypeFamily = 2,
   FinalizedProject = 3,
+  Type = 4,
 }
 
 const displayedLayer = ref(DisplayedLayer.Progress);
@@ -46,6 +47,29 @@ const sectionQualityColorB: ExpressionSpecification = [
         ["==", ['get', 'status'], "done"], "#000000",
         "white"
     ]
+const sectionTypeFamilyColor: ExpressionSpecification = [
+    "case",
+        ["==", ['get', 'typeFamily'], "dédié"], "#b3c6ff", // bleu
+        ["==", ['get', 'typeFamily'], "mixité-motorisé-good"], "#97f7d6", // bleu-vert
+        ["==", ['get', 'typeFamily'], "mixité-motorisé-bad"], "#f797e7", // rouge
+        ["==", ['get', 'typeFamily'], "mixité-piétonne-good"], "#e6ffb3", // bleu-violet
+        ["==", ['get', 'typeFamily'], "mixité-piétonne-bad"], "#f2cd7c", // orange
+        ["==", ['get', 'status'], "done"], "#000000", // black
+        ["==", ['get', 'typeFamily'], "inconnu"], "#dedede", // gris
+        "black"
+  ]
+const sectionTypeFamilyBColor: ExpressionSpecification = [
+    "case",
+        ["!", ['has', 'typeFamilyB']], sectionTypeFamilyColor,
+        ["==", ['get', 'typeFamilyB'], "dédié"], "#b3c6ff", // bleu
+        ["==", ['get', 'typeFamilyB'], "mixité-motorisé-good"], "#97f7d6", // bleu-vert
+        ["==", ['get', 'typeFamilyB'], "mixité-motorisé-bad"], "#f797e7", // rouge
+        ["==", ['get', 'typeFamilyB'], "mixité-piétonne-good"], "#e6ffb3", // bleu-violet
+        ["==", ['get', 'typeFamilyB'], "mixité-piétonne-bad"], "#f2cd7c", // orange
+        ["==", ['get', 'status'], "done"], "#000000", // black
+        ["==", ['get', 'typeFamilyB'], "inconnu"], "#dedede", // gris
+        "black"
+    ]
 const sectionTypeColor: ExpressionSpecification = [
     "case",
         ["==", ['get', 'type'], "unidirectionnelle"], "#b3c6ff", // bleu
@@ -63,8 +87,8 @@ const sectionTypeColor: ExpressionSpecification = [
         ["==", ['get', 'status'], "done"], "#000000", // black
         ["==", ['get', 'type'], "inconnu"], "#dedede", // gris
         "black"
-  ]
-const sectionTypeColorB: ExpressionSpecification = [
+    ]
+const sectionTypeBColor: ExpressionSpecification = [
     "case",
         ["!", ['has', 'typeB']], sectionTypeColor,
         ["==", ['get', 'typeB'], "unidirectionnelle"], "#b3c6ff", // bleu
@@ -88,7 +112,9 @@ const sectionTypeColorB: ExpressionSpecification = [
 let layersForFinishedNetwork: string[] = []
 let layersForCurrentNetwork: string[] = []
 let layersForQualityNetwork: string[] = []
+let layersForTypeFamilyNetwork: string[] = []
 let layersForTypeNetwork: string[] = []
+
 
 const setDisplayedLayer = (value: DisplayedLayer) => {
   displayedLayer.value = value;
@@ -104,6 +130,9 @@ function changeLayer(map: Map, displayedLayer: DisplayedLayer) {
     for(const layerName of layersForQualityNetwork) {
         map.setLayoutProperty(layerName, "visibility", (displayedLayer == DisplayedLayer.Quality) ? "visible" : "none")
     }
+    for(const layerName of layersForTypeFamilyNetwork) {
+        map.setLayoutProperty(layerName, "visibility", (displayedLayer == DisplayedLayer.TypeFamily) ? "visible" : "none")
+    }
     for(const layerName of layersForTypeNetwork) {
         map.setLayoutProperty(layerName, "visibility", (displayedLayer == DisplayedLayer.Type) ? "visible" : "none")
     }
@@ -111,7 +140,7 @@ function changeLayer(map: Map, displayedLayer: DisplayedLayer) {
 
 import { upsertMapSource } from './utils';
 
-export { DisplayedLayer, setDisplayedLayer, drawCurrentNetwork, drawFinishedNetwork, drawQualityNetwork, drawTypeNetwork, changeLayer, addListnersForHovering };
+export { DisplayedLayer, setDisplayedLayer, drawCurrentNetwork, drawFinishedNetwork, drawQualityNetwork, drawTypeFamilyNetwork, drawTypeNetwork, changeLayer, addListnersForHovering };
 
 let layersBase: string[] = []
 
@@ -474,6 +503,55 @@ function drawQualityNetwork(map: Map, sections: SectionFeature[], lanes: LaneFea
 
     //drawHoveredEffect(map);
 }
+function drawTypeFamilyNetwork(map: Map, sections: SectionFeature[], lanes: LaneFeature[]) {
+    let wasOnlyUpdatingLanes = upsertMapSource(map, 'src-lanes', lanes)
+    let wasOnlyUpdatingSections = upsertMapSource(map, 'src-sections', sections)
+    // if (wasOnlyUpdatingLanes && wasOnlyUpdatingSections) {
+    //     return;
+    // }
+
+    map.addLayer({
+        id: 'layer-type-family-network-contour',
+        type: 'line',
+        source: 'src-sections',
+        layout: { 'line-cap': 'round' },
+        paint: {
+        'line-gap-width': fixedSectionWidth,
+        'line-width': 1.3,
+        'line-color': '#000000',
+        }
+    });
+    layersForTypeFamilyNetwork.push("layer-type-family-network-contour")
+
+    map.addLayer({
+        id: `layer-type-family-network-section-sideA`,
+        type: 'line',
+        source: 'src-sections',
+        layout: { 'line-cap': 'round' },
+        paint: {
+        'line-width': fixedSectionWidth / 2,
+        'line-color': sectionTypeFamilyColor,
+        'line-offset': fixedSectionWidth / 4,
+        }
+    });
+    layersForTypeFamilyNetwork.push("layer-type-family-network-section-sideA")
+
+    map.addLayer({
+        id: `layer-type-family-network-section-sideB`,
+        type: 'line',
+        source: 'src-sections',
+        layout: { 'line-cap': 'round' },
+        paint: {
+        'line-width': fixedSectionWidth / 2,
+        'line-color': sectionTypeFamilyBColor,
+        'line-offset': -fixedSectionWidth / 4,
+        }
+    });
+    layersForTypeFamilyNetwork.push("layer-type-family-network-section-sideB")
+
+    //drawHoveredEffect(map);
+}
+
 function drawTypeNetwork(map: Map, sections: SectionFeature[], lanes: LaneFeature[]) {
     let wasOnlyUpdatingLanes = upsertMapSource(map, 'src-lanes', lanes)
     let wasOnlyUpdatingSections = upsertMapSource(map, 'src-sections', sections)
@@ -514,7 +592,7 @@ function drawTypeNetwork(map: Map, sections: SectionFeature[], lanes: LaneFeatur
         layout: { 'line-cap': 'round' },
         paint: {
         'line-width': fixedSectionWidth / 2,
-        'line-color': sectionTypeColorB,
+        'line-color': sectionTypeBColor,
         'line-offset': -fixedSectionWidth / 4,
         }
     });

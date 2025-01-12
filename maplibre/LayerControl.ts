@@ -28,8 +28,9 @@ export default class LayerControl {
 
     this.createRadioButton('progress', 'de l\'avancement du projet', true);
     this.createRadioButton('quality', 'de la qualité des aménagements', false);
-    this.createRadioButton('type', "du type d'aménagement", false);
+    this.createRadioButton('typeFamily', "du type d'aménagement", false);
     this.createRadioButton('finalizedProject', 'du futur réseau', false);
+    this.createRadioButton('type', "du type précis d'aménagement", false);
 
     return this._container;
   }

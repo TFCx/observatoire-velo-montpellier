@@ -94,6 +94,47 @@
 
           <div v-if="layerDisplayed==2">
             <div class="grid grid-cols-[64px_1fr] gap-x-4">
+              <div>Catégories principales</div>
+              <br>
+              <div class="my-auto rounded-md border-gray-500 border">
+                <div class="h-1 bg-velocite-type-family-dedie" />
+              </div>
+              <div>
+                Aménagements dédiés
+              </div>
+
+              <div class="my-auto rounded-md border-gray-500 border">
+                <div class="h-1 bg-velocite-type-family-mix-motor-good" />
+              </div>
+              <div>
+                Cohabitation motorisée
+              </div>
+
+              <div class="my-auto rounded-md border-gray-500 border">
+                <div class="h-1 bg-velocite-type-family-mix-motor-bad" />
+              </div>
+              <div>
+                Intrication motorisée
+              </div>
+
+              <div class="my-auto rounded-md border-gray-500 border">
+                <div class="h-1 bg-velocite-type-family-mix-ped-good" />
+              </div>
+              <div>
+                Cohabitation piétonne
+              </div>
+
+              <div class="my-auto rounded-md border-gray-500 border">
+                <div class="h-1 bg-velocite-type-family-mix-ped-bad" />
+              </div>
+              <div>
+                Intrication piétonne
+              </div>
+            </div>
+          </div>
+
+          <div v-if="layerDisplayed==4">
+            <div class="grid grid-cols-[64px_1fr] gap-x-4">
               <div>Types principaux</div>
               <br>
               <div class="my-auto rounded-md border-gray-500 border">
@@ -125,6 +166,7 @@
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </div>

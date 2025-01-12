@@ -1,5 +1,5 @@
 import { groupBy } from '../helpers/helpers';
-import { isLineStringFeature, type Feature, type Geojson, type LaneType, type LineStringFeature, type Quality } from '../types';
+import { isLineStringFeature, type Feature, type Geojson, type LaneType, type LaneTypeFamily, type LineStringFeature, type Quality } from '../types';
 
 export const useStats = () => {
   function getAllUniqLineStrings(voies: Geojson[]) {
@@ -164,6 +164,14 @@ export const useStats = () => {
     'chaucidou': 'Chaucidou',
     'aucun': 'Aucun aménagement',
     'inconnu': 'Inconnu',
+  };
+
+  const typologyFamilyNames: Record<LaneTypeFamily, string> = {
+    'dédié': 'Aménagements cyclables dédiés',
+    'mixité-motorisé-bad': 'Intrication motorisée',
+    'mixité-motorisé-good': 'Cohabitation motorisée',
+    'mixité-piétonne-bad': 'Intrication piétonne',
+    'mixité-piétonne-good': 'Cohabitation piétonne'
   };
 
   function getStatsByTypology(voies: Geojson[]) {

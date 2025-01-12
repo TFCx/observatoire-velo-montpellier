@@ -4,7 +4,7 @@ import type { CounterParsedContent } from '../types/counters';
 import { isLineStringFeature, type Feature, type LaneFeature, type LineStringFeature, type CompteurFeature, type PerspectiveFeature, type SectionFeature, type MultiColoredLineStringFeature, isSectionFeature, type DangerFeature} from '~/types';
 import { ref } from 'vue';
 
-import { drawCurrentNetwork, drawFinishedNetwork, drawQualityNetwork, drawTypeNetwork, changeLayer, addListnersForHovering } from "./map/network";
+import { drawCurrentNetwork, drawFinishedNetwork, drawQualityNetwork, drawTypeNetwork, drawTypeFamilyNetwork, changeLayer, addListnersForHovering } from "./map/network";
 import { plotPerspective, plotCompteurs, plotDangers, plotLimits, plotPumps, plotBaseBikeInfrastructure } from "./map/features";
 
 // Tooltips
@@ -17,8 +17,9 @@ import { getCrossIconUrl, sortByLine, fitBounds, upsertMapSource } from './map/u
 enum DisplayedLayer {
   Progress = 0,
   Quality = 1,
-  Type = 2,
+  TypeFamily = 2,
   FinalizedProject = 3,
+  Type = 4
 }
 
 const displayedLayer = ref(DisplayedLayer.Progress);
@@ -85,6 +86,8 @@ export const useMap = () => {
 
     drawQualityNetwork(map, sections, lanesWithId)
 
+    drawTypeFamilyNetwork(map, sections, lanesWithId)
+
     drawTypeNetwork(map, sections, lanesWithId)
 
     addListnersForHovering(map);
@@ -148,6 +151,8 @@ export const useMap = () => {
             qualityB: f.properties.qualityB,
             type: f.properties.type,
             typeB: f.properties.typeB,
+            typeFamily: f.properties.typeFamily,
+            typeFamilyB: f.properties.typeFamilyB,
             doneAt: f.properties.doneAt,
           },
           geometry: f.geometry
