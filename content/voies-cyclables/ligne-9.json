@@ -76,7 +76,7 @@
     "line": 9,
     "name": "Rue du Bon Pasteur",
     "quality": "good",
-    "doneAt": "01\/01\/2000",
+    "doneAt": "01\/01\/2006",
     "status": "done",
     "type": "bidirectionnelle",
     "link": "/rev-9#rue-du-bon-pasteur"
@@ -96,7 +96,7 @@
       "properties": {
         "line": 9,
         "name": "Avenue Jean Jaures",
-        "doneAt": "01\/01\/2000",        
+        "doneAt": "01\/01\/2006",        
         "quality": "",
         "status": "postponed",
         "type": "bidirectionnelle",
