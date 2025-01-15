@@ -16,7 +16,7 @@ La Piste 3 débute place Caffe où passe également la :line-link{line=8}.
 
 *Rue du chateau - Avenue de Boigne - Rue Favre - Rue Saint Antoine*
 
-<span style="color:black;font-weight:bold">Non satisfaisant</span> Aucun aménagement cyclable n'existe pour cette traversée du centre ville de Chambéry. Une variante en partie plus sécurisée pour les cyclistes par le Boulevard de la colonne et la place des Elephants engendre des conflits avec les pietons.
+<span style="color:black;font-weight:bold">Non satisfaisant</span> Aucun aménagement cyclable n'existe pour cette traversée du centre ville de Chambéry. Une variante en partie plus sécurisée pour les cyclistes par le Boulevard de la colonne et la place des Éléphants engendre des conflits avec les piétons.
 
 ::content-image
 ---
@@ -40,7 +40,7 @@ credit: Roue Libre
 
 ### Avenue d'Aix les Bains
 
-<span style="color:black;font-weight:bold">Non satisfaisant</span> Une cheminement des cycles sur le trottoir est conseillée.
+<span style="color:black;font-weight:bold">Non satisfaisant</span> Un cheminement des cycles sur le trottoir est actuellement conseillé.
 
 ::content-image
 ---
@@ -60,7 +60,7 @@ credit: Roue Libre
 ---
 ::
 
-<span style="color:red;font-weight:bold">À améliorer</span> Les deux bandes cyclables aménagées sur la partie supérieure de l'Avenue d'Aix les Bains ne respectent pas les recommandations du CEREMA en présence d'une trafic automobile supérieur à 9000 véhicules / jour.
+<span style="color:red;font-weight:bold">À améliorer</span> Les deux bandes cyclables aménagées sur la partie supérieure de l'Avenue d'Aix les Bains ne respectent pas les recommandations du CEREMA en présence d'un trafic automobile supérieur à 9000 véhicules / jour.
 
 ::content-image
 ---
@@ -81,6 +81,23 @@ A rédiger
 
 ## Fil d'actu
 
+### Lancement d'une étude de faisabilité Hauts de Chambéry via Avenue Aix les Bains par Grand Chambéry
+janvier 2025
+
+### Inauguration Piste Noire par Roue Libre
+14 janvier 2025
+
+[Photos, communiqué, signataires, proposition technique](https://rouelibre.net/pistenoire3){:target="_blank"}
+
+::content-image
+---
+imageUrl: https://rouelibre.net/wp-content/uploads/2025/01/IMG_5195-768x576.jpg
+caption: Inauguration Piste Noire 14 janvier 2025
+credit: Roue Libre
+---
+::
+
+
 ### Action Roue Libre lors du passage du Tour de France
 20 juillet 2023
 ::content-image
@@ -90,9 +107,6 @@ caption: Capture image Tour de France 2023
 credit: France 3
 ---
 ::
-
-### Lancement d'une étude de faisabilité Hauts de Chambéry via Avenue Aix les Bains par Grand Chambéry
-décembre 2024
 
 ### Lancement d'une étude de faisabilité Hauts de Chambéry via Avenue Mendès France par Grand Chambéry
 janvier 2024

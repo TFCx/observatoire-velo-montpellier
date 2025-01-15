@@ -12,7 +12,7 @@ cover: https://rouelibre.net/wp-content/uploads/2022/11/IMG_1555.jpg
 
 ### Avenue des Ducs
 
-<span style="color:blue;font-weight:bold">Satisfaisant</span> La Piste 1 débute sur l'avenue des Ducs, à la hauteur de la place des Elephants de Chambéry. 
+<span style="color:blue;font-weight:bold">Satisfaisant</span> La Piste 1 débute sur l'avenue des Ducs, à la hauteur de la place des Eléphants de Chambéry. 
 
 Elle est aménagé par une piste cyclable bidirectionnelle de 3 à 3,5m de large. Elle croise le départ de la :line-link{line=2} Landiers au niveau du palais de Justice de Chambéry puis celui de la :line-link{line=9} La Motte Servolex au niveau du giratoire de la Poste.
 
@@ -23,7 +23,7 @@ En 2023, [l'aménagement d'une piste bidirectionnelle -largeur 3,5m- sur l'avenu
 ::
 
 ::banner{type="wip"}
-Lors de cet aménagement, les carrefours n'ont pas été modifiés et les connexions avec le réseau secondaires n'ont pas été traitées.
+Lors de cet aménagement, les carrefours n'ont pas été modifiés et les connexions avec le réseau secondaire n'ont pas été traitées.
 ::
 
 ::content-image

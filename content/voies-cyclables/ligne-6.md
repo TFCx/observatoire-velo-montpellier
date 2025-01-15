@@ -11,7 +11,7 @@ cover: https://rouelibre.net/wp-content/uploads/2025/01/Piste6-IMG_4110.jpg
 ## Les tronçons (du Sud au Nord)
 
 ### Route Royale
-<span style="color:red;font-weight:bold">A améliorer</span> La piste démarre actuellement des Massettes et rejoint le Lycée du Granier via la la Route Royale (RD5). L'aménagement est peu sécurisant pour les cyclistes avec des bandes cyclables étroites ou inexistantes et un flux VL/PL très important.
+<span style="color:red;font-weight:bold">A améliorer</span> La piste démarre actuellement des Massettes et rejoint le Lycée du Granier via la Route Royale (RD5). L'aménagement est peu sécurisant pour les cyclistes avec des bandes cyclables étroites ou inexistantes et un flux VL/PL très important.
 
 ::content-image
 ---

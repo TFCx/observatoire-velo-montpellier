@@ -12,7 +12,7 @@ cover: https://rouelibre.net/wp-content/uploads/2024/11/REV-7-IMG_4183.jpg
 
 ### Quai Borrel
 
-<span style="color:blue;font-weight:bold">Satisfaisant</span> La Piste 7 débute de la :line-link{line=1} sur l'avenue des Ducs, à la hauteur de la place des Elephants de Chambéry.
+<span style="color:blue;font-weight:bold">Satisfaisant</span> La Piste 7 débute de la :line-link{line=1} sur l'avenue des Ducs, à la hauteur de la place des Eléphants de Chambéry.
 
 ::content-image
 ---
@@ -27,7 +27,7 @@ En 2023, [l'aménagement d'une piste bidirectionnelle -largeur 3,5m- sur l'avenu
 ::
 
 ::banner{type="wip"}
-Lors de cet aménagement, les carrefours n'ont pas été modifiés et les connexions avec le réseau secondaires n'ont pas été traitées.
+Lors de cet aménagement, les carrefours n'ont pas été modifiés et les connexions avec le réseau secondaire n'ont pas été traitées.
 ::
 
 ### Quai Borrel
@@ -79,7 +79,7 @@ caption: Avenue Verte Sud
 
 ### Parc Buisson Rond
 
-<span style="color:red;font-weight:bold">A améliorer</span> L'Avenue Verte Sud est une voie verte historique de Grand Chambéry. Elle traverse actuellement le Parc de Buisson Rond avec un aménagement de largeur 3 mètres en mixité pietons - cycles. Ce tracé sineux, de largeur de 3 mètres avec la présence de nombreux promeneurs est à améliorer.
+<span style="color:red;font-weight:bold">A améliorer</span> L'Avenue Verte Sud est une voie verte historique de Grand Chambéry. Elle traverse actuellement le Parc de Buisson Rond avec un aménagement de largeur 3 mètres en mixité piétons - cycles. Ce tracé sineux, de largeur de 3 mètres avec la présence de nombreux promeneurs est à améliorer.
 
 ::content-image
 ---

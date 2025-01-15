@@ -27,7 +27,7 @@ credit: Roue Libre
 
 ::banner{type="wip"}
 Piste cyclable bidirectionnelle provisoire créée en 2021.
-En attente de la pérénnisation et de la mise en place de continuités cyclables aux entrées et sorties
+En attente de la pérennisation et de la mise en place de continuités cyclables aux entrées et sorties
 ::
 
 ### Avenue de Lyon
@@ -37,7 +37,7 @@ Avril 2024 Lancement d'une étude de faisabilité Cognin et Chambéry par Grand 
 ::
 
 ### Chemin des Capucins
-<span style="color:blue;font-weight:bold">Satisfaisant</span> Piste cyclable bidirectionelle
+<span style="color:blue;font-weight:bold">Satisfaisant</span> Piste cyclable bidirectionnelle
 
 ### Cognin
 <span style="color:red;font-weight:bold">A améliorer</span> Piste cyclable chemin des vieux capucins puis aucun aménagement dans le centre ville de Cognin
@@ -45,7 +45,7 @@ Avril 2024 Lancement d'une étude de faisabilité Cognin et Chambéry par Grand 
 ## Fil d'actu
 
 ### Lancement d'une étude de faisabilité Cognin et Chambéry par Grand Chambéry
-Depuis le printemps 2024, suite à la mobilisation de Roue Libre et des organisations locales, une étude de fasabilité d'une liaison cyclable à Haut Niveau de Service entre Cognin et la Préfecture (place Caffe) est en cours. Roue Libre a été convié à deux réunions de travail avec le Bureau d'Etude.
+Depuis le printemps 2024, suite à la mobilisation de Roue Libre et des organisations locales, une étude de faisabilité d'une liaison cyclable à Haut Niveau de Service entre Cognin et la Préfecture (place Caffe) est en cours. Roue Libre a été convié à deux réunions de travail avec le Bureau d'Étude.
 
 ### Fausse inauguration Piste Rouge Cognin Chambéry par Roue Libre
 15 octobre 2024

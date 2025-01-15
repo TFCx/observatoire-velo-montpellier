@@ -25,7 +25,7 @@ credit: Roue Libre
 ::
 
 ### Avenue de la Boisse Sud
-<span style="color:red;font-weight:bold">A améliorer</span> De la gare de Chambéry, la piste se poursuit sur l'avenue de la Boisse en voie verte tracée sur le trottoir jusqu'à la jonction vers la Cassine / Vetrotex. Ce trottoir mixte pietons cycles n'est pas adapté aux flux de déplacements.
+<span style="color:red;font-weight:bold">A améliorer</span> De la gare de Chambéry, la piste se poursuit sur l'avenue de la Boisse en voie verte tracée sur le trottoir jusqu'à la jonction vers la Cassine / Vetrotex. Ce trottoir mixte piétons cycles n'est pas adapté aux flux de déplacements.
 
 ### Avenue de la Boisse Nord
 
@@ -59,7 +59,7 @@ credit: Roue Libre
 ### Avenue des Landiers
 
 <span style="color:blue;font-weight:bold">Satisfaisant</span> La voie verte est continue du passage à niveau au carrefour du Nant Bruyant.
-Les traversées des carrefours et des sorties de commerces sont matérialisés par un simple marquage au sol.
+Les traversées des carrefours et des sorties de commerces sont matérialisées par un simple marquage au sol.
 Une bande cyclable est également présente sur la chaussée dans le sens Sud-Nord.
 ::content-image
 ---
@@ -83,4 +83,4 @@ credit: Roue Libre
 
 La voie verte et la Piste Bleue n°2 se terminent quelques dizaines de mètres avant le siège de Grand Chambéry.
 
-A ce niveau, il est possible de rejoindre la :line-link{line=1} via un aménagement sécurisé le long de la rue du Nant Bruyant et le passage au dessus la Voie Rapide Urbaine.
+A ce niveau, il est possible de rejoindre la :line-link{line=1} via un aménagement sécurisé le long de la rue du Nant Bruyant et le passage au-dessus de la Voie Rapide Urbaine.

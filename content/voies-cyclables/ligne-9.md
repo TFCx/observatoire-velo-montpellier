@@ -38,7 +38,7 @@ credit: Roue Libre
 <span style="color:blue;font-weight:bold">Satisfaisant</span> Piste bidirectionnelle sur la rue du Bon Pasteur, mais avec régulièrement du stationnement sauvage devant l'école Jean Jaurès.
 
 ### Avenue Jean Jaurès
-<span style="color:red;font-weight:bold">A améliorer</span> Piste bidirectionnelle bosselée avec des arbres situés au centre de celle-ci et nombreux pietons et véhicules en stationnement minutes
+<span style="color:red;font-weight:bold">A améliorer</span> Piste bidirectionnelle bosselée avec des arbres situés au centre de celle-ci et nombreux piétons et véhicules en stationnement minutes
 
 ::content-image
 ---
