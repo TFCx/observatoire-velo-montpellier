@@ -12,6 +12,8 @@ cover: https://rouelibre.net/wp-content/uploads/2025/01/REV5-IMG_5416.jpg
 
 en cours de rédaction
 
+Le jonction au centre ville de Challes les Eaux n'est actuellement ni jalonnée ni sécurisée.
+
 ### Voie Verte des Planeurs
 
 ### Voie Verte de la Mère

@@ -47,26 +47,6 @@ credit: Roue Libre
 ---
 ::
 
-### Variante RD1006 Nord
-<span style="color:red;font-weight:bold">A améliorer</span> Les bandes cyclables créés en 2020 aux côtés d'une voirie de circulation à 70 km/h ne sont pas du tout satisfaisantes.
-La sécurisation de cette liaison permettrait la création d'une variante de plus directe et efficace pour les cyclistes souhaitant rejoindre La Ravoire et Challes les Eaux que l'actuel itinéraire plus touristique de Piste Bleue 4 via la voie verte des Planeurs.
-
-::banner{type="info"}
-Une étude pour la création d'une piste bidirectionnellede ce tronçon du giratoire de la Trousse - Carrefour Avenue Pré Renaud est en cours.
-::
-
-### Variante RD1006 Sud
-<span style="color:red;font-weight:bold">A améliorer</span> Les bandes cyclables créés en 2020 aux côtés d'une voirie de circulation à 70 km/h ne sont pas du tout satisfaisantes.
-Comme pour le tronçon précédent, la sécurisation de cette liaison permettrait la création d'une variante de plus directe et efficace pour les cyclistes.
-
-::content-image
----
-imageUrl: https://rouelibre.net/wp-content/uploads/2025/01/REV4-IMG_5437red.jpg
-caption: RD1006 (La Ravoire)
-credit: Roue Libre
----
-::
-
 ### Barby
 <span style="color:black;font-weight:bold">Non satisfaisant</span> Ce tronçon n'est pas aménagé pour les cycles.
 
@@ -79,14 +59,34 @@ credit: Roue Libre
 ::
 
 ### Voie verte des planeurs. De Barby à Challes les Eaux
-<span style="color:blue;font-weight:bold">Satisfaisant</span> La Voie verte historique des planeurs permet de rejoindre en toute sécurité la commune de Challes les Eaux. 
+<span style="color:blue;font-weight:bold">Satisfaisant</span> La Voie verte historique des planeurs permet de rejoindre en toute sécurité le plan d'eau de Challes les Eaux et le départ de la :line-link{line=5}. 
 
-Le centre ville de Challes les Eaux n'a pas d'aménagement cyclable sécurisé pour rejoindre cette piste.
+Le jonction au centre ville de Challes les Eaux n'est actuellement ni jalonnée ni sécurisée.
 
 ::content-image
 ---
 imageUrl: https://rouelibre.net/wp-content/uploads/2024/11/Piste4-IMG_2701.jpg
 caption: Roue de la Trousse (Barby)
+credit: Roue Libre
+---
+::
+
+### Variante RD1006 Nord
+<span style="color:red;font-weight:bold">A améliorer</span> Les bandes cyclables créées en 2020 aux côtés d'une voie de circulation à 70 km/h ne sont pas du tout satisfaisantes.
+La sécurisation de cette liaison permettrait la création d'une variante de plus directe et efficace pour les cyclistes souhaitant rejoindre La Ravoire et Challes les Eaux que l'actuel itinéraire de Piste Bleue 4 plus touristique via la voie verte des Planeurs.
+
+::banner{type="info"}
+Une étude pour la création d'une piste bidirectionnellede entre le giratoire de la Trousse et le carrefour avec l'Avenue Pré Renaud à LA Ravoire est en cours.
+::
+
+### Variante RD1006 Sud
+<span style="color:red;font-weight:bold">A améliorer</span> Les bandes cyclables créées en 2020 aux côtés d'une voie de circulation à 70 km/h ne sont pas du tout satisfaisantes.
+Comme pour le tronçon précédent, la sécurisation de cette liaison permettrait la création d'une variante plus directe et efficace pour les cyclistes que l'actuelle tracé de la Piste 4.
+
+::content-image
+---
+imageUrl: https://rouelibre.net/wp-content/uploads/2025/01/REV4-IMG_5437red.jpg
+caption: RD1006 (La Ravoire)
 credit: Roue Libre
 ---
 ::
