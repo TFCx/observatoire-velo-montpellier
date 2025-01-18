@@ -51,7 +51,7 @@
         </div>
         <div>
           <div class="text-right">
-            {{ typologyNames[feature.properties.type] ?? 'ERREUR' }}
+            {{ laneTypeToDescription[feature.properties.type] ?? 'ERREUR' }}
           </div>
         </div>
       </div>
@@ -61,7 +61,7 @@
         </div>
         <div>
           <div class="italic text-right">
-            {{ qualityNames[feature.properties.quality] }}
+            {{ qualityToDescription[feature.properties.quality] }}
           </div>
         </div>
       </div>
@@ -79,7 +79,7 @@ import type { LineStringFeature, SectionFeature } from '~/types';
 
 const { getLineColor } = useColors();
 const { getRevName } = useConfig();
-const { getDistance, typologyNames, qualityNames } = useStats();
+const { getDistance, laneTypeToDescription, qualityToDescription } = useStats();
 const { getVoieCyclablePath } = useUrl();
 
 const { feature, lines } = defineProps<{

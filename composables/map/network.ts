@@ -1,5 +1,5 @@
 import { GeoJSONSource, Map, type ExpressionSpecification } from 'maplibre-gl';
-import { type Feature, type LaneFeature, type LineStringFeature, type SectionFeature} from '~/types';
+import { LaneTypeE, LaneTypeFamilyE, QualityE, LaneStatusE, type Feature, type LaneFeature, type LineStringFeature, type SectionFeature} from '~/types';
 import { ref } from 'vue';
 
 const { getNbVoiesCyclables } = useConfig();
@@ -32,38 +32,58 @@ const leftmostOffset: ExpressionSpecification = ['+', ['-', 0, ["/", allLanesWid
 const offsetLane: ExpressionSpecification = ['+', leftmostOffset, ['*', laneIndex, laneWidth]]
 
 // ----------------------------
-const colorsByTag = {
-    "unidirectionnelle": "#b3c6ff",
-    "bidirectionnelle": "#b3c6ff",
-    "bilaterale": "#b3dbff",
-    "bandes-cyclables": "#b3c6ff",
-    "voie-bus": "#c497f7",
-    "voie-bus-elargie": "#c497f7",
-    "velorue": "#f797e7",
-    "voie-verte": "#b3ffb6",
-    "zone-de-rencontre": "#97f7d6",
-    "aire-pietonne": "#ffc399",
-    "chaucidou": "#ffeab3",
-    "aucun": "#ff9999",
-    "done": "#000000",
-    "inconnu": "#dedede",
-    "bad": "#ff6961",
-    "fair": "#F3F32A",
-    "good": "#77dd77",
-    "dédié": "#b3c6ff",
-    "mixité-motorisé-good": "#97f7d6",
-    "mixité-motorisé-bad": "#f797e7",
-    "mixité-piétonne-good": "#e6ffb3",
-    "mixité-piétonne-bad": "#f2cd7c",
+const laneTypeColorDict: { [key in LaneTypeE] : string } = {
+    [LaneTypeE.Unidirectionnelle]: "#b3c6ff",
+    [LaneTypeE.Bidirectionnelle]: "#b3c6ff",
+    [LaneTypeE.Bilaterale]: "#b3dbff",
+    [LaneTypeE.BandesCyclables]: "#b3c6ff",
+    [LaneTypeE.VoieBus]: "#c497f7",
+    [LaneTypeE.VoieBusElargie]: "#c497f7",
+    [LaneTypeE.Velorue]: "#f797e7",
+    [LaneTypeE.VoieVerte]: "#b3ffb6",
+    [LaneTypeE.ZoneDeRencontre]: "#97f7d6",
+    [LaneTypeE.AirePietonne]: "#ffc399",
+    [LaneTypeE.Chaucidou]: "#ffeab3",
+    [LaneTypeE.Aucun]: "#ff9999",
+    [LaneTypeE.Inconnu]: "#dedede",
+}
+
+const laneTypeFamilyColorDict: { [key in LaneTypeFamilyE] : string } = {
+    [LaneTypeFamilyE.Dedie]: "#b3c6ff",
+    [LaneTypeFamilyE.MixiteMotoriseGood]: "#97f7d6",
+    [LaneTypeFamilyE.MixiteMotoriseBad]: "#f797e7",
+    [LaneTypeFamilyE.MixitePietonneGood]: "#e6ffb3",
+    [LaneTypeFamilyE.MixitePietonneBad]: "#f2cd7c",
+    [LaneTypeFamilyE.Inconnu]: "#dedede",
+}
+
+const qualityColorDict: { [key in QualityE] : string } = {
+    [QualityE.Good]: "#77dd77",
+    [QualityE.Fair]: "#F3F32A",
+    [QualityE.Bad]: "#ff6961",
+}
+
+function getColorOf(key: LaneTypeE | LaneTypeFamilyE | QualityE | LaneStatusE): string {
+    if (Object.values(LaneTypeE).includes(key as LaneTypeE)) {
+        return laneTypeColorDict[key as LaneTypeE]
+    } else if (Object.values(LaneTypeFamilyE).includes(key as LaneTypeFamilyE)) {
+        return laneTypeFamilyColorDict[key as LaneTypeFamilyE]
+    } else if (Object.values(QualityE).includes(key as QualityE)) {
+        return qualityColorDict[key as QualityE]
+    } else if (Object.values(LaneStatusE).includes(key as LaneStatusE)) {
+        console.assert(key == LaneStatusE.Done)
+        return "#000000"
+    }
+    return "#000000"
 }
 
 function compSectionQualityColor(attribute: string): ExpressionSpecification {
     return [
         "case",
-            ["==", ['get', attribute], "bad"], colorsByTag["bad"],
-            ["==", ['get', attribute], "fair"], colorsByTag["fair"],
-            ["==", ['get', attribute], "good"], colorsByTag["good"],
-            ["==", ['get', 'status'], "done"], colorsByTag["done"],
+            ["==", ['get', attribute], QualityE.Bad], getColorOf(QualityE.Bad),
+            ["==", ['get', attribute], QualityE.Fair], getColorOf(QualityE.Fair),
+            ["==", ['get', attribute], QualityE.Good], getColorOf(QualityE.Good),
+            ["==", ['get', 'status'], LaneStatusE.Done], getColorOf(LaneStatusE.Done),
             "white"
     ]
 }
@@ -76,13 +96,13 @@ const sectionQualityColor2ndHalf: ExpressionSpecification = [
 function compSectionTypeFamilyColor(attribute: string): ExpressionSpecification {
     return [
         "case",
-            ["==", ['get', attribute], "dédié"], colorsByTag["dédié"],
-            ["==", ['get', attribute], "mixité-motorisé-good"], colorsByTag["mixité-motorisé-good"],
-            ["==", ['get', attribute], "mixité-motorisé-bad"], colorsByTag["mixité-motorisé-bad"],
-            ["==", ['get', attribute], "mixité-piétonne-good"], colorsByTag["mixité-piétonne-good"],
-            ["==", ['get', attribute], "mixité-piétonne-bad"], colorsByTag["mixité-piétonne-bad"],
-            ["==", ['get', 'status'], "done"], colorsByTag["done"],
-            ["==", ['get', attribute], "inconnu"], colorsByTag["inconnu"],
+            ["==", ['get', attribute], LaneTypeFamilyE.Dedie], getColorOf(LaneTypeFamilyE.Dedie),
+            ["==", ['get', attribute], LaneTypeFamilyE.MixiteMotoriseGood], getColorOf(LaneTypeFamilyE.MixiteMotoriseGood),
+            ["==", ['get', attribute], LaneTypeFamilyE.MixiteMotoriseBad], getColorOf(LaneTypeFamilyE.MixiteMotoriseBad),
+            ["==", ['get', attribute], LaneTypeFamilyE.MixitePietonneGood], getColorOf(LaneTypeFamilyE.MixitePietonneGood),
+            ["==", ['get', attribute], LaneTypeFamilyE.MixitePietonneBad], getColorOf(LaneTypeFamilyE.MixitePietonneBad),
+            ["==", ['get', 'status'], LaneStatusE.Done], getColorOf(LaneStatusE.Done),
+            ["==", ['get', attribute], LaneTypeFamilyE.Inconnu], getColorOf(LaneTypeFamilyE.Inconnu),
             "white"
     ]
 }
@@ -95,20 +115,20 @@ const sectionTypeFamilyColor2ndHalf: ExpressionSpecification = [
 function compSectionTypeColor(attribute: string): ExpressionSpecification {
     return [
         "case",
-        ["==", ['get', attribute], "unidirectionnelle"], colorsByTag["unidirectionnelle"],
-        ["==", ['get', attribute], "bidirectionnelle"], colorsByTag["bidirectionnelle"],
-        ["==", ['get', attribute], "bilaterale"], colorsByTag["bilaterale"],
-        ["==", ['get', attribute], "bandes-cyclables"], colorsByTag["bandes-cyclables"],
-        ["==", ['get', attribute], "voie-bus"], colorsByTag["voie-bus"],
-        ["==", ['get', attribute], "voie-bus-elargie"], colorsByTag["voie-bus-elargie"],
-        ["==", ['get', attribute], "velorue"], colorsByTag["velorue"],
-        ["==", ['get', attribute], "voie-verte"], colorsByTag["voie-verte"],
-        ["==", ['get', attribute], "zone-de-rencontre"], colorsByTag["zone-de-rencontre"],
-        ["==", ['get', attribute], "aire-pietonne"], colorsByTag["aire-pietonne"],
-        ["==", ['get', attribute], "chaucidou"], colorsByTag["chaucidou"],
-        ["==", ['get', attribute], "aucun"], colorsByTag["aucun"],
-        ["==", ['get', 'status'], "done"], colorsByTag["done"],
-        ["==", ['get', attribute], "inconnu"], colorsByTag["inconnu"],
+        ["==", ['get', attribute], LaneTypeE.Unidirectionnelle], getColorOf(LaneTypeE.Unidirectionnelle),
+        ["==", ['get', attribute], LaneTypeE.Bidirectionnelle], getColorOf(LaneTypeE.Bidirectionnelle),
+        ["==", ['get', attribute], LaneTypeE.Bilaterale], getColorOf(LaneTypeE.Bilaterale),
+        ["==", ['get', attribute], LaneTypeE.BandesCyclables], getColorOf(LaneTypeE.BandesCyclables),
+        ["==", ['get', attribute], LaneTypeE.VoieBus], getColorOf(LaneTypeE.VoieBus),
+        ["==", ['get', attribute], LaneTypeE.VoieBusElargie], getColorOf(LaneTypeE.VoieBusElargie),
+        ["==", ['get', attribute], LaneTypeE.Velorue], getColorOf(LaneTypeE.Velorue),
+        ["==", ['get', attribute], LaneTypeE.VoieVerte], getColorOf(LaneTypeE.VoieVerte),
+        ["==", ['get', attribute], LaneTypeE.ZoneDeRencontre], getColorOf(LaneTypeE.ZoneDeRencontre),
+        ["==", ['get', attribute], LaneTypeE.AirePietonne], getColorOf(LaneTypeE.AirePietonne),
+        ["==", ['get', attribute], LaneTypeE.Chaucidou], getColorOf(LaneTypeE.Chaucidou),
+        ["==", ['get', attribute], LaneTypeE.Aucun], getColorOf(LaneTypeE.Aucun),
+        ["==", ['get', 'status'], LaneStatusE.Done], getColorOf(LaneStatusE.Done),
+        ["==", ['get', attribute], LaneTypeE.Inconnu], getColorOf(LaneTypeE.Inconnu),
         "black"
     ]
 }
@@ -157,18 +177,18 @@ export { DisplayedLayer, setDisplayedLayer, drawCurrentNetwork, drawFinishedNetw
 let layersBase: string[] = []
 
 function filterSections(sections: SectionFeature[], options: {done: boolean, wip: boolean, planned: boolean, postponed: boolean}): SectionFeature[] {
-    sections = options.done ? sections : sections.filter(s => s.properties.status !== "done")
-    sections = options.wip ? sections : sections.filter(s => s.properties.status !== "wip")
-    sections = options.planned ? sections : sections.filter(s => s.properties.status !== "planned")
-    sections = options.postponed ? sections : sections.filter(s => s.properties.status !== "postponed")
+    sections = options.done ? sections : sections.filter(s => s.properties.status !== LaneStatusE.Done)
+    sections = options.wip ? sections : sections.filter(s => s.properties.status !== LaneStatusE.Wip)
+    sections = options.planned ? sections : sections.filter(s => s.properties.status !== LaneStatusE.Planned)
+    sections = options.postponed ? sections : sections.filter(s => s.properties.status !== LaneStatusE.Postponed)
     return sections
 }
 
 function filterLanes(lanes: LaneFeature[], options: {done: boolean, wip: boolean, planned: boolean, postponed: boolean}): LaneFeature[] {
-    lanes = options.done ? lanes : lanes.filter(s => s.properties.status !== "done")
-    lanes = options.wip ? lanes : lanes.filter(s => s.properties.status !== "wip")
-    lanes = options.planned ? lanes : lanes.filter(s => s.properties.status !== "planned")
-    lanes = options.postponed ? lanes : lanes.filter(s => s.properties.status !== "postponed")
+    lanes = options.done ? lanes : lanes.filter(s => s.properties.status !== LaneStatusE.Done)
+    lanes = options.wip ? lanes : lanes.filter(s => s.properties.status !== LaneStatusE.Wip)
+    lanes = options.planned ? lanes : lanes.filter(s => s.properties.status !== LaneStatusE.Planned)
+    lanes = options.postponed ? lanes : lanes.filter(s => s.properties.status !== LaneStatusE.Postponed)
     return lanes
 }
 

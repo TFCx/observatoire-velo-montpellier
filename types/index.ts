@@ -1,29 +1,45 @@
-export type LaneType =
-| 'unidirectionnelle'
-| 'bidirectionnelle'
-| 'bilaterale'
-| 'voie-bus'
-| 'voie-bus-elargie'
-| 'velorue'
-| 'voie-verte'
-| 'bandes-cyclables'
-| 'zone-de-rencontre'
-| 'aire-pietonne'
-| 'chaucidou'
-| 'aucun'
-| 'inconnu';
+export enum LaneTypeE {
+  Unidirectionnelle = "unidirectionnelle",
+  Bidirectionnelle = "bidirectionnelle",
+  Bilaterale = "bilaterale",
+  VoieBus = "voie-bus",
+  VoieBusElargie = "voie-bus-elargie",
+  Velorue = "velorue",
+  VoieVerte = "voie-verte",
+  BandesCyclables = "bandes-cyclables",
+  ZoneDeRencontre = "zone-de-rencontre",
+  AirePietonne = "aire-pietonne",
+  Chaucidou = "chaucidou",
+  Aucun = "aucun",
+  Inconnu = "inconnu"
+}
 
-export type LaneTypeFamily =
-| 'dédié'
-| 'mixité-motorisé-good'
-| 'mixité-motorisé-bad'
-| 'mixité-piétonne-good'
-| 'mixité-piétonne-bad'
-| 'inconnu';
+export enum LaneTypeFamilyE {
+  Dedie = "dédié",
+  MixiteMotoriseGood = "mixité-motorisé-good",
+  MixiteMotoriseBad = "mixité-motorisé-bad",
+  MixitePietonneGood = "mixité-piétonne-good",
+  MixitePietonneBad = "mixité-piétonne-bad",
+  Inconnu = "inconnu"
+}
 
-export type LaneStatus = 'done' | 'wip' | 'planned' | 'tested' | 'postponed' | 'unknown' | 'variante' | 'variante-postponed';
+export enum LaneStatusE {
+  Done = "done",
+  Wip = "wip",
+  Planned = "planned",
+  Tested = "tested",
+  Postponed = "postponed",
+  Unknown = "unknown",
+  Variante = "variante",
+  VariantePostponed = "variante-postponed",
+}
 
-export type Quality = 'bad' | 'fair' | 'good';
+export enum QualityE {
+  Bad = "bad",
+  Fair = "fair",
+  Good = "good"
+}
+
 
 export type PolygonFeature = {
   type: 'Feature';
@@ -39,13 +55,13 @@ export type LineStringFeature = {
     id?: string
     line: string;
     name: string;
-    status: LaneStatus;
-    quality: Quality;
-    qualityB?: Quality;
-    type: LaneType;
-    typeB?: LaneType;
-    typeFamily: LaneTypeFamily;
-    typeFamilyB?: LaneTypeFamily;
+    status: LaneStatusE;
+    quality: QualityE;
+    qualityB?: QualityE;
+    type: LaneTypeE;
+    typeB?: LaneTypeE;
+    typeFamily: LaneTypeFamilyE;
+    typeFamilyB?: LaneTypeFamilyE;
     doneAt?: string;
     link?: string;
   };
@@ -60,13 +76,13 @@ export type SectionFeature = {
   properties: {
     lines: string[];
     name: string;
-    status: LaneStatus;
-    quality: Quality;
-    qualityB?: Quality;
-    type: LaneType;
-    typeB?: LaneType;
-    typeFamily: LaneTypeFamily;
-    typeFamilyB?: LaneTypeFamily;
+    status: LaneStatusE;
+    quality: QualityE;
+    qualityB?: QualityE;
+    type: LaneTypeE;
+    typeB?: LaneTypeE;
+    typeFamily: LaneTypeFamilyE;
+    typeFamilyB?: LaneTypeFamilyE;
     doneAt?: string;
   };
   geometry: {

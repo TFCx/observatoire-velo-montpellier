@@ -1,5 +1,5 @@
 import { groupBy } from '../helpers/helpers';
-import { isLineStringFeature, type Feature, type Geojson, type LaneType, type LaneTypeFamily, type LineStringFeature, type Quality } from '../types';
+import { isLineStringFeature, LaneStatusE, LaneTypeE, LaneTypeFamilyE, QualityE, type Feature, type Geojson, type LineStringFeature } from '../types';
 
 export const useStats = () => {
   function getAllUniqLineStrings(voies: Geojson[]) {
@@ -90,13 +90,13 @@ export const useStats = () => {
 
   function getStats(voies: Geojson[]) {
     const features = getAllUniqLineStrings(voies);
-    const doneFeatures = features.filter(feature => feature.properties.status === 'done');
-    const wipFeatures = features.filter(feature => ['wip', 'tested'].includes(feature.properties.status));
+    const doneFeatures = features.filter(feature => feature.properties.status === LaneStatusE.Done);
+    const wipFeatures = features.filter(feature => [LaneStatusE.Wip, LaneStatusE.Tested].includes(feature.properties.status));
     const plannedFeatures = features.filter(feature =>
-      ['planned', 'unknown', 'variante'].includes(feature.properties.status)
+      [LaneStatusE.Planned, LaneStatusE.Unknown, LaneStatusE.Variante].includes(feature.properties.status)
     );
     const postponedFeatures = features.filter(feature =>
-      ['postponed', 'variante-postponed'].includes(feature.properties.status)
+      [LaneStatusE.Postponed, LaneStatusE.VariantePostponed].includes(feature.properties.status)
     );
 
     const totalDistance = getDistance(features);
@@ -144,35 +144,36 @@ export const useStats = () => {
     };
   }
 
-  const qualityNames: Record<Quality, string> = {
-    'bad': 'Non satisfaisant',
-    'fair': 'À améliorer',
-    'good': 'Satisfaisant',
+  const qualityToDescription: { [key in QualityE] : string } = {
+    [QualityE.Bad] : 'Non satisfaisant',
+    [QualityE.Fair]: 'À améliorer',
+    [QualityE.Good]: 'Satisfaisant',
   };
 
-  const typologyNames: Record<LaneType, string> = {
-    'unidirectionnelle': 'Piste unidirectionnelle',
-    'bidirectionnelle': 'Piste bidirectionnelle',
-    'bilaterale': 'Piste bilatérale',
-    'voie-bus': 'Voie bus',
-    'voie-bus-elargie': 'Voie bus élargie',
-    'velorue': 'Vélorue',
-    'voie-verte': 'Voie verte',
-    'bandes-cyclables': 'Bandes cyclables',
-    'zone-de-rencontre': 'Zone de rencontre',
-    'aire-pietonne': 'Aire piétonne',
-    'chaucidou': 'Chaucidou',
-    'aucun': 'Aucun aménagement',
-    'inconnu': 'Inconnu',
-  };
+  const laneTypeToDescription: { [key in LaneTypeE] : string } = {
+      [LaneTypeE.Unidirectionnelle]: "Piste unidirectionnelle",
+      [LaneTypeE.Bidirectionnelle]: "Piste bidirectionnelle",
+      [LaneTypeE.Bilaterale]: "Piste bilatérale",
+      [LaneTypeE.VoieBus]: "Voie bus",
+      [LaneTypeE.VoieBusElargie]: "Voie bus élargie",
+      [LaneTypeE.Velorue]: "Vélorue",
+      [LaneTypeE.VoieVerte]: "Voie verte",
+      [LaneTypeE.BandesCyclables]: "Bandes cyclables",
+      [LaneTypeE.ZoneDeRencontre]: "Zone de rencontre",
+      [LaneTypeE.AirePietonne]: "Aire piétonne",
+      [LaneTypeE.Chaucidou]: "Chaucidou",
+      [LaneTypeE.Aucun]: "Aucun aménagement",
+      [LaneTypeE.Inconnu]: "Inconnu",
+  }
 
-  const typologyFamilyNames: Record<LaneTypeFamily, string> = {
-    'dédié': 'Aménagements cyclables dédiés',
-    'mixité-motorisé-bad': 'Intrication motorisée',
-    'mixité-motorisé-good': 'Cohabitation motorisée',
-    'mixité-piétonne-bad': 'Intrication piétonne',
-    'mixité-piétonne-good': 'Cohabitation piétonne'
-  };
+  const laneTypeFamilyToDescription: { [key in LaneTypeFamilyE] : string } = {
+      [LaneTypeFamilyE.Dedie]: "#Aménagements cyclables dédiés",
+      [LaneTypeFamilyE.MixiteMotoriseGood]: "Cohabitation motorisée",
+      [LaneTypeFamilyE.MixiteMotoriseBad]: "Intrication motorisée",
+      [LaneTypeFamilyE.MixitePietonneGood]: "Cohabitation piétonne",
+      [LaneTypeFamilyE.MixitePietonneBad]: "Intrication piétonne",
+      [LaneTypeFamilyE.Inconnu]: "Inconnu",
+}
 
   function getStatsByTypology(voies: Geojson[]) {
     const lineStringFeatures = getAllUniqLineStrings(voies);
@@ -182,13 +183,13 @@ export const useStats = () => {
       return Math.round((distance / totalDistance) * 100);
     }
 
-    const featuresByType = groupBy<LineStringFeature, LaneType>(lineStringFeatures, feature => feature.properties.type);
+    const featuresByType = groupBy<LineStringFeature, LaneTypeE>(lineStringFeatures, feature => feature.properties.type);
     return Object.entries(featuresByType)
       .map(([type, features]) => {
         const distance = getDistance(features);
         const percent = getPercent(distance);
         return {
-          name: typologyNames[type as LaneType],
+          name: laneTypeToDescription[type as LaneTypeE],
           percent
         };
       })
@@ -204,8 +205,8 @@ export const useStats = () => {
     getStatsByTypology,
     displayDistanceInKm,
     displayPercent,
-    typologyNames,
-    qualityNames
+    laneTypeToDescription,
+    qualityToDescription
   };
 };
 

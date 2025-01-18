@@ -91,13 +91,13 @@ function checkGeoJsonDataHealth({ links }) {
               }
 
               // 3 - check if status is valid
-              const validStatus = ['done', 'wip', 'planned', 'tested', 'postponed', 'unknown', 'variante', 'variante-postponed'];
+              const validStatus = [LaneStatusE.Planned, LaneStatusE.Variante, LaneStatusE.Done, LaneStatusE.Postponed, LaneStatusE.VariantePostponed, LaneStatusE.Unknown, LaneStatusE.Wip, LaneStatusE.Tested];
               if (!validStatus.includes(properties.status)) {
                 console.error(`Invalid status '${properties.status}' in LineString properties of file: ${filePath}`);
                 process.exit(1);
               }
 
-              if (properties.status === 'done') {
+              if (properties.status === LaneStatusE.Done) {
                 // 4.1 - Check if all done section have a doneAt property
                 if (!properties.hasOwnProperty('doneAt')) {
                   console.error(`Missing key 'doneAt' in VL ${properties.line}, tronçon: ${properties.name}`);
@@ -116,19 +116,7 @@ function checkGeoJsonDataHealth({ links }) {
 
               // 4.3 - Check if all sections have a type property
               const validTypes = [
-                'unidirectionnelle',
-                'bidirectionnelle',
-                'bilaterale',
-                'voie-bus',
-                'voie-bus-elargie',
-                'velorue',
-                'voie-verte',
-                'bandes-cyclables',
-                'zone-de-rencontre',
-                'aire-pietonne',
-                'chaucidou',
-                'inconnu',
-                'aucun',
+                LaneTypeE.Unidirectionnelle, LaneTypeE.Bidirectionnelle, LaneTypeE.Bilaterale, LaneTypeE.VoieBus, LaneTypeE.VoieBusElargie, LaneTypeE.Velorue, LaneTypeE.VoieVerte, LaneTypeE.BandesCyclables, LaneTypeE.ZoneDeRencontre, LaneTypeE.AirePietonne, LaneTypeE.Chaucidou, LaneTypeE.Aucun, LaneTypeE.Inconnu,
               ];
               if (!validTypes.includes(properties.type)) {
                 console.error(`Invalid type '${properties.type}' in LineString properties of file: ${filePath}`);

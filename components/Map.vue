@@ -24,7 +24,7 @@ import BikeInfraControl from '@/maplibre/BikeInfraControl';
 import LayerControl from '@/maplibre/LayerControl';
 import FullscreenControl from '@/maplibre/FullscreenControl';
 import ShrinkControl from '@/maplibre/ShrinkControl';
-import { isLineStringFeature, isPolygonFeature, isSectionFeature, type Feature, type LaneStatus, type LaneType, type LaneTypeFamily, type LineStringFeature, type PolygonFeature, type SectionFeature } from '~/types';
+import { isLineStringFeature, isPolygonFeature, isSectionFeature, LaneStatusE, type Feature, LaneTypeE, LaneTypeFamilyE, type LineStringFeature, type PolygonFeature, type SectionFeature } from '~/types';
 import config from '~/config.json';
 import { setDisplayedLayer } from '~/composables/useMap'
 import { sortByLine } from '~/composables//map/utils';
@@ -63,9 +63,9 @@ const {
   handleMapClick
 } = useMap();
 
-const statuses = ref(['planned', 'variante', 'done', 'postponed', 'variante-postponed', 'unknown', 'wip', 'tested']);
-const types = ref(['unidirectionnelle', 'bidirectionnelle', 'bilaterale', 'voie-bus', 'voie-bus-elargie', 'velorue', 'voie-verte', 'bandes-cyclables', 'zone-de-rencontre', 'aire-pietonne', 'chaucidou', 'aucun', 'inconnu']);
-const families = ref(['dédié', 'cohabitation motorisée', 'cohabitation piétonne', 'mixité motorisée', 'mixité piétonne'])
+const statuses = ref([LaneStatusE.Planned, LaneStatusE.Variante, LaneStatusE.Done, LaneStatusE.Postponed, LaneStatusE.VariantePostponed, LaneStatusE.Unknown, LaneStatusE.Wip, LaneStatusE.Tested]);
+const types = ref([LaneTypeE.Unidirectionnelle, LaneTypeE.Bidirectionnelle, LaneTypeE.Bilaterale, LaneTypeE.VoieBus, LaneTypeE.VoieBusElargie, LaneTypeE.Velorue, LaneTypeE.VoieVerte, LaneTypeE.BandesCyclables, LaneTypeE.ZoneDeRencontre, LaneTypeE.AirePietonne, LaneTypeE.Chaucidou, LaneTypeE.Aucun, LaneTypeE.Inconnu]);
+const families = ref([LaneTypeFamilyE.Dedie, LaneTypeFamilyE.MixiteMotoriseGood, LaneTypeFamilyE.MixitePietonneGood, LaneTypeFamilyE.MixiteMotoriseBad, LaneTypeFamilyE.MixitePietonneBad])
 const displayLimits = ref(true);
 const features = computed(() => {
   let activeLineFeatures = (props.features ?? []).filter(feature => {
@@ -80,7 +80,7 @@ const features = computed(() => {
   return activeLineFeatures.concat(activeLimitsFeatures)
 });
 
-function refreshFilters({ visibleStatuses, visibleTypes, visibleTypesFamily }: { visibleStatuses: LaneStatus[]; visibleTypes: LaneType[], visibleTypesFamily: LaneTypeFamily[] }) {
+function refreshFilters({ visibleStatuses, visibleTypes, visibleTypesFamily }: { visibleStatuses: LaneStatusE[]; visibleTypes: LaneTypeE[], visibleTypesFamily: LaneTypeFamilyE[] }) {
   statuses.value = visibleStatuses;
   types.value = visibleTypes;
   families.value = visibleTypesFamily;
