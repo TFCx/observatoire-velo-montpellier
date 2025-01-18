@@ -280,6 +280,43 @@
           ]
         }
       },
+      
+      {
+        "type": "Feature",
+        "properties": {
+          "line": 4,
+          "name": "Variante RD1006 Nord",
+          "quality": "",
+          "status": "variante",
+          "text": "variante Piste 4",
+          "type": "bidirectionnelle",
+          "link": "/rev-4#variante-rd1006-nord"
+        },
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [5.959117,45.572454],[5.959525,45.572199],[5.959933,45.572063],[5.960083,45.571673],[5.960469,45.571238],[5.960963,45.570848],[5.961328,45.570412],[5.96622,45.565969],[5.967084,45.565213]
+          ]
+        }
+      },
+      
+      {
+        "type": "Feature",
+        "properties": {
+          "line": 4,
+          "name": "Variante RD1006 Sud",
+          "quality": "",
+          "status": "variante",
+          "type": "voie-verte",
+          "link": "/rev-4#variante-rd1006-sud"
+        },
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [5.967084,45.565215],[5.967422,45.56495],[5.968285,45.564106],[5.976949,45.556349],[5.977378,45.556034]
+          ]
+        }
+      },
       {
         "type": "Feature",
         "properties": {
