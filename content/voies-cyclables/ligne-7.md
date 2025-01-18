@@ -95,3 +95,19 @@ caption: Voie verte Sud - Belle Via - Traversée de Buisson Rond
 ### Avenue Verte Sud La Ravoire
 
 <span style="color:blue;font-weight:bold">Satisfaisant</span> Du carrefour de La Villette, point de départ de la :line-link{line=5}, la piste se poursuit vers Saint Baldoph puis Myans.
+
+::content-image
+---
+imageUrl: https://rouelibre.net/wp-content/uploads/2025/01/REV7-IMG_5360.jpg
+caption: Belle Via La Ravoire - La Villette
+credit: Roue Libre
+---
+::
+
+::content-image
+---
+imageUrl: https://rouelibre.net/wp-content/uploads/2025/01/REV7-IMG_5379.jpg
+caption: Belle Via La Ravoire - Chemin des Prés
+credit: Roue Libre
+---
+::
