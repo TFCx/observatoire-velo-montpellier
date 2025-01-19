@@ -5,7 +5,7 @@
     </ClientOnly>
     <div>
       <div class="py-2 px-5 md:px-8 text-white bg-lvv-blue-600 font-semibold text-base">
-        {{ doneDistance }} km de Réseau cyclable à Haut Niveau de Service, appelé depuis 2024 "{{ getRevName() }}", réalisés
+        {{ doneDistance }} km du Réseau cyclable à Haut Niveau de Service réalisés, réseau nommé "{{ getRevName() }}" depuis 2024
       </div>
       <div class="py-5 px-5 md:px-8 grid grid-cols-3 gap-3 sm:grid-cols-5">
         <div
