@@ -1,5 +1,5 @@
 ---
-name: Parc d'apprentissage vélo
+name: Piste d'apprentissage vélo
 line: 0
 from: 
 to: Chambéry
