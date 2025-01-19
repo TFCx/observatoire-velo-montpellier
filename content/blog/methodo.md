@@ -1,11 +1,9 @@
 ---
 title: Méthodologie
 description: Réponses aux questions fréquentes sur les données, la méthodologie de Cyclopolis et l'observatoire des Pistes Bleues de Grand Chambéry.
-imageUrl: https://rouelibre.net/wp-content/uploads/2024/11/logo-Observatoire-Pistes-Bleues-v1.jpg
 ---
 
-*
-- Pourquoi le nom "Pistes Bleues" ?
+* - Pourquoi le nom "Pistes Bleues" ?
 - Pourquoi on ne voit pas tous les aménagements cyclables existants (ou à aménager) sur l'observatoire ?
 - A quoi correspondent les tronçons « satisfaisant, à améliorer et non-satisfaisant » ? 
 - A quoi correspondent les couleurs noires, rouges et bleues ?
