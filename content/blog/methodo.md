@@ -4,13 +4,18 @@ description: Réponses aux questions fréquentes sur les données, la méthodolo
 imageUrl: https://rouelibre.net/wp-content/uploads/2024/11/logo-Observatoire-Pistes-Bleues-v1.jpg
 ---
 
-*- A quoi correspondent les tronçons « satisfaisant, à améliorer et non-satisfaisant » ? 
+*- Pourquoi on ne voit pas tous les aménagements cyclables existants (ou à aménager) sur l'observatoire ?
+- A quoi correspondent les tronçons « satisfaisant, à améliorer et non-satisfaisant » ? 
 - A quoi correspondent les couleurs noires, rouges et bleues ?
 - Pourquoi ma rue est considérée comme « manquante » alors qu’il y a déjà une bande cyclable ?  
 - Pourquoi il y a 11 pistes Bleues dans l'observatoire alors que les panneaux sur le terrain n'en indiquent que 9 ?
 - longueur totale du futur réseau : 52, 57, ou 59 kilomètres ?*
 
 On vous explique tout !
+
+## Pourquoi on ne voit pas tous les aménagements cyclables existants (ou à aménager) sur l'observatoire ?
+Cet observatoire suit seulement la réalisation du réseau cyclable à Haut Niveau de Service de Grand Chammbéry (<a href="blog/rchns" target="_blank">présentation complète en lien</a>)
+Ce réseau cyclable structurant est dit "principal". Il est complémentaire du réseau cyclable "secondaire" et du réseau de "desserte locale", réseaux non suivis par cet observatoire. L'ensemble de ces réseaux sont suivis toute au long de l'année par notre association pour renforcer leur sécurisation et accompagner leur développement tout comme les services vélo associés (stationnements sécurisés, ville apaisée) pour pouvoir offrir une agglomération cyclable pour toutes et tous.
 
 ## Tronçon « satisfaisant / A améliorer / non-satisfaisant » ?
 Pour chaque tronçon de Piste Bleue, nous avons regardé s'il était conforme aux caractéristiques préconisées pour un réseau à Haut Niveau de Service (aussi appelé Réseau Express Vélo) par le CEREMA (Centre d'études et d'expertise sur les risques, l'environnement, la mobilité et l'aménagement https://www.cerema.fr/. 
