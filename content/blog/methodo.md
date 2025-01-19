@@ -14,11 +14,11 @@ imageUrl: https://rouelibre.net/wp-content/uploads/2024/11/logo-Observatoire-Pis
 On vous explique tout !
 
 ## Pourquoi on ne voit pas tous les aménagements cyclables existants (ou à aménager) sur l'observatoire ?
-Cet observatoire suit seulement la réalisation du réseau cyclable à Haut Niveau de Service de Grand Chammbéry (<a href="blog/rchns" target="_blank">présentation complète en lien</a>)
-Ce réseau cyclable structurant est dit "principal". Il est complémentaire du réseau cyclable "secondaire" et du réseau de "desserte locale", réseaux non suivis par cet observatoire. L'ensemble de ces réseaux sont suivis toute au long de l'année par notre association pour renforcer leur sécurisation et accompagner leur développement tout comme les services vélo associés (stationnements sécurisés, ville apaisée) pour pouvoir offrir une agglomération cyclable pour toutes et tous.
+Cet observatoire suit seulement la partie concernant la réalisation du "Réseau cyclable à Haut Niveau de Service de Grand Chambéry" [(définition en lien)](/blog/reseauchns)
+Ce réseau cyclable structurant est dit "principal". Il est complété par un réseau cyclable "secondaire" et un réseau de "desserte locale", ces deux réseaux ne sont pas suivis par cet observatoire. L'ensemble de ces réseaux sont suivis tout au long de l'année par notre association pour renforcer leur sécurisation et accompagner leur développement ainsi que l'ensemble des services vélo associés dans un Système vélo(stationnements sécurisés, ville apaisée) pour pouvoir offrir une agglomération cyclable pour toutes et tous.
 
 ## Tronçon « satisfaisant / A améliorer / non-satisfaisant » ?
-Pour chaque tronçon de Piste Bleue, nous avons regardé s'il était conforme aux caractéristiques préconisées pour un réseau à Haut Niveau de Service (aussi appelé Réseau Express Vélo) par le CEREMA (Centre d'études et d'expertise sur les risques, l'environnement, la mobilité et l'aménagement https://www.cerema.fr/. 
+Pour chaque tronçon de Piste Bleue, nous avons regardé s'il était conforme aux caractéristiques préconisées par le CEREMA [(Centre d'études et d'expertise sur les risques, l'environnement, la mobilité et l'aménagement)](https://www.cerema.fr/) pour un [(Réseau Cyclable à Haut Niveau de Service)](/blog/reseauchns) (aussi appelé Réseau Express Vélo) . 
 
 Ainsi, parmi les critères utilisés nous avons essentiellement évalué : la sécurisation ; la présence ou non d'un conflit piéton/vélo ; le confort et la lisibilité ; la continuité et le caractère direct et efficace des trajets.
 
