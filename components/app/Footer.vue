@@ -42,10 +42,10 @@
 const { getAssoName } = useConfig();
 
 const links = [
-  { name: 'Méthodologie', path: 'blog/methodo' },
+  { name: 'Méthodologie', path: '/methodo' },
   { name: 'Mentions légales', path: '/mentions-legales' },
   { name: 'Historique', path: '/historique' },
-  { name: 'Réseau Cyclable à Haut Niveau de Service', path: 'blog/reseauchns' }
+  { name: 'Réseau Cyclable à Haut Niveau de Service', path: '/reseauchns' }
 ];
 
 const socials = {
