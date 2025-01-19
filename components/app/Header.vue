@@ -107,6 +107,14 @@
           >
             Historique du réseau
           </NuxtLink>
+
+                    <NuxtLink
+            to="/blog/methodo"
+            class="text-base font-medium text-gray-500 hover:text-lvv-blue-600"
+          >
+            Questions / Réponses
+          </NuxtLink>
+
         </PopoverGroup>
         <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
           <NuxtLink
