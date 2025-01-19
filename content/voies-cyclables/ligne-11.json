@@ -4,7 +4,7 @@
       {
       "type": "Feature",
       "properties": {
-        "line": 11,
+        "line": "11",
         "name": "Rue de la Banque",
         "quality": "",
         "status": "postponed",
@@ -21,7 +21,7 @@
     {
         "type": "Feature",
         "properties": {
-          "line": 11,
+          "line": "11",
           "name": "Rue Saint François de Sales",
           "quality": "",
           "status": "postponed",
@@ -38,7 +38,7 @@
       {
         "type": "Feature",
         "properties": {
-          "line": 11,
+          "line": "11",
           "name": "Pont des Amours",
           "quality": "",
           "status": "postponed",
@@ -55,7 +55,7 @@
       {
         "type": "Feature",
         "properties": {
-          "line": 11,
+          "line": "11",
           "name": "Avenue de Mérande Nord",
           "quality": "",
           "status": "postponed",
@@ -72,7 +72,7 @@
       {
         "type": "Feature",
         "properties": {
-          "line": 11,
+          "line": "11",
           "name": "Avenue de Mérande Sud",
           "quality": "",
           "status": "postponed",
@@ -89,7 +89,7 @@
       {
         "type": "Feature",
         "properties": {
-          "line": 11,
+          "line": "11",
           "name": "Avenue de Bassens",
           "quality": "good",
           "doneAt": "01\/01\/2000",
@@ -107,7 +107,7 @@
       {
         "type": "Feature",
         "properties": {
-          "line": 11,
+          "line": "11",
           "name": "Avenue de Longefand",
           "quality": "good",
           "doneAt": "01\/01\/2000",
@@ -125,7 +125,7 @@
       {
         "type": "Feature",
         "properties": {
-          "line": 11,
+          "line": "11",
           "name": "Saint Alban Leysse",
           "quality": "",
           "status": "postponed",

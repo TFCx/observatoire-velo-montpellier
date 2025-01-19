@@ -1,13 +1,13 @@
 {
     "type": "FeatureCollection",
     "features": [
-  
+
       {
         "type": "Feature",
         "properties": {
           "type": "perspective",
           "name": "Carrefour de la Libération",
-          "line": 7,
+          "line": "7",
           "imgUrl": "https://rouelibre.net/wp-content/uploads/2024/11/REV7-IMG_4257.jpg"
         },
         "geometry": {
@@ -20,7 +20,7 @@
             "properties": {
               "type": "perspective",
               "name": "Giratoire Paul Chevallier non sécurisé",
-              "line": 7,
+              "line": "7",
               "imgUrl": "https://rouelibre.net/wp-content/uploads/2024/11/REV7-IMG_4206.jpg"
             },
             "geometry": {
@@ -33,7 +33,7 @@
         "properties": {
           "type": "perspective",
           "name": "Traversée quai Borrel",
-          "line": 7,
+          "line": "7",
           "imgUrl": "https://rouelibre.net/wp-content/uploads/2024/11/REV7-IMG_4269.jpg"
         },
         "geometry": {
@@ -46,7 +46,7 @@
         "properties": {
           "type": "perspective",
           "name": "Pont des Carmes",
-          "line": 7,
+          "line": "7",
           "imgUrl": "https://rouelibre.net/wp-content/uploads/2024/11/REV7-IMG_4271.jpg"
         },
         "geometry": {
@@ -57,7 +57,7 @@
       {
     "type": "Feature",
     "properties": {
-      "line": 7,
+      "line": "7",
       "name": "Quai Borrel",
       "quality": "good",
       "doneAt": "31\/04\/2023",
@@ -78,7 +78,7 @@
   {
     "type": "Feature",
     "properties": {
-      "line": 7,
+      "line": "7",
       "name": "Quai de la Rize",
       "quality": "",
       "status": "postponed",
@@ -104,7 +104,7 @@
       {
         "type": "Feature",
         "properties": {
-          "line": 7,
+          "line": "7",
           "name": "Rue de Serbie",
           "quality": "",
           "status": "postponed",
@@ -132,7 +132,7 @@
       {
         "type": "Feature",
         "properties": {
-          "line": 7,
+          "line": "7",
           "name": "Voie Verte sud - Belle Via",
           "quality": "fair",
           "doneAt": "01\/01\/2000",
@@ -157,7 +157,7 @@
       {
         "type": "Feature",
         "properties": {
-          "line": 7,
+          "line": "7",
           "name": "Parc de Buisson Rond",
           "doneAt": "01\/01\/2000",
           "quality": "fair",
@@ -175,7 +175,7 @@
       {
         "type": "Feature",
         "properties": {
-          "line": 7,
+          "line": "7",
           "name": "Voie Verte Belle Via",
           "quality": "good",
           "doneAt": "31\/12\/1997",
@@ -193,7 +193,7 @@
       {
         "type": "Feature",
         "properties": {
-          "line": 7,
+          "line": "7",
           "name": "Voie Verte Belle Via",
           "quality": "good",
           "doneAt": "31\/12\/1997",
@@ -210,4 +210,3 @@
       }
     ]
   }
-  

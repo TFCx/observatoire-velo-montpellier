@@ -1,6 +1,8 @@
 ---
 name: Piste Bleue A
-line: 11
+line: A
+lineName: A
+lineNameShort: A
 from: Chambéry (Médiathèque)
 to: Barby
 description: Proposition de piste additionnelle de Roue Libre au réseau de pistes bleues de Grand Chambéry pour desservir Mérande, Bassens et Barby.
@@ -78,7 +80,7 @@ credit: Roue Libre
 ::
 
 ### Avenue de Longefand
-<span style="color:blue;font-weight:bold">Satisfaisant</span> Piste bidirectionnelle 
+<span style="color:blue;font-weight:bold">Satisfaisant</span> Piste bidirectionnelle
 
 ::content-image
 ---

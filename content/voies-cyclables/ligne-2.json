@@ -6,7 +6,7 @@
       "properties": {
         "type": "perspective",
         "name": "Traversée du passage à niveau à améliorer",
-        "line": 2,
+        "line": "2",
         "imgUrl": "https://rouelibre.net/wp-content/uploads/2024/11/REV2-IMG_4011.jpg"
       },
       "geometry": {
@@ -19,7 +19,7 @@
       "properties": {
         "type": "perspective",
         "name": "Giratoire Chamnord",
-        "line": 2,
+        "line": "2",
         "imgUrl": "https://rouelibre.net/wp-content/uploads/2024/11/REV2-IMG_4023.jpg"
       },
       "geometry": {
@@ -30,7 +30,7 @@
     {
       "type": "Feature",
       "properties": {
-        "line": 2,
+        "line": "2",
         "name": "Rue de la gare",
         "quality": "good",
         "doneAt": "01\/11\/2019",
@@ -51,7 +51,7 @@
     {
       "type": "Feature",
       "properties": {
-        "line": 2,
+        "line": "2",
         "name": "Place de la gare",
         "quality": "good",
         "doneAt": "01\/12\/2024",
@@ -81,7 +81,7 @@
     {
       "type": "Feature",
       "properties": {
-        "line": 2,
+        "line": "2",
         "name": "Avenue de la Boisse Sud",
         "quality": "fair",
         "doneAt": "01\/01\/2000",
@@ -102,7 +102,7 @@
     {
       "type": "Feature",
       "properties": {
-        "line": 2,
+        "line": "2",
         "name": "Avenue de la Boisse Nord",
         "quality": "good",
         "doneAt": "01\/01\/2000",
@@ -129,7 +129,7 @@
     {
       "type": "Feature",
       "properties": {
-        "line": 2,
+        "line": "2",
         "name": "Avenue des landiers - Passage à niveau",
         "status": "postponed",
         "type": "bandes-cyclables",
@@ -145,7 +145,7 @@
     {
       "type": "Feature",
       "properties": {
-        "line": 2,
+        "line": "2",
         "name": "Avenue des landiers",
         "quality": "good",
         "doneAt": "01\/01\/2000",

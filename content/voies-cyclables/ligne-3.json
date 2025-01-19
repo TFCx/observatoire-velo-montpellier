@@ -1,11 +1,11 @@
 {
     "type": "FeatureCollection",
     "features": [
-  
+
       {
         "type": "Feature",
         "properties": {
-          "line": 3,
+          "line": "3",
           "name": "Rue de Boigne",
           "status": "postponed",
           "type": "aucun",
@@ -21,7 +21,7 @@
       {
         "type": "Feature",
         "properties": {
-          "line": 3,
+          "line": "3",
           "name": "Faubourg Reclus",
           "status": "postponed",
           "type": "aucun",
@@ -37,7 +37,7 @@
       {
         "type": "Feature",
         "properties": {
-          "line": 3,
+          "line": "3",
           "name": "Avenue d'Aix des Bains Bas",
           "status": "postponed",
           "type": "aucun",
@@ -53,7 +53,7 @@
       {
         "type": "Feature",
         "properties": {
-          "line": 3,
+          "line": "3",
           "name": "Avenue d'Aix des Bains Bas",
           "status": "postponed",
           "type": "aucun",
@@ -69,7 +69,7 @@
       {
         "type": "Feature",
         "properties": {
-          "line": 3,
+          "line": "3",
           "name": "Avenue d'Aix des Bains Haut",
           "status": "postponed",
           "type": "bandes-cyclables",
@@ -85,7 +85,7 @@
       {
         "type": "Feature",
         "properties": {
-          "line": 3,
+          "line": "3",
           "name": "Avenue d'Aix des Bains Hauts de Chambéry ",
           "status": "postponed",
           "type": "bandes-cyclables",
@@ -101,7 +101,7 @@
       {
         "type": "Feature",
         "properties": {
-          "line": 3,
+          "line": "3",
           "name": "Avenue Daniel Rops Bas",
           "status": "postponed",
           "type": "aucun",
@@ -117,7 +117,7 @@
       {
         "type": "Feature",
         "properties": {
-          "line": 3,
+          "line": "3",
           "name": "Avenue Daniel Rops Haut",
           "quality": "good",
           "doneAt": "01\/01\/2000",
@@ -131,7 +131,6 @@
             [5.918498,45.593201],[5.91819,45.593852],[5.91819,45.594021],[5.917897,45.594676],[5.917178,45.596121],[5.916395,45.59754],[5.914099,45.601578],[5.911353,45.606652],[5.910709,45.607958],[5.91058,45.609399]
              ]
         }
-      }      
+      }
     ]
   }
-  

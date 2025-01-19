@@ -35,8 +35,7 @@ const links = [
   { name: 'Réseau Cyclable à Haut Niveau de Service', path: '/blog/reseauchns' }
 ];
 
-const socials = {
-  cyclopolis: [
+const socials = [
     {
       name: 'Github',
       href: 'https://github.com/benoitdemaegdt/voieslyonnaises',
@@ -46,9 +45,7 @@ const socials = {
       name: 'LinkedIn',
       href: 'https://www.linkedin.com/in/benoitdemaegdt',
       icon: 'mdi:linkedin'
-    }
-  ],
-  lvv: [
+    },
     {
       name: 'Mastodon',
       href: 'https://masto.bike/deck/@RoueLibreSavoie',
@@ -70,5 +67,4 @@ const socials = {
       icon: 'mdi:email-outline'
     }
   ]
-};
 </script>

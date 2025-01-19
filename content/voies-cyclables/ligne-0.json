@@ -5,7 +5,7 @@
       {
       "type": "Feature",
       "properties": {
-        "line": 0,
+        "line": "0",
         "name": "Parc d'apprentissage vélo du Paradis",
         "quality": "good",
         "doneAt": "01\/09\/2023",

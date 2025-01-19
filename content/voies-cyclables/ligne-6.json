@@ -4,7 +4,7 @@
       {
         "type": "Feature",
         "properties": {
-          "line": 6,
+          "line": "6",
           "name": "Route Royale",
           "quality": "",
           "status": "postponed",
@@ -22,7 +22,7 @@
       {
         "type": "Feature",
         "properties": {
-          "line": 6,
+          "line": "6",
           "name": "Rue des Barreaux",
           "quality": "good",
           "doneAt": "01\/01\/2000",
@@ -48,4 +48,3 @@
       }
     ]
   }
-  

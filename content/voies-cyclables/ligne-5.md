@@ -1,6 +1,8 @@
 ---
 name: Piste Bleue 5
 line: 5
+lineName: 5
+lineNameShort: 5
 from: La Ravoire (Villette)
 to: Challes les Eaux (Parc)
 description: La Piste Bleue 5 permet de relier Challes les Eaux depuis la voie Verte Sud via La Ravoire.
@@ -21,7 +23,7 @@ Le jonction au centre ville de Challes les Eaux n'est actuellement ni jalonnée 
 ::content-image
 ---
 imageUrl: https://rouelibre.net/wp-content/uploads/2025/01/REV5-IMG_5425.jpg
-caption: Voie verte de la Mère 
+caption: Voie verte de la Mère
 credit: Roue Libre
 ---
 ::

@@ -1,7 +1,9 @@
 ---
 name: Piste 1 -Bourget du Lac
 line: 1
-from: Chambéry (Eléphants) 
+lineName: 1
+lineNameShort: 1
+from: Chambéry (Eléphants)
 to: Bourget du Lac (Plage)
 description: La Piste Bleue 1 permet de relier Chambéry au Bourget du Lac par la voie verte Nord - Belle Via (ex V63). Cette ligne a la particularité d'accueillir le trafic vélo le plus élevé d'agglomération au niveau du compteur du palais de justice de Chambéry.
 trafic: 2500 vélos/jour
@@ -12,7 +14,7 @@ cover: https://rouelibre.net/wp-content/uploads/2022/11/IMG_1555.jpg
 
 ### Avenue des Ducs
 
-<span style="color:blue;font-weight:bold">Satisfaisant</span> La Piste 1 débute sur l'avenue des Ducs, à la hauteur de la place des Eléphants de Chambéry. 
+<span style="color:blue;font-weight:bold">Satisfaisant</span> La Piste 1 débute sur l'avenue des Ducs, à la hauteur de la place des Eléphants de Chambéry.
 
 Elle est aménagé par une piste cyclable bidirectionnelle de 3 à 3,5m de large. Elle croise le départ de la :line-link{line=2} Landiers au niveau du palais de Justice de Chambéry puis celui de la :line-link{line=9} La Motte Servolex au niveau du giratoire de la Poste.
 
@@ -54,7 +56,7 @@ credit: Roue Libre
 *tronçon de la Belle Via*
 
 <span style="color:blue;font-weight:bold">Satisfaisant</span> Voie verte historique de Grand Chambéry jusqu'au Bourget du Lac.
-Son dernier tronçon entre Villarcher (commune de La Motte Servolex) et le lac du Bourget a été réalisé suite à la Vélorution organisée par Roue Libre et une vingtaine d’autres organisations le 21 octobre 1995 (1200 participants). 
+Son dernier tronçon entre Villarcher (commune de La Motte Servolex) et le lac du Bourget a été réalisé suite à la Vélorution organisée par Roue Libre et une vingtaine d’autres organisations le 21 octobre 1995 (1200 participants).
 
 ::content-image
 ---

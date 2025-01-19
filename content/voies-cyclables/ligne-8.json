@@ -7,7 +7,7 @@
       "properties": {
         "type": "perspective",
         "name": "Carrefour du Biollay",
-        "line": 7,
+        "line": "8",
         "imgUrl": "https://rouelibre.net/wp-content/uploads/2024/12/REV8-carrefour-du-biollay.jpg"
       },
       "geometry": {
@@ -19,7 +19,7 @@
     {
       "type": "Feature",
       "properties": {
-        "line": 8,
+        "line": "8",
         "name": "Costa de Beauregard - Republique",
         "status": "postponed",
         "type": "bandes-cyclables",
@@ -83,7 +83,7 @@
     {
       "type": "Feature",
       "properties": {
-        "line": 8,
+        "line": "8",
         "name": "Place Caffe - place Monge",
         "status": "wip",
         "type": "bidirectionnelle",
@@ -154,7 +154,7 @@
     {
       "type": "Feature",
       "properties": {
-        "line": 8,
+        "line": "8",
         "name": "Avenue de Lyon",
         "status": "planned",
         "type": "bandes-cyclables",
@@ -222,7 +222,7 @@
     {
       "type": "Feature",
       "properties": {
-        "line": 8,
+        "line": "8",
         "name": "Chemin des Vieux Capucins",
         "quality": "good",
         "doneAt": "01\/01\/2000",
@@ -241,7 +241,7 @@
     {
       "type": "Feature",
       "properties": {
-        "line": 8,
+        "line": "8",
         "name": "Cognin",
         "quality": "",
         "status": "planned",

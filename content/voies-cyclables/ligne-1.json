@@ -7,7 +7,7 @@
       "properties": {
         "type": "perspective",
         "name": "Traversée non sécurisée du quai des Allobroges",
-        "line": 1,
+        "line": "1",
         "imgUrl": "https://rouelibre.net/wp-content/uploads/2024/11/REV.-Quai-Allobroges.jpg"
       },
       "geometry": {
@@ -18,7 +18,7 @@
     {
   "type": "Feature",
   "properties": {
-    "line": 1,
+    "line": "1",
     "name": "Avenue des Ducs",
     "quality": "good",
     "doneAt": "31\/04\/2023",
@@ -37,7 +37,7 @@
 {
   "type": "Feature",
   "properties": {
-    "line": 1,
+    "line": "1",
     "name": "Quai des Allobroges",
     "quality": "good",
     "doneAt": "01\/06\/2018",
@@ -55,7 +55,7 @@
 {
   "type": "Feature",
   "properties": {
-    "line": 1,
+    "line": "1",
     "name": "Rue de la Savoisienne",
     "quality": "fair",
     "status": "postponed",
@@ -76,7 +76,7 @@
     {
       "type": "Feature",
       "properties": {
-        "line": 1,
+        "line": "1",
         "name": "Avenue des Chevaliers Tireurs",
         "quality": "good",
         "doneAt": "01\/01\/2000",
@@ -96,7 +96,7 @@
     {
       "type": "Feature",
       "properties": {
-        "line": 1,
+        "line": "1",
         "name": "Voie Verte Belle Via",
         "quality": "good",
         "doneAt": "31\/12\/1997",
