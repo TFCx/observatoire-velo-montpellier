@@ -54,7 +54,7 @@
                       class="text-base font-medium text-gray-500 hover:text-lvv-blue-600"
                       @click="close()"
                     >
-                      Historique du réseau
+                      Evolution du réseau
                     </NuxtLink>
                     <NuxtLink
                       to="/plan-officiel"
@@ -105,7 +105,7 @@
             to="/evolution"
             class="text-base font-medium text-gray-500 hover:text-lvv-blue-600"
           >
-            Historique du réseau
+            Evolution du réseau
           </NuxtLink>
 
                     <NuxtLink
