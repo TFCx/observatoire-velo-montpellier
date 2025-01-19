@@ -4,7 +4,9 @@ description: Réponses aux questions fréquentes sur les données, la méthodolo
 imageUrl: https://rouelibre.net/wp-content/uploads/2024/11/logo-Observatoire-Pistes-Bleues-v1.jpg
 ---
 
-*- Pourquoi on ne voit pas tous les aménagements cyclables existants (ou à aménager) sur l'observatoire ?
+*
+- Pourquoi le nom "Pistes Bleues" ?
+- Pourquoi on ne voit pas tous les aménagements cyclables existants (ou à aménager) sur l'observatoire ?
 - A quoi correspondent les tronçons « satisfaisant, à améliorer et non-satisfaisant » ? 
 - A quoi correspondent les couleurs noires, rouges et bleues ?
 - Pourquoi ma rue est considérée comme « manquante » alors qu’il y a déjà une bande cyclable ?  
@@ -12,6 +14,9 @@ imageUrl: https://rouelibre.net/wp-content/uploads/2024/11/logo-Observatoire-Pis
 - longueur totale du futur réseau : 52, 57, ou 59 kilomètres ?*
 
 On vous explique tout !
+
+## Pourquoi le nom "Pistes Bleues" ?
+Ce nom a été choisi par Grand Chambéry en juin 2024 lors de l'inauguration du jalonnement de 9 Pistes structurantes sur son territoire. Selon [le site de Grand Chambéry](https://www.grandchambery.fr/toutes-les-actualites/les-pistes-bleues), il est en lien avec le territoire de montagne et donne une indication sur le niveau requis pour emprunter les pistes (bleu : niveau facile). Il est également en cohérence avec la couleur de la Vélostation, service de location vélo, stationnement vélo et d'apprentissage du vélo de l'agglomération de Grand Chambéry.
 
 ## Pourquoi on ne voit pas tous les aménagements cyclables existants (ou à aménager) sur l'observatoire ?
 Cet observatoire suit seulement la partie concernant la réalisation du "Réseau cyclable à Haut Niveau de Service de Grand Chambéry" [(définition en lien)](/blog/reseauchns)
