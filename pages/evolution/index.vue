@@ -4,8 +4,8 @@
       <Map :features="features" :options="{ logo: false }" class="flex-1" />
     </ClientOnly>
     <div>
-      <div class="py-2 px-5 md:px-8 text-white bg-velocite-yellow-5 font-semibold text-base">
-        {{ doneDistance }} km de {{ getRevName() }} réalisés
+      <div class="py-2 px-5 md:px-8 text-white bg-lvv-blue-600 font-semibold text-base">
+        {{ doneDistance }} km du Réseau cyclable à Haut Niveau de Service réalisés, réseau nommé "{{ getRevName() }}" depuis 2024
       </div>
       <div class="py-5 px-5 md:px-8 grid grid-cols-3 gap-3 sm:grid-cols-5">
         <div
@@ -39,11 +39,11 @@ definePageMeta({
 });
 
 const years = ref([
-  { label: '< 2021', match: (year) => year < 2021, isChecked: false },
-  { label: '2021', match: (year) => year === 2021, isChecked: true },
-  { label: '2022', match: (year) => year === 2022, isChecked: true },
-  { label: '2023', match: (year) => year === 2023, isChecked: true },
-  { label: '2024', match: (year) => year === 2024, isChecked: true }
+  { label: '< 2000', match: (year) => year < 2000, isChecked: true },
+  { label: 'A DATER', match: (year) => year === 2000, isChecked: false },
+  { label: '2002-2014', match: year => year >= 2002 && year < 2015, isChecked: false },
+  { label: '2015-2020', match: year => year >= 2015 && year < 2021, isChecked: false },
+  { label: '2021-2026', match: year => year >= 2021 && year < 2026, isChecked: false }
 ]);
 
 const { data: voies } = await useAsyncData(() => {

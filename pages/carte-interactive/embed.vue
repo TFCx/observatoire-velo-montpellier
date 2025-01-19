@@ -20,7 +20,7 @@ const { data: voies } = await useAsyncData(() => {
 const features = voies.value.map(voie => voie.features).flat();
 
 const description = `Découvrez la carte interactive des ${getRevName()}. Itinéraires rue par rue. Plan régulièrement mis à jour pour une information complète.`;
-const COVER_IMAGE_URL = 'https://observatoire-velo-montpellier.netlify.app/_nuxt/logoCyclopolisVGM.CzJjkGQi.png';
+const COVER_IMAGE_URL = 'https://rouelibre.net/wp-content/uploads/2020/05/cropped-RL_Logo_10X10.png';
 useHead({
   title: `Carte à jour des ${getRevName()}`,
   meta: [

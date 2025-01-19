@@ -29,35 +29,46 @@
 const { getAssoName } = useConfig();
 
 const links = [
+  { name: 'Méthodologie', path: '/blog/methodo' },
   { name: 'Mentions légales', path: '/mentions-legales' },
-  { name: 'Historique', path: '/historique' }
+  { name: 'Historique', path: '/historique' },
+  { name: 'Réseau Cyclable à Haut Niveau de Service', path: '/blog/reseauchns' }
 ];
 
-const socials = [
-  {
-    name: 'Github',
-    href: 'https://github.com/TFCx/observatoire-velolignes',
-    icon: 'mdi:github'
-  },
-  {
-    name: 'Twitter',
-    href: 'https://twitter.com/VelociteMtp',
-    icon: 'mdi:twitter'
-  },
-  {
-    name: 'Facebook',
-    href: 'https://www.facebook.com/VelociteMontpellier/',
-    icon: 'mdi:facebook'
-  },
-  {
-    name: 'Site web',
-    href: 'https://www.velocite-montpellier.fr/',
-    icon: 'mdi:link'
-  },
-  {
-    name: 'Email',
-    href: 'mailto:velocite-montpellier@fub.fr',
-    icon: 'mdi:email-outline'
-  }
-];
+const socials = {
+  cyclopolis: [
+    {
+      name: 'Github',
+      href: 'https://github.com/benoitdemaegdt/voieslyonnaises',
+      icon: 'mdi:github'
+    },
+    {
+      name: 'LinkedIn',
+      href: 'https://www.linkedin.com/in/benoitdemaegdt',
+      icon: 'mdi:linkedin'
+    }
+  ],
+  lvv: [
+    {
+      name: 'Mastodon',
+      href: 'https://masto.bike/deck/@RoueLibreSavoie',
+      icon: 'mdi:mastodon'
+    },
+    {
+      name: 'Facebook',
+      href: 'https://www.facebook.com/RoueLibreSavoie/',
+      icon: 'mdi:facebook'
+    },
+    {
+      name: 'Site web',
+      href: 'https://rouelibre.net',
+      icon: 'mdi:link'
+    },
+    {
+      name: 'Email',
+      href: 'mailto:contact_at_rouelibre.net',
+      icon: 'mdi:email-outline'
+    }
+  ]
+};
 </script>

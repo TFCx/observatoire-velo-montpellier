@@ -6,7 +6,13 @@
           <NuxtLink to="/" class="flex space-x-2">
             <span class="sr-only">Cyclopolis</span>
             <img
-              src="~/assets/logoCyclopolisVGM.png"
+              class="h-7 w-auto sm:h-8"
+              src="https://rouelibre.net/wp-content/uploads/2020/05/RL_Logo_10X10.png"
+              :alt="`logo ${getAssoName()}`"
+            >
+            <img
+              class="h-8 w-auto sm:h-10"
+              src="https://rouelibre.net/wp-content/uploads/2024/11/logo-Observatoire-Pistes-Bleues-v1.jpg"
               alt="logo cyclopolis"
             >
           </NuxtLink>
@@ -48,7 +54,7 @@
                       class="text-base font-medium text-gray-500 hover:text-velocite-yellow-5"
                       @click="close()"
                     >
-                      Évolution du réseau
+                      Evolution du réseau
                     </NuxtLink>
                     <NuxtLink
                       to="/plan-officiel"
@@ -118,56 +124,27 @@
             </transition>
           </Popover>
 
-          <!-- Compteurs -->
-          <!-- <Popover v-slot="{ open }" class="relative">
-            <PopoverButton :class="[open ? 'text-gray-900' : 'text-gray-500', 'group inline-flex items-center rounded-md bg-white text-base font-medium hover:text-lvv-blue-600 focus:outline-none focus:ring-2 focus:ring-lvv-blue-600 focus:ring-offset-2']">
-              <span>Compteurs</span>
-              <Icon name="mdi:chevron-down" :class="[open ? 'text-gray-600' : 'text-gray-400', 'ml-2 h-5 w-5 group-hover:text-gray-500']" aria-hidden="true" />
-            </PopoverButton>
-            <transition
-              enter-active-class="transition ease-out duration-200"
-              enter-from-class="opacity-0 translate-y-1"
-              enter-to-class="opacity-100 translate-y-0"
-              leave-active-class="transition ease-in duration-150"
-              leave-from-class="opacity-100 translate-y-0"
-              leave-to-class="opacity-0 translate-y-1"
-            >
-              <PopoverPanel v-slot="{ close }" class="absolute left-1/2 z-10 mt-3 w-screen md:w-max max-w-md -translate-x-1/2 transform px-2 sm:px-0">
-                <div class="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white">
-                  <div class="p-4 flex flex-col gap-2">
+          <NuxtLink
+            to="/evolution"
+            class="text-base font-medium text-gray-500 hover:text-lvv-blue-600"
+          >
+            Evolution du réseau
+          </NuxtLink>
+
                     <NuxtLink
-                      to="/compteurs/velo"
-                      class="text-base font-medium text-gray-500 hover:text-lvv-blue-600"
-                      @click="close()"
-                    >
-                      Compteurs vélo
-                    </NuxtLink>
-                    <NuxtLink
-                      to="/compteurs/voiture"
-                      class="text-base font-medium text-gray-500 hover:text-lvv-blue-600"
-                      @click="close()"
-                    >
-                      Compteurs voiture
-                    </NuxtLink>
-                    <NuxtLink
-                      to="/compteurs/comparaison"
-                      class="text-base font-medium text-gray-500 hover:text-lvv-blue-600"
-                      @click="close()"
-                    >
-                      Comparaison voiture/vélo
-                    </NuxtLink>
-                  </div>
-                </div>
-              </PopoverPanel>
-            </transition>
-          </Popover> -->
+            to="blog/methodo"
+            class="text-base font-medium text-gray-500 hover:text-lvv-blue-600"
+          >
+            Questions / Réponses
+          </NuxtLink>
+
         </PopoverGroup>
         <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
           <NuxtLink
-            to="/blog"
-            class="whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-velocite-yellow-5 hover:shadow-lg transition duration-300 transform hover:scale-105"
+            to="/carte-interactive"
+            class="whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-lvv-blue-600 hover:shadow-lg transition duration-300 transform hover:scale-105"
           >
-            Blog
+            Carte interactive
           </NuxtLink>
         </div>
       </div>
@@ -194,7 +171,7 @@
           <div class="pt-5 pb-6 px-5">
             <div class="flex items-center justify-between">
               <NuxtLink to="/" @click="close()">
-                <img class="h-8 h-auto" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmhVxxaZmo-qSqIqhnj5ZrGoX0lP1UChF4dw&s" :alt="`logo ${getAssoName()}`">
+                <img class="h-8 w-auto" src="https://rouelibre.net/wp-content/uploads/2020/05/RL_Logo_10X10.png" :alt="`logo ${getAssoName()}`">
               </NuxtLink>
               <div class="-mr-2">
                 <PopoverButton
@@ -306,11 +283,10 @@ const { getVoieCyclablePath } = useUrl();
 const { getAssoName } = useConfig();
 
 const navItems = [
-  { name: 'Carte interactive', path: '/carte-interactive', target: '_self' },
-  { name: 'Plan officiel', path: '/plan-officiel', target: '_self' },
-  { name: 'Évolution du réseau', path: '/evolution', target: '_self' },
-  { name: 'Baromètre FUB', path: 'https://barometre.parlons-velo.fr/2021/carte/#11.88/43.61007/3.87324', target: '_blank' }
-  // { name: 'Services', path: '/services' },
+  { name: 'Carte interactive', path: '/carte-interactive' },
+  { name: 'Plan officiel', path: '/plan-officiel' },
+  { name: 'Évolution du réseau', path: '/evolution' },
+  { name: 'Méthodologie', path: '/methodo' }
 ];
 
 const { data: voies } = await useAsyncData(() => {

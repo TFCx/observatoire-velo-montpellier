@@ -1,0 +1,314 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "perspective",
+        "name": "Carrefour Comte Vert",
+        "line": 9,
+        "imgUrl": "https://rouelibre.net/wp-content/uploads/2025/01/REV9-IMG_4278.jpg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.9159212664051495,
+          45.570051753896905
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "perspective",
+        "name": "Ecole Jean Jaurès",
+        "line": 9,
+        "imgUrl": "https://rouelibre.net/wp-content/uploads/2025/01/REV9-IMG_4282.jpg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.913014462883268,
+          45.56982722325415
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "perspective",
+        "name": "Rond Point du stade",
+        "line": 9,
+        "imgUrl": "https://rouelibre.net/wp-content/uploads/2024/06/IMG_1096-300x225.jpg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.910430926431815,
+          45.5722183065198
+        ]
+      }
+    },
+    {
+  "type": "Feature",
+  "properties": {
+    "line": 9,
+    "name": "Avenue du Maréchal Leclerc",
+    "quality": "good",
+    "doneAt": "01\/04\/2019",
+    "status": "done",
+    "type": "bilaterale",
+    "link": "/rev-9#avenue-du-marechal-leclerc"
+  },
+  "geometry": {
+    "type": "LineString",
+    "coordinates": [
+      [5.917516,45.570518],
+      [5.916063,45.570093],
+      [5.915961,45.57008],
+      [5.915853,45.570024]
+    ]
+  }
+},
+{
+  "type": "Feature",
+  "properties": {
+    "line": 9,
+    "name": "Rue du Bon Pasteur",
+    "quality": "good",
+    "doneAt": "01\/01\/2006",
+    "status": "done",
+    "type": "bidirectionnelle",
+    "link": "/rev-9#rue-du-bon-pasteur"
+  },
+  "geometry": {
+    "type": "LineString",
+    "coordinates": [
+      [5.912329,45.569768],
+      [5.91544,45.569949],
+      [5.915741,45.569968],
+      [5.915864,45.570013]
+    ]
+  }
+},
+    {
+      "type": "Feature",
+      "properties": {
+        "line": 9,
+        "name": "Avenue Jean Jaures",
+        "doneAt": "01\/01\/2006",        
+        "quality": "",
+        "status": "postponed",
+        "type": "bidirectionnelle",
+        "link": "/rev-9#avenue-jean-jaures"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [5.910172,45.572371],
+          [5.910376,45.57207],
+          [5.910655,45.571687],
+          [5.91131,45.570974],
+          [5.912334,45.569765]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "line": 9,
+        "name": "Avenue du Comte Vert",
+        "quality": "good",
+        "doneAt": "01\/06\/2019",
+        "status": "done",
+        "type": "bilaterale",
+        "link": "/rev-9#avenue-du-comte-vert"
+      },
+      "geometry":{
+      "type": "LineString",
+      "coordinates":[
+        [5.910151,45.572395],
+        [5.907276,45.573184],
+        [5.907072,45.573265],
+        [5.907007,45.573302],
+        [5.906965,45.573422],
+        [5.906879,45.573527],
+        [5.906707,45.573565],
+        [5.906525,45.573512],
+        [5.906256,45.573445],
+        [5.905892,45.573422],
+        [5.905334,45.573549],
+        [5.905033,45.57364],
+        [5.904897,45.573696]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "line": 9,
+        "name": "Avenue du Général Cartier",
+        "quality": "good",
+        "doneAt": "01\/01\/2000",
+        "status": "done",
+        "type": "bilaterale",
+        "link": "/rev-9#avenue-du-general-cartier"
+      },
+      "geometry":{
+      "type": "LineString",
+      "coordinates":[
+        [5.897856,45.576806],
+        [5.898693,45.576476],
+        [5.899379,45.576026],
+        [5.901976,45.574795],
+        [5.903274,45.574256],
+        [5.904765,45.573744]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "line": 9,
+        "name": "Avenue de la Motte Servolex Sud",
+        "quality": "",
+        "status": "postponed",
+        "type": "bandes-cyclables",
+        "link": "/rev-9#avenue-de-la-motte-servolex-sud"
+      },
+      "geometry":{
+      "type": "LineString",
+      "coordinates":[
+          [5.897813,45.576847],
+          [5.895839,45.577988],
+          [5.892384,45.579941],
+          [5.88982,45.581112],
+          [5.887994,45.581853],
+          [5.887234,45.581818]
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "line": 9,
+        "name": "Avenue de la Motte Servolex Nord",
+        "quality": "good",
+        "doneAt": "01\/01\/2000",
+        "status": "done",
+        "type": "bidirectionnelle",
+        "link": "/rev-9#avenue-de-la-motte-servolex-nord"
+      },
+      "geometry":{
+      "type": "LineString",
+      "coordinates":[
+          [5.887234,45.581818],
+          [5.883029,45.587772],
+          [5.881312,45.590475],
+          [5.880389,45.591691],
+          [5.880014,45.591834],
+          [5.880078,45.592172],
+          [5.879391,45.593163],
+          [5.879091,45.593321],
+          [5.879091,45.593486]
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "line": 9,
+        "name": "Avenue Costa de Beauregard Sud",
+        "quality": "",
+        "status": "postponed",
+        "type": "aucun",
+        "link": "/rev-9#avenue-costa-de-beauregard"
+      },
+      "geometry":{
+      "type": "LineString",
+      "coordinates":[
+          [5.878716,45.59516],
+          [5.879306,45.593568],
+          [5.879123,45.593493]
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "line": 9,
+        "name": "Avenue Costa de Beauregard centre",
+        "quality": "",
+        "status": "postponed",
+        "type": "aucun",
+        "link": "/rev-9#avenue-costa-de-beauregard"
+      },
+      "geometry":{
+      "type": "LineString",
+      "coordinates":[
+          [5.878673,45.595212],
+          [5.878437,45.595903],
+          [5.878201,45.596474],
+          [5.878029,45.596894],
+          [5.877922,45.597029],
+          [5.877385,45.597089],
+          [5.87657,45.597179],
+          [5.876098,45.597224],
+          [5.875518,45.597281]
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "line": 9,
+        "name": "Résidence Sainte Anne ",
+        "quality": "good",
+        "doneAt": "01\/01\/2000",
+        "status": "done",
+        "type": "bidirectionnelle",
+        "link": "/rev-9#residence-sainte-anne"
+      },
+      "geometry":{
+      "type": "LineString",
+      "coordinates":[
+        [5.88563,45.605977],
+        [5.885351,45.605883],
+        [5.885357,45.605425],
+        [5.884643,45.605688],
+        [5.884048,45.605838],
+        [5.883554,45.605849],
+        [5.883088,45.605782],
+        [5.882573,45.605575],
+        [5.88202,45.605136],
+        [5.881526,45.604386],
+        [5.88114,45.603905],
+        [5.880775,45.603684],
+        [5.878608,45.603237],
+        [5.877884,45.603166],
+        [5.876473,45.603064],
+        [5.876516,45.602415],
+        [5.87628,45.602333],
+        [5.876243,45.602235],
+        [5.876259,45.602122],
+        [5.876398,45.601908],
+        [5.876398,45.601083],
+        [5.876275,45.601],
+        [5.876253,45.600831],
+        [5.876226,45.600651],
+        [5.875899,45.600028],
+        [5.875481,45.599649],
+        [5.875084,45.599413],
+        [5.874875,45.59909],
+        [5.874826,45.59885],
+        [5.874896,45.598561],
+        [5.87517,45.598279],
+        [5.8754,45.598133],
+        [5.875567,45.59796],
+        [5.875588,45.597874],
+        [5.875475,45.597288]
+          ]
+      }
+    }
+  ]
+}

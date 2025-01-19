@@ -27,6 +27,7 @@ le `status` de chaque tronçon peut prendre les valeurs définies [ici](types/in
 
 le `type` de chaque tronçon peut prendre les valeurs définies [ici](types/index.ts#L1)
 
+Fichier config.json pour modifier les couleurs de chaque ligne
 
 ## Quelques détails techniques
 Look at the [nuxt 3 documentation](https://v3.nuxtjs.org) to learn more.

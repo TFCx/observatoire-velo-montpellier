@@ -6,7 +6,8 @@
           Les {{ getRevName() }}, c'est quoi ?
         </h2>
         <p class="mt-3 text-xl text-gray-500 sm:mt-4">
-          C'est le nom du projet de Réseau Express Vélo voté en 2022 par la Métropole de Montpellier<a href="https://www.montpellier3m.fr/v%C3%A9lolignes" target="_blank">🔗</a>.<br>Concrètement, une {{ getRevName('singular') }} est une voie cyclable large (typiquement plus de 2 mètres par sens), sécurisée, efficace, attractive et confortable, souvent sous forme de piste séparée des voitures. L'ensemble doit créer un maillage cyclable sans discontinuité qui connecte les quartiers montpelliérains aux communes de la périphérie de la métropole.
+          C'est le nom du projet de réseau structurant lancé en 2024 par la Communauté d'agglomération de Grand Chambéry.
+          <br> Concrètement, une {{ getRevName('singular') }} doit être une voie cyclable large (3 à 4m), sécurisée, efficace, attractive et confortable, souvent sous forme de piste bidirectionnelle et séparée du trafic routier. L'ensemble doit créer un maillage cyclable sans discontinuités qui connecte l'ensemble des villes de l'agglomération de Grand Chambéry.
         </p>
       </div>
     </div>
@@ -20,7 +21,7 @@
                 <dt class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
                   Vélolignes
                 </dt>
-                <dd class="order-1 text-5xl font-extrabold text-velocite-yellow-5">
+                <dd class="order-1 text-5xl font-extrabold text-lvv-blue-600">
                   {{ getNbVoiesCyclables() }}
                 </dd>
               </div>
@@ -28,15 +29,15 @@
                 <dt class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
                   Distance
                 </dt>
-                <dd class="order-1 text-5xl font-extrabold text-velocite-yellow-5">
-                  235km
+                <dd class="order-1 text-5xl font-extrabold text-lvv-blue-600">
+                  59km
                 </dd>
               </div>
               <div class="flex flex-col border-t border-gray-100 p-6 text-center sm:border-0 sm:border-l" id=ou-on-en-est>
                 <dt class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
                   Budget
                 </dt>
-                <dd class="order-1 text-5xl font-extrabold text-velocite-yellow-5">
+                <dd class="order-1 text-5xl font-extrabold text-lvv-blue-600">
                   Inconnu
                 </dd>
               </div>

@@ -1,7 +1,7 @@
 <template>
   <div class="w-full">
     <img
-      src="https://www.montpellier.fr/uploads/Image/4b/43449_216_20220531_REV-version-definitive.jpg"
+      src="https://rouelibre.net/wp-content/uploads/2024/11/2024-06-Plan-Pistes-Bleues.jpg"
       class="object-contain w-full h-screen"
       :alt="`plan officiel des ${getRevName()}`"
     >
@@ -11,8 +11,8 @@
 <script setup lang="ts">
 const { getRevName } = useConfig();
 
-const description = `Découvrez le plan officiel des ${getRevName()}, le futur réseau vélo montpelliérain de 235km.`;
-const COVER_IMAGE_URL = 'https://observatoire-velo-montpellier.netlify.app/_nuxt/logoCyclopolisVGM.CzJjkGQi.png';
+const description = `Découvrez le plan officiel des ${getRevName()}, le réseau vélo de Grand Chambéry.`;
+const COVER_IMAGE_URL = 'https://rouelibre.net/wp-content/uploads/2024/11/2024-06-Plan-Pistes-Bleues.jpg';
 
 useHead({
   title: `Plan des ${getRevName()}`,

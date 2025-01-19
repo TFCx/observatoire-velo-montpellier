@@ -35,7 +35,7 @@
             <h1>
               <span
                 class="block text-sm font-semibold uppercase tracking-wide text-gray-500 sm:text-base lg:text-sm xl:text-base"
-              >Plateforme de suivi</span>
+              >Observatoire de suivi</span>
               <span
                 class="mt-1 block text-4xl tracking-tight font-extrabold sm:text-5xl xl:text-6xl"
               >
@@ -46,16 +46,22 @@
             <p
               class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl"
             >
-              Une initiative de l'association <strong>{{ assoName }}</strong> pour suivre et évaluer le développement du nouveau réseau vélo sécurisé montpelliérain.
+              Une initiative de l'association <strong>{{ assoName }}</strong> pour suivre et évaluer le développement d'un réseau vélo structurant continu et sécurisé, généralement appelé <a href="/blog/reseauchns" style="color:lvv-blue-600;font-weight:bold">Réseau Cyclable à Haut Niveau de Service (RCHNS) ou Réseau Express Vélo (REV) </a>.
             </p>
             <div
               class="mt-8 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0"
             >
               <div class="space-y-4 sm:space-y-0 sm:mx-auto sm:inline-grid sm:grid-cols-3 sm:gap-5">
-                <NuxtLink to="/carte-interactive" class="flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-velocite-yellow-5 hover:shadow-lg sm:px-8 transition duration-300 transform hover:scale-105">
+                <NuxtLink to="/carte-interactive" class="flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-lvv-blue-600 hover:shadow-lg sm:px-8 transition duration-300 transform hover:scale-105">
                   Carte interactive
                 </NuxtLink>
-                <NuxtLink to="/plan-officiel" class="flex items-center justify-center px-4 py-3 text-base font-medium rounded-md shadow-sm text-velocite-yellow-5 border border-velocite-yellow-5 hover:shadow-lg sm:px-8 transition duration-300 transform hover:scale-105">
+                <NuxtLink
+                  to="/evolution"
+                  class="flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-lvv-blue-600 hover:shadow-lg sm:px-8 transition duration-300 transform hover:scale-105"
+                >
+                  Evolution du réseau
+                </NuxtLink>
+                <NuxtLink to="/plan-officiel" class="flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-lvv-blue-600 hover:shadow-lg sm:px-8 transition duration-300 transform hover:scale-105">
                   Plan officiel
                 </NuxtLink>
                 <NuxtLink to="#ou-on-en-est" class="flex items-center justify-center px-4 py-3 text-base font-medium rounded-md shadow-sm text-velocite-yellow-5 border border-velocite-yellow-5 hover:shadow-lg sm:px-8 transition duration-300 transform hover:scale-105">
@@ -73,7 +79,7 @@
               <div
                 class="relative block w-full bg-white rounded-lg overflow-hidden"
               >
-                <img class="w-full" src="https://i0.wp.com/lemouvement.info/wp-content/uploads/2020/01/Montpellier-av-Toulouse-demain.png" :alt="`illustration des Vélolignes : avenue de Toulouse`">
+                <img class="w-full" src="https://rouelibre.net/wp-content/uploads/2024/11/hero.jpeg" :alt="`illustration des ${getRevName()}`">
               </div>
             </div>
           </div>

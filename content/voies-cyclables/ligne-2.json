@@ -1,0 +1,164 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "perspective",
+        "name": "Traversée du passage à niveau à améliorer",
+        "line": 2,
+        "imgUrl": "https://rouelibre.net/wp-content/uploads/2024/11/REV2-IMG_4011.jpg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [5.906503,45.587708]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "type": "perspective",
+        "name": "Giratoire Chamnord",
+        "line": 2,
+        "imgUrl": "https://rouelibre.net/wp-content/uploads/2024/11/REV2-IMG_4023.jpg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [5.906503,45.587708]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "line": 2,
+        "name": "Rue de la gare",
+        "quality": "good",
+        "doneAt": "01\/11\/2019",
+        "status": "done",
+        "type": "bidirectionnelle",
+        "link": "/rev-2#rue-de-la-gare"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [5.919871,45.569802],
+          [5.919791,45.569436],
+          [5.919603,45.569141],
+          [5.919217,45.568773]
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "line": 2,
+        "name": "Place de la gare",
+        "quality": "good",
+        "doneAt": "01\/12\/2024",
+        "status": "done",
+        "type": "voie-bus",
+        "link": "/rev-2#place-de-la-gare"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [5.919885,45.569804],
+          [5.919941,45.569893],
+          [5.919716,45.570535],
+          [5.919716,45.570544],
+          [5.91971,45.570677],
+          [5.919694,45.570723],
+          [5.919555,45.570893],
+          [5.919405,45.571098],
+          [5.919123,45.571438],
+          [5.918941,45.571663],
+          [5.918849,45.571774],
+          [5.918809,45.571836],
+          [5.918876,45.571881]
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "line": 2,
+        "name": "Avenue de la Boisse Sud",
+        "quality": "fair",
+        "doneAt": "01\/01\/2000",
+        "status": "done",
+        "type": "voie-verte",
+        "link": "/rev-2#avenue-de-la-boisse-sud"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [5.918879,45.571883],
+          [5.918774,45.572018],
+          [5.918131,45.572846],
+          [5.914834,45.577232]
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "line": 2,
+        "name": "Avenue de la Boisse Nord",
+        "quality": "good",
+        "doneAt": "01\/01\/2000",
+        "status": "done",
+        "type": "voie-verte",
+        "link": "/rev-2#avenue-de-la-boisse-nord"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [5.91484,45.577237],
+          [5.914003,45.578289],
+          [5.913273,45.579145],
+          [5.912007,45.580729],
+          [5.911202,45.58172],
+          [5.910473,45.58262],
+          [5.909829,45.583446],
+          [5.90867,45.585051],
+          [5.908027,45.585802],
+          [5.907426,45.586657]
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "line": 2,
+        "name": "Avenue des landiers - Passage à niveau",
+        "status": "postponed",
+        "type": "bandes-cyclables",
+        "link": "/rev-2#passage-à-niveau"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [5.905774,45.588368],[5.905881,45.588248],[5.906128,45.588098],[5.906364,45.587941],[5.906503,45.587708],[5.906525,45.587505],[5.906718,45.587355],[5.906954,45.5871],[5.907136,45.586905],[5.907276,45.5868],[5.907404,45.586695]
+          ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "line": 2,
+        "name": "Avenue des landiers",
+        "quality": "good",
+        "doneAt": "01\/01\/2000",
+        "status": "done",
+        "type": "voie-verte",
+        "link": "/rev-2#avenue-des-landiers"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [5.896732,45.597145],[5.89681,45.597126],[5.897287,45.596818],[5.897877,45.596436],[5.898296,45.596158],[5.898451,45.595952],[5.898478,45.595817],[5.898618,45.595764],[5.898768,45.595779],[5.89895,45.595753],[5.899229,45.595547],[5.89998,45.594947],[5.900484,45.594453],[5.900694,45.594243],[5.900849,45.594025],[5.900828,45.593872],[5.90086,45.593774],[5.900972,45.593703],[5.901117,45.593662],[5.901198,45.593621],[5.901976,45.592705],[5.90577,45.588372]
+          ]
+      }
+    }
+  ]
+}

@@ -1,21 +1,25 @@
 {
   "revName": {
-    "plural": "Vélolignes",
-    "singular": "Véloligne"
+    "plural": "Pistes Bleues",
+    "singular": "Piste Bleue"
   },
-  "assoName": "Vélocité",
-  "assoLink": "https://www.velocite-montpellier.fr/",
-  "slug": "veloligne",
+  "assoName": "Roue Libre",
+  "assoLink": "https://rouelibre.net",
+  "slug": "rev",
   "center": [
-    3.862038,
-    43.62505
+    5.917781,
+    45.564601
   ],
   "zoom": 12,
   "nbVoiesCyclables": 16,
   "colors": [
     {
-      "line": "Anneau",
-      "color": "#9d9d9c"
+      "line": "0",
+      "color": "#24e567"
+    },
+    {
+      "line": "1x",
+      "color": "#60A75B"
     },
     {
       "line": "1",
@@ -58,56 +62,8 @@
       "color": "#0074b5"
     },
     {
-      "line": "11",
-      "color": "#532c80"
-    },
-    {
-      "line": "A",
-      "color": "#2b4b8b"
-    },
-    {
-      "line": "B",
-      "color": "#f4dd47"
-    },
-    {
-      "line": "C",
-      "color": "#f4c3d3"
-    },
-    {
-      "line": "D",
-      "color": "#c22d1d"
+      "line": "12",
+      "color": "#DBABB7"
     }
-  ],
-  "transports": [
-    {
-      "type": "tram",
-      "line": "1",
-      "color": "#0072bc",
-      "link": "https://www.tam-voyages.com/presentation/?rub_code=1&thm_id=13&gpl_id=&part_id="
-    },
-    {
-      "type": "tram",
-      "line": "2",
-      "color": "#f7931d",
-      "link": "https://www.tam-voyages.com/presentation/?rub_code=1&thm_id=14&gpl_id=&part_id="
-    },
-    {
-      "type": "tram",
-      "line": "3",
-      "color": "#c1d72f",
-      "link": "https://www.tam-voyages.com/presentation/?rub_code=1&thm_id=15&gpl_id=&part_id="
-    },
-    {
-      "type": "tram",
-      "line": "4",
-      "color": "#442308",
-      "link": "https://www.tam-voyages.com/presentation/?rub_code=1&thm_id=16&gpl_id=&part_id="
-    },
-    {
-      "type": "tram",
-      "line": "5",
-      "color": "#e22350",
-      "link": "https://tram5-montpellier3m.fr/"
-    }    
   ]
 }

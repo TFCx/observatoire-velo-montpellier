@@ -2,9 +2,9 @@ import config from './config.json';
 
 const TITLE = `Observatoire Vélo de Montpellier - Suivi des ${config.revName.plural} par ${config.assoName}`;
 const DESCRIPTION =
-  `Plateforme citoyenne et associative, par ${config.assoName}. État d'avancement, cartes interactives des itinéraires, détails, travaux : suivez le développement du réseau cyclable sécurisé montpelliérain`;
-const BASE_URL = 'https://velocite-montpellier.fr';
-const COVER_IMAGE_URL = 'https://observatoire-velo-montpellier.netlify.app/_nuxt/logoCyclopolisVGM.CzJjkGQi.png';
+  `Observatoire citoyen et associatif, par ${config.assoName}. État d'avancement, cartes interactives des itinéraires, détails, travaux : suivez le développement du réseau cyclable sécurisé sur le territoire de Grand Chambéry`;
+const BASE_URL = 'https://cyclopolis.fr';
+const COVER_IMAGE_URL = 'https://rouelibre.net/wp-content/uploads/2024/11/RL_Logo_10x10_Couleur_BD.png';
 
 export default defineNuxtConfig({
   app: {

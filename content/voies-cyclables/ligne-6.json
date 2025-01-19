@@ -1,0 +1,51 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "properties": {
+          "line": 6,
+          "name": "Route Royale",
+          "quality": "",
+          "status": "postponed",
+          "type": "bandes-cyclables",
+          "link": "/rev-6#route-royale"
+        },
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [5.972056,45.54706],
+            [5.969417,45.551264]
+            ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "line": 6,
+          "name": "Rue des Barreaux",
+          "quality": "good",
+          "doneAt": "01\/01\/2000",
+          "status": "done",
+          "type": "voie-verte",
+          "link": "/rev-6#rue-des-barreaux"
+        },
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [5.969359,45.55127],
+            [5.968861,45.551366],
+            [5.968074,45.551347],
+            [5.966842,45.551045],
+            [5.964772,45.55076],
+            [5.964289,45.552172],
+            [5.963162,45.552826],
+            [5.962737,45.553341],
+            [5.962708,45.554466],
+            [5.961692,45.556342]
+            ]
+        }
+      }
+    ]
+  }
+  

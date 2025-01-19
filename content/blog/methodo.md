@@ -1,85 +1,86 @@
 ---
 title: Méthodologie
-description: Réponses aux questions fréquentes sur les données et la méthodologie de l'observatoire, basé sur l'outil Cyclopolis.
-imageUrl: 
+description: Réponses aux questions fréquentes sur les données, la méthodologie de Cyclopolis et l'observatoire des Pistes Bleues de Grand Chambéry.
 ---
 
-*Pourquoi ce tronçon est marqué « terminé » alors qu’il n’y a eu aucun travaux ?  
-Pourquoi ma rue est considérée comme « prévue » alors qu’il y a déjà une piste ?  
-À quoi dois-je m’attendre sur les tronçons marqués « reporté après 2026 » ?  
-Que signifient les qualités « satisfaisant / non-satisfaisant » ?
-Pourquoi ce tronçon est marqué comme « satisfaisant » alors que l'intersection est dangereuse ?
-Pourquoi ce tronçon est marqué comme « à améliorer » alors que la piste semble très bien ?*
+* - Pourquoi le nom "Pistes Bleues" ?
+- Pourquoi on ne voit pas tous les aménagements cyclables existants (ou à aménager) sur l'observatoire ?
+- A quoi correspondent les tronçons « satisfaisant, à améliorer et non-satisfaisant » ? 
+- A quoi correspondent les couleurs noires, rouges et bleues ?
+- Pourquoi ma rue est considérée comme « manquante » alors qu’il y a déjà une bande cyclable ?  
+- Pourquoi il y a 11 pistes Bleues dans l'observatoire alors que les panneaux sur le terrain n'en indiquent que 9 ?
+- longueur totale du futur réseau : 52, 57, ou 59 kilomètres ?*
 
 On vous explique tout !
 
-## Que signifient les types de chaque tronçon et les statistiques "Typologie 2026"
-Il s'agit de chacun des aménagements cyclables que rencontreront les cyclistes sur chacune des Vélolignes à la fin du mandat en 2026. Mis bout-à-bout, et rapportés à la distance totale des différents itinéraires, on peut ensuite obtenir des statistiques détaillées.
+## Pourquoi le nom "Pistes Bleues" ?
+Ce nom a été choisi par Grand Chambéry en juin 2024 lors de l'inauguration du jalonnement de 9 Pistes structurantes sur son territoire. Selon [le site de Grand Chambéry](https://www.grandchambery.fr/toutes-les-actualites/les-pistes-bleues), il est en lien avec le territoire de montagne et donne une indication sur le niveau requis pour emprunter les pistes (bleu : niveau facile). Il est également en cohérence avec la couleur de la Vélostation, service de location vélo, stationnement vélo et d'apprentissage du vélo de l'agglomération de Grand Chambéry.
 
-L'ensemble du linéaire des Vélolignes est utilisé, y compris les tronçons reportés après 2026. Dans ce cas, l'aménagement indiqué est celui présent actuellement, car il ne sera malheureusement pas amélioré avant la fin du mandat en cours. Lorsqu'il n'y a aucun aménagement actuellement c'est le type "*Aucun*" qui est utilisé.
+## Pourquoi on ne voit pas tous les aménagements cyclables existants (ou à aménager) sur l'observatoire ?
+Cet observatoire suit seulement la partie concernant la réalisation du "Réseau cyclable à Haut Niveau de Service de Grand Chambéry" [(définition en lien)](/blog/reseauchns)
+Ce réseau cyclable structurant est dit "principal". Il est complété par un réseau cyclable "secondaire" et un réseau de "desserte locale", ces deux réseaux ne sont pas suivis par cet observatoire. L'ensemble de ces réseaux sont suivis tout au long de l'année par notre association pour renforcer leur sécurisation et accompagner leur développement ainsi que l'ensemble des services vélo associés dans un Système vélo(stationnements sécurisés, ville apaisée) pour pouvoir offrir une agglomération cyclable pour toutes et tous.
 
-Quand un tronçon est prévu mais qu'il n'y a toujours eu aucune communication publique à son sujet, il est considéré comme "*Inconnu*" même s'il peut déjà comporter des aménagements cyclables aujourd'hui. A ce stade, nous ne sommes pas en mesure de dire si ce tronçon sera reporté après 2026 ou s'il sera réaménagé et sécurisé d'ici la fin du mandat. La typologie sera évidemment mise à jour dès que nous aurons obtenu une information.
+## Tronçon « satisfaisant / A améliorer / non-satisfaisant » ?
+Pour chaque tronçon de Piste Bleue, nous avons regardé s'il était conforme aux caractéristiques préconisées par le CEREMA [(Centre d'études et d'expertise sur les risques, l'environnement, la mobilité et l'aménagement)](https://www.cerema.fr/) pour un [(Réseau Cyclable à Haut Niveau de Service)](/blog/reseauchns) (aussi appelé Réseau Express Vélo) . 
 
-Lorsqu'un tronçon présente une différence d'aménagement cyclable entre les deux sens de circulation, il est indiqué comme "*Hétérogène*".
+Ainsi, parmi les critères utilisés nous avons essentiellement évalué : la sécurisation ; la présence ou non d'un conflit piéton/vélo ; le confort et la lisibilité ; la continuité et le caractère direct et efficace des trajets.
 
-Les autres types sont plus classiques : "*Bilatérale*" pour des pistes aménagées de chaque côté de la rue, "*Bidirectionnelle*" pour un piste à double-sens aménagée d'un seul côté de la rue, etc.
+S'il est globalement conforme à ces qualités, il est classé comme <span style="color:blue;font-weight:bold">Satisfaisant</span> de couleur Bleue. Si un tronçon est aménagé pour les cycles mais n'est pas (encore) conforme à ces qualités, il est classé comme <span style="color:red;font-weight:bold">A améliorer</span> de couleur Rouge. S'il n'y a pas d'aménagement cyclable ou un aménagement inadapté il est classé comme <span style="color:black;font-weight:bold">Non satisfaisant</span> de couleur noire. Le détail de l'aménagement présent (ou non) est souvent précisé dans les pages décrivant les lignes tronçon par tronçon.
 
-Enfin, si une des typologies représente moins de 0.5% du linéaire total, il est masqué de l'écran des statistiques pour éviter d'afficher un pourcentage arrondi de 0% qui laisserait croire que cette typologie n'est pas présente.
+Ainsi, un tronçon classé comme « satisfaisant » ne veut pas dire qu'il est parfait. Par exemple, certains tronçons ont une largeur insuffisante pour une circulation fluide, ont des défauts de revêtement, accueillent parfois du stationnement sauvage... ils ont pu être classés en « satisfaisant » au moment de création de la carte. 
+De plus, le classement de tronçons (sections de plusieurs dizaines ou centaines de mètres) ne permet généralement pas de noter les points noirs comme les connexions incomplètes avec le réseau cyclable secondaire ou les présence de traversées de chaussées totalement sécurisées pour les cyclistes. Ces points noirs sont affichés par un cône de chantier sur [la carte interactive du réseau](/carteinteractive).
 
-## Tronçon « satisfaisant / non-satisfaisant » ?
+Ce sont les limites d'une typologie en trois classes/couleurs, pratique pour une visualisation rapide et qui doit ensuite être précisé dans la description de chaque tronçon.
 
-Comme décrit dans les actes administratifs du conseil de Métropole de Montpellier, les Vélolignes sont le nom de baptême du futur **Réseau Express Vélo** de Montpellier. Il sera l’ « épine dorsale » du maillage cyclable de la Métropole. Les Vélolignes sont donc un réseau prévu pour être au plus haut niveau de standard cyclable.
+## Pourquoi ma rue est considérée comme « manquant » alors qu’il y a déjà une bande cyclable ?
 
-*Extrait de la délibération n°M2022-151 du conseil de métropole du 31 mai 2022 (texte original - les surlignages sont ajoutés pour cette page) :*
->Afin de pouvoir jouer pleinement son rôle et être exemplaire, afin de <mark>donner envie aux personnes hésitantes</mark> de sauter le pas, ce Réseau Express Vélo, à haut niveau de service, s’engage à assurer les qualités
-suivantes :
->- Satisfaire les enjeux de <mark>capacité, d’efficacité</mark> de déplacement et de desserte ;
->- Assurer <mark>sécurité et confort</mark> par le biais d’aménagements spécifiques ;
->- Présenter des <mark>trajets directs</mark> avec peu de carrefours pour <mark>limiter les « pieds à terre »</mark> ;
->- <mark>Sécuriser les intersections</mark> ;
->- Présenter des gages supplémentaires de <mark>qualité et</mark> de <mark>confort</mark> avec une qualité constante du revêtement et un entretien régulier ;
->- Identifier clairement le réseau ;
->- Mettre en place une signalisation identitaire (signalisation horizontale, signalisation verticale, marquage régulier…).
->
->Le Réseau Express Vélo a pour objectif d’offrir une expérience qualitative aux personnes se déplaçant à vélo sur un réseau cyclable identifié comme structurant. Il permettra également de répondre à tous les nouvelles pratiques, dont la cyclo-logistique en forte croissance sur le territoire, et tous les gabarits de cycles.
+L'enjeu d'un [réseau structurant "à haut niveau de service"](/blog/reseauchns) est de permettre à toute personne qui le souhaite et quelque soit son âge, sa condition physique, etc de se déplacer à vélo en toute sécurité et avec facilité (hormis le dénivelé naturel). Ainsi le tracé de bandes cyclables sur la chaussée d'une avenue où circulent plusieurs milliers de véhicules chaque jour n'est pas considéré par le CEREMA comme un aménagement qualitatif.
 
-Pour chaque tronçon de Véloligne, nous avons donc regardé s'il était conforme aux qualités annoncées pour le réseau. Si un tronçon n'est pas du tout conforme à ces qualités, il est classé comme « non-satisfaisant ». S'il est globalement conforme à ces qualités, il est classé comme « satisfaisant ». S'il présente des défauts qui l'éloignent de ces qualités, il est classé comme « à améliorer ». Le détail est souvent donné dans les pages décrivant les lignes tronçon par tronçon.
+Voici un schéma du type d'aménagement cyclable préconisés par le CEREMA en fonction du trafic routier
 
-Attention un tronçon classé comme « satisfaisant » *ne veut pas dire qu'il est parfait*. Par exemple certains tronçons avec des bordures boudins (non satisfaisantes !), qui doivent être retirées (ou remplacées par des bordures chanfreinées selon le cas), ont pu être classés en « satisfaisant » car dans sa globalité le tronçon répond à l'essentiel des critères d'une Véloligne. Ce sont les limites d'une typologie en trois classes, pratique pour une visualisation rapide mais qui doit être complétée des détails donnés dans les pages qui decrivent individuellement les Vélolignes.
+::content-image
+---
+imageUrl: https://rouelibre.net/wp-content/uploads/2024/06/2024-06-04-CP-Roue-Libre.-Pour-des-pistes-bleues-securisees-BAT-1292x1536.jpg
+caption: Tableau d'aide à la décision. Entouré en vert la colonne correspondant à un "Réseau à haut niveau de service"
+credit: CEREMA
+---
+::
 
-Parmi les critères utilisés nous avons essentiellement évalué : la sécurisation ; la présence ou non d'un conflit piéton/vélo ; le confort et la lisibilité ; la continuité et le caractère direct et efficace des trajets.
+## Que signifie la typologie actuel de chaque ligne
+L'ensemble du linéaire des Pistes Bleues Grand Chambéry est intégré dans ce calcul en y ajoutant les 2 nouvelles pistes demandées par Roue Libre.
 
-## En travaux sur le terrain, mais pas sur l'observatoire ?
-Vous pourriez constater que certains tronçons sont réellement en travaux, mais qu'ils n'apparaissent pas sous ce statut sur la carte interactive. Malgré nos efforts pour suivre au plus près l'avancement du chantier des Vélolignes, il est possible que nous n'ayons pas encore eu l'information de début des travaux. Dans ce cas, n'hésitez pas à nous le signaler sur [ce lien](https://www.velocite-montpellier.fr/asso/contact/).
+Quand un aménagement sur un tronçon est envisagé mais qu'il n'y a toujours eu aucune communication publique à ce sujet, il reste considéré comme manquant, même s'il peut déjà comporter quelques aménagements cyclables à améliorer aujourd'hui (par exemple des bandes cyclables). La typologie sera évidemment mise à jour dès que nous aurons obtenu une information.
 
-<!--
-## Terminé ou Prévu ?
-Les tronçons considérés comme "terminés" sont tous les tronçons aménagés depuis 2020 dont on est certain qu’ils accueilleront une Voie Lyonnaise en 2026 ou ayant déjà fait l’objet d’une concertation qui mentionnait explicitement que l’aménagement cyclable sécurisé existant serait conservé en l’état.
+Lorsqu'un tronçon présente une différence d'aménagement cyclable entre les deux sens de circulation, nous retenons un seul des deux aménagements, en préférant retenir celui qui est majoritaire ou celui qui est le plus représentatif du ressenti global. Ce choix permet de simplifier les différents affichages et statistiques du site.
 
-**Exemples :**
+Enfin, si une des typologie représente moins de 0.5% du linéaire total, il est masqué de l'écran des statistiques pour éviter d'afficher un pourcentage arrondi de 0% qui laisserait croire que cette typologie n'est pas présente.
 
-- La rue Victor Hugo à Tassin a été aménagée en 2021. Elle n’a pas fait l’objet d’une concertation Voie Lyonnaise, mais nous savons qu’elle accueillera la Voie Lyonnaise 5.
-- Le quai Fulchiron à Lyon 5 a été aménagé en 2019. La concertation de la Voie Lyonnaise 3 sur ce tronçon stipule que l’aménagement sera conservé en l’état.
-- Le tunnel mode doux de la Croix-Rousse à Lyon 4 a été aménagé en 2013. Nous savons qu’il accueillera plusieurs Voies Lyonnaises, mais avant que la concertation sur ce tronçon n’ait eu lieu, nous ne savions pas si la Métropole de Lyon a prévu d’y faire des modifications dans le cadre du projet des Voies Lyonnaises. Il était donc resté en « prévu » jusqu’à ce que l’information ait été rendue publique.
-- L’avenue du Dauphiné à Chassieu entre l’avenue du Progrès et le chemin de Trèves comporte déjà une voie verte étroite, mais la Métropole de Lyon a annoncé dans son dossier de concertation qu’il ne serait pas jalonné en Voie Lyonnaise du fait du report du réaménagement du giratoire d’Usingen.
+## En travaux sur le terrain, mais pas sur cet observatoire ?
+Vous pourrez peut-être constater que certains tronçons sont réellement en travaux, mais qu'ils n'apparaissent pas sous ce statut sur la carte interactive de notre observatoire. Malgré nos efforts pour suivre au plus près l'avancement du chantier des Pistes Bleues de Grand Chambéry, il est possible que nous n'ayons pas encore eu l'information de début des travaux. Dans ce cas, n'hésitez pas à nous le signaler sur [ce lien](https://rouelibre.net/#anchor-contact).
 
-*Une information sur le démarrage de nouveaux travaux ? Besoin de faire remonter une information ou une remarque sur le contenu du site ?  
-N'hésitez pas à nous contacter sur nos réseaux sociaux ou via [cette page](https://lavilleavelo.org/contact/).*-->
+En revanche, nous considérons qu'un tronçon est en travaux si et seulement si ceux-ci ont réellement lieu sur le terrain, et si ils concernent réellement l'aménagement d'une piste cyclable. Ainsi, la présence d'un "totem travaux" de l'agglo n'est pas suffisant. En outre, tous les travaux préalables ne sont pas considérés. Ainsi, le désamiantage préalable de la chaussée ou la déviation des réseaux souterrains ne sont pas retenus.
 
-## Reporté après 2026
-Il s’agit des tronçons qui font partie du projet de Vélolignes voté en mai 2022 mais annoncés dès le départ comme n'étant pas prévus pour être réalisés pendant le mandat en cours.
-
-<!--
 ## Tracé à définir / Linéaire inconnu
-Ces sections n’ont pas encore fait l’objet de concertations ou de communications publiques, et nous considérons qu’il existe différents itinéraires possibles pour y faire passer la Voie Lyonnaise. Dans l’attente d’informations plus détaillées, nous préférons donc ne pas privilégier un itinéraire sur un autre. Cependant, pour améliorer la lecture cartographique et éviter l'illusion de la "ligne droite", nous privilégions de manière arbitraire certains itinéraire de manière à obtenir un rendu et des statistiques plus fiables sur la ligne.-->
+Ces sections n’ont pas encore fait l’objet de concertations ou de communications publiques, et nous considérons qu’il existe différents itinéraires possibles pour y faire passer une Piste Bleue. Dans l’attente d’informations plus détaillées, nous préférons donc ne pas privilégier un itinéraire sur un autre. Cependant, pour améliorer la lecture cartographique et éviter l'illusion de la "ligne droite", nous privilégions de manière arbitraire certains itinéraires de manière à obtenir un rendu et des statistiques plus fiables sur la ligne.
 
 ## Calcul des statistiques du site
-Pour obtenir les chiffres lisibles sur le tableau de bord de la page d’accueil du site, nous ne comptons qu’une seule fois les tronçons en commun avec plusieurs Vélolignes.
+Pour obtenir les chiffres lisibles sur le tableau de bord de la page d’accueil du site, nous ne comptons qu’une seule des variantes sur les tronçons concernés, et nous ne comptons qu’une seule fois les tronçons en commun avec plusieurs pistes.
 
-## 75 ou 80% ?
-Dans ses annonces officielles de mai 2022, la Métropole de Montpellier a évoqué une réalisation de 75% du réseau des Vélolignes d'ici 2026 (voir en page 4 du <a href="https://www.montpellier3m.fr/sites/default/files/2021/20220531-fp-conseil3m.pdf" target="_blank">communiqué de presse de la métropole</a>). En se basant sur les <a href="https://data.montpellier3m.fr/dataset/reseau-express-velo-de-montpellier-mediterranee-metropole" target="_blank">données diffusées en opendata par la métropole</a>, Vélocité obtient un chiffre de 80%. Par ailleurs le <a href="https://github.com/TFCx/observatoire-velolignes/tree/montpellier/main" target="_blank">code source de l'observatoire</a> est public ; chacun et chacune est en mesure de reprendre nos informations géographiques pour vérifier les calculs.
+## 52, 57, ou 59 km ?
+Lors de l'inauguration des Pistes Bleues en juin 2024, 9 lignes et 57 kilomètres d'itinéraires cyclables ont été présentés par Grand Chambéry.
+Or sur ces 57 kilomètres, 5 kilomètres (1,5 kilomètres de la Voie Verte Belle Via identifiées sur la :line-link{line=1} et 3,5 km sur la :line-link{line=7}) sont hors du périmètre de la collectivité Grand Chambéry, car situés respectivement sur Grand Lac et sur Cœur de Savoie. Cet observatoire des Pistes Bleues de Grand Chambéry analyse donc les 52 kilomètres jalonnés sur le territoire de Grand Chambéry.
+
+De plus, comme plusieurs secteurs de Grand Chambéry ne sont actuellement pas desservis par ce jalonnement, l'association Roue Libre a demandé l'ajout de 2 Pistes Bleues complémentaires : la :line-link{line=10} pour connecter Chambéry à Jacob - Bellecombette et la :line-link{line=11} pour relier Chambéry-Mérande à Barby via Bassens. Le suivi de la réalisation de ces deux nouvelles Pistes Bleues ajoute ainsi 7 kilomètres de pistes suivis par cet observatoire.
+
+soit 57 - 5 + 7 = 59 kilomètres
+
+## Précision des cartographies
+Nous nous sommes efforcés d’être le plus précis possible sur le positionnement de l’aménagement cyclable dans nos cartes interactives. Cependant, certains tronçons ont été dessinés à un moment où nous ignorions le côté d’insertion de la piste sur la rue. Ainsi, en zoomant beaucoup sur une rue en particulier, il est possible de retrouver des incohérences. C’est tout à fait normal, car la carte interactive a pour objectif principal de repérer les rues concernées par l’aménagement et pas son insertion précise. Nous travaillerons cependant à une amélioration de cette précision de manière à pouvoir intégrer les informations géographiques de l'observatoire au sein de la communauté d’OpenStreetMap.
+
+## Réseau 2026 et 2032
+L'observatoire des Pistes Bleues a pour objectif de suivre la réalisation du réseau cyclable structurant continu et sécurisé sur le territoire de Grand Chambéry.
+
+A l’occasion des campagnes pour les élections communautaires de 2026, l'observatoire des Pistes Bleues de Grand Chambéry évoluera pour comparer les programmes des différentes formations politiques candidates pour la mise en place d'un Système vélo et la réalisation d'un réseau cyclable complet sur Grand Chambéry à l’horizon 2032 (réseau structurant, réseau secondaire et réseau de desserte locale).
 
 ## Réutilisation du contenu du site
-Ce site est basé sur le site <a href="https://cyclopolis.fr" target="_blank">https://cyclopolis.fr</a>, réalisé par l’association FUB lyonnaise « La Ville à Vélo » <a href="https://lavilleavelo.org" target="_blank">https://lavilleavelo.org</a> et diffusé en opensource.
-
-Toute réutilisation brute des cartographies interactives du site, des chiffres du tableau de bord et des détails écrits des tronçons de chaque ligne doivent faire systématiquement mention du nom de la plateforme « Cyclopolis » (avec lien vers <a href="https://cyclopolis.fr" target="_blank">https://cyclopolis.fr</a>) et du nom de l'association contributrice « Vélocité Grand Montpellier » (avec lien vers <a href="https://www.velocite-montpellier.fr/" target="_blank">https://www.velocite-montpellier.fr/</a>).
+Toute réutilisation brute des cartographies interactives du site, des chiffres du tableau de bord et des détails écrits des tronçons de chaque ligne doivent faire systématiquement mention du nom de la plateforme « Cyclopolis » (avec lien vers <a href="https://cyclopolis.fr" target="_blank">https://cyclopolis.fr</a>) et du nom de l’association contributrice « Roue Libre » (avec lien vers <a href="https://rouelibre.net/" target="_blank">https://rouelibre.net/</a>).
