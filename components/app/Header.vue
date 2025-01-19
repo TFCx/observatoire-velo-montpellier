@@ -215,7 +215,7 @@ const navItems = [
   { name: 'Carte interactive', path: '/carte-interactive' },
   { name: 'Plan officiel', path: '/plan-officiel' },
   { name: 'Évolution du réseau', path: '/evolution' },
-  { name: 'Compteurs', path: '/compteurs/velo' }
+  { name: 'Méthodologie', path: '/blog/methodo' }
 ];
 
 const { data: voies } = await useAsyncData(() => {
