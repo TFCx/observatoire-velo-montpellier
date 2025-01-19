@@ -1,4 +1,4 @@
-export enum LaneTypeE {
+export enum LaneType {
   Unidirectionnelle = "unidirectionnelle",
   Bidirectionnelle = "bidirectionnelle",
   Bilaterale = "bilaterale",
@@ -14,7 +14,7 @@ export enum LaneTypeE {
   Inconnu = "inconnu"
 }
 
-export enum LaneTypeFamilyE {
+export enum LaneTypeFamily {
   Dedie = "dédié",
   MixiteMotoriseGood = "mixité-motorisé-good",
   MixiteMotoriseBad = "mixité-motorisé-bad",
@@ -23,7 +23,7 @@ export enum LaneTypeFamilyE {
   Inconnu = "inconnu"
 }
 
-export enum LaneStatusE {
+export enum LaneStatus {
   Done = "done",
   Wip = "wip",
   Planned = "planned",
@@ -34,7 +34,7 @@ export enum LaneStatusE {
   VariantePostponed = "variante-postponed",
 }
 
-export enum QualityE {
+export enum Quality {
   Bad = "bad",
   Fair = "fair",
   Good = "good"
@@ -55,13 +55,13 @@ export type LineStringFeature = {
     id?: string
     line: string;
     name: string;
-    status: LaneStatusE;
-    quality: QualityE;
-    qualityB?: QualityE;
-    type: LaneTypeE;
-    typeB?: LaneTypeE;
-    typeFamily: LaneTypeFamilyE;
-    typeFamilyB?: LaneTypeFamilyE;
+    status: LaneStatus;
+    quality: Quality;
+    qualityB?: Quality;
+    type: LaneType;
+    typeB?: LaneType;
+    typeFamily: LaneTypeFamily;
+    typeFamilyB?: LaneTypeFamily;
     doneAt?: string;
     link?: string;
   };
@@ -76,13 +76,13 @@ export type SectionFeature = {
   properties: {
     lines: string[];
     name: string;
-    status: LaneStatusE;
-    quality: QualityE;
-    qualityB?: QualityE;
-    type: LaneTypeE;
-    typeB?: LaneTypeE;
-    typeFamily: LaneTypeFamilyE;
-    typeFamilyB?: LaneTypeFamilyE;
+    status: LaneStatus;
+    quality: Quality;
+    qualityB?: Quality;
+    type: LaneType;
+    typeB?: LaneType;
+    typeFamily: LaneTypeFamily;
+    typeFamilyB?: LaneTypeFamily;
     doneAt?: string;
   };
   geometry: {

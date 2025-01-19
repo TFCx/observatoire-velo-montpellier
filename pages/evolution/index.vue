@@ -29,7 +29,7 @@
 </template>
 
 <script setup>
-import { LaneStatusE } from '~/types';
+import { LaneStatus } from '~/types';
 
 const { getAllUniqLineStrings, getDistance } = useStats();
 const { getRevName } = useConfig();
@@ -55,7 +55,7 @@ const { data: voies } = await useAsyncData(() => {
 const features = computed(() => {
   return voies.value.map(voie => voie.features)
     .flat()
-    .filter(feature => feature.properties.status === LaneStatusE.Done)
+    .filter(feature => feature.properties.status === LaneStatus.Done)
     .filter(feature => {
       if (!feature.properties.doneAt) { return false; }
       const selectedYear = years.value.filter(year => year.isChecked);

@@ -58,7 +58,7 @@
 
 <script setup lang="ts">
 import { Dialog, DialogPanel, DialogTitle } from '@headlessui/vue';
-import { LaneStatusE, LaneTypeE } from '~/types';
+import { LaneStatus, LaneType } from '~/types';
 
 const isOpen = ref(false);
 
@@ -74,26 +74,26 @@ defineExpose({
 });
 
 const statusFilters = ref([
-  { label: 'Terminé', isEnable: true, statuses: [LaneStatusE.Done] },
-  { label: 'En travaux', isEnable: true, statuses: [LaneStatusE.Wip, LaneStatusE.Tested] },
-  { label: 'Prévu pour 2026', isEnable: true, statuses: [LaneStatusE.Planned, LaneStatusE.Variante] },
-  { label: 'Reporté', isEnable: true, statuses: [LaneStatusE.Postponed, LaneStatusE.VariantePostponed] },
-  { label: 'Inconnu', isEnable: true, statuses: [LaneStatusE.Unknown] }
+  { label: 'Terminé', isEnable: true, statuses: [LaneStatus.Done] },
+  { label: 'En travaux', isEnable: true, statuses: [LaneStatus.Wip, LaneStatus.Tested] },
+  { label: 'Prévu pour 2026', isEnable: true, statuses: [LaneStatus.Planned, LaneStatus.Variante] },
+  { label: 'Reporté', isEnable: true, statuses: [LaneStatus.Postponed, LaneStatus.VariantePostponed] },
+  { label: 'Inconnu', isEnable: true, statuses: [LaneStatus.Unknown] }
 ]);
 
 const typeFilters = ref([
-  { label: 'Unidirectionnelle', isEnable: true, types: [LaneTypeE.Unidirectionnelle] },
-  { label: 'Bidirectionnelle', isEnable: true, types: [LaneTypeE.Bidirectionnelle] },
-  { label: 'Bilaterale', isEnable: true, types: [LaneTypeE.Bilaterale] },
-  { label: 'Voie Bus', isEnable: true, types: [LaneTypeE.VoieBus, LaneTypeE.VoieBusElargie] },
-  { label: 'Voie verte', isEnable: true, types: [LaneTypeE.VoieVerte] },
-  { label: 'Vélorue', isEnable: true, types: [LaneTypeE.Velorue] },
-  { label: 'Bandes cyclables', isEnable: true, types: [LaneTypeE.BandesCyclables] },
-  { label: 'Zone de rencontre', isEnable: true, types: [LaneTypeE.ZoneDeRencontre] },
-  { label: 'Aire piétonne', isEnable: true, types: [LaneTypeE.AirePietonne] },
-  { label: 'Chaucidou', isEnable: true, types: [LaneTypeE.Chaucidou] },
-  { label: 'Inconnu', isEnable: true, types: [LaneTypeE.Inconnu] },
-  { label: 'Aucun aménagement', isEnable: true, types: [LaneTypeE.Aucun] },
+  { label: 'Unidirectionnelle', isEnable: true, types: [LaneType.Unidirectionnelle] },
+  { label: 'Bidirectionnelle', isEnable: true, types: [LaneType.Bidirectionnelle] },
+  { label: 'Bilaterale', isEnable: true, types: [LaneType.Bilaterale] },
+  { label: 'Voie Bus', isEnable: true, types: [LaneType.VoieBus, LaneType.VoieBusElargie] },
+  { label: 'Voie verte', isEnable: true, types: [LaneType.VoieVerte] },
+  { label: 'Vélorue', isEnable: true, types: [LaneType.Velorue] },
+  { label: 'Bandes cyclables', isEnable: true, types: [LaneType.BandesCyclables] },
+  { label: 'Zone de rencontre', isEnable: true, types: [LaneType.ZoneDeRencontre] },
+  { label: 'Aire piétonne', isEnable: true, types: [LaneType.AirePietonne] },
+  { label: 'Chaucidou', isEnable: true, types: [LaneType.Chaucidou] },
+  { label: 'Inconnu', isEnable: true, types: [LaneType.Inconnu] },
+  { label: 'Aucun aménagement', isEnable: true, types: [LaneType.Aucun] },
 ]);
 
 function toogleStatusFilter(index: number) {

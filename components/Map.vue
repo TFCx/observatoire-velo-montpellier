@@ -24,7 +24,7 @@ import BikeInfraControl from '@/maplibre/BikeInfraControl';
 import LayerControl from '@/maplibre/LayerControl';
 import FullscreenControl from '@/maplibre/FullscreenControl';
 import ShrinkControl from '@/maplibre/ShrinkControl';
-import { isLineStringFeature, isPolygonFeature, isSectionFeature, LaneStatusE, type Feature, LaneTypeE, LaneTypeFamilyE, type LineStringFeature, type PolygonFeature, type SectionFeature } from '~/types';
+import { isLineStringFeature, isPolygonFeature, isSectionFeature, LaneStatus, type Feature, LaneType, LaneTypeFamily, type LineStringFeature, type PolygonFeature, type SectionFeature } from '~/types';
 import config from '~/config.json';
 import { setDisplayedLayer } from '~/composables/useMap'
 import { sortByLine } from '~/composables//map/utils';
@@ -63,9 +63,9 @@ const {
   handleMapClick
 } = useMap();
 
-const statuses = ref([LaneStatusE.Planned, LaneStatusE.Variante, LaneStatusE.Done, LaneStatusE.Postponed, LaneStatusE.VariantePostponed, LaneStatusE.Unknown, LaneStatusE.Wip, LaneStatusE.Tested]);
-const types = ref([LaneTypeE.Unidirectionnelle, LaneTypeE.Bidirectionnelle, LaneTypeE.Bilaterale, LaneTypeE.VoieBus, LaneTypeE.VoieBusElargie, LaneTypeE.Velorue, LaneTypeE.VoieVerte, LaneTypeE.BandesCyclables, LaneTypeE.ZoneDeRencontre, LaneTypeE.AirePietonne, LaneTypeE.Chaucidou, LaneTypeE.Aucun, LaneTypeE.Inconnu]);
-const families = ref([LaneTypeFamilyE.Dedie, LaneTypeFamilyE.MixiteMotoriseGood, LaneTypeFamilyE.MixitePietonneGood, LaneTypeFamilyE.MixiteMotoriseBad, LaneTypeFamilyE.MixitePietonneBad])
+const statuses = ref([LaneStatus.Planned, LaneStatus.Variante, LaneStatus.Done, LaneStatus.Postponed, LaneStatus.VariantePostponed, LaneStatus.Unknown, LaneStatus.Wip, LaneStatus.Tested]);
+const types = ref([LaneType.Unidirectionnelle, LaneType.Bidirectionnelle, LaneType.Bilaterale, LaneType.VoieBus, LaneType.VoieBusElargie, LaneType.Velorue, LaneType.VoieVerte, LaneType.BandesCyclables, LaneType.ZoneDeRencontre, LaneType.AirePietonne, LaneType.Chaucidou, LaneType.Aucun, LaneType.Inconnu]);
+const families = ref([LaneTypeFamily.Dedie, LaneTypeFamily.MixiteMotoriseGood, LaneTypeFamily.MixitePietonneGood, LaneTypeFamily.MixiteMotoriseBad, LaneTypeFamily.MixitePietonneBad])
 const displayLimits = ref(true);
 const features = computed(() => {
   let activeLineFeatures = (props.features ?? []).filter(feature => {
@@ -80,7 +80,7 @@ const features = computed(() => {
   return activeLineFeatures.concat(activeLimitsFeatures)
 });
 
-function refreshFilters({ visibleStatuses, visibleTypes, visibleTypesFamily }: { visibleStatuses: LaneStatusE[]; visibleTypes: LaneTypeE[], visibleTypesFamily: LaneTypeFamilyE[] }) {
+function refreshFilters({ visibleStatuses, visibleTypes, visibleTypesFamily }: { visibleStatuses: LaneStatus[]; visibleTypes: LaneType[], visibleTypesFamily: LaneTypeFamily[] }) {
   statuses.value = visibleStatuses;
   types.value = visibleTypes;
   families.value = visibleTypesFamily;
