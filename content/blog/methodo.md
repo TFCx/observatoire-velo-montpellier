@@ -65,7 +65,7 @@ Pour obtenir les chiffres lisibles sur le tableau de bord de la page d’accueil
 
 ## 52, 57, ou 59 km ?
 Lors de l'inauguration des Pistes Bleues en juin 2024, 9 lignes et 57 kilomètres d'itinéraires cyclables ont été présentés par Grand Chambéry.
-Or sur ces 57 kilomètres, 5 kilomètres (1,5 kilomètres de la Voie Verte Bel Via identifiées sur la :line-link{line=1} et 3,5 km sur la :line-link{line=7}) sont hors du périmètre de la collectivité Grand Chambéry, car situés respectivement sur Grand Lac et sur Cœur de Savoie. Cet observatoire des Pistes Bleues de Grand Chambéry analyse donc les 52 kilomètres jalonnés sur le territoire de Grand Chambéry.
+Or sur ces 57 kilomètres, 5 kilomètres (1,5 kilomètres de la Voie Verte Belle Via identifiées sur la :line-link{line=1} et 3,5 km sur la :line-link{line=7}) sont hors du périmètre de la collectivité Grand Chambéry, car situés respectivement sur Grand Lac et sur Cœur de Savoie. Cet observatoire des Pistes Bleues de Grand Chambéry analyse donc les 52 kilomètres jalonnés sur le territoire de Grand Chambéry.
 
 De plus, comme plusieurs secteurs de Grand Chambéry ne sont actuellement pas desservis par ce jalonnement, l'association Roue Libre a demandé l'ajout de 2 Pistes Bleues complémentaires : la :line-link{line=10} pour connecter Chambéry à Jacob - Bellecombette et la :line-link{line=11} pour relier Chambéry-Mérande à Barby via Bassens. Le suivi de la réalisation de ces deux nouvelles Pistes Bleues ajoute ainsi 7 kilomètres de pistes suivis par cet observatoire.
 
