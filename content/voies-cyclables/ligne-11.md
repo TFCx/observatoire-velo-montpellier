@@ -19,7 +19,7 @@ credit: Roue Libre
 ---
 ::
 
-### Rue Saint François de Sales
+### Rue Saint Francois de Sales
 <span style="color:black;font-weight:bold">Non satisfaisant</span> Bande cyclable montante insatisfaisante et aucun aménagement cyclable dans sens descendant
 
 ::content-image
