@@ -41,7 +41,7 @@ credit: Roue Libre
 ---
 ::
 
-## Itinéraire optionnel
+### Itinéraire optionnel
 A partir du haut du Pont des Amours, des études doivent être réalisées pour définir l'itinéraire le plus adapté pour réaliser la création d'une liaison structurante pour connecter Mérande, Bassens puis Saint Alban Leysse.
 
 Pour améliorer la lecture cartographique et éviter l'illusion de la "ligne droite", nous avons ici privilégié de manière arbitraire l'itinéraire via l'avenue de Mérande de manière à obtenir un rendu et des statistiques plus fiables sur la ligne.
