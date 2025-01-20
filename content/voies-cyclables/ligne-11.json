@@ -9,7 +9,7 @@
         "quality": "",
         "status": "postponed",
         "type": "aucun",
-        "link": "/rev-11#Rue-de-la-banque"
+        "link": "/rev-11#rue-de-la-banque"
     },
     "geometry": {
       "type": "LineString",
@@ -26,7 +26,7 @@
           "quality": "",
           "status": "postponed",
           "type": "bandes-cyclables",
-          "link": "/rev-11#rue-saint-francois-de-sales"
+          "link": "/rev-11#rue-saint-françois-de-sales"
       },
       "geometry": {
         "type": "LineString",
@@ -60,7 +60,7 @@
           "quality": "",
           "status": "postponed",
           "type": "aucun",
-          "link": "/rev-11#avenue-de-merande-nord"
+          "link": "/rev-11#avenue-de-mérande-nord"
       },
       "geometry": {
         "type": "LineString",
@@ -77,7 +77,7 @@
           "quality": "",
           "status": "postponed",
           "type": "bandes-cyclables",
-          "link": "/rev-11#avenue-de-merande-sud"
+          "link": "/rev-11#avenue-de-mérande-sud"
       },
       "geometry": {
         "type": "LineString",

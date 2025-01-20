@@ -1,9 +1,11 @@
 ---
-name: Piste Bleue A
+name: Piste Bleue 11
 line: 11
 from: Chambéry (Médiathèque)
-to: Barby
-description: Proposition de piste additionnelle de Roue Libre au réseau de pistes bleues de Grand Chambéry pour desservir Mérande, Bassens et Barby.
+to: Saint Alban Leysse (Plaine des Sports)
+description: Proposition de piste additionnelle faite par l'association Roue Libre au réseau de pistes bleues déjà jalonnées par Grand Chambéry pour desservir la commune de Saint Alban Leysse vie le quartier Mérande de Chambéry et la commune de Bassens.
+
+Le tracé de l'itinéraire de cette ligne via Mérande et Bassens n'est pas défini. Pour améliorer la lecture cartographique, nous avons ici privilégié de manière arbitraire l'itinéraire via l'avenue de Mérande de manière à obtenir un rendu et des statistiques plus fiables sur la ligne.
 ---
 
 ### Rue de la Banque
@@ -39,8 +41,8 @@ credit: Roue Libre
 ---
 ::
 
-### Variantes
-A partir du haut du Pont des Amours, des études doivent être réalisées pour définir l'itinéraire le plus adapté pour réaliser la création d'une liaison structurante pour connecter Mérande, Bassens puis Barby.
+## Itinéraire optionnel
+A partir du haut du Pont des Amours, des études doivent être réalisées pour définir l'itinéraire le plus adapté pour réaliser la création d'une liaison structurante pour connecter Mérande, Bassens puis Saint Alban Leysse.
 
 Pour améliorer la lecture cartographique et éviter l'illusion de la "ligne droite", nous avons ici privilégié de manière arbitraire l'itinéraire via l'avenue de Mérande de manière à obtenir un rendu et des statistiques plus fiables sur la ligne.
 
@@ -82,7 +84,7 @@ credit: Roue Libre
 
 ::content-image
 ---
-imageUrl: https://rouelibre.net/wp-content/uploads/2025/01/REV11-IMG_5519.jpg
+imageUrl: https://rouelibre.net/wp-content/uploads/2025/01/REV11-IMG_5525.jpg
 caption: Avenue de Longefand (Bassens)
 credit: Roue Libre
 ---
