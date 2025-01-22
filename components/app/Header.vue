@@ -132,7 +132,7 @@
           </NuxtLink>
 
           <NuxtLink
-            to="blog/methodo"
+            to="/blog/methodo"
             class="text-base font-medium text-gray-500 hover:text-lvv-blue-600"
           >
             Questions / Réponses
@@ -286,7 +286,7 @@ const navItems = [
   { name: 'Carte interactive', path: '/carte-interactive' },
   { name: 'Plan officiel', path: '/plan-officiel' },
   { name: 'Évolution du réseau', path: '/evolution' },
-  { name: 'Méthodologie', path: '/methodo' }
+  { name: 'Méthodologie', path: '/blog/methodo' }
 ];
 
 const { data: voies } = await useAsyncData(() => {
