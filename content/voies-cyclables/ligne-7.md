@@ -113,3 +113,7 @@ caption: Belle Via La Ravoire - Chemin des Prés
 credit: Roue Libre
 ---
 ::
+
+### Avenue Verte Sud
+
+<span style="color:red;font-weight:bold">A améliorer</span> A la fin actuelle de la voie verte aménagée, la piste se poursuit jusqu'au Lac Saint André, sur la communauté de communes Coeur de Savoie sans aménagement cyclable.

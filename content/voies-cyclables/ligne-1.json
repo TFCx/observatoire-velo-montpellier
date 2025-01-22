@@ -154,6 +154,24 @@
         [5.868491,45.640808]
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "line": 1,
+        "name": "Voie Verte Belle Via",
+        "quality": "good",
+        "doneAt": "31\/12\/1997",
+        "status": "done",
+        "type": "voie-verte",
+        "link": "/rev-1#voie-verte-nord"
+      },
+      "geometry":{
+      "type": "LineString",
+      "coordinates":[
+        [5.868414,45.640923],[5.866097,45.645811],[5.864337,45.64731],[5.862579,45.649087],[5.861848,45.650578],[5.862149,45.652766],[5.862429,45.655414]
+        ]
+      }
     }
   ]
 }
