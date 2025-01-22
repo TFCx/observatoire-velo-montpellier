@@ -95,7 +95,7 @@
           "quality": "",
           "status": "postponed",
           "type": "aucun",
-          "link": "/rev-3#avenue-d-aix-les-bains"
+          "link": "/rev-3#avenue-de-aix-les-bains"
         },
         "geometry": {
           "type": "LineString",
@@ -112,7 +112,7 @@
           "quality": "",
           "status": "postponed",
           "type": "bandes-cyclables",
-          "link": "/rev-3#avenue-d-aix-les-bains"
+          "link": "/rev-3#avenue-de-aix-les-bains"
         },
         "geometry": {
           "type": "LineString",
@@ -129,7 +129,7 @@
           "quality": "",
           "status": "postponed",
           "type": "bandes-cyclables",
-          "link": "/rev-3#avenue-d'aix-les-bains"
+          "link": "/rev-3#avenue-de-aix-les-bains"
         },
         "geometry": {
           "type": "LineString",
@@ -142,7 +142,7 @@
         "type": "Feature",
         "properties": {
           "line": "3",
-          "name": "Avenue Daniel Rops Bas",
+          "name": "Avenue Daniel Rops Sud",
           "quality": "",
           "status": "postponed",
           "type": "aucun",
@@ -159,7 +159,7 @@
         "type": "Feature",
         "properties": {
           "line": "3",
-          "name": "Avenue Daniel Rops Haut",
+          "name": "Avenue Daniel Rops Nord",
           "quality": "good",
           "doneAt": "01\/01\/2000",
           "status": "done",
