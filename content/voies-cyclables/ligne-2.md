@@ -13,7 +13,7 @@ cover: https://rouelibre.net/wp-content/uploads/2024/11/REV2-IMG_3959.jpg
 ### Rue de la gare
 <span style="color:blue;font-weight:bold">Satisfaisant</span> La piste démarre de la :line-link{line=1} sur la place du Palais de Justice par une piste cyclable.
 
-### Rue de la gare
+### Place de la gare
 <span style="color:blue;font-weight:bold">Satisfaisant</span> La piste se prolonge devant la gare de Chambéry en voie de bus partagée, marquage cycles réalisé fin 2024.
 
 ::content-image
@@ -23,6 +23,9 @@ caption: Place de la gare (Chambéry)
 credit: Roue Libre
 ---
 ::
+
+Il est possible de rejoindre le Parc d'apprentissage vélo nommé :line-link{line=0} dans cet observatoire, parc situé au milieu de la résidence du Paradis. 
+
 
 ### Avenue de la Boisse Sud
 <span style="color:red;font-weight:bold">A améliorer</span> De la gare de Chambéry, la piste se poursuit sur l'avenue de la Boisse en voie verte tracée sur le trottoir jusqu'à la jonction vers la Cassine / Vetrotex. Ce trottoir mixte piétons cycles n'est pas adapté aux flux de déplacements.

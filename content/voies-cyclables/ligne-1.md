@@ -15,6 +15,7 @@ cover: https://rouelibre.net/wp-content/uploads/2022/11/IMG_1555.jpg
 <span style="color:blue;font-weight:bold">Satisfaisant</span> La Piste 1 débute sur l'avenue des Ducs, à la hauteur de la place des Eléphants de Chambéry. 
 
 Elle est aménagé par une piste cyclable bidirectionnelle de 3 à 3,5m de large. Elle croise le départ de la :line-link{line=2} Landiers au niveau du palais de Justice de Chambéry puis celui de la :line-link{line=9} La Motte Servolex au niveau du giratoire de la Poste.
+Il est possible de rejoindre via le giratoire de la Poste le Parc d'apprentissage vélo nommé :line-link{line=0} dans cet observatoire, parc situé au milieu de la résidence du Paradis. 
 
 Elle longe ensuite la rivière la Leysse par le Quai des Allobroges.
 
