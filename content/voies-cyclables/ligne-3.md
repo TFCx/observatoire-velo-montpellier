@@ -43,7 +43,7 @@ credit: Roue Libre
 ---
 ::
 
-### Avenue d'Aix les Bains
+### Avenue de Aix les Bains
 <span style="color:black;font-weight:bold">Non satisfaisant</span> Un cheminement des cycles sur le trottoir est actuellement conseillé.
 
 ::content-image
@@ -76,7 +76,7 @@ credit: Roue Libre
 
 Sur la partie supérieure de l'Avenue d'Aix les Bains, une seule bande cyclable montante est présente.
 
-### Rue Daniel Rops
+### Avenue Daniel Rops
 
 *Hauts de Chambéry*
 

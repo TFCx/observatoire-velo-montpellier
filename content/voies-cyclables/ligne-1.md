@@ -14,10 +14,13 @@ cover: https://rouelibre.net/wp-content/uploads/2022/11/IMG_1555.jpg
 
 <span style="color:blue;font-weight:bold">Satisfaisant</span> La Piste 1 débute sur l'avenue des Ducs, à la hauteur de la place des Eléphants de Chambéry. 
 
-Elle est aménagé par une piste cyclable bidirectionnelle de 3 à 3,5m de large. Elle croise le départ de la :line-link{line=2} Landiers au niveau du palais de Justice de Chambéry puis celui de la :line-link{line=9} La Motte Servolex au niveau du giratoire de la Poste.
-Il est possible de rejoindre via le giratoire de la Poste le Parc d'apprentissage vélo nommé :line-link{line=0} dans cet observatoire, parc situé au milieu de la résidence du Paradis. 
-
-Elle longe ensuite la rivière la Leysse par le Quai des Allobroges.
+::content-image
+---
+imageUrl: https://rouelibre.net/wp-content/uploads/2024/11/hero.jpeg
+caption: Avenue des Ducs. Connexion entre la Piste Bleue 7 et la Piste Bleue 1
+credit: Roue Libre
+---
+::
 
 ::banner{type="modified"}
 En 2023, [l'aménagement d'une piste bidirectionnelle -largeur 3,5m- sur l'avenue des Ducs (https://www.chambery.fr/3672-amenagement-de-l-avenue-des-ducs-des-quais-ravet-et-borrel.htm)] a permis la jonction entre la Voie Verte Nord et la Voie Verte de la Leysse.
@@ -27,14 +30,12 @@ En 2023, [l'aménagement d'une piste bidirectionnelle -largeur 3,5m- sur l'avenu
 Lors de cet aménagement, les carrefours n'ont pas été modifiés et les connexions avec le réseau secondaire n'ont pas été traitées.
 ::
 
-::content-image
----
-imageUrl: https://rouelibre.net/wp-content/uploads/2024/11/hero.jpeg
-caption: Avenue des Ducs. Connexion entre la Piste Bleue 7 et la Piste Bleue 1
-credit: Roue Libre
----
-::
 
+Elle est aménagé par une piste cyclable bidirectionnelle de 3 à 3,5m de large. Elle croise le départ de la :line-link{line=2} Landiers au niveau du palais de Justice de Chambéry puis celui de la :line-link{line=9} La Motte Servolex au niveau du giratoire de la Poste.
+
+Il est possible de rejoindre via le giratoire de la Poste le Parc d'apprentissage vélo nommé :line-link{line=0} dans cet observatoire, parc situé au milieu de la résidence du Paradis. 
+
+Elle longe ensuite la rivière la Leysse par le Quai des Allobroges.
 
 ### Rue de la Savoisienne
 
