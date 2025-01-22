@@ -22,3 +22,5 @@ Moyen Terme
     faire lancement officiel
     intégration Baromètre
     intégrer reception contributions
+
+Vérifier que toutes les mentions Montpellier / Vélocité ont été supprimées
