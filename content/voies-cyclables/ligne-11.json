@@ -74,6 +74,24 @@
       "type": "Feature",
       "properties": {
         "line": 11,
+        "name": "Variante Avenue Docteur Desfrançois",
+        "quality": "",
+        "status": "variante-postponed",
+        "text": "variante",
+        "type": "bandes-cyclables",
+        "link": "/rev-11#avenue-docteur-desfrançois"
+    },
+    "geometry": {
+      "type": "LineString",
+          "coordinates": [
+            [5.924592,45.568604],[5.92515,45.568529],[5.929914,45.568889],[5.929999,45.569111],[5.930192,45.569144],[5.930321,45.569054],[5.934055,45.571786],[5.933282,45.573362]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "line": 11,
         "name": "Avenue de Mérande Sud",
         "quality": "",
         "status": "postponed",
