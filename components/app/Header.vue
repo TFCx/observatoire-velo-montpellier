@@ -131,7 +131,7 @@
             Evolution du réseau
           </NuxtLink>
 
-                    <NuxtLink
+          <NuxtLink
             to="blog/methodo"
             class="text-base font-medium text-gray-500 hover:text-lvv-blue-600"
           >
