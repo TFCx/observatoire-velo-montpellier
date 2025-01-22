@@ -14,11 +14,11 @@ cover: https://rouelibre.net/wp-content/uploads/2024/11/IMG_3960r.jpg
 
 La Piste 3 débute place Caffe où passe également la :line-link{line=8}.
 
-### Avenue des Boigne
+### Rue de Boigne
 
-*Rue du chateau - Avenue de Boigne - Rue Favre - Rue Saint Antoine*
+*Rue du château - Rue de Boigne*
 
-<span style="color:black;font-weight:bold">Non satisfaisant</span> Aucun aménagement cyclable n'existe pour cette traversée du centre ville de Chambéry. Une variante en partie plus sécurisée pour les cyclistes par le Boulevard de la colonne et la place des Éléphants engendre des conflits avec les piétons.
+<span style="color:black;font-weight:bold">Non satisfaisant</span> Aucun aménagement cyclable sur les rue du Château et rue de Boigne.
 
 ::content-image
 ---
@@ -28,8 +28,13 @@ credit: Roue Libre
 ---
 ::
 
-### Faubourg Reclus
+### Boulevard de la Colonne
+<span style="color:red;font-weight:bold">A améliorer</span> Le tracé actuel de cette piste via la place des Éléphants et le Boulevard de la colonne engendre des conflits avec les piétons, non compatible avec un réseau cyclable à Haut Niveau de Service.
 
+### Rue Favre
+<span style="color:black;font-weight:bold">Non satisfaisant</span> Variante proposée par l'association Roue Libre pour créer une liaison cyclable continue et sécurisée séparée de la zone pietonne de la partie haute de la rue de Boigne et de la place des Eléphants.
+
+### Faubourg Reclus
 <span style="color:black;font-weight:bold">Non satisfaisant</span> La Piste traverse le carrefour du centenaire où elle croise la :line-link{line=1} puis emprunte le Faubourg Reclus, sans aménagement.
 
 ::content-image
@@ -41,7 +46,6 @@ credit: Roue Libre
 ::
 
 ### Avenue d'Aix les Bains
-
 <span style="color:black;font-weight:bold">Non satisfaisant</span> Un cheminement des cycles sur le trottoir est actuellement conseillé.
 
 ::content-image
@@ -72,7 +76,7 @@ credit: Roue Libre
 ---
 ::
 
-Sur la partie supérieure de l'Avenue d'Aix les Bains, une seule bande cyclable montant est présente.
+Sur la partie supérieure de l'Avenue d'Aix les Bains, une seule bande cyclable montante est présente.
 
 ### Rue Daniel Rops
 

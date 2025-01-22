@@ -7,14 +7,50 @@
         "properties": {
           "line": "3",
           "name": "Rue de Boigne",
+          "quality": "",
           "status": "postponed",
           "type": "aucun",
-          "link": "/rev-3"
+          "link": "/rev-3#rue-de-boigne"
         },
         "geometry": {
           "type": "LineString",
           "coordinates": [
-            [5.919496,45.563876],[5.91941,45.564214],[5.919206,45.56471],[5.920268,45.565251],[5.921652,45.565987],[5.921448,45.566235],[5.921073,45.566513],[5.920708,45.566753],[5.919946,45.567271],[5.921234,45.56821]
+            [5.919496,45.563876],[5.91941,45.564214],[5.919206,45.56471],[5.920268,45.565251],[5.921652,45.565987]
+            ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "line": "3",
+          "name": "Boulevard de la Colonne",
+          "quality": "",
+          "status": "postponed",
+          "type": "bandes-cyclables",
+          "link": "/rev-3#boulevard-de-la-colonne"
+        },
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [5.921668,45.565995],[5.922178,45.56622],[5.922784,45.566539],[5.922816,45.566667],[5.922902,45.566764],[5.922806,45.566873],[5.922312,45.567282],[5.921255,45.568127]
+            ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "line": "3",
+          "name": "Variante Rue Favre",
+          "quality": "",
+          "status": "variante-postponed",
+          "text": "variante",
+          "type": "aucun",
+          "link": "/rev-3#rue-favre"
+        },
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [5.92166,45.565994],[5.921604,45.566116],[5.921363,45.566321],[5.920791,45.566709],[5.919925,45.567312],[5.920714,45.567882],[5.921218,45.568211]
             ]
         }
       },
@@ -25,12 +61,12 @@
           "name": "Faubourg Reclus",
           "status": "postponed",
           "type": "aucun",
-          "link": "/rev-3"
+          "link": "/rev-3#faubourg-reclus"
         },
         "geometry": {
           "type": "LineString",
           "coordinates": [
-            [5.921537,45.569885],[5.921655,45.569254],[5.921676,45.569072],[5.921617,45.56889],[5.921411,45.568514],[5.921395,45.568255]
+            [5.921537,45.569885],[5.921655,45.569254],[5.921676,45.569072],[5.921617,45.56889],[5.921411,45.568514],[5.921403,45.568355],[5.921285,45.568282],[5.921215,45.568214]
             ]
         }
       },
@@ -38,10 +74,11 @@
         "type": "Feature",
         "properties": {
           "line": "3",
-          "name": "Avenue d'Aix des Bains Bas",
+          "name": "Faubourg Reclus",
+          "quality": "",
           "status": "postponed",
           "type": "aucun",
-          "link": "/rev-3"
+          "link": "/rev-3#faubourg-reclus"
         },
         "geometry": {
           "type": "LineString",
@@ -54,10 +91,11 @@
         "type": "Feature",
         "properties": {
           "line": "3",
-          "name": "Avenue d'Aix des Bains Bas",
+          "name": "Avenue d'Aix les Bains",
+          "quality": "",
           "status": "postponed",
           "type": "aucun",
-          "link": "/rev-3"
+          "link": "/rev-3#avenue-d-aix-les-bains"
         },
         "geometry": {
           "type": "LineString",
@@ -70,10 +108,11 @@
         "type": "Feature",
         "properties": {
           "line": "3",
-          "name": "Avenue d'Aix des Bains Haut",
+          "name": "Avenue d'Aix les Bains",
+          "quality": "",
           "status": "postponed",
           "type": "bandes-cyclables",
-          "link": "/rev-3"
+          "link": "/rev-3#avenue-d-aix-les-bains"
         },
         "geometry": {
           "type": "LineString",
@@ -86,10 +125,11 @@
         "type": "Feature",
         "properties": {
           "line": "3",
-          "name": "Avenue d'Aix des Bains Hauts de Chambéry ",
+          "name": "Avenue d'Aix les Bains",
+          "quality": "",
           "status": "postponed",
           "type": "bandes-cyclables",
-          "link": "/rev-3"
+          "link": "/rev-3#avenue-d'aix-les-bains"
         },
         "geometry": {
           "type": "LineString",
@@ -103,9 +143,10 @@
         "properties": {
           "line": "3",
           "name": "Avenue Daniel Rops Bas",
+          "quality": "",
           "status": "postponed",
           "type": "aucun",
-          "link": "/rev-3"
+          "link": "/rev-3#avenue-daniel-rops"
         },
         "geometry": {
           "type": "LineString",
@@ -123,7 +164,7 @@
           "doneAt": "01\/01\/2000",
           "status": "done",
           "type": "bandes-cyclables",
-          "link": "/rev-3"
+          "link": "/rev-3#avenue-daniel-rops"
         },
         "geometry": {
           "type": "LineString",
