@@ -2,7 +2,7 @@
   <div>
     <div>
       <div class="text-center text-xl text-gray-900">
-        Distance totale: <span class="font-bold" :style="`color: ${color}`">{{ displayDistanceInKm(distance, 1) }}</span>
+        Distance totale : <span class="font-bold" :style="`color: ${color}`">{{ displayDistanceInKm(distance, 1) }}</span>
       </div>
       <div class="text-center text-sm text-gray-900">
         Fréquentation actuelle: <span class="font-bold" :style="`color: ${color}`">{{ voie.trafic }}</span>
@@ -27,7 +27,8 @@ const { getTotalDistance, displayDistanceInKm } = useStats();
 const { voie } = defineProps({ voie: Object });
 
 const mapOptions = {
-  fullscreen: true,
+  fullscreen: false, // if true, need to fix bug at link
+  logo: false,
   onFullscreenControlClick: () => {
     const route = useRoute();
     return navigateTo({ path: `${route.params._slug}/carte` });
@@ -42,6 +43,6 @@ const { data: geojson } = await useAsyncData(`geojson-${path}`, () => {
 
 const features = geojson.value.features;
 
-const color = getLineColor(Number(voie.line));
+const color = getLineColor(voie.line);
 const distance = getTotalDistance([geojson.value]);
 </script>

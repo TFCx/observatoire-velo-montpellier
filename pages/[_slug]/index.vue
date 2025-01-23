@@ -6,13 +6,18 @@
     >
       <template #header>
         <h1 class="text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-          {{ getRevName('singular') }}
+
           <div
-            class="mt-2 h-12 w-12 rounded-full flex items-center justify-center text-white font-bold mx-auto"
-            :style="`background-color: ${getLineColor(voie.line)}`"
+            class="mt-2 px-3 py-1 rounded-full flex items-center justify-center text-white font-bold mx-auto"
+            :style="`background-color: white`"
           >
-            {{ voie.line }}
+            <div
+              class="mt-2 px-3 py-1 rounded-full flex items-center justify-center text-white font-bold mx-auto"
+              :style="`background-color: ${getLineColor(voie.line)}`"
+            >
+            {{ voie.lineName }}
           </div>
+        </div>
         </h1>
       </template>
       <h2>Aperçu</h2>
@@ -20,7 +25,7 @@
       <ContentRenderer :value="voie" />
     </ContentFrame>
 
-    <LvvCta class="pb-10" />
+    <AssoCallToAaction class="pb-10" />
   </div>
 </template>
 
@@ -28,9 +33,9 @@
 const { path } = useRoute();
 const { getLineColor } = useColors();
 const { getRevName } = useConfig();
-const { getVoieCyclableRegex } = useUrl();
+const { getLineIdRegex } = useUrl();
 
-const regex = getVoieCyclableRegex();
+const regex = getLineIdRegex();
 const line = path.match(regex)[1];
 
 // https://github.com/nuxt/framework/issues/3587
@@ -40,13 +45,15 @@ definePageMeta({
 });
 
 const { data: voie } = await useAsyncData(`${path}`, () => {
-  return queryContent('voies-cyclables').where({ _type: 'markdown', line: Number(line) }).findOne();
+  const lineInteger = Number(line)
+  const lineId = !Number.isNaN(lineInteger) ? lineInteger : line
+  return queryContent('voies-cyclables').where({ _type: 'markdown', line: lineId }).findOne();
 });
 
-const description = `Tout savoir sur la ${getRevName('singular')} ${voie.value.line}. Avancement, carte interactive, détail rue par rue, calendrier des travaux et photos du projet.`;
+const description = `Tout savoir sur la ${getRevName('singular')} ${voie.value.line} ${voie.value.from} ${voie.value.to}. Avancement, carte interactive, détail rue par rue, calendrier des travaux et photos du projet.`;
 const coverImage = voie.value.cover;
 useHead({
-  title: `${getRevName('singular')} ${voie.value.line}`,
+  title: `${getRevName('singular')} ${voie.value.line} ${voie.value.from} ${voie.value.to}`,
   meta: [
     // description
     { hid: 'description', name: 'description', content: description },

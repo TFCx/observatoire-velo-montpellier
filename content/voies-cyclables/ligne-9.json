@@ -6,7 +6,7 @@
       "properties": {
         "type": "perspective",
         "name": "Carrefour Comte Vert",
-        "line": 9,
+        "line": "9",
         "imgUrl": "https://rouelibre.net/wp-content/uploads/2025/01/REV9-IMG_4278.jpg"
       },
       "geometry": {
@@ -22,7 +22,7 @@
       "properties": {
         "type": "perspective",
         "name": "Ecole Jean Jaurès",
-        "line": 9,
+        "line": "9",
         "imgUrl": "https://rouelibre.net/wp-content/uploads/2025/01/REV9-IMG_4282.jpg"
       },
       "geometry": {
@@ -38,7 +38,7 @@
       "properties": {
         "type": "perspective",
         "name": "Rond Point du stade",
-        "line": 9,
+        "line": "9",
         "imgUrl": "https://rouelibre.net/wp-content/uploads/2024/06/IMG_1096-300x225.jpg"
       },
       "geometry": {
@@ -52,7 +52,7 @@
     {
   "type": "Feature",
   "properties": {
-    "line": 9,
+    "line": "9",
     "name": "Avenue du Maréchal Leclerc",
     "quality": "good",
     "doneAt": "01\/04\/2019",
@@ -73,7 +73,7 @@
 {
   "type": "Feature",
   "properties": {
-    "line": 9,
+    "line": "9",
     "name": "Rue du Bon Pasteur",
     "quality": "good",
     "doneAt": "01\/01\/2006",
@@ -94,9 +94,9 @@
     {
       "type": "Feature",
       "properties": {
-        "line": 9,
+        "line": "9",
         "name": "Avenue Jean Jaures",
-        "doneAt": "01\/01\/2006",        
+        "doneAt": "01\/01\/2006",
         "quality": "",
         "status": "postponed",
         "type": "bidirectionnelle",
@@ -116,7 +116,7 @@
     {
       "type": "Feature",
       "properties": {
-        "line": 9,
+        "line": "9",
         "name": "Avenue du Comte Vert",
         "quality": "good",
         "doneAt": "01\/06\/2019",
@@ -146,7 +146,7 @@
     {
       "type": "Feature",
       "properties": {
-        "line": 9,
+        "line": "9",
         "name": "Avenue du Général Cartier",
         "quality": "good",
         "doneAt": "01\/01\/2000",
@@ -169,7 +169,7 @@
     {
       "type": "Feature",
       "properties": {
-        "line": 9,
+        "line": "9",
         "name": "Avenue de la Motte Servolex Sud",
         "quality": "",
         "status": "postponed",
@@ -191,7 +191,7 @@
     {
       "type": "Feature",
       "properties": {
-        "line": 9,
+        "line": "9",
         "name": "Avenue de la Motte Servolex Nord",
         "quality": "good",
         "doneAt": "01\/01\/2000",
@@ -217,7 +217,7 @@
     {
       "type": "Feature",
       "properties": {
-        "line": 9,
+        "line": "9",
         "name": "Avenue Costa de Beauregard Sud",
         "quality": "",
         "status": "postponed",
@@ -236,7 +236,7 @@
     {
       "type": "Feature",
       "properties": {
-        "line": 9,
+        "line": "9",
         "name": "Avenue Costa de Beauregard centre",
         "quality": "",
         "status": "postponed",
@@ -261,7 +261,7 @@
     {
       "type": "Feature",
       "properties": {
-        "line": 9,
+        "line": "9",
         "name": "Résidence Sainte Anne ",
         "quality": "good",
         "doneAt": "01\/01\/2000",

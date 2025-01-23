@@ -24,9 +24,9 @@
           <div
             v-for="(statusFilter, index) in statusFilters"
             :key="statusFilter.label"
-            class="px-2 py-1 border rounded-2xl text-sm cursor-pointer focus:outline-none ring-lvv-blue-600 ring-2"
+            class="px-2 py-1 border rounded-2xl text-sm cursor-pointer focus:outline-none ring-velocite-yellow-5 ring-2"
             :class="{
-              'bg-lvv-blue-600 border-transparent text-white ring-offset-1 hover:bg-lvv-blue-500': statusFilter.isEnable,
+              'bg-velocite-yellow-5 border-transparent text-white ring-offset-1 hover:bg-lvv-blue-500': statusFilter.isEnable,
               'bg-white border-gray-200 text-gray-900 hover:bg-gray-50': !statusFilter.isEnable
             }"
             @click="toogleStatusFilter(index)"
@@ -41,9 +41,9 @@
           <div
             v-for="(typeFilter, index) in typeFilters"
             :key="typeFilter.label"
-            class="px-2 py-1 border rounded-2xl text-sm cursor-pointer focus:outline-none ring-lvv-blue-600 ring-2"
+            class="px-2 py-1 border rounded-2xl text-sm cursor-pointer focus:outline-none ring-velocite-yellow-5 ring-2"
             :class="{
-              'bg-lvv-blue-600 border-transparent text-white ring-offset-1 hover:bg-lvv-blue-500': typeFilter.isEnable,
+              'bg-velocite-yellow-5 border-transparent text-white ring-offset-1 hover:bg-lvv-blue-500': typeFilter.isEnable,
               'bg-white border-gray-200 text-gray-900 hover:bg-gray-50': !typeFilter.isEnable
             }"
             @click="toogleTypeFilter(index)"
@@ -74,7 +74,7 @@ defineExpose({
 
 const statusFilters = ref([
   { label: 'Terminé', isEnable: true, statuses: ['done'] },
-  { label: 'En travaux', isEnable: true, statuses: ['wip'] },
+  { label: 'En travaux', isEnable: true, statuses: ['wip', 'tested'] },
   { label: 'Prévu pour 2026', isEnable: true, statuses: ['planned', 'variante'] },
   { label: 'Reporté', isEnable: true, statuses: ['postponed', 'variante-postponed'] },
   { label: 'Inconnu', isEnable: true, statuses: ['unknown'] }
@@ -88,8 +88,10 @@ const typeFilters = ref([
   { label: 'Vélorue', isEnable: true, types: ['velorue'] },
   { label: 'Bandes cyclables', isEnable: true, types: ['bandes-cyclables'] },
   { label: 'Zone de rencontre', isEnable: true, types: ['zone-de-rencontre'] },
+  { label: 'Chaucidou', isEnable: true, types: ['chaucidou'] },
+  { label: 'Hétérogène', isEnable: true, types: ['heterogene'] },
   { label: 'Inconnu', isEnable: true, types: ['inconnu'] },
-  { label: 'Aucun', isEnable: true, types: ['aucun'] }
+  { label: 'Aucun aménagement', isEnable: true, types: ['aucun'] },
 ]);
 
 function toogleStatusFilter(index: number) {

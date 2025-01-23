@@ -8,7 +8,7 @@
         <div
           v-for="line in lines"
           :key="line"
-          class="h-8 w-8 rounded-full flex items-center justify-center text-white text-base font-bold"
+          class="px-3 py-1 rounded-full flex items-center justify-center text-white text-base font-bold"
           :style="`background-color: ${getLineColor(line)}`"
         >
           {{ line }}
@@ -25,7 +25,7 @@
         </div>
       </div>
       <div class="py-1 flex items-center justify-between">
-        <div class="text-base font-bold">
+        <div class="text-sm font-bold">
           Statut
         </div>
         <div>
@@ -38,23 +38,35 @@
         </div>
       </div>
       <div class="py-1 flex items-center justify-between">
-        <div class="text-base font-bold">
+        <div class="text-sm font-bold">
           Longueur
         </div>
         <div class="text-sm">
-          {{ Math.round(getDistance({ features: [feature] }) / 25) * 25 }}m
+          {{ Math.round(getDistance([feature]) / 25) * 25 }}m
         </div>
       </div>
       <div class="py-1 flex items-center justify-between">
-        <div class="text-base font-bold">
+        <div class="text-sm font-bold">
           Type
         </div>
-        <div class="text-sm text-right">
-          {{ typologyNames[feature.properties.type] ?? 'Inconnu' }}
+        <div>
+          <div class="text-right">
+            {{ typologyNames[feature.properties.type] ?? 'ERREUR' }}
+          </div>
+        </div>
+      </div>
+      <div class="py-1 flex items-center justify-between">
+        <div class="text-sm font-bold">
+          Qualité
+        </div>
+        <div>
+          <div class="italic text-right">
+            {{ qualityNames[feature.properties.quality] }}
+          </div>
         </div>
       </div>
     </div>
-    <div class="bg-lvv-blue-600 flex justify-center">
+    <div class="bg-velocite-yellow-5 flex justify-center">
       <a class="p-1 text-white text-base italic hover:underline" :href="getSectionDetailsUrl(feature.properties)" target="_blank">
         voir le détail <Icon name="mdi:link-variant" class="h-4 w-4 text-white" />
       </a>
@@ -67,7 +79,7 @@ import type { LineStringFeature } from '~/types';
 
 const { getLineColor } = useColors();
 const { getRevName } = useConfig();
-const { getDistance, typologyNames } = useStats();
+const { getDistance, typologyNames, qualityNames } = useStats();
 const { getVoieCyclablePath } = useUrl();
 
 const { feature, lines } = defineProps<{
@@ -101,15 +113,19 @@ function getStatus(properties: LineStringFeature['properties']): { label: string
     done: {
       label: 'terminé',
       date: properties.doneAt && getDoneAtText(properties.doneAt),
-      class: 'text-white bg-lvv-blue-600 rounded-xl px-2 w-fit'
+      class: 'text-white bg-velocite-yellow-5 rounded-xl px-2 w-fit'
     },
     wip: {
       label: 'en travaux',
-      class: 'text-lvv-blue-600 rounded-xl px-2 border border-dashed border-lvv-blue-600'
+      class: 'text-velocite-yellow-5 rounded-xl px-2 border border-dashed border-velocite-yellow-5'
     },
     planned: {
       label: 'prévu',
-      class: 'text-lvv-blue-600 rounded-xl px-2 border border-lvv-blue-600'
+      class: 'text-velocite-yellow-5 rounded-xl px-2 border border-velocite-yellow-5'
+    },
+    tested: {
+      label: 'en test',
+      class: 'text-lvv-blue-600 rounded-xl px-2 border border-dashed border-lvv-blue-600'
     },
     postponed: {
       label: 'reporté',

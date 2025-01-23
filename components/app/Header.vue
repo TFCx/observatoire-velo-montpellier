@@ -19,7 +19,7 @@
         </div>
         <div class="-mr-2 -my-2 md:hidden">
           <PopoverButton
-            class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-lvv-blue-600"
+            class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-velocite-yellow-5"
           >
             <span class="sr-only">Ouvrir menu</span>
             <Icon name="mdi:menu" class="h-6 w-6" aria-hidden="true" />
@@ -27,7 +27,7 @@
         </div>
         <PopoverGroup as="nav" class="hidden md:flex space-x-10">
           <Popover v-slot="{ open }" class="relative">
-            <PopoverButton :class="[open ? 'text-gray-900' : 'text-gray-500', 'group inline-flex items-center rounded-md bg-white text-base font-medium hover:text-lvv-blue-600 focus:outline-none focus:ring-2 focus:ring-lvv-blue-600 focus:ring-offset-2']">
+            <PopoverButton :class="[open ? 'text-gray-900' : 'text-gray-500', 'group inline-flex items-center rounded-md bg-white text-base font-medium hover:text-velocite-yellow-5 focus:outline-none focus:ring-2 focus:ring-velocite-yellow-5 focus:ring-offset-2']">
               <span>Cartes détaillées</span>
               <Icon name="mdi:chevron-down" :class="[open ? 'text-gray-600' : 'text-gray-400', 'ml-2 h-5 w-5 group-hover:text-gray-500']" aria-hidden="true" />
             </PopoverButton>
@@ -44,25 +44,43 @@
                   <div class="p-4 flex flex-col gap-2">
                     <NuxtLink
                       to="/carte-interactive"
-                      class="text-base font-medium text-gray-500 hover:text-lvv-blue-600"
+                      class="text-base font-medium text-gray-500 hover:text-velocite-yellow-5"
                       @click="close()"
                     >
                       Carte interactive
                     </NuxtLink>
                     <NuxtLink
                       to="/evolution"
-                      class="text-base font-medium text-gray-500 hover:text-lvv-blue-600"
+                      class="text-base font-medium text-gray-500 hover:text-velocite-yellow-5"
                       @click="close()"
                     >
                       Evolution du réseau
                     </NuxtLink>
                     <NuxtLink
                       to="/plan-officiel"
-                      class="text-base font-medium text-gray-500 hover:text-lvv-blue-600"
+                      class="text-base font-medium text-gray-500 hover:text-velocite-yellow-5"
                       @click="close()"
                     >
                       Plan officiel
                     </NuxtLink>
+                    <NuxtLink
+                      to="https://barometre.parlons-velo.fr/2021/carte/#11.88/43.61007/3.87324"
+                      target="_blank"
+                      class="flex align-center space-x-2 text-base font-medium text-gray-500 hover:text-lvv-blue-600"
+                      @click="close()"
+                    >
+                      <span>Baromètre FUB</span>
+                      <div class="flex items-center">
+                        <Icon name="mdi:launch" class="h-4 w-4" aria-hidden="true" />
+                      </div>
+                    </NuxtLink>
+                    <!-- <NuxtLink
+                      to="/services"
+                      class="text-base font-medium text-gray-500 hover:text-lvv-blue-600"
+                      @click="close()"
+                    >
+                      Services
+                    </NuxtLink> -->
                   </div>
                 </div>
               </PopoverPanel>
@@ -70,8 +88,8 @@
           </Popover>
 
           <Popover v-slot="{ open }" class="relative">
-            <PopoverButton :class="[open ? 'text-gray-900' : 'text-gray-500', 'group inline-flex items-center rounded-md bg-white text-base font-medium hover:text-lvv-blue-600 focus:outline-none focus:ring-2 focus:ring-lvv-blue-600 focus:ring-offset-2']">
-              <span>Lignes</span>
+            <PopoverButton :class="[open ? 'text-gray-900' : 'text-gray-500', 'group inline-flex items-center rounded-md bg-white text-base font-medium hover:text-velocite-yellow-5 focus:outline-none focus:ring-2 focus:ring-velocite-yellow-5 focus:ring-offset-2']">
+              <span>Vélolignes</span>
               <Icon name="mdi:chevron-down" :class="[open ? 'text-gray-600' : 'text-gray-400', 'ml-2 h-5 w-5 group-hover:text-gray-500']" aria-hidden="true" />
             </PopoverButton>
             <transition
@@ -91,9 +109,14 @@
                           class="h-10 w-10 rounded-full flex items-center justify-center text-white font-bold"
                           :style="`background-color: ${getLineColor(voie.line)}`"
                         >
-                          {{ voie.line }}
+                          {{ voie.lineNameShort }}
                         </div>
                       </div>
+                    </NuxtLink>
+                  </div>
+                  <div class="bg-lvv-blue-600 text-white text-center py-1">
+                    <NuxtLink to="/tableau-de-bord" class="hover:underline" @click="close()">
+                      Tableau de bord
                     </NuxtLink>
                   </div>
                 </div>
@@ -108,8 +131,8 @@
             Evolution du réseau
           </NuxtLink>
 
-                    <NuxtLink
-            to="blog/methodo"
+          <NuxtLink
+            to="/blog/methodo"
             class="text-base font-medium text-gray-500 hover:text-lvv-blue-600"
           >
             Questions / Réponses
@@ -126,6 +149,8 @@
         </div>
       </div>
     </div>
+
+    <!-- Header mobile -->
 
     <transition
       enter-active-class="duration-200 ease-out"
@@ -150,7 +175,7 @@
               </NuxtLink>
               <div class="-mr-2">
                 <PopoverButton
-                  class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-lvv-blue-600"
+                  class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-velocite-yellow-5"
                 >
                   <span class="sr-only">Fermer menu</span>
                   <Icon name="mdi:close" class="h-6 w-6" aria-hidden="true" />
@@ -158,11 +183,13 @@
               </div>
             </div>
             <div class="mt-6">
-              <nav class="grid gap-y-8">
+              <nav class="grid gap-y-6">
+                <!-- Cartes -->
                 <NuxtLink
                   v-for="navItem in navItems"
                   :key="navItem.name"
                   :to="navItem.path"
+                  :target="navItem.target"
                   class="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
                   @click="close()"
                 >
@@ -170,6 +197,41 @@
                     {{ navItem.name }}
                   </span>
                 </NuxtLink>
+
+                <!-- Compteurs -->
+                <hr class="h-px bg-gray-200 border-0">
+
+                <!-- <NuxtLink
+                  to="/compteurs/velo"
+                  class="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
+                  @click="close()"
+                >
+                  <span class="ml-3 text-base font-medium text-gray-900">
+                    Compteurs vélo
+                  </span>
+                </NuxtLink>
+                <NuxtLink
+                  to="/compteurs/voiture"
+                  class="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
+                  @click="close()"
+                >
+                  <span class="ml-3 text-base font-medium text-gray-900">
+                    Compteurs voiture
+                  </span>
+                </NuxtLink>
+                <NuxtLink
+                  to="/compteurs/comparaison"
+                  class="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
+                  @click="close()"
+                >
+                  <span class="ml-3 text-base font-medium text-gray-900">
+                    Comparaison voiture/vélo
+                  </span>
+                </NuxtLink> -->
+
+                <!-- Autres -->
+                <hr class="h-px bg-gray-200 border-0">
+
                 <NuxtLink
                   to="/blog"
                   class="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
@@ -179,12 +241,21 @@
                     Blog
                   </span>
                 </NuxtLink>
+                <NuxtLink
+                  to="/tableau-de-bord"
+                  class="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
+                  @click="close()"
+                >
+                  <span class="ml-3 text-base font-medium text-gray-900">
+                    Tableau de bord
+                  </span>
+                </NuxtLink>
               </nav>
             </div>
           </div>
           <div class="py-6 px-5 space-y-6 bg-gray-50">
             <div class="ml-3 text-base font-medium text-gray-900">
-              Toutes les lignes
+              Toutes les Vélolignes
             </div>
             <div class="grid grid-cols-4 gap-y-4 gap-x-8">
               <NuxtLink v-for="voie in voies" :key="voie.line" :to="getVoieCyclablePath(voie.line)" class="-m-3 flex items-start rounded-lg p-3 hover:bg-gray-50" @click="close()">
@@ -193,7 +264,7 @@
                     class="h-10 w-10 rounded-full flex items-center justify-center text-white font-bold"
                     :style="`background-color: ${getLineColor(voie.line)}`"
                   >
-                    {{ voie.line }}
+                    {{ voie.lineNameShort }}
                   </div>
                 </div>
               </NuxtLink>
@@ -215,7 +286,7 @@ const navItems = [
   { name: 'Carte interactive', path: '/carte-interactive' },
   { name: 'Plan officiel', path: '/plan-officiel' },
   { name: 'Évolution du réseau', path: '/evolution' },
-  { name: 'Méthodologie', path: '/methodo' }
+  { name: 'Méthodologie', path: '/blog/methodo' }
 ];
 
 const { data: voies } = await useAsyncData(() => {

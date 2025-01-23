@@ -1,7 +1,13 @@
 <template>
   <div class="max-w-2xl mx-auto bg-gray-200 rounded-full flex overflow-hidden my-8">
     <div
-      class="bg-lvv-blue-600 text-xs font-medium text-white text-center p-1 leading-none"
+      class="bg-velocite-dark-5 text-xs font-medium text-white text-center p-1 leading-none"
+      :style="`width: ${stats.alreadyExisting.percent}%`"
+    >
+      {{ displayPercent(stats.alreadyExisting.percent) }}
+    </div>
+    <div
+      class="bg-velocite-yellow-5 text-xs font-medium text-white text-center p-1 leading-none"
       :style="`width: ${stats.done.percent}%`"
     >
       {{ displayPercent(stats.done.percent) }}

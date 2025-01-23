@@ -1,5 +1,5 @@
 import { groupBy } from '../helpers/helpers';
-import { isLineStringFeature, type Feature, type Geojson, type LaneType, type LineStringFeature } from '../types';
+import { isLineStringFeature, type Feature, type Geojson, type LaneType, type LineStringFeature, type Quality } from '../types';
 
 export const useStats = () => {
   function getAllUniqLineStrings(voies: Geojson[]) {
@@ -23,9 +23,9 @@ export const useStats = () => {
    * retourne la somme des distances de tous les tronçons passé en paramètre.
    * Attention : pas de notion de dédoublonnage ici.
    */
-  function getDistance({ features }: { features: Feature[] }): number {
+  function getDistance(features: Feature[], checkFeature: (f: Feature) => boolean = () => true): number {
     return features.reduce((acc: number, feature: Feature) => {
-      return acc + getLineStringDistance(feature);
+      return acc + (checkFeature(feature) ? getLineStringDistance(feature) : 0);
     }, 0);
   }
 
@@ -85,13 +85,13 @@ export const useStats = () => {
    */
   function getTotalDistance(voies: Geojson[]) {
     const features = getAllUniqLineStrings(voies);
-    return getDistance({ features });
+    return getDistance(features);
   }
 
   function getStats(voies: Geojson[]) {
     const features = getAllUniqLineStrings(voies);
     const doneFeatures = features.filter(feature => feature.properties.status === 'done');
-    const wipFeatures = features.filter(feature => feature.properties.status === 'wip');
+    const wipFeatures = features.filter(feature => ['wip', 'tested'].includes(feature.properties.status));
     const plannedFeatures = features.filter(feature =>
       ['planned', 'unknown', 'variante'].includes(feature.properties.status)
     );
@@ -99,22 +99,29 @@ export const useStats = () => {
       ['postponed', 'variante-postponed'].includes(feature.properties.status)
     );
 
-    const totalDistance = getDistance({ features });
-    const doneDistance = getDistance({ features: doneFeatures });
-    const wipDistance = getDistance({ features: wipFeatures });
-    const plannedDistance = getDistance({ features: plannedFeatures });
-    const postponedDistance = getDistance({ features: postponedFeatures });
+    const totalDistance = getDistance(features);
+    const doneDistance = getDistance(doneFeatures);
+    const alreadyExistingDistance = getDistance(doneFeatures, f => isBeforeMandat(f));
+    const wipDistance = getDistance(wipFeatures);
+    const plannedDistance = getDistance(plannedFeatures);
+    const postponedDistance = getDistance(postponedFeatures);
 
     function getPercent(distance: number) {
       return Math.round((distance / totalDistance) * 100);
     }
 
     return {
+      alreadyExisting: {
+        name: 'Avant mandat',
+        distance: alreadyExistingDistance,
+        percent: getPercent(alreadyExistingDistance),
+        class: 'text-velocite-dark-5 font-semibold'
+      },
       done: {
         name: 'Réalisés',
-        distance: doneDistance,
-        percent: getPercent(doneDistance),
-        class: 'text-lvv-blue-600 font-semibold'
+        distance: doneDistance - alreadyExistingDistance,
+        percent: getPercent(doneDistance) - getPercent(alreadyExistingDistance),
+        class: 'text-velocite-yellow-5 font-semibold'
       },
       wip: {
         name: 'En travaux',
@@ -137,22 +144,30 @@ export const useStats = () => {
     };
   }
 
+  const qualityNames: Record<Quality, string> = {
+    'bad': 'Non satisfaisant',
+    'fair': 'À améliorer',
+    'good': 'Satisfaisant',
+  };
+
   const typologyNames: Record<LaneType, string> = {
-    bidirectionnelle: 'Piste bidirectionnelle',
-    bilaterale: 'Piste bilatérale',
+    'bidirectionnelle': 'Piste bidirectionnelle',
+    'bilaterale': 'Piste bilatérale',
     'voie-bus': 'Voie bus',
     'voie-bus-elargie': 'Voie bus élargie',
-    velorue: 'Vélorue',
+    'velorue': 'Vélorue',
     'voie-verte': 'Voie verte',
     'bandes-cyclables': 'Bandes cyclables',
     'zone-de-rencontre': 'Zone de rencontre',
-    aucun: 'Aucun',
-    inconnu: 'Inconnu'
+    'chaucidou': 'Chaucidou',
+    'heterogene': 'Hétérogène',
+    'aucun': 'Aucun aménagement',
+    'inconnu': 'Inconnu',
   };
 
   function getStatsByTypology(voies: Geojson[]) {
     const lineStringFeatures = getAllUniqLineStrings(voies);
-    const totalDistance = getDistance({ features: lineStringFeatures });
+    const totalDistance = getDistance(lineStringFeatures);
 
     function getPercent(distance: number) {
       return Math.round((distance / totalDistance) * 100);
@@ -161,7 +176,7 @@ export const useStats = () => {
     const featuresByType = groupBy<LineStringFeature, LaneType>(lineStringFeatures, feature => feature.properties.type);
     return Object.entries(featuresByType)
       .map(([type, features]) => {
-        const distance = getDistance({ features });
+        const distance = getDistance(features);
         const percent = getPercent(distance);
         return {
           name: typologyNames[type as LaneType],
@@ -180,6 +195,24 @@ export const useStats = () => {
     getStatsByTypology,
     displayDistanceInKm,
     displayPercent,
-    typologyNames
+    typologyNames,
+    qualityNames
   };
 };
+
+function isBeforeMandat(feature: Feature): boolean {
+  if(!isLineStringFeature(feature)) {
+      return false
+  }
+
+  let lfeature = feature as LineStringFeature
+  let doneAt = lfeature.properties.doneAt
+
+  if(!doneAt) {
+    return false
+  }
+
+  const [day, month, year] = doneAt.split('/');
+  return new Date(Number(year), Number(month) - 1, Number(day)).getTime() < new Date(2021, 0, 1).getTime();
+}
+

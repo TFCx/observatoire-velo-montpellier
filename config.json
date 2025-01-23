@@ -11,57 +11,58 @@
     45.564601
   ],
   "zoom": 12,
+  "nbVoiesCyclables": 16,
   "colors": [
     {
-      "line": 0,
+      "line": "0",
       "color": "#24e567"
     },
     {
-      "line": 1,
+      "line": "1x",
       "color": "#60A75B"
     },
     {
-      "line": 2,
-      "color": "#AC4D35"
+      "line": "1",
+      "color": "#71be90"
     },
     {
-      "line": 3,
-      "color": "#3B7B64"
+      "line": "2",
+      "color": "#008380"
     },
     {
-      "line": 4,
-      "color": "#DC8953"
+      "line": "3",
+      "color": "#048aca"
     },
     {
-      "line": 5,
-      "color": "#AF7392"
+      "line": "4",
+      "color": "#008b57"
     },
     {
-      "line": 6,
-      "color": "#396083"
+      "line": "5",
+      "color": "#c38e0e"
     },
     {
-      "line": 7,
-      "color": "#75BCAE"
+      "line": "6",
+      "color": "#9279b6"
     },
     {
-      "line": 8,
-      "color": "#7E6D98"
+      "line": "7",
+      "color": "#96211c"
     },
     {
-      "line": 9,
-      "color": "#EAAB50"
+      "line": "8",
+      "color": "#bb2868"
     },
     {
-      "line": 10,
-      "color": "#9A8A4B"
+      "line": "9",
+      "color": "#489e35"
     },
     {
-      "line": 11,
-      "color": "#4DADC9"
+      "line": "10",
+      "color": "#0074b5"
     },
     {
-      "line": 12,
+      "line": "12",
       "color": "#DBABB7"
     }
   ]

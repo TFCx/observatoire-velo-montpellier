@@ -1,11 +1,11 @@
 {
     "type": "FeatureCollection",
     "features": [
-  
+
       {
         "type": "Feature",
         "properties": {
-          "line": 4,
+          "line": "4",
           "name": "Voie Verte de la Leysse",
           "quality": "fair",
           "doneAt": "01\/01\/2000",
@@ -155,14 +155,14 @@
               [
                 5.959050369638845,
                 45.572442902976206
-              ] 
+              ]
           ]
         }
       },
       {
         "type": "Feature",
         "properties": {
-          "line": 4,
+          "line": "4",
           "name": "Saint Alban Barby",
           "quality": "good",
           "status": "done",
@@ -280,11 +280,11 @@
           ]
         }
       },
-      
+
       {
         "type": "Feature",
         "properties": {
-          "line": 4,
+          "line": "4",
           "name": "Variante RD1006 Nord",
           "quality": "",
           "status": "variante-postponed",
@@ -299,11 +299,11 @@
           ]
         }
       },
-      
+
       {
         "type": "Feature",
         "properties": {
-          "line": 4,
+          "line": "4",
           "name": "Variante RD1006 Sud",
           "quality": "",
           "status": "variante",
@@ -321,7 +321,7 @@
       {
         "type": "Feature",
         "properties": {
-          "line": 4,
+          "line": "4",
           "name": "Barby",
           "status": "postponed",
           "type": "aucun",
@@ -425,7 +425,7 @@
         "type": "Feature",
         "properties": {
           "id": "EinsteinI-commun",
-          "line": 4,
+          "line": "4",
           "name": "Voie verte des Planeurs Nord",
           "quality": "good",
           "status": "done",
@@ -444,7 +444,7 @@
       "type": "Feature",
       "properties": {
         "id": "EinsteinI-commun",
-        "line": 4,
+        "line": "4",
         "name": "Voie verte des Planeurs Sud",
         "quality": "good",
         "status": "done",

@@ -16,7 +16,7 @@
           <div
             class="border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium uppercase sm:flex-1 cursor-pointer focus:outline-none"
             :class="{
-              'bg-lvv-blue-600 border-transparent text-white hover:bg-lvv-blue-500': year.isChecked,
+              'bg-velocite-yellow-5 border-transparent text-white hover:bg-lvv-blue-500': year.isChecked,
               'bg-white border-gray-200 text-gray-900 hover:bg-gray-50': !year.isChecked
             }"
           >
@@ -64,7 +64,7 @@ const features = computed(() => {
 
 const doneDistance = computed(() => {
   const allUniqFeatures = getAllUniqLineStrings([{ type: 'FeatureCollection', features: features.value }]);
-  const doneDistance = getDistance({ features: allUniqFeatures });
+  const doneDistance = getDistance(allUniqFeatures);
   return Math.round(doneDistance / 100) / 10;
 });
 </script>

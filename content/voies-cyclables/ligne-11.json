@@ -22,7 +22,7 @@
   {
       "type": "Feature",
       "properties": {
-        "line": 11,
+        "line": "11",
         "name": "Rue Saint François de Sales",
         "quality": "",
         "status": "postponed",

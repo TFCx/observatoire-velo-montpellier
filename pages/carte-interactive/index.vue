@@ -17,7 +17,11 @@ const { data: voies } = await useAsyncData(() => {
   return queryContent('voies-cyclables').where({ _type: 'json' }).find();
 });
 
-const features = voies.value.map(voie => voie.features).flat();
+const { data: limits } = await useAsyncData(() => {
+  return queryContent('limits').where({ _type: 'json' }).find();
+});
+
+const features = voies.value.map(voie => voie.features).flat().concat(limits.value.map(l => l.features).flat());
 
 const description =
   `Découvrez la carte interactive des ${getRevName()}. Itinéraires rue par rue. Plan régulièrement mis à jour pour une information complète.`;

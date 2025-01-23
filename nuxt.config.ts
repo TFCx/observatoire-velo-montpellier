@@ -1,6 +1,6 @@
 import config from './config.json';
 
-const TITLE = `Cyclopolis - Suivi des ${config.revName.plural} par ${config.assoName}`;
+const TITLE = `Observatoire Vélo de Montpellier - Suivi des ${config.revName.plural} par ${config.assoName}`;
 const DESCRIPTION =
   `Observatoire citoyen et associatif, par ${config.assoName}. État d'avancement, cartes interactives des itinéraires, détails, travaux : suivez le développement du réseau cyclable sécurisé sur le territoire de Grand Chambéry`;
 const BASE_URL = 'https://cyclopolis.fr';
@@ -46,24 +46,32 @@ export default defineNuxtConfig({
       ]
     }
   },
+
   runtimeConfig: {
     public: {
       maptilerKey: process.env.MAPTILER_KEY
     }
   },
-  modules: ['@nuxtjs/tailwindcss', '@nuxt/content', 'nuxt-icon'],
+
+  modules: ['@nuxtjs/tailwindcss', '@nuxt/content', '@nuxt/icon'],
+
   content: {
     markdown: {
       tags: { h1: 'h1', h5: 'h5', h6: 'h6' }
     }
   },
+
   tailwindcss: { viewer: false },
+
   nitro: {
     prerender: {
       routes: ['/sitemap.xml']
     }
   },
+
   build: {
     transpile: ['@headlessui/vue']
-  }
+  },
+
+  compatibilityDate: '2024-08-11'
 });

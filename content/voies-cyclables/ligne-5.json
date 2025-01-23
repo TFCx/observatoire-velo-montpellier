@@ -4,7 +4,7 @@
       {
         "type": "Feature",
         "properties": {
-          "line": 5,
+          "line": "5",
           "name": "Voie Verte des Planeurs",
           "quality": "good",
           "doneAt": "01\/01\/2000",
@@ -22,7 +22,7 @@
       {
         "type": "Feature",
         "properties": {
-          "line": 5,
+          "line": "5",
           "name": "Voie Verte de la Mère",
           "quality": "good",
           "doneAt": "01\/01\/2000",
@@ -40,7 +40,7 @@
       {
         "type": "Feature",
         "properties": {
-          "line": 5,
+          "line": "5",
           "name": "Rue du Puits d'Ordet Nord",
           "quality": "",
           "status": "postponed",
@@ -57,7 +57,7 @@
       {
         "type": "Feature",
         "properties": {
-          "line": 5,
+          "line": "5",
           "name": "Rue de la Concorde",
           "quality": "",
           "status": "postponed",
@@ -74,7 +74,7 @@
       {
         "type": "Feature",
         "properties": {
-          "line": 5,
+          "line": "5",
           "name": "Le Crest",
           "quality": "good",
           "doneAt": "01\/01\/2000",
@@ -92,7 +92,7 @@
       {
         "type": "Feature",
         "properties": {
-          "line": 5,
+          "line": "5",
           "name": "Rue Duguesclin",
           "quality": "",
           "status": "postponed",
@@ -109,7 +109,7 @@
       {
         "type": "Feature",
         "properties": {
-          "line": 5,
+          "line": "5",
           "name": "Liaison Voie Verte Sud",
           "quality": "good",
           "doneAt": "01\/01\/2000",
@@ -126,4 +126,3 @@
       }
     ]
   }
-  

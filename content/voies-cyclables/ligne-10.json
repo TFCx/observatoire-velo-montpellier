@@ -5,7 +5,7 @@
       {
       "type": "Feature",
       "properties": {
-        "line": 10,
+        "line": "10",
         "name": "Boulevard de Bellevue",
         "quality": "",
         "status": "postponed",
