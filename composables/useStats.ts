@@ -1,5 +1,5 @@
 import { groupBy } from '../helpers/helpers';
-import { isLineStringFeature, LaneStatus, LaneType, LaneTypeFamily, Quality, type Feature, type Geojson, type LineStringFeature } from '../types';
+import { isLineStringFeature, LaneStatus, LaneType, LaneTypeFamily, Quality, type Feature, type Geojson, type LineStringFeature, type SectionFeature } from '../types';
 
 export const useStats = () => {
   function getAllUniqLineStrings(voies: Geojson[]) {
@@ -168,23 +168,84 @@ export const useStats = () => {
 
   const laneTypeFamilyToDescription: { [key in LaneTypeFamily] : string } = {
       [LaneTypeFamily.Dedie]: "Aménagements cyclables dédiés",
-      [LaneTypeFamily.MixiteMotoriseGood]: "Cohabitation motorisée",
-      [LaneTypeFamily.MixiteMotoriseBad]: "Intrication motorisée",
-      [LaneTypeFamily.MixitePietonneGood]: "Cohabitation piétonne",
-      [LaneTypeFamily.MixitePietonneBad]: "Intrication piétonne",
+      [LaneTypeFamily.MixiteMotorise]: "En mixité motorisée",
+      [LaneTypeFamily.MixitePietonne]: "En mixité piétonne",
       [LaneTypeFamily.Inconnu]: "Inconnu",
+}
+
+function computeTypeFamily(type: LaneType): LaneTypeFamily {
+  if(type == LaneType.Bidirectionnelle || type == LaneType.Bilaterale || type == LaneType.Unidirectionnelle) {
+    return LaneTypeFamily.Dedie
+  } else if (type == LaneType.AirePietonne || type == LaneType.VoieVerte) {
+    return LaneTypeFamily.MixitePietonne
+  } else if (type == LaneType.BandesCyclables || type == LaneType.Chaucidou || type == LaneType.Velorue || type == LaneType.VoieBus || type == LaneType.VoieBusElargie || type == LaneType.ZoneDeRencontre || type == LaneType.Aucun) {
+    return LaneTypeFamily.MixiteMotorise
+  } else {
+    console.assert(type == LaneType.Inconnu)
+    //return LaneTypeFamily.Dedie
+    return LaneTypeFamily.Inconnu
+  }
+}
+
+function regroupIntoSections(features: LineStringFeature[]): SectionFeature[] {
+  let sections: SectionFeature[] = []
+  let sectionsWithDuplicates = []
+  for(let f of features) {
+    let newSection =
+    {
+      type: f.type,
+      properties:
+      {
+        id: f.properties.id,
+        lines: [f.properties.line],
+        name: f.properties.name,
+        quality: f.properties.quality,
+        qualityB: f.properties.qualityB,
+        status: f.properties.status,
+        type: f.properties.type,
+        typeB: f.properties.typeB,
+        typeFamily: computeTypeFamily(f.properties.type),
+        typeFamilyB: f.properties.typeB ? computeTypeFamily(f.properties.typeB) : computeTypeFamily(f.properties.type),
+        doneAt: f.properties.doneAt,
+      },
+      geometry: f.geometry
+    }
+    if(f.properties.id) {
+      for(let o of features) {
+        if(o != f && f.properties.id == o.properties.id) {
+          newSection.properties.lines.push(o.properties.line)
+        }
+      }
+    }
+    newSection.properties.lines.sort()
+    sectionsWithDuplicates.push(newSection)
+  }
+  let treatedId: string[] = []
+  for(let s of sectionsWithDuplicates) {
+    if(s.properties.id && treatedId.includes(s.properties.id)) {
+      continue
+    }
+    sections.push(s)
+    if(s.properties.id) {
+      treatedId.push(s.properties.id)
+    }
+  }
+  return sections
 }
 
   function getStatsByTypology(voies: Geojson[]) {
     const lineStringFeatures = getAllUniqLineStrings(voies);
+
+    let sections = regroupIntoSections(lineStringFeatures)
+
     const totalDistance = getDistance(lineStringFeatures);
 
     function getPercent(distance: number) {
       return Math.round((distance / totalDistance) * 100);
     }
 
-    const featuresByType = groupBy<LineStringFeature, LaneTypeFamily>(lineStringFeatures, feature => feature.properties.typeFamily);
-    return Object.entries(featuresByType)
+    const sectionsByType = groupBy<SectionFeature, LaneTypeFamily>(sections, section => section.properties.typeFamily);
+    return Object.entries(sectionsByType)
       .map(([type, features]) => {
         const distance = getDistance(features);
         const percent = getPercent(distance);

@@ -16,10 +16,8 @@ export enum LaneType {
 
 export enum LaneTypeFamily {
   Dedie = "dédié",
-  MixiteMotoriseGood = "mixité-motorisé-good",
-  MixiteMotoriseBad = "mixité-motorisé-bad",
-  MixitePietonneGood = "mixité-piétonne-good",
-  MixitePietonneBad = "mixité-piétonne-bad",
+  MixiteMotorise = "mixité-motorisés",
+  MixitePietonne = "mixité-piétons",
   Inconnu = "inconnu"
 }
 
@@ -60,8 +58,6 @@ export type LineStringFeature = {
     qualityB?: Quality;
     type: LaneType;
     typeB?: LaneType;
-    typeFamily: LaneTypeFamily;
-    typeFamilyB?: LaneTypeFamily;
     doneAt?: string;
     link?: string;
   };
@@ -82,7 +78,7 @@ export type SectionFeature = {
     type: LaneType;
     typeB?: LaneType;
     typeFamily: LaneTypeFamily;
-    typeFamilyB?: LaneTypeFamily;
+    typeFamilyB: LaneTypeFamily;
     doneAt?: string;
   };
   geometry: {

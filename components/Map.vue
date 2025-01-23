@@ -65,7 +65,7 @@ const {
 
 const statuses = ref([LaneStatus.Planned, LaneStatus.Variante, LaneStatus.Done, LaneStatus.Postponed, LaneStatus.VariantePostponed, LaneStatus.Unknown, LaneStatus.Wip, LaneStatus.Tested]);
 const types = ref([LaneType.Unidirectionnelle, LaneType.Bidirectionnelle, LaneType.Bilaterale, LaneType.VoieBus, LaneType.VoieBusElargie, LaneType.Velorue, LaneType.VoieVerte, LaneType.BandesCyclables, LaneType.ZoneDeRencontre, LaneType.AirePietonne, LaneType.Chaucidou, LaneType.Aucun, LaneType.Inconnu]);
-const families = ref([LaneTypeFamily.Dedie, LaneTypeFamily.MixiteMotoriseGood, LaneTypeFamily.MixitePietonneGood, LaneTypeFamily.MixiteMotoriseBad, LaneTypeFamily.MixitePietonneBad])
+const families = ref([LaneTypeFamily.Dedie, LaneTypeFamily.MixiteMotorise, LaneTypeFamily.MixitePietonne])
 const displayLimits = ref(true);
 const features = computed(() => {
   let activeLineFeatures = (props.features ?? []).filter(feature => {
@@ -225,6 +225,20 @@ onMounted(() => {
     handleMapClick({ map, sections: sections, features: features.value, clickEvent });
   });
 
+  function computeTypeFamily(type: LaneType): LaneTypeFamily {
+    if(type == LaneType.Bidirectionnelle || type == LaneType.Bilaterale || type == LaneType.Unidirectionnelle) {
+      return LaneTypeFamily.Dedie
+    } else if (type == LaneType.AirePietonne || type == LaneType.VoieVerte) {
+      return LaneTypeFamily.MixitePietonne
+    } else if (type == LaneType.BandesCyclables || type == LaneType.Chaucidou || type == LaneType.Velorue || type == LaneType.VoieBus || type == LaneType.VoieBusElargie || type == LaneType.ZoneDeRencontre || type == LaneType.Aucun) {
+      return LaneTypeFamily.MixiteMotorise
+    } else {
+      console.assert(type == LaneType.Inconnu)
+      return LaneTypeFamily.Dedie
+      //return LaneTypeFamily.Inconnu
+    }
+  }
+
   function regroupIntoSections(features: LineStringFeature[]): SectionFeature[] {
     let sections: SectionFeature[] = []
     let sectionsWithDuplicates = []
@@ -242,8 +256,8 @@ onMounted(() => {
           status: f.properties.status,
           type: f.properties.type,
           typeB: f.properties.typeB,
-          typeFamily: f.properties.typeFamily,
-          typeFamilyB: f.properties.typeFamilyB,
+          typeFamily: computeTypeFamily(f.properties.type),
+          typeFamilyB: f.properties.typeB ? computeTypeFamily(f.properties.typeB) : computeTypeFamily(f.properties.type),
           doneAt: f.properties.doneAt,
         },
         geometry: f.geometry

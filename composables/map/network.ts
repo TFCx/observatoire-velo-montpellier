@@ -50,10 +50,8 @@ const laneTypeColorDict: { [key in LaneType] : string } = {
 
 const laneTypeFamilyColorDict: { [key in LaneTypeFamily] : string } = {
     [LaneTypeFamily.Dedie]: "#b3c6ff",
-    [LaneTypeFamily.MixiteMotoriseGood]: "#97f7d6",
-    [LaneTypeFamily.MixiteMotoriseBad]: "#f797e7",
-    [LaneTypeFamily.MixitePietonneGood]: "#e6ffb3",
-    [LaneTypeFamily.MixitePietonneBad]: "#f2cd7c",
+    [LaneTypeFamily.MixiteMotorise]: "#f797e7",
+    [LaneTypeFamily.MixitePietonne]: "#e6ffb3",
     [LaneTypeFamily.Inconnu]: "#dedede",
 }
 
@@ -97,10 +95,8 @@ function compSectionTypeFamilyColor(attribute: string): ExpressionSpecification 
     return [
         "case",
             ["==", ['get', attribute], LaneTypeFamily.Dedie], getColorOf(LaneTypeFamily.Dedie),
-            ["==", ['get', attribute], LaneTypeFamily.MixiteMotoriseGood], getColorOf(LaneTypeFamily.MixiteMotoriseGood),
-            ["==", ['get', attribute], LaneTypeFamily.MixiteMotoriseBad], getColorOf(LaneTypeFamily.MixiteMotoriseBad),
-            ["==", ['get', attribute], LaneTypeFamily.MixitePietonneGood], getColorOf(LaneTypeFamily.MixitePietonneGood),
-            ["==", ['get', attribute], LaneTypeFamily.MixitePietonneBad], getColorOf(LaneTypeFamily.MixitePietonneBad),
+            ["==", ['get', attribute], LaneTypeFamily.MixiteMotorise], getColorOf(LaneTypeFamily.MixiteMotorise),
+            ["==", ['get', attribute], LaneTypeFamily.MixitePietonne], getColorOf(LaneTypeFamily.MixitePietonne),
             ["==", ['get', 'status'], LaneStatus.Done], getColorOf(LaneStatus.Done),
             ["==", ['get', attribute], LaneTypeFamily.Inconnu], getColorOf(LaneTypeFamily.Inconnu),
             "white"
