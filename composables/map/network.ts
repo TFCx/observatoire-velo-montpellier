@@ -33,15 +33,15 @@ const offsetLane: ExpressionSpecification = ['+', leftmostOffset, ['*', laneInde
 
 // ----------------------------
 const laneTypeColorDict: { [key in LaneType] : string } = {
-    [LaneType.Unidirectionnelle]: "#b3c6ff",
-    [LaneType.Bidirectionnelle]: "#b3c6ff",
-    [LaneType.Bilaterale]: "#b3dbff",
-    [LaneType.BandesCyclables]: "#b3c6ff",
+    [LaneType.Unidirectionnelle]: "#b3fbff",
+    [LaneType.Bidirectionnelle]: "#6983cf",
+    [LaneType.Bilaterale]: "#b3fbff",
+    [LaneType.BandesCyclables]: "#c1b3ff",
     [LaneType.VoieBus]: "#c497f7",
     [LaneType.VoieBusElargie]: "#c497f7",
     [LaneType.Velorue]: "#f797e7",
     [LaneType.VoieVerte]: "#b3ffb6",
-    [LaneType.ZoneDeRencontre]: "#97f7d6",
+    [LaneType.ZoneDeRencontre]: "#fffbb3",
     [LaneType.AirePietonne]: "#ffc399",
     [LaneType.Chaucidou]: "#ffeab3",
     [LaneType.Aucun]: "#ff9999",
@@ -124,6 +124,7 @@ function compSectionTypeColor(attribute: string): ExpressionSpecification {
         ["==", ['get', attribute], LaneType.Chaucidou], getColorOf(LaneType.Chaucidou),
         ["==", ['get', attribute], LaneType.Aucun], getColorOf(LaneType.Aucun),
         ["==", ['get', 'status'], LaneStatus.Done], getColorOf(LaneStatus.Done),
+        ["==", ['get', 'status'], LaneStatus.Planned], "#ffffff",
         ["==", ['get', attribute], LaneType.Inconnu], getColorOf(LaneType.Inconnu),
         "black"
     ]
