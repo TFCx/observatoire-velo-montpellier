@@ -11,7 +11,8 @@ function upsertMapSource(map: Map, sourceName: string, features: Feature[]) {
     }
     map.addSource(sourceName, {
         type: 'geojson',
-        data: { type: 'FeatureCollection', features }
+        data: { type: 'FeatureCollection', features},
+        promoteId: "name"
     });
     return false;
 }

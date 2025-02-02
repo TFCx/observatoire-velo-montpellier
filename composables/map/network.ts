@@ -21,6 +21,8 @@ const laneWidth = 4
 const fixedSectionWidth = laneWidth + 0.5
 const laneDashes = [1.5, 0.7]
 const laneDashWIP = [1.0, 1.05]
+const hoverExtension = 3
+const fixedHoverWidth = fixedSectionWidth + contourWidth * 2 + hoverExtension * 2
 
 const nbLanes: ExpressionSpecification = ['get', 'nb_lanes']
 const laneIndex: ExpressionSpecification = ['get', 'lane_index']
@@ -30,6 +32,7 @@ const halfLaneWidth: ExpressionSpecification = ["/", laneWidth, 2]
 const laneColor: ExpressionSpecification = ["to-color", ['get', 'color']]
 const leftmostOffset: ExpressionSpecification = ['+', ['-', 0, ["/", allLanesWidth, 2]], halfLaneWidth]
 const offsetLane: ExpressionSpecification = ['+', leftmostOffset, ['*', laneIndex, laneWidth]]
+const hoverWidth: ExpressionSpecification = ['+', sectionWidth, contourWidth * 2 + hoverExtension * 2]
 
 // ----------------------------
 const laneTypeColorDict: { [key in LaneType] : string } = {
@@ -149,27 +152,30 @@ const setDisplayedLayer = (value: DisplayedLayer) => {
   displayedLayer.value = value;
 };
 
+const layersBehindDisplayedLayer: { [key in DisplayedLayer] : string[] } = {
+    [DisplayedLayer.FinalizedProject]: layersForFinishedNetwork,
+    [DisplayedLayer.Progress]: layersForCurrentNetwork,
+    [DisplayedLayer.Quality]: layersForQualityNetwork,
+    [DisplayedLayer.TypeFamily]: layersForTypeFamilyNetwork,
+    [DisplayedLayer.Type]: layersForTypeNetwork,
+}
+
 function changeLayer(map: Map, displayedLayer: DisplayedLayer) {
-    for(const layerName of layersForFinishedNetwork) {
-        map.setLayoutProperty(layerName, "visibility", (displayedLayer == DisplayedLayer.FinalizedProject) ? "visible" : "none")
+
+    for(const layers of [layersForFinishedNetwork, layersForCurrentNetwork, layersForQualityNetwork, layersForTypeFamilyNetwork, layersForTypeNetwork]) {
+        for(const layerName of layers) {
+            map.setLayoutProperty(layerName, "visibility", "none")
+        }
     }
-    for(const layerName of layersForCurrentNetwork) {
-        map.setLayoutProperty(layerName, "visibility", (displayedLayer == DisplayedLayer.Progress) ? "visible" : "none")
-    }
-    for(const layerName of layersForQualityNetwork) {
-        map.setLayoutProperty(layerName, "visibility", (displayedLayer == DisplayedLayer.Quality) ? "visible" : "none")
-    }
-    for(const layerName of layersForTypeFamilyNetwork) {
-        map.setLayoutProperty(layerName, "visibility", (displayedLayer == DisplayedLayer.TypeFamily) ? "visible" : "none")
-    }
-    for(const layerName of layersForTypeNetwork) {
-        map.setLayoutProperty(layerName, "visibility", (displayedLayer == DisplayedLayer.Type) ? "visible" : "none")
+
+    for(const layerName of layersBehindDisplayedLayer[displayedLayer]) {
+        map.setLayoutProperty(layerName, "visibility", "visible")
     }
   }
 
 import { upsertMapSource } from './utils';
 
-export { DisplayedLayer, setDisplayedLayer, drawCurrentNetwork, drawFinishedNetwork, drawQualityNetwork, drawTypeFamilyNetwork, drawTypeNetwork, changeLayer, addListnersForHovering };
+export { DisplayedLayer, setDisplayedLayer, drawCurrentNetwork, drawFinishedNetwork, drawQualityNetwork, drawTypeFamilyNetwork, drawTypeNetwork, changeLayer, drawHoveredEffect, addListnersForHovering };
 
 let layersBase: string[] = []
 
@@ -631,25 +637,91 @@ function drawTypeNetwork(map: Map, sections: SectionFeature[], lanes: LaneFeatur
 }
 
 
-function drawHoveredEffect(map: Map) {
+function drawHoveredEffect(map: Map, sections: SectionFeature[], lanes: LaneFeature[]) {
+    let wasOnlyUpdatingLanes = upsertMapSource(map, 'src-lanes', lanes)
+    let wasOnlyUpdatingSections = upsertMapSource(map, 'src-sections', sections)
+
+    // Fixed width
     map.addLayer({
-        id: 'highlight',
+        id: 'layer-type-hover-highlight-fixed',
         type: 'line',
-        source: 'all-sections',
+        source: 'src-sections',
         layout: { 'line-cap': 'round' },
         paint: {
-        'line-gap-width': ["case",
-                ["==", ['get', 'status'], "postponed"], ["*", 5, ['get', 'nb_lanes']],
-                ["*", 9, ['get', 'nb_lanes']]
-        ],
-        'line-width': laneWidth,
-        'line-color': ['case', ['boolean', ['feature-state', 'hover'], false], '#7c838f', '#FFFFFF'],
-        "line-opacity": ['case', ['boolean', ['feature-state', 'hover'], false], 0.9, 0.0],
+        'line-width': fixedHoverWidth,
+        'line-color': '#000000',
+        'line-opacity': ['case', ['boolean', ['feature-state', 'hover'], false], 0.3, 0.0],
         }
     });
+    layersForQualityNetwork.push("layer-type-hover-highlight-fixed")
+    layersForTypeFamilyNetwork.push("layer-type-hover-highlight-fixed")
+    layersForTypeNetwork.push("layer-type-hover-highlight-fixed")
+
+    // Lane dependent width
+    map.addLayer({
+        id: 'layer-type-hover-highlight-lanes',
+        type: 'line',
+        source: 'src-sections',
+        layout: { 'line-cap': 'round' },
+        paint: {
+        'line-width': hoverWidth,
+        'line-color': '#000000',
+        'line-opacity': ['case', ['boolean', ['feature-state', 'hover'], false], 0.3, 0.0],
+        }
+    });
+    layersForCurrentNetwork.push("layer-type-hover-highlight-lanes")
+    layersForFinishedNetwork.push("layer-type-hover-highlight-lanes")
+
+    // Lane dependent width
+    // map.addLayer({
+    //     id: 'highlight',
+    //     type: 'line',
+    //     source: 'src-sections',
+    //     layout: { 'line-cap': 'round' },
+    //     paint: {
+    //     'line-gap-width': ["case",
+    //             ["==", ['get', 'status'], "postponed"], ["*", 5, ['get', 'nb_lanes']],
+    //             ["*", 9, ['get', 'nb_lanes']]
+    //     ],
+    //     'line-width': laneWidth,
+    //     'line-color': ['case', ['boolean', ['feature-state', 'hover'], false], '#7c838f', '#FFFFFF'],
+    //     "line-opacity": ['case', ['boolean', ['feature-state', 'hover'], false], 0.9, 0.0],
+    //     }
+    // });
 }
 
 
+function addListnersForHovering(map: Map) {
+
+    for(const highlightLayer of ["layer-type-hover-highlight-fixed", "layer-type-hover-highlight-lanes"]) {
+        // Add MouveMove event listner => maybe a section is hovered
+        let hoveredLineId: any = null;
+        map.on('mousemove', highlightLayer, (e: any) => {
+            map.getCanvas().style.cursor = 'pointer';
+            if (e.features.length > 0) {
+
+                if (hoveredLineId !== null) {
+                    map.setFeatureState({ source: 'src-sections', id: hoveredLineId }, { hover: false });
+                }
+                if (e.features[0].id !== undefined) {
+                    hoveredLineId = e.features[0].id;
+                    if (hoveredLineId !== null) {
+                        map.setFeatureState({ source: 'src-sections', id: hoveredLineId }, { hover: true });
+                    }
+                }
+            }
+        });
+
+        // Add MouveLeave event listner => all sections are no hovered
+        map.on('mouseleave', highlightLayer, () => {
+            map.getCanvas().style.cursor = '';
+            if (hoveredLineId !== null) {
+                map.setFeatureState({ source: 'src-sections', id: hoveredLineId }, { hover: false });
+            }
+            hoveredLineId = null;
+        });
+    }
+}
 
 function animateOpacity(map: Map, timestamp: number, animationLength: number, attributeId: string, attributeOpacity: string, min: number, max: number) {
 
@@ -665,32 +737,3 @@ function animateOpacity(map: Map, timestamp: number, animationLength: number, at
 }
 
 
-
-function addListnersForHovering(map: Map) {
-
-    // Add MouveMove event listner => maybe a section is hovered
-    let hoveredLineId: any = null;
-    map.on('mousemove', 'highlight', (e: any) => {
-        map.getCanvas().style.cursor = 'pointer';
-        if (e.features.length > 0) {
-        if (hoveredLineId !== null) {
-            map.setFeatureState({ source: 'all-sections', id: hoveredLineId }, { hover: false });
-        }
-        if (e.features[0].id !== undefined) {
-            hoveredLineId = e.features[0].id;
-            if (hoveredLineId !== null) {
-            map.setFeatureState({ source: 'all-sections', id: hoveredLineId }, { hover: true });
-            }
-        }
-        }
-    });
-
-    // Add MouveLeave event listner => all sections are no hovered
-    map.on('mouseleave', 'highlight', () => {
-        map.getCanvas().style.cursor = '';
-        if (hoveredLineId !== null) {
-        map.setFeatureState({ source: 'all-sections', id: hoveredLineId }, { hover: false });
-        }
-        hoveredLineId = null;
-    });
-}

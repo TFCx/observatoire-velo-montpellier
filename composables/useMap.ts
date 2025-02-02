@@ -4,7 +4,7 @@ import type { CounterParsedContent } from '../types/counters';
 import { isLineStringFeature, type Feature, type LaneFeature, type LineStringFeature, type CompteurFeature, type PerspectiveFeature, type SectionFeature, type MultiColoredLineStringFeature, isSectionFeature, type DangerFeature} from '~/types';
 import { ref } from 'vue';
 
-import { drawCurrentNetwork, drawFinishedNetwork, drawQualityNetwork, drawTypeNetwork, drawTypeFamilyNetwork, changeLayer, addListnersForHovering } from "./map/network";
+import { drawCurrentNetwork, drawFinishedNetwork, drawQualityNetwork, drawTypeNetwork, drawTypeFamilyNetwork, drawHoveredEffect, changeLayer, addListnersForHovering } from "./map/network";
 import { plotPerspective, plotCompteurs, plotDangers, plotLimits, plotPumps, plotBaseBikeInfrastructure } from "./map/features";
 
 // Tooltips
@@ -79,6 +79,8 @@ export const useMap = () => {
     if (lanesWithId.length === 0 && !map.getLayer('highlight')) {
       return;
     }
+
+    drawHoveredEffect(map, sections, lanesWithId)
 
     drawFinishedNetwork(map, sections, lanesWithId)
 

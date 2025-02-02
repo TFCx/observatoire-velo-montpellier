@@ -76,7 +76,6 @@ const features = computed(() => {
     return true;
   });
   let activeLimitsFeatures = (props.features ?? []).filter(feature => displayLimits.value && isPolygonFeature(feature))
-  console.debug(activeLimitsFeatures.length)
   return activeLineFeatures.concat(activeLimitsFeatures)
 });
 
