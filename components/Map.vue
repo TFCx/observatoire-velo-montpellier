@@ -36,6 +36,7 @@ const defaultOptions = {
   logo: true,
   limits: true,
   bikeInfra: false,
+  displayLayerType: false,
   filter: false,
   geolocation: false,
   fullscreen: false,
@@ -112,6 +113,7 @@ onMounted(() => {
   });
 
   const layerControl = new LayerControl(
+    options.displayLayerType,
     () => {
       if (legendModalComponent.value) {
         (legendModalComponent.value as any).toggleLegend();
