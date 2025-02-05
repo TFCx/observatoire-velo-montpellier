@@ -104,31 +104,17 @@
               </div>
 
               <div class="my-auto rounded-md border-gray-500 border">
-                <div class="h-1 bg-velocite-type-family-mix-motor-good" />
+                <div class="h-1 bg-velocite-type-family-mix-motor" />
               </div>
               <div>
-                Cohabitation motorisée
+                Mixité avec motorisés
               </div>
 
               <div class="my-auto rounded-md border-gray-500 border">
-                <div class="h-1 bg-velocite-type-family-mix-motor-bad" />
+                <div class="h-1 bg-velocite-type-family-mix-ped" />
               </div>
               <div>
-                Intrication motorisée
-              </div>
-
-              <div class="my-auto rounded-md border-gray-500 border">
-                <div class="h-1 bg-velocite-type-family-mix-ped-good" />
-              </div>
-              <div>
-                Cohabitation piétonne
-              </div>
-
-              <div class="my-auto rounded-md border-gray-500 border">
-                <div class="h-1 bg-velocite-type-family-mix-ped-bad" />
-              </div>
-              <div>
-                Intrication piétonne
+                Cohabitation avec piétons
               </div>
             </div>
           </div>

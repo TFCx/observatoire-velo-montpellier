@@ -64,10 +64,8 @@ module.exports = {
         'velocite-bilaterale': "#b3fbff", // cyan
         'velocite-velorue': "#fffbb3", // jaune
         'velocite-voie-verte': "#b3ffb6", // vert
-        'velocite-type-family-mix-motor-good': "#97f7d6",
-        'velocite-type-family-mix-motor-bad': "#f797e7",
-        'velocite-type-family-mix-ped-good': "#b3c6ff",
-        'velocite-type-family-mix-ped-bad': "#ffeab3",
+        'velocite-type-family-mix-motor': "#f797e7",
+        'velocite-type-family-mix-ped': "#e6ffb3",
         'velocite-type-family-dedie': "#b3c6ff",
       },
       typography: {
