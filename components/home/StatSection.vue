@@ -20,7 +20,7 @@
                 <dt class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
                   Vélolignes
                 </dt>
-                <dd class="order-1 text-5xl font-extrabold text-velocite-yellow-5">
+                <dd class="order-1 text-5xl font-extrabold text-color-primary-primary">
                   {{ getNbVoiesCyclables() }}
                 </dd>
               </div>
@@ -28,7 +28,7 @@
                 <dt class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
                   Distance
                 </dt>
-                <dd class="order-1 text-5xl font-extrabold text-velocite-yellow-5">
+                <dd class="order-1 text-5xl font-extrabold text-color-primary-primary">
                   235km
                 </dd>
               </div>
@@ -36,7 +36,7 @@
                 <dt class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
                   Budget
                 </dt>
-                <dd class="order-1 text-5xl font-extrabold text-velocite-yellow-5">
+                <dd class="order-1 text-5xl font-extrabold text-color-primary-primary">
                   Inconnu
                 </dd>
               </div>

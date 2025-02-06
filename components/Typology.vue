@@ -1,16 +1,16 @@
 <template>
-  <div class="relative my-8 p-2 pt-6 border-velocite-yellow-5 border-2 rounded-xl">
-    <div class="absolute -top-4 left-0 right-0 w-fit rounded-md px-2 py-1 mx-auto text-center text-lg text-gray-900 text-white bg-velocite-yellow-5">
+  <div class="relative my-8 p-2 pt-6 border-color-primary-primary border-2 rounded-xl">
+    <div class="absolute -top-4 left-0 right-0 w-fit rounded-md px-2 py-1 mx-auto text-center text-lg text-gray-900 text-white bg-color-primary-primary">
       Typologie 2026
     </div>
-    <div class="grid grid-cols-[1fr_2px_1fr] gap-x-4 text-velocite-yellow-5">
+    <div class="grid grid-cols-[1fr_2px_1fr] gap-x-4 text-color-primary-primary">
       <template v-for="stat in stats" :key="stat.name">
         <div class="font-semibold text-base sm:text-base text-right whitespace-nowrap">
           {{ stat.name }}
         </div>
-        <div class="bg-velocite-yellow-5" />
+        <div class="bg-color-primary-primary" />
         <div class="flex items-center">
-          <div class="grow-1 h-1 sm:h-2 mr-4 bg-velocite-yellow-5 rounded-full" :style="`width: ${ stat.percent }%`" />
+          <div class="grow-1 h-1 sm:h-2 mr-4 bg-color-primary-primary rounded-full" :style="`width: ${ stat.percent }%`" />
           <div class="shrink-0 text-sm sm:text-base font-semibold">
             {{ stat.percent }}%
           </div>

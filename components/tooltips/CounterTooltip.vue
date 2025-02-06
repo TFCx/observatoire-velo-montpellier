@@ -1,6 +1,6 @@
 <template>
   <div class="not-prose w-48">
-    <div class="py-1 bg-velocite-yellow-5 flex flex-col items-center justify-center text-white">
+    <div class="py-1 bg-color-primary-primary flex flex-col items-center justify-center text-white">
       <div class="font-bold text-base hover:underline">
         <a :href="feature.properties.link">{{ feature.properties.name }}</a>
       </div>
@@ -33,12 +33,12 @@
         </div>
       </div>
       <!--      <div v-if="isAbsoluteBest">-->
-      <!--        <div class="my-2 mx-8 bg-lvv-pink text-sm text-white font-semibold rounded-xl px-1.5 border-black border-2">-->
+      <!--        <div class="my-2 mx-8 bg-color-secondary text-sm text-white font-semibold rounded-xl px-1.5 border-black border-2">-->
       <!--          record absolu-->
       <!--        </div>-->
       <!--      </div>-->
       <!--      <div v-if="isMonthBest && !isAbsoluteBest">-->
-      <!--        <div class="my-2 mx-8 bg-lvv-pink text-sm text-white font-semibold rounded-xl px-1.5 border-white border-2">-->
+      <!--        <div class="my-2 mx-8 bg-color-secondary text-sm text-white font-semibold rounded-xl px-1.5 border-white border-2">-->
       <!--          record mensuel-->
       <!--        </div>-->
       <!--      </div>-->

@@ -23,7 +23,7 @@
           <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
             <Icon name="mdi:magnify" class="h-6 w-6 text-gray-400" aria-hidden="true" />
           </div>
-          <input id="compteur" v-model="searchText" type="text" class="py-4 pl-10 pr-4 text-lg shadow-md focus:ring-velocite-yellow-5 focus:border-velocite-yellow-5 block w-full border-gray-900 text-gray-900 rounded-md" placeholder="Chercher un compteur...">
+          <input id="compteur" v-model="searchText" type="text" class="py-4 pl-10 pr-4 text-lg shadow-md focus:ring-color-primary-primary focus:border-color-primary-primary block w-full border-gray-900 text-gray-900 rounded-md" placeholder="Chercher un compteur...">
         </div>
       </div>
 

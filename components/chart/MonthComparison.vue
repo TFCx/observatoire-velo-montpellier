@@ -26,7 +26,7 @@
             >
               <li
                 :class="[
-                  active ? 'bg-lvv-blue-300 text-lvv-blue-400' : 'text-gray-900',
+                  active ? 'bg-color-primary-300 text-color-primary-400' : 'text-gray-900',
                   'relative cursor-default select-none py-2 pl-10 pr-4',
                 ]"
               >
@@ -38,7 +38,7 @@
                 >{{ month.name }}</span>
                 <span
                   v-if="selected"
-                  class="absolute inset-y-0 left-0 flex items-center pl-3 text-velocite-yellow-5"
+                  class="absolute inset-y-0 left-0 flex items-center pl-3 text-color-primary-primary"
                 >
                   <Icon name="mdi:check" class="h-5 w-5" aria-hidden="true" />
                 </span>

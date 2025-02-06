@@ -66,7 +66,7 @@
         </div>
       </div>
     </div>
-    <div class="bg-velocite-yellow-5 flex justify-center">
+    <div class="bg-color-primary-primary flex justify-center">
       <a class="p-1 text-white text-base italic hover:underline" :href="getSectionDetailsUrl(feature.properties)" target="_blank">
         voir le détail <Icon name="mdi:link-variant" class="h-4 w-4 text-white" />
       </a>
@@ -113,24 +113,24 @@ function getStatus(properties: SectionFeature['properties']): { label: string, c
     done: {
       label: 'terminé',
       date: properties.doneAt && getDoneAtText(properties.doneAt),
-      class: 'text-white bg-velocite-yellow-5 rounded-xl px-2 w-fit'
+      class: 'text-white bg-color-primary-primary rounded-xl px-2 w-fit'
     },
     wip: {
       label: 'en travaux',
-      class: 'text-velocite-yellow-5 rounded-xl px-2 border border-dashed border-velocite-yellow-5'
+      class: 'text-color-primary-primary rounded-xl px-2 border border-dashed border-color-primary-primary'
     },
     planned: {
       label: 'prévu',
-      class: 'text-velocite-yellow-5 rounded-xl px-2 border border-velocite-yellow-5'
+      class: 'text-color-primary-primary rounded-xl px-2 border border-color-primary-primary'
     },
     tested: {
       label: 'en test',
-      class: 'text-lvv-blue-600 rounded-xl px-2 border border-dashed border-lvv-blue-600'
+      class: 'text-color-primary-600 rounded-xl px-2 border border-dashed border-color-primary-600'
     },
     postponed: {
       label: 'reporté',
       date: 'après 2026',
-      class: 'text-white bg-lvv-pink rounded-xl px-2'
+      class: 'text-white bg-color-secondary rounded-xl px-2'
     },
     variante: {
       label: 'variante',
@@ -139,7 +139,7 @@ function getStatus(properties: SectionFeature['properties']): { label: string, c
     'variante-postponed': {
       label: 'variante reportée',
       date: 'après 2026',
-      class: 'text-white bg-lvv-pink rounded-xl px-2'
+      class: 'text-white bg-color-secondary rounded-xl px-2'
     },
     unknown: {
       label: 'à définir',

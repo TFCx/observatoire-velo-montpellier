@@ -40,7 +40,7 @@
                 class="mt-1 block text-4xl tracking-tight font-extrabold sm:text-5xl xl:text-6xl"
               >
                 <span class="block text-gray-900">Avancement des</span>
-                <span class="block text-velocite-yellow-5">{{ getRevName() }}</span>
+                <span class="block text-color-primary-primary">{{ getRevName() }}</span>
               </span>
             </h1>
             <p
@@ -52,13 +52,13 @@
               class="mt-8 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0"
             >
               <div class="space-y-4 sm:space-y-0 sm:mx-auto sm:inline-grid sm:grid-cols-3 sm:gap-5">
-                <NuxtLink to="/carte-interactive" class="flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-velocite-yellow-5 hover:shadow-lg sm:px-8 transition duration-300 transform hover:scale-105">
+                <NuxtLink to="/carte-interactive" class="flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-color-primary-primary hover:shadow-lg sm:px-8 transition duration-300 transform hover:scale-105">
                   Carte interactive
                 </NuxtLink>
-                <NuxtLink to="/plan-officiel" class="flex items-center justify-center px-4 py-3 text-base font-medium rounded-md shadow-sm text-velocite-yellow-5 border border-velocite-yellow-5 hover:shadow-lg sm:px-8 transition duration-300 transform hover:scale-105">
+                <NuxtLink to="/plan-officiel" class="flex items-center justify-center px-4 py-3 text-base font-medium rounded-md shadow-sm text-color-primary-primary border border-color-primary-primary hover:shadow-lg sm:px-8 transition duration-300 transform hover:scale-105">
                   Plan officiel
                 </NuxtLink>
-                <NuxtLink to="#ou-on-en-est" class="flex items-center justify-center px-4 py-3 text-base font-medium rounded-md shadow-sm text-velocite-yellow-5 border border-velocite-yellow-5 hover:shadow-lg sm:px-8 transition duration-300 transform hover:scale-105">
+                <NuxtLink to="#ou-on-en-est" class="flex items-center justify-center px-4 py-3 text-base font-medium rounded-md shadow-sm text-color-primary-primary border border-color-primary-primary hover:shadow-lg sm:px-8 transition duration-300 transform hover:scale-105">
                   Avancement global
                 </NuxtLink>
               </div>

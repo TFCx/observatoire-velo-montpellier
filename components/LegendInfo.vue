@@ -21,7 +21,7 @@
               <div>Réseau</div>
               <br>
               <div class="my-auto rounded-md border-gray-500 border">
-                <div class="h-1 bg-velocite-yellow-5" />
+                <div class="h-1 bg-color-primary-primary" />
               </div>
               <div>
                 terminé
@@ -31,8 +31,8 @@
                 <div class="h-1 relative">
                   <div class="h-full w-full">
                     <div class="myrelative h-full w-full">
-                      <div class="myabsolute h-full w-full bg-velocite-yellow-5 dashed-line" />
-                      <div class="myabsolute h-full w-full bg-velocite-yellow-5 animated-opacity" />
+                      <div class="myabsolute h-full w-full bg-color-primary-primary dashed-line" />
+                      <div class="myabsolute h-full w-full bg-color-primary-primary animated-opacity" />
                     </div>
                   </div>
                 </div>
@@ -44,7 +44,7 @@
               <div class="my-auto rounded-md border-gray-500 border">
                 <div class="h-1 relative">
                   <div class="absolute h-full w-full">
-                    <div class="h-full bg-velocite-yellow-5 dashed-line" />
+                    <div class="h-full bg-color-primary-primary dashed-line" />
                   </div>
                 </div>
               </div>
@@ -54,7 +54,7 @@
 
               <div class="my-auto rounded-md border-gray-500 border relative">
                 <div class="h-1 bg-white" />
-                <div class="myabsolute h-full w-full bg-velocite-yellow-5 dashed-line opacity-60 animated-opacity-slow" />
+                <div class="myabsolute h-full w-full bg-color-primary-primary dashed-line opacity-60 animated-opacity-slow" />
                 <div class="text-black font-size-small leading-none absolute -top-2 leading-none">
                   reporté
                 </div>

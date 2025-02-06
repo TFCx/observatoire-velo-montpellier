@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-lvv-blue-600 text-white p-2 font-semibold">
+  <div class="bg-color-primary-600 text-white p-2 font-semibold">
     {{ feature.properties.name }}
   </div>
 </template>
