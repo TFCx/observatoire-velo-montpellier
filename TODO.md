@@ -1,13 +1,11 @@
 Court terme :
 - Nom des vélolignes sur les lignes
 - Découper ligne Marché du Lez
-- Couleur tableau de bord
 - Chart typologie => rajouter la qualité
 - Légende "prévu" / "reporté" => mettre image ?
 - Légende "futur réseau"
 - Ne pas afficher les lignes non construites dans les layers qualité & type OU BIEN dessiner avec le même style que l'avancement du projet
 - Vérifier le code des upsert
-- Nettoyer le tailwind
 - Factoriser le code des displayLayer
 - Update news
 - MAJ baromètre
