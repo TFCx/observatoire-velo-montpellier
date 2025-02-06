@@ -70,21 +70,21 @@
               <div>Qualité</div>
               <br>
               <div class="my-auto rounded-md border-gray-500 border">
-                <div class="h-1 bg-velocite-green-5" />
+                <div class="h-1 bg-legend-quality-good" />
               </div>
               <div>
                 satisfaisant
               </div>
 
               <div class="my-auto rounded-md border-gray-500 border">
-                <div class="h-1 bg-velocite-orange-5" />
+                <div class="h-1 bg-legend-quality-fair" />
               </div>
               <div>
                 à améliorer
               </div>
 
               <div class="my-auto rounded-md border-gray-500 border">
-                <div class="h-1 bg-velocite-red-5" />
+                <div class="h-1 bg-legend-quality-bad" />
               </div>
               <div>
                 non satisfaisant
@@ -97,21 +97,21 @@
               <div>Catégories principales</div>
               <br>
               <div class="my-auto rounded-md border-gray-500 border">
-                <div class="h-1 bg-velocite-type-family-dedie" />
+                <div class="h-1 bg-legend-infra-family-dedie" />
               </div>
               <div>
                 Aménagements dédiés
               </div>
 
               <div class="my-auto rounded-md border-gray-500 border">
-                <div class="h-1 bg-velocite-type-family-mix-motor" />
+                <div class="h-1 bg-legend-infra-family-mix-motor" />
               </div>
               <div>
                 Mixité avec motorisés
               </div>
 
               <div class="my-auto rounded-md border-gray-500 border">
-                <div class="h-1 bg-velocite-type-family-mix-ped" />
+                <div class="h-1 bg-legend-infra-family-mix-ped" />
               </div>
               <div>
                 Cohabitation avec piétons
@@ -124,28 +124,28 @@
               <div>Types principaux</div>
               <br>
               <div class="my-auto rounded-md border-gray-500 border">
-                <div class="h-1 bg-velocite-bidirectionnelle" />
+                <div class="h-1 bg-legend-infra-type-bidirectionnelle" />
               </div>
               <div>
                 bidirectionnelle
               </div>
 
               <div class="my-auto rounded-md border-gray-500 border">
-                <div class="h-1 bg-velocite-bilaterale" />
+                <div class="h-1 bg-legend-infra-type-bilaterale" />
               </div>
               <div>
                 bilatérale
               </div>
 
               <div class="my-auto rounded-md border-gray-500 border">
-                <div class="h-1 bg-velocite-voie-verte" />
+                <div class="h-1 bg-legend-infra-type-voie-verte" />
               </div>
               <div>
                 voie verte
               </div>
 
               <div class="my-auto rounded-md border-gray-500 border">
-                <div class="h-1 bg-velocite-velorue" />
+                <div class="h-1 bg-legend-infra-type-velorue" />
               </div>
               <div>
                 vélorue

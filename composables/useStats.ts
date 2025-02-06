@@ -115,31 +115,31 @@ export const useStats = () => {
         name: 'Avant mandat',
         distance: alreadyExistingDistance,
         percent: getPercent(alreadyExistingDistance),
-        class: 'text-velocite-dark-5 font-semibold'
+        class: 'text-stats-already-existing font-semibold'
       },
       done: {
         name: 'Réalisés',
         distance: doneDistance - alreadyExistingDistance,
         percent: getPercent(doneDistance) - getPercent(alreadyExistingDistance),
-        class: 'text-velocite-yellow-5 font-semibold'
+        class: 'text-stats-done font-semibold'
       },
       wip: {
         name: 'En travaux',
         distance: wipDistance,
         percent: getPercent(wipDistance),
-        class: 'text-velocite-brown-1 font-semibold'
+        class: 'text-stats-wip font-semibold'
       },
       planned: {
         name: "Prévus d'ici 2026",
         distance: plannedDistance,
         percent: getPercent(plannedDistance),
-        class: 'text-velocite-light-4 font-semibold'
+        class: 'text-stats-planned font-semibold'
       },
       postponed: {
         name: 'Après 2026',
         distance: postponedDistance,
         percent: getPercent(postponedDistance),
-        class: 'text-lvv-pink font-semibold'
+        class: 'text-stats-postponed font-semibold'
       }
     };
   }
