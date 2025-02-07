@@ -485,8 +485,6 @@ function drawFinishedNetwork(map: Map, sections: SectionFeature[], lanes: LaneFe
         }
     });
     layersForFinishedNetwork.push("layer-finished-network-all-lanes")
-
-    //drawHoveredEffect(map);
 }
 
 
@@ -535,8 +533,6 @@ function drawQualityNetwork(map: Map, sections: SectionFeature[], lanes: LaneFea
         }
     });
     layersForQualityNetwork.push("layer-quality-network-section-sideB")
-
-    //drawHoveredEffect(map);
 }
 function drawTypeFamilyNetwork(map: Map, sections: SectionFeature[], lanes: LaneFeature[]) {
     let wasOnlyUpdatingLanes = upsertMapSource(map, 'src-lanes', lanes)
@@ -583,8 +579,6 @@ function drawTypeFamilyNetwork(map: Map, sections: SectionFeature[], lanes: Lane
         }
     });
     layersForTypeFamilyNetwork.push("layer-type-family-network-section-sideB")
-
-    //drawHoveredEffect(map);
 }
 
 function drawTypeNetwork(map: Map, sections: SectionFeature[], lanes: LaneFeature[]) {
@@ -632,8 +626,6 @@ function drawTypeNetwork(map: Map, sections: SectionFeature[], lanes: LaneFeatur
         }
     });
     layersForTypeNetwork.push("layer-type-network-section-sideB")
-
-    //drawHoveredEffect(map);
 }
 
 
@@ -671,23 +663,6 @@ function drawHoveredEffect(map: Map, sections: SectionFeature[], lanes: LaneFeat
     });
     layersForCurrentNetwork.push("layer-type-hover-highlight-lanes")
     layersForFinishedNetwork.push("layer-type-hover-highlight-lanes")
-
-    // Lane dependent width
-    // map.addLayer({
-    //     id: 'highlight',
-    //     type: 'line',
-    //     source: 'src-sections',
-    //     layout: { 'line-cap': 'round' },
-    //     paint: {
-    //     'line-gap-width': ["case",
-    //             ["==", ['get', 'status'], "postponed"], ["*", 5, ['get', 'nb_lanes']],
-    //             ["*", 9, ['get', 'nb_lanes']]
-    //     ],
-    //     'line-width': laneWidth,
-    //     'line-color': ['case', ['boolean', ['feature-state', 'hover'], false], '#7c838f', '#FFFFFF'],
-    //     "line-opacity": ['case', ['boolean', ['feature-state', 'hover'], false], 0.9, 0.0],
-    //     }
-    // });
 }
 
 
