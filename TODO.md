@@ -1,5 +1,4 @@
 Court terme :
-- Nom des vélolignes sur les lignes
 - Découper ligne Marché du Lez
 - Chart typologie => rajouter la qualité
 - Légende "prévu" / "reporté" => mettre image ?

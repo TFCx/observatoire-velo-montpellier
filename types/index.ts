@@ -71,6 +71,7 @@ export type SectionFeature = {
   type: 'Feature';
   properties: {
     lines: string[];
+    displayedLinesName: string
     name: string;
     status: LaneStatus;
     quality: Quality;

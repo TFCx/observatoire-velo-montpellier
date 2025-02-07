@@ -33,6 +33,7 @@ const laneColor: ExpressionSpecification = ["to-color", ['get', 'color']]
 const leftmostOffset: ExpressionSpecification = ['+', ['-', 0, ["/", allLanesWidth, 2]], halfLaneWidth]
 const offsetLane: ExpressionSpecification = ['+', leftmostOffset, ['*', laneIndex, laneWidth]]
 const hoverWidth: ExpressionSpecification = ['+', sectionWidth, contourWidth * 2 + hoverExtension * 2]
+const sectionNames: ExpressionSpecification = ['get', 'displayedLinesName']
 
 // ----------------------------
 const laneTypeColorDict: { [key in LaneType] : string } = {
@@ -175,7 +176,7 @@ function changeLayer(map: Map, displayedLayer: DisplayedLayer) {
 
 import { upsertMapSource } from './utils';
 
-export { DisplayedLayer, setDisplayedLayer, drawCurrentNetwork, drawFinishedNetwork, drawQualityNetwork, drawTypeFamilyNetwork, drawTypeNetwork, changeLayer, drawHoveredEffect, addListnersForHovering };
+export { DisplayedLayer, setDisplayedLayer, drawCurrentNetwork, drawFinishedNetwork, drawQualityNetwork, drawTypeFamilyNetwork, drawTypeNetwork, changeLayer, drawLineNames, drawHoveredEffect, addListnersForHovering };
 
 let layersBase: string[] = []
 
@@ -663,6 +664,48 @@ function drawHoveredEffect(map: Map, sections: SectionFeature[], lanes: LaneFeat
     });
     layersForCurrentNetwork.push("layer-type-hover-highlight-lanes")
     layersForFinishedNetwork.push("layer-type-hover-highlight-lanes")
+}
+
+
+
+function drawLineNames(map: Map, sections: SectionFeature[]) {
+    let wasOnlyUpdatingSections = upsertMapSource(map, 'src-sections', sections)
+
+    let farZoom = 12
+    let middleZoom = 13
+    let closeZoom = 14
+
+    // ------------------------------------------------------------------------
+    // Nom des lignes
+    map.addLayer({
+        id: `layer-current-network-all-sections-names`,
+        type: 'symbol',
+        source: `all-sections`,
+        paint: {
+            'text-color': "#47034d",
+            'text-halo-color': "#FFF",
+            'text-halo-width': 3.5,
+            'text-opacity': [
+                'interpolate',
+                ['linear'],
+                ['zoom'],
+                farZoom, 0.0,
+                middleZoom, 0.50,
+                closeZoom, 0.75
+                ],
+        },
+        layout: {
+        'symbol-placement': 'line',
+        'text-field': sectionNames,
+        'text-font': ['Open Sans Bold'],
+        'text-size': 15
+        }
+    });
+    layersForCurrentNetwork.push("layer-current-network-all-sections-names")
+    layersForQualityNetwork.push("layer-current-network-all-sections-names")
+    layersForTypeFamilyNetwork.push("layer-current-network-all-sections-names")
+    layersForTypeNetwork.push("layer-current-network-all-sections-names")
+    layersForFinishedNetwork.push("layer-current-network-all-sections-names")
 }
 
 

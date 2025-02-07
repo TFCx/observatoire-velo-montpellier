@@ -230,6 +230,11 @@ function regroupIntoSections(features: LineStringFeature[]): SectionFeature[] {
       treatedId.push(s.properties.id)
     }
   }
+
+  for(let s of sections) {
+    s.properties.displayedLinesName = s.properties.lines.join('-')
+  }
+
   return sections
 }
 
