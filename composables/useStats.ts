@@ -243,24 +243,50 @@ function regroupIntoSections(features: LineStringFeature[]): SectionFeature[] {
 
     let sections = regroupIntoSections(lineStringFeatures)
 
-    const totalDistance = getDistance(lineStringFeatures);
 
-    function getPercent(distance: number) {
+    function getPercent(distance: number, totalDistance: number) {
       return Math.round((distance / totalDistance) * 100);
     }
 
+    // TODO gérer les deux côtés pour les aménagements hétérogènes
+    // TODO gérer les quality inconnus ou null ou undefined ?
+
+    sections = sections.filter(s => s.properties.typeFamily != LaneTypeFamily.Inconnu)
+    const totalDistance = getDistance(sections);
+
     const sectionsByType = groupBy<SectionFeature, LaneTypeFamily>(sections, section => section.properties.typeFamily);
+
+
     return Object.entries(sectionsByType)
-      .map(([type, features]) => {
-        const distance = getDistance(features);
-        const percent = getPercent(distance);
-        return {
-          name: laneTypeFamilyToDescription[type as LaneTypeFamily],
-          percent
-        };
+      .map(([type, sectionsOfFamily]) => {
+        console.debug("==========================")
+        console.debug("type = " + type)
+        let res = new Map()
+        if(type == "dédié" || type == "mixité-motorisés" || type == "mixité-piétons") {
+
+          const distance = getDistance(sectionsOfFamily);
+          const percent = getPercent(distance, totalDistance);
+          console.debug("distance = " + distance + " / totalDistance = " + totalDistance + " => percent = " + percent)
+          res.set("name", laneTypeFamilyToDescription[type as LaneTypeFamily]);
+          res.set("percent", percent);
+
+          const subsectionsByQuality = groupBy<SectionFeature, Quality>(sectionsOfFamily, sectionsOfFamily => sectionsOfFamily.properties.quality);
+          Object.entries(subsectionsByQuality)
+          .map(([quality, sectionsOfFamilyOfQuality]) => {
+            if(quality == "good" || quality == "fair" || quality == "bad") {
+              console.debug("quality = " + quality)
+              const subdistance = getDistance(sectionsOfFamilyOfQuality);
+              const subpercent = getPercent(subdistance, distance);
+              console.debug("subdistance = " + subdistance + " / distance = " + distance + " => subpercent = " + subpercent)
+              res.set(quality, subpercent * percent / 100)
+            }
+          })
+        }
+
+        return res
       })
-      .filter(stat => stat.percent > 0) // on ne veut pas afficher les types à 0% (arrondis)
-      .sort((a, b) => b.percent - a.percent); // plus grandes barres en haut, plus propre
+      .filter(stat => stat.get("percent") > 0) // on ne veut pas afficher les types à 0% (arrondis)
+      .sort((a, b) => b.get("percent") - a.get("percent")); // plus grandes barres en haut, plus propre
   }
 
   return {

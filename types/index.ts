@@ -35,7 +35,8 @@ export enum LaneStatus {
 export enum Quality {
   Bad = "bad",
   Fair = "fair",
-  Good = "good"
+  Good = "good",
+  Inconnu = "inconnu"
 }
 
 
