@@ -54,7 +54,7 @@ Vous pourriez constater que certains tronçons sont réellement en travaux, mais
 
 <!--
 ## Terminé ou Prévu ?
-Les tronçons considérés comme "terminés" sont tous les tronçons aménagés depuis 2020 dont on est certain qu’ils accueilleront une Voie Lyonnaise en 2026 ou ayant déjà fait l’objet d’une concertation qui mentionnait explicitement que l’aménagement cyclable sécurisé existant serait conservé en l’état.
+Les tronçons considérés comme "terminés" sont tous les tronçons suffisament sécurisés dont on est certain qu’ils accueilleront une Voie Lyonnaise en 2026 ou ayant déjà fait l’objet d’une concertation qui mentionnait explicitement que l’aménagement cyclable sécurisé existant serait conservé en l’état. Parmi ces anciens aménagements existants, on retient les pistes cyclables séparées, les voies bus élargies d'au moins 4m50 de large, les rues avec trafic inférieur à 1000 voitures par jour et par sens ainsi que les voies vertes. Pour ces dernières, le distinguo entre un "trottoir cyclable" conflictuel et un aménagement fonctionnel hors zone dense avec peu de piétons se fait via la notion de qualité. Un tronçon de qualité non satisfaisante devra être réaménagé à moyen-terme pour mettre fin aux conflits entre usagers. Seul l'aménagement circulable en vélo est considéré, et non le marquage et le jalonnement spécifique aux Voies Lyonnaises.
 
 **Exemples :**
 

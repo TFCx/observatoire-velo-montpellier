@@ -50,6 +50,11 @@ const socials = [
     icon: 'mdi:twitter'
   },
   {
+    name: 'Mastodon',
+    href: 'https://masto.bike/@lavilleavelo',
+    icon: 'mdi:mastodon'
+  },
+  {
     name: 'Facebook',
     href: 'https://www.facebook.com/VelociteMontpellier/',
     icon: 'mdi:facebook'
