@@ -40,6 +40,11 @@ const socials = [
     icon: 'mdi:github'
   },
   {
+    name: 'Bluesky',
+    href: 'https://bsky.app/profile/velocitemtp.bsky.social',
+    icon: 'fa6-brands:bluesky'
+  },
+  {
     name: 'Twitter',
     href: 'https://twitter.com/VelociteMtp',
     icon: 'mdi:twitter'
