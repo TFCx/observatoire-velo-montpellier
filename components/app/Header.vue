@@ -63,7 +63,7 @@
                       class="flex align-center space-x-2 text-base font-medium text-gray-500 hover:text-color-primary-600"
                       @click="close()"
                     >
-                      <span>Baromètre FUB</span>
+                      <span>Baromètre FUB 2021</span>
                       <div class="flex items-center">
                         <Icon name="mdi:launch" class="h-4 w-4" aria-hidden="true" />
                       </div>
