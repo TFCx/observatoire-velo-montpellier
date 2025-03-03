@@ -103,7 +103,7 @@ Projet de piste bidirectionnelle côté est. Cette section est commune avec la :
 Pas de projet en cours à la connaissance de Vélocité.
 ::
 
-### Avenue Georges Frêche
+### Mas de Rochet - Avenue Georges Frêche
 
 <span style="color:gold;font-weight:bold">À améliorer</span> Aménagement existant en pistes bilatérales étroites à niveau de trottoir, non conformes aux exigences d'une Véloligne.
 ::banner{type="unsecured"}

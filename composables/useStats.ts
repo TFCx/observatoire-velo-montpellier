@@ -1,5 +1,5 @@
 import { groupBy } from '../helpers/helpers';
-import { isLineStringFeature, type Feature, type Geojson, type LaneType, type LineStringFeature, type Quality } from '../types';
+import { isLineStringFeature, LaneStatus, LaneType, LaneTypeFamily, Quality, type Feature, type Geojson, type LineStringFeature, type SectionFeature } from '../types';
 
 export const useStats = () => {
   function getAllUniqLineStrings(voies: Geojson[]) {
@@ -90,13 +90,13 @@ export const useStats = () => {
 
   function getStats(voies: Geojson[]) {
     const features = getAllUniqLineStrings(voies);
-    const doneFeatures = features.filter(feature => feature.properties.status === 'done');
-    const wipFeatures = features.filter(feature => ['wip', 'tested'].includes(feature.properties.status));
+    const doneFeatures = features.filter(feature => feature.properties.status === LaneStatus.Done);
+    const wipFeatures = features.filter(feature => [LaneStatus.Wip, LaneStatus.Tested].includes(feature.properties.status));
     const plannedFeatures = features.filter(feature =>
-      ['planned', 'unknown', 'variante'].includes(feature.properties.status)
+      [LaneStatus.Planned, LaneStatus.Unknown, LaneStatus.Variante].includes(feature.properties.status)
     );
     const postponedFeatures = features.filter(feature =>
-      ['postponed', 'variante-postponed'].includes(feature.properties.status)
+      [LaneStatus.Postponed, LaneStatus.VariantePostponed].includes(feature.properties.status)
     );
 
     const totalDistance = getDistance(features);
@@ -115,76 +115,178 @@ export const useStats = () => {
         name: 'Avant mandat',
         distance: alreadyExistingDistance,
         percent: getPercent(alreadyExistingDistance),
-        class: 'text-velocite-dark-5 font-semibold'
+        class: 'text-stats-already-existing font-semibold'
       },
       done: {
         name: 'Réalisés',
         distance: doneDistance - alreadyExistingDistance,
         percent: getPercent(doneDistance) - getPercent(alreadyExistingDistance),
-        class: 'text-velocite-yellow-5 font-semibold'
+        class: 'text-stats-done font-semibold'
       },
       wip: {
         name: 'En travaux',
         distance: wipDistance,
         percent: getPercent(wipDistance),
-        class: 'text-velocite-brown-1 font-semibold'
+        class: 'text-stats-wip font-semibold'
       },
       planned: {
         name: "Prévus d'ici 2026",
         distance: plannedDistance,
         percent: getPercent(plannedDistance),
-        class: 'text-velocite-light-4 font-semibold'
+        class: 'text-stats-planned font-semibold'
       },
       postponed: {
         name: 'Après 2026',
         distance: postponedDistance,
         percent: getPercent(postponedDistance),
-        class: 'text-lvv-pink font-semibold'
+        class: 'text-stats-postponed font-semibold'
       }
     };
   }
 
-  const qualityNames: Record<Quality, string> = {
-    'bad': 'Non satisfaisant',
-    'fair': 'À améliorer',
-    'good': 'Satisfaisant',
+  const qualityToDescription: { [key in Quality] : string } = {
+    [Quality.Bad] : 'Non satisfaisant',
+    [Quality.Fair]: 'À améliorer',
+    [Quality.Good]: 'Satisfaisant',
   };
 
-  const typologyNames: Record<LaneType, string> = {
-    'bidirectionnelle': 'Piste bidirectionnelle',
-    'bilaterale': 'Piste bilatérale',
-    'voie-bus': 'Voie bus',
-    'voie-bus-elargie': 'Voie bus élargie',
-    'velorue': 'Vélorue',
-    'voie-verte': 'Voie verte',
-    'bandes-cyclables': 'Bandes cyclables',
-    'zone-de-rencontre': 'Zone de rencontre',
-    'chaucidou': 'Chaucidou',
-    'heterogene': 'Hétérogène',
-    'aucun': 'Aucun aménagement',
-    'inconnu': 'Inconnu',
-  };
+  const laneTypeToDescription: { [key in LaneType] : string } = {
+      [LaneType.Unidirectionnelle]: "Piste unidirectionnelle",
+      [LaneType.Bidirectionnelle]: "Piste bidirectionnelle",
+      [LaneType.Bilaterale]: "Piste bilatérale",
+      [LaneType.VoieBus]: "Voie bus",
+      [LaneType.VoieBusElargie]: "Voie bus élargie",
+      [LaneType.Velorue]: "Vélorue",
+      [LaneType.VoieVerte]: "Voie verte",
+      [LaneType.BandesCyclables]: "Bandes cyclables",
+      [LaneType.ZoneDeRencontre]: "Zone de rencontre",
+      [LaneType.AirePietonne]: "Aire piétonne",
+      [LaneType.Chaucidou]: "Chaucidou",
+      [LaneType.Aucun]: "Aucun aménagement",
+      [LaneType.Inconnu]: "Inconnu",
+  }
+
+  const laneTypeFamilyToDescription: { [key in LaneTypeFamily] : string } = {
+      [LaneTypeFamily.Dedie]: "Aménagements cyclables dédiés",
+      [LaneTypeFamily.MixiteMotorise]: "En mixité motorisée",
+      [LaneTypeFamily.MixitePietonne]: "En mixité piétonne",
+      [LaneTypeFamily.Inconnu]: "Inconnu",
+}
+
+function computeTypeFamily(type: LaneType): LaneTypeFamily {
+  if(type == LaneType.Bidirectionnelle || type == LaneType.Bilaterale || type == LaneType.Unidirectionnelle) {
+    return LaneTypeFamily.Dedie
+  } else if (type == LaneType.AirePietonne || type == LaneType.VoieVerte) {
+    return LaneTypeFamily.MixitePietonne
+  } else if (type == LaneType.BandesCyclables || type == LaneType.Chaucidou || type == LaneType.Velorue || type == LaneType.VoieBus || type == LaneType.VoieBusElargie || type == LaneType.ZoneDeRencontre || type == LaneType.Aucun) {
+    return LaneTypeFamily.MixiteMotorise
+  } else {
+    console.assert(type == LaneType.Inconnu)
+    //return LaneTypeFamily.Dedie
+    return LaneTypeFamily.Inconnu
+  }
+}
+
+function regroupIntoSections(features: LineStringFeature[]): SectionFeature[] {
+  let sections: SectionFeature[] = []
+  let sectionsWithDuplicates = []
+  for(let f of features) {
+    let newSection =
+    {
+      type: f.type,
+      properties:
+      {
+        id: f.properties.id,
+        lines: [f.properties.line],
+        name: f.properties.name,
+        quality: f.properties.quality,
+        qualityB: f.properties.qualityB,
+        status: f.properties.status,
+        type: f.properties.type,
+        typeB: f.properties.typeB,
+        typeFamily: computeTypeFamily(f.properties.type),
+        typeFamilyB: f.properties.typeB ? computeTypeFamily(f.properties.typeB) : computeTypeFamily(f.properties.type),
+        doneAt: f.properties.doneAt,
+      },
+      geometry: f.geometry
+    }
+    if(f.properties.id) {
+      for(let o of features) {
+        if(o != f && f.properties.id == o.properties.id) {
+          newSection.properties.lines.push(o.properties.line)
+        }
+      }
+    }
+    newSection.properties.lines.sort()
+    sectionsWithDuplicates.push(newSection)
+  }
+  let treatedId: string[] = []
+  for(let s of sectionsWithDuplicates) {
+    if(s.properties.id && treatedId.includes(s.properties.id)) {
+      continue
+    }
+    sections.push(s)
+    if(s.properties.id) {
+      treatedId.push(s.properties.id)
+    }
+  }
+
+  for(let s of sections) {
+    s.properties.displayedLinesName = s.properties.lines.join('-')
+  }
+
+  return sections
+}
 
   function getStatsByTypology(voies: Geojson[]) {
     const lineStringFeatures = getAllUniqLineStrings(voies);
-    const totalDistance = getDistance(lineStringFeatures);
 
-    function getPercent(distance: number) {
+    let sections = regroupIntoSections(lineStringFeatures)
+
+
+    function getPercent(distance: number, totalDistance: number) {
       return Math.round((distance / totalDistance) * 100);
     }
 
-    const featuresByType = groupBy<LineStringFeature, LaneType>(lineStringFeatures, feature => feature.properties.type);
-    return Object.entries(featuresByType)
-      .map(([type, features]) => {
-        const distance = getDistance(features);
-        const percent = getPercent(distance);
-        return {
-          name: typologyNames[type as LaneType],
-          percent
-        };
+    // TODO gérer les deux côtés pour les aménagements hétérogènes
+    // TODO gérer les quality inconnus ou null ou undefined ?
+
+    sections = sections.filter(s => s.properties.typeFamily != LaneTypeFamily.Inconnu)
+    const totalDistance = getDistance(sections);
+
+    const sectionsByType = groupBy<SectionFeature, LaneTypeFamily>(sections, section => section.properties.typeFamily);
+
+
+    return Object.entries(sectionsByType)
+      .map(([type, sectionsOfFamily]) => {
+        console.debug("==========================")
+        console.debug("type = " + type)
+        let res = new Map()
+        if(type == "dédié" || type == "mixité-motorisés" || type == "mixité-piétons") {
+
+          const distance = getDistance(sectionsOfFamily);
+          const percent = getPercent(distance, totalDistance);
+          console.debug("distance = " + distance + " / totalDistance = " + totalDistance + " => percent = " + percent)
+          res.set("name", laneTypeFamilyToDescription[type as LaneTypeFamily]);
+          res.set("percent", percent);
+
+          const subsectionsByQuality = groupBy<SectionFeature, Quality>(sectionsOfFamily, sectionsOfFamily => sectionsOfFamily.properties.quality);
+          Object.entries(subsectionsByQuality)
+          .map(([quality, sectionsOfFamilyOfQuality]) => {
+            if(quality == "good" || quality == "fair" || quality == "bad") {
+              console.debug("quality = " + quality)
+              const subdistance = getDistance(sectionsOfFamilyOfQuality);
+              const subpercent = getPercent(subdistance, distance);
+              console.debug("subdistance = " + subdistance + " / distance = " + distance + " => subpercent = " + subpercent)
+              res.set(quality, subpercent * percent / 100)
+            }
+          })
+        }
+
+        return res
       })
-      .filter(stat => stat.percent > 0) // on ne veut pas afficher les types à 0% (arrondis)
-      .sort((a, b) => b.percent - a.percent); // plus grandes barres en haut, plus propre
+      .filter(stat => stat.get("percent") > 0) // on ne veut pas afficher les types à 0% (arrondis)
+      .sort((a, b) => b.get("percent") - a.get("percent")); // plus grandes barres en haut, plus propre
   }
 
   return {
@@ -195,8 +297,8 @@ export const useStats = () => {
     getStatsByTypology,
     displayDistanceInKm,
     displayPercent,
-    typologyNames,
-    qualityNames
+    laneTypeToDescription,
+    qualityToDescription
   };
 };
 

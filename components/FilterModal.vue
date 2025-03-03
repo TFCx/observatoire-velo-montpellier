@@ -24,9 +24,9 @@
           <div
             v-for="(statusFilter, index) in statusFilters"
             :key="statusFilter.label"
-            class="px-2 py-1 border rounded-2xl text-sm cursor-pointer focus:outline-none ring-velocite-yellow-5 ring-2"
+            class="px-2 py-1 border rounded-2xl text-sm cursor-pointer focus:outline-none ring-color-primary-primary ring-2"
             :class="{
-              'bg-velocite-yellow-5 border-transparent text-white ring-offset-1 hover:bg-lvv-blue-500': statusFilter.isEnable,
+              'bg-color-primary-primary border-transparent text-white ring-offset-1 hover:bg-color-primary-500': statusFilter.isEnable,
               'bg-white border-gray-200 text-gray-900 hover:bg-gray-50': !statusFilter.isEnable
             }"
             @click="toogleStatusFilter(index)"
@@ -41,9 +41,9 @@
           <div
             v-for="(typeFilter, index) in typeFilters"
             :key="typeFilter.label"
-            class="px-2 py-1 border rounded-2xl text-sm cursor-pointer focus:outline-none ring-velocite-yellow-5 ring-2"
+            class="px-2 py-1 border rounded-2xl text-sm cursor-pointer focus:outline-none ring-color-primary-primary ring-2"
             :class="{
-              'bg-velocite-yellow-5 border-transparent text-white ring-offset-1 hover:bg-lvv-blue-500': typeFilter.isEnable,
+              'bg-color-primary-primary border-transparent text-white ring-offset-1 hover:bg-color-primary-500': typeFilter.isEnable,
               'bg-white border-gray-200 text-gray-900 hover:bg-gray-50': !typeFilter.isEnable
             }"
             @click="toogleTypeFilter(index)"
@@ -58,6 +58,7 @@
 
 <script setup lang="ts">
 import { Dialog, DialogPanel, DialogTitle } from '@headlessui/vue';
+import { LaneStatus, LaneType } from '~/types';
 
 const isOpen = ref(false);
 
@@ -73,25 +74,26 @@ defineExpose({
 });
 
 const statusFilters = ref([
-  { label: 'Terminé', isEnable: true, statuses: ['done'] },
-  { label: 'En travaux', isEnable: true, statuses: ['wip', 'tested'] },
-  { label: 'Prévu pour 2026', isEnable: true, statuses: ['planned', 'variante'] },
-  { label: 'Reporté', isEnable: true, statuses: ['postponed', 'variante-postponed'] },
-  { label: 'Inconnu', isEnable: true, statuses: ['unknown'] }
+  { label: 'Terminé', isEnable: true, statuses: [LaneStatus.Done] },
+  { label: 'En travaux', isEnable: true, statuses: [LaneStatus.Wip, LaneStatus.Tested] },
+  { label: 'Prévu pour 2026', isEnable: true, statuses: [LaneStatus.Planned, LaneStatus.Variante] },
+  { label: 'Reporté', isEnable: true, statuses: [LaneStatus.Postponed, LaneStatus.VariantePostponed] },
+  { label: 'Inconnu', isEnable: true, statuses: [LaneStatus.Unknown] }
 ]);
 
 const typeFilters = ref([
-  { label: 'Bidirectionnelle', isEnable: true, types: ['bidirectionnelle'] },
-  { label: 'Bilaterale', isEnable: true, types: ['bilaterale'] },
-  { label: 'Voie Bus', isEnable: true, types: ['voie-bus', 'voie-bus-elargie'] },
-  { label: 'Voie verte', isEnable: true, types: ['voie-verte'] },
-  { label: 'Vélorue', isEnable: true, types: ['velorue'] },
-  { label: 'Bandes cyclables', isEnable: true, types: ['bandes-cyclables'] },
-  { label: 'Zone de rencontre', isEnable: true, types: ['zone-de-rencontre'] },
-  { label: 'Chaucidou', isEnable: true, types: ['chaucidou'] },
-  { label: 'Hétérogène', isEnable: true, types: ['heterogene'] },
-  { label: 'Inconnu', isEnable: true, types: ['inconnu'] },
-  { label: 'Aucun aménagement', isEnable: true, types: ['aucun'] },
+  { label: 'Unidirectionnelle', isEnable: true, types: [LaneType.Unidirectionnelle] },
+  { label: 'Bidirectionnelle', isEnable: true, types: [LaneType.Bidirectionnelle] },
+  { label: 'Bilaterale', isEnable: true, types: [LaneType.Bilaterale] },
+  { label: 'Voie Bus', isEnable: true, types: [LaneType.VoieBus, LaneType.VoieBusElargie] },
+  { label: 'Voie verte', isEnable: true, types: [LaneType.VoieVerte] },
+  { label: 'Vélorue', isEnable: true, types: [LaneType.Velorue] },
+  { label: 'Bandes cyclables', isEnable: true, types: [LaneType.BandesCyclables] },
+  { label: 'Zone de rencontre', isEnable: true, types: [LaneType.ZoneDeRencontre] },
+  { label: 'Aire piétonne', isEnable: true, types: [LaneType.AirePietonne] },
+  { label: 'Chaucidou', isEnable: true, types: [LaneType.Chaucidou] },
+  { label: 'Inconnu', isEnable: true, types: [LaneType.Inconnu] },
+  { label: 'Aucun aménagement', isEnable: true, types: [LaneType.Aucun] },
 ]);
 
 function toogleStatusFilter(index: number) {

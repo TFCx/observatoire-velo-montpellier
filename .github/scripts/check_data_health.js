@@ -91,13 +91,13 @@ function checkGeoJsonDataHealth({ links }) {
               }
 
               // 3 - check if status is valid
-              const validStatus = ['done', 'wip', 'planned', 'tested', 'postponed', 'unknown', 'variante', 'variante-postponed'];
+              const validStatus = [LaneStatus.Planned, LaneStatus.Variante, LaneStatus.Done, LaneStatus.Postponed, LaneStatus.VariantePostponed, LaneStatus.Unknown, LaneStatus.Wip, LaneStatus.Tested];
               if (!validStatus.includes(properties.status)) {
                 console.error(`Invalid status '${properties.status}' in LineString properties of file: ${filePath}`);
                 process.exit(1);
               }
 
-              if (properties.status === 'done') {
+              if (properties.status === LaneStatus.Done) {
                 // 4.1 - Check if all done section have a doneAt property
                 if (!properties.hasOwnProperty('doneAt')) {
                   console.error(`Missing key 'doneAt' in VL ${properties.line}, tronçon: ${properties.name}`);
@@ -116,18 +116,7 @@ function checkGeoJsonDataHealth({ links }) {
 
               // 4.3 - Check if all sections have a type property
               const validTypes = [
-                'bidirectionnelle',
-                'bilaterale',
-                'voie-bus',
-                'voie-bus-elargie',
-                'velorue',
-                'voie-verte',
-                'bandes-cyclables',
-                'zone-de-rencontre',
-                'chaucidou',
-                'heterogene',
-                'inconnu',
-                'aucun',
+                LaneType.Unidirectionnelle, LaneType.Bidirectionnelle, LaneType.Bilaterale, LaneType.VoieBus, LaneType.VoieBusElargie, LaneType.Velorue, LaneType.VoieVerte, LaneType.BandesCyclables, LaneType.ZoneDeRencontre, LaneType.AirePietonne, LaneType.Chaucidou, LaneType.Aucun, LaneType.Inconnu,
               ];
               if (!validTypes.includes(properties.type)) {
                 console.error(`Invalid type '${properties.type}' in LineString properties of file: ${filePath}`);

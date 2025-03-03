@@ -24,9 +24,10 @@ import BikeInfraControl from '@/maplibre/BikeInfraControl';
 import LayerControl from '@/maplibre/LayerControl';
 import FullscreenControl from '@/maplibre/FullscreenControl';
 import ShrinkControl from '@/maplibre/ShrinkControl';
-import { isLineStringFeature, isPolygonFeature, type Feature, type LaneStatus, type LaneType, type PolygonFeature } from '~/types';
+import { isLineStringFeature, isPolygonFeature, isSectionFeature, LaneStatus, type Feature, LaneType, LaneTypeFamily, type LineStringFeature, type PolygonFeature, type SectionFeature } from '~/types';
 import config from '~/config.json';
 import { setDisplayedLayer } from '~/composables/useMap'
+import { sortByLine } from '~/composables//map/utils';
 
 // const config = useRuntimeConfig();
 // const maptilerKey = config.public.maptilerKey;
@@ -35,7 +36,8 @@ const defaultOptions = {
   logo: true,
   limits: true,
   bikeInfra: false,
-  filter: true,
+  displayLayerType: false,
+  filter: false,
   geolocation: false,
   fullscreen: false,
   onFullscreenControlClick: () => { },
@@ -62,8 +64,9 @@ const {
   handleMapClick
 } = useMap();
 
-const statuses = ref(['planned', 'variante', 'done', 'postponed', 'variante-postponed', 'unknown', 'wip', 'tested']);
-const types = ref(['bidirectionnelle', 'bilaterale', 'voie-bus', 'voie-bus-elargie', 'velorue', 'voie-verte', 'bandes-cyclables', 'zone-de-rencontre', 'chaucidou', 'heterogene', 'aucun', 'inconnu']);
+const statuses = ref([LaneStatus.Planned, LaneStatus.Variante, LaneStatus.Done, LaneStatus.Postponed, LaneStatus.VariantePostponed, LaneStatus.Unknown, LaneStatus.Wip, LaneStatus.Tested]);
+const types = ref([LaneType.Unidirectionnelle, LaneType.Bidirectionnelle, LaneType.Bilaterale, LaneType.VoieBus, LaneType.VoieBusElargie, LaneType.Velorue, LaneType.VoieVerte, LaneType.BandesCyclables, LaneType.ZoneDeRencontre, LaneType.AirePietonne, LaneType.Chaucidou, LaneType.Aucun, LaneType.Inconnu]);
+const families = ref([LaneTypeFamily.Dedie, LaneTypeFamily.MixiteMotorise, LaneTypeFamily.MixitePietonne])
 const displayLimits = ref(true);
 const features = computed(() => {
   let activeLineFeatures = (props.features ?? []).filter(feature => {
@@ -74,26 +77,29 @@ const features = computed(() => {
     return true;
   });
   let activeLimitsFeatures = (props.features ?? []).filter(feature => displayLimits.value && isPolygonFeature(feature))
-  console.debug(activeLimitsFeatures.length)
   return activeLineFeatures.concat(activeLimitsFeatures)
 });
 
-
-function refreshFilters({ visibleStatuses, visibleTypes }: { visibleStatuses: LaneStatus[]; visibleTypes: LaneType[] }) {
+function refreshFilters({ visibleStatuses, visibleTypes, visibleTypesFamily }: { visibleStatuses: LaneStatus[]; visibleTypes: LaneType[], visibleTypesFamily: LaneTypeFamily[] }) {
   statuses.value = visibleStatuses;
   types.value = visibleTypes;
+  families.value = visibleTypesFamily;
 }
 
 function convertIntoDisplayedLayerEnum(s: string) {
-  if(s === "network") {
-    return DisplayedLayer.Network
+  if(s === "progress") {
+    return DisplayedLayer.Progress
+  } else if (s === "finalizedProject") {
+    return DisplayedLayer.FinalizedProject
   } else if (s === "quality") {
     return DisplayedLayer.Quality
+  } else if (s === "typeFamily") {
+    return DisplayedLayer.TypeFamily
   } else if (s === "type") {
     return DisplayedLayer.Type
   }
   console.assert(s + " couldn't be convert into a DisplayedLayer enum")
-  return DisplayedLayer.Network
+  return DisplayedLayer.Progress
 }
 
 onMounted(() => {
@@ -107,6 +113,7 @@ onMounted(() => {
   });
 
   const layerControl = new LayerControl(
+    options.displayLayerType,
     () => {
       if (legendModalComponent.value) {
         (legendModalComponent.value as any).toggleLegend();
@@ -177,7 +184,11 @@ onMounted(() => {
 
   map.on('load', async() => {
     await loadImages({ map });
-    plotFeatures({ map, updated_features: features.value });
+
+    let lineStringFeatures = features.value.filter(isLineStringFeature).sort(sortByLine);
+    let sections = regroupIntoSections(lineStringFeatures)
+
+    plotFeatures({ map, updated_sections: sections, updated_features: features.value });
     const tailwindMdBreakpoint = 768;
     if (window.innerWidth > tailwindMdBreakpoint) {
       fitBounds({ map, features: features.value });
@@ -187,21 +198,98 @@ onMounted(() => {
   watch(
     features,
     newFeatures => {
-      plotFeatures({ map, updated_features: newFeatures });
+
+      let lineStringFeatures = newFeatures.filter(isLineStringFeature).sort(sortByLine);
+      let sections = regroupIntoSections(lineStringFeatures)
+
+      plotFeatures({ map, updated_sections: sections, updated_features: newFeatures });
     }
   );
 
   watch(
     () => props.features,
     newFeatures => {
-      plotFeatures({ map, updated_features: newFeatures });
+
+      let lineStringFeatures = newFeatures.filter(isLineStringFeature).sort(sortByLine);
+      let sections = regroupIntoSections(lineStringFeatures)
+
+      plotFeatures({ map, updated_sections: sections, updated_features: newFeatures });
     }
   );
 
 
   map.on('click', clickEvent => {
-    handleMapClick({ map, features: features.value, clickEvent });
+
+    let lineStringFeatures = features.value.filter(isLineStringFeature).sort(sortByLine);
+    let sections = regroupIntoSections(lineStringFeatures)
+
+    handleMapClick({ map, sections: sections, features: features.value, clickEvent });
   });
+
+  function computeTypeFamily(type: LaneType): LaneTypeFamily {
+    if(type == LaneType.Bidirectionnelle || type == LaneType.Bilaterale || type == LaneType.Unidirectionnelle) {
+      return LaneTypeFamily.Dedie
+    } else if (type == LaneType.AirePietonne || type == LaneType.VoieVerte) {
+      return LaneTypeFamily.MixitePietonne
+    } else if (type == LaneType.BandesCyclables || type == LaneType.Chaucidou || type == LaneType.Velorue || type == LaneType.VoieBus || type == LaneType.VoieBusElargie || type == LaneType.ZoneDeRencontre || type == LaneType.Aucun) {
+      return LaneTypeFamily.MixiteMotorise
+    } else {
+      console.assert(type == LaneType.Inconnu)
+      return LaneTypeFamily.Dedie
+      //return LaneTypeFamily.Inconnu
+    }
+  }
+
+  function regroupIntoSections(features: LineStringFeature[]): SectionFeature[] {
+    let sections: SectionFeature[] = []
+    let sectionsWithDuplicates = []
+    for(let f of features) {
+      let newSection =
+      {
+        type: f.type,
+        properties:
+        {
+          id: f.properties.id,
+          lines: [f.properties.line],
+          name: f.properties.name,
+          quality: f.properties.quality,
+          qualityB: f.properties.qualityB,
+          status: f.properties.status,
+          type: f.properties.type,
+          typeB: f.properties.typeB,
+          typeFamily: computeTypeFamily(f.properties.type),
+          typeFamilyB: f.properties.typeB ? computeTypeFamily(f.properties.typeB) : computeTypeFamily(f.properties.type),
+          doneAt: f.properties.doneAt,
+        },
+        geometry: f.geometry
+      }
+      if(f.properties.id) {
+        for(let o of features) {
+          if(o != f && f.properties.id == o.properties.id) {
+            newSection.properties.lines.push(o.properties.line)
+          }
+        }
+      }
+      newSection.properties.lines.sort()
+      sectionsWithDuplicates.push(newSection)
+    }
+    let treatedId: string[] = []
+    for(let s of sectionsWithDuplicates) {
+      if(s.properties.id && treatedId.includes(s.properties.id)) {
+        continue
+      }
+      sections.push(s)
+      if(s.properties.id) {
+        treatedId.push(s.properties.id)
+      }
+    }
+
+    for(let s of sections) {
+      s.properties.displayedLinesName = "(" + s.properties.lines.join(',') + ")"
+    }
+
+    return sections
+  }
 });
 </script>
 

@@ -1,6 +1,6 @@
 <template>
   <NuxtLink class="rounded-lg shadow-md hover:shadow-lg overflow-hidden" :to="link">
-    <div class="px-4 py-2 bg-lvv-blue-600 text-white">
+    <div class="px-4 py-2 bg-color-primary-600 text-white">
       <div class="text-base font-medium">
         {{ arrondissement }}
       </div>
@@ -10,7 +10,7 @@
     </div>
     <table class="w-full bg-white">
       <thead>
-        <tr class="bg-lvv-blue-100">
+        <tr class="bg-color-primary-100">
           <th class="w-1/6 italic font-normal">
             {{ formatRecordMonth(lastRecord) }}
           </th>
@@ -20,7 +20,7 @@
           <th class="w-1/4">
             {{ formatRecordYear(lastRecord) }}
           </th>
-          <th class="w-1/4 italic font-normal border-l-2 border-lvv-blue-600">
+          <th class="w-1/4 italic font-normal border-l-2 border-color-primary-600">
             évolution
           </th>
         </tr>
@@ -40,10 +40,10 @@
           <!-- <td class="text-center p-1">
             <div class="flex items-center justify-center">
               <span>{{ lastRecord.value }}</span>
-              <Icon v-if="isLastRecordMax(counter)" name="iconoir:medal-1st-solid" class="text-lvv-pink text-xl" />
+              <Icon v-if="isLastRecordMax(counter)" name="iconoir:medal-1st-solid" class="text-color-secondary text-xl" />
             </div>
           </td> -->
-          <td class="text-center p-1 border-l-2 border-lvv-blue-600">
+          <td class="text-center p-1 border-l-2 border-color-primary-600">
             <CounterEvolution :count1="lastRecordPreviousYear?.veloCount" :count2="lastRecord?.veloCount" />
           </td>
         </tr>
@@ -59,7 +59,7 @@
           <td class="text-center p-1">
             {{ formatRecordCount(lastRecord?.voitureCount) }}
           </td>
-          <td class="text-center p-1 border-l-2 border-lvv-blue-600">
+          <td class="text-center p-1 border-l-2 border-color-primary-600">
             <CounterEvolution :count1="lastRecordPreviousYear?.voitureCount" :count2="lastRecord?.voitureCount" />
           </td>
         </tr>

@@ -1,20 +1,44 @@
-export type LaneType =
-| 'bidirectionnelle'
-| 'bilaterale'
-| 'voie-bus'
-| 'voie-bus-elargie'
-| 'velorue'
-| 'voie-verte'
-| 'bandes-cyclables'
-| 'zone-de-rencontre'
-| 'chaucidou'
-| 'heterogene'
-| 'aucun'
-| 'inconnu';
+export enum LaneType {
+  Unidirectionnelle = "unidirectionnelle",
+  Bidirectionnelle = "bidirectionnelle",
+  Bilaterale = "bilaterale",
+  VoieBus = "voie-bus",
+  VoieBusElargie = "voie-bus-elargie",
+  Velorue = "velorue",
+  VoieVerte = "voie-verte",
+  BandesCyclables = "bandes-cyclables",
+  ZoneDeRencontre = "zone-de-rencontre",
+  AirePietonne = "aire-pietonne",
+  Chaucidou = "chaucidou",
+  Aucun = "aucun",
+  Inconnu = "inconnu"
+}
 
-export type LaneStatus = 'done' | 'wip' | 'planned' | 'tested' | 'postponed' | 'unknown' | 'variante' | 'variante-postponed';
+export enum LaneTypeFamily {
+  Dedie = "dédié",
+  MixiteMotorise = "mixité-motorisés",
+  MixitePietonne = "mixité-piétons",
+  Inconnu = "inconnu"
+}
 
-export type Quality = 'bad' | 'fair' | 'good';
+export enum LaneStatus {
+  Done = "done",
+  Wip = "wip",
+  Planned = "planned",
+  Tested = "tested",
+  Postponed = "postponed",
+  Unknown = "unknown",
+  Variante = "variante",
+  VariantePostponed = "variante-postponed",
+}
+
+export enum Quality {
+  Bad = "bad",
+  Fair = "fair",
+  Good = "good",
+  Inconnu = "inconnu"
+}
+
 
 export type PolygonFeature = {
   type: 'Feature';
@@ -32,7 +56,9 @@ export type LineStringFeature = {
     name: string;
     status: LaneStatus;
     quality: Quality;
+    qualityB?: Quality;
     type: LaneType;
+    typeB?: LaneType;
     doneAt?: string;
     link?: string;
   };
@@ -42,7 +68,30 @@ export type LineStringFeature = {
   };
 };
 
-export type DisplayedLane = LineStringFeature & { properties: { color: string, lane_index: number, nb_lanes: number } };
+export type SectionFeature = {
+  type: 'Feature';
+  properties: {
+    lines: string[];
+    displayedLinesName: string
+    name: string;
+    status: LaneStatus;
+    quality: Quality;
+    qualityB?: Quality;
+    type: LaneType;
+    typeB?: LaneType;
+    typeFamily: LaneTypeFamily;
+    typeFamilyB: LaneTypeFamily;
+    doneAt?: string;
+  };
+  geometry: {
+    type: 'LineString';
+    coordinates: [number, number][];
+  };
+};
+
+export type MultiColoredLineStringFeature = LineStringFeature & { properties: { colors: string[] } };
+//export type SectionFeature = LineStringFeature & { properties: { colors: string[] } };
+export type LaneFeature = LineStringFeature & { properties: { color: string, lane_index: number, nb_lanes: number } };
 
 export type PerspectiveFeature = {
   type: 'Feature';
@@ -110,7 +159,7 @@ export type DangerFeature = {
 
 type PointFeature = PerspectiveFeature | CompteurFeature | PumpFeature | DangerFeature;
 
-export type Feature = LineStringFeature | PointFeature | DisplayedLane | PolygonFeature;
+export type Feature = SectionFeature | LineStringFeature | PointFeature | LaneFeature | PolygonFeature;
 
 export type Geojson = {
   type: string;
@@ -121,6 +170,10 @@ export type Geojson = {
  * type helpers
  */
 export function isLineStringFeature(feature: Feature): feature is LineStringFeature {
+  return feature.geometry.type === 'LineString';
+}
+
+export function isSectionFeature(feature: Feature): feature is SectionFeature {
   return feature.geometry.type === 'LineString';
 }
 

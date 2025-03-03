@@ -51,7 +51,7 @@
         </div>
         <div>
           <div class="text-right">
-            {{ typologyNames[feature.properties.type] ?? 'ERREUR' }}
+            {{ laneTypeToDescription[feature.properties.type] ?? 'ERREUR' }}
           </div>
         </div>
       </div>
@@ -61,12 +61,12 @@
         </div>
         <div>
           <div class="italic text-right">
-            {{ qualityNames[feature.properties.quality] }}
+            {{ qualityToDescription[feature.properties.quality] }}
           </div>
         </div>
       </div>
     </div>
-    <div class="bg-velocite-yellow-5 flex justify-center">
+    <div class="bg-color-primary-primary flex justify-center">
       <a class="p-1 text-white text-base italic hover:underline" :href="getSectionDetailsUrl(feature.properties)" target="_blank">
         voir le détail <Icon name="mdi:link-variant" class="h-4 w-4 text-white" />
       </a>
@@ -75,15 +75,15 @@
 </template>
 
 <script setup lang="ts">
-import type { LineStringFeature } from '~/types';
+import type { LineStringFeature, SectionFeature } from '~/types';
 
 const { getLineColor } = useColors();
 const { getRevName } = useConfig();
-const { getDistance, typologyNames, qualityNames } = useStats();
+const { getDistance, laneTypeToDescription, qualityToDescription } = useStats();
 const { getVoieCyclablePath } = useUrl();
 
 const { feature, lines } = defineProps<{
-  feature: LineStringFeature;
+  feature: SectionFeature;
   lines: number[];
 }>();
 
@@ -91,11 +91,11 @@ const title = computed(() => {
   return lines.length > 1 ? getRevName() : getRevName('singular');
 });
 
-function getSectionDetailsUrl(properties: LineStringFeature['properties']): string {
-  if (properties.link) {
-    return properties.link;
-  }
-  return getVoieCyclablePath(properties.line);
+function getSectionDetailsUrl(properties: SectionFeature['properties']): string {
+  // if (properties.link) {
+  //   return properties.link;
+  // }
+  return getVoieCyclablePath(properties.lines[0]);
 }
 
 function getDoneAtText(doneAt: string): string {
@@ -108,29 +108,29 @@ function getDoneAtText(doneAt: string): string {
   return `le ${doneAt}`;
 }
 
-function getStatus(properties: LineStringFeature['properties']): { label: string, class: string; date?: string } {
+function getStatus(properties: SectionFeature['properties']): { label: string, class: string; date?: string } {
   const statusMapping = {
     done: {
       label: 'terminé',
       date: properties.doneAt && getDoneAtText(properties.doneAt),
-      class: 'text-white bg-velocite-yellow-5 rounded-xl px-2 w-fit'
+      class: 'text-white bg-color-primary-primary rounded-xl px-2 w-fit'
     },
     wip: {
       label: 'en travaux',
-      class: 'text-velocite-yellow-5 rounded-xl px-2 border border-dashed border-velocite-yellow-5'
+      class: 'text-color-primary-primary rounded-xl px-2 border border-dashed border-color-primary-primary'
     },
     planned: {
       label: 'prévu',
-      class: 'text-velocite-yellow-5 rounded-xl px-2 border border-velocite-yellow-5'
+      class: 'text-color-primary-primary rounded-xl px-2 border border-color-primary-primary'
     },
     tested: {
       label: 'en test',
-      class: 'text-lvv-blue-600 rounded-xl px-2 border border-dashed border-lvv-blue-600'
+      class: 'text-color-primary-600 rounded-xl px-2 border border-dashed border-color-primary-600'
     },
     postponed: {
       label: 'reporté',
       date: 'après 2026',
-      class: 'text-white bg-lvv-pink rounded-xl px-2'
+      class: 'text-white bg-color-secondary rounded-xl px-2'
     },
     variante: {
       label: 'variante',
@@ -139,7 +139,7 @@ function getStatus(properties: LineStringFeature['properties']): { label: string
     'variante-postponed': {
       label: 'variante reportée',
       date: 'après 2026',
-      class: 'text-white bg-lvv-pink rounded-xl px-2'
+      class: 'text-white bg-color-secondary rounded-xl px-2'
     },
     unknown: {
       label: 'à définir',

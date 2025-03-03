@@ -4,7 +4,7 @@
       <Map :features="features" :options="{ logo: false }" class="flex-1" />
     </ClientOnly>
     <div>
-      <div class="py-2 px-5 md:px-8 text-white bg-velocite-yellow-5 font-semibold text-base">
+      <div class="py-2 px-5 md:px-8 text-white bg-color-primary-primary font-semibold text-base">
         {{ doneDistance }} km de {{ getRevName() }} réalisés
       </div>
       <div class="py-5 px-5 md:px-8 grid grid-cols-3 gap-3 sm:grid-cols-6">
@@ -16,7 +16,7 @@
           <div
             class="border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium uppercase sm:flex-1 cursor-pointer focus:outline-none"
             :class="{
-              'bg-velocite-yellow-5 border-transparent text-white hover:bg-lvv-blue-500': year.isChecked,
+              'bg-color-primary-primary border-transparent text-white hover:bg-color-primary-500': year.isChecked,
               'bg-white border-gray-200 text-gray-900 hover:bg-gray-50': !year.isChecked
             }"
           >
@@ -29,6 +29,8 @@
 </template>
 
 <script setup>
+import { LaneStatus } from '~/types';
+
 const { getAllUniqLineStrings, getDistance } = useStats();
 const { getRevName } = useConfig();
 
@@ -54,7 +56,7 @@ const { data: voies } = await useAsyncData(() => {
 const features = computed(() => {
   return voies.value.map(voie => voie.features)
     .flat()
-    .filter(feature => feature.properties.status === 'done')
+    .filter(feature => feature.properties.status === LaneStatus.Done)
     .filter(feature => {
       if (!feature.properties.doneAt) { return false; }
       const selectedYear = years.value.filter(year => year.isChecked);
