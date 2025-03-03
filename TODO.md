@@ -7,7 +7,6 @@ Court terme :
 - Vérifier le code des upsert
 - Factoriser le code des displayLayer
 - Update news
-- MAJ baromètre
 - Vérifier l'avancement
 - Vérifier la qualité
 - Check la console / bugs
@@ -28,6 +27,7 @@ Moyen terme :
 - Autres infos vélo (rue écoles, 30kmh, parking, ...)
 - Lib : pinia a l'air cool (utilisé par Marseille)
 - Améliorer l'identité graphique
+- MAJ baromètre
 
 Long terme :
 - Intégration topographie
