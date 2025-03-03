@@ -30,7 +30,8 @@ const { getAssoName } = useConfig();
 
 const links = [
   { name: 'Mentions légales', path: '/mentions-legales' },
-  { name: 'Historique', path: '/historique' }
+  { name: 'Historique', path: '/historique' },
+  { name: 'Sites partenaires', path: '/sites-partenaires' }
 ];
 
 const socials = [
@@ -40,9 +41,19 @@ const socials = [
     icon: 'mdi:github'
   },
   {
+    name: 'Bluesky',
+    href: 'https://bsky.app/profile/velocitemtp.bsky.social',
+    icon: 'fa6-brands:bluesky'
+  },
+  {
     name: 'Twitter',
     href: 'https://twitter.com/VelociteMtp',
     icon: 'mdi:twitter'
+  },
+  {
+    name: 'Mastodon',
+    href: 'https://masto.bike/@lavilleavelo',
+    icon: 'mdi:mastodon'
   },
   {
     name: 'Facebook',
