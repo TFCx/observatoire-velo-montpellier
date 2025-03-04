@@ -49,14 +49,14 @@ const laneTypeColorDict: { [key in LaneType] : string } = {
     [LaneType.AirePietonne]: "#ffc399",
     [LaneType.Chaucidou]: "#ffeab3",
     [LaneType.Aucun]: "#ff9999",
-    [LaneType.Inconnu]: "#dedede",
+    [LaneType.Inconnu]: "#ffffff",
 }
 
 const laneTypeFamilyColorDict: { [key in LaneTypeFamily] : string } = {
     [LaneTypeFamily.Dedie]: "#b3c6ff",
     [LaneTypeFamily.MixiteMotorise]: "#f797e7",
     [LaneTypeFamily.MixitePietonne]: "#e6ffb3",
-    [LaneTypeFamily.Inconnu]: "#dedede",
+    [LaneTypeFamily.Inconnu]: "#ffffff",
 }
 
 const qualityColorDict: { [key in Quality] : string } = {
@@ -74,14 +74,15 @@ function getColorOf(key: LaneType | LaneTypeFamily | Quality | LaneStatus): stri
         return qualityColorDict[key as Quality]
     } else if (Object.values(LaneStatus).includes(key as LaneStatus)) {
         console.assert(key == LaneStatus.Done)
-        return "#000000"
+        return "white"
     }
-    return "#000000"
+    return "#ff00ff"
 }
 
 function compSectionQualityColor(attribute: string): ExpressionSpecification {
     return [
         "case",
+            ["!=", ['get', 'status'], LaneStatus.Done], getColorOf(LaneType.Inconnu),
             ["==", ['get', attribute], Quality.Bad], getColorOf(Quality.Bad),
             ["==", ['get', attribute], Quality.Fair], getColorOf(Quality.Fair),
             ["==", ['get', attribute], Quality.Good], getColorOf(Quality.Good),
@@ -98,11 +99,12 @@ const sectionQualityColor2ndHalf: ExpressionSpecification = [
 function compSectionTypeFamilyColor(attribute: string): ExpressionSpecification {
     return [
         "case",
+            ["!=", ['get', 'status'], LaneStatus.Done], getColorOf(LaneType.Inconnu),
             ["==", ['get', attribute], LaneTypeFamily.Dedie], getColorOf(LaneTypeFamily.Dedie),
             ["==", ['get', attribute], LaneTypeFamily.MixiteMotorise], getColorOf(LaneTypeFamily.MixiteMotorise),
             ["==", ['get', attribute], LaneTypeFamily.MixitePietonne], getColorOf(LaneTypeFamily.MixitePietonne),
             ["==", ['get', 'status'], LaneStatus.Done], getColorOf(LaneStatus.Done),
-            ["==", ['get', attribute], LaneTypeFamily.Inconnu], getColorOf(LaneTypeFamily.Inconnu),
+             ["==", ['get', attribute], LaneTypeFamily.Inconnu], getColorOf(LaneTypeFamily.Inconnu),
             "white"
     ]
 }
@@ -115,6 +117,7 @@ const sectionTypeFamilyColor2ndHalf: ExpressionSpecification = [
 function compSectionTypeColor(attribute: string): ExpressionSpecification {
     return [
         "case",
+        ["!=", ['get', 'status'], LaneStatus.Done], getColorOf(LaneType.Inconnu),
         ["==", ['get', attribute], LaneType.Unidirectionnelle], getColorOf(LaneType.Unidirectionnelle),
         ["==", ['get', attribute], LaneType.Bidirectionnelle], getColorOf(LaneType.Bidirectionnelle),
         ["==", ['get', attribute], LaneType.Bilaterale], getColorOf(LaneType.Bilaterale),
@@ -129,6 +132,7 @@ function compSectionTypeColor(attribute: string): ExpressionSpecification {
         ["==", ['get', attribute], LaneType.Aucun], getColorOf(LaneType.Aucun),
         ["==", ['get', 'status'], LaneStatus.Done], getColorOf(LaneStatus.Done),
         ["==", ['get', 'status'], LaneStatus.Planned], "#ffffff",
+        ["==", ['get', 'status'], LaneStatus.Postponed], "#ffffff",
         ["==", ['get', attribute], LaneType.Inconnu], getColorOf(LaneType.Inconnu),
         "black"
     ]

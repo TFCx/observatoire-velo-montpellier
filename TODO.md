@@ -1,9 +1,7 @@
 Court terme :
-- Découper ligne Marché du Lez
 - Chart typologie => rajouter la qualité
 - Légende "prévu" / "reporté" => mettre image ?
 - Légende "futur réseau"
-- Ne pas afficher les lignes non construites dans les layers qualité & type OU BIEN dessiner avec le même style que l'avancement du projet
 - Vérifier le code des upsert
 - Factoriser le code des displayLayer
 - Update news
@@ -12,6 +10,7 @@ Court terme :
 - Check la console / bugs
 
 Moyen terme :
+- Voir si dessiner les layers qualités/type avec le status ? Voir interactions avec les PCs non REV
 - Renseigner un peu plus en détail Vélolignes C et D  (.md)
 - liens vers les autres observatoires
 - mettre des liens vers le site des compteurs, Vigilo, Ville.plus, le baromètre.. peut-être en bas en pied de page ?

@@ -235,8 +235,7 @@ onMounted(() => {
       return LaneTypeFamily.MixiteMotorise
     } else {
       console.assert(type == LaneType.Inconnu)
-      return LaneTypeFamily.Dedie
-      //return LaneTypeFamily.Inconnu
+      return LaneTypeFamily.Inconnu
     }
   }
 
