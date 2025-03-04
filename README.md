@@ -62,3 +62,8 @@ npm run preview
 ```
 
 Checkout the [deployment documentation](https://v3.nuxtjs.org/guide/deploy/presets) for more information.
+
+
+## Comment éditer les geojson ?
+
+Outil en ligne : https://play.placemark.io/
