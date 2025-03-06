@@ -1,3 +1,13 @@
+Très court terme
+ - ajouter le lien baromètre 2025
+ - changer le logo en "observatoire des vélolignes" jusqu'à une prochaine mise à jour
+ - mettre à jour les légendes : 
+   - avancement (figurés pas les mêmes que la carte)
+   - type => peut-on mettre 'catégorie principale' sur une seule ligne ? (pas majeur)
+   - futur réseau ; la légende est vide. Mettre un item "anneau vélo" en gris et un item multicolore "vélolignes 1 à D" ?
+   - mettre à jour le post de news : date et contenu (dire ce qui a changé dans l'observatoire avec cette mise à jour)
+   - supprimer le bouton 2021 dans la vue "évolution" s'il n'y a pas de trucs en 2021
+
 Court terme :
 - Chart typologie => rajouter la qualité
 - Légende "prévu" / "reporté" => mettre image ?
