@@ -4,7 +4,7 @@ lineName: Véloligne A
 lineNameShort: A
 description: Cette Véloligne est l'une des rocades cyclables qui reliera à terme Juvignac à Castelnau.
 trafic:
-cover: https://www.montpellier.fr/uploads/Image/98/IMF_FICHEEVT/GAB_MPL/43475_157_pers-DUBOUT.jpg
+cover: https://www.montpellier3m.fr/sites/default/files/vignettes/actualite/pers_dubout.jpg
 from: Juvignac
 to: Castelnau
 ---
@@ -34,7 +34,7 @@ Réalisation récente (été 2023) ambitieuse de par la place prise aux motoris�
 
 ::content-image
 ---
-imageUrl: https://www.montpellier.fr/uploads/Image/d4/IMF_FICHEEVT/GAB_MPL/46750_880_Carrefour-Liberte.png
+imageUrl: https://static.actu.fr/uploads/2022/10/43997-571-carrefour-960x473.png
 caption: Carrefour d'inspiration hollandaise
 credit: Ville de Montpellier
 ---
