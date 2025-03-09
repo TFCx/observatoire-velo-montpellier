@@ -119,6 +119,33 @@
             </div>
           </div>
 
+          <div v-if="layerDisplayed==3">
+            <div class="grid grid-cols-[64px_1fr] gap-x-2">
+              <div>Futur réseau</div>
+              <br>
+              <div class="my-auto rounded-md border-gray-500 border">
+                <div class="h-2 bg-gray-400" />
+              </div>
+              <div>
+                Anneau vélo
+              </div>
+
+              <div class="flex grow w-full">
+                <div class="h-2 bg-emerald-400 rounded-full border border-black border-r-0 rounded-r-none" style="width: 16%;"></div>
+                <div class="h-2 bg-teal-700 border border-black border-l-0 border-r-0 rounded-none" style="width: 16%;"></div>
+                <div class="h-2 bg-yellow-400 border border-black border-l-0 border-r-0 rounded-none" style="width: 16%;"></div>
+                <div class="h-2 bg-violet-400 border border-black border-l-0 border-r-0 rounded-none" style="width: 16%;"></div>
+                <div class="h-2 bg-yellow-600 border border-black border-l-0 border-r-0 rounded-none" style="width: 16%;"></div>
+                <div class="h-2 bg-red-300 rounded-full border border-black border-l-0 rounded-l-none" style="width: 17%;"></div>
+              </div>
+              <div>
+                Autres lignes
+              </div>
+
+
+            </div>
+          </div>
+
           <div v-if="layerDisplayed==4">
             <div class="grid grid-cols-[64px_1fr] gap-x-4">
               <div>Types principaux</div>
