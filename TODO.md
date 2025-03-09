@@ -9,8 +9,6 @@ Prochaine release :
   - supprimer le bouton 2021 dans la vue "évolution" s'il n'y a pas de trucs en 2021
   - Légende "prévu" / "reporté" => mettre image ?
   - Légende "futur réseau"
-- [UX] Typologie 2026 => Type & qualité des aménagements
-- [UX] Changer couleur du tableau de bord
 - [CONTENT] mettre à jour le post de news : date et contenu (dire ce qui a changé dans l'observatoire avec cette mise à jour)
 - [DATA] Vérifier les données :
   -  pb jonction ligne C et 4
@@ -25,6 +23,7 @@ Prochaine release :
 - [FEAT] Rajouter "à aménager" dans le tableau typologie
 
 Moyen terme :
+- [REFACTOR] MAJ les auto-scripts qui envoient des mails
 - [REFACTOR] Regrouper les fonctions "regroupIntoSections"
 - [REFACTOR] Pouvoir tester que les descriptions des multilignes sont factorisées sur chaque ligne ou au moins identiques ?
 - [FEAT] Ajouter layer "historique / évolution"

@@ -96,6 +96,11 @@
             >
               <PopoverPanel v-slot="{ close }" class="absolute left-1/2 z-10 mt-3 w-screen max-w-md -translate-x-1/2 transform px-2 sm:px-0">
                 <div class="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
+                  <div class="bg-color-secondary text-white h-10 text-center py-2">
+                    <NuxtLink to="/tableau-de-bord" class="hover:underline font-bold" @click="close()">
+                      Tableau de bord 📊
+                    </NuxtLink>
+                  </div>
                   <div class="relative grid grid-cols-2 sm:grid-cols-4 gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
                     <NuxtLink v-for="voie in voies" :key="voie.line" :to="getVoieCyclablePath(voie.line)" class="-m-3 flex items-start justify-center rounded-lg p-3 hover:bg-gray-50" @click="close()">
                       <div class="flex-shrink-0">
@@ -106,11 +111,6 @@
                           {{ voie.lineNameShort }}
                         </div>
                       </div>
-                    </NuxtLink>
-                  </div>
-                  <div class="bg-color-primary-600 text-white text-center py-1">
-                    <NuxtLink to="/tableau-de-bord" class="hover:underline" @click="close()">
-                      Tableau de bord
                     </NuxtLink>
                   </div>
                 </div>
