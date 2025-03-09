@@ -35,6 +35,7 @@ module.exports = {
         'stats-wip': '#665E7B',
         'stats-planned': '#CDAB8F',
         'stats-postponed': '#C84271',
+        'stats-todo': '#CCCCCC',
 
         'legend-quality-good': '#77dd77',
         'legend-quality-fair': '#fafc74',

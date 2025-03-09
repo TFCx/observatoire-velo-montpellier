@@ -20,7 +20,6 @@ Prochaine release :
 - [REFACTOR] Check la console / bugs (et les console.debug)
 - [FEAT] Ajouter le lien baromètre 2025
 - [FEAT] Mettre en qualité par défaut dans page par détail ?
-- [FEAT] Rajouter "à aménager" dans le tableau typologie
 
 Moyen terme :
 - [REFACTOR] MAJ les auto-scripts qui envoient des mails

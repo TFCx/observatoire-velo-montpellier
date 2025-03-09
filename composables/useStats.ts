@@ -253,13 +253,20 @@ function regroupIntoSections(features: LineStringFeature[]): SectionFeature[] {
     // TODO gérer les deux côtés pour les aménagements hétérogènes
     // TODO gérer les quality inconnus ou null ou undefined ?
 
+
+    let sections_todo = sections.filter(s => s.properties.status == LaneStatus.Planned || s.properties.status == LaneStatus.Postponed)
+    let distance_todo = getDistance(sections_todo);
+
+    sections = sections.filter(s => s.properties.status == LaneStatus.Done || s.properties.status == LaneStatus.Wip)
     sections = sections.filter(s => s.properties.typeFamily != LaneTypeFamily.Inconnu)
-    const totalDistance = getDistance(sections);
+    const totalDistance = getDistance(sections) + distance_todo;
+
+    let percent_todo = (distance_todo / totalDistance)
 
     const sectionsByType = groupBy<SectionFeature, LaneTypeFamily>(sections, section => section.properties.typeFamily);
 
 
-    return Object.entries(sectionsByType)
+    let doneAndWipStats = Object.entries(sectionsByType)
       .map(([type, sectionsOfFamily]) => {
         console.debug("==========================")
         console.debug("type = " + type)
@@ -289,6 +296,11 @@ function regroupIntoSections(features: LineStringFeature[]): SectionFeature[] {
       })
       .filter(stat => stat.get("percent") > 0) // on ne veut pas afficher les types à 0% (arrondis)
       .sort((a, b) => b.get("percent") - a.get("percent")); // plus grandes barres en haut, plus propre
+
+      return {
+        doneAndWip: doneAndWipStats,
+        todo: {name: "À réaliser", percent: Math.round(percent_todo * 100)}
+      }
   }
 
   return {
