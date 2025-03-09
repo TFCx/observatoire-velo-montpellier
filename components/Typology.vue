@@ -1,7 +1,7 @@
 <template>
   <div class="relative my-8 p-2 pt-6 border-color-primary-primary border-2 rounded-xl">
     <div class="absolute -top-4 left-0 right-0 w-fit rounded-md px-2 py-1 mx-auto text-center text-lg text-gray-900 text-white bg-color-primary-primary">
-      Typologie 2026
+      Type & Qualité des aménagements
     </div>
     <div class="grid grid-cols-[1fr_2px_4fr_auto] gap-x-4 text-color-primary-primary">
       <template v-for="stat in stats" :key="stat.name">

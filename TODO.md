@@ -9,7 +9,6 @@ Prochaine release :
   - supprimer le bouton 2021 dans la vue "évolution" s'il n'y a pas de trucs en 2021
   - Légende "prévu" / "reporté" => mettre image ?
   - Légende "futur réseau"
-- [UX] Typologie 2026 => Type & qualité des aménagements
 - [UX] Changer couleur du tableau de bord
 - [CONTENT] mettre à jour le post de news : date et contenu (dire ce qui a changé dans l'observatoire avec cette mise à jour)
 - [DATA] Vérifier les données :
