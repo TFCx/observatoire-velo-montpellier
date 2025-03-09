@@ -1,34 +1,42 @@
-Très court terme
- - ajouter le lien baromètre 2025
- - changer le logo en "observatoire des vélolignes" jusqu'à une prochaine mise à jour
- - mettre à jour les légendes : 
-   - avancement (figurés pas les mêmes que la carte)
-   - type => peut-on mettre 'catégorie principale' sur une seule ligne ? (pas majeur)
-   - futur réseau ; la légende est vide. Mettre un item "anneau vélo" en gris et un item multicolore "vélolignes 1 à D" ?
-   - mettre à jour le post de news : date et contenu (dire ce qui a changé dans l'observatoire avec cette mise à jour)
-   - supprimer le bouton 2021 dans la vue "évolution" s'il n'y a pas de trucs en 2021
-
-Court terme :
-- Chart typologie => rajouter la qualité
-- Légende "prévu" / "reporté" => mettre image ?
-- Légende "futur réseau"
-- Vérifier le code des upsert
-- Factoriser le code des displayLayer
-- Update news
-- Vérifier l'avancement
-- Vérifier la qualité
-- Check la console / bugs
+Prochaine release :
+- [BUG] Vérifier le code des upsert
+- [BUG] Liens avec ancres
+- [BUG] Vue évolution buggée
+- [BUG] lien mort dans page anneau (remplacement des images par assets ?) + lien mort véloligne A
+- [BUG] Bug comptage (voir VL5)
+- [UX] mettre à jour les légendes :
+  - avancement (figurés pas les mêmes que la carte)
+  - type => peut-on mettre 'catégorie principale' sur une seule ligne ? (pas majeur)
+  - futur réseau ; la légende est vide. Mettre un item "anneau vélo" en gris et un item multicolore "vélolignes 1 à D" ?
+  - supprimer le bouton 2021 dans la vue "évolution" s'il n'y a pas de trucs en 2021
+  - Légende "prévu" / "reporté" => mettre image ?
+  - Légende "futur réseau"
+- [UX] Typologie 2026 => Type & qualité des aménagements
+- [UX] Changer couleur du tableau de bord
+- [CONTENT] mettre à jour le post de news : date et contenu (dire ce qui a changé dans l'observatoire avec cette mise à jour)
+- [DATA] Vérifier les données :
+  -  pb jonction ligne C et 4
+  - aller vérifier sur le terrain (ou demander à notre puissant réseau) pour la véloligne 8 et les travaux L5 et les trucs entre les travaux L5
+  - pour les vélolignes 3, B, D il y a des travaux au niveau de Cambacères / Sud de France / prolongation L1
+  - Vérifier l'avancement
+  - Vérifier la qualité
+- [REFACTOR] Factoriser le code des displayLayer
+- [REFACTOR] Check la console / bugs (et les console.debug)
+- [FEAT] Ajouter le lien baromètre 2025
+- [FEAT] Mettre en qualité par défaut dans page par détail ?
+- [FEAT] Rajouter "à aménager" dans le tableau typologie
 
 Moyen terme :
-- Voir si dessiner les layers qualités/type avec le status ? Voir interactions avec les PCs non REV
-- Renseigner un peu plus en détail Vélolignes C et D  (.md)
-- liens vers les autres observatoires
-- mettre des liens vers le site des compteurs, Vigilo, Ville.plus, le baromètre.. peut-être en bas en pied de page ?
+- [FEAT] Ajouter layer "historique / évolution"
+- [FEAT] Déplacer le lien vers le "tableau de bord"
+- [FEAT] Voir si dessiner les layers qualités/type avec le status ? Voir interactions avec les PCs non REV
+- [CONTENT] Renseigner un peu plus en détail Vélolignes C et D  (.md)
+- [FEAT++]mettre des liens vers le site des compteurs, Vigilo, Ville.plus, le baromètre.. peut-être en bas en pied de page ?
 - résoudre le bug de :line-link{line=X}
-- Intégrer les carrefours
-- "Propositions de vélocité" (ex: une catégorie "petits tronçons à faire en priorité")
-- Ajout "envoyer une remarque" sur un tronçon. Comment le gérer ? Mail ?
-- Autres lignes majeures (BT, T, VL70, ...)
+- [FEAT++] Intégrer les carrefours
+- [FEAT++]"Propositions de vélocité" (ex: une catégorie "petits tronçons à faire en priorité")
+- [FEAT++] Ajout "envoyer une remarque" sur un tronçon. Comment le gérer ? Mail ?
+- [FEAT++] Autres lignes majeures (BT, T, VL70, ...)
 - Avoir des groupes (vélolignes, majeures, connexions... ) ?
 - Nouveau widget timeline
 - Nouveau popup de section
