@@ -23,6 +23,7 @@ Prochaine release :
 - [FEAT] Rajouter "à aménager" dans le tableau typologie
 
 Moyen terme :
+- [REFACTOR] MAJ les auto-scripts qui envoient des mails
 - [REFACTOR] Regrouper les fonctions "regroupIntoSections"
 - [REFACTOR] Pouvoir tester que les descriptions des multilignes sont factorisées sur chaque ligne ou au moins identiques ?
 - [FEAT] Ajouter layer "historique / évolution"
