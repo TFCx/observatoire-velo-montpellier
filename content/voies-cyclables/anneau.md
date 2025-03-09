@@ -104,3 +104,5 @@ En travaux.
 ### Quai du Verdanson
 
 <span style="color:gold;font-weight:bold">À améliorer</span> Aménagement ancien situé à proximité immédiate de trottoirs souvent trop étroits. Conflits piétons/vélo. Change de côté régulièrement en perdant la priorité. Récentes améliorations avec suppression des obstacles sur certaines sections.
+
+<span style="color:red;font-weight:bold">Non satisfaisant</span> Discontinuité de l'Anneau Vélo au niveau du marché Albert 1er.
