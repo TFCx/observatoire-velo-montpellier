@@ -206,6 +206,7 @@ function regroupIntoSections(features: LineStringFeature[]): SectionFeature[] {
         typeB: f.properties.typeB,
         typeFamily: computeTypeFamily(f.properties.type),
         typeFamilyB: f.properties.typeB ? computeTypeFamily(f.properties.typeB) : computeTypeFamily(f.properties.type),
+        links: [f.properties.link],
         doneAt: f.properties.doneAt,
       },
       geometry: f.geometry
@@ -214,6 +215,7 @@ function regroupIntoSections(features: LineStringFeature[]): SectionFeature[] {
       for(let o of features) {
         if(o != f && f.properties.id == o.properties.id) {
           newSection.properties.lines.push(o.properties.line)
+          newSection.properties.links.push(o.properties.link)
         }
       }
     }

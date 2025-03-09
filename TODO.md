@@ -27,6 +27,8 @@ Prochaine release :
 - [FEAT] Rajouter "à aménager" dans le tableau typologie
 
 Moyen terme :
+- [REFACTOR] Regrouper les fonctions "regroupIntoSections"
+- [REFACTOR] Pouvoir tester que les descriptions des multilignes sont factorisées sur chaque ligne ou au moins identiques ?
 - [FEAT] Ajouter layer "historique / évolution"
 - [FEAT] Déplacer le lien vers le "tableau de bord"
 - [FEAT] Voir si dessiner les layers qualités/type avec le status ? Voir interactions avec les PCs non REV

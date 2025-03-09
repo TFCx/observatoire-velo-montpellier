@@ -92,9 +92,9 @@ const title = computed(() => {
 });
 
 function getSectionDetailsUrl(properties: SectionFeature['properties']): string {
-  // if (properties.link) {
-  //   return properties.link;
-  // }
+  if (properties.links.length > 0) {
+    return properties.links[0];
+  }
   return getVoieCyclablePath(properties.lines[0]);
 }
 

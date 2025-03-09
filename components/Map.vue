@@ -259,6 +259,7 @@ onMounted(() => {
           typeFamily: computeTypeFamily(f.properties.type),
           typeFamilyB: f.properties.typeB ? computeTypeFamily(f.properties.typeB) : computeTypeFamily(f.properties.type),
           doneAt: f.properties.doneAt,
+          links: [f.properties.link],
         },
         geometry: f.geometry
       }
@@ -266,6 +267,7 @@ onMounted(() => {
         for(let o of features) {
           if(o != f && f.properties.id == o.properties.id) {
             newSection.properties.lines.push(o.properties.line)
+            newSection.properties.links.push(o.properties.link)
           }
         }
       }

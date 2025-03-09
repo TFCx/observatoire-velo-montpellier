@@ -82,6 +82,7 @@ export type SectionFeature = {
     typeFamily: LaneTypeFamily;
     typeFamilyB: LaneTypeFamily;
     doneAt?: string;
+    links: string[];
   };
   geometry: {
     type: 'LineString';
