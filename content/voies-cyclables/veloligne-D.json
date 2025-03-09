@@ -79,7 +79,6 @@
             "properties": {
                 "quality": "",
                 "status": "planned",
-                "typeFamily": "mixité-motorisés",
                 "type": "aucun",
                 "line": "D",
                 "doneAt": "",
@@ -93,7 +92,6 @@
             "properties": {
                 "quality": "fair",
                 "status": "planned",
-                "typeFamily": "dédié",
                 "type": "bidirectionnelle",
                 "line": "D",
                 "doneAt": "",

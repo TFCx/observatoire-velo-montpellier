@@ -8,7 +8,6 @@
                 "name": "Juvignac",
                 "doneAt": "",
                 "status": "postponed",
-                "typeFamily": "inconnu",
                 "type": "inconnu",
                 "line": "C",
                 "link": "/veloligne-C#juvignac"
@@ -22,7 +21,6 @@
                 "quality": "good",
                 "doneAt": "31\/03\/2022",
                 "status": "done",
-                "typeFamily": "dédié",
                 "type": "bidirectionnelle",
                 "line": "C",
                 "link": "/veloligne-C#st-georges-entr%C3%A9e-de-juvignac"
@@ -35,7 +33,6 @@
                 "name": "St Georges d'Orques ⇄ Saussan",
                 "doneAt": "",
                 "status": "postponed",
-                "typeFamily": "inconnu",
                 "type": "inconnu",
                 "line": "C",
                 "link": "/veloligne-C#saussan-pignan-st-georges"
@@ -49,7 +46,6 @@
                 "quality": null,
                 "doneAt": "",
                 "status": "wip",
-                "typeFamily": "inconnu",
                 "type": "inconnu",
                 "line": "C",
                 "link": "/veloligne-C#fabr%C3%A8gues-saussan"
@@ -63,7 +59,6 @@
                 "quality": null,
                 "doneAt": "",
                 "status": "postponed",
-                "typeFamily": "inconnu",
                 "type": "inconnu",
                 "line": "C",
                 "link": "/veloligne-C#villeneuve-fabr%C3%A8gues"
@@ -77,7 +72,6 @@
                 "quality": "",
                 "doneAt": "",
                 "status": "planned",
-                "typeFamily": "inconnu",
                 "type": "inconnu",
                 "line": "C",
                 "link": "/veloligne-C#villeneuve-fabr%C3%A8gues"
@@ -91,7 +85,6 @@
                 "quality": "bad",
                 "doneAt": "31\/12\/2019",
                 "status": "done",
-                "typeFamily": "dédié",
                 "type": "bilaterale",
                 "line": "C",
                 "link": "/veloligne-C#villeneuve-diligence-maison-darr%C3%AAt"
@@ -105,7 +98,6 @@
                 "quality": "fair",
                 "doneAt": "31\/12\/2019",
                 "status": "done",
-                "typeFamily": "dédié",
                 "type": "bilaterale",
                 "line": "C",
                 "link": "/veloligne-C#palavas-4-vents-villeneuve"
@@ -119,7 +111,6 @@
                 "quality": "fair",
                 "doneAt": "31\/12\/2019",
                 "status": "done",
-                "typeFamily": "dédié",
                 "type": "bidirectionnelle",
                 "line": "C",
                 "link": "/veloligne-C#palavas-4-vents-villeneuve"
@@ -172,7 +163,6 @@
                 "quality": "fair",
                 "doneAt": "31/12/2019",
                 "status": "done",
-                "typeFamily": "dédié",
                 "type": "bidirectionnelle",
                 "line": "C",
                 "link": "/veloligne-C#canon-palavas-4-canaux"

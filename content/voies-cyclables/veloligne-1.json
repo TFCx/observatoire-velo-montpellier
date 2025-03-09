@@ -9,7 +9,6 @@
                 "quality": "fair",
                 "doneAt": "31\/12\/2019",
                 "status": "done",
-                "typeFamily": "mixité-piétons",
                 "type": "bidirectionnelle",
                 "line": "1",
                 "link": "/veloligne-1#corum-castelnau"
@@ -23,7 +22,6 @@
                 "quality": "",
                 "doneAt": "",
                 "status": "postponed",
-                "typeFamily": "inconnu",
                 "type": "inconnu",
                 "line": "1",
                 "link": "/veloligne-1#traversée-de-castelnau"
@@ -37,7 +35,6 @@
                 "quality": "",
                 "doneAt": "",
                 "status": "planned",
-                "typeFamily": "inconnu",
                 "type": "inconnu",
                 "line": "1",
                 "id": "CheminDesAlouettes",
@@ -52,7 +49,6 @@
                 "quality": "good",
                 "doneAt": "31\/12\/2019",
                 "status": "done",
-                "typeFamily": "dédié",
                 "type": "bidirectionnelle",
                 "line": "1",
                 "link": "/veloligne-1#traversée-de-clapiers-et-jacou"
@@ -66,7 +62,6 @@
                 "quality": "fair",
                 "doneAt": "31\/12\/2019",
                 "status": "done",
-                "typeFamily": "mixité-motorisés",
                 "type": "aucun",
                 "line": "1",
                 "link": "/veloligne-1#traversée-de-clapiers-et-jacou"
@@ -80,7 +75,6 @@
                 "quality": "good",
                 "doneAt": "31\/12\/2019",
                 "status": "done",
-                "typeFamily": "dédié",
                 "type": "bidirectionnelle",
                 "line": "1",
                 "link": "/veloligne-1#traversée-de-clapiers-et-jacou"
@@ -94,7 +88,6 @@
                 "quality": "fair",
                 "doneAt": "31\/12\/2019",
                 "status": "done",
-                "typeFamily": "mixité-motorisés",
                 "type": "aucun",
                 "line": "1",
                 "link": "/veloligne-1#traversée-de-clapiers-et-jacou"
@@ -108,7 +101,6 @@
                 "quality": "good",
                 "doneAt": "31\/12\/2019",
                 "status": "done",
-                "typeFamily": "dédié",
                 "type": "bidirectionnelle",
                 "line": "1",
                 "link": "/veloligne-1#traversée-de-clapiers-et-jacou"
@@ -122,7 +114,6 @@
                 "quality": "",
                 "doneAt": "",
                 "status": "planned",
-                "typeFamily": "dédié",
                 "type": "bilaterale",
                 "line": "1",
                 "link": "/veloligne-1#place-charles-de-gaulle-clos-de-larmet"
@@ -136,7 +127,6 @@
                 "quality": "good",
                 "doneAt": "01\/01\/2024",
                 "status": "done",
-                "typeFamily": "mixité-piétons",
                 "type": "voie-verte",
                 "line": "1",
                 "link": "/veloligne-1#chemin-de-verchant"
@@ -150,7 +140,6 @@
                 "quality": "good",
                 "doneAt": "04\/04\/2022",
                 "status": "done",
-                "typeFamily": "mixité-piétons",
                 "type": "voie-verte",
                 "line": "1",
                 "link": "/veloligne-1#chemin-du-clos-de-larmet"
@@ -164,7 +153,6 @@
                 "quality": "",
                 "doneAt": "",
                 "status": "planned",
-                "typeFamily": "dédié",
                 "type": "bilaterale",
                 "line": "1",
                 "link": "/veloligne-1#sablassou-le-crès-pointes"
@@ -178,7 +166,6 @@
                 "quality": "",
                 "doneAt": "",
                 "status": "wip",
-                "typeFamily": "dédié",
                 "type": "bilaterale",
                 "line": "1",
                 "link": "/veloligne-1#le-crès-vendargues"
@@ -192,7 +179,6 @@
                 "quality": "",
                 "doneAt": "",
                 "status": "planned",
-                "typeFamily": "mixité-piétons",
                 "type": "voie-verte",
                 "line": "1",
                 "link": "/veloligne-1#le-crès-vendargues"
@@ -206,7 +192,6 @@
                 "quality": "",
                 "doneAt": "",
                 "status": "planned",
-                "typeFamily": "mixité-piétons",
                 "type": "voie-verte",
                 "line": "1",
                 "link": "/veloligne-1#véloligne-1b"
@@ -220,7 +205,6 @@
                 "quality": "",
                 "doneAt": "",
                 "status": "planned",
-                "typeFamily": "inconnu",
                 "type": "inconnu",
                 "line": "1",
                 "link": "/veloligne-1#véloligne-1b"
@@ -234,7 +218,6 @@
                 "quality": "good",
                 "doneAt": "31\/08\/2023",
                 "status": "done",
-                "typeFamily": "mixité-piétons",
                 "type": "voie-verte",
                 "line": "1",
                 "link": "/veloligne-1#véloligne-1b"
@@ -248,7 +231,6 @@
                 "quality": "good",
                 "doneAt": "31\/12\/2023",
                 "status": "done",
-                "typeFamily": "mixité-piétons",
                 "type": "voie-verte",
                 "line": "1",
                 "link": "/veloligne-1#véloligne-1b"
@@ -261,7 +243,6 @@
                 "name": "Vendargues Sud",
                 "doneAt": "",
                 "status": "postponed",
-                "typeFamily": "inconnu",
                 "type": "inconnu",
                 "line": "1",
                 "link": "/veloligne-1#véloligne-1c"
@@ -275,7 +256,6 @@
                 "quality": "fair",
                 "doneAt": "30\/05\/2022",
                 "status": "done",
-                "typeFamily": "dédié",
                 "type": "bilaterale",
                 "line": "1",
                 "link": "/veloligne-1#véloligne-1c"
@@ -289,7 +269,6 @@
                 "quality": "",
                 "doneAt": "",
                 "status": "planned",
-                "typeFamily": "inconnu",
                 "type": "inconnu",
                 "line": "1",
                 "link": "/veloligne-1#véloligne-1c"
@@ -303,7 +282,6 @@
                 "quality": "",
                 "doneAt": "",
                 "status": "planned",
-                "typeFamily": "inconnu",
                 "type": "inconnu",
                 "line": "1",
                 "link": "/veloligne-1#véloligne-1c"
@@ -316,7 +294,6 @@
                 "name": "Saint-Brès",
                 "doneAt": "",
                 "status": "postponed",
-                "typeFamily": "inconnu",
                 "type": "inconnu",
                 "line": "1",
                 "id": "GareBaillargues",
@@ -330,7 +307,6 @@
                 "name": "Saint-Brès 2",
                 "doneAt": "",
                 "status": "postponed",
-                "typeFamily": "inconnu",
                 "type": "inconnu",
                 "line": "1",
                 "link": "/veloligne-1#véloligne-1c"

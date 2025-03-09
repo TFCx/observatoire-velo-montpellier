@@ -9,7 +9,6 @@
                 "quality": "fair",
                 "doneAt": "31\/12\/2019",
                 "status": "done",
-                "typeFamily": "dédié",
                 "type": "bidirectionnelle",
                 "line": "8",
                 "link": "/veloligne-8#figuerolles-jusquà-lécole-maternelle-du-docteur-roux"
@@ -23,7 +22,6 @@
                 "quality": "",
                 "doneAt": "",
                 "status": "planned",
-                "typeFamily": "inconnu",
                 "type": "inconnu",
                 "line": "8",
                 "link": "/veloligne-8#de-figuerolles-à-la-rue-des-chasseurs"
@@ -37,7 +35,6 @@
                 "quality": "",
                 "doneAt": "",
                 "status": "planned",
-                "typeFamily": "inconnu",
                 "type": "inconnu",
                 "line": "8",
                 "link": "/veloligne-8#de-figuerolles-à-la-rue-des-chasseurs"
@@ -51,7 +48,6 @@
                 "quality": "",
                 "doneAt": "",
                 "status": "wip",
-                "typeFamily": "dédié",
                 "type": "bilaterale",
                 "line": "8",
                 "link": "/veloligne-8#de-la-rue-des-chasseurs-au-boulevard-paul-valéry"
@@ -65,7 +61,6 @@
                 "quality": "",
                 "doneAt": "",
                 "status": "planned",
-                "typeFamily": "inconnu",
                 "type": "inconnu",
                 "line": "8",
                 "link": "/veloligne-8#du-boulevard-paul-valéry-à-lavenue-de-vanières"
@@ -79,7 +74,6 @@
                 "quality": "bad",
                 "doneAt": "31\/12\/2019",
                 "status": "done",
-                "typeFamily": "dédié",
                 "type": "bilaterale",
                 "line": "8",
                 "link": "/veloligne-8#de-lavenue-de-vanières-au-rond-point-paul-fajon"
@@ -93,7 +87,6 @@
                 "quality": "",
                 "doneAt": "31\/12\/2019",
                 "status": "wip",
-                "typeFamily": "dédié",
                 "type": "bilaterale",
                 "line": "8",
                 "link": "/veloligne-8#du-rond-point-paul-fajon-au-rond-point-maurice-gennevaux"
@@ -107,7 +100,6 @@
                 "quality": "good",
                 "doneAt": "31\/12\/2019",
                 "status": "done",
-                "typeFamily": "mixité-piétons",
                 "type": "voie-verte",
                 "line": "8",
                 "link": "/veloligne-8#de-gennevaux-à-cournonsec"
@@ -121,7 +113,6 @@
                 "quality": "good",
                 "doneAt": "01\/06\/2022",
                 "status": "done",
-                "typeFamily": "mixité-piétons",
                 "type": "voie-verte",
                 "line": "8",
                 "link": "/veloligne-8#de-gennevaux-à-cournonsec"
@@ -135,7 +126,6 @@
                 "quality": "good",
                 "doneAt": "31\/12\/2019",
                 "status": "done",
-                "typeFamily": "mixité-piétons",
                 "type": "voie-verte",
                 "line": "8",
                 "link": "/veloligne-8#de-gennevaux-à-cournonsec"

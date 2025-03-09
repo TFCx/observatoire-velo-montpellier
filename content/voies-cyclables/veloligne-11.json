@@ -9,7 +9,6 @@
                 "quality": "",
                 "doneAt": "",
                 "status": "planned",
-                "typeFamily": "inconnu",
                 "type": "inconnu",
                 "line": "11",
                 "link": "/veloligne-11#rond-point-de-girac-rond-point-de-baillarguet"
@@ -23,7 +22,6 @@
                 "quality": "fair",
                 "doneAt": "31\/12\/2019",
                 "status": "done",
-                "typeFamily": "dédié",
                 "type": "bidirectionnelle",
                 "line": "11",
                 "link": "/veloligne-11#rond-point-de-baillarguet-prades-le-lez"

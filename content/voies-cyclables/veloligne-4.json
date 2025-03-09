@@ -8,7 +8,6 @@
         "quality": "",
         "doneAt": "",
         "status": "wip",
-        "typeFamily": "inconnu",
         "type": "inconnu",
         "line": "4",
         "link": "/veloligne-4#antigone-rond-point-christophe-colomb"
@@ -22,7 +21,6 @@
         "quality": "",
         "doneAt": "",
         "status": "planned",
-        "typeFamily": "inconnu",
         "type": "inconnu",
         "line": "4",
         "link": "/veloligne-4#rond-point-christophe-colomb-place-ernest-granier"
@@ -36,7 +34,6 @@
         "quality": "bad",
         "doneAt": "31/12/2019",
         "status": "done",
-        "typeFamily": "mixité-piétons",
         "type": "bilaterale",
         "line": "4",
         "link": "/veloligne-4#place-ernest-granier-marché-du-lez"
@@ -50,7 +47,6 @@
         "quality": "fair",
         "doneAt": "31/12/2019",
         "status": "done",
-        "typeFamily": "dédié",
         "type": "bilaterale",
         "line": "4",
         "link": "/veloligne-4#marché-du-lez-pérols-boulidou"
@@ -64,7 +60,6 @@
         "quality": "fair",
         "doneAt": "31/12/2019",
         "status": "done",
-        "typeFamily": "dédié",
         "type": "bidirectionnelle",
         "line": "4",
         "link": "/veloligne-4#marché-du-lez-pérols-boulidou"
@@ -78,7 +73,6 @@
         "quality": "bad",
         "doneAt": "31/12/2019",
         "status": "done",
-        "typeFamily": "dédié",
         "type": "bidirectionnelle",
         "line": "4",
         "link": "/veloligne-4#pérols-boulidou-carnon"
@@ -92,7 +86,6 @@
         "quality": "good",
         "doneAt": "01/01/2025",
         "status": "done",
-        "typeFamily": "dédié",
         "type": "bidirectionnelle",
         "line": "4",
         "link": "/veloligne-4#voie-verte-le-long-du-lez"
@@ -106,7 +99,6 @@
         "quality": "fair",
         "doneAt": "31/12/2019",
         "status": "done",
-        "typeFamily": "mixité-piétons",
         "type": "voie-verte",
         "line": "4",
         "link": "/veloligne-4#voie-verte-le-long-du-lez"
@@ -120,7 +112,6 @@
         "quality": "good",
         "doneAt": "31/12/2019",
         "status": "done",
-        "typeFamily": "mixité-piétons",
         "type": "voie-verte",
         "line": "4",
         "link": "/veloligne-4#fin-de-la-voie-verte-entre-les-cabanes-de-4-vents-et-palavas"
@@ -134,7 +125,6 @@
         "quality": "",
         "doneAt": "",
         "status": "planned",
-        "typeFamily": "inconnu",
         "type": "inconnu",
         "line": "4",
         "link": "/veloligne-4#desserte-de-maurin"
@@ -148,7 +138,6 @@
         "quality": "",
         "doneAt": "",
         "status": "planned",
-        "typeFamily": "inconnu",
         "type": "inconnu",
         "line": "4",
         "link": "/veloligne-4#desserte-de-laéroport"
@@ -162,7 +151,6 @@
         "quality": "bad",
         "doneAt": "31/12/2019",
         "status": "done",
-        "typeFamily": "dédié",
         "type": "bidirectionnelle",
         "line": "4",
         "link": "/veloligne-4#desserte-de-laéroport"

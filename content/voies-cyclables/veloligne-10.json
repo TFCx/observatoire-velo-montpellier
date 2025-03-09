@@ -9,7 +9,6 @@
                 "quality": "fair",
                 "doneAt": "31\/12\/2019",
                 "status": "done",
-                "typeFamily": "dédié",
                 "type": "bidirectionnelle",
                 "line": "10",
                 "link": "/veloligne-10#anneau-vélo-place-jules-rimet"
@@ -23,7 +22,6 @@
                 "quality": "good",
                 "doneAt": "01\/01\/2025",
                 "status": "done",
-                "typeFamily": "dédié",
                 "type": "bilaterale",
                 "line": "10",
                 "link": "/veloligne-10#flahault-entre-la-place-jules-rimet-et-la-voie-domitienne"
@@ -37,7 +35,6 @@
                 "quality": "",
                 "doneAt": "",
                 "status": "wip",
-                "typeFamily": "dédié",
                 "type": "bilaterale",
                 "line": "10",
                 "link": "/veloligne-10#flahault-entre-la-place-jules-rimet-et-la-voie-domitienne"
@@ -51,7 +48,6 @@
                 "quality": "",
                 "doneAt": "",
                 "status": "planned",
-                "typeFamily": "dédié",
                 "type": "bilaterale",
                 "line": "10",
                 "link": "/veloligne-10#voie-domitienne-lapeyronie"
@@ -65,7 +61,6 @@
                 "quality": "",
                 "doneAt": "",
                 "status": "planned",
-                "typeFamily": "dédié",
                 "type": "bidirectionnelle",
                 "line": "10",
                 "link": "/veloligne-10#lapeyronie-rond-point-de-la-lyre"
@@ -79,7 +74,6 @@
                 "quality": "",
                 "doneAt": "",
                 "status": "planned",
-                "typeFamily": "inconnu",
                 "type": "inconnu",
                 "line": "10",
                 "link": "/veloligne-10#rond-point-de-la-lyre-la-valsière"
@@ -93,7 +87,6 @@
                 "quality": "",
                 "doneAt": "",
                 "status": "planned",
-                "typeFamily": "inconnu",
                 "type": "inconnu",
                 "line": "10",
                 "link": "/veloligne-10#rond-point-de-la-lyre-la-valsière"
@@ -107,7 +100,6 @@
                 "quality": "good",
                 "doneAt": "22\/04\/2023",
                 "status": "done",
-                "typeFamily": "mixité-piétons",
                 "type": "voie-verte",
                 "line": "10",
                 "link": "/veloligne-10#la-valsière-saint-gély-du-fesc"
@@ -121,7 +113,6 @@
                 "quality": "good",
                 "doneAt": "22\/04\/2023",
                 "status": "done",
-                "typeFamily": "mixité-motorisés",
                 "type": "chaucidou",
                 "line": "10",
                 "link": "/veloligne-10#la-valsière-saint-gély-du-fesc"
@@ -135,7 +126,6 @@
                 "quality": "good",
                 "doneAt": "22\/04\/2023",
                 "status": "done",
-                "typeFamily": "dédié",
                 "type": "bidirectionnelle",
                 "line": "10",
                 "link": "/veloligne-10#la-valsière-saint-gély-du-fesc"
@@ -149,7 +139,6 @@
                 "quality": "good",
                 "doneAt": "22\/04\/2023",
                 "status": "done",
-                "typeFamily": "mixité-motorisés",
                 "type": "chaucidou",
                 "line": "10",
                 "link": "/veloligne-10#la-valsière-saint-gély-du-fesc"
@@ -163,7 +152,6 @@
                 "quality": "good",
                 "doneAt": "01\/06\/2024",
                 "status": "done",
-                "typeFamily": "dédié",
                 "type": "bidirectionnelle",
                 "line": "10",
                 "link": "/veloligne-10#la-valsière-saint-gély-du-fesc"
@@ -177,7 +165,6 @@
                 "quality": "",
                 "doneAt": "",
                 "status": "wip",
-                "typeFamily": "inconnu",
                 "type": "inconnu",
                 "line": "10",
                 "link": "/veloligne-10#la-valsière-saint-gély-du-fesc"
@@ -191,7 +178,6 @@
                 "quality": "bad",
                 "doneAt": "31\/12\/2019",
                 "status": "done",
-                "typeFamily": "mixité-motorisés",
                 "type": "voie-bus",
                 "line": "10",
                 "link": "/veloligne-10#voie-domitienne-rue-dunant"
@@ -205,7 +191,6 @@
                 "quality": "fair",
                 "doneAt": "30\/04\/2023",
                 "status": "done",
-                "typeFamily": "dédié",
                 "type": "bidirectionnelle",
                 "line": "10",
                 "link": "/veloligne-10#rue-dunant-place-de-la-voie-domitienne"
@@ -219,7 +204,6 @@
                 "quality": "",
                 "doneAt": "",
                 "status": "wip",
-                "typeFamily": "dédié",
                 "type": "bidirectionnelle",
                 "line": "10",
                 "link": "/veloligne-10#place-de-la-voie-domitienne-avenue-arthur-young"
@@ -233,7 +217,6 @@
                 "quality": "fair",
                 "doneAt": "31\/12\/2019",
                 "status": "done",
-                "typeFamily": "mixité-piétons",
                 "type": "voie-verte",
                 "line": "10",
                 "link": "/veloligne-10#route-de-mende-de-lavenue-arthur-young-à-la-rm65"
@@ -247,7 +230,6 @@
                 "quality": "",
                 "doneAt": "",
                 "status": "planned",
-                "typeFamily": "inconnu",
                 "type": "inconnu",
                 "line": "10",
                 "link": "/veloligne-10#route-de-mende-de-la-rm65-à-montferrier-sur-lez-fescau"
@@ -261,7 +243,6 @@
                 "quality": "",
                 "doneAt": "",
                 "status": "planned",
-                "typeFamily": "inconnu",
                 "type": "inconnu",
                 "line": "10",
                 "link": "/veloligne-10#route-de-st-clément-du-rond-point-du-fescau-à-st-clément"

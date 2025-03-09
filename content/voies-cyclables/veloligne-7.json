@@ -7,7 +7,6 @@
             "properties": {
                 "name": "avenue de Toulouse",
                 "status": "postponed",
-                "typeFamily": "inconnu",
                 "type": "inconnu",
                 "line": "7",
                 "doneAt": "",
@@ -20,7 +19,6 @@
             "properties": {
                 "name": "M613 Grand M ⇄ St Jean ouest",
                 "status": "postponed",
-                "typeFamily": "inconnu",
                 "type": "inconnu",
                 "line": "7",
                 "doneAt": "",
@@ -33,7 +31,6 @@
             "properties": {
                 "name": "St Jean ⇄ Fabrègues",
                 "status": "planned",
-                "typeFamily": "inconnu",
                 "type": "inconnu",
                 "line": "7",
                 "doneAt": "",
@@ -47,7 +44,6 @@
             "properties": {
                 "name": "Fabrègues ⇄ Mas Bonnel",
                 "status": "postponed",
-                "typeFamily": "inconnu",
                 "type": "inconnu",
                 "line": "7",
                 "doneAt": "",
@@ -60,7 +56,6 @@
             "properties": {
                 "name": "Mas Bonnel ⇄ Montbazin",
                 "status": "postponed",
-                "typeFamily": "inconnu",
                 "type": "inconnu",
                 "line": "7",
                 "doneAt": "",
