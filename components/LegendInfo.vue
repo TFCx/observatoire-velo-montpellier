@@ -41,10 +41,12 @@
                 en travaux
               </div>
 
-              <div class="my-auto rounded-md border-gray-500 border">
-                <div class="h-1 relative">
+              <div class="my-auto border-gray-500 border">
+                <div class="h-2 relative">
                   <div class="absolute h-full w-full">
-                    <div class="h-full bg-color-primary-primary dashed-line" />
+                    <div class="h-0.5 bg-color-primary-primary" />
+                    <div class="h-1 bg-color-primary-primary dashed-line" />
+                    <div class="h-0.5 bg-color-primary-primary" />
                   </div>
                 </div>
               </div>
