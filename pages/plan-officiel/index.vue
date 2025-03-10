@@ -1,7 +1,7 @@
 <template>
   <div class="w-full">
     <img
-      src="https://web.archive.org/web/20220804235824im_/https://www.montpellier3m.fr/sites/default/files/2021/20220531_rev_version_definitive.jpg"
+      src="~/assets/planOfficiel_2022-05-31.jpg"
       class="object-contain w-full h-screen"
       :alt="`plan officiel des ${getRevName()}`"
     >
