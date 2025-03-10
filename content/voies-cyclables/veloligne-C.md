@@ -15,7 +15,7 @@ to: Juvignac
 
 ### Palavas traversée du canal du Rhône à Sète 
 
-<span style="color:red;font-weight:bold">Non satisfaisant</span> Amènagement de très faible qualité avec très faibles largeurs sur le pont de la 4 voies de Palavas Très loin des standards attendus pour une Véloligne.
+<span style="color:red;font-weight:bold">Non satisfaisant</span> Amènagement de très faible qualité avec très faibles largeurs sur le pont de la 4 voies de Palavas. Très loin des standards attendus pour une Véloligne.
 
 ### Palavas 4 canaux ⇄ Villeneuve
 
@@ -45,7 +45,7 @@ Reporté après 2026.
 
 ### St Georges ⇄ entrée de Juvignac
 
-<span style="color:lightgreen;font-weight:bold">Globalement satisfaisant</span> Même si certaines intersections sont encore dangereuses (notamment l'intersection avec la bretelle d'entrée sur la N109) l'aménagement avec marquage de la continuité cyclable aux intersections fournit une continuité pour la liaison St Georges ⇄ entrée de 
+<span style="color:lightgreen;font-weight:bold">Globalement satisfaisant</span> Même si certaines intersections sont encore dangereuses (notamment l'intersection avec la bretelle d'entrée sur la N109) l'aménagement avec marquage de la continuité cyclable aux intersections fournit une continuité pour la liaison St Georges ⇄ entrée de Juvignac.
 
 ### Juvignac
 
