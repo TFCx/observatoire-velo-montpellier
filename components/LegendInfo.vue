@@ -54,9 +54,9 @@
 
               <div class="my-auto rounded-md border-gray-500 border relative">
                 <div class="h-1 bg-white" />
-                <div class="myabsolute h-full w-full bg-color-primary-primary dashed-line opacity-60 animated-opacity-slow" />
-                <div class="text-black font-size-small leading-none absolute -top-2 leading-none">
-                  reporté
+                <div class="myabsolute h-full w-full bg-color-primary-primary dashed-line opacity-30 " />
+                <div class="text-gray-300 font-bold absolute -top-2">
+                  X X X X
                 </div>
               </div>
               <div>
