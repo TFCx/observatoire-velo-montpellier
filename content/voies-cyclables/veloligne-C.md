@@ -9,18 +9,17 @@ from: Carnon
 to: Juvignac
 ---
 
-### Canon ⇄ Palavas 4 canaux
+### Carnon ⇄ Palavas 4 canaux
 
 <span style="color:gold;font-weight:bold">À améliorer</span>  Itinéraire existant (<a href="https://fr.eurovelo.com/ev8/escape-in-french-southern-lands">EuroVélo 8</a>). Les intersections devront être revues pour être aux standards d'une Véloligne.
 
-### Palavas 4 canaux ⇄ 4 vents 
+### Palavas traversée du canal du Rhône à Sète 
 
-<span style="color:lightgreen;font-weight:bold;">Satisfaisant</span> Section commune avec la :line-link{line=4 anchor=fin-de-la-voie-verte-entre-les-cabanes-de-4-vents-et-palavas}.  
+<span style="color:red;font-weight:bold">Non satisfaisant</span> Amènagement de très faible qualité avec très faibles largeurs sur le pont de la 4 voies de Palavas Très loin des standards attendus pour une Véloligne.
 
-### Palavas 4 vents ⇄ Villeneuve
+### Palavas 4 canaux ⇄ Villeneuve
 
 <span style="color:gold;font-weight:bold">À améliorer</span> Suite de l'<a href="https://fr.eurovelo.com/ev8/escape-in-french-southern-lands">EuroVélo 8</a>, aux mêmes standards que la session précédente.
-
 
 ### Villeneuve Diligence ⇄ Maison d'arrêt 
 
