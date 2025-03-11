@@ -18,14 +18,15 @@ Prochaine release :
   - Vérifier la qualité
 - [REFACTOR] Factoriser le code des displayLayer
 - [REFACTOR] Check la console / bugs (et les console.debug)
-- [FEAT] Ajouter le lien baromètre 2025
 - [FEAT] Mettre en qualité par défaut dans page par détail ?
 
 Moyen terme :
+- [UX] Dans Type & Qualité : couleurs des familles
 - [REFACTOR] MAJ les auto-scripts qui envoient des mails
 - [REFACTOR] Regrouper les fonctions "regroupIntoSections"
 - [REFACTOR] Pouvoir tester que les descriptions des multilignes sont factorisées sur chaque ligne ou au moins identiques ?
 - [FEAT] Ajouter layer "historique / évolution"
+  - [UX] Ajuster les couleurs y compris dans les bars de progression
 - [FEAT] Déplacer le lien vers le "tableau de bord"
 - [FEAT] Voir si dessiner les layers qualités/type avec le status ? Voir interactions avec les PCs non REV
 - [CONTENT] Renseigner un peu plus en détail Vélolignes C et D  (.md)
