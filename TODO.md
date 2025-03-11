@@ -1,6 +1,4 @@
 Prochaine release :
-- [BUG] Vérifier le code des upsert
-- [BUG] Vue évolution buggée
 - [BUG] lien mort dans page anneau (remplacement des images par assets ?) + lien mort véloligne A
 - [BUG] Bug comptage (voir VL5)
 - [UX] mettre à jour les légendes :

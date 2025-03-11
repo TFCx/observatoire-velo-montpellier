@@ -4,7 +4,7 @@ import type { CounterParsedContent } from '../types/counters';
 import { isLineStringFeature, type Feature, type LaneFeature, type LineStringFeature, type CompteurFeature, type PerspectiveFeature, type SectionFeature, type MultiColoredLineStringFeature, isSectionFeature, type DangerFeature} from '~/types';
 import { ref } from 'vue';
 
-import { drawCurrentNetwork, drawFinishedNetwork, drawQualityNetwork, drawTypeNetwork, drawTypeFamilyNetwork, drawHoveredEffect, changeLayer, drawLineNames, addListnersForHovering } from "./map/network";
+import { updateOrCreateSources, drawCurrentNetwork, drawFinishedNetwork, drawQualityNetwork, drawTypeNetwork, drawTypeFamilyNetwork, drawHoveredEffect, changeLayer, drawLineNames, addListnersForHovering } from "./map/network";
 import { plotPerspective, plotCompteurs, plotDangers, plotLimits, plotPumps, plotBaseBikeInfrastructure } from "./map/features";
 
 // Tooltips
@@ -57,20 +57,16 @@ function toggleBikeInfraVisibility(map: Map, displayBikeInfra: boolean) {
 
 export const useMap = () => {
 
-  function plotEverything({ map, updated_sections, updated_features }: { map: Map; updated_sections?: SectionFeature[], updated_features?: Feature[] }) {
+  function plotEverything(map: Map, sections: SectionFeature[], features: Feature[]) {
     //plotBaseBikeInfrastructure(map)
 
-    if(updated_sections) {
-      let lanes = separateSectionsIntoLanes(updated_sections)
+    let lanes = separateSectionsIntoLanes(sections)
 
-      plotNetwork(map, updated_sections, lanes);
+    plotNetwork(map, sections, lanes);
       // setLanesColor(map, displayedLayer.value)
       // watch(displayedLayer, (displayedLayer) => setLanesColor(map, displayedLayer))
-    }
-    if(updated_features) {
 
-      plotFeatures({map, updated_features})
-    }
+    plotFeatures(map, features)
   }
 
   function plotNetwork(map: Map, sections: SectionFeature[], lanes: LaneFeature[]) {
@@ -80,24 +76,30 @@ export const useMap = () => {
       return;
     }
 
-    drawHoveredEffect(map, sections, lanesWithId)
+    let onlyUpdate = updateOrCreateSources(map, sections, lanesWithId)
 
-    drawFinishedNetwork(map, sections, lanesWithId)
+    if(onlyUpdate) {
+      return
+    }
 
-    drawCurrentNetwork(map, sections, lanesWithId)
+    drawHoveredEffect(map)
 
-    drawQualityNetwork(map, sections, lanesWithId)
+    drawFinishedNetwork(map)
 
-    drawTypeFamilyNetwork(map, sections, lanesWithId)
+    drawCurrentNetwork(map)
 
-    drawTypeNetwork(map, sections, lanesWithId)
+    drawQualityNetwork(map)
 
-    drawLineNames(map, sections)
+    drawTypeFamilyNetwork(map)
+
+    drawTypeNetwork(map)
+
+    drawLineNames(map)
 
     addListnersForHovering(map);
   }
 
-  function plotFeatures({ map, updated_features }: { map: Map; updated_features: Feature[] }) {
+  function plotFeatures(map: Map, updated_features: Feature[]) {
 
     plotPerspective({ map, features: updated_features });
     plotCompteurs({ map, features: updated_features });
@@ -340,7 +342,9 @@ export const useMap = () => {
 
   return {
     loadImages,
-    plotFeatures: plotEverything,
+    updateOrCreateSources,
+    separateSectionsIntoLanes,
+    plotEverything,
     getCompteursFeatures,
     fitBounds,
     toggleLimits,

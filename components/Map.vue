@@ -37,7 +37,7 @@ const defaultOptions = {
   limits: true,
   bikeInfra: false,
   displayLayerType: false,
-  filter: false,
+  filter: true,
   geolocation: false,
   fullscreen: false,
   onFullscreenControlClick: () => { },
@@ -57,7 +57,9 @@ const filterModalComponent = ref(null);
 
 const {
   loadImages,
-  plotFeatures,
+  updateOrCreateSources,
+  separateSectionsIntoLanes,
+  plotEverything,
   fitBounds,
   toggleLimits,
   toggleBikeInfra,
@@ -188,32 +190,38 @@ onMounted(() => {
     let lineStringFeatures = features.value.filter(isLineStringFeature).sort(sortByLine);
     let sections = regroupIntoSections(lineStringFeatures)
 
-    plotFeatures({ map, updated_sections: sections, updated_features: features.value });
+    plotEverything(map, sections, features.value);
     const tailwindMdBreakpoint = 768;
     if (window.innerWidth > tailwindMdBreakpoint) {
       fitBounds({ map, features: features.value });
     }
   });
 
+  // When filters change
   watch(
     features,
     newFeatures => {
 
       let lineStringFeatures = newFeatures.filter(isLineStringFeature).sort(sortByLine);
       let sections = regroupIntoSections(lineStringFeatures)
+      let lanes = separateSectionsIntoLanes(sections)
 
-      plotFeatures({ map, updated_sections: sections, updated_features: newFeatures });
+      updateOrCreateSources(map, sections, lanes)
     }
   );
 
+  // When evolution change
   watch(
     () => props.features,
     newFeatures => {
 
       let lineStringFeatures = newFeatures.filter(isLineStringFeature).sort(sortByLine);
       let sections = regroupIntoSections(lineStringFeatures)
+      let lanes = separateSectionsIntoLanes(sections)
 
-      plotFeatures({ map, updated_sections: sections, updated_features: newFeatures });
+      updateOrCreateSources(map, sections, lanes)
+
+
     }
   );
 
