@@ -33,6 +33,7 @@ import { sortByLine } from '~/composables//map/utils';
 // const maptilerKey = config.public.maptilerKey;
 
 const defaultOptions = {
+  defaultLayer: DisplayedLayer.Progress,
   logo: true,
   limits: true,
   bikeInfra: false,
@@ -115,6 +116,7 @@ onMounted(() => {
   });
 
   const layerControl = new LayerControl(
+    options.defaultLayer,
     options.displayLayerType,
     () => {
       if (legendModalComponent.value) {
@@ -183,6 +185,7 @@ onMounted(() => {
     });
     map.addControl(bikeInfraControl, 'top-right');
   }
+  setDisplayedLayer(options.defaultLayer)
 
   map.on('load', async() => {
     await loadImages({ map });

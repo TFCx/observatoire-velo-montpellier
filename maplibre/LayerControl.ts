@@ -1,4 +1,7 @@
+import { DisplayedLayer } from "~/composables/map/network";
+
 export default class LayerControl {
+  _defaultLayer: DisplayedLayer;
   _displayLayerType: boolean;
   _container: HTMLDivElement;
   _onChange: Function;
@@ -6,7 +9,8 @@ export default class LayerControl {
   _onClick: Function;
 
 
-  constructor(displayLayerType: boolean, onClick: Function, onChange: Function) {
+  constructor(defaultLayer: DisplayedLayer, displayLayerType: boolean, onClick: Function, onChange: Function) {
+    this._defaultLayer = defaultLayer
     this._displayLayerType = displayLayerType
     this._onChange = onChange;
     this._onClick = onClick;
@@ -28,13 +32,13 @@ export default class LayerControl {
     this._btn_legend.onclick = () => this._onClick();
     title.appendChild(this._btn_legend);
 
-    this.createRadioButton('progress', 'de l\'avancement du projet', true);
-    this.createRadioButton('quality', 'de la qualité des aménagements', false);
-    this.createRadioButton('typeFamily', "du type d'aménagement", false);
-    this.createRadioButton('finalizedProject', 'du futur réseau', false);
+    this.createRadioButton('progress', 'de l\'avancement du projet', this._defaultLayer == DisplayedLayer.Progress);
+    this.createRadioButton('quality', 'de la qualité des aménagements', this._defaultLayer == DisplayedLayer.Quality);
+    this.createRadioButton('typeFamily', "du type d'aménagement", this._defaultLayer == DisplayedLayer.TypeFamily);
+    this.createRadioButton('finalizedProject', 'du futur réseau', this._defaultLayer == DisplayedLayer.FinalizedProject);
 
     if(this._displayLayerType) {
-      this.createRadioButton('type', "du type précis d'aménagement", false);
+      this.createRadioButton('type', "du type précis d'aménagement", this._defaultLayer == DisplayedLayer.Type);
     }
 
     return this._container;

@@ -63,8 +63,6 @@ export const useMap = () => {
     let lanes = separateSectionsIntoLanes(sections)
 
     plotNetwork(map, sections, lanes);
-      // setLanesColor(map, displayedLayer.value)
-      // watch(displayedLayer, (displayedLayer) => setLanesColor(map, displayedLayer))
 
     plotFeatures(map, features)
   }
@@ -107,7 +105,7 @@ export const useMap = () => {
     plotDangers({ map, features: updated_features });
     plotLimits({ map, features: updated_features });
 
-    changeLayer(map, DisplayedLayer.Progress)
+    changeLayer(map, displayedLayer.value)
 
     watch(displayLimits, (displayLimits) => toggleLimitsVisibility(map, displayLimits))
     watch(displayBikeInfra, (displayBikeInfra) => toggleBikeInfraVisibility(map, displayBikeInfra))

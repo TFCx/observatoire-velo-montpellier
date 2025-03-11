@@ -16,7 +16,6 @@ Prochaine release :
   - Vérifier la qualité
 - [REFACTOR] Factoriser le code des displayLayer
 - [REFACTOR] Check la console / bugs (et les console.debug)
-- [FEAT] Mettre en qualité par défaut dans page par détail ?
 
 Moyen terme :
 - [UX] Dans Type & Qualité : couleurs des familles
