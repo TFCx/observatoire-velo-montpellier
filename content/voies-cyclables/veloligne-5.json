@@ -33,7 +33,7 @@
         {
             "type": "Feature",
             "properties": {
-                "quality": "bad",
+                "quality": "fair",
                 "status": "done",
                 "type": "bidirectionnelle",
                 "line": "5",

@@ -85,20 +85,7 @@
         {
             "type": "Feature",
             "properties": {
-                "name": "Verdanson",
-                "quality": "fair",
-                "status": "done",
-                "type": "bidirectionnelle",
-                "line": "Anneau",
-                "doneAt": "31\/12\/2019",
-                "link": "\/veloligne-Anneau#quai-du-verdanson"
-            },
-            "geometry": { "type": "LineString", "coordinates": [ [ 3.874504306498015, 43.616353932786581 ], [ 3.873686, 43.616898 ], [ 3.87353, 43.616965 ], [ 3.873512, 43.616968 ] ] }
-        },
-        {
-            "type": "Feature",
-            "properties": {
-                "name": "Verdanson",
+                "name": "Albert 1er",
                 "quality": "bad",
                 "status": "done",
                 "type": "aire-pietonne",
@@ -107,6 +94,19 @@
                 "link": "\/veloligne-Anneau#quai-du-verdanson"
             },
             "geometry": { "type": "LineString", "coordinates": [ [ 3.874882914344544, 43.616129958094767 ], [ 3.874799, 43.616158 ], [ 3.874504306498015, 43.616353932786581 ] ] }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Saint-Charles",
+                "quality": "fair",
+                "status": "done",
+                "type": "bidirectionnelle",
+                "line": "Anneau",
+                "doneAt": "31\/12\/2019",
+                "link": "\/veloligne-Anneau#quai-du-verdanson"
+            },
+            "geometry": { "type": "LineString", "coordinates": [ [ 3.874504306498015, 43.616353932786581 ], [ 3.873686, 43.616898 ], [ 3.87353, 43.616965 ], [ 3.873512, 43.616968 ] ] }
         },
         {
             "type": "Feature",
@@ -124,15 +124,28 @@
         {
             "type": "Feature",
             "properties": {
-                "name": "Bonnard",
-                "quality": "",
+                "name": "Broussonet",
+                "quality": "fair",
                 "status": "wip",
-                "type": "zone-de-rencontre",
+                "type": "bidirectionnelle",
                 "line": "Anneau",
                 "doneAt": "",
                 "link": "\/veloligne-Anneau#rue-bonnard"
             },
-            "geometry": { "type": "LineString", "coordinates": [ [ 3.871836, 43.616006 ], [ 3.871434, 43.616145 ], [ 3.869918, 43.61497 ], [ 3.869791, 43.614916 ], [ 3.869789, 43.614915 ] ] }
+            "geometry": { "type": "LineString", "coordinates": [ [ 3.871836, 43.616006 ], [ 3.871434, 43.616145 ], [ 3.8711025903243472, 43.615884272095556 ] ] }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Bonnard",
+                "quality": "good",
+                "status": "done",
+                "type": "zone-de-rencontre",
+                "line": "Anneau",
+                "doneAt": "15\/11\/2024",
+                "link": "\/veloligne-Anneau#rue-bonnard"
+            },
+            "geometry": { "coordinates": [ [ 3.8711025903243472, 43.615884272095556 ], [ 3.869918, 43.61497 ], [ 3.869791, 43.614916 ], [ 3.869789, 43.614915 ] ], "type": "LineString" }
         },
         {
             "type": "Feature",

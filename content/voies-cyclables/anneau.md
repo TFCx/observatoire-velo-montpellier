@@ -11,7 +11,7 @@ to: Mtp
 
 ## Les tronçons (en partant d'Albert 1er, dans le sens antihoraire)
 
-### Rue Henri Serre 
+### Rue Henri Serre
 
 <span style="color:lightgreen;font-weight:bold;">Globalement satisfaisant</span>
 Piste bidirectionnelle large avec bordure chanfreinée.<br>
@@ -19,8 +19,10 @@ Piste bidirectionnelle large avec bordure chanfreinée.<br>
 
 ### Rue Bonnard
 
+<span style="color:lightgreen;font-weight:bold;">Satisfaisant</span> Ré-aménagée comme la rue Saint-Louis en vélorue / zone-de-rencontre.
+
 ::banner{type="wip"}
-En travaux. Elle sera aménagée comme la rue Saint-Louis en vélorue.
+L’effondrement d’un réseau d’évacuation rue Auguste Broussonnet début janvier 2025 a déclenché un chantier d’urgence.
 ::
 
 
@@ -64,7 +66,9 @@ Prévue pour être piétonne sans matérialisation spécifique d'espaces piéton
 
 ### Quai Laurens
 
-<span style="color:red;font-weight:bold">Non satisfaisant</span> Aménagement hétérogène. Le côté ouest est très qualitatif, la piste cyclable séparée est large et confortable avec bordures pardonnantes sur une bonne partie du linéaire. Côté est les vélos circulent au milieu d'un très important trafic motorisé de transit. Les conditions de trafic ne sont pas réunies pour la vélorue qui n'a de vélorue que le panneau. Cette "vélorue" est un excellent exemple de choses à ne pas faire.
+<span style="color:lightgreen;font-weight:bold">Satisfaisant</span> Le côté Ouest est très qualitatif, la piste cyclable séparée est large et confortable avec bordures pardonnantes sur une bonne partie du linéaire.
+
+<span style="color:red;font-weight:bold">Non satisfaisant</span> Au niveau du côté Est, les vélos circulent au milieu d'un très important trafic motorisé de transit. Les conditions de trafic ne sont pas réunies pour la vélorue qui n'a de vélorue que le panneau. Cette "vélorue" est un excellent exemple de choses à ne pas faire.
 
 ### Rues du Pont Juvénal et Blum, partie sud
 

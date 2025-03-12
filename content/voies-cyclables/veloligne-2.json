@@ -32,12 +32,11 @@
             "type": "Feature",
             "properties": {
                 "name": "Rue Henri Pequet",
-                "quality": "",
-                "status": "wip",
-                "type": "inconnu",
+                "quality": "good",
+                "status": "done",
+                "type": "bidirectionnelle",
                 "line": "2",
-                "doneAt": "",
-                "id": null,
+                "doneAt": "01\/03\/2025",
                 "link": "/veloligne-2#lez-vieille-poste"
             },
             "geometry": { "type": "LineString", "coordinates": [ [ 3.898707, 43.610002 ], [ 3.898777, 43.610017 ], [ 3.898964, 43.610055 ], [ 3.900069, 43.610189 ] ] }

@@ -32,10 +32,6 @@ streetView: 43.6098586,3.8987897,3a,75y,235.16h,87.95t
 
 <a href="https://compteurs.velocite-montpellier.fr/detail/quai-de-cythere">Données du compteur "Pompignane - Quai de Cythère"</a>
 
-::banner{type="wip"}
-La partie est a été mise en travaux depuis mars 2024 dans le cadre des travaux du Bustram.
-::
-
 ### Vieille Poste ⇄ Grammont
 
 Section commune avec la :line-link{line=B anchor=avenue-einstein-entre-grammont-et-lavenue-becquerel}

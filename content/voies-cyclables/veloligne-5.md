@@ -3,8 +3,8 @@ line: 5
 lineName: Véloligne 5
 lineNameShort: 5
 description: Véloligne reliant le centre-ville à Tournezy via Moularès et Monteils-l'Église.
-trafic: 
-cover: 
+trafic:
+cover:
 from: Mtp Quai Laurens
 to: Mtp Tournezy
 ---
@@ -17,11 +17,11 @@ to: Mtp Tournezy
 
 ### Rue du Moulin des 7 cans - première section
 
-<span style="color:gold;font-weight:bold">À améliorer</span> Cette section existante consiste en un aménagement cyclable sur trottoir peu confortable et générateur de conflits piétons/vélos. 
+<span style="color:gold;font-weight:bold">À améliorer</span> Cette section existante consiste en un aménagement cyclable sur trottoir peu confortable et générateur de conflits piétons/vélos.
 
 ### Rue du Moulin des 7 cans - deuxième section
 
-<span style="color:red;font-weight:bold">Non satisfaisant</span> Cette section récente, mal connectée à l'existant au nord et connectée à rien au sud n'est absolument pas conforme aux exigences d'une Véloligne. 
+<span style="color:gold;font-weight:bold">À améliorer</span> Cette section récente, mal connectée à l'existant au nord et connectée à rien au sud n'est absolument pas conforme aux exigences d'une Véloligne.
 
 ### Section de l'Hôtel de Ville à Tournezy
 

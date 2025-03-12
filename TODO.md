@@ -20,6 +20,7 @@ Prochaine release :
 
 Moyen terme :
 - [UX] Dans Type & Qualité : couleurs des familles
+- [REFACTOR] Faire en sorte que le nom de la section ne soit pas une clé primaire pour les sections partagées
 - [REFACTOR] MAJ les auto-scripts qui envoient des mails
 - [REFACTOR] Regrouper les fonctions "regroupIntoSections"
 - [REFACTOR] Pouvoir tester que les descriptions des multilignes sont factorisées sur chaque ligne ou au moins identiques ?
