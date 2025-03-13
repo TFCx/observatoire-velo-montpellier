@@ -1,11 +1,7 @@
 Prochaine release :
 - [BUG] lien mort dans page anneau (remplacement des images par assets ?) + lien mort véloligne A
 - [UX] mettre à jour les légendes :
-  - avancement (figurés pas les mêmes que la carte)
-  - type => peut-on mettre 'catégorie principale' sur une seule ligne ? (pas majeur)
   - supprimer le bouton 2021 dans la vue "évolution" s'il n'y a pas de trucs en 2021
-  - Légende "prévu" / "reporté" => mettre image ?
-  - Légende "futur réseau"
 - [CONTENT] mettre à jour le post de news : date et contenu (dire ce qui a changé dans l'observatoire avec cette mise à jour)
 - [DATA] Vérifier les données :
   - aller vérifier sur le terrain (ou demander à notre puissant réseau) pour la véloligne 8 et les travaux L5 et les trucs entre les travaux L5

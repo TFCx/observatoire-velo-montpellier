@@ -9,7 +9,7 @@
         >
           <Icon name="mdi:close" class="h-6 w-6" aria-hidden="true" />
         </button>
-        <div class="text-lg font-medium leading-6 text-gray-900">
+        <div class="text-sm font-medium leading-4 text-gray-900 italic">
           Légende
         </div>
         <div class="mt-2">
@@ -18,13 +18,16 @@
           <div v-if="layerDisplayed==0">
             <div class="grid grid-cols-[64px_1fr] gap-x-4">
 
-              <div>Réseau</div>
-              <br>
+              <div class="col-span-2 font-bold text-center">
+                <hr class="mb-1 border-gray-500">
+                Avancement du réseau
+                <hr class="mb-1 border-gray-500">
+              </div>
               <div class="my-auto rounded-md border-gray-500 border">
                 <div class="h-1 bg-color-primary-primary" />
               </div>
               <div>
-                terminé
+                Terminé
               </div>
 
               <div class="my-auto rounded-md border-gray-500 border">
@@ -38,7 +41,7 @@
                 </div>
               </div>
               <div>
-                en travaux
+                En travaux
               </div>
 
               <div class="my-auto border-gray-500 border">
@@ -51,53 +54,59 @@
                 </div>
               </div>
               <div>
-                prévu pour 2026
+                Prévu pour 2026
               </div>
 
               <div class="my-auto rounded-md border-gray-500 border relative">
                 <div class="h-1 bg-white" />
                 <div class="myabsolute h-full w-full bg-color-primary-primary dashed-line opacity-30 " />
-                <div class="text-gray-300 font-bold absolute -top-2">
-                  X X X X
+                <div class="text-gray-500 font-bold absolute -top-2 opacity-65 ">
+                  ✕ ✕ ✕
                 </div>
               </div>
               <div>
-                reporté après 2026
+                Reporté après 2026
               </div>
             </div>
           </div>
 
           <div v-if="layerDisplayed==1">
             <div class="grid grid-cols-[64px_1fr] gap-x-4">
-              <div>Qualité</div>
-              <br>
+              <div class="col-span-2 font-bold text-center">
+                <hr class="mb-1 border-gray-500">
+                Évaluation de la qualité
+                <hr class="mb-1 border-gray-500">
+              </div>
               <div class="my-auto rounded-md border-gray-500 border">
                 <div class="h-1 bg-legend-quality-good" />
               </div>
               <div>
-                satisfaisant
+                Satisfaisant
               </div>
 
               <div class="my-auto rounded-md border-gray-500 border">
                 <div class="h-1 bg-legend-quality-fair" />
               </div>
               <div>
-                à améliorer
+                À améliorer
               </div>
 
               <div class="my-auto rounded-md border-gray-500 border">
                 <div class="h-1 bg-legend-quality-bad" />
               </div>
               <div>
-                non satisfaisant
+                Non satisfaisant
               </div>
             </div>
           </div>
 
           <div v-if="layerDisplayed==2">
             <div class="grid grid-cols-[64px_1fr] gap-x-4">
-              <div>Catégories principales</div>
-              <br>
+              <div class="col-span-2 font-bold text-center">
+                <hr class="mb-1 border-gray-500">
+                Catégories principales
+                <hr class="mb-1 border-gray-500">
+              </div>
               <div class="my-auto rounded-md border-gray-500 border">
                 <div class="h-1 bg-legend-infra-family-dedie" />
               </div>
@@ -123,8 +132,13 @@
 
           <div v-if="layerDisplayed==3">
             <div class="grid grid-cols-[64px_1fr] gap-x-2">
-              <div>Futur réseau</div>
-              <br>
+
+              <div class="col-span-2 font-bold text-center">
+                <hr class="mb-1 border-gray-500">
+                Futur réseau
+                <hr class="mb-1 border-gray-500">
+              </div>
+
               <div class="my-auto rounded-md border-gray-500 border">
                 <div class="h-2 bg-gray-400" />
               </div>
@@ -132,7 +146,7 @@
                 Anneau vélo
               </div>
 
-              <div class="flex grow w-full">
+              <div class="flex grow w-full items-center">
                 <div class="h-2 bg-emerald-400 rounded-full border border-black border-r-0 rounded-r-none" style="width: 16%;"></div>
                 <div class="h-2 bg-teal-700 border border-black border-l-0 border-r-0 rounded-none" style="width: 16%;"></div>
                 <div class="h-2 bg-yellow-400 border border-black border-l-0 border-r-0 rounded-none" style="width: 16%;"></div>
@@ -150,34 +164,37 @@
 
           <div v-if="layerDisplayed==4">
             <div class="grid grid-cols-[64px_1fr] gap-x-4">
-              <div>Types principaux</div>
-              <br>
+              <div class="col-span-2 font-bold text-center">
+                <hr class="mb-1 border-gray-500">
+                Famille d'aménagements
+                <hr class="mb-1 border-gray-500">
+              </div>
               <div class="my-auto rounded-md border-gray-500 border">
                 <div class="h-1 bg-legend-infra-type-bidirectionnelle" />
               </div>
               <div>
-                bidirectionnelle
+                Bidirectionnelle
               </div>
 
               <div class="my-auto rounded-md border-gray-500 border">
                 <div class="h-1 bg-legend-infra-type-bilaterale" />
               </div>
               <div>
-                bilatérale
+                Bilatérale
               </div>
 
               <div class="my-auto rounded-md border-gray-500 border">
                 <div class="h-1 bg-legend-infra-type-voie-verte" />
               </div>
               <div>
-                voie verte
+                Voie verte
               </div>
 
               <div class="my-auto rounded-md border-gray-500 border">
                 <div class="h-1 bg-legend-infra-type-velorue" />
               </div>
               <div>
-                vélorue
+                Vélorue
               </div>
             </div>
           </div>
