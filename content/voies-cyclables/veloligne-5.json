@@ -11,7 +11,6 @@
                 "line": "5",
                 "doneAt": "31\/12\/2019",
                 "name": "Petit-train - Dubout",
-                "id": "",
                 "link": "/veloligne-5#d%C3%A9but-de-dubout"
             },
             "geometry": { "type": "LineString", "coordinates": [ [ 3.890324, 43.603665 ], [ 3.891598667937243, 43.602263365138811 ] ] }
@@ -25,7 +24,6 @@
                 "line": "5",
                 "doneAt": "31\/12\/2019",
                 "name": "Petit-train nord",
-                "id": "",
                 "link": "/veloligne-5#rue-du-moulin-des-7-cans-premi%C3%A8re-section"
             },
             "geometry": { "type": "LineString", "coordinates": [ [ 3.891598667937243, 43.602263365138811 ], [ 3.892992128993913, 43.600731104431794 ] ] }
@@ -39,7 +37,6 @@
                 "line": "5",
                 "doneAt": "20\/05\/2024",
                 "name": "Petit-train sud",
-                "id": "",
                 "link": "/veloligne-5#rue-du-moulin-des-7-cans-deuxi%C3%A8me-section"
             },
             "geometry": { "type": "LineString", "coordinates": [ [ 3.892992128993913, 43.600731104431794 ], [ 3.894149, 43.599459 ] ] }
@@ -52,7 +49,6 @@
                 "line": "5",
                 "doneAt": "",
                 "name": "Moularès Mas des Argelliers",
-                "id": "",
                 "link": "/veloligne-5#section-de-lh%C3%B4tel-de-ville-%C3%A0-tournezy"
             },
             "geometry": { "type": "LineString", "coordinates": [ [ 3.887052, 43.583091 ], [ 3.88791, 43.583897 ], [ 3.890128, 43.588057 ], [ 3.89049, 43.589646 ], [ 3.889975, 43.591208 ], [ 3.88978, 43.592808 ], [ 3.890488, 43.594696 ], [ 3.892017, 43.596068 ], [ 3.894149, 43.599459 ] ] }
