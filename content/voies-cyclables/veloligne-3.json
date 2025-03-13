@@ -1,20 +1,33 @@
 {
     "type": "FeatureCollection",
-    "name": "veloligne-3",
     "features": [
         {
             "type": "Feature",
             "properties": {
-                "name": "Odysseum - Gare Sud de France",
+                "name": "Place Odysseum ⇄ Carrefour de Londres",
                 "quality": "",
                 "doneAt": "",
                 "status": "planned",
                 "type": "inconnu",
                 "line": "3",
-                "id": "BlvrdPenelope",
+                "id": "OdysseumlLondres",
                 "link": "/veloligne-3"
             },
-            "geometry": { "type": "LineString", "coordinates": [ [ 3.922547, 43.596691 ], [ 3.920233, 43.599094 ], [ 3.918869, 43.600479 ], [ 3.917799, 43.60181 ], [ 3.916339, 43.601906 ], [ 3.913676, 43.602922 ], [ 3.913408, 43.603351 ], [ 3.913154, 43.604329 ] ] }
+            "geometry": { "type": "LineString", "coordinates": [ [ 3.916339, 43.601906 ], [ 3.913676, 43.602922 ], [ 3.913408, 43.603351 ], [ 3.913154, 43.604329 ] ] }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Mas de Brousse",
+                "quality": "",
+                "doneAt": "",
+                "status": "wip",
+                "type": "inconnu",
+                "line": "3",
+                "id": "MasDeBrousse",
+                "link": "/veloligne-3"
+            },
+            "geometry": { "type": "LineString", "coordinates": [ [ 3.922547, 43.596691 ], [ 3.920233, 43.599094 ], [ 3.918869, 43.600479 ], [ 3.917799, 43.60181 ], [ 3.916339, 43.601906 ] ] }
         }
     ]
 }

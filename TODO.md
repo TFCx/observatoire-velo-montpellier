@@ -1,6 +1,5 @@
 Prochaine release :
 - [BUG] lien mort dans page anneau (remplacement des images par assets ?) + lien mort véloligne A
-- [BUG] Bug comptage (voir VL5)
 - [UX] mettre à jour les légendes :
   - avancement (figurés pas les mêmes que la carte)
   - type => peut-on mettre 'catégorie principale' sur une seule ligne ? (pas majeur)
@@ -9,10 +8,7 @@ Prochaine release :
   - Légende "futur réseau"
 - [CONTENT] mettre à jour le post de news : date et contenu (dire ce qui a changé dans l'observatoire avec cette mise à jour)
 - [DATA] Vérifier les données :
-  - MAJ VL2 Henri Pequet
-  -  pb jonction ligne C et 4
   - aller vérifier sur le terrain (ou demander à notre puissant réseau) pour la véloligne 8 et les travaux L5 et les trucs entre les travaux L5
-  - pour les vélolignes 3, B, D il y a des travaux au niveau de Cambacères / Sud de France / prolongation L1
   - Vérifier l'avancement
   - Vérifier la qualité
 - [REFACTOR] Factoriser le code des displayLayer

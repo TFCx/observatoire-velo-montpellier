@@ -137,16 +137,30 @@
         {
             "type": "Feature",
             "properties": {
-                "name": "Boulevard Pénélope",
+                "name": "Place Odysseum ⇄ Carrefour de Londres",
                 "quality": "",
+                "doneAt": "",
                 "status": "planned",
                 "type": "inconnu",
                 "line": "B",
-                "doneAt": "",
-                "id": "BlvrdPenelope",
+                "id": "OdysseumlLondres",
                 "link": "/veloligne-B#boulevard-pénélope"
             },
-            "geometry": { "type": "LineString", "coordinates": [ [ 3.922547, 43.596691 ], [ 3.918869, 43.600479 ], [ 3.917799, 43.60181 ], [ 3.916339, 43.601906 ], [ 3.913676, 43.602922 ], [ 3.913408, 43.603351 ], [ 3.913154, 43.604329 ] ] }
+            "geometry": { "type": "LineString", "coordinates": [ [ 3.916339, 43.601906 ], [ 3.913676, 43.602922 ], [ 3.913408, 43.603351 ], [ 3.913154, 43.604329 ] ] }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Mas de Brousse",
+                "quality": "",
+                "doneAt": "",
+                "status": "wip",
+                "type": "inconnu",
+                "line": "B",
+                "id": "MasDeBrousse",
+                "link": "/veloligne-B#boulevard-pénélope"
+            },
+            "geometry": { "type": "LineString", "coordinates": [ [ 3.922547, 43.596691 ], [ 3.920233, 43.599094 ], [ 3.918869, 43.600479 ], [ 3.917799, 43.60181 ], [ 3.916339, 43.601906 ] ] }
         },
         {
             "type": "Feature",

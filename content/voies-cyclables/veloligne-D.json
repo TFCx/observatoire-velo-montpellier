@@ -85,12 +85,12 @@
         {
             "type": "Feature",
             "properties": {
+                "name": "Pont Gagarine",
                 "quality": "fair",
-                "status": "planned",
+                "status": "done",
                 "type": "bidirectionnelle",
                 "line": "D",
-                "doneAt": "",
-                "name": "Pont Gagarine",
+                "doneAt": "31\/12\/2010",
                 "id": "PontGagarine",
                 "link": "/veloligne-D#pont-gagarine"
             },
