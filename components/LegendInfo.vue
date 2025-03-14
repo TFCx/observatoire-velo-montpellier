@@ -17,9 +17,9 @@
             <div class="grid grid-cols-[64px_1fr] gap-x-4">
 
               <div class="col-span-2 font-bold text-center">
-                <hr class="mb-1 border-gray-500">
+                <hr class="m-1 border-gray-500">
                 Avancement du réseau
-                <hr class="mb-1 border-gray-500">
+                <hr class="m-1 border-gray-500">
               </div>
               <div class="my-auto rounded-md border-gray-500 border">
                 <div class="h-1 bg-color-primary-primary" />
@@ -71,9 +71,9 @@
           <div v-if="layerDisplayed == 1">
             <div class="grid grid-cols-[64px_1fr] gap-x-4">
               <div class="col-span-2 font-bold text-center">
-                <hr class="mb-1 border-gray-500">
+                <hr class="m-1 border-gray-500">
                 Évaluation de la qualité
-                <hr class="mb-1 border-gray-500">
+                <hr class="m-1 border-gray-500">
               </div>
               <div class="my-auto rounded-md border-gray-500 border">
                 <div class="h-1 bg-legend-quality-good" />
@@ -101,9 +101,9 @@
           <div v-if="layerDisplayed == 2">
             <div class="grid grid-cols-[64px_1fr] gap-x-4">
               <div class="col-span-2 font-bold text-center">
-                <hr class="mb-1 border-gray-500">
+                <hr class="m-1 border-gray-500">
                 Catégories principales
-                <hr class="mb-1 border-gray-500">
+                <hr class="m-1 border-gray-500">
               </div>
               <div class="my-auto rounded-md border-gray-500 border">
                 <div class="h-1 bg-legend-infra-family-dedie" />
@@ -130,32 +130,31 @@
 
           <div v-if="layerDisplayed == 3">
             <div class="grid grid-cols-[64px_1fr] gap-x-2">
-
               <div class="col-span-2 font-bold text-center">
-                <hr class="mb-1 border-gray-500">
+                <hr class="m-1 border-gray-500">
                 Futur réseau
-                <hr class="mb-1 border-gray-500">
+                <hr class="m-1 border-gray-500">
               </div>
 
               <div class="my-auto rounded-md border-gray-500 border">
-                <div class="h-2 bg-gray-400" />
+                <div class="h-1.5 bg-gray-400" />
               </div>
               <div>
                 Anneau vélo
               </div>
 
               <div class="flex grow w-full items-center">
-                <div class="h-2 bg-emerald-400 rounded-full border border-black border-r-0 rounded-r-none"
+                <div class="h-1.5 bg-emerald-400 rounded-full border border-black border-r-0 rounded-r-none"
                   style="width: 16%;"></div>
-                <div class="h-2 bg-teal-700 border border-black border-l-0 border-r-0 rounded-none" style="width: 16%;">
+                <div class="h-1.5 bg-teal-700 border border-black border-l-0 border-r-0 rounded-none" style="width: 16%;">
                 </div>
-                <div class="h-2 bg-yellow-400 border border-black border-l-0 border-r-0 rounded-none"
+                <div class="h-1.5 bg-yellow-400 border border-black border-l-0 border-r-0 rounded-none"
                   style="width: 16%;"></div>
-                <div class="h-2 bg-violet-400 border border-black border-l-0 border-r-0 rounded-none"
+                <div class="h-1.5 bg-violet-400 border border-black border-l-0 border-r-0 rounded-none"
                   style="width: 16%;"></div>
-                <div class="h-2 bg-yellow-600 border border-black border-l-0 border-r-0 rounded-none"
+                <div class="h-1.5 bg-yellow-600 border border-black border-l-0 border-r-0 rounded-none"
                   style="width: 16%;"></div>
-                <div class="h-2 bg-red-300 rounded-full border border-black border-l-0 rounded-l-none"
+                <div class="h-1.5 bg-red-300 rounded-full border border-black border-l-0 rounded-l-none"
                   style="width: 17%;"></div>
               </div>
               <div>
@@ -169,9 +168,9 @@
           <div v-if="layerDisplayed == 4">
             <div class="grid grid-cols-[64px_1fr] gap-x-4">
               <div class="col-span-2 font-bold text-center">
-                <hr class="mb-1 border-gray-500">
+                <hr class="m-1 border-gray-500">
                 Famille d'aménagements
-                <hr class="mb-1 border-gray-500">
+                <hr class="m-1 border-gray-500">
               </div>
               <div class="my-auto rounded-md border-gray-500 border">
                 <div class="h-1 bg-legend-infra-type-bidirectionnelle" />
