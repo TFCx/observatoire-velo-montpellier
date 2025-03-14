@@ -205,17 +205,47 @@
         {
             "type": "Feature",
             "properties": {
-                "name": "Gambetta",
+                "name": "Gambetta - nord-ouest",
                 "quality": "fair",
                 "status": "done",
                 "type": "velorue",
                 "line": "Anneau",
                 "doneAt": "31\/08\/2024",
-                "link": "\/veloligne-Anneau#boulevard-gambetta",
-                "typeFamilyB": "dédié",
-                "typeB": "unidirectionnelle"
+                "link": "\/veloligne-Anneau#section-nord-ouest"
             },
-            "geometry": { "type": "LineString", "coordinates": [ [ 3.867006, 43.609019 ], [ 3.874477, 43.605302 ] ] }
+            "geometry": { "type": "LineString", "coordinates": [ [ 3.867006, 43.609019 ], [ 3.867998, 43.608526 ] ] }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Gambetta - centre",
+                "quality": "bad",
+                "status": "done",
+                "type": "velorue",
+                "line": "Anneau",
+                "doneAt": "31/08/2024",
+                "link": "/veloligne-Anneau#section-centrale",
+                "typeFamilyB": "dédié",
+                "typeB": "unidirectionnelle",
+                "qualityB": "good"
+    		},
+    		"geometry": { "type": "LineString", "coordinates": [ [ 3.867998, 43.608526 ], [ 3.872910, 43.606081 ] ] }
+		},
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Gambetta - sud-est",
+                "quality": "good",
+                "status": "done",
+                "type": "velorue",
+                "line": "Anneau",
+                "doneAt": "31/08/2024",
+                "link": "/veloligne-Anneau#section-sud-est",
+                "typeFamilyB": "dédié",
+                "typeB": "unidirectionnelle",
+                "qualityB": "good"
+            },
+            "geometry": { "type": "LineString", "coordinates": [ [ 3.872910, 43.606081 ], [ 3.874477, 43.605302 ] ] }
         },
         {
             "type": "Feature",

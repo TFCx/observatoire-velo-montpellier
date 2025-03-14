@@ -43,13 +43,29 @@ La rue Saint-Louis a pu être libérée de son important trafic motorisé de tra
 
 ### Boulevard Gambetta
 
+#### section nord-ouest
 <span style="color:gold;font-weight:bold">À améliorer</span>
-Aménagement hétérogène avec bordures boudins dangereuses. Manque de places de livraisons créant un conflit d'usage. Accueille déjà plus de 4000 vélos/jour. Pourrait être aménagé en véritable vélorue à circulation centrale, sans bordure boudin, avec un filtre modal au droit de la rue de la Raffinerie.
+Aménagement hétérogène avec bordures boudins dangereuses à supprimer. Manque de places de livraisons créant un conflit d'usage. Sur cette première section le très faible trafic motorisé rend l'aménagement acceptable. Le feu du croisement avec les rues Zola et Général Vincent pourrait être supprimé ou ne passer au rouge qu'à l'appel piéton ou lors de sorties des rues Zola et Général Vincent.
+
+#### section centrale
+
+<span style="color:red;font-weight:bold">Non satisfaisant</span> dans le sens St Louis vers St Denis. Le fonctionnement de la partie mixte n'est pas compris par les motorisés qui ont une longue section en sens unique favorable à la prise de vitesse
+ / <span style="color:lightgreen;font-weight:bold;">Satisfaisant</span> dans le sens St Denis vers St Louis
+
+::banner{type="unsecured"}
+Ici encore l'aménagement est hétérogène avec bordures boudin dangereuses en milieu de voirie. Il y a un manque important de places de livraison créant un conflit d'usage. Le boulevard accueille déjà plus de 4000 vélos/jour et pourrait être aménagé en véritable vélorue, avec un filtre modal au droit de la rue de la Raffinerie pour éviter l'enchaînement de plusieurs centaines de mètres de sens unique pour les motorisés. Sans bordure boudin dangereuse, en rétrécissant la chaussée de manière à amener les vélos à circuler vers le centre et à améliorer les co-visibilités aux intersections de l'espace pourrait être gagné, potentiellement pour aménager des espaces de livraison.
+
+Les intersections - en particulier celle de la rue Daru - sont dangereuses. Le **trop important trafic de transit passant encore en hypercentre via la rue Daru** (estimé à plus de 4000 véhicules/jour) perturbe gravement le fonctionnement de l'anneau vélo ainsi que du tramway L3.
+::
+
+#### section sud-est
+
+<span style="color:lightgreen;font-weight:bold;">Satisfaisant</span> Dans cette dernière section le trafic motorisé est limité au trafic de desserte locale et le conflit d'usage avec les livraisons est moins important ce qui permet un fonctionnement correct de l'aménagement.
 
 ### Place Saint Denis
 
 <span style="color:red;font-weight:bold">Non satisfaisant</span>
-Prévue pour être piétonne sans matérialisation spécifique d'espaces piétons et d'espaces cyclables, la place s'annonce comme une discontinuité majeure de l'anneau vélo et un lieu de très importants conflits piéton-vélo.
+Prévue pour être piétonne sans matérialisation spécifique d'espaces piétons et d'espaces cyclables, la place s'annonce comme une discontinuité majeure de l'anneau vélo et un lieu de très importants conflits piéton-vélo auxquels s'ajoutera le danger dû aux rails de la ligne 5.
 
 ### Rue du Grand Saint-Jean
 
