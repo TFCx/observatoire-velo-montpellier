@@ -108,13 +108,13 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "Marché du Lez",
+        "name": "Arrière du Marché du Lez",
         "quality": "good",
         "doneAt": "01/01/2025",
         "status": "done",
         "type": "bidirectionnelle",
         "line": "4",
-        "link": "/veloligne-4#voie-verte-le-long-du-lez"
+        "link": "/veloligne-4#jonction-derrière-le-marché-du-lez"
       },
       "geometry": { "type": "LineString", "coordinates": [ [ 3.908548, 43.591156 ], [ 3.908344, 43.590875 ], [ 3.908199, 43.589163 ], [ 3.908133, 43.588182 ], [ 3.908051, 43.587967 ] ] }
     },

@@ -31,6 +31,10 @@ Pas de projet en cours à la connaissance de Vélocité.
 
 ### Branche vers Lattes et Palavas
 
+#### Jonction derrière le marché du Lez
+
+<span style="color:lightgreen;font-weight:bold;">Satisfaisant</span> Création récente (2025) cette section permet opportunément d'éviter la voie verte située entre le Lez et le marché du Lez qui connaît une très forte affluence piétonne.
+
 #### Voie verte le long du Lez
 
 <span style="color:gold;font-weight:bold;">À améliorer</span> Section existante (voie verte ancienne) aux standards de confort, qualité, sécurité et attractivité dépassés et non conformes aux exigences d'une Véloligne.
