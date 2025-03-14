@@ -2,11 +2,9 @@
   <div class="relative z-50" v-show="isExpanded">
     <div class="fixed p-2 bottom-5">
       <div class="relative p-4 w-full max-w-sm rounded-xl bg-white">
-        <button
-          type="button"
+        <button type="button"
           class="absolute top-1 right-1 bg-white rounded-md p-1 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100"
-          @click="reduceLegend"
-        >
+          @click="reduceLegend">
           <Icon name="mdi:close" class="h-6 w-6" aria-hidden="true" />
         </button>
         <div class="text-sm font-medium leading-4 text-gray-900 italic">
@@ -15,7 +13,7 @@
         <div class="mt-2">
           <div v-if="true">
           </div>
-          <div v-if="layerDisplayed==0">
+          <div v-if="layerDisplayed == 0">
             <div class="grid grid-cols-[64px_1fr] gap-x-4">
 
               <div class="col-span-2 font-bold text-center">
@@ -70,7 +68,7 @@
             </div>
           </div>
 
-          <div v-if="layerDisplayed==1">
+          <div v-if="layerDisplayed == 1">
             <div class="grid grid-cols-[64px_1fr] gap-x-4">
               <div class="col-span-2 font-bold text-center">
                 <hr class="mb-1 border-gray-500">
@@ -100,7 +98,7 @@
             </div>
           </div>
 
-          <div v-if="layerDisplayed==2">
+          <div v-if="layerDisplayed == 2">
             <div class="grid grid-cols-[64px_1fr] gap-x-4">
               <div class="col-span-2 font-bold text-center">
                 <hr class="mb-1 border-gray-500">
@@ -130,7 +128,7 @@
             </div>
           </div>
 
-          <div v-if="layerDisplayed==3">
+          <div v-if="layerDisplayed == 3">
             <div class="grid grid-cols-[64px_1fr] gap-x-2">
 
               <div class="col-span-2 font-bold text-center">
@@ -147,12 +145,18 @@
               </div>
 
               <div class="flex grow w-full items-center">
-                <div class="h-2 bg-emerald-400 rounded-full border border-black border-r-0 rounded-r-none" style="width: 16%;"></div>
-                <div class="h-2 bg-teal-700 border border-black border-l-0 border-r-0 rounded-none" style="width: 16%;"></div>
-                <div class="h-2 bg-yellow-400 border border-black border-l-0 border-r-0 rounded-none" style="width: 16%;"></div>
-                <div class="h-2 bg-violet-400 border border-black border-l-0 border-r-0 rounded-none" style="width: 16%;"></div>
-                <div class="h-2 bg-yellow-600 border border-black border-l-0 border-r-0 rounded-none" style="width: 16%;"></div>
-                <div class="h-2 bg-red-300 rounded-full border border-black border-l-0 rounded-l-none" style="width: 17%;"></div>
+                <div class="h-2 bg-emerald-400 rounded-full border border-black border-r-0 rounded-r-none"
+                  style="width: 16%;"></div>
+                <div class="h-2 bg-teal-700 border border-black border-l-0 border-r-0 rounded-none" style="width: 16%;">
+                </div>
+                <div class="h-2 bg-yellow-400 border border-black border-l-0 border-r-0 rounded-none"
+                  style="width: 16%;"></div>
+                <div class="h-2 bg-violet-400 border border-black border-l-0 border-r-0 rounded-none"
+                  style="width: 16%;"></div>
+                <div class="h-2 bg-yellow-600 border border-black border-l-0 border-r-0 rounded-none"
+                  style="width: 16%;"></div>
+                <div class="h-2 bg-red-300 rounded-full border border-black border-l-0 rounded-l-none"
+                  style="width: 17%;"></div>
               </div>
               <div>
                 Autres lignes
@@ -162,7 +166,7 @@
             </div>
           </div>
 
-          <div v-if="layerDisplayed==4">
+          <div v-if="layerDisplayed == 4">
             <div class="grid grid-cols-[64px_1fr] gap-x-4">
               <div class="col-span-2 font-bold text-center">
                 <hr class="mb-1 border-gray-500">
@@ -206,6 +210,12 @@
 </template>
 
 <script setup lang="ts">
+import type { DisplayedLayer } from '~/composables/map/network';
+
+
+const { defaultLegend } = defineProps<{
+  defaultLegend: DisplayedLayer;
+}>();
 
 const isExpanded = ref(false);
 
@@ -220,7 +230,7 @@ function toggleLegend() {
   isExpanded.value = !isExpanded.value;
 }
 
-const layerDisplayed = ref(0);
+const layerDisplayed = ref(defaultLegend);
 
 function setWhichLayerIsDisplayed(newLayerDisplayed: number) {
   layerDisplayed.value = newLayerDisplayed;
@@ -251,7 +261,7 @@ defineExpose({
 }
 
 .myrelative {
-  position:relative;
+  position: relative;
 }
 
 .myabsolute {
@@ -291,6 +301,7 @@ defineExpose({
   0% {
     background-position: 0 0;
   }
+
   100% {
     background-position: 12px 0;
   }

@@ -1,6 +1,6 @@
 <template>
   <div class="relative">
-    <LegendInfo ref="legendModalComponent" />
+    <LegendInfo ref="legendModalComponent" :defaultLegend="options.defaultLayer" />
     <FilterModal ref="filterModalComponent" @update="refreshFilters" />
     <div id="map" class="rounded-lg h-full w-full" />
     <img
