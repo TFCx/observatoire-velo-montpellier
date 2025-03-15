@@ -20,6 +20,7 @@ const dashesWidthRatio = 0.75
 const laneWidth = 4
 const fixedSectionWidth = laneWidth + 0.5
 const laneDashes = [1.5, 0.7]
+const sectionDashWIP = [2.0, 2.1]
 const laneDashWIP = [1.0, 1.05]
 const hoverExtension = 3
 const fixedHoverWidth = fixedSectionWidth + contourWidth * 2 + hoverExtension * 2
@@ -82,7 +83,10 @@ function getColorOf(key: LaneType | LaneTypeFamily | Quality | LaneStatus): stri
 function compSectionQualityColor(attribute: string): ExpressionSpecification {
     return [
         "case",
-            ["!=", ['get', 'status'], LaneStatus.Done], getColorOf(LaneType.Inconnu),
+            ["all",
+                ["!=", ['get', 'status'], LaneStatus.Done],
+                ["!=", ['get', 'status'], LaneStatus.Wip]
+            ], getColorOf(LaneType.Inconnu),
             ["==", ['get', attribute], Quality.Bad], getColorOf(Quality.Bad),
             ["==", ['get', attribute], Quality.Fair], getColorOf(Quality.Fair),
             ["==", ['get', attribute], Quality.Good], getColorOf(Quality.Good),
@@ -99,7 +103,10 @@ const sectionQualityColor2ndHalf: ExpressionSpecification = [
 function compSectionTypeFamilyColor(attribute: string): ExpressionSpecification {
     return [
         "case",
-            ["!=", ['get', 'status'], LaneStatus.Done], getColorOf(LaneType.Inconnu),
+            ["all",
+                ["!=", ['get', 'status'], LaneStatus.Done],
+                ["!=", ['get', 'status'], LaneStatus.Wip],
+            ], getColorOf(LaneType.Inconnu),
             ["==", ['get', attribute], LaneTypeFamily.Dedie], getColorOf(LaneTypeFamily.Dedie),
             ["==", ['get', attribute], LaneTypeFamily.MixiteMotorise], getColorOf(LaneTypeFamily.MixiteMotorise),
             ["==", ['get', attribute], LaneTypeFamily.MixitePietonne], getColorOf(LaneTypeFamily.MixitePietonne),
@@ -217,9 +224,10 @@ function updateOrCreateSources(map: Map, sections: SectionFeature[], lanes: Lane
     let b12 = upsertMapSource(map, 'src-sections-postponed', filterSections(sections, {done:false, wip:false, planned:false, postponed:true}))
     let b13 = upsertMapSource(map, 'src-sections-not-postponed', filterSections(sections, {done:true, wip:true, planned:true, postponed:false}))
     let b14 = upsertMapSource(map, 'src-sections-done-and-wip', filterSections(sections, {done:true, wip:true, planned:false, postponed:false}))
+    let b15 = upsertMapSource(map, 'src-sections-todo', filterSections(sections, {done:false, wip:false, planned:true, postponed:true}))
 
     // Check only update
-    return b1 && b2 && b3 && b4 && b5 && b6 && b7 && b8 && b9 && b10 && b11 && b12 && b13 && b14
+    return b1 && b2 && b3 && b4 && b5 && b6 && b7 && b8 && b9 && b10 && b11 && b12 && b13 && b14 && b15
 }
 
 
@@ -499,9 +507,9 @@ function drawQualityNetwork(map: Map) {
     layersForQualityNetwork.push("layer-quality-network-contour")
 
     map.addLayer({
-        id: `layer-quality-network-section-sideA`,
+        id: `layer-quality-network-sections-done-sideA`,
         type: 'line',
-        source: 'src-sections',
+        source: 'src-sections-done',
         layout: { 'line-cap': 'round' },
         paint: {
         'line-width': fixedSectionWidth / 2,
@@ -509,12 +517,12 @@ function drawQualityNetwork(map: Map) {
         'line-offset': fixedSectionWidth / 4,
         }
     });
-    layersForQualityNetwork.push("layer-quality-network-section-sideA")
+    layersForQualityNetwork.push("layer-quality-network-sections-done-sideA")
 
     map.addLayer({
-        id: `layer-quality-network-section-sideB`,
+        id: `layer-quality-network-sections-done-sideB`,
         type: 'line',
-        source: 'src-sections',
+        source: 'src-sections-done',
         layout: { 'line-cap': 'round' },
         paint: {
         'line-width': fixedSectionWidth / 2,
@@ -522,7 +530,97 @@ function drawQualityNetwork(map: Map) {
         'line-offset': -fixedSectionWidth / 4,
         }
     });
-    layersForQualityNetwork.push("layer-quality-network-section-sideB")
+    layersForQualityNetwork.push("layer-quality-network-sections-done-sideB")
+
+    map.addLayer({
+        id: `layer-quality-network-sections-wip-background`,
+        type: 'line',
+        source: 'src-sections-wip',
+        paint: {
+            'line-width': fixedSectionWidth,
+            'line-color': "white",
+        }
+    });
+    layersForQualityNetwork.push("layer-quality-network-sections-wip-background")
+
+    map.addLayer({
+        id: `layer-quality-network-sections-wip-sideA`,
+        type: 'line',
+        source: 'src-sections-wip',
+        paint: {
+            'line-width': fixedSectionWidth / 2,
+            'line-color': sectionQualityColor,
+            'line-offset': fixedSectionWidth / 4,
+            'line-dasharray': sectionDashWIP,
+        }
+    });
+    layersForQualityNetwork.push("layer-quality-network-sections-wip-sideA")
+
+    map.addLayer({
+        id: `layer-quality-network-sections-wip-sideB`,
+        type: 'line',
+        source: 'src-sections-wip',
+        paint: {
+            'line-width': fixedSectionWidth / 2,
+            'line-color': sectionQualityColor2ndHalf,
+            'line-offset': -fixedSectionWidth / 4,
+            'line-dasharray': sectionDashWIP,
+        }
+    });
+    layersForQualityNetwork.push("layer-quality-network-sections-wip-sideB")
+
+    map.addLayer({
+        id: `layer-quality-network-sections-wip-as-done-sideA`,
+        type: 'line',
+        source: 'src-sections-wip',
+        paint: {
+            'line-width': fixedSectionWidth / 2,
+            'line-color': sectionQualityColor,
+            'line-offset': fixedSectionWidth / 4,
+        }
+    });
+    animateOpacity(map, 0, 1000*1.50, 'layer-quality-network-sections-wip-as-done-sideA', 'line-opacity', 0.0, 1.0);
+    layersForQualityNetwork.push("layer-quality-network-sections-wip-as-done-sideA")
+
+    map.addLayer({
+        id: `layer-quality-network-sections-wip-as-done-sideB`,
+        type: 'line',
+        source: 'src-sections-wip',
+        paint: {
+            'line-width': fixedSectionWidth / 2,
+            'line-color': sectionQualityColor2ndHalf,
+            'line-offset': -fixedSectionWidth / 4,
+        }
+    });
+    animateOpacity(map, 0, 1000*1.50, 'layer-quality-network-sections-wip-as-done-sideB', 'line-opacity', 0.0, 1.0);
+    layersForQualityNetwork.push("layer-quality-network-sections-wip-as-done-sideB")
+
+
+    map.addLayer({
+        id: `layer-quality-network-sections-todo-sideA`,
+        type: 'line',
+        source: 'src-sections-todo',
+        layout: { 'line-cap': 'round' },
+        paint: {
+        'line-width': fixedSectionWidth / 2,
+        'line-color': sectionQualityColor,
+        'line-offset': fixedSectionWidth / 4,
+        }
+    });
+    layersForQualityNetwork.push("layer-quality-network-sections-todo-sideA")
+
+    map.addLayer({
+        id: `layer-quality-network-sections-todo-sideB`,
+        type: 'line',
+        source: 'src-sections-todo',
+        layout: { 'line-cap': 'round' },
+        paint: {
+        'line-width': fixedSectionWidth / 2,
+        'line-color': sectionQualityColor2ndHalf,
+        'line-offset': -fixedSectionWidth / 4,
+        }
+    });
+    layersForQualityNetwork.push("layer-quality-network-sections-todo-sideB")
 }
 function drawTypeFamilyNetwork(map: Map) {
 
@@ -540,9 +638,9 @@ function drawTypeFamilyNetwork(map: Map) {
     layersForTypeFamilyNetwork.push("layer-type-family-network-contour")
 
     map.addLayer({
-        id: `layer-type-family-network-section-sideA`,
+        id: `layer-type-family-network-sections-done-sideA`,
         type: 'line',
-        source: 'src-sections',
+        source: 'src-sections-done',
         layout: { 'line-cap': 'round' },
         paint: {
         'line-width': fixedSectionWidth / 2,
@@ -550,12 +648,12 @@ function drawTypeFamilyNetwork(map: Map) {
         'line-offset': fixedSectionWidth / 4,
         }
     });
-    layersForTypeFamilyNetwork.push("layer-type-family-network-section-sideA")
+    layersForTypeFamilyNetwork.push("layer-type-family-network-sections-done-sideA")
 
     map.addLayer({
-        id: `layer-type-family-network-section-sideB`,
+        id: `layer-type-family-network-sections-done-sideB`,
         type: 'line',
-        source: 'src-sections',
+        source: 'src-sections-done',
         layout: { 'line-cap': 'round' },
         paint: {
         'line-width': fixedSectionWidth / 2,
@@ -563,7 +661,98 @@ function drawTypeFamilyNetwork(map: Map) {
         'line-offset': -fixedSectionWidth / 4,
         }
     });
-    layersForTypeFamilyNetwork.push("layer-type-family-network-section-sideB")
+    layersForTypeFamilyNetwork.push("layer-type-family-network-sections-done-sideB")
+
+
+    map.addLayer({
+        id: `layer-family-network-sections-wip-background`,
+        type: 'line',
+        source: 'src-sections-wip',
+        paint: {
+            'line-width': fixedSectionWidth,
+            'line-color': "white",
+        }
+    });
+    layersForTypeFamilyNetwork.push("layer-family-network-sections-wip-background")
+
+    map.addLayer({
+        id: `layer-family-network-sections-wip-sideA`,
+        type: 'line',
+        source: 'src-sections-wip',
+        paint: {
+            'line-width': fixedSectionWidth / 2,
+            'line-color': sectionTypeFamilyColor,
+            'line-offset': fixedSectionWidth / 4,
+            'line-dasharray': sectionDashWIP,
+        }
+    });
+    layersForTypeFamilyNetwork.push("layer-family-network-sections-wip-sideA")
+
+    map.addLayer({
+        id: `layer-family-network-sections-wip-sideB`,
+        type: 'line',
+        source: 'src-sections-wip',
+        paint: {
+            'line-width': fixedSectionWidth / 2,
+            'line-color': sectionTypeFamilyColor2ndHalf,
+            'line-offset': -fixedSectionWidth / 4,
+            'line-dasharray': sectionDashWIP,
+        }
+    });
+    layersForTypeFamilyNetwork.push("layer-family-network-sections-wip-sideB")
+
+    map.addLayer({
+        id: `layer-family-network-sections-wip-as-done-sideA`,
+        type: 'line',
+        source: 'src-sections-wip',
+        paint: {
+            'line-width': fixedSectionWidth / 2,
+            'line-color': sectionTypeFamilyColor,
+            'line-offset': fixedSectionWidth / 4,
+        }
+    });
+    animateOpacity(map, 0, 1000*1.50, 'layer-family-network-sections-wip-as-done-sideA', 'line-opacity', 0.0, 1.0);
+    layersForTypeFamilyNetwork.push("layer-family-network-sections-wip-as-done-sideA")
+
+    map.addLayer({
+        id: `layer-family-network-sections-wip-as-done-sideB`,
+        type: 'line',
+        source: 'src-sections-wip',
+        paint: {
+            'line-width': fixedSectionWidth / 2,
+            'line-color': sectionTypeFamilyColor2ndHalf,
+            'line-offset': -fixedSectionWidth / 4,
+        }
+    });
+    animateOpacity(map, 0, 1000*1.50, 'layer-family-network-sections-wip-as-done-sideB', 'line-opacity', 0.0, 1.0);
+    layersForTypeFamilyNetwork.push("layer-family-network-sections-wip-as-done-sideB")
+
+
+    map.addLayer({
+        id: `layer-family-network-sections-todo-sideA`,
+        type: 'line',
+        source: 'src-sections-todo',
+        layout: { 'line-cap': 'round' },
+        paint: {
+        'line-width': fixedSectionWidth / 2,
+        'line-color': sectionTypeFamilyColor,
+        'line-offset': fixedSectionWidth / 4,
+        }
+    });
+    layersForTypeFamilyNetwork.push("layer-family-network-sections-todo-sideA")
+
+    map.addLayer({
+        id: `layer-family-network-sections-todo-sideB`,
+        type: 'line',
+        source: 'src-sections-todo',
+        layout: { 'line-cap': 'round' },
+        paint: {
+        'line-width': fixedSectionWidth / 2,
+        'line-color': sectionTypeFamilyColor2ndHalf,
+        'line-offset': -fixedSectionWidth / 4,
+        }
+    });
+    layersForTypeFamilyNetwork.push("layer-family-network-sections-todo-sideB")
 }
 
 function drawTypeNetwork(map: Map) {

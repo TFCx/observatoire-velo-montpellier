@@ -51,7 +51,6 @@
                 "line": "Anneau",
                 "doneAt": "31\/12\/2019",
                 "link": "\/veloligne-Anneau#jonction-entre-lavenue-mermoz-et-la-rue-du-professeur-léon-vallois",
-                "typeFamilyB": "dédié",
                 "typeB": "unidirectionnelle"
             },
             "geometry": { "type": "LineString", "coordinates": [ [ 3.888735, 43.613155 ], [ 3.888681, 43.613218 ], [ 3.888442, 43.613372 ], [ 3.88768, 43.613721 ], [ 3.887052, 43.613899 ], [ 3.886428, 43.613919 ] ] }
@@ -170,7 +169,6 @@
                 "line": "Anneau",
                 "doneAt": "31\/08\/2024",
                 "link": "\/veloligne-Anneau#rue-doria-de-assas-à-paladhile",
-                "typeFamilyB": "mixité-motorisés",
                 "typeB": "velorue",
                 "qualityB": "bad"
             },
@@ -225,7 +223,6 @@
                 "line": "Anneau",
                 "doneAt": "31\/08\/2024",
                 "link": "/veloligne-Anneau#section-centrale",
-                "typeFamilyB": "dédié",
                 "typeB": "unidirectionnelle",
                 "qualityB": "good"
     		},
@@ -241,7 +238,6 @@
                 "line": "Anneau",
                 "doneAt": "31\/08\/2024",
                 "link": "/veloligne-Anneau#section-sud-est",
-                "typeFamilyB": "dédié",
                 "typeB": "unidirectionnelle",
                 "qualityB": "good"
             },
@@ -270,7 +266,6 @@
                 "line": "Anneau",
                 "doneAt": "01\/01\/2024",
                 "link": "\/veloligne-Anneau#rue-du-grand-saint-jean",
-                "typeFamilyB": "mixité-motorisés",
                 "typeB": "velorue",
                 "qualityB": "fair"
             },
@@ -327,7 +322,6 @@
                 "line": "Anneau",
                 "doneAt": "31\/10\/2023",
                 "link": "\/veloligne-Anneau#quai-laurens",
-                "typeFamilyB": "dédié",
                 "typeB": "unidirectionnelle",
                 "qualityB": "good"
             },

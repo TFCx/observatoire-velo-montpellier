@@ -1,5 +1,5 @@
 <template>
-  <div class="not-prose text-gray-900 w-48">
+  <div class="not-prose text-gray-900 w-88">
     <div class="py-1 bg-zinc-100 flex flex-col items-center justify-center">
       <div class="font-bold text-base">
         {{ title }}
@@ -25,7 +25,7 @@
         </div>
       </div>
       <div class="py-1 flex items-center justify-between">
-        <div class="text-sm font-bold">
+        <div class="text-sm font-bold mr-2">
           Statut
         </div>
         <div>
@@ -38,7 +38,7 @@
         </div>
       </div>
       <div class="py-1 flex items-center justify-between">
-        <div class="text-sm font-bold">
+        <div class="text-sm font-bold mr-2">
           Longueur
         </div>
         <div class="text-sm">
@@ -46,22 +46,22 @@
         </div>
       </div>
       <div class="py-1 flex items-center justify-between">
-        <div class="text-sm font-bold">
+        <div class="text-sm font-bold mr-2">
           Type
         </div>
         <div>
           <div class="text-right">
-            {{ laneTypeToDescription[feature.properties.type] ?? 'ERREUR' }}
+            {{ typeTextOf(feature) }}
           </div>
         </div>
       </div>
       <div class="py-1 flex items-center justify-between">
-        <div class="text-sm font-bold">
+        <div class="text-sm font-bold mr-2">
           Qualité
         </div>
         <div>
           <div class="italic text-right">
-            {{ qualityToDescription[feature.properties.quality] }}
+            {{ qualityTextOf(feature) }}
           </div>
         </div>
       </div>
@@ -76,6 +76,20 @@
 
 <script setup lang="ts">
 import type { LineStringFeature, SectionFeature } from '~/types';
+
+function qualityTextOf(section: SectionFeature): string {
+  let isHeterogenous = section.properties.qualityB != undefined && (section.properties.quality != section.properties.qualityB)
+  let qA = qualityToDescription[section.properties.quality]
+  let qB = section.properties.qualityB ? qualityToDescription[section.properties.qualityB] : ""
+  return isHeterogenous ? qA + " & " + qB : qA
+}
+
+function typeTextOf(section: SectionFeature): string {
+  let isHeterogenous = section.properties.typeB != undefined && (section.properties.type != section.properties.typeB)
+  let tA = laneTypeToDescription[section.properties.type]
+  let tB = section.properties.typeB ? laneTypeToDescription[section.properties.typeB] : ""
+  return isHeterogenous ? tA + " & " + tB : tA
+}
 
 const { getLineColor } = useColors();
 const { getRevName } = useConfig();
