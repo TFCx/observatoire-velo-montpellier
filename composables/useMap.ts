@@ -227,14 +227,16 @@ export const useMap = () => {
           return mapFeature.length > 0;
         },
         getTooltipProps: () => {
-          const mapFeature = map.queryRenderedFeatures(clickEvent.point, {
+          const mapFeatures = map.queryRenderedFeatures(clickEvent.point, {
             filter: [
               'all',
               ['==', ['geometry-type'], 'LineString'],
               ['!=', ['get', 'source'], 'openmaptiles'], // Exclude base map features
               ['has', 'status'] // All sections in geojson LineStrings have a status
             ]
-          })[0];
+          });
+
+          let mapFeature = mapFeatures[mapFeatures.length - 1]
 
           const name = mapFeature.properties.name;
 
