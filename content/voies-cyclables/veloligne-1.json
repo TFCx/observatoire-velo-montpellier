@@ -163,7 +163,7 @@
             "type": "Feature",
             "properties": {
                 "name": "Route de Nimes Carrefour",
-                "quality": "",
+                "quality": "fair",
                 "doneAt": "",
                 "status": "wip",
                 "type": "bilaterale",

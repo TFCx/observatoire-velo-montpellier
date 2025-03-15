@@ -152,13 +152,13 @@
             "type": "Feature",
             "properties": {
                 "name": "Mas de Brousse",
-                "quality": "",
+                "quality": "fair",
                 "doneAt": "",
                 "status": "wip",
                 "type": "inconnu",
                 "line": "B",
                 "id": "MasDeBrousse",
-                "link": "/veloligne-B#boulevard-pénélope"
+                "link": "/veloligne-B#mas-de-brousse"
             },
             "geometry": { "type": "LineString", "coordinates": [ [ 3.922547, 43.596691 ], [ 3.920233, 43.599094 ], [ 3.918869, 43.600479 ], [ 3.917799, 43.60181 ], [ 3.916339, 43.601906 ] ] }
         },

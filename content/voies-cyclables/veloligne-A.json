@@ -77,7 +77,7 @@
             "id": "d0SbfrS3JIgaNe9ly58I9nbh0jD3436E",
             "type": "Feature",
             "properties": {
-                "quality": "",
+                "quality": "good",
                 "doneAt": "",
                 "status": "wip",
                 "type": "bilaterale",

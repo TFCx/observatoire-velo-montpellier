@@ -19,7 +19,7 @@
             "type": "Feature",
             "properties": {
                 "name": "Mas de Brousse",
-                "quality": "",
+                "quality": "fair",
                 "doneAt": "",
                 "status": "wip",
                 "type": "inconnu",

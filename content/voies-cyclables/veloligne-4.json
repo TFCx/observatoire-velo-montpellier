@@ -5,7 +5,7 @@
       "type": "Feature",
       "properties": {
         "name": "Avenue Jacques Cartier",
-        "quality": "",
+        "quality": "fair",
         "doneAt": "",
         "status": "wip",
         "type": "inconnu",

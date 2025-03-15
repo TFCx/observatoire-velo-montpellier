@@ -24,7 +24,7 @@ Aucun aménagement à l'heure actuelle. Reporté après le mandat.
 Reporté après le mandat.
 ::
 
-### Boirargues (Mc Donald)	
+### Boirargues (Mc Donald)
 ::banner{type="unsecured"}
 Aucun aménagement à l'heure actuelle. Reporté après le mandat.
 ::
@@ -142,7 +142,7 @@ Environs du rond-point de Girac en travaux dans le cadre du chantier de la ligne
 ::content-image
 ---
 imageUrl: https://travaux.montpellier.fr/sites/default/files/styles/large/public/pdfpreview/366-Closades_av_du_Martinet-Clapiers_09_2024.png
-caption: 
+caption:
 credit: Ville de Montpellier
 streetView: 43.648121,3.8848679,3a,75y,116.82h,70.4t
 ---
@@ -169,7 +169,7 @@ Pas de projet en cours à la connaissance de Vélocité.
 ### Jonction Jacou le Crès
 <span style="color:gold;font-weight:bold">À améliorer</span> Aménagement existant de standards anciens empruntant pour partie un équipement réalisé pour la Véloligne 70.
 
-### Jonction le Crès ⇄ boulevard Philippe Lamour 
+### Jonction le Crès ⇄ boulevard Philippe Lamour
 <span style="color:lightgreen;font-weight:bold">Satisfaisant</span> Aménagement globalement satisfaisant sous forme de chaucidou dans une zone à très faible trafic pour la partie nord et sous forme d'une piste bidirectionnelle récemment rénovée dans la partie sud. La traversée du boulevard Philippe Lamour reste problématique et le traitement de cette intersection avec une voie à très grande circulation n'est pas aux standards d'une Véloligne.
 
 ### Jonction Philippe Lamour ⇄ Grammont
@@ -193,6 +193,8 @@ Prévu pour 2026.
 ::banner{type="unsecured"}
 Pas de projet en cours à la connaissance de Vélocité.
 ::
+
+### Mas de Brousse
 
 <!--
 
