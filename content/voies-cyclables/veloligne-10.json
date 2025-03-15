@@ -32,7 +32,7 @@
             "type": "Feature",
             "properties": {
                 "name": "Flahault Rech ⇄ Voie Domitienne",
-                "quality": "",
+                "quality": "good",
                 "doneAt": "",
                 "status": "wip",
                 "type": "bilaterale",
@@ -41,10 +41,23 @@
             },
             "geometry": { "type": "LineString", "coordinates": [ [ 3.862125, 43.623947 ], [ 3.862301, 43.62373 ], [ 3.862604, 43.623447 ], [ 3.863598, 43.622734 ], [ 3.864884, 43.620722 ], [ 3.865370211354533, 43.619909173384407 ] ] }
         },
+         {
+            "type": "Feature",
+            "properties": {
+                "name": "route de Ganges voie Domitienne ⇄ Émile Diacon",
+                "quality": "good",
+                "doneAt": "",
+                "status": "wip",
+                "type": "bilaterale",
+                "line": "10",
+                "link": "/veloligne-10#voie-domitienne-lapeyronie"
+            },
+            "geometry": { "type": "LineString", "coordinates": [ [ 3.858238, 43.627840 ], [ 3.859136, 43.626931 ], [ 3.859834, 43.626346 ], [ 3.860837, 43.625602 ], [ 3.86197, 43.624137 ], [ 3.862125, 43.623947 ] ] }
+        },
         {
             "type": "Feature",
             "properties": {
-                "name": "Flahault ⇄ route de Ganges",
+                "name": "route de Ganges Émile Diacon ⇄ Lapeyronie",
                 "quality": "",
                 "doneAt": "",
                 "status": "planned",
@@ -52,7 +65,7 @@
                 "line": "10",
                 "link": "/veloligne-10#voie-domitienne-lapeyronie"
             },
-            "geometry": { "type": "LineString", "coordinates": [ [ 3.849648, 43.634216 ], [ 3.850052, 43.633775 ], [ 3.851021, 43.632982 ], [ 3.851736, 43.632564 ], [ 3.852262, 43.632251 ], [ 3.852829, 43.631952 ], [ 3.853304, 43.631687 ], [ 3.855183, 43.630536 ], [ 3.855571, 43.630293 ], [ 3.8559, 43.630074 ], [ 3.856873, 43.629222 ], [ 3.859136, 43.626931 ], [ 3.859834, 43.626346 ], [ 3.860837, 43.625602 ], [ 3.86197, 43.624137 ], [ 3.862125, 43.623947 ] ] }
+            "geometry": { "type": "LineString", "coordinates": [ [ 3.849648, 43.634216 ], [ 3.850052, 43.633775 ], [ 3.851021, 43.632982 ], [ 3.851736, 43.632564 ], [ 3.852262, 43.632251 ], [ 3.852829, 43.631952 ], [ 3.853304, 43.631687 ], [ 3.855183, 43.630536 ], [ 3.855571, 43.630293 ], [ 3.8559, 43.630074 ], [ 3.856873, 43.629222 ],[ 3.858238, 43.627840 ] ] }
         },
         {
             "type": "Feature",
