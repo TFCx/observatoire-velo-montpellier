@@ -26,10 +26,10 @@ Les travaux ont démarré le 16 septembre 2024. Les pistes transitoires bilatér
 ::
 ::content-image
 ---
-imageUrl: https://travaux.montpellier.fr/sites/default/files/styles/large/public/chantiers/image_0.png
+imageUrl: ~/assets/lines/VL10_travaux_flahault.jpg
 caption: Vue projet de la Véloligne 10 au niveau de la faculté de Pharmacie
 credit: Ville de Montpellier
-streetView: 43.623059,3.8632682,3a,75y,308.78h,90.76t   
+streetView: 43.623059,3.8632682,3a,75y,308.78h,90.76t
 ---
 ::
 
@@ -53,7 +53,7 @@ Pas de projet en cours à la connaissance de Vélocité.
 
 #### La Valsière ⇄ Saint-Gély-du-Fesc
 
-<span style="color:lightgreen;font-weight:bold">Satisfaisant</span> 
+<span style="color:lightgreen;font-weight:bold">Satisfaisant</span>
 L'essentiel de cette partie a été réalisé en 2023 sous forme de chaucidous et de piste séparée. La toute dernière partie à l'arrivée à Saint Gély est encore en travaux.
 
 

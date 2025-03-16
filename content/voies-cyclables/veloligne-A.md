@@ -34,7 +34,7 @@ Réalisation récente (été 2023) ambitieuse de par la place prise aux motoris�
 
 ::content-image
 ---
-imageUrl: https://static.actu.fr/uploads/2022/10/43997-571-carrefour-960x473.png
+imageUrl: ~/assets/lines/VLA_ForguesFontcarrade_43997-571-carrefour-960x473.jpg
 caption: Carrefour d'inspiration hollandaise
 credit: Ville de Montpellier
 ---
@@ -80,7 +80,7 @@ Le projet prévoit un aménagement bilatéral.
 
 ::content-image
 ---
-imageUrl: https://www.montpellier3m.fr/sites/default/files/vignettes/actualite/avenue_du_mondial_98.png
+imageUrl: ~/assets/lines/VLA_avenue_du_mondial_98.jpg
 ---
 ::
 

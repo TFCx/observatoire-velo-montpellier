@@ -23,7 +23,7 @@ Section inexistante. Pas de projet en cours à la connaissance de Vélocité.
 
 ::content-image
 ---
-imageUrl: https://compteurs.velocite-montpellier.fr/assets/img/ED223110496.jpg
+imageUrl: ~/assets/lines/VL2_compteur.jpg
 caption: Présence d'un compteur muni d'un totem d'affichage à l'est de la passerelle.
 credit:
 streetView: 43.6098586,3.8987897,3a,75y,235.16h,87.95t

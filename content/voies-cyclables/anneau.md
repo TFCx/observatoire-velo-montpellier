@@ -92,7 +92,7 @@ Prévue pour être piétonne sans matérialisation spécifique d'espaces piéton
 
 ::content-image
 ---
-imageUrl: https://www.cerema.fr/sites/default/files/inline-images/effet_canyon_0.jpg
+imageUrl: ~/assets/lines/Anneau_effet_canyon_0.jpg
 caption: Piste cyclable ancienne sur le trajet de l'Anneau vélo
 credit: Cerema - 8 recommandations pour réussir votre piste cyclable
 streetView: 43.6058282,3.8896056,3a,15y,26.2h,88.67t

@@ -141,7 +141,7 @@ Environs du rond-point de Girac en travaux dans le cadre du chantier de la ligne
 ::banner{type="wip"}
 ::content-image
 ---
-imageUrl: https://travaux.montpellier.fr/sites/default/files/styles/large/public/pdfpreview/366-Closades_av_du_Martinet-Clapiers_09_2024.png
+imageUrl: ~/assets/lines/VLB_travaux_366-Closades_av_du_Martinet-Clapiers_09_2024.png
 caption:
 credit: Ville de Montpellier
 streetView: 43.648121,3.8848679,3a,75y,116.82h,70.4t

@@ -3,7 +3,7 @@
     <NuxtLink v-if="link" :to="link" target="_blank" class="not-prose">
       <img
         class="w-full rounded-lg"
-        :src="imageUrl"
+        :src="resolveUrl(imageUrl)"
         :alt="caption"
         loading="lazy"
         width="1310"
@@ -13,7 +13,7 @@
     <img
       v-else
       class="w-full rounded-lg"
-      :src="imageUrl"
+      :src="resolveUrl(imageUrl)"
       :alt="caption"
       loading="lazy"
       width="1310"
@@ -31,7 +31,16 @@
   </figure>
 </template>
 
-<script setup>
+<script setup lang="ts">
+
+function resolveUrl(url: String): string {
+  let res = url
+  if(url[0] == "~") {
+    res = url.replace("~", "_nuxt")
+  }
+  return res.toString()
+}
+
 defineProps({
   imageUrl: { type: String, required: true },
   link: { type: String, required: false, default: undefined },
