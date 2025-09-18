@@ -6,7 +6,7 @@
             "type": "Feature",
             "properties": {
                 "quality": "",
-                "status": "planned",
+                "status": "wip",
                 "type": "inconnu",
                 "line": "D",
                 "doneAt": "",

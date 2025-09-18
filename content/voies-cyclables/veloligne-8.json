@@ -84,9 +84,9 @@
             "type": "Feature",
             "properties": {
                 "name": "Lavérune Fajon ⇄ Gennevaux",
-                "quality": "",
-                "doneAt": "31\/12\/2019",
-                "status": "wip",
+                "quality": "good",
+                "doneAt": "01\/08\/2025",
+                "status": "done",
                 "type": "bilaterale",
                 "line": "8",
                 "link": "/veloligne-8#du-rond-point-paul-fajon-au-rond-point-maurice-gennevaux"

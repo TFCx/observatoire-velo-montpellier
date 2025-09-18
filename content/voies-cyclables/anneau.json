@@ -124,11 +124,11 @@
             "type": "Feature",
             "properties": {
                 "name": "Broussonet",
-                "quality": "fair",
-                "status": "wip",
+                "quality": "good",
+                "status": "done",
                 "type": "bidirectionnelle",
                 "line": "Anneau",
-                "doneAt": "",
+                "doneAt": "01/09/2025",
                 "link": "\/veloligne-Anneau#rue-bonnard"
             },
             "geometry": { "type": "LineString", "coordinates": [ [ 3.871836, 43.616006 ], [ 3.871434, 43.616145 ], [ 3.8711025903243472, 43.615884272095556 ] ] }
@@ -178,11 +178,11 @@
             "type": "Feature",
             "properties": {
                 "name": "Place Max Rouquette",
-                "quality": "",
-                "status": "planned",
-                "type": "inconnu",
+                "quality": "fair",
+                "status": "done",
+                "type": "bidirectionnelle",
                 "line": "Anneau",
-                "doneAt": "",
+                "doneAt": "18/09/2025",
                 "link": "\/veloligne-Anneau#rue-saint-louis-sur-la-place-max-rouquette"
             },
             "geometry": { "type": "LineString", "coordinates": [ [ 3.866708, 43.612133 ], [ 3.866582, 43.61166 ], [ 3.866587, 43.611492 ], [ 3.866591, 43.611463 ] ] }

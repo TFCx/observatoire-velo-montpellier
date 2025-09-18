@@ -140,7 +140,7 @@
                 "name": "Place Odysseum ⇄ Carrefour de Londres",
                 "quality": "",
                 "doneAt": "",
-                "status": "planned",
+                "status": "wip",
                 "type": "inconnu",
                 "line": "B",
                 "id": "OdysseumlLondres",
@@ -152,10 +152,10 @@
             "type": "Feature",
             "properties": {
                 "name": "Mas de Brousse",
-                "quality": "fair",
-                "doneAt": "",
-                "status": "wip",
-                "type": "inconnu",
+                "quality": "good",
+                "doneAt": "15/09/2025",
+                "status": "done",
+                "type": "bidirectionnelle",
                 "line": "B",
                 "id": "MasDeBrousse",
                 "link": "/veloligne-B#mas-de-brousse"
@@ -192,9 +192,9 @@
             "type": "Feature",
             "properties": {
                 "name": "Boirargues (Lycée Champollion)",
-                "quality": "",
-                "status": "planned",
-                "type": "inconnu",
+                "quality": "fair",
+                "status": "done",
+                "type": "bilaterale",
                 "line": "B",
                 "doneAt": "31\/12\/2019",
                 "link": "/veloligne-B#boirargues-lycée-champollion"
@@ -205,11 +205,11 @@
             "type": "Feature",
             "properties": {
                 "name": "Boirargues Mc Donald",
-                "quality": "",
-                "status": "postponed",
-                "type": "inconnu",
+                "quality": "good",
+                "status": "done",
+                "type": "bidirectionnelle",
                 "line": "B",
-                "doneAt": "",
+                "doneAt": "01/08/2025",
                 "link": "/veloligne-B#boirargues-mc-donald"
             },
             "geometry": { "type": "LineString", "coordinates": [ [ 3.926156, 43.583822 ], [ 3.925179, 43.582951 ], [ 3.925163, 43.582941 ] ] }
@@ -218,11 +218,11 @@
             "type": "Feature",
             "properties": {
                 "name": "Boirargues Figuières",
-                "quality": "",
-                "status": "planned",
-                "type": "inconnu",
+                "quality": "fair",
+                "status": "done",
+                "type": "bidirectionnelle",
                 "line": "B",
-                "doneAt": "",
+                "doneAt": "01/06/2025",
                 "link": "/veloligne-B#boirargues-zone-commerciale-soriech"
             },
             "geometry": { "type": "LineString", "coordinates": [ [ 3.920687, 43.581625 ], [ 3.922035, 43.582187 ], [ 3.923907, 43.58242 ], [ 3.924682, 43.582503 ], [ 3.925163, 43.582941 ] ] }
@@ -534,7 +534,7 @@
             "properties": {
                 "name": "M65 Fesquet ⇄ Navitau",
                 "quality": "",
-                "status": "planned",
+                "status": "wip",
                 "type": "inconnu",
                 "line": "B",
                 "doneAt": "",

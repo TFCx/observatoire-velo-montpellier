@@ -164,8 +164,8 @@
             "properties": {
                 "name": "Route de Nimes Carrefour",
                 "quality": "fair",
-                "doneAt": "",
-                "status": "wip",
+                "doneAt": "01\/06\/2025",
+                "status": "done",
                 "type": "bilaterale",
                 "line": "1",
                 "link": "/veloligne-1#le-crès-vendargues"

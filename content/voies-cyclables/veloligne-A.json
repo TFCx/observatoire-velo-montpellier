@@ -49,10 +49,10 @@
             "id": "oMUoBNgrluN1MJr9wxFRIEG2qOuHj7nt",
             "type": "Feature",
             "properties": {
-                "quality": "",
-                "doneAt": "",
-                "status": "planned",
-                "type": "inconnu",
+                "quality": "good",
+                "doneAt": "01/08/2025",
+                "status": "done",
+                "type": "bidirectionnelle",
                 "line": "A",
                 "name": "Ernest Granier",
                 "link": "/veloligne-A#avenue-du-mondial-98-granier-odysseum"
@@ -78,8 +78,8 @@
             "type": "Feature",
             "properties": {
                 "quality": "good",
-                "doneAt": "",
-                "status": "wip",
+                "doneAt": "01/08/2025",
+                "status": "done",
                 "type": "bilaterale",
                 "line": "A",
                 "name": "Mondial 98 (Manuguerra)",
@@ -105,10 +105,10 @@
             "id": "kJGTd0WE9J9NKtNNKTrYVbGQHAM4QLJQ",
             "type": "Feature",
             "properties": {
-                "quality": "",
-                "doneAt": "",
-                "status": "planned",
-                "type": "inconnu",
+                "quality": "good",
+                "doneAt": "01/07/2025",
+                "status": "done",
+                "type": "bilaterale",
                 "line": "A",
                 "name": "Marie de Montpellier",
                 "link": "/veloligne-A#pont-zucarelli-rond-point-ernest-granier"

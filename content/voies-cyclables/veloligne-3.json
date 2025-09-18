@@ -7,8 +7,8 @@
                 "name": "Place Odysseum ⇄ Carrefour de Londres",
                 "quality": "",
                 "doneAt": "",
-                "status": "planned",
-                "type": "inconnu",
+                "status": "wip",
+                "type": "bilateral",
                 "line": "3",
                 "id": "OdysseumlLondres",
                 "link": "/veloligne-3"
@@ -19,10 +19,10 @@
             "type": "Feature",
             "properties": {
                 "name": "Mas de Brousse",
-                "quality": "fair",
-                "doneAt": "",
-                "status": "wip",
-                "type": "inconnu",
+                "quality": "good",
+                "doneAt": "15/09/2025",
+                "status": "done",
+                "type": "bidirectionnelle",
                 "line": "3",
                 "id": "MasDeBrousse",
                 "link": "/veloligne-3"

@@ -71,7 +71,7 @@
               </NuxtLink>
 
               <NuxtLink to="https://www.barometre-velo.fr/" class="flex items-center justify-center px-4 py-5 text-base font-bold rounded-md shadow-sm text-color-primary-200 border border-transparent bg-color-secondary hover:shadow-lg sm:px-8 transition duration-300 transform hover:scale-105">
-                  Participez au baromètre vélo 2025
+                  Consultez les résultats du baromètre vélo 2025
                 </NuxtLink>
             </div>
           </div>
