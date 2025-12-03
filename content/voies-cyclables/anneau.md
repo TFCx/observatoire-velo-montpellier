@@ -34,7 +34,7 @@ L’effondrement d’un réseau d’évacuation rue Auguste Broussonnet début j
 
 ### Rue Saint-Louis sur la place Max Rouquette
 
-Aucun aménagement.
+<span style="color:gold;font-weight:bold">À améliorer</span> Aucun aménagement dans le sens St Louis vers Doria. Le double sens cyclable est large et protégé par une bordure chanfreinée.
 
 ### Rue Saint-Louis
 
@@ -45,7 +45,7 @@ La rue Saint-Louis a pu être libérée de son important trafic motorisé de tra
 
 #### section nord-ouest
 <span style="color:gold;font-weight:bold">À améliorer</span>
-Aménagement hétérogène avec bordures boudins dangereuses à supprimer. Manque de places de livraisons créant un conflit d'usage. Sur cette première section le très faible trafic motorisé rend l'aménagement acceptable. Le feu du croisement avec les rues Zola et Général Vincent pourrait être supprimé ou ne passer au rouge qu'à l'appel piéton ou lors de sorties des rues Zola et Général Vincent.
+Aménagement hétérogène avec bordures boudins dangereuses à supprimer. Manque de places de livraisons créant un conflit d'usage. Sur cette première section le très faible trafic motorisé rend l'aménagement acceptable.
 
 #### section centrale
 
@@ -65,7 +65,7 @@ Les intersections - en particulier celle de la rue Daru - sont dangereuses. Le *
 ### Place Saint Denis
 
 <span style="color:red;font-weight:bold">Non satisfaisant</span>
-Prévue pour être piétonne sans matérialisation spécifique d'espaces piétons et d'espaces cyclables, la place s'annonce comme une discontinuité majeure de l'anneau vélo et un lieu de très importants conflits piéton-vélo auxquels s'ajoutera le danger dû aux rails de la ligne 5.
+Aire piétonne sans matérialisation spécifique d'espaces piétons et d'espaces cyclables, discontinuité majeure de l'anneau vélo s'annonçant comme un lieu de très importants conflits piéton-vélo auxquels s'ajoute le danger lié aux rails de la ligne 5 et aux tramaways.
 
 ### Rue du Grand Saint-Jean
 

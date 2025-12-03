@@ -19,12 +19,14 @@
             "type": "Feature",
             "properties": {
                 "name": "Blum nord",
-                "quality": "",
-                "status": "planned",
-                "type": "inconnu",
+                "quality": "bad",
+                "status": "done",
+                "type": "aucun",
                 "line": "Anneau",
-                "doneAt": "",
-                "link": "\/veloligne-Anneau#rue-blum-partie-nord"
+                "doneAt": "01\/12\/2025",
+                "link": "\/veloligne-Anneau#rue-blum-partie-nord",
+                "typeB": "unidirectionnelle",
+                "qualityB": "good"
             },
             "geometry": { "type": "LineString", "coordinates": [ [ 3.890677, 43.608919 ], [ 3.890776, 43.609715 ], [ 3.890423616561097, 43.610368981501161 ] ] }
         },
@@ -178,12 +180,14 @@
             "type": "Feature",
             "properties": {
                 "name": "Place Max Rouquette",
-                "quality": "fair",
+                "quality": "good",
                 "status": "done",
-                "type": "bidirectionnelle",
+                "type": "unidirectionnelle",
                 "line": "Anneau",
-                "doneAt": "18/09/2025",
-                "link": "\/veloligne-Anneau#rue-saint-louis-sur-la-place-max-rouquette"
+                "doneAt": "01\/11\/2025",
+                "link": "\/veloligne-Anneau#rue-saint-louis-sur-la-place-max-rouquette",
+                "typeB": "aucun",
+                "qualityB": "fair"
             },
             "geometry": { "type": "LineString", "coordinates": [ [ 3.866708, 43.612133 ], [ 3.866582, 43.61166 ], [ 3.866587, 43.611492 ], [ 3.866591, 43.611463 ] ] }
         },
@@ -209,7 +213,9 @@
                 "type": "velorue",
                 "line": "Anneau",
                 "doneAt": "31\/08\/2024",
-                "link": "\/veloligne-Anneau#section-nord-ouest"
+                "link": "\/veloligne-Anneau#section-nord-ouest",
+                "typeB": "unidirectionnelle",
+                "qualityB": "good"
             },
             "geometry": { "type": "LineString", "coordinates": [ [ 3.867006, 43.609019 ], [ 3.867998, 43.608526 ] ] }
         },
@@ -232,7 +238,7 @@
             "type": "Feature",
             "properties": {
                 "name": "Gambetta - sud-est",
-                "quality": "good",
+                "quality": "fair",
                 "status": "done",
                 "type": "velorue",
                 "line": "Anneau",
@@ -248,10 +254,10 @@
             "properties": {
                 "name": "Saint-Denis",
                 "quality": "bad",
-                "status": "wip",
+                "status": "done",
                 "type": "aire-pietonne",
                 "line": "Anneau",
-                "doneAt": "",
+                "doneAt": "01\/11\/2025",
                 "link": "\/veloligne-Anneau#place-saint-denis"
             },
             "geometry": { "type": "LineString", "coordinates": [ [ 3.874477, 43.605302 ], [ 3.874483, 43.605299 ], [ 3.87463, 43.605247 ], [ 3.874904, 43.605264 ], [ 3.875102, 43.605294 ], [ 3.875284, 43.605285 ], [ 3.875744, 43.605183 ] ] }

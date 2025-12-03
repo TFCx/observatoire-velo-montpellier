@@ -18,10 +18,10 @@
       "type": "Feature",
       "properties": {
         "name": "Avenue Raymond Dugrand",
-        "quality": "",
-        "doneAt": "",
-        "status": "wip",
-        "type": "inconnu",
+        "quality": "good",
+        "doneAt": "01/12/2025",
+        "status": "done",
+        "type": "bidirectionelle",
         "line": "4",
         "link": "/veloligne-4#rond-point-christophe-colomb-place-ernest-granier"
       },

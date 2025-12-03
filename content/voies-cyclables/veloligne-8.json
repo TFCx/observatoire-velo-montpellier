@@ -32,10 +32,10 @@
             "type": "Feature",
             "properties": {
                 "name": "Lavérune Figuerolles ⇄ Chasseurs",
-                "quality": "",
-                "doneAt": "",
-                "status": "planned",
-                "type": "inconnu",
+                "quality": "fair",
+                "doneAt": "15\/12\/2025",
+                "status": "done",
+                "type": "bilaterale",
                 "line": "8",
                 "link": "/veloligne-8#de-figuerolles-à-la-rue-des-chasseurs"
             },
@@ -45,9 +45,9 @@
             "type": "Feature",
             "properties": {
                 "name": "Lavérune Chasseurs ⇄ Paul Valéry",
-                "quality": "",
-                "doneAt": "",
-                "status": "wip",
+                "quality": "good",
+                "doneAt": "01\/12\/2025",
+                "status": "done",
                 "type": "bilaterale",
                 "line": "8",
                 "link": "/veloligne-8#de-la-rue-des-chasseurs-au-boulevard-paul-valéry"

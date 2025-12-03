@@ -46,8 +46,8 @@
             "properties": {
                 "name": "route de Ganges voie Domitienne ⇄ Émile Diacon",
                 "quality": "good",
-                "doneAt": "",
-                "status": "wip",
+                "doneAt": "01\/10\/2025",
+                "status": "done",
                 "type": "bilaterale",
                 "line": "10",
                 "link": "/veloligne-10#voie-domitienne-lapeyronie"
@@ -175,10 +175,10 @@
             "type": "Feature",
             "properties": {
                 "name": "Saint Gély du Fesc",
-                "quality": "",
-                "doneAt": "",
-                "status": "wip",
-                "type": "inconnu",
+                "quality": "good",
+                "doneAt": "01\/01\/2025",
+                "status": "done",
+                "type": "bidirectionelle",
                 "line": "10",
                 "link": "/veloligne-10#la-valsière-saint-gély-du-fesc"
             },

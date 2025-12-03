@@ -16,22 +16,25 @@ to: Cournonsec
 <span style="color:lightgreen;font-weight:bold;font-style:italic">Plutôt satisfaisant</span> Piste bidirectionnelle réalisée à la fin du mandat précédent en passant la rue à sens unique.
 
 ### De Figuerolles à la rue des Chasseurs
-
-::banner{type="unsecured"}
-Section inexistante. Pas de projet en cours à la connaissance de Vélocité.
-::
+<!--
+_________________________________________________________________________
+À DECOUPER
+--------------------------------------------------------------------------
+-->
+<span style="color:lightgreen;font-weight:bold;font-style:italic">Plutôt satisfaisant</span>
+Dans cettes section contrainte, des bilatérales étroites avec bordures chanfreinées ont été réalisées en passant la rue en sens unique et en gardant les trottoirs étroits à l'existant.
 
 ### De la rue des Chasseurs au boulevard Paul Valéry
 
-::banner{type="wip"}
-Section actuellement en travaux dans le cadre de la construction de la ligne 5 de tramway. Sera réalisée sous forme de pistes bilatérales.
-::
+<span style="color:lightgreen;font-weight:bold;font-style:italic">Plutôt satisfaisant</span>
+Les pistes restent un peu étroites avec quelques points durs mais globablement l'aménagement est plutôt qualitatif ; potentiel risque de conflit piétons/vélos dans le futur avec l'augmentation de la fréquentation piétonne et cyclable.
 
 ### Du boulevard Paul Valéry à l'avenue de Vanières
 
 ::banner{type="unsecured"}
 Section inexistante. Pas de projet en cours à la connaissance de Vélocité.
 ::
+Un itinéraire de remplacement a été réalisé via Pas du Loup et quai Flora Tristan en attendant de pouvoir réaliser la continuité de la Véloligne 8 pour le franchissement de l'avenue de Vannières.
 
 ### De l'avenue de Vanières au rond-point Paul Fajon
 
@@ -39,9 +42,7 @@ Section inexistante. Pas de projet en cours à la connaissance de Vélocité.
 
 ### Du rond-point Paul Fajon au rond-point Maurice Gennevaux
 
-::banner{type="wip"}
-Section actuellement en travaux dans le cadre de la construction de la ligne 5 de tramway. Sera réalisée sous forme de pistes bilatérales.
-::
+<span style="color:lightgreen;font-weight:bold">Satisfaisant</span> Pistes bilatérales réalisées dans le cadre de la réalisation de la ligne 5 de tramway.
 
 ### De Gennevaux à Cournonsec
 

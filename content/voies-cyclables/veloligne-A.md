@@ -74,7 +74,8 @@ Pas de projet en cours à la connaissance de Vélocité.
 
 ### Pont Zucarelli ⇄ rond-point Ernest Granier
 
-Le projet prévoit un aménagement bilatéral.
+<span style="color:lightgreen;font-weight:bold">Plutôt satisfaisant</span>
+Pistes bilatérales larges et confortables.
 
 ### Avenue du Mondial 98 (Granier ⇄ Odysseum)
 
@@ -82,11 +83,8 @@ Le projet prévoit un aménagement bilatéral.
 ---
 imageUrl: https://www.montpellier3m.fr/sites/default/files/vignettes/actualite/avenue_du_mondial_98.png
 ---
-::
-
-::banner{type="wip"}
-Actuellement en travaux. Les pistes transitoires bilatérales sont pérennisées.
-::
+<span style="color:lightgreen;font-weight:bold">Satisfaisant</span>
+Les pistes transitoires bilatérales ont été pérennisées en des pistes larges et confortables.
 
 ### Avenue du Mondial 98 (Odysseum ⇄ Evariste Galois)
 

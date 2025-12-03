@@ -189,9 +189,8 @@ Prévu pour 2026. Section commune avec la :line-link{line=A anchor=evariste-galo
 Projet de piste bidirectionnelle côté est pour le passage sous la voie rapide au nord et projet de pistes bilatérales au sud.
 
 ### Boulevard Pénélope
-Prévu pour 2026.
-::banner{type="unsecured"}
-Pas de projet en cours à la connaissance de Vélocité.
+::banner{type="wip"}
+Les travaux ont démarré à l'été 2025.
 ::
 
 ### Mas de Brousse

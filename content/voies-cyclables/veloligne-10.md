@@ -19,19 +19,16 @@ to: Saint-Gély / Montferrier
 
 ### Flahault entre la place Jules Rimet et la Voie Domitienne
 
-Sur cette section il est prévu d'aménager de larges pistes séparées de chaque côté de la rue de manière à finaliser et protéger les aménagements actuels.
+<span style="color:lightgreen;font-weight:bold;font-style:italic">Satisfaisant</span> Aménagement exemplaire en section courante.
 
-::banner{type="wip"}
-Les travaux ont démarré le 16 septembre 2024. Les pistes transitoires bilatérales seront pérennisées.
-::
-::content-image
----
-imageUrl: https://travaux.montpellier.fr/sites/default/files/styles/large/public/chantiers/image_0.png
-caption: Vue projet de la Véloligne 10 au niveau de la faculté de Pharmacie
-credit: Ville de Montpellier
-streetView: 43.623059,3.8632682,3a,75y,308.78h,90.76t   
----
-::
+<!--
+
+
+Intersection Flahault voie Domitienne : <span style="color:red;font-weight:bold">Non satisfaisant</span> (pas au niveau d'un réseau express vélo, risque de mésusages et d'accident). 
+
+-->
+
+
 
 *Au niveau de la voie Domitienne la Véloligne 10 se sépare en deux branches.*
 
@@ -54,7 +51,7 @@ Pas de projet en cours à la connaissance de Vélocité.
 #### La Valsière ⇄ Saint-Gély-du-Fesc
 
 <span style="color:lightgreen;font-weight:bold">Satisfaisant</span> 
-L'essentiel de cette partie a été réalisé en 2023 sous forme de chaucidous et de piste séparée. La toute dernière partie à l'arrivée à Saint Gély est encore en travaux.
+L'essentiel de cette partie a été réalisé en 2023 sous forme de chaucidous et de piste séparée.
 
 
 
@@ -72,9 +69,8 @@ L'essentiel de cette partie a été réalisé en 2023 sous forme de chaucidous e
 
 #### Place de la Voie Domitienne ⇄ Avenue Arthur Young
 
-::banner{type="wip"}
-En travaux. Une piste bidirectionnelle sera réalisée dans le cadre des travaux de la ligne 5 de tramway.
-::
+<span style="color:lightgreen;font-weight:bold;font-style:italic">Satisfaisant</span>
+Piste bidirectionnelle centrale réalisée dans le cadre des travaux de la ligne 5 de tramway.
 
 #### Route de Mende de l'Avenue Arthur Young à la RM65
 
