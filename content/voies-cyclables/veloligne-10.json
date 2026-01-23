@@ -58,9 +58,9 @@
             "type": "Feature",
             "properties": {
                 "name": "route de Ganges Émile Diacon ⇄ Lapeyronie",
-                "quality": "",
-                "doneAt": "",
-                "status": "wip",
+                "quality": "good",
+                "doneAt": "31\/12\/2025",
+                "status": "done",
                 "type": "bilaterale",
                 "line": "10",
                 "link": "/veloligne-10#voie-domitienne-lapeyronie"

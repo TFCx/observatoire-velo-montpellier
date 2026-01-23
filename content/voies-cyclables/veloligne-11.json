@@ -6,9 +6,9 @@
             "type": "Feature",
             "properties": {
                 "name": "Girac ⇄ Baillarguet",
-                "quality": "",
-                "doneAt": "",
-                "status": "wip",
+                "quality": "good",
+                "doneAt": "31\/12\/2025",
+                "status": "done",
                 "type": "inconnu",
                 "line": "11",
                 "link": "/veloligne-11#rond-point-de-girac-rond-point-de-baillarguet"
