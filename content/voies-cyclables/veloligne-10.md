@@ -21,13 +21,7 @@ to: Saint-Gély / Montferrier
 
 <span style="color:lightgreen;font-weight:bold;font-style:italic">Satisfaisant</span> Aménagement exemplaire en section courante.
 
-<!--
-
-
-Intersection Flahault voie Domitienne : <span style="color:red;font-weight:bold">Non satisfaisant</span> (pas au niveau d'un réseau express vélo, risque de mésusages et d'accident). 
-
--->
-
+Intersection Flahault voie Domitienne : <span style="color:red;font-weight:bold">Non satisfaisant</span> (pas au niveau d'un réseau express vélo, risque de mésusages et d'accident).
 
 
 *Au niveau de la voie Domitienne la Véloligne 10 se sépare en deux branches.*
@@ -36,11 +30,11 @@ Intersection Flahault voie Domitienne : <span style="color:red;font-weight:bold"
 
 #### Voie Domitienne ⇄ Lapeyronie
 
-Cette section sera aménagée en continuité de la section précédente avec de larges pistes séparées de chaque côté de la route jusqu'à l'hôpital Lapeyronie.
+<span style="color:lightgreen;font-weight:bold;font-style:italic">Satisfaisant</span> Aménagement exemplaire en section courante.
 
 #### Lapeyronie ⇄ Rond-point de la Lyre
 
-Le pont faisant face à la sortie de l'hôpital Lapeyronie marque la transition entre, au sud, une partie aménagée de chaque côté de la rue et, au nord, une partie aménagée en piste bidirectionnelle le long de l'hôpital et du parking Occitanie.
+<span style="color:lightgreen;font-weight:bold;font-style:italic">Satisfaisant</span> Le pont faisant face à la sortie de l'hôpital Lapeyronie marque la transition entre, au sud, une partie aménagée de chaque côté de la rue et, au nord, une partie aménagée en piste bidirectionnelle le long de l'hôpital et du parking Occitanie.
 
 #### Rond-point de la Lyre ⇄ La Valsière
 

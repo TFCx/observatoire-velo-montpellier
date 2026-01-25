@@ -15,16 +15,11 @@ to: Mtp
 
 <span style="color:lightgreen;font-weight:bold;">Globalement satisfaisant</span>
 Piste bidirectionnelle large avec bordure chanfreinée.<br>
-<span style="color:gold;font-weight:bold;">/!\ Point d'attention /!\ </span>Jonction Serre-Bonnard dangereuse. Virages serrés et étroits à proximité de la traversée du tram.
+<span style="color:gold;font-weight:bold;">/!\ Point d'attention /!\ </span> Virages serrés et étroits à proximité de la traversée du tram.
 
 ### Rue Bonnard
 
 <span style="color:lightgreen;font-weight:bold;">Satisfaisant</span> Ré-aménagée comme la rue Saint-Louis en vélorue / zone-de-rencontre.
-
-::banner{type="wip"}
-L’effondrement d’un réseau d’évacuation rue Auguste Broussonnet début janvier 2025 a déclenché un chantier d’urgence.
-::
-
 
 ### Rues Gerhardt et Doria de Bonnard à Assas
 <span style="color:lightgreen;font-weight:bold;">Satisfaisant</span> Aménagement quasi-exemplaire en pistes bilatérales. Points de vigilance au niveau de l'arrêt de bus côté Assas et au niveau de l'intersection Gerhardt/Bonnard/Saint Jaumes.
@@ -105,9 +100,7 @@ streetView: 43.6058282,3.8896056,3a,15y,26.2h,88.67t
 
 ### Rue Blum, partie nord
 
-::banner{type="wip"}
-En travaux.
-::
+<span style="color:lightgreen;font-weight:bold">Satisfaisant</span> La piste tactique a été perennisée.
 
 ### Avenue Mermoz
 

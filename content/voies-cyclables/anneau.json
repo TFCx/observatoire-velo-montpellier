@@ -19,14 +19,12 @@
             "type": "Feature",
             "properties": {
                 "name": "Blum nord",
-                "quality": "bad",
+                "quality": "good",
                 "status": "done",
-                "type": "aucun",
+                "type": "bidirectionnelle",
                 "line": "Anneau",
                 "doneAt": "01\/12\/2025",
-                "link": "\/veloligne-Anneau#rue-blum-partie-nord",
-                "typeB": "unidirectionnelle",
-                "qualityB": "good"
+                "link": "\/veloligne-Anneau#rue-blum-partie-nord"
             },
             "geometry": { "type": "LineString", "coordinates": [ [ 3.890677, 43.608919 ], [ 3.890776, 43.609715 ], [ 3.890423616561097, 43.610368981501161 ] ] }
         },

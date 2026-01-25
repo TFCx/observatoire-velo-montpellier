@@ -14,7 +14,7 @@ to: Villeneuve / Saint-Jean-de-Védas / Maurin
 ### Montpellier ⇄ Condamine (St-Jean-de-Védas)
 
 ::banner{type="unsecured"}
-Pas de projet en cours à la connaissance de Vélocité.
+Existence de premières études ; section complexe entre les stations de tram Nouveau St Roch et St Cléophas 
 ::
 
 ### Véloligne 6a : Condamine ⇄ Villeneuve-Lès-Maguelone

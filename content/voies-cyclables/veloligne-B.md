@@ -128,10 +128,7 @@ Pas de projet en cours à la connaissance de Vélocité.
 <span style="color:gold;font-weight:bold">À améliorer</span> Aménagement existant non conforme aux exigences d'une Véloligne.
 
 ### M65 entre le rond-point de la Lyre et le rond-point de Girac
-<span style="color:lightgreen;font-weight:bold">Satisfaisant</span> Aménagement existant globalement satisfaisant.
-::banner{type="wip"}
-Environs du rond-point de Girac en travaux dans le cadre du chantier de la ligne 5 de tramway.
-::
+<span style="color:lightgreen;font-weight:bold">Satisfaisant</span> L'aménagement existant a été refait à l'occasion des travaux de la ligne 5.
 
 ### M65 entre le rond-point de Girac et le Fesquet
 <span style="color:lightgreen;font-weight:bold">Satisfaisant</span> Aménagement existant globalement satisfaisant.
@@ -148,7 +145,7 @@ streetView: 43.648121,3.8848679,3a,75y,116.82h,70.4t
 ---
 ::
 <br>
-Les travaux sont annoncés (novembre 2024 à octobre 2025). Le projet n'est pas connu de Vélocité.
+Des travaux ont été réalisés (novembre 2024 à octobre 2025) sans connexion possible au niveau de Navitau / chemin de l'Hirondelle.
 ::
 
 

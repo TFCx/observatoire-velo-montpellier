@@ -14,9 +14,7 @@ to: Prades-le-Lez
 
 ### Rond-point de Girac ⇄ Rond-point de Baillarguet
 
-::banner{type="wip"}
-En travaux. Une piste bidirectionnelle côté ouest est prévue
-::
+<span style="color:lightgreen;font-weight:bold;font-style:italic">Satisfaisant</span> Piste bidirectionnelle côté ouest.
 
 ### Rond-point de Baillarguet ⇄ Prades-le-Lez
 
