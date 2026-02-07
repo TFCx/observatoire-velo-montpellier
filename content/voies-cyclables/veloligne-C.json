@@ -43,10 +43,10 @@
             "type": "Feature",
             "properties": {
                 "name": "Saussan ⇄ Fabrègues",
-                "quality": "",
-                "doneAt": "",
-                "status": "wip",
-                "type": "inconnu",
+                "quality": "bad",
+                "doneAt": "31/08/2024",
+                "status": "done",
+                "type": "voie-verte",
                 "line": "C",
                 "link": "/veloligne-C#fabr%C3%A8gues-saussan"
             },

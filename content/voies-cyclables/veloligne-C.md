@@ -33,9 +33,7 @@ Reporté après 2026.
 
 ### Fabrègues ⇄ Saussan
 
-::banner{type="wip"}
-Travaux en cours ; création d'une voie verte en bordure de chaussée.
-::
+<span style="color:red;font-weight:bold">Non satisfaisant</span> La nouvelle section réalisée en 2024, est une voie verte extrêmement étroite (moins de 2m) qui n'est pas au niveau de standard requis pour un Eéseau Express Vélo
 
 ### Saussan ⇄ Pignan ⇄ St Georges
 
