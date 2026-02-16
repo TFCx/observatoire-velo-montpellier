@@ -5,10 +5,10 @@
             "type": "Feature",
             "properties": {
                 "name": "Place Odysseum ⇄ Carrefour de Londres",
-                "quality": "",
-                "doneAt": "",
-                "status": "wip",
-                "type": "bilateral",
+                "quality": "good",
+                "doneAt": "31\/12\/2025",
+                "status": "done",
+                "type": "bilaterale",
                 "line": "3",
                 "id": "OdysseumlLondres",
                 "link": "/veloligne-3"
