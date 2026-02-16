@@ -133,21 +133,12 @@ Pas de projet en cours à la connaissance de Vélocité.
 ### M65 entre le rond-point de Girac et le Fesquet
 <span style="color:lightgreen;font-weight:bold">Satisfaisant</span> Aménagement existant globalement satisfaisant.
 
-### M65 entre le Fesquet et Navitau
+### M65 entre le Fesquet et la Rue des Canaux
+<span style="color:lightgreen;font-weight:bold">Satisfaisant</span> Aménagement réalisé entre novembre 2024 et octobre 2025. Piste séparée de la M65 par un muret béton haut. Globalement satisfaisant.
 
-::banner{type="wip"}
-::content-image
----
-imageUrl: https://travaux.montpellier.fr/sites/default/files/styles/large/public/pdfpreview/366-Closades_av_du_Martinet-Clapiers_09_2024.png
-caption:
-credit: Ville de Montpellier
-streetView: 43.648121,3.8848679,3a,75y,116.82h,70.4t
----
-::
-<br>
-Des travaux ont été réalisés (novembre 2024 à octobre 2025) sans connexion possible au niveau de Navitau / chemin de l'Hirondelle.
-::
+### M65 entre la Rue des Canaux et Navitau
 
+<span style="color:red;font-weight:bold">Non satisfaisant</span> Pour l'instant, cette section termine en impasse au niveau de Navitau. Projet d'un escalier pour rejoindre le Chemin de l'Hirondelle.
 
 ### Chemin des Alouettes à Castelnau-le-Lez
 Prévu pour 2026.
