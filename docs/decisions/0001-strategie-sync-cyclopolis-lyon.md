@@ -1,7 +1,7 @@
 # 1. Stratégie de synchronisation avec Cyclopolis Lyon
 
 Date : 2026-09-28
-Statut : Accepté
+Statut : Remplacé par [0002](0002-portage-manuel-features-cyclopolis.md)
 
 ## Contexte
 
