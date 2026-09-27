@@ -1,3 +1,33 @@
+Feuille de route technique (sept. 2026) — voir docs/decisions/0002 :
+- Phase 0 : fondations
+  - ADR 0002 (portage manuel des features de Cyclopolis, remplace 0001)
+  - Tests de fumée (pages chargées, carte affichée) — s'inspirer de tests/e2e de Lyon
+  - [REFACTOR] Robots GitHub : virer/adapter les workflows hérités de Lyon, CI qui lance les tests à chaque push
+- Phase 1 : montée de stack (chaque palier validé par les tests)
+  - @nuxt/content v2 -> v3 (modèle : lyon #588, 984d72e0)
+  - Nuxt 3 -> 4 (modèle : lyon #763-#766)
+  - MapLibre 4 -> 5 sur notre code de carte
+  - Hébergement : Netlify vs alternatives -> ADR
+  - Merge `-s ours` sur lyon/main une fois la stack montée
+- Phase 2 : features de contenu (portage depuis Lyon)
+  - Galeries photo/vidéo
+  - Panoramax
+  - Chronologie des livraisons
+  - Plateforme de publication : collection "analyses / notices d'aménagement" du groupe infra (cf. "Propositions de vélocité")
+- Phase 3 : features de carte (réimplémentées dans notre code, dans cet ordre)
+  - Fonds de carte au choix + accessibilité (palette contraste élevé, couleurs personnalisées, réduction des animations)
+    - À voir dans une branche dédiée : test d'une couleur unique pour toutes les vélolignes (simplifierait l'affichage des lignes parallèles)
+  - Tooltip au survol
+  - Panneau latéral de tronçon (cf. "Nouveau popup de section")
+  - Curseur de dates (cf. "Nouveau widget timeline")
+  - Géocodeur
+  - Mobile : bottom sheet, menu
+  - Plus tard, peu coûteux : page d'impression, export GPX
+- Phase 4 : compteurs Montpellier (cf. "Intégration compteurs")
+  - Brancher sur les flux open data de la Métropole -> ADR
+  - Inspirations : compteurs.velocite-montpellier.fr/dashboard, compteurs-velo-de-montpellier.onrender.com, montpellier-bike.vercel.app
+- En continu : refactor de chaque zone avant d'y porter une feature, en commit séparé
+
 Prochaine release :
 - [BUG] lien mort dans page anneau (remplacement des images par assets ?) + lien mort véloligne A
 - [UX] mettre à jour les légendes :
