@@ -242,7 +242,8 @@ function drawCurrentNetwork(map: Map) {
         source: 'src-lanes-postponed',
         layout: { 'line-cap': 'round' },
         paint: {
-        'line-gap-width': sectionWidth,
+        // Source par voie (lanes) : pas de propriété "lines" comme sur les sections, mais nb_lanes.
+        'line-gap-width': allLanesWidth,
         'line-width': contourWidth / 2,
         'line-opacity' : 0.75,
         'line-color': laneColor,
