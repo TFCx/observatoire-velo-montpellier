@@ -109,6 +109,17 @@ describe('useStats', () => {
       assert.equal(getTodoPercent(voies), 100);
     });
 
+    it('should_return_zero_todo_percent_when_no_measurable_section', () => {
+      const voies = [
+        buildVoie(
+          buildSection({ line: 1, status: LaneStatus.Variante, type: LaneType.Bidirectionnelle }),
+          buildSection({ line: 2, status: LaneStatus.Variante, type: LaneType.VoieVerte })
+        )
+      ];
+
+      assert.equal(getTodoPercent(voies), 0);
+    });
+
     it('should_sort_families_by_descending_percent_when_several_families', () => {
       const voies = [
         buildVoie(

@@ -261,7 +261,8 @@ function regroupIntoSections(features: LineStringFeature[]): SectionFeature[] {
     sections = sections.filter(s => s.properties.typeFamily != LaneTypeFamily.Inconnu)
     const totalDistance = getDistance(sections) + distance_todo;
 
-    let percent_todo = (distance_todo / totalDistance)
+    // Sans tronçon mesurable (que des variantes, par exemple), totalDistance vaut 0 et la division donnerait NaN.
+    let percent_todo = totalDistance > 0 ? (distance_todo / totalDistance) : 0
 
     const sectionsByType = groupBy<SectionFeature, LaneTypeFamily>(sections, section => section.properties.typeFamily);
 
