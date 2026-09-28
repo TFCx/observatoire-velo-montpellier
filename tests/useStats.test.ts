@@ -1,57 +1,140 @@
 import { assert, describe, it } from 'vitest';
 
 import { useStats } from '../composables/useStats';
-import {
-  vl2StRambertCommun,
-  vl3StRambertCommun,
-  vl5PierreBeniteNordCommun,
-  vl6CoursHerbouville
-} from './useStats.fixtures';
+import { LaneStatus, LaneType, Quality } from '../types';
+import { buildSection, buildVoie } from './useStats.fixtures';
+
 const { getAllUniqLineStrings, getStatsByTypology } = useStats();
+
+const DEDICATED_FAMILY_NAME = 'Aménagements cyclables dédiés';
+const PEDESTRIAN_MIX_FAMILY_NAME = 'En mixité piétonne';
+
+// getStatsByTypology renvoie des Map : on les convertit en objets pour que les attendus restent lisibles.
+function getDoneAndWipStatsAsObjects(voies: ReturnType<typeof buildVoie>[]) {
+  return getStatsByTypology(voies).doneAndWip.map(familyStats => Object.fromEntries(familyStats));
+}
+
+function getTodoPercent(voies: ReturnType<typeof buildVoie>[]) {
+  return getStatsByTypology(voies).todo.percent;
+}
 
 describe('useStats', () => {
   describe('getAllUniqLineStrings', () => {
-    describe('When the is more than one feature with the same id', () => {
-      it('should only keep the 1st feature with that id. id are used to handle common section between lines. We should use one and only one id (deduplicate) when computing distances', () => {
-        const voies = [
-          { type: 'FeatureCollection', features: [vl2StRambertCommun] },
-          { type: 'FeatureCollection', features: [vl3StRambertCommun] }
-        ];
-        const uniqLineStrings = getAllUniqLineStrings(voies);
-        assert.deepEqual(uniqLineStrings, [vl2StRambertCommun]);
-      });
+    it('should_keep_only_first_feature_when_features_share_same_id', () => {
+      const sharedSectionOnLine1 = buildSection({ id: 'commun', line: 1, status: LaneStatus.Done, type: LaneType.Bidirectionnelle });
+      const sharedSectionOnLine2 = buildSection({ id: 'commun', line: 2, status: LaneStatus.Done, type: LaneType.Bidirectionnelle });
+
+      const uniqLineStrings = getAllUniqLineStrings([buildVoie(sharedSectionOnLine1), buildVoie(sharedSectionOnLine2)]);
+
+      assert.deepEqual(uniqLineStrings, [sharedSectionOnLine1]);
     });
   });
 
   describe('getStatsByTypology', () => {
-    describe('When there is a single type of cycle lane', () => {
-      it('should return 100% for that type', () => {
-        const voies = [{ type: 'FeatureCollection', features: [vl2StRambertCommun] }];
-        const stats = getStatsByTypology(voies);
-        assert.deepEqual(stats, [{ name: 'Inconnu', percent: 100 }]);
-      });
+    it('should_count_shared_section_once_when_several_lines_share_its_id', () => {
+      const voies = [
+        buildVoie(
+          buildSection({ id: 'commun', line: 1, status: LaneStatus.Done, type: LaneType.Bidirectionnelle }),
+          buildSection({ line: 1, status: LaneStatus.Planned, type: LaneType.Bidirectionnelle })
+        ),
+        buildVoie(buildSection({ id: 'commun', line: 2, status: LaneStatus.Done, type: LaneType.Bidirectionnelle }))
+      ];
+
+      assert.deepEqual(getDoneAndWipStatsAsObjects(voies), [{ name: DEDICATED_FAMILY_NAME, percent: 50 }]);
     });
-    describe('When there are 2 types of cycle lane, both having same coordinates', () => {
-      it('should return 50% for both types', () => {
-        const voies = [{ type: 'FeatureCollection', features: [vl2StRambertCommun, vl5PierreBeniteNordCommun] }];
-        const stats = getStatsByTypology(voies);
-        assert.deepEqual(stats, [
-          { name: 'Inconnu', percent: 50 },
-          { name: 'Piste bilatérale', percent: 50 }
-        ]);
-      });
+
+    it('should_return_100_percent_todo_when_all_sections_are_planned', () => {
+      const voies = [
+        buildVoie(
+          buildSection({ line: 1, status: LaneStatus.Planned, type: LaneType.Bidirectionnelle }),
+          buildSection({ line: 1, status: LaneStatus.Planned, type: LaneType.VoieVerte })
+        )
+      ];
+
+      assert.equal(getTodoPercent(voies), 100);
     });
-    describe('When there are 3 sections with 2 types of cycle lane, all having same coordinates', () => {
-      it('should return 33% and 67%', () => {
-        const voies = [
-          { type: 'FeatureCollection', features: [vl2StRambertCommun, vl5PierreBeniteNordCommun, vl6CoursHerbouville] }
-        ];
-        const stats = getStatsByTypology(voies);
-        assert.deepEqual(stats, [
-          { name: 'Piste bilatérale', percent: 67 },
-          { name: 'Inconnu', percent: 33 }
-        ]);
-      });
+
+    it('should_count_postponed_section_as_todo_when_computing_todo_percent', () => {
+      const voies = [
+        buildVoie(
+          buildSection({ line: 1, status: LaneStatus.Postponed, type: LaneType.Bidirectionnelle }),
+          buildSection({ line: 1, status: LaneStatus.Done, type: LaneType.Bidirectionnelle })
+        )
+      ];
+
+      assert.equal(getTodoPercent(voies), 50);
+    });
+
+    it('should_return_family_at_100_percent_when_all_sections_are_done_and_dedicated', () => {
+      const voies = [
+        buildVoie(
+          buildSection({ line: 1, status: LaneStatus.Done, type: LaneType.Bidirectionnelle }),
+          buildSection({ line: 1, status: LaneStatus.Done, type: LaneType.Unidirectionnelle })
+        )
+      ];
+
+      assert.deepEqual(getDoneAndWipStatsAsObjects(voies), [{ name: DEDICATED_FAMILY_NAME, percent: 100 }]);
+    });
+
+    it('should_count_wip_section_as_done_when_computing_family_percent', () => {
+      const voies = [
+        buildVoie(
+          buildSection({ line: 1, status: LaneStatus.Wip, type: LaneType.Bidirectionnelle }),
+          buildSection({ line: 1, status: LaneStatus.Planned, type: LaneType.Bidirectionnelle })
+        )
+      ];
+
+      assert.deepEqual(getDoneAndWipStatsAsObjects(voies), [{ name: DEDICATED_FAMILY_NAME, percent: 50 }]);
+    });
+
+    it('should_exclude_section_from_percents_when_status_is_variante', () => {
+      const voies = [
+        buildVoie(
+          buildSection({ line: 1, status: LaneStatus.Variante, type: LaneType.Bidirectionnelle }),
+          buildSection({ line: 1, status: LaneStatus.Planned, type: LaneType.Bidirectionnelle })
+        )
+      ];
+
+      assert.equal(getTodoPercent(voies), 100);
+    });
+
+    it('should_exclude_done_section_from_percents_when_type_is_unknown', () => {
+      const voies = [
+        buildVoie(
+          buildSection({ line: 1, status: LaneStatus.Done, type: LaneType.Inconnu }),
+          buildSection({ line: 1, status: LaneStatus.Planned, type: LaneType.Bidirectionnelle })
+        )
+      ];
+
+      assert.equal(getTodoPercent(voies), 100);
+    });
+
+    it('should_sort_families_by_descending_percent_when_several_families', () => {
+      const voies = [
+        buildVoie(
+          buildSection({ line: 1, status: LaneStatus.Done, type: LaneType.VoieVerte }),
+          buildSection({ line: 1, status: LaneStatus.Done, type: LaneType.Bidirectionnelle }),
+          buildSection({ line: 1, status: LaneStatus.Done, type: LaneType.Bilaterale })
+        )
+      ];
+
+      assert.deepEqual(getDoneAndWipStatsAsObjects(voies), [
+        { name: DEDICATED_FAMILY_NAME, percent: 67 },
+        { name: PEDESTRIAN_MIX_FAMILY_NAME, percent: 33 }
+      ]);
+    });
+
+    it('should_split_family_percent_by_quality_when_sections_have_quality', () => {
+      const voies = [
+        buildVoie(
+          buildSection({ line: 1, status: LaneStatus.Done, type: LaneType.Bidirectionnelle, quality: Quality.Good }),
+          buildSection({ line: 1, status: LaneStatus.Done, type: LaneType.Bidirectionnelle, quality: Quality.Bad })
+        )
+      ];
+
+      assert.deepEqual(getDoneAndWipStatsAsObjects(voies), [
+        { name: DEDICATED_FAMILY_NAME, percent: 100, good: 50, bad: 50 }
+      ]);
     });
   });
 });
