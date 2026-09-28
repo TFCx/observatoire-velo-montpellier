@@ -3,6 +3,7 @@ updates:
 - package-ecosystem: npm
   directory: "/"
   schedule:
-    interval: daily
-    time: "04:00"
-  open-pull-requests-limit: 10
+    interval: weekly
+  # Suspendu pendant la montée de stack (phase 1 de TODO.md) : les mises à jour
+  # se font à la main, par paliers. Remettre une limite > 0 ensuite.
+  open-pull-requests-limit: 0
