@@ -2,14 +2,18 @@
 // .github/scripts/check_data_health.js, qui ne pouvait pas importer les enums TypeScript.
 import fs from 'node:fs';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 import { assert, describe, it } from 'vitest';
 
 import config from '../config.json';
 import { LaneStatus, LaneType } from '../types';
-
-const CONTENT_DIRECTORY = fileURLToPath(new URL('../content', import.meta.url));
-const VOIES_CYCLABLES_DIRECTORY = path.join(CONTENT_DIRECTORY, 'voies-cyclables');
+import {
+  CONTENT_DIRECTORY,
+  VOIES_CYCLABLES_DIRECTORY,
+  convertTitleToAnchor,
+  readFrontmatterValue,
+  readMarkdownFiles,
+  readMarkdownTitles
+} from './helpers/content';
 
 type RawFeature = {
   geometry: { type: string };
@@ -38,32 +42,14 @@ function loadVoiesCyclablesFeatures(): LoadedFeature[] {
     });
 }
 
-function readLineIdFromFrontmatter(markdownContent: string): string | undefined {
-  const lineMatch = markdownContent.match(/^line: *"?([^"\n]+)"?$/m);
-  return lineMatch?.[1].trim();
-}
-
-// Reproduit la génération des ancres de titres par Nuxt Content : ponctuation et symboles (⇄, ', ...)
-// retirés, accents conservés, espaces et tirets consécutifs fusionnés. Règle vérifiée sur les pages rendues.
-function convertTitleToAnchor(title: string): string {
-  return title
-    .replace(/<\/?[^>]+(>|$)/g, '')
-    .toLowerCase()
-    .replace(/[^\p{L}\p{N}\s-]/gu, '')
-    .trim()
-    .replace(/[\s-]+/g, '-');
-}
-
 // Un lien peut viser la page d'une ligne ("/veloligne-3") ou un titre de cette page ("/veloligne-3#titre").
 function loadAllExistingLinks(): Set<string> {
   const existingLinks = new Set<string>();
-  const markdownFileNames = fs.readdirSync(VOIES_CYCLABLES_DIRECTORY).filter(fileName => fileName.endsWith('.md'));
-  for (const fileName of markdownFileNames) {
-    const markdownContent = fs.readFileSync(path.join(VOIES_CYCLABLES_DIRECTORY, fileName), 'utf8');
-    const linePageLink = `/${config.slug}-${readLineIdFromFrontmatter(markdownContent)}`;
+  for (const { content } of readMarkdownFiles(VOIES_CYCLABLES_DIRECTORY)) {
+    const linePageLink = `/${config.slug}-${readFrontmatterValue(content, 'line')}`;
     existingLinks.add(linePageLink);
-    for (const titleMatch of markdownContent.matchAll(/^#+\s+(.*)$/gm)) {
-      existingLinks.add(`${linePageLink}#${convertTitleToAnchor(titleMatch[1])}`);
+    for (const title of readMarkdownTitles(content)) {
+      existingLinks.add(`${linePageLink}#${convertTitleToAnchor(title)}`);
     }
   }
   return existingLinks;
