@@ -3,7 +3,6 @@ import config from './config.json';
 const TITLE = `Observatoire Vélo de Montpellier - Suivi des ${config.revName.plural} par ${config.assoName}`;
 const DESCRIPTION =
   `Plateforme citoyenne et associative, par ${config.assoName}. État d'avancement, cartes interactives des itinéraires, détails, travaux : suivez le développement du réseau cyclable sécurisé montpelliérain`;
-const BASE_URL = 'https://velocite-montpellier.fr';
 const COVER_IMAGE_URL = 'https://observatoire-velo-montpellier.netlify.app/_nuxt/logoCyclopolisVGM.CzJjkGQi.png';
 
 export default defineNuxtConfig({
@@ -19,7 +18,6 @@ export default defineNuxtConfig({
         // facebook
         { property: 'og:site_name', content: TITLE },
         { property: 'og:type', content: 'website' },
-        { property: 'og:url', content: BASE_URL },
         { property: 'og:title', content: TITLE },
         {
           property: 'og:description',
@@ -30,7 +28,6 @@ export default defineNuxtConfig({
         { property: 'og:image:height', content: '476' },
         // twitter
         { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:url', content: BASE_URL },
         { name: 'twitter:title', content: TITLE },
         {
           name: 'twitter:description',
