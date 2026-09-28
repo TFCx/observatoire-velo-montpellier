@@ -9,9 +9,8 @@ const { getAllUniqLineStrings, getStatsByTypology } = useStats();
 const DEDICATED_FAMILY_NAME = 'Aménagements cyclables dédiés';
 const PEDESTRIAN_MIX_FAMILY_NAME = 'En mixité piétonne';
 
-// getStatsByTypology renvoie des Map : on les convertit en objets pour que les attendus restent lisibles.
-function getDoneAndWipStatsAsObjects(voies: ReturnType<typeof buildVoie>[]) {
-  return getStatsByTypology(voies).doneAndWip.map(familyStats => Object.fromEntries(familyStats));
+function getDoneAndWipStats(voies: ReturnType<typeof buildVoie>[]) {
+  return getStatsByTypology(voies).doneAndWip;
 }
 
 function getTodoPercent(voies: ReturnType<typeof buildVoie>[]) {
@@ -40,7 +39,7 @@ describe('useStats', () => {
         buildVoie(buildSection({ id: 'commun', line: 2, status: LaneStatus.Done, type: LaneType.Bidirectionnelle }))
       ];
 
-      assert.deepEqual(getDoneAndWipStatsAsObjects(voies), [{ name: DEDICATED_FAMILY_NAME, percent: 50 }]);
+      assert.deepEqual(getDoneAndWipStats(voies), [{ name: DEDICATED_FAMILY_NAME, percent: 50 }]);
     });
 
     it('should_return_100_percent_todo_when_all_sections_are_planned', () => {
@@ -73,7 +72,7 @@ describe('useStats', () => {
         )
       ];
 
-      assert.deepEqual(getDoneAndWipStatsAsObjects(voies), [{ name: DEDICATED_FAMILY_NAME, percent: 100 }]);
+      assert.deepEqual(getDoneAndWipStats(voies), [{ name: DEDICATED_FAMILY_NAME, percent: 100 }]);
     });
 
     it('should_count_wip_section_as_done_when_computing_family_percent', () => {
@@ -84,7 +83,7 @@ describe('useStats', () => {
         )
       ];
 
-      assert.deepEqual(getDoneAndWipStatsAsObjects(voies), [{ name: DEDICATED_FAMILY_NAME, percent: 50 }]);
+      assert.deepEqual(getDoneAndWipStats(voies), [{ name: DEDICATED_FAMILY_NAME, percent: 50 }]);
     });
 
     it('should_exclude_section_from_percents_when_status_is_variante', () => {
@@ -129,7 +128,7 @@ describe('useStats', () => {
         )
       ];
 
-      assert.deepEqual(getDoneAndWipStatsAsObjects(voies), [
+      assert.deepEqual(getDoneAndWipStats(voies), [
         { name: DEDICATED_FAMILY_NAME, percent: 67 },
         { name: PEDESTRIAN_MIX_FAMILY_NAME, percent: 33 }
       ]);
@@ -143,7 +142,7 @@ describe('useStats', () => {
         )
       ];
 
-      assert.deepEqual(getDoneAndWipStatsAsObjects(voies), [
+      assert.deepEqual(getDoneAndWipStats(voies), [
         { name: DEDICATED_FAMILY_NAME, percent: 100, good: 50, bad: 50 }
       ]);
     });

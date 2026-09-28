@@ -1,6 +1,26 @@
 import { groupBy } from '../helpers/helpers';
 import { isLineStringFeature, LaneStatus, LaneType, LaneTypeFamily, Quality, type Feature, type Geojson, type LineStringFeature, type SectionFeature } from '../types';
 
+export type TypologyFamilyStats = {
+  name: string;
+  percent: number;
+  // Exprimés en pourcentage du total et non de la famille : les trois barres de qualité
+  // mises bout à bout mesurent exactement `percent`.
+  good?: number;
+  fair?: number;
+  bad?: number;
+};
+
+export type TypologyTodoStats = {
+  name: string;
+  percent: number;
+};
+
+export type TypologyStats = {
+  doneAndWip: TypologyFamilyStats[];
+  todo: TypologyTodoStats;
+};
+
 export const useStats = () => {
   function getAllUniqLineStrings(voies: Geojson[]) {
     return voies
@@ -240,7 +260,7 @@ function regroupIntoSections(features: LineStringFeature[]): SectionFeature[] {
   return sections
 }
 
-  function getStatsByTypology(voies: Geojson[]) {
+  function getStatsByTypology(voies: Geojson[]): TypologyStats {
     const lineStringFeatures = getAllUniqLineStrings(voies);
 
     let sections = regroupIntoSections(lineStringFeatures)
@@ -267,41 +287,33 @@ function regroupIntoSections(features: LineStringFeature[]): SectionFeature[] {
     const sectionsByType = groupBy<SectionFeature, LaneTypeFamily>(sections, section => section.properties.typeFamily);
 
 
-    let doneAndWipStats = Object.entries(sectionsByType)
-      .map(([type, sectionsOfFamily]) => {
-        console.debug("==========================")
-        console.debug("type = " + type)
-        let res = new Map()
-        if(type == "dédié" || type == "mixité-motorisés" || type == "mixité-piétons") {
+    // La famille "inconnu" a déjà été exclue plus haut : il ne reste que dédié et les deux mixités.
+    const doneAndWipStats: TypologyFamilyStats[] = Object.entries(sectionsByType)
+      .map(([family, sectionsOfFamily]) => {
+        const familyDistance = getDistance(sectionsOfFamily);
+        const familyPercent = getPercent(familyDistance, totalDistance);
+        const familyStats: TypologyFamilyStats = {
+          name: laneTypeFamilyToDescription[family as LaneTypeFamily],
+          percent: familyPercent
+        };
 
-          const distance = getDistance(sectionsOfFamily);
-          const percent = getPercent(distance, totalDistance);
-          console.debug("distance = " + distance + " / totalDistance = " + totalDistance + " => percent = " + percent)
-          res.set("name", laneTypeFamilyToDescription[type as LaneTypeFamily]);
-          res.set("percent", percent);
-
-          const subsectionsByQuality = groupBy<SectionFeature, Quality>(sectionsOfFamily, sectionsOfFamily => sectionsOfFamily.properties.quality);
-          Object.entries(subsectionsByQuality)
-          .map(([quality, sectionsOfFamilyOfQuality]) => {
-            if(quality == "good" || quality == "fair" || quality == "bad") {
-              console.debug("quality = " + quality)
-              const subdistance = getDistance(sectionsOfFamilyOfQuality);
-              const subpercent = getPercent(subdistance, distance);
-              console.debug("subdistance = " + subdistance + " / distance = " + distance + " => subpercent = " + subpercent)
-              res.set(quality, subpercent * percent / 100)
-            }
-          })
+        const sectionsOfFamilyByQuality = groupBy<SectionFeature, Quality>(sectionsOfFamily, section => section.properties.quality);
+        for (const [quality, sectionsOfFamilyOfQuality] of Object.entries(sectionsOfFamilyByQuality)) {
+          if (quality === Quality.Good || quality === Quality.Fair || quality === Quality.Bad) {
+            const qualityPercentOfFamily = getPercent(getDistance(sectionsOfFamilyOfQuality), familyDistance);
+            familyStats[quality] = qualityPercentOfFamily * familyPercent / 100;
+          }
         }
 
-        return res
+        return familyStats;
       })
-      .filter(stat => stat.get("percent") > 0) // on ne veut pas afficher les types à 0% (arrondis)
-      .sort((a, b) => b.get("percent") - a.get("percent")); // plus grandes barres en haut, plus propre
+      .filter(familyStats => familyStats.percent > 0) // on ne veut pas afficher les types à 0% (arrondis)
+      .sort((a, b) => b.percent - a.percent); // plus grandes barres en haut, plus propre
 
-      return {
-        doneAndWip: doneAndWipStats,
-        todo: {name: "À réaliser", percent: Math.round(percent_todo * 100)}
-      }
+    return {
+      doneAndWip: doneAndWipStats,
+      todo: { name: "À réaliser", percent: Math.round(percent_todo * 100) }
+    };
   }
 
   return {
