@@ -6,7 +6,8 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "test": "vitest"
+    "test": "vitest",
+    "test:smoke": "nuxt generate && vitest run --config vitest.smoke.config.ts"
   },
   "devDependencies": {
     "@headlessui/vue": "^1.7.23",

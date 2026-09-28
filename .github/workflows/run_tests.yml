@@ -27,3 +27,6 @@ jobs:
 
       - name: Run tests
         run: npm run test -- --run
+
+      - name: Run smoke tests on generated site
+        run: npm run test:smoke
