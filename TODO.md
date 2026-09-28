@@ -7,8 +7,11 @@ Feuille de route technique (sept. 2026) — voir docs/decisions/0002 :
   - [x] Nuxt 4.5 (structure à la racine, ADR 0003), @nuxt/content 3.16, MapLibre 5.24, @nuxtjs/tailwindcss 6.14
   - [x] Sitemap via @nuxtjs/sitemap sur https://observatoire.velocite-montpellier.fr, redirection .netlify.app (public/_redirects)
   - Merge `-s ours` sur lyon/main pour recaler la base de merge (ADR 0002, décision 3)
-  - Resserrer les schémas de content.config.ts (features GeoJSON) et y déplacer des règles de data-health
-  - Réactiver dependabot (hebdo, mises à jour groupées)
+  - [x] Schémas de content.config.ts : laissés souples. Constaté (28/09/2026) : Content v3 ne rejette pas une donnée
+        non conforme au schéma (build réussi avec un statut invalide) -> tests/data-health.test.ts reste LE garde-fou.
+        Plus tard (plan de simplification, étape domain/) : un schéma zod unique pour typer les composants ET valider
+        dans les tests. Conventions à respecter : doneAt = "" si non réalisé ; quality = "" ou absente (surtout planned).
+  - [x] Dependabot réactivé : npm hebdo (mineures + correctifs groupés, majeures une par une), GitHub Actions mensuel
   - Hébergement : Netlify vs alternatives -> ADR
   - Un jour : passer à la convention Nuxt 4 `app/`, dans un commit de renommage pur (ADR 0003)
 - Défauts relevés pendant la phase 1 :

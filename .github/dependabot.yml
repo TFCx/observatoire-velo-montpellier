@@ -4,6 +4,26 @@ updates:
   directory: "/"
   schedule:
     interval: weekly
-  # Suspendu pendant la montée de stack (phase 1 de TODO.md) : les mises à jour
-  # se font à la main, par paliers. Remettre une limite > 0 ensuite.
-  open-pull-requests-limit: 0
+    day: monday
+  commit-message:
+    prefix: "chore(deps)"
+  open-pull-requests-limit: 5
+  groups:
+    # Mineures et correctifs regroupés en une seule PR par semaine, pour éviter l'avalanche de PR.
+    # Les versions majeures restent une PR par paquet : elles se traitent comme les paliers de la
+    # phase 1 (lecture des changements cassants, tests, vérification visuelle).
+    npm-mineures-et-correctifs:
+      update-types:
+        - minor
+        - patch
+
+- package-ecosystem: github-actions
+  directory: "/"
+  schedule:
+    interval: monthly
+  commit-message:
+    prefix: "chore(ci)"
+  groups:
+    github-actions:
+      patterns:
+        - "*"
