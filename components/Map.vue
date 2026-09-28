@@ -101,7 +101,7 @@ function convertIntoDisplayedLayerEnum(s: string) {
   } else if (s === "type") {
     return DisplayedLayer.Type
   }
-  console.assert(s + " couldn't be convert into a DisplayedLayer enum")
+  console.warn(`"${s}" ne correspond à aucun DisplayedLayer : repli sur l'affichage de l'avancement`)
   return DisplayedLayer.Progress
 }
 
