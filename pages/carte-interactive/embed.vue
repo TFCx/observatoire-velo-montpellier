@@ -25,12 +25,12 @@ useHead({
   title: `Carte à jour des ${getRevName()}`,
   meta: [
     // description
-    { hid: 'description', name: 'description', content: description },
-    { hid: 'og:description', property: 'og:description', content: description },
-    { hid: 'twitter:description', name: 'twitter:description', content: description },
+    { name: 'description', content: description },
+    { property: 'og:description', content: description },
+    { name: 'twitter:description', content: description },
     // cover image
-    { hid: 'og:image', property: 'og:image', content: COVER_IMAGE_URL },
-    { hid: 'twitter:image', name: 'twitter:image', content: COVER_IMAGE_URL }
+    { property: 'og:image', content: COVER_IMAGE_URL },
+    { name: 'twitter:image', content: COVER_IMAGE_URL }
   ]
 });
 </script>
