@@ -179,3 +179,15 @@ describe('sitemap', () => {
     assert.deepEqual(listedNonIndexableUrls, []);
   });
 });
+
+describe('netlify redirects', () => {
+  // Netlify sert aussi le site sous son adresse par défaut, sans rediriger vers le domaine principal :
+  // la règle de public/_redirects évite que le site soit indexé sous deux adresses.
+  it('should_redirect_netlify_subdomain_to_site_url_when_site_is_generated', () => {
+    const redirectsFilePath = path.join(GENERATED_SITE_DIRECTORY, '_redirects');
+    const redirectRules = fs.existsSync(redirectsFilePath) ? fs.readFileSync(redirectsFilePath, 'utf8') : '';
+    const expectedRule = `https://observatoire-velo-montpellier.netlify.app/* ${SITE_URL}/:splat 301!`;
+
+    assert.include(redirectRules.split('\n'), expectedRule);
+  });
+});
