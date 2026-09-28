@@ -235,3 +235,27 @@ describe('generated css', () => {
     assert.deepEqual(missingClassesByPage, []);
   });
 });
+
+describe('social sharing meta', () => {
+  function readMetaContent(route: string, attribute: 'property' | 'name', key: string): string | undefined {
+    const metaMatch = readGeneratedPage(route).match(new RegExp(`<meta[^>]*${attribute}="${key}"[^>]*content="([^"]*)"`));
+    return metaMatch?.[1];
+  }
+
+  // og:url et twitter:url donnent le lien de l'aperçu quand une page est partagée sur un réseau social.
+  it('should_point_og_url_to_shared_page_when_page_is_generated', () => {
+    const routesWithWrongOgUrl = allExpectedRoutes
+      .filter(route => readMetaContent(route, 'property', 'og:url') !== convertRouteToSitemapUrl(route))
+      .map(route => `${route} : og:url = ${readMetaContent(route, 'property', 'og:url')}`);
+
+    assert.deepEqual(routesWithWrongOgUrl, []);
+  });
+
+  it('should_point_twitter_url_to_shared_page_when_page_is_generated', () => {
+    const routesWithWrongTwitterUrl = allExpectedRoutes
+      .filter(route => readMetaContent(route, 'name', 'twitter:url') !== convertRouteToSitemapUrl(route))
+      .map(route => `${route} : twitter:url = ${readMetaContent(route, 'name', 'twitter:url')}`);
+
+    assert.deepEqual(routesWithWrongTwitterUrl, []);
+  });
+});
