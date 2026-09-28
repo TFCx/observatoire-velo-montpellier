@@ -5,7 +5,8 @@ Feuille de route technique (sept. 2026) — voir docs/decisions/0002 :
   - [REFACTOR] Robots GitHub : virer/adapter les workflows hérités de Lyon, CI qui lance les tests à chaque push
 - Phase 1 : montée de stack (chaque palier validé par les tests)
   - @nuxt/content v2 -> v3 (modèle : lyon #588, 984d72e0)
-  - Nuxt 3 -> 4 (modèle : lyon #763-#766)
+  - Nuxt 3 -> 4 (modèle : lyon #763-#766), en gardant la structure à la racine (ADR 0003)
+  - Un jour : passer à la convention Nuxt 4 `app/`, dans un commit de renommage pur (ADR 0003)
   - MapLibre 4 -> 5 sur notre code de carte
   - Hébergement : Netlify vs alternatives -> ADR
   - Merge `-s ours` sur lyon/main une fois la stack montée
