@@ -1,15 +1,19 @@
 Feuille de route technique (sept. 2026) — voir docs/decisions/0002 :
-- Phase 0 : fondations
-  - ADR 0002 (portage manuel des features de Cyclopolis, remplace 0001)
-  - Tests de fumée (pages chargées, carte affichée) — s'inspirer de tests/e2e de Lyon
-  - [REFACTOR] Robots GitHub : virer/adapter les workflows hérités de Lyon, CI qui lance les tests à chaque push
-- Phase 1 : montée de stack (chaque palier validé par les tests)
-  - @nuxt/content v2 -> v3 (modèle : lyon #588, 984d72e0)
-  - Nuxt 3 -> 4 (modèle : lyon #763-#766), en gardant la structure à la racine (ADR 0003)
-  - Un jour : passer à la convention Nuxt 4 `app/`, dans un commit de renommage pur (ADR 0003)
-  - MapLibre 4 -> 5 sur notre code de carte
+- Phase 0 : fondations — FAIT (sept. 2026)
+  - [x] ADR 0002 (portage manuel des features de Cyclopolis, remplace 0001)
+  - [x] CI (run_tests.yml) : tests unitaires, tests de données (data-health), smoke tests sur le site généré
+  - [x] Robots lyonnais retirés, dependabot suspendu (limite de PR à 0 : à réactiver en hebdo)
+- Phase 1 : montée de stack — FAIT pour les versions (PR #2 à #6)
+  - [x] Nuxt 4.5 (structure à la racine, ADR 0003), @nuxt/content 3.16, MapLibre 5.24, @nuxtjs/tailwindcss 6.14
+  - [x] Sitemap via @nuxtjs/sitemap sur https://observatoire.velocite-montpellier.fr, redirection .netlify.app (public/_redirects)
+  - Merge `-s ours` sur lyon/main pour recaler la base de merge (ADR 0002, décision 3)
+  - Resserrer les schémas de content.config.ts (features GeoJSON) et y déplacer des règles de data-health
+  - Réactiver dependabot (hebdo, mises à jour groupées)
   - Hébergement : Netlify vs alternatives -> ADR
-  - Merge `-s ours` sur lyon/main une fois la stack montée
+  - Un jour : passer à la convention Nuxt 4 `app/`, dans un commit de renommage pur (ADR 0003)
+- Défauts relevés pendant la phase 1 :
+  - og:url / twitter:url pointent vers velocite-montpellier.fr au lieu de config.siteUrl
+  - composables/map/network.ts : la couche de contour des tronçons reportés lit `lines` sur des lanes (qui n'ont que nb_lanes) -> avertissement MapLibre "Expected value to be of type string or array, but found null"
 - Phase 2 : features de contenu (portage depuis Lyon)
   - Galeries photo/vidéo
   - Panoramax
@@ -24,7 +28,8 @@ Feuille de route technique (sept. 2026) — voir docs/decisions/0002 :
   - Géocodeur
   - Mobile : bottom sheet, menu
   - Plus tard, peu coûteux : page d'impression, export GPX
-- Données OSM : content/services/pumps.json contient les pompes de Lyon
+- Page /services (pompes à vélo) : supprimée car elle affichait les pompes de Lyon. À recréer :
+  - Recréer pages/services, la collection "services" (content.config.ts) et content/services/pumps.json (voir l'historique git)
   - Adapter .github/scripts/osm.js à "Montpellier Méditerranée Métropole" (User-Agent obligatoire, Overpass souvent surchargé -> réessais / miroirs)
   - Rafraîchissement -> ADR : script manuel vs robot planifié (hebdo/mensuel, PR ou commit si tests de données verts), garde-fou contre une réponse vide
 - Phase 4 : compteurs Montpellier (cf. "Intégration compteurs")

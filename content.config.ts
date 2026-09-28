@@ -37,11 +37,6 @@ export default defineContentConfig({
       source: 'limits/*.json',
       schema: geojsonSchema
     }),
-    services: defineCollection({
-      type: 'data',
-      source: 'services/*.json',
-      schema: geojsonSchema
-    }),
     news: defineCollection({
       type: 'page',
       source: 'news/*.md',
