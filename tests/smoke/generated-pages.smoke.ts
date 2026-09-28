@@ -22,7 +22,7 @@ const PAGES_DIRECTORY = fileURLToPath(new URL('../../pages', import.meta.url));
 const ERROR_PAGE_TEXT = 'sortie de piste';
 
 // Pages sans texte clé : leur contenu (carte, graphiques) n'est dessiné que dans le navigateur.
-const CLIENT_RENDERED_ROUTES = ['/carte-interactive/embed', '/evolution', '/services'];
+const CLIENT_RENDERED_ROUTES = ['/carte-interactive/embed', '/evolution'];
 
 const KEY_TEXT_BY_STATIC_ROUTE: Record<string, string> = {
   '/': 'Avancement des',

@@ -24,7 +24,8 @@ Feuille de route technique (sept. 2026) — voir docs/decisions/0002 :
   - Géocodeur
   - Mobile : bottom sheet, menu
   - Plus tard, peu coûteux : page d'impression, export GPX
-- Données OSM : content/services/pumps.json contient les pompes de Lyon
+- Page /services (pompes à vélo) : supprimée car elle affichait les pompes de Lyon. À recréer :
+  - Recréer pages/services, la collection "services" (content.config.ts) et content/services/pumps.json (voir l'historique git)
   - Adapter .github/scripts/osm.js à "Montpellier Méditerranée Métropole" (User-Agent obligatoire, Overpass souvent surchargé -> réessais / miroirs)
   - Rafraîchissement -> ADR : script manuel vs robot planifié (hebdo/mensuel, PR ou commit si tests de données verts), garde-fou contre une réponse vide
 - Phase 4 : compteurs Montpellier (cf. "Intégration compteurs")
