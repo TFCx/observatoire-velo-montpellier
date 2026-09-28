@@ -5,6 +5,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { assert, describe, it } from 'vitest';
 
+import { readBuildInfo } from '../../build-info';
 import config from '../../config.json';
 import {
   BLOG_DIRECTORY,
@@ -257,5 +258,37 @@ describe('social sharing meta', () => {
       .map(route => `${route} : twitter:url = ${readMetaContent(route, 'name', 'twitter:url')}`);
 
     assert.deepEqual(routesWithWrongTwitterUrl, []);
+  });
+});
+
+describe('build info', () => {
+  // Même calcul qu'au build : les smoke tests tournent dans le même environnement que nuxt generate.
+  const expectedBuildInfo = readBuildInfo();
+  const BUILD_VERSION_ELEMENT = 'id="build-version"';
+
+  function readBuildMetaContent(route: string): string | undefined {
+    return readGeneratedPage(route).match(/<meta[^>]*name="observatoire-build"[^>]*content="([^"]*)"/)?.[1];
+  }
+
+  it('should_expose_built_commit_in_meta_when_site_is_generated', () => {
+    const expectedPrefix = `${expectedBuildInfo.commit} ${expectedBuildInfo.environment}`;
+    const routesWithWrongBuildMeta = allExpectedRoutes
+      .filter(route => !readBuildMetaContent(route)?.startsWith(expectedPrefix))
+      .map(route => `${route} : "${readBuildMetaContent(route)}" au lieu de "${expectedPrefix} …"`);
+
+    assert.deepEqual(routesWithWrongBuildMeta, []);
+  });
+
+  it.skipIf(expectedBuildInfo.environment === 'prod')('should_show_build_version_in_footer_when_environment_is_not_prod', () => {
+    const homePage = readGeneratedPage('/');
+
+    assert.include(homePage, BUILD_VERSION_ELEMENT);
+    assert.include(homePage, `version ${expectedBuildInfo.commit}`);
+  });
+
+  it.skipIf(expectedBuildInfo.environment !== 'prod')('should_hide_build_version_from_footer_when_environment_is_prod', () => {
+    const routesShowingBuildVersion = allExpectedRoutes.filter(route => readGeneratedPage(route).includes(BUILD_VERSION_ELEMENT));
+
+    assert.deepEqual(routesShowingBuildVersion, []);
   });
 });

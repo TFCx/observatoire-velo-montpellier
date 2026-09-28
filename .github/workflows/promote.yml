@@ -27,6 +27,8 @@ jobs:
     env:
       SOURCE_BRANCH: ${{ inputs.environment == 'beta' && 'montpellier/main' || 'montpellier/beta' }}
       TARGET_BRANCH: montpellier/${{ inputs.environment }}
+      # Inscrit dans le site généré (build-info.ts) : la version n'est visible qu'hors prod.
+      DEPLOY_ENVIRONMENT: ${{ inputs.environment }}
 
     steps:
       - name: Checkout the branch to promote

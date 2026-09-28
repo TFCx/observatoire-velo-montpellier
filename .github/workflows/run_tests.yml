@@ -11,6 +11,10 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    # Inscrits dans le site généré (build-info.ts) : l'aperçu d'une PR affiche son dernier commit.
+    env:
+      DEPLOY_ENVIRONMENT: ${{ github.event_name == 'pull_request' && 'preview' || 'ci' }}
+      BUILD_COMMIT: ${{ github.event.pull_request.head.sha || github.sha }}
 
     steps:
       - name: Checkout Repository

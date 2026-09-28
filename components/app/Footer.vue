@@ -19,6 +19,10 @@
           <p class="text-center text-base text-gray-500">
             {{ getAssoName() }}
           </p>
+          <!-- Masqué en prod : la version y reste lisible dans la balise meta "observatoire-build". -->
+          <p v-if="build.environment !== 'prod'" id="build-version" class="mt-1 text-center text-xs text-gray-400">
+            version {{ build.commit }} · {{ build.environment }} · {{ build.date }}
+          </p>
         </div>
       </div>
     </div>
@@ -27,6 +31,7 @@
 
 <script setup lang="ts">
 const { getAssoName } = useConfig();
+const { build } = useRuntimeConfig().public;
 
 const links = [
   { name: 'Mentions légales', path: '/mentions-legales' },
