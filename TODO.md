@@ -23,6 +23,9 @@ Feuille de route technique (sept. 2026) — voir docs/decisions/0002 :
   - Géocodeur
   - Mobile : bottom sheet, menu
   - Plus tard, peu coûteux : page d'impression, export GPX
+- Données OSM : content/services/pumps.json contient les pompes de Lyon
+  - Adapter .github/scripts/osm.js à "Montpellier Méditerranée Métropole" (User-Agent obligatoire, Overpass souvent surchargé -> réessais / miroirs)
+  - Rafraîchissement -> ADR : script manuel vs robot planifié (hebdo/mensuel, PR ou commit si tests de données verts), garde-fou contre une réponse vide
 - Phase 4 : compteurs Montpellier (cf. "Intégration compteurs")
   - Brancher sur les flux open data de la Métropole -> ADR
   - Inspirations : compteurs.velocite-montpellier.fr/dashboard, compteurs-velo-de-montpellier.onrender.com, montpellier-bike.vercel.app
