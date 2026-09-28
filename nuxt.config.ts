@@ -53,7 +53,16 @@ export default defineNuxtConfig({
     }
   },
 
-  modules: ['@nuxtjs/tailwindcss', '@nuxt/content', '@nuxt/icon'],
+  modules: ['@nuxtjs/tailwindcss', '@nuxt/content', '@nuxt/icon', '@nuxtjs/sitemap'],
+
+  site: {
+    url: config.siteUrl
+  },
+
+  sitemap: {
+    // Page d'erreur et carte à intégrer dans d'autres sites : générées, mais pas à indexer.
+    exclude: ['/404', '/carte-interactive/embed']
+  },
 
   content: {
     renderer: {
@@ -75,12 +84,6 @@ export default defineNuxtConfig({
   },
 
   tailwindcss: { viewer: false },
-
-  nitro: {
-    prerender: {
-      routes: ['/sitemap.xml']
-    }
-  },
 
   build: {
     transpile: ['@headlessui/vue']

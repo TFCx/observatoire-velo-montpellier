@@ -70,6 +70,21 @@ function decodeHtmlEntities(html: string): string {
     .replace(/&amp;/g, '&');
 }
 
+// URL publique officielle : c'est elle que le sitemap doit annoncer aux moteurs de recherche.
+const SITE_URL = config.siteUrl;
+
+// Pages générées mais qui n'ont pas à être indexées : la page d'erreur et la carte à intégrer dans d'autres sites.
+const NON_INDEXABLE_ROUTES = ['/404', '/carte-interactive/embed'];
+
+function readSitemapUrls(): string[] {
+  const sitemap = fs.readFileSync(path.join(GENERATED_SITE_DIRECTORY, 'sitemap.xml'), 'utf8');
+  return [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(locationMatch => locationMatch[1]);
+}
+
+function convertRouteToSitemapUrl(route: string): string {
+  return route === '/' ? `${SITE_URL}/` : `${SITE_URL}${route}`;
+}
+
 function readGeneratedPage(route: string): string {
   return decodeHtmlEntities(fs.readFileSync(getGeneratedPagePath(route), 'utf8'));
 }
@@ -123,5 +138,44 @@ describe('generated pages', () => {
       .map(page => `${page.route} : "${page.title}" absent`);
 
     assert.deepEqual(routesMissingTitle, []);
+  });
+});
+
+describe('sitemap', () => {
+  it('should_list_every_line_page_when_sitemap_is_generated', () => {
+    const sitemapUrls = readSitemapUrls();
+    const missingLinePages = linePages.map(page => convertRouteToSitemapUrl(page.route)).filter(url => !sitemapUrls.includes(url));
+
+    assert.deepEqual(missingLinePages, []);
+  });
+
+  it('should_list_every_static_page_when_sitemap_is_generated', () => {
+    const sitemapUrls = readSitemapUrls();
+    const indexableStaticRoutes = [...Object.keys(KEY_TEXT_BY_STATIC_ROUTE), ...CLIENT_RENDERED_ROUTES].filter(
+      route => !NON_INDEXABLE_ROUTES.includes(route)
+    );
+    const missingStaticPages = indexableStaticRoutes.map(convertRouteToSitemapUrl).filter(url => !sitemapUrls.includes(url));
+
+    assert.deepEqual(missingStaticPages, []);
+  });
+
+  it('should_list_every_blog_post_when_sitemap_is_generated', () => {
+    const sitemapUrls = readSitemapUrls();
+    const missingBlogPosts = blogPostPages.map(page => convertRouteToSitemapUrl(page.route)).filter(url => !sitemapUrls.includes(url));
+
+    assert.deepEqual(missingBlogPosts, []);
+  });
+
+  it('should_use_site_url_when_sitemap_lists_urls', () => {
+    const urlsOnOtherDomain = readSitemapUrls().filter(url => !url.startsWith(`${SITE_URL}/`));
+
+    assert.deepEqual(urlsOnOtherDomain, []);
+  });
+
+  it('should_exclude_non_indexable_pages_when_sitemap_is_generated', () => {
+    const nonIndexableUrls = NON_INDEXABLE_ROUTES.map(convertRouteToSitemapUrl);
+    const listedNonIndexableUrls = readSitemapUrls().filter(url => nonIndexableUrls.includes(url));
+
+    assert.deepEqual(listedNonIndexableUrls, []);
   });
 });
