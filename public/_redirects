@@ -1,0 +1,4 @@
+# Netlify sert aussi le site sous son adresse par défaut sans rediriger vers le domaine principal
+# (constaté même avec le domaine principal réglé). Cette règle envoie tout vers le domaine officiel,
+# qui doit rester égal à siteUrl dans config.json (vérifié par tests/smoke).
+https://observatoire-velo-montpellier.netlify.app/* https://observatoire.velocite-montpellier.fr/:splat 301!
