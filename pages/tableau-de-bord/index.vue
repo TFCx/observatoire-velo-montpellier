@@ -39,25 +39,19 @@
 </template>
 
 <script setup lang="ts">
-import type { ParsedContent } from '@nuxt/content';
-import type { Feature } from '../../types';
+import type { VoiesCyclablesGeojsonCollectionItem } from '@nuxt/content';
 import config from '../../config.json';
-interface Geojson extends ParsedContent {
-  type: string;
-  features: Feature[];
-}
-interface Mds extends ParsedContent {
-  trafic: string
-}
+
+type Geojson = VoiesCyclablesGeojsonCollectionItem;
 
 const { getLineColor } = useColors();
 const { getTotalDistance, displayDistanceInKm } = useStats();
 
 const { data: voies } = await useAsyncData(() => {
-  return queryContent<Geojson>('voies-cyclables').where({ _type: 'json' }).find();
+  return queryCollection('voiesCyclablesGeojson').all();
 });
 const { data: mds } = await useAsyncData(() => {
-  return queryContent<Mds>('voies-cyclables').where({ _type: 'markdown' }).find();
+  return queryCollection('voiesCyclablesPages').all();
 });
 
 function getLine(voie: Geojson): string {

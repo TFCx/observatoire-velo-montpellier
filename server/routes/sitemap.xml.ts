@@ -2,23 +2,23 @@ import { dirname, resolve } from 'path';
 import { fileURLToPath } from 'url';
 import fs from 'fs';
 import { SitemapStream, streamToPromise } from 'sitemap';
-import { serverQueryContent } from '#content/server';
+import { queryCollection } from '@nuxt/content/server';
 import config from '~/config.json';
 
 const BASE_URL = 'https://cyclopolis.fr';
 
 export default defineEventHandler(async event => {
   const sitemap = new SitemapStream({ hostname: BASE_URL });
-  const docs = await serverQueryContent(event).find();
-
-  const docsExceptVoiesLyonnaises = docs.filter(doc => doc._dir !== 'voies-cyclables');
-  for (const doc of docsExceptVoiesLyonnaises) {
-    sitemap.write({ url: doc._path, changefreq: 'monthly' });
+  // Seuls les articles de blog ont une page à leur propre chemin : news, limites, services et sites
+  // partenaires sont affichés par d'autres pages, leur chemin de contenu n'est pas une URL du site.
+  const blogArticles = await queryCollection(event, 'blog').all();
+  for (const blogArticle of blogArticles) {
+    sitemap.write({ url: blogArticle.path, changefreq: 'monthly' });
   }
 
-  const docsOnlyVoiesLyonnaises = docs.filter(doc => doc._dir === 'voies-cyclables' && doc._type === 'markdown');
-  for (const doc of docsOnlyVoiesLyonnaises) {
-    sitemap.write({ url: `/${config.slug}-${doc.line}`, changefreq: 'monthly' });
+  const voiesCyclablesPages = await queryCollection(event, 'voiesCyclablesPages').all();
+  for (const voieCyclablePage of voiesCyclablesPages) {
+    sitemap.write({ url: `/${config.slug}-${voieCyclablePage.line}`, changefreq: 'monthly' });
   }
 
   const staticEndpoints = getStaticEndpoints();

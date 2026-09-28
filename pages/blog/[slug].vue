@@ -15,9 +15,7 @@ const { path } = useRoute();
 const { withoutTrailingSlash } = useUrl();
 
 const { data: article } = await useAsyncData(`article-${path}`, () => {
-  return queryContent()
-    .where({ _path: withoutTrailingSlash(path) })
-    .findOne();
+  return queryCollection('blog').path(withoutTrailingSlash(path)).first();
 });
 
 if (!article.value) {

@@ -1,5 +1,3 @@
-import type { ParsedContent } from '@nuxt/content';
-
 export type Count = {
   month: string;
   count: number;
@@ -15,7 +13,9 @@ export type Counter = {
   counts: Count[];
 }
 
-export interface CounterParsedContent extends ParsedContent {
+// Forme d'un compteur lu depuis le contenu ; ParsedContent n'existe plus dans @nuxt/content v3.
+export interface CounterParsedContent {
+  path: string;
   name: string;
   description: string;
   arrondissement: string;

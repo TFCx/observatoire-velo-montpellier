@@ -128,7 +128,7 @@ export const useMap = () => {
       properties: {
         type,
         name: counter.name,
-        link: counter._path,
+        link: counter.path,
         counts: counter.counts
       },
       geometry: {
