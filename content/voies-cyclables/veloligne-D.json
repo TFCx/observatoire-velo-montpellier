@@ -64,7 +64,6 @@
                 "line": "D",
                 "doneAt": "",
                 "name": "Rue de la Fontaine de la Banquière - passage sous la D66",
-                "id": "Banquière",
                 "link": "/veloligne-D#de-montpellier-sud-de-france-au-canal-philippe-lamour"
             },
             "geometry": { "type": "LineString", "coordinates": [ [ 3.934871487070072, 43.594555281461332 ], [ 3.938945, 43.595696 ], [ 3.947341, 43.596254 ], [ 3.947796, 43.596413 ], [ 3.949277, 43.596467 ], [ 3.950925, 43.596933 ], [ 3.951735, 43.597227 ], [ 3.952588, 43.597664 ], [ 3.952918, 43.597452 ] ] }

@@ -25,7 +25,6 @@
                 "type": "bidirectionnelle",
                 "line": "A",
                 "name": "Becquerel nord",
-                "id": "Becquerel nord",
                 "link": "/veloligne-A#rues-becquerel-et-pomessargues"
             },
             "geometry": { "coordinates": [ [ 3.909876, 43.622072 ], [ 3.910077, 43.621821 ], [ 3.910176, 43.621722 ], [ 3.910388, 43.621509 ], [ 3.910839, 43.621106 ], [ 3.910995, 43.620942 ], [ 3.91127, 43.62063 ], [ 3.911781, 43.620013 ], [ 3.912095, 43.619616 ], [ 3.912525, 43.619094 ], [ 3.912819, 43.618782 ], [ 3.913568, 43.617766 ], [ 3.913667, 43.617562 ], [ 3.914248, 43.616405 ], [ 3.914434, 43.616039 ], [ 3.914496, 43.615882 ], [ 3.914564, 43.615728 ], [ 3.914597, 43.615573 ], [ 3.914625, 43.615347 ], [ 3.914655, 43.615004 ], [ 3.914687, 43.614487 ], [ 3.914716, 43.613953 ], [ 3.914869, 43.610921 ], [ 3.914902, 43.610575 ] ], "type": "LineString" }
@@ -195,7 +194,6 @@
                 "type": "inconnu",
                 "line": "A",
                 "name": "Dubout franchissement voie ferrée",
-                "id": "Dubout franchissement voie ferrée",
                 "link": "/veloligne-A#avenue-de-la-liberté-de-fontcarrade-au-boulevard-de-la-perruque"
             },
             "geometry": { "coordinates": [ [ 3.877825, 43.596943 ], [ 3.877758, 43.596943 ], [ 3.876132, 43.597175 ] ], "type": "LineString" }

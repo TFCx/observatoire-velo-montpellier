@@ -5,6 +5,7 @@
         {
             "type": "Feature",
             "properties": {
+                "name": "Domaine d'Ô ⇄ Grabels",
                 "quality": "fair",
                 "doneAt": "31/12/2019",
                 "status": "done",
