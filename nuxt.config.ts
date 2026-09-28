@@ -7,6 +7,14 @@ const BASE_URL = 'https://velocite-montpellier.fr';
 const COVER_IMAGE_URL = 'https://observatoire-velo-montpellier.netlify.app/_nuxt/logoCyclopolisVGM.CzJjkGQi.png';
 
 export default defineNuxtConfig({
+  // Code applicatif à la racine plutôt que dans app/ (ADR 0003).
+  srcDir: '.',
+
+  // Active les comportements de Nuxt 4 sur Nuxt 3, pour préparer la montée de version.
+  future: {
+    compatibilityVersion: 4
+  },
+
   app: {
     head: {
       htmlAttrs: { lang: 'fr' },
