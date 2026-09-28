@@ -26,12 +26,12 @@ if (!article.value) {
 useHead({
   meta: [
     // description
-    { hid: 'description', name: 'description', content: article.value.description },
-    { hid: 'og:description', property: 'og:description', content: article.value.description },
-    { hid: 'twitter:description', name: 'twitter:description', content: article.value.description },
+    { name: 'description', content: article.value.description },
+    { property: 'og:description', content: article.value.description },
+    { name: 'twitter:description', content: article.value.description },
     // cover image
-    { hid: 'og:image', property: 'og:image', content: article.value.imageUrl },
-    { hid: 'twitter:image', name: 'twitter:image', content: article.value.imageUrl }
+    { property: 'og:image', content: article.value.imageUrl },
+    { name: 'twitter:image', content: article.value.imageUrl }
   ]
 });
 

@@ -56,12 +56,12 @@ useHead({
   title: `${getRevName('singular')} ${voie.value.line} ${voie.value.from} ${voie.value.to}`,
   meta: [
     // description
-    { hid: 'description', name: 'description', content: description },
-    { hid: 'og:description', property: 'og:description', content: description },
-    { hid: 'twitter:description', name: 'twitter:description', content: description },
+    { name: 'description', content: description },
+    { property: 'og:description', content: description },
+    { name: 'twitter:description', content: description },
     // cover image
-    { hid: 'og:image', property: 'og:image', content: coverImage },
-    { hid: 'twitter:image', name: 'twitter:image', content: coverImage }
+    { property: 'og:image', content: coverImage },
+    { name: 'twitter:image', content: coverImage }
   ]
 });
 </script>
