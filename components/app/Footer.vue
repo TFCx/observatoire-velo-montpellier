@@ -37,7 +37,7 @@ const links = [
 const socials = [
   {
     name: 'Github',
-    href: 'https://github.com/TFCx/observatoire-velolignes',
+    href: 'https://github.com/TFCx/observatoire-velo-montpellier',
     icon: 'mdi:github'
   },
   {
@@ -49,11 +49,6 @@ const socials = [
     name: 'Twitter',
     href: 'https://twitter.com/VelociteMtp',
     icon: 'mdi:twitter'
-  },
-  {
-    name: 'Mastodon',
-    href: 'https://masto.bike/@lavilleavelo',
-    icon: 'mdi:mastodon'
   },
   {
     name: 'Facebook',
