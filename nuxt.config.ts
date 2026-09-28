@@ -10,11 +10,6 @@ export default defineNuxtConfig({
   // Code applicatif à la racine plutôt que dans app/ (ADR 0003).
   srcDir: '.',
 
-  // Active les comportements de Nuxt 4 sur Nuxt 3, pour préparer la montée de version.
-  future: {
-    compatibilityVersion: 4
-  },
-
   app: {
     head: {
       htmlAttrs: { lang: 'fr' },
@@ -95,5 +90,5 @@ export default defineNuxtConfig({
     transpile: ['@headlessui/vue']
   },
 
-  compatibilityDate: '2024-08-11'
+  compatibilityDate: '2026-09-28'
 });

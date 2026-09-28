@@ -20,7 +20,7 @@
     "@tailwindcss/typography": "^0.5.16",
     "dayjs": "^1.11.13",
     "eslint": "^8.57.1",
-    "nuxt": "^3.21.11",
+    "nuxt": "^4.5.2",
     "prettier": "^3.5.0",
     "vitest": "^2.1.8"
   },
