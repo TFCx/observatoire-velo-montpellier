@@ -16,6 +16,7 @@ import {
 } from '../helpers/content';
 
 const GENERATED_SITE_DIRECTORY = fileURLToPath(new URL('../../.output/public', import.meta.url));
+const PAGES_DIRECTORY = fileURLToPath(new URL('../../pages', import.meta.url));
 
 // Texte propre à la page d'erreur (pages/404.vue) : s'il apparaît ailleurs, la page a échoué.
 const ERROR_PAGE_TEXT = 'sortie de piste';
@@ -189,5 +190,48 @@ describe('netlify redirects', () => {
     const expectedRule = `https://observatoire-velo-montpellier.netlify.app/* ${SITE_URL}/:splat 301!`;
 
     assert.include(redirectRules.split('\n'), expectedRule);
+  });
+});
+
+describe('generated css', () => {
+  function listVueFilesRecursively(directory: string): string[] {
+    return fs.readdirSync(directory, { withFileTypes: true }).flatMap(entry => {
+      const entryPath = path.join(directory, entry.name);
+      if (entry.isDirectory()) {
+        return listVueFilesRecursively(entryPath);
+      }
+      return entry.name.endsWith('.vue') ? [entryPath] : [];
+    });
+  }
+
+  // Seuls les attributs class="..." statiques sont lus : les classes calculées (:class) ne sont pas couvertes.
+  function readStaticClasses(vueFileContent: string): string[] {
+    return [...vueFileContent.matchAll(/(?<=\s)class="([^"]*)"/g)].flatMap(classMatch => classMatch[1].split(/\s+/)).filter(Boolean);
+  }
+
+  // Tailwind échappe dans ses sélecteurs tout caractère autre que lettre, chiffre, "-" et "_" (sm:py-32 -> .sm\:py-32).
+  function convertClassToCssSelector(className: string): string {
+    return `.${className.replace(/[^a-zA-Z0-9_-]/g, character => `\\${character}`)}`;
+  }
+
+  function readGeneratedCss(): string {
+    const cssDirectory = path.join(GENERATED_SITE_DIRECTORY, '_nuxt');
+    return fs
+      .readdirSync(cssDirectory)
+      .filter(fileName => fileName.endsWith('.css'))
+      .map(fileName => fs.readFileSync(path.join(cssDirectory, fileName), 'utf8'))
+      .join('\n');
+  }
+
+  // Détecte un dossier non scanné par Tailwind : ses classes n'ont alors aucune règle CSS (cas vécu avec pages/ sous Nuxt 4).
+  it('should_include_css_rules_for_page_classes_when_site_is_generated', () => {
+    const generatedCss = readGeneratedCss();
+    const missingClassesByPage = listVueFilesRecursively(PAGES_DIRECTORY).flatMap(pageFilePath => {
+      const uniqueClasses = [...new Set(readStaticClasses(fs.readFileSync(pageFilePath, 'utf8')))];
+      const missingClasses = uniqueClasses.filter(className => !generatedCss.includes(convertClassToCssSelector(className)));
+      return missingClasses.length > 0 ? [`${path.relative(PAGES_DIRECTORY, pageFilePath)} : ${missingClasses.join(' ')}`] : [];
+    });
+
+    assert.deepEqual(missingClassesByPage, []);
   });
 });
