@@ -14,11 +14,11 @@ definePageMeta({
 });
 
 const { data: voies } = await useAsyncData(() => {
-  return queryContent('voies-cyclables').where({ _type: 'json' }).find();
+  return queryCollection('voiesCyclablesGeojson').all();
 });
 
 const { data: limits } = await useAsyncData(() => {
-  return queryContent('limits').where({ _type: 'json' }).find();
+  return queryCollection('limits').all();
 });
 
 const features = voies.value.map(voie => voie.features).flat().concat(limits.value.map(l => l.features).flat());

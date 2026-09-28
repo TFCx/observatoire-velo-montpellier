@@ -30,7 +30,7 @@
 const emit = defineEmits(['close']);
 
 const { data: lastNewsItem } = await useAsyncData(() => {
-  return queryContent('news').where({ _dir: 'news' }).sort({ date: -1 }).findOne();
+  return queryCollection('news').order('date', 'DESC').first();
 });
 
 function close() {

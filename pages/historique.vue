@@ -30,7 +30,7 @@
 
 <script setup>
 const { data: news } = await useAsyncData(() => {
-  return queryContent('news').sort({ date: -1 }).find();
+  return queryCollection('news').order('date', 'DESC').all();
 });
 
 function formatDate(date) {

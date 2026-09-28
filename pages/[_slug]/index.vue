@@ -47,7 +47,7 @@ definePageMeta({
 const { data: voie } = await useAsyncData(`${path}`, () => {
   const lineInteger = Number(line)
   const lineId = !Number.isNaN(lineInteger) ? lineInteger : line
-  return queryContent('voies-cyclables').where({ _type: 'markdown', line: lineId }).findOne();
+  return queryCollection('voiesCyclablesPages').where('line', '=', lineId).first();
 });
 
 const description = `Tout savoir sur la ${getRevName('singular')} ${voie.value.line} ${voie.value.from} ${voie.value.to}. Avancement, carte interactive, détail rue par rue, calendrier des travaux et photos du projet.`;

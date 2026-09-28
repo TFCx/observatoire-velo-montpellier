@@ -56,8 +56,12 @@ export default defineNuxtConfig({
   modules: ['@nuxtjs/tailwindcss', '@nuxt/content', '@nuxt/icon'],
 
   content: {
-    markdown: {
-      tags: { h1: 'h1', h5: 'h5', h6: 'h6' }
+    renderer: {
+      alias: { h1: 'h1', h5: 'h5', h6: 'h6' }
+    },
+    experimental: {
+      // SQLite intégré à Node >= 22.5 : évite d'ajouter better-sqlite3, seulement utile au build.
+      sqliteConnector: 'native'
     }
   },
 

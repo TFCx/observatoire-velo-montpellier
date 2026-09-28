@@ -6,19 +6,20 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "test": "vitest"
+    "test": "vitest",
+    "test:smoke": "nuxt generate && vitest run --config vitest.smoke.config.ts"
   },
   "devDependencies": {
     "@headlessui/vue": "^1.7.23",
     "@iconify-json/mdi": "^1.2.1",
-    "@nuxt/content": "^2.13.4",
+    "@nuxt/content": "^3.16.1",
     "@nuxt/icon": "^1.10.3",
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
     "@nuxtjs/tailwindcss": "^6.13.1",
     "@tailwindcss/typography": "^0.5.16",
     "dayjs": "^1.11.13",
     "eslint": "^8.57.1",
-    "nuxt": "^3.15.4",
+    "nuxt": "^3.21.11",
     "prettier": "^3.5.0",
     "sitemap": "^7.1.1",
     "vitest": "^2.1.8"

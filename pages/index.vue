@@ -41,6 +41,6 @@
 const { getRevName } = useConfig();
 
 const { data: voies } = await useAsyncData(() => {
-  return queryContent('voies-cyclables').where({ _type: 'json' }).find();
+  return queryCollection('voiesCyclablesGeojson').all();
 });
 </script>

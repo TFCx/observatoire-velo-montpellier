@@ -27,19 +27,14 @@ const { getTotalDistance, displayDistanceInKm } = useStats();
 const { voie } = defineProps({ voie: Object });
 
 const mapOptions = {
-  fullscreen: false, // if true, need to fix bug at link
+  fullscreen: false,
   logo: false,
-  defaultLayer: DisplayedLayer.Quality,
-  onFullscreenControlClick: () => {
-    const route = useRoute();
-    return navigateTo({ path: `${route.params._slug}/carte` });
-  }
+  defaultLayer: DisplayedLayer.Quality
 };
 
 const { data: geojson } = await useAsyncData(`geojson-${path}`, () => {
-  return queryContent('voies-cyclables')
-    .where({ _type: 'json', _path: voie._path })
-    .findOne();
+  // Le .json d'une ligne porte le même nom de fichier (stem) que son .md.
+  return queryCollection('voiesCyclablesGeojson').where('stem', '=', voie.stem).first();
 });
 
 const features = geojson.value.features;

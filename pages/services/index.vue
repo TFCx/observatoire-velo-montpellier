@@ -12,7 +12,7 @@ definePageMeta({
 });
 
 const { data: services } = await useAsyncData(() => {
-  return queryContent('services').where({ _type: 'json' }).find();
+  return queryCollection('services').all();
 });
 
 const features = services.value.map(service => service.features).flat();
