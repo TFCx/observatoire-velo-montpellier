@@ -83,6 +83,8 @@ Pistes bilatérales larges et confortables.
 ---
 imageUrl: https://www.montpellier3m.fr/sites/default/files/vignettes/actualite/avenue_du_mondial_98.png
 ---
+::
+
 <span style="color:lightgreen;font-weight:bold">Satisfaisant</span>
 Les pistes transitoires bilatérales ont été pérennisées en des pistes larges et confortables.
 
