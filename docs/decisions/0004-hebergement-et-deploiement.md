@@ -52,3 +52,11 @@ Alternatives examinées :
   PR (une PR depuis un fork n'a pas accès aux secrets).
 - Dépendance à `netlify-cli`, utilisé uniquement dans la CI (version épinglée dans les workflows).
 - Le site étant 100 % statique, changer d'hébergeur reste simple : seule l'étape d'envoi change.
+
+## Erratum (2026-09-28)
+
+Les alias `deploy-preview-<n°>` et `montpellier-beta` entrent en collision avec les déploiements
+natifs de Netlify du même nom, qui gardent la priorité : l'adresse de beta servait encore l'ancien
+déploiement de branche. Les alias utilisés sont `pr-<n°>`
+(`https://pr-<n°>--observatoire-velo-montpellier.netlify.app`) et `beta`
+(`https://beta--observatoire-velo-montpellier.netlify.app`). La décision elle-même est inchangée.

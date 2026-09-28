@@ -1,8 +1,10 @@
 import config from './config.json';
+import { formatBuildInfo, readBuildInfo } from './build-info';
 
 const TITLE = `Observatoire Vélo de Montpellier - Suivi des ${config.revName.plural} par ${config.assoName}`;
 const DESCRIPTION =
   `Plateforme citoyenne et associative, par ${config.assoName}. État d'avancement, cartes interactives des itinéraires, détails, travaux : suivez le développement du réseau cyclable sécurisé montpelliérain`;
+const BUILD_INFO = readBuildInfo();
 const COVER_IMAGE_URL = 'https://observatoire-velo-montpellier.netlify.app/_nuxt/logoCyclopolisVGM.CzJjkGQi.png';
 
 export default defineNuxtConfig({
@@ -15,6 +17,8 @@ export default defineNuxtConfig({
       title: TITLE,
       meta: [
         { name: 'description', content: DESCRIPTION },
+        // Commit, environnement et date du build : vérifiable sur toutes les pages, y compris en prod.
+        { name: 'observatoire-build', content: formatBuildInfo(BUILD_INFO) },
         // facebook
         { property: 'og:site_name', content: TITLE },
         { property: 'og:type', content: 'website' },
@@ -47,7 +51,8 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      maptilerKey: process.env.MAPTILER_KEY
+      maptilerKey: process.env.MAPTILER_KEY,
+      build: BUILD_INFO
     }
   },
 
