@@ -11,7 +11,7 @@ Feuille de route technique (sept. 2026) — voir docs/decisions/0002 :
         non conforme au schéma (build réussi avec un statut invalide) -> tests/data-health.test.ts reste LE garde-fou.
         Plus tard (plan de simplification, étape domain/) : un schéma zod unique pour typer les composants ET valider
         dans les tests. Conventions à respecter : doneAt = "" si non réalisé ; quality = "" ou absente (surtout planned).
-  - Réactiver dependabot (hebdo, mises à jour groupées)
+  - [x] Dependabot réactivé : npm hebdo (mineures + correctifs groupés, majeures une par une), GitHub Actions mensuel
   - Hébergement : Netlify vs alternatives -> ADR
   - Un jour : passer à la convention Nuxt 4 `app/`, dans un commit de renommage pur (ADR 0003)
 - Défauts relevés pendant la phase 1 :
