@@ -30,3 +30,57 @@ jobs:
 
       - name: Run smoke tests on generated site
         run: npm run test:smoke
+
+      # Le site testé est gardé pour que l'aperçu déploie exactement ce build (ADR 0004).
+      - name: Keep the tested site for the preview
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: .output/public
+          retention-days: 7
+
+  preview:
+    needs: test
+    # Les PR de dependabot et celles venant d'un fork n'ont pas accès aux secrets : pas d'aperçu.
+    if: >-
+      github.event_name == 'pull_request'
+      && github.actor != 'dependabot[bot]'
+      && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+
+    steps:
+      - name: Download the tested site
+        uses: actions/download-artifact@v4
+        with:
+          name: site
+          path: site
+
+      - name: Deploy preview to Netlify
+        id: deploy
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ vars.NETLIFY_SITE_ID }}
+        run: |
+          # Sans secrets configurés, on ne fait pas échouer la PR : l'aperçu est simplement absent.
+          if [ -z "${NETLIFY_AUTH_TOKEN}" ] || [ -z "${NETLIFY_SITE_ID}" ]; then
+            echo "::warning::NETLIFY_AUTH_TOKEN ou NETLIFY_SITE_ID absent : pas d'aperçu déployé."
+            exit 0
+          fi
+          npx --yes netlify-cli@27.10.0 deploy --no-build --dir=site --json \
+            --alias="deploy-preview-${{ github.event.pull_request.number }}" \
+            --message="PR #${{ github.event.pull_request.number }} (${{ github.event.pull_request.head.sha }})" \
+            > deploy.json
+          echo "deployed=true" >> "${GITHUB_OUTPUT}"
+
+      - name: Link the preview in the pull request
+        if: steps.deploy.outputs.deployed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          preview_url=$(jq -r '.deploy_url' deploy.json)
+          gh pr comment ${{ github.event.pull_request.number }} --repo ${{ github.repository }} \
+            --edit-last --create-if-none \
+            --body "Aperçu de cette PR : ${preview_url} (commit ${{ github.event.pull_request.head.sha }})"

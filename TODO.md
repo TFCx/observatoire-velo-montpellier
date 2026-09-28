@@ -12,7 +12,9 @@ Feuille de route technique (sept. 2026) — voir docs/decisions/0002 :
         Plus tard (plan de simplification, étape domain/) : un schéma zod unique pour typer les composants ET valider
         dans les tests. Conventions à respecter : doneAt = "" si non réalisé ; quality = "" ou absente (surtout planned).
   - [x] Dependabot réactivé : npm hebdo (mineures + correctifs groupés, majeures une par une), GitHub Actions mensuel
-  - Hébergement : Netlify vs alternatives -> ADR
+  - [x] Hébergement : ADR 0004 (Netlify, construit et testé par la CI, aperçus par PR, workflow "Promote")
+    - À faire par Jean-David : secret NETLIFY_AUTH_TOKEN + variable NETLIFY_SITE_ID dans GitHub, puis arrêter
+      les builds Netlify ; première promotion : beta, puis prod ; supprimer ensuite la branche montpellier/test
   - Un jour : passer à la convention Nuxt 4 `app/`, dans un commit de renommage pur (ADR 0003)
 - Défauts relevés pendant la phase 1 :
   - og:url / twitter:url pointent vers velocite-montpellier.fr au lieu de config.siteUrl
