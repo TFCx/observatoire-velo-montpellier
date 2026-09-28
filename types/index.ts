@@ -25,7 +25,6 @@ export enum LaneStatus {
   Done = "done",
   Wip = "wip",
   Planned = "planned",
-  Tested = "tested",
   Postponed = "postponed",
   Unknown = "unknown",
   Variante = "variante",

@@ -75,7 +75,7 @@ defineExpose({
 
 const statusFilters = ref([
   { label: 'Terminé', isEnable: true, statuses: [LaneStatus.Done] },
-  { label: 'En travaux', isEnable: true, statuses: [LaneStatus.Wip, LaneStatus.Tested] },
+  { label: 'En travaux', isEnable: true, statuses: [LaneStatus.Wip] },
   { label: 'Prévu pour 2026', isEnable: true, statuses: [LaneStatus.Planned, LaneStatus.Variante] },
   { label: 'Reporté', isEnable: true, statuses: [LaneStatus.Postponed, LaneStatus.VariantePostponed] },
   { label: 'Inconnu', isEnable: true, statuses: [LaneStatus.Unknown] }

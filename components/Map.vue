@@ -67,7 +67,7 @@ const {
   handleMapClick
 } = useMap();
 
-const statuses = ref([LaneStatus.Planned, LaneStatus.Variante, LaneStatus.Done, LaneStatus.Postponed, LaneStatus.VariantePostponed, LaneStatus.Unknown, LaneStatus.Wip, LaneStatus.Tested]);
+const statuses = ref([LaneStatus.Planned, LaneStatus.Variante, LaneStatus.Done, LaneStatus.Postponed, LaneStatus.VariantePostponed, LaneStatus.Unknown, LaneStatus.Wip]);
 const types = ref([LaneType.Unidirectionnelle, LaneType.Bidirectionnelle, LaneType.Bilaterale, LaneType.VoieBus, LaneType.VoieBusElargie, LaneType.Velorue, LaneType.VoieVerte, LaneType.BandesCyclables, LaneType.ZoneDeRencontre, LaneType.AirePietonne, LaneType.Chaucidou, LaneType.Aucun, LaneType.Inconnu]);
 const families = ref([LaneTypeFamily.Dedie, LaneTypeFamily.MixiteMotorise, LaneTypeFamily.MixitePietonne])
 const displayLimits = ref(true);

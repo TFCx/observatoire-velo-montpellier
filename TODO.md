@@ -57,6 +57,7 @@ Moyen terme :
 - [FEAT++]"Propositions de vélocité" (ex: une catégorie "petits tronçons à faire en priorité")
 - [FEAT++] Ajout "envoyer une remarque" sur un tronçon. Comment le gérer ? Mail ?
 - [FEAT++] Autres lignes majeures (BT, T, VL70, ...)
+- [FEAT] Statut "tactically-done" pour les aménagements transitoires / urbanisme tactique (ex : VL C Fabrègues-Saussan). L'ancien statut lyonnais "tested" a été supprimé car inutilisé.
 - Avoir des groupes (vélolignes, majeures, connexions... ) ?
 - Nouveau widget timeline
 - Nouveau popup de section

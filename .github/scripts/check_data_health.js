@@ -91,7 +91,7 @@ function checkGeoJsonDataHealth({ links }) {
               }
 
               // 3 - check if status is valid
-              const validStatus = [LaneStatus.Planned, LaneStatus.Variante, LaneStatus.Done, LaneStatus.Postponed, LaneStatus.VariantePostponed, LaneStatus.Unknown, LaneStatus.Wip, LaneStatus.Tested];
+              const validStatus = [LaneStatus.Planned, LaneStatus.Variante, LaneStatus.Done, LaneStatus.Postponed, LaneStatus.VariantePostponed, LaneStatus.Unknown, LaneStatus.Wip];
               if (!validStatus.includes(properties.status)) {
                 console.error(`Invalid status '${properties.status}' in LineString properties of file: ${filePath}`);
                 process.exit(1);

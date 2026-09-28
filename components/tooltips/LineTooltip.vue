@@ -137,10 +137,6 @@ function getStatus(properties: SectionFeature['properties']): { label: string, c
       label: 'prévu',
       class: 'text-color-primary-primary rounded-xl px-2 border border-color-primary-primary'
     },
-    tested: {
-      label: 'en test',
-      class: 'text-color-primary-600 rounded-xl px-2 border border-dashed border-color-primary-600'
-    },
     postponed: {
       label: 'reporté',
       date: 'après 2026',
