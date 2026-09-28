@@ -58,6 +58,8 @@ jobs:
           name: site
           path: site
 
+      # Alias "pr-<n°>" et non "deploy-preview-<n°>" : ce dernier est réservé aux aperçus natifs de
+      # Netlify, qui gardent la priorité sur un alias du même nom.
       - name: Deploy preview to Netlify
         id: deploy
         env:
@@ -70,7 +72,7 @@ jobs:
             exit 0
           fi
           npx --yes netlify-cli@27.10.0 deploy --no-build --dir=site --json \
-            --alias="deploy-preview-${{ github.event.pull_request.number }}" \
+            --alias="pr-${{ github.event.pull_request.number }}" \
             --message="PR #${{ github.event.pull_request.number }} (${{ github.event.pull_request.head.sha }})" \
             > deploy.json
           echo "deployed=true" >> "${GITHUB_OUTPUT}"

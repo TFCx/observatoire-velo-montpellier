@@ -59,6 +59,8 @@ jobs:
       - name: Run smoke tests on generated site
         run: npm run test:smoke
 
+      # Alias "beta" et non "montpellier-beta" : ce dernier est le sous-domaine réservé au déploiement
+      # de branche natif de Netlify pour montpellier/beta, qui garde la priorité sur un alias du même nom.
       - name: Deploy to Netlify
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
@@ -70,7 +72,7 @@ jobs:
               --message="prod <- ${commit}"
           else
             npx --yes netlify-cli@27.10.0 deploy --no-build --dir=.output/public \
-              --alias=montpellier-beta --message="beta <- ${commit}"
+              --alias=beta --message="beta <- ${commit}"
           fi
 
       # La branche n'avance qu'une fois le déploiement réussi : elle indique ce qui est en ligne.
