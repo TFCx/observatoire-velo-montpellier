@@ -15,9 +15,19 @@ import {
   readMarkdownTitles,
 } from './helpers/content';
 
+// GeoJSON lu tel quel : les champs attendus sont décrits, sans garantie, c'est ce que ces tests vérifient.
 type RawFeature = {
   geometry: { type: string };
-  properties?: Record<string, unknown>;
+  properties?: {
+    id?: string;
+    line?: string | number;
+    name?: string;
+    status?: string;
+    type?: string;
+    doneAt?: string;
+    link?: string;
+    [otherProperty: string]: unknown;
+  };
 };
 
 type LoadedFeature = {
@@ -95,7 +105,7 @@ describe('data health', () => {
     it('should_have_known_status_when_feature_is_line_string', () => {
       const knownStatuses: string[] = Object.values(LaneStatus);
       const problems = lineStringFeatures
-        .filter(({ feature }) => !knownStatuses.includes(feature.properties?.status))
+        .filter(({ feature }) => !knownStatuses.includes(feature.properties?.status ?? ''))
         .map(
           (loadedFeature) =>
             `${describeFeature(loadedFeature)} : statut "${loadedFeature.feature.properties?.status}" inconnu`,
@@ -107,7 +117,7 @@ describe('data health', () => {
     it('should_have_known_type_when_feature_is_line_string', () => {
       const knownTypes: string[] = Object.values(LaneType);
       const problems = lineStringFeatures
-        .filter(({ feature }) => !knownTypes.includes(feature.properties?.type))
+        .filter(({ feature }) => !knownTypes.includes(feature.properties?.type ?? ''))
         .map(
           (loadedFeature) =>
             `${describeFeature(loadedFeature)} : type "${loadedFeature.feature.properties?.type}" inconnu`,
@@ -200,8 +210,8 @@ describe('data health', () => {
     const imageReferences = readMarkdownFiles(VOIES_CYCLABLES_DIRECTORY).flatMap(({ fileName, content }) =>
       [...content.matchAll(/^(cover|imageUrl):\s*(\S+)\s*$/gm)].map((imageMatch) => ({
         fileName,
-        field: imageMatch[1],
-        url: imageMatch[2],
+        field: imageMatch[1] ?? '',
+        url: imageMatch[2] ?? '',
       })),
     );
 

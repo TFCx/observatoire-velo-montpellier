@@ -93,7 +93,8 @@ export async function countDistinctMapColors(page: Page): Promise<number> {
     const pixels = context.getImageData(0, 0, bitmap.width, bitmap.height).data;
     const distinctColors = new Set<number>();
     for (let index = 0; index < pixels.length; index += 4) {
-      distinctColors.add((pixels[index] << 16) | (pixels[index + 1] << 8) | pixels[index + 2]);
+      const [red = 0, green = 0, blue = 0] = pixels.subarray(index, index + 3);
+      distinctColors.add((red << 16) | (green << 8) | blue);
     }
     return distinctColors.size;
   }, screenshot.toString('base64'));
