@@ -1,3 +1,7 @@
+import type { z } from 'zod';
+
+import type { lineStringFeatureSchema, perspectiveFeatureSchema } from '../domain/schema';
+
 export enum LaneType {
   Unidirectionnelle = 'unidirectionnelle',
   Bidirectionnelle = 'bidirectionnelle',
@@ -46,25 +50,8 @@ export type PolygonFeature = {
   };
 };
 
-export type LineStringFeature = {
-  type: 'Feature';
-  properties: {
-    id?: string;
-    line: string;
-    name: string;
-    status: LaneStatus;
-    quality: Quality;
-    qualityB?: Quality;
-    type: LaneType;
-    typeB?: LaneType;
-    doneAt?: string;
-    link?: string;
-  };
-  geometry: {
-    type: 'LineString';
-    coordinates: [number, number][];
-  };
-};
+// Données saisies dans content/voies-cyclables : types déduits du schéma qui les valide (ADR 0008).
+export type LineStringFeature = z.infer<typeof lineStringFeatureSchema>;
 
 export type SectionFeature = {
   type: 'Feature';
@@ -89,31 +76,23 @@ export type SectionFeature = {
   };
 };
 
-export type MultiColoredLineStringFeature = LineStringFeature & { properties: { colors: string[] } };
-//export type SectionFeature = LineStringFeature & { properties: { colors: string[] } };
-export type LaneFeature = LineStringFeature & {
-  properties: {
+// Une voie par Véloligne d'un tronçon partagé, dessinées côte à côte sur la carte : calculée par
+// separateSectionsIntoLanes (useMap.ts) à partir des tronçons regroupés.
+export type LaneFeature = {
+  type: 'Feature';
+  properties: Pick<
+    SectionFeature['properties'],
+    'name' | 'status' | 'quality' | 'qualityB' | 'type' | 'typeB' | 'typeFamily' | 'typeFamilyB' | 'doneAt'
+  > & {
+    line: string;
     color: string;
     lane_index: number;
     nb_lanes: number;
-    typeFamily: LaneTypeFamily;
-    typeFamilyB: LaneTypeFamily;
   };
+  geometry: SectionFeature['geometry'];
 };
 
-export type PerspectiveFeature = {
-  type: 'Feature';
-  properties: {
-    type: 'perspective';
-    line: number;
-    name: string;
-    imgUrl: string;
-  };
-  geometry: {
-    type: 'Point';
-    coordinates: [number, number];
-  };
-};
+export type PerspectiveFeature = z.infer<typeof perspectiveFeatureSchema>;
 
 export type PumpFeature = {
   type: 'Feature';

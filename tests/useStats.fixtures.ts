@@ -21,19 +21,17 @@ function buildSameGeometryForAllSections() {
   };
 }
 
-// Comme dans les GeoJSON réels, line peut être un nombre et quality manquer (tronçons prévus), ce que
-// LineStringFeature ne décrit pas encore : d'où les conversions (schéma unique des données à venir,
-// plan de simplification).
 export function buildSection({ id, line, status, type, quality }: SectionFixtureOptions): LineStringFeature {
   return {
     type: 'Feature' as const,
     properties: {
       id,
-      line: line as string,
+      line: String(line),
       name: `Tronçon de test (ligne ${line})`,
       status,
       type,
-      quality: quality as Quality,
+      quality,
+      doneAt: '',
       link: `/veloligne-${line}`,
     },
     geometry: buildSameGeometryForAllSections(),
