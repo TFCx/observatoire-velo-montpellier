@@ -32,6 +32,10 @@
 </template>
 
 <script setup lang="ts">
+useHead({
+  title: 'Sites partenaires'
+});
+
 const { data: sites } = await useAsyncData(() => {
   return queryCollection('sitesPartenaires').order('index', 'ASC').all();
 });

@@ -35,6 +35,10 @@
 <script setup lang="ts">
 const { getAssoName } = useConfig();
 
+useHead({
+  title: "Blog de l'observatoire du plan vélo de Montpellier"
+});
+
 const { data: articles } = await useAsyncData(() => {
   return queryCollection('blog').all();
 });
