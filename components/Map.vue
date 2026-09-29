@@ -15,8 +15,11 @@
 </template>
 
 <script setup lang="ts">
-import { Map, AttributionControl, GeolocateControl, NavigationControl, type StyleSpecification, type LngLatLike } from 'maplibre-gl';
+import { Map, AttributionControl, GeolocateControl, NavigationControl, setWorkerUrl, type StyleSpecification, type LngLatLike } from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
+// MapLibre 6 charge son worker par une URL relative que Vite ne sait pas résoudre : on lui fournit
+// l'URL du worker construit par Vite (`?worker&url` et non `?url`, qui oublierait ses imports).
+import maplibreWorkerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url';
 import style from '@/assets/style.json';
 import FilterControl from '@/maplibre/FilterControl';
 import LimitsControl from '@/maplibre/LimitsControl';
@@ -106,6 +109,7 @@ function convertIntoDisplayedLayerEnum(s: string) {
 }
 
 onMounted(() => {
+  setWorkerUrl(maplibreWorkerUrl);
   const map = new Map({
     container: 'map',
     style: style as StyleSpecification,
