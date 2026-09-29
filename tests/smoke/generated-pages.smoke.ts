@@ -259,6 +259,25 @@ describe('social sharing meta', () => {
 
     assert.deepEqual(routesWithWrongTwitterUrl, []);
   });
+
+  // Les réseaux sociaux ignorent une image de partage donnée par un chemin relatif (/image.jpg).
+  it('should_give_absolute_og_image_url_when_page_has_one', () => {
+    const routesWithRelativeOgImage = allExpectedRoutes
+      .map(route => ({ route, ogImage: readMetaContent(route, 'property', 'og:image') }))
+      .filter(({ ogImage }) => ogImage !== undefined && !ogImage.startsWith('https://'))
+      .map(({ route, ogImage }) => `${route} : og:image = ${ogImage}`);
+
+    assert.deepEqual(routesWithRelativeOgImage, []);
+  });
+
+  it('should_give_absolute_twitter_image_url_when_page_has_one', () => {
+    const routesWithRelativeTwitterImage = allExpectedRoutes
+      .map(route => ({ route, twitterImage: readMetaContent(route, 'name', 'twitter:image') }))
+      .filter(({ twitterImage }) => twitterImage !== undefined && !twitterImage.startsWith('https://'))
+      .map(({ route, twitterImage }) => `${route} : twitter:image = ${twitterImage}`);
+
+    assert.deepEqual(routesWithRelativeTwitterImage, []);
+  });
 });
 
 describe('build info', () => {

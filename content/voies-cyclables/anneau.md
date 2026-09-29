@@ -4,7 +4,7 @@ lineName: Anneau
 lineNameShort: 𐍈
 description: L'Anneau vélo est le maillon central des Vélolignes, il permet de relier (presque) toutes les radiales.
 trafic: 5k vélos/jour
-cover: https://www.montpellier3m.fr/sites/default/files/vignettes/actualite/vcsprasset_3165929_167415_03610949-a910-4ec3-860c-1c9d201008ff_0.jpeg
+cover: /AnneauStLouis.jpg
 from: Mtp
 to: Mtp
 ---
@@ -87,7 +87,7 @@ Aire piétonne sans matérialisation spécifique d'espaces piétons et d'espaces
 
 ::content-image
 ---
-imageUrl: https://www.cerema.fr/sites/default/files/inline-images/effet_canyon_0.jpg
+imageUrl: /Anneau_effet_canyon_0.jpg
 caption: Piste cyclable ancienne sur le trajet de l'Anneau vélo
 credit: Cerema - 8 recommandations pour réussir votre piste cyclable
 streetView: 43.6058282,3.8896056,3a,15y,26.2h,88.67t

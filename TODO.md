@@ -44,9 +44,12 @@ Feuille de route technique (sept. 2026) — voir docs/decisions/0002 :
 - En continu : refactor de chaque zone avant d'y porter une feature, en commit séparé
 
 Prochaine release :
-- [BUG] lien mort dans page anneau (remplacement des images par assets ?) + lien mort véloligne A
+- [x] [BUG] lien mort dans page anneau (remplacement des images par assets ?) + lien mort véloligne A
+  - Vérifié le 29/09/2026 : plus de lien mort sur ces pages ; le vrai lien mort était la couverture de la VL 10.
+    Toutes les images des Vélolignes sont désormais dans public/ (test de données : aucune image externe).
 - [UX] mettre à jour les légendes :
   - supprimer le bouton 2021 dans la vue "évolution" s'il n'y a pas de trucs en 2021
+    (29/09/2026 : aucun tronçon réalisé en 2021, et le bouton est coché par défaut)
 - [x] [CONTENT] mettre à jour le post de news : date et contenu (dire ce qui a changé dans l'observatoire avec cette mise à jour)
 - [DATA] Vérifier les données :
   - aller vérifier sur le terrain (ou demander à notre puissant réseau) pour la véloligne 8 et les travaux L5 et les trucs entre les travaux L5
@@ -56,9 +59,9 @@ Prochaine release :
 - [REFACTOR] Check la console / bugs (et les console.debug)
   - [x] Passe du 29/09/2026 : seul warning à nous (prop options de Map sur /carte-interactive/embed) corrigé ;
         les autres viennent de Nuxt (H3, devtools, Suspense). Restent : vitest 2 → 4 et MapLibre 5 → 6 (npm audit)
-- [BUG] carte-interactive/embed.vue : l'image de partage est codée en dur sur un fichier au nom haché
+- [BUG] carte-interactive/embed.vue et index.vue : l'image de partage est codée en dur sur un fichier au nom haché
   (logoCyclopolisVGM.CzJjkGQi.png) de l'ancienne adresse .netlify.app -> casse si l'image change
-- [SEO] /historique, /blog, /mentions-legales et /sites-partenaires gardent le titre générique du site
+- [SEO] /historique, /blog, /mentions-legales, /sites-partenaires et /evolution gardent le titre générique du site
 
 Moyen terme :
 - [UX] Dans Type & Qualité : couleurs des familles

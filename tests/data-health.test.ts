@@ -177,4 +177,34 @@ describe('data health', () => {
       assert.deepEqual(problems, []);
     });
   });
+
+  // Les images hébergées ailleurs disparaissent sans prévenir (couverture de la Véloligne 10 en 404
+  // en septembre 2026) : les pages des Vélolignes n'utilisent que des fichiers de public/.
+  describe('Images', () => {
+    const PUBLIC_DIRECTORY = path.join(CONTENT_DIRECTORY, '..', 'public');
+    const imageReferences = readMarkdownFiles(VOIES_CYCLABLES_DIRECTORY).flatMap(({ fileName, content }) =>
+      [...content.matchAll(/^(cover|imageUrl):\s*(\S+)\s*$/gm)].map(imageMatch => ({
+        fileName,
+        field: imageMatch[1],
+        url: imageMatch[2]
+      }))
+    );
+
+    it('should_be_hosted_on_the_site_when_line_page_references_an_image', () => {
+      const problems = imageReferences
+        .filter(({ url }) => !url.startsWith('/'))
+        .map(({ fileName, field, url }) => `${fileName} : ${field} externe ${url}`);
+
+      assert.deepEqual(problems, []);
+    });
+
+    it('should_exist_in_public_when_line_page_references_a_site_image', () => {
+      const problems = imageReferences
+        .filter(({ url }) => url.startsWith('/'))
+        .filter(({ url }) => !fs.existsSync(path.join(PUBLIC_DIRECTORY, decodeURIComponent(url))))
+        .map(({ fileName, field, url }) => `${fileName} : ${field} ${url} absent de public/`);
+
+      assert.deepEqual(problems, []);
+    });
+  });
 });
