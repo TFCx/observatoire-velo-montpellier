@@ -49,7 +49,9 @@ dont le lien est commenté dans la pull request.
 
 ## Documentation
 
-- [`docs/guides/`](docs/guides/) : guides pratiques ;
+- [`docs/guides/`](docs/guides/) : guides pratiques (contribuer au contenu, déployer, porter une
+  feature de Cyclopolis, refaire l'image de partage) ;
 - [`docs/reference/`](docs/reference/) : référence (données, composants de contenu) ;
+- [`docs/explications/`](docs/explications/) : comment et pourquoi l'observatoire est construit ainsi ;
 - [`docs/decisions/`](docs/decisions/) : décisions d'architecture (ADR), dont la relation avec
   Cyclopolis (ADR 0002) et l'hébergement (ADR 0004).
