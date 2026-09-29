@@ -61,6 +61,24 @@ jobs:
       - name: Run smoke tests on generated site
         run: npm run test:smoke
 
+      # Tests navigateur (ADR 0006) sur le site généré par les smoke tests. Chromium est gardé en
+      # cache tant que la version de playwright-core ne change pas.
+      - name: Read Playwright version
+        id: playwright
+        run: echo "version=$(node -p "require('playwright-core/package.json').version")" >> "${GITHUB_OUTPUT}"
+
+      - name: Cache Chromium for browser tests
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ steps.playwright.outputs.version }}
+
+      - name: Install Chromium for browser tests
+        run: npx playwright-core install --only-shell chromium
+
+      - name: Run browser tests on generated site
+        run: npx vitest run --config vitest.e2e.config.ts
+
       # Alias "beta" et non "montpellier-beta" : ce dernier est le sous-domaine réservé au déploiement
       # de branche natif de Netlify pour montpellier/beta, qui garde la priorité sur un alias du même nom.
       - name: Deploy to Netlify
