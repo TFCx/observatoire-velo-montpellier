@@ -2,14 +2,10 @@ import type { Map } from 'maplibre-gl';
 import { Popup } from 'maplibre-gl';
 import { createApp, defineComponent, h, Suspense, ref } from 'vue';
 import {
-  isLineStringFeature,
   type Feature,
   type LaneFeature,
-  type LineStringFeature,
   type PerspectiveFeature,
   type SectionFeature,
-  type MultiColoredLineStringFeature,
-  isSectionFeature,
   type DangerFeature,
 } from '~/types';
 
@@ -25,13 +21,13 @@ import {
   drawLineNames,
   addListnersForHovering,
 } from './map/network';
-import { plotPerspective, plotDangers, plotLimits, plotPumps, plotBaseBikeInfrastructure } from './map/features';
+import { plotPerspective, plotDangers, plotLimits, plotPumps } from './map/features';
 
 // Tooltips
 import PerspectiveTooltip from '~/components/tooltips/PerspectiveTooltip.vue';
 import DangerTooltip from '~/components/tooltips/DangerTooltip.vue';
 import LineTooltip from '~/components/tooltips/LineTooltip.vue';
-import { getCrossIconUrl, sortByLine, fitBounds, upsertMapSource } from './map/utils';
+import { getCrossIconUrl, fitBounds } from './map/utils';
 
 enum DisplayedLayer {
   Progress = 0,

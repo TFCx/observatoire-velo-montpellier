@@ -1,19 +1,9 @@
-import type { Map, GeoJSONSource, ExpressionSpecification } from 'maplibre-gl';
-import {
-  LaneType,
-  LaneTypeFamily,
-  Quality,
-  LaneStatus,
-  type Feature,
-  type LaneFeature,
-  type LineStringFeature,
-  type SectionFeature,
-} from '~/types';
+import type { Map, ExpressionSpecification } from 'maplibre-gl';
+import { LaneType, LaneTypeFamily, Quality, LaneStatus, type LaneFeature, type SectionFeature } from '~/types';
 import { ref } from 'vue';
 
 import { upsertMapSource } from './utils';
 
-const { getNbVoiesCyclables } = useConfig();
 enum DisplayedLayer {
   Progress = 0,
   Quality = 1,
@@ -238,8 +228,6 @@ export {
   drawHoveredEffect,
   addListnersForHovering,
 };
-
-const layersBase: string[] = [];
 
 function filterSections(
   sections: SectionFeature[],

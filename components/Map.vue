@@ -38,13 +38,11 @@ import ShrinkControl from '@/maplibre/ShrinkControl';
 import {
   isLineStringFeature,
   isPolygonFeature,
-  isSectionFeature,
   LaneStatus,
   type Feature,
   LaneType,
   LaneTypeFamily,
   type LineStringFeature,
-  type PolygonFeature,
   type SectionFeature,
 } from '~/types';
 import config from '~/config.json';

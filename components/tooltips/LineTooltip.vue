@@ -67,7 +67,7 @@
 </template>
 
 <script setup lang="ts">
-import type { LineStringFeature, SectionFeature } from '~/types';
+import type { SectionFeature } from '~/types';
 
 function qualityTextOf(section: SectionFeature): string {
   const isHeterogenous =
