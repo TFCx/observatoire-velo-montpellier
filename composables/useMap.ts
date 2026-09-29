@@ -1,13 +1,7 @@
-import type { Map } from 'maplibre-gl';
+import type { Map, MapMouseEvent } from 'maplibre-gl';
 import { Popup } from 'maplibre-gl';
 import { createApp, defineComponent, h, Suspense, ref } from 'vue';
-import {
-  type Feature,
-  type LaneFeature,
-  type PerspectiveFeature,
-  type SectionFeature,
-  type DangerFeature,
-} from '~/types';
+import type { Feature, LaneFeature, PerspectiveFeature, SectionFeature, DangerFeature } from '~/types';
 
 import {
   updateOrCreateSources,
@@ -168,7 +162,7 @@ export const useMap = () => {
     map: Map;
     sections: SectionFeature[];
     features: Feature[];
-    clickEvent: any;
+    clickEvent: MapMouseEvent;
   }) {
     const layers = [
       {
@@ -301,7 +295,8 @@ export const useMap = () => {
       .addTo(map);
 
     const props = clickedLayer.getTooltipProps();
-    // @ts-ignore:next
+    // @ts-expect-error -- les tooltips ont des props différentes : leur union n'est pas un composant
+    // valide pour defineComponent, alors que chaque paire composant/props l'est.
     const component = defineComponent(clickedLayer.component);
     nextTick(() => {
       createApp({

@@ -1,10 +1,10 @@
 export default class BikeInfraControl {
   _btn: HTMLButtonElement;
   _container: HTMLDivElement;
-  _onClick: Function;
+  _onClick: () => void;
   _isToggled: boolean;
 
-  constructor({ onClick }: { onClick: Function }) {
+  constructor({ onClick }: { onClick: () => void }) {
     this._onClick = onClick;
     this._isToggled = false;
   }

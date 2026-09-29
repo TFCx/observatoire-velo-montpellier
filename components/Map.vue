@@ -29,6 +29,8 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 // l'URL du worker construit par Vite (`?worker&url` et non `?url`, qui oublierait ses imports).
 import maplibreWorkerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url';
 import style from '@/assets/style.json';
+import LegendInfo from '@/components/LegendInfo.vue';
+import FilterModal from '@/components/FilterModal.vue';
 import FilterControl from '@/maplibre/FilterControl';
 import LimitsControl from '@/maplibre/LimitsControl';
 import BikeInfraControl from '@/maplibre/BikeInfraControl';
@@ -73,8 +75,8 @@ const props = defineProps<{
 
 const options = { ...defaultOptions, ...props.options };
 
-const legendModalComponent = ref(null);
-const filterModalComponent = ref(null);
+const legendModalComponent = ref<InstanceType<typeof LegendInfo> | null>(null);
+const filterModalComponent = ref<InstanceType<typeof FilterModal> | null>(null);
 
 const {
   loadImages,
@@ -172,14 +174,14 @@ onMounted(() => {
     options.displayLayerType,
     () => {
       if (legendModalComponent.value) {
-        (legendModalComponent.value as any).toggleLegend();
+        legendModalComponent.value.toggleLegend();
       }
     },
     (s: string) => {
       const dt = convertIntoDisplayedLayerEnum(s);
       setDisplayedLayer(dt);
       if (legendModalComponent.value) {
-        (legendModalComponent.value as any).setWhichLayerIsDisplayed(dt);
+        legendModalComponent.value.setWhichLayerIsDisplayed(dt);
       }
     },
   );
@@ -213,7 +215,7 @@ onMounted(() => {
     const filterControl = new FilterControl({
       onClick: () => {
         if (filterModalComponent.value) {
-          (filterModalComponent.value as any).openModal();
+          filterModalComponent.value.openModal();
         }
       },
     });

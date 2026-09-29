@@ -4,11 +4,16 @@ export default class LayerControl {
   _defaultLayer: DisplayedLayer;
   _displayLayerType: boolean;
   _container: HTMLDivElement;
-  _onChange: Function;
+  _onChange: (layerName: string) => void;
   _btn_legend: HTMLButtonElement;
-  _onClick: Function;
+  _onClick: () => void;
 
-  constructor(defaultLayer: DisplayedLayer, displayLayerType: boolean, onClick: Function, onChange: Function) {
+  constructor(
+    defaultLayer: DisplayedLayer,
+    displayLayerType: boolean,
+    onClick: () => void,
+    onChange: (layerName: string) => void,
+  ) {
     this._defaultLayer = defaultLayer;
     this._displayLayerType = displayLayerType;
     this._onChange = onChange;

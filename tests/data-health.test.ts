@@ -17,7 +17,7 @@ import {
 
 type RawFeature = {
   geometry: { type: string };
-  properties?: Record<string, any>;
+  properties?: Record<string, unknown>;
 };
 
 type LoadedFeature = {

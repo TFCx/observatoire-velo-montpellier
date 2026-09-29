@@ -163,6 +163,13 @@ function plotPumps({ map, features }: { map: Map; features: Feature[] }) {
   });
 }
 
+// Réponse d'Overpass (`out ids geom`) : seuls les champs utilisés ici sont décrits.
+type OverpassElement = {
+  id: number;
+  tags?: Record<string, string>;
+  geometry?: { lat: number; lon: number }[];
+};
+
 // plot base bike infrastructure from OSM API
 async function plotBaseBikeInfrastructure(map: Map) {
   // Overpass request
@@ -198,13 +205,13 @@ async function plotBaseBikeInfrastructure(map: Map) {
   );
 }
 
-async function fetchBikeLanesGeojsonData(apiUrl: string): Promise<any> {
+async function fetchBikeLanesGeojsonData(apiUrl: string) {
   const response = await fetch(apiUrl);
-  const data = await response.json();
+  const data: { elements: OverpassElement[] } = await response.json();
 
   const geojson = {
     type: 'FeatureCollection',
-    features: data.elements.map((element: any) => {
+    features: data.elements.map((element) => {
       if (!element.geometry) return [];
       const feature = {
         type: 'Feature',
@@ -214,7 +221,7 @@ async function fetchBikeLanesGeojsonData(apiUrl: string): Promise<any> {
         },
         geometry: {
           type: 'LineString',
-          coordinates: element.geometry.map((geometry: any) => {
+          coordinates: element.geometry.map((geometry) => {
             return [geometry.lon, geometry.lat];
           }),
         },
@@ -223,7 +230,7 @@ async function fetchBikeLanesGeojsonData(apiUrl: string): Promise<any> {
     }),
   };
 
-  geojson.features = geojson.features.filter((feature: any) => feature.type);
+  geojson.features = geojson.features.filter((feature) => !Array.isArray(feature));
 
   return geojson;
 }

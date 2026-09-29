@@ -1,4 +1,4 @@
-import type { Map, ExpressionSpecification } from 'maplibre-gl';
+import type { Map, ExpressionSpecification, MapLayerMouseEvent } from 'maplibre-gl';
 import { LaneType, LaneTypeFamily, Quality, LaneStatus, type LaneFeature, type SectionFeature } from '~/types';
 import { ref } from 'vue';
 
@@ -935,10 +935,10 @@ function drawLineNames(map: Map) {
 function addListnersForHovering(map: Map) {
   for (const highlightLayer of ['layer-type-hover-highlight-fixed', 'layer-type-hover-highlight-lanes']) {
     // Add MouveMove event listner => maybe a section is hovered
-    let hoveredLineId: any = null;
-    map.on('mousemove', highlightLayer, (e: any) => {
+    let hoveredLineId: string | number | null = null;
+    map.on('mousemove', highlightLayer, (e: MapLayerMouseEvent) => {
       map.getCanvas().style.cursor = 'pointer';
-      if (e.features.length > 0) {
+      if (e.features && e.features.length > 0) {
         if (hoveredLineId !== null) {
           map.setFeatureState({ source: 'src-sections', id: hoveredLineId }, { hover: false });
         }
