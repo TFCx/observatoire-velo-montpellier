@@ -1,71 +1,55 @@
-# Cyclopolis
+# Observatoire du plan vélo de Montpellier
 
-## Qu'est-ce que Cyclopolis ?
+Suivi citoyen de l'avancement des Vélolignes, le réseau cyclable de la Métropole de Montpellier,
+par l'association [Vélocité Grand Montpellier](https://www.velocite-montpellier.fr) :
+<https://observatoire.velocite-montpellier.fr>
 
-Il s'agit d'une plateforme web permettant la visualisation d'un projet de réseau cyclable structurant.
+- une carte interactive de l'avancement, de la qualité et du type des aménagements ;
+- une page par Véloligne, tronçon par tronçon ;
+- un tableau de bord et l'évolution année par année.
 
-Entièrement développée par des bénévoles de l'association lyonnaise "La Ville à Vélo", cette plateforme a pour objectif principal de suivre le développement du projet des "Voies Lyonnaises".
+L'observatoire est construit à partir de [Cyclopolis](https://cyclopolis.fr), l'outil open source de
+l'association lyonnaise [La Ville à Vélo](https://lavilleavelo.org). Licence MIT.
 
-On y retrouve en particulier :
+## Contribuer au contenu
 
-- une carte intéractive permettant de visualiser les tracés des voies cyclables.
-- une page détaillée sur chacune des voies cyclables.
-- des analyses de traffic à partir des compteurs à vélo de la métropole lyonnaise.
+Mettre à jour un tronçon, le texte d'une Véloligne ou une image se fait depuis GitHub, sans rien
+installer : [guide pour modifier le contenu](docs/guides/modifier-le-contenu-depuis-github.md).
+Les champs et leurs valeurs sont décrits dans la
+[référence des données](docs/reference/donnees-des-velolignes.md).
 
-## Est-il possible de réutiliser Cyclopolis pour un autre projet ?
+## Développer
 
-Oui !
-
-Vous êtes une association, ou un particulier ? Il y a un projet de réseau cyclable structurant dans votre ville et vous souhaitez suivre son développement ? Vous pouvez tout à fait réutiliser Cyclopolis pour votre projet.
-
-Cyclopolis :
-
-- est open source, le code est entièrement disponible sur Github.
-- a une licence ouverte, vous avez donc le droit de réutiliser le code pour votre projet.
-- est gratuit a opérer (pas de base de données, pas de serveur dédié, pas de coût de maintenance).
-
-## Aide aux contributeurs/trices non développeurs/euses
-
-le `status` de chaque tronçon peut prendre les valeurs définies [ici](types/index.ts#L13)
-
-le `type` de chaque tronçon peut prendre les valeurs définies [ici](types/index.ts#L1)
-
-## Quelques détails techniques
-
-Look at the [nuxt 3 documentation](https://v3.nuxtjs.org) to learn more.
-
-## Setup
-
-Make sure to install the dependencies:
+Prérequis : Node 24 (version dans `.nvmrc`, par exemple avec [nvm](https://github.com/nvm-sh/nvm)).
 
 ```bash
-npm install
-```
-
-## Development Server
-
-Start the development server on http://localhost:3000
-
-```bash
+nvm use
+npm ci
 npm run dev
 ```
 
-## Production
+Le site est servi sur <http://localhost:3000>.
 
-Build the application for production:
+| Commande             | Rôle                                                         |
+| -------------------- | ------------------------------------------------------------ |
+| `npm run dev`        | Serveur de développement.                                    |
+| `npm run generate`   | Génère le site statique dans `.output/public`.               |
+| `npm test`           | Tests unitaires et tests des données (`tests/`), en continu. |
+| `npm run test:smoke` | Génère le site, puis vérifie les pages produites.            |
+| `npm run test:e2e`   | Génère le site, puis vérifie les cartes dans Chromium.       |
+| `npm run format`     | Formate le code (`oxfmt`).                                   |
+| `npm run lint`       | Vérifie le code (ESLint).                                    |
+| `npm run typecheck`  | Vérifie les types (`vue-tsc`).                               |
+| `npm run og-image`   | Refait l'image de partage `public/og-image.png`.             |
 
-```bash
-npm run generate
-```
+Pour les tests navigateur, Chromium se télécharge une fois : `npx playwright-core install --only-shell chromium`.
 
-Locally preview production build:
+Chaque pull request est vérifiée par la CI (formatage, lint, types, tests) et déployée sur un aperçu
+dont le lien est commenté dans la pull request.
 
-```bash
-npm run preview
-```
+## Documentation
 
-Checkout the [deployment documentation](https://v3.nuxtjs.org/guide/deploy/presets) for more information.
-
-## Comment éditer les geojson ?
-
-Outil en ligne : https://play.placemark.io/
+- [`docs/guides/`](docs/guides/) : guides pratiques ;
+- [`docs/reference/`](docs/reference/) : référence (données, composants de contenu) ;
+- [`docs/decisions/`](docs/decisions/) : décisions d'architecture (ADR), dont la relation avec
+  Cyclopolis (ADR 0002) et l'hébergement (ADR 0004).
