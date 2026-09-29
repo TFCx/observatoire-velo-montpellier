@@ -25,7 +25,7 @@ const { path } = useRoute();
 const { getLineColor } = useColors();
 const { getTotalDistance, displayDistanceInKm } = useStats();
 
-const { voie } = defineProps({ voie: Object });
+const { voie } = defineProps({ voie: { type: Object, required: true } });
 
 const mapOptions = {
   fullscreen: false,

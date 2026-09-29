@@ -15,7 +15,7 @@ const { getLineColor } = useColors();
 const { getRevName } = useConfig();
 const { getVoieCyclablePath } = useUrl();
 
-const { line, anchor } = defineProps<{
+const { line, anchor = '' } = defineProps<{
   line: string;
   anchor?: string;
 }>();
