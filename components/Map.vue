@@ -1,6 +1,6 @@
 <template>
   <div class="relative">
-    <LegendInfo ref="legendModalComponent" :defaultLegend="options.defaultLayer" />
+    <LegendInfo ref="legendModalComponent" :default-legend="options.defaultLayer" />
     <FilterModal ref="filterModalComponent" @update="refreshFilters" />
     <div id="map" class="rounded-lg h-full w-full" />
     <img
@@ -116,13 +116,13 @@ const types = ref([
 const families = ref([LaneTypeFamily.Dedie, LaneTypeFamily.MixiteMotorise, LaneTypeFamily.MixitePietonne]);
 const displayLimits = ref(true);
 const features = computed(() => {
-  let activeLineFeatures = (props.features ?? []).filter((feature) => {
+  const activeLineFeatures = (props.features ?? []).filter((feature) => {
     if (isLineStringFeature(feature)) {
       return statuses.value.includes(feature.properties.status) && types.value.includes(feature.properties.type);
     }
     return true;
   });
-  let activeLimitsFeatures = (props.features ?? []).filter(
+  const activeLimitsFeatures = (props.features ?? []).filter(
     (feature) => displayLimits.value && isPolygonFeature(feature),
   );
   return activeLineFeatures.concat(activeLimitsFeatures);
@@ -178,7 +178,7 @@ onMounted(() => {
       }
     },
     (s: string) => {
-      let dt = convertIntoDisplayedLayerEnum(s);
+      const dt = convertIntoDisplayedLayerEnum(s);
       setDisplayedLayer(dt);
       if (legendModalComponent.value) {
         (legendModalComponent.value as any).setWhichLayerIsDisplayed(dt);
@@ -244,8 +244,8 @@ onMounted(() => {
   map.on('load', async () => {
     await loadImages({ map });
 
-    let lineStringFeatures = features.value.filter(isLineStringFeature).sort(sortByLine);
-    let sections = regroupIntoSections(lineStringFeatures);
+    const lineStringFeatures = features.value.filter(isLineStringFeature).sort(sortByLine);
+    const sections = regroupIntoSections(lineStringFeatures);
 
     plotEverything(map, sections, features.value);
     const tailwindMdBreakpoint = 768;
@@ -256,9 +256,9 @@ onMounted(() => {
 
   // When filters change
   watch(features, (newFeatures) => {
-    let lineStringFeatures = newFeatures.filter(isLineStringFeature).sort(sortByLine);
-    let sections = regroupIntoSections(lineStringFeatures);
-    let lanes = separateSectionsIntoLanes(sections);
+    const lineStringFeatures = newFeatures.filter(isLineStringFeature).sort(sortByLine);
+    const sections = regroupIntoSections(lineStringFeatures);
+    const lanes = separateSectionsIntoLanes(sections);
 
     updateOrCreateSources(map, sections, lanes);
   });
@@ -267,17 +267,17 @@ onMounted(() => {
   watch(
     () => props.features,
     (newFeatures) => {
-      let lineStringFeatures = newFeatures.filter(isLineStringFeature).sort(sortByLine);
-      let sections = regroupIntoSections(lineStringFeatures);
-      let lanes = separateSectionsIntoLanes(sections);
+      const lineStringFeatures = newFeatures.filter(isLineStringFeature).sort(sortByLine);
+      const sections = regroupIntoSections(lineStringFeatures);
+      const lanes = separateSectionsIntoLanes(sections);
 
       updateOrCreateSources(map, sections, lanes);
     },
   );
 
   map.on('click', (clickEvent) => {
-    let lineStringFeatures = features.value.filter(isLineStringFeature).sort(sortByLine);
-    let sections = regroupIntoSections(lineStringFeatures);
+    const lineStringFeatures = features.value.filter(isLineStringFeature).sort(sortByLine);
+    const sections = regroupIntoSections(lineStringFeatures);
 
     handleMapClick({ map, sections: sections, features: features.value, clickEvent });
   });
@@ -304,10 +304,10 @@ onMounted(() => {
   }
 
   function regroupIntoSections(features: LineStringFeature[]): SectionFeature[] {
-    let sections: SectionFeature[] = [];
-    let sectionsWithDuplicates = [];
-    for (let f of features) {
-      let newSection = {
+    const sections: SectionFeature[] = [];
+    const sectionsWithDuplicates = [];
+    for (const f of features) {
+      const newSection = {
         type: f.type,
         properties: {
           id: f.properties.id,
@@ -328,7 +328,7 @@ onMounted(() => {
         geometry: f.geometry,
       };
       if (f.properties.id) {
-        for (let o of features) {
+        for (const o of features) {
           if (o != f && f.properties.id == o.properties.id) {
             newSection.properties.lines.push(o.properties.line);
             newSection.properties.links.push(o.properties.link);
@@ -338,8 +338,8 @@ onMounted(() => {
       newSection.properties.lines.sort();
       sectionsWithDuplicates.push(newSection);
     }
-    let treatedId: string[] = [];
-    for (let s of sectionsWithDuplicates) {
+    const treatedId: string[] = [];
+    for (const s of sectionsWithDuplicates) {
       if (s.properties.id && treatedId.includes(s.properties.id)) {
         continue;
       }
@@ -349,7 +349,7 @@ onMounted(() => {
       }
     }
 
-    for (let s of sections) {
+    for (const s of sections) {
       s.properties.displayedLinesName = '(' + s.properties.lines.join(',') + ')';
     }
 

@@ -70,17 +70,17 @@
 import type { LineStringFeature, SectionFeature } from '~/types';
 
 function qualityTextOf(section: SectionFeature): string {
-  let isHeterogenous =
+  const isHeterogenous =
     section.properties.qualityB != undefined && section.properties.quality != section.properties.qualityB;
-  let qA = qualityToDescription[section.properties.quality];
-  let qB = section.properties.qualityB ? qualityToDescription[section.properties.qualityB] : '';
+  const qA = qualityToDescription[section.properties.quality];
+  const qB = section.properties.qualityB ? qualityToDescription[section.properties.qualityB] : '';
   return isHeterogenous ? qA + ' & ' + qB : qA;
 }
 
 function typeTextOf(section: SectionFeature): string {
-  let isHeterogenous = section.properties.typeB != undefined && section.properties.type != section.properties.typeB;
-  let tA = laneTypeToDescription[section.properties.type];
-  let tB = section.properties.typeB ? laneTypeToDescription[section.properties.typeB] : '';
+  const isHeterogenous = section.properties.typeB != undefined && section.properties.type != section.properties.typeB;
+  const tA = laneTypeToDescription[section.properties.type];
+  const tB = section.properties.typeB ? laneTypeToDescription[section.properties.typeB] : '';
   return isHeterogenous ? tA + ' & ' + tB : tA;
 }
 

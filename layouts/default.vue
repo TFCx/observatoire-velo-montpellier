@@ -39,7 +39,7 @@ onBeforeMount(() => {
     document.documentElement.style.setProperty('--navbar-height', navbarHeight + 'px');
 
     if (navbar) {
-      let window_top = this.scrollY;
+      const window_top = this.scrollY;
       if (window_top == 0) {
         navbar.classList.remove('scrolled');
       } else {

@@ -1,5 +1,5 @@
 <template>
-  <div class="relative z-50" v-show="isExpanded">
+  <div v-show="isExpanded" class="relative z-50">
     <div class="fixed p-2 bottom-5">
       <div class="relative p-4 w-full max-w-sm rounded-xl bg-white">
         <button

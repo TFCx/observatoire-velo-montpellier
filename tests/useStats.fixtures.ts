@@ -1,4 +1,4 @@
-import { LaneStatus, LaneType, Quality } from '../types';
+import type { LaneStatus, LaneType, Quality } from '../types';
 
 type SectionFixtureOptions = {
   id?: string;

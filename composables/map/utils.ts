@@ -1,4 +1,5 @@
-import { LngLatBounds, GeoJSONSource, Map } from 'maplibre-gl';
+import type { GeoJSONSource, Map } from 'maplibre-gl';
+import { LngLatBounds } from 'maplibre-gl';
 import { isLineStringFeature, isPointFeature, type Feature, type LineStringFeature } from '~/types';
 
 export { sortOrder, sortByLine, getCrossIconUrl, upsertMapSource, fitBounds };

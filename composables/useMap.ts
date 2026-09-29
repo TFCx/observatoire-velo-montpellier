@@ -1,5 +1,6 @@
-import { Map, Popup } from 'maplibre-gl';
-import { createApp, defineComponent, h, Suspense } from 'vue';
+import type { Map } from 'maplibre-gl';
+import { Popup } from 'maplibre-gl';
+import { createApp, defineComponent, h, Suspense, ref } from 'vue';
 import {
   isLineStringFeature,
   type Feature,
@@ -11,7 +12,6 @@ import {
   isSectionFeature,
   type DangerFeature,
 } from '~/types';
-import { ref } from 'vue';
 
 import {
   updateOrCreateSources,
@@ -49,9 +49,9 @@ const setDisplayedLayer = (value: DisplayedLayer) => {
 
 export { DisplayedLayer, setDisplayedLayer };
 
-let displayLimits = ref(false);
+const displayLimits = ref(false);
 
-let displayBikeInfra = ref(false);
+const displayBikeInfra = ref(false);
 
 function toggleLimits() {
   displayLimits.value = !displayLimits.value;
@@ -73,7 +73,7 @@ export const useMap = () => {
   function plotEverything(map: Map, sections: SectionFeature[], features: Feature[]) {
     //plotBaseBikeInfrastructure(map)
 
-    let lanes = separateSectionsIntoLanes(sections);
+    const lanes = separateSectionsIntoLanes(sections);
 
     plotNetwork(map, sections, lanes);
 
@@ -87,7 +87,7 @@ export const useMap = () => {
       return;
     }
 
-    let onlyUpdate = updateOrCreateSources(map, sections, lanesWithId);
+    const onlyUpdate = updateOrCreateSources(map, sections, lanesWithId);
 
     if (onlyUpdate) {
       return;
@@ -124,10 +124,10 @@ export const useMap = () => {
   }
 
   function separateSectionsIntoLanes(features: SectionFeature[]): LaneFeature[] {
-    let lanes: LaneFeature[] = [];
+    const lanes: LaneFeature[] = [];
     features.forEach((f) => {
       f.properties.lines.forEach((lineNo, index) => {
-        let lane: LaneFeature = {
+        const lane: LaneFeature = {
           type: f.type,
           properties: {
             line: lineNo,
@@ -237,7 +237,7 @@ export const useMap = () => {
             ],
           });
 
-          let mapFeature = mapFeatures[mapFeatures.length - 1];
+          const mapFeature = mapFeatures[mapFeatures.length - 1];
 
           const name = mapFeature.properties.name;
 
@@ -261,7 +261,7 @@ export const useMap = () => {
         getTooltipProps: () => {
           const mapFeature = map.queryRenderedFeatures(clickEvent.point, { layers: ['perspectives'] })[0];
           const feature = features.find((f) => {
-            let ftyped = <PerspectiveFeature>f;
+            const ftyped = <PerspectiveFeature>f;
             return (
               ftyped.properties.type === 'perspective' &&
               ftyped.properties.line === mapFeature.properties.line &&
@@ -285,7 +285,7 @@ export const useMap = () => {
         getTooltipProps: () => {
           const mapFeature = map.queryRenderedFeatures(clickEvent.point, { layers: ['dangers'] })[0];
           const feature = features.find((f) => {
-            let ftyped = <DangerFeature>f;
+            const ftyped = <DangerFeature>f;
             ftyped.properties.name === mapFeature.properties.name;
           });
           return { feature };

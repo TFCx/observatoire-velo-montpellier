@@ -1,4 +1,4 @@
-import { Map } from 'maplibre-gl';
+import type { Map } from 'maplibre-gl';
 import { isDangerFeature, isPumpFeature, isPerspectiveFeature, type Feature, isPolygonFeature } from '~/types';
 import { ref } from 'vue';
 

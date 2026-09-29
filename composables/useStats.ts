@@ -226,10 +226,10 @@ export const useStats = () => {
   }
 
   function regroupIntoSections(features: LineStringFeature[]): SectionFeature[] {
-    let sections: SectionFeature[] = [];
-    let sectionsWithDuplicates = [];
-    for (let f of features) {
-      let newSection = {
+    const sections: SectionFeature[] = [];
+    const sectionsWithDuplicates = [];
+    for (const f of features) {
+      const newSection = {
         type: f.type,
         properties: {
           id: f.properties.id,
@@ -250,7 +250,7 @@ export const useStats = () => {
         geometry: f.geometry,
       };
       if (f.properties.id) {
-        for (let o of features) {
+        for (const o of features) {
           if (o != f && f.properties.id == o.properties.id) {
             newSection.properties.lines.push(o.properties.line);
             newSection.properties.links.push(o.properties.link);
@@ -260,8 +260,8 @@ export const useStats = () => {
       newSection.properties.lines.sort();
       sectionsWithDuplicates.push(newSection);
     }
-    let treatedId: string[] = [];
-    for (let s of sectionsWithDuplicates) {
+    const treatedId: string[] = [];
+    for (const s of sectionsWithDuplicates) {
       if (s.properties.id && treatedId.includes(s.properties.id)) {
         continue;
       }
@@ -271,7 +271,7 @@ export const useStats = () => {
       }
     }
 
-    for (let s of sections) {
+    for (const s of sections) {
       s.properties.displayedLinesName = s.properties.lines.join('-');
     }
 
@@ -290,17 +290,17 @@ export const useStats = () => {
     // TODO gérer les deux côtés pour les aménagements hétérogènes
     // TODO gérer les quality inconnus ou null ou undefined ?
 
-    let sections_todo = sections.filter(
+    const sections_todo = sections.filter(
       (s) => s.properties.status == LaneStatus.Planned || s.properties.status == LaneStatus.Postponed,
     );
-    let distance_todo = getDistance(sections_todo);
+    const distance_todo = getDistance(sections_todo);
 
     sections = sections.filter((s) => s.properties.status == LaneStatus.Done || s.properties.status == LaneStatus.Wip);
     sections = sections.filter((s) => s.properties.typeFamily != LaneTypeFamily.Inconnu);
     const totalDistance = getDistance(sections) + distance_todo;
 
     // Sans tronçon mesurable (que des variantes, par exemple), totalDistance vaut 0 et la division donnerait NaN.
-    let percent_todo = totalDistance > 0 ? distance_todo / totalDistance : 0;
+    const percent_todo = totalDistance > 0 ? distance_todo / totalDistance : 0;
 
     const sectionsByType = groupBy<SectionFeature, LaneTypeFamily>(
       sections,
@@ -357,8 +357,8 @@ function isBeforeMandat(feature: Feature): boolean {
     return false;
   }
 
-  let lfeature = feature as LineStringFeature;
-  let doneAt = lfeature.properties.doneAt;
+  const lfeature = feature as LineStringFeature;
+  const doneAt = lfeature.properties.doneAt;
 
   if (!doneAt) {
     return false;

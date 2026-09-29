@@ -19,7 +19,7 @@ export default class LayerControl {
     this._container = document.createElement('div');
     this._container.className = 'maplibregl-ctrl-group maplibregl-ctrl layercontrol';
 
-    let title = document.createElement('LayerControlTitle');
+    const title = document.createElement('LayerControlTitle');
     title.className = 'layercontrol-title';
     title.appendChild(document.createTextNode('Visualisation'));
     this._container.appendChild(title);
@@ -48,7 +48,7 @@ export default class LayerControl {
   }
 
   createRadioButton(value: string, label: string, tryCheck: boolean = false) {
-    let radioButtonContainer = document.createElement('div');
+    const radioButtonContainer = document.createElement('div');
 
     const radioButton = document.createElement('input');
     const radioLabel = document.createElement('label');
