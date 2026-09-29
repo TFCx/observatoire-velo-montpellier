@@ -4,7 +4,7 @@ lineName: Véloligne 10
 lineNameShort: 10
 description: Cette Véloligne desservira le nord de Montpellier, Grabels (La Valsière), Saint-Gely-du-Fesc et Montferrier-sur-Lez.
 trafic: 0k vélos/jour
-cover: /VL10_travaux_flahault.jpg
+cover: /VL10_header.jpg
 from: Mtp Les Arceaux
 to: Saint-Gély / Montferrier
 ---
