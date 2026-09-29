@@ -38,13 +38,6 @@ export default defineNuxtConfig({
           content: DESCRIPTION
         },
         { name: 'twitter:image', content: COVER_IMAGE_URL }
-      ],
-      script: [
-        {
-          src: 'https://beamanalytics.b-cdn.net/beam.min.js',
-          'data-token': process.env.BEAM_ANALYTICS_TOKEN,
-          async: true
-        }
       ]
     }
   },
