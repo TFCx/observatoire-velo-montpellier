@@ -1,6 +1,6 @@
 import type { Map, MapMouseEvent } from 'maplibre-gl';
 import { Popup } from 'maplibre-gl';
-import { createApp, defineComponent, h, Suspense, ref } from 'vue';
+import { createApp, defineComponent, h, Suspense, ref, type Component } from 'vue';
 import { isDangerFeature, isPerspectiveFeature } from '~/types';
 import type { Feature, LaneFeature, SectionFeature } from '~/types';
 
@@ -22,6 +22,7 @@ import { plotPerspective, plotDangers, plotLimits, plotPumps } from './map/featu
 import PerspectiveTooltip from '~/components/tooltips/PerspectiveTooltip.vue';
 import DangerTooltip from '~/components/tooltips/DangerTooltip.vue';
 import LineTooltip from '~/components/tooltips/LineTooltip.vue';
+import LineHoverTooltip from '~/components/tooltips/LineHoverTooltip.vue';
 import { getCrossIconUrl, fitBounds } from './map/utils';
 
 enum DisplayedLayer {
@@ -40,6 +41,35 @@ const setDisplayedLayer = (value: DisplayedLayer) => {
 
 export { DisplayedLayer, setDisplayedLayer };
 
+// En dessous, les lignes se superposent trop pour qu'un tooltip de survol soit lisible. 10 et non 11
+// (seuil de Cyclopolis Lyon) : la carte interactive s'ouvre vers le zoom 10,5, cadrée sur tout le
+// réseau, et le survol doit y être actif dès l'ouverture.
+const MINIMUM_ZOOM_FOR_HOVER_TOOLTIP = 10;
+
+// Tronçons dessinés sous un point de la carte (le dernier est celui du dessus).
+function querySectionFeaturesAt(map: Map, point: MapMouseEvent['point']) {
+  return map.queryRenderedFeatures(point, {
+    filter: [
+      'all',
+      ['==', ['geometry-type'], 'LineString'],
+      ['!=', ['get', 'source'], 'openmaptiles'], // Exclude base map features
+      ['has', 'status'], // All sections in geojson LineStrings have a status
+    ],
+  });
+}
+
+function mountTooltip(elementId: string, component: Component, props: Record<string, unknown>) {
+  nextTick(() => {
+    createApp({
+      render: () =>
+        h(Suspense, null, {
+          default: h(component, props),
+          fallback: 'Chargement...',
+        }),
+    }).mount(`#${elementId}`);
+  });
+}
+
 const displayLimits = ref(false);
 
 function toggleLimits() {
@@ -51,6 +81,11 @@ function toggleLimitsVisibility(map: Map, displayLimits: boolean) {
 }
 
 export const useMap = () => {
+  let hoverPopup: Popup | null = null;
+  let hoveredSectionName: string | null = null;
+  // Tronçon dont le tooltip du clic est ouvert : pas de tooltip de survol par-dessus.
+  let clickedSectionName: string | null = null;
+
   function plotEverything(map: Map, sections: SectionFeature[], features: Feature[]) {
     const lanes = separateSectionsIntoLanes(sections);
 
@@ -200,26 +235,9 @@ export const useMap = () => {
       },
       {
         id: 'linestring', // not really a layer id. gather all linestrings.
-        isClicked: () => {
-          const mapFeature = map.queryRenderedFeatures(clickEvent.point, {
-            filter: [
-              'all',
-              ['==', ['geometry-type'], 'LineString'],
-              ['!=', ['get', 'source'], 'openmaptiles'], // Exclude base map features
-              ['has', 'status'], // All sections in geojson LineStrings have a status
-            ],
-          });
-          return mapFeature.length > 0;
-        },
+        isClicked: () => querySectionFeaturesAt(map, clickEvent.point).length > 0,
         getTooltipProps: () => {
-          const mapFeatures = map.queryRenderedFeatures(clickEvent.point, {
-            filter: [
-              'all',
-              ['==', ['geometry-type'], 'LineString'],
-              ['!=', ['get', 'source'], 'openmaptiles'], // Exclude base map features
-              ['has', 'status'], // All sections in geojson LineStrings have a status
-            ],
-          });
+          const mapFeatures = querySectionFeaturesAt(map, clickEvent.point);
 
           const mapFeature = ensure(mapFeatures[mapFeatures.length - 1]);
 
@@ -239,25 +257,69 @@ export const useMap = () => {
     if (!clickedLayer) {
       return;
     }
+    removeHoverTooltip();
 
-    new Popup({ closeButton: false, closeOnClick: true })
+    const clickPopup = new Popup({ closeButton: false, closeOnClick: true })
       .setLngLat(clickEvent.lngLat)
       .setHTML(`<div id="${clickedLayer.id}-tooltip-content"></div>`)
       .addTo(map);
 
     const props = clickedLayer.getTooltipProps();
+    if (clickedLayer.id === 'linestring' && props.feature) {
+      clickedSectionName = props.feature.properties.name;
+      clickPopup.on('close', () => {
+        clickedSectionName = null;
+      });
+    }
     // @ts-expect-error -- les tooltips ont des props différentes : leur union n'est pas un composant
     // valide pour defineComponent, alors que chaque paire composant/props l'est.
     const component = defineComponent(clickedLayer.component);
-    nextTick(() => {
-      createApp({
-        render: () =>
-          h(Suspense, null, {
-            default: h(component, props),
-            fallback: 'Chargement...',
-          }),
-      }).mount(`#${clickedLayer.id}-tooltip-content`);
-    });
+    mountTooltip(`${clickedLayer.id}-tooltip-content`, component, props);
+  }
+
+  function removeHoverTooltip() {
+    hoverPopup?.remove();
+    hoverPopup = null;
+    hoveredSectionName = null;
+  }
+
+  // Tooltip compact au survol d'un tronçon ; le clic garde le tooltip complet. Il suit la souris le
+  // long d'un même tronçon et n'est pas affiché par-dessus le tooltip du clic sur ce tronçon.
+  function handleMapHover({
+    map,
+    sections,
+    hoverEvent,
+  }: {
+    map: Map;
+    sections: SectionFeature[];
+    hoverEvent: MapMouseEvent;
+  }) {
+    if (map.getZoom() < MINIMUM_ZOOM_FOR_HOVER_TOOLTIP) {
+      removeHoverTooltip();
+      return;
+    }
+    const mapFeatures = querySectionFeaturesAt(map, hoverEvent.point);
+    const hoveredName = mapFeatures[mapFeatures.length - 1]?.properties.name;
+    const section = sections.find((s) => s.properties.name === hoveredName);
+    if (!section || section.properties.name === clickedSectionName) {
+      removeHoverTooltip();
+      return;
+    }
+    if (section.properties.name === hoveredSectionName && hoverPopup) {
+      hoverPopup.setLngLat(hoverEvent.lngLat);
+      return;
+    }
+
+    removeHoverTooltip();
+    hoveredSectionName = section.properties.name;
+    // MapLibre place le tooltip au-dessus ou au-dessous du point selon sa taille au moment de
+    // l'ajout, avant que Vue n'y monte le contenu : sans ces dimensions minimales, un tooltip vide
+    // est placé au-dessus d'un tronçon proche du haut, puis grandit hors de la carte.
+    hoverPopup = new Popup({ closeButton: false, closeOnClick: false, offset: 12 })
+      .setLngLat(hoverEvent.lngLat)
+      .setHTML('<div id="line-hover-tooltip-content" style="min-height: 130px; min-width: 208px"></div>')
+      .addTo(map);
+    mountTooltip('line-hover-tooltip-content', LineHoverTooltip, { feature: section, lines: section.properties.lines });
   }
 
   async function loadImages({ map }: { map: Map }) {
@@ -283,5 +345,7 @@ export const useMap = () => {
     fitBounds,
     toggleLimits,
     handleMapClick,
+    handleMapHover,
+    removeHoverTooltip,
   };
 };

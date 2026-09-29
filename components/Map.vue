@@ -76,6 +76,8 @@ const {
   fitBounds,
   toggleLimits,
   handleMapClick,
+  handleMapHover,
+  removeHoverTooltip,
 } = useMap();
 
 const statuses = ref([
@@ -255,6 +257,15 @@ onMounted(() => {
       updateOrCreateSources(map, sections, lanes);
     },
   );
+
+  // Calculés une fois par changement de données ou de filtres, pas à chaque mouvement de souris.
+  const displayedSections = computed(() =>
+    regroupIntoSections(features.value.filter(isLineStringFeature).sort(sortByLine)),
+  );
+  map.on('mousemove', (hoverEvent) => {
+    handleMapHover({ map, sections: displayedSections.value, hoverEvent });
+  });
+  map.on('mouseout', () => removeHoverTooltip());
 
   map.on('click', (clickEvent) => {
     const lineStringFeatures = features.value.filter(isLineStringFeature).sort(sortByLine);
