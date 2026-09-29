@@ -4,6 +4,16 @@ import { formatBuildInfo, readBuildInfo } from './build-info';
 const TITLE = `Observatoire Vélo de Montpellier - Suivi des ${config.revName.plural} par ${config.assoName}`;
 const DESCRIPTION = `Plateforme citoyenne et associative, par ${config.assoName}. État d'avancement, cartes interactives des itinéraires, détails, travaux : suivez le développement du réseau cyclable sécurisé montpelliérain`;
 const BUILD_INFO = readBuildInfo();
+// Chemins relatifs à .nuxt/, où Nuxt génère les tsconfig.
+const NODE_ONLY_FILES = [
+  '../tests/**/*',
+  '../scripts/**/*',
+  '../build-info.ts',
+  '../content.config.ts',
+  '../vitest.*.ts',
+  '../eslint.config.mjs',
+  '../tailwind.config.js',
+];
 // Bandeau et réseau final des Vélolignes, produite par scripts/og-image.ts ; nom fixe, servie par le site.
 const SHARE_IMAGE_URL = `${config.siteUrl}/og-image.png`;
 
@@ -83,6 +93,18 @@ export default defineNuxtConfig({
 
   build: {
     transpile: ['@headlessui/vue'],
+  },
+
+  // Avec srcDir '.', le contexte navigateur inclurait tout le dépôt : les fichiers exécutés par Node
+  // (tests, scripts, configuration des outils) en sont retirés et vérifiés avec les types de Node.
+  typescript: {
+    tsConfig: {
+      exclude: NODE_ONLY_FILES,
+    },
+    nodeTsConfig: {
+      include: NODE_ONLY_FILES,
+      compilerOptions: { types: ['node'] },
+    },
   },
 
   compatibilityDate: '2026-09-28',
