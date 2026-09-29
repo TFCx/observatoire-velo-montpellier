@@ -25,7 +25,6 @@
     "vitest": "^4.1.11"
   },
   "dependencies": {
-    "highcharts-vue": "^2.0.1",
     "maplibre-gl": "^6.11.2"
   }
 }
