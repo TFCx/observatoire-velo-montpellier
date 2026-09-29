@@ -6,19 +6,20 @@ Feuille de route technique (sept. 2026) — voir docs/decisions/0002 :
 - Phase 1 : montée de stack — FAIT pour les versions (PR #2 à #6)
   - [x] Nuxt 4.5 (structure à la racine, ADR 0003), @nuxt/content 3.16, MapLibre 5.24, @nuxtjs/tailwindcss 6.14
   - [x] Sitemap via @nuxtjs/sitemap sur https://observatoire.velocite-montpellier.fr, redirection .netlify.app (public/_redirects)
-  - Merge `-s ours` sur lyon/main pour recaler la base de merge (ADR 0002, décision 3)
+  - [x] Merge `-s ours` sur lyon/main pour recaler la base de merge (ADR 0002, décision 3)
   - [x] Schémas de content.config.ts : laissés souples. Constaté (28/09/2026) : Content v3 ne rejette pas une donnée
         non conforme au schéma (build réussi avec un statut invalide) -> tests/data-health.test.ts reste LE garde-fou.
         Plus tard (plan de simplification, étape domain/) : un schéma zod unique pour typer les composants ET valider
         dans les tests. Conventions à respecter : doneAt = "" si non réalisé ; quality = "" ou absente (surtout planned).
   - [x] Dependabot réactivé : npm hebdo (mineures + correctifs groupés, majeures une par une), GitHub Actions mensuel
   - [x] Hébergement : ADR 0004 (Netlify, construit et testé par la CI, aperçus par PR, workflow "Promote")
-    - À faire par Jean-David : secret NETLIFY_AUTH_TOKEN + variable NETLIFY_SITE_ID dans GitHub, puis arrêter
-      les builds Netlify ; première promotion : beta, puis prod ; supprimer ensuite la branche montpellier/test
+    - [x] Secrets configurés, builds Netlify arrêtés, branche montpellier/test supprimée
+    - [x] Première promotion main → beta → prod (28/09/2026, commit defc9ce)
+  - [x] Node 24 (LTS, .nvmrc) — PR #16
   - Un jour : passer à la convention Nuxt 4 `app/`, dans un commit de renommage pur (ADR 0003)
 - Défauts relevés pendant la phase 1 :
-  - og:url / twitter:url pointent vers velocite-montpellier.fr au lieu de config.siteUrl
-  - composables/map/network.ts : la couche de contour des tronçons reportés lit `lines` sur des lanes (qui n'ont que nb_lanes) -> avertissement MapLibre "Expected value to be of type string or array, but found null"
+  - [x] og:url / twitter:url pointent vers velocite-montpellier.fr au lieu de config.siteUrl
+  - [x] composables/map/network.ts : la couche de contour des tronçons reportés lit `lines` sur des lanes (qui n'ont que nb_lanes) -> avertissement MapLibre "Expected value to be of type string or array, but found null"
 - Phase 2 : features de contenu (portage depuis Lyon)
   - Galeries photo/vidéo
   - Panoramax
@@ -46,7 +47,7 @@ Prochaine release :
 - [BUG] lien mort dans page anneau (remplacement des images par assets ?) + lien mort véloligne A
 - [UX] mettre à jour les légendes :
   - supprimer le bouton 2021 dans la vue "évolution" s'il n'y a pas de trucs en 2021
-- [CONTENT] mettre à jour le post de news : date et contenu (dire ce qui a changé dans l'observatoire avec cette mise à jour)
+- [x] [CONTENT] mettre à jour le post de news : date et contenu (dire ce qui a changé dans l'observatoire avec cette mise à jour)
 - [DATA] Vérifier les données :
   - aller vérifier sur le terrain (ou demander à notre puissant réseau) pour la véloligne 8 et les travaux L5 et les trucs entre les travaux L5
   - Vérifier l'avancement
