@@ -8,7 +8,8 @@
     "postinstall": "nuxt prepare",
     "test": "vitest",
     "test:smoke": "nuxt generate && vitest run --config vitest.smoke.config.ts",
-    "test:e2e": "nuxt generate && vitest run --config vitest.e2e.config.ts"
+    "test:e2e": "nuxt generate && vitest run --config vitest.e2e.config.ts",
+    "og-image": "nuxt generate && node scripts/og-image.ts"
   },
   "devDependencies": {
     "@headlessui/vue": "^1.7.23",
