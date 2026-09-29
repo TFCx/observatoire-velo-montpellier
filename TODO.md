@@ -91,6 +91,8 @@ Moyen terme :
 - MAJ baromètre
 
 Long terme :
+- Mesure d'audience propre à Vélocité (Beam Analytics de Lyon retiré le 29/09/2026) -> ADR : outil respectueux de la vie privée,
+  sans cookie ni bandeau de consentement (ex. Plausible, GoatCounter, Umami auto-hébergé), qui en paie l'hébergement
 - Intégration topographie
 - Aménagement sur 2 sens (éviter hétérogène)
 - Visu à 2 lanes pour la qualité quelque soit le réseau

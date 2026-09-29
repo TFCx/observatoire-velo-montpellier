@@ -110,6 +110,18 @@ describe('generated pages', () => {
     assert.deepEqual(routesWithSiteTitle, []);
   });
 
+  // Un script chargé depuis un autre site s'exécute chez chaque visiteur et informe ce site de sa
+  // visite : il ne doit être ajouté que par une décision explicite (ex. mesure d'audience).
+  it('should_load_scripts_only_from_the_site_when_page_is_generated', () => {
+    const externalScripts = allExpectedRoutes.flatMap(route =>
+      [...readGeneratedPage(route).matchAll(/<script[^>]*\ssrc="((?:https?:)?\/\/[^"]+)"/g)].map(
+        scriptMatch => `${route} : ${scriptMatch[1]}`
+      )
+    );
+
+    assert.deepEqual(externalScripts, []);
+  });
+
   it('should_not_render_error_page_when_route_is_expected', () => {
     const routesShowingErrorPage = allExpectedRoutes
       .filter(route => fs.existsSync(getGeneratedPagePath(route)))
