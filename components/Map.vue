@@ -36,18 +36,9 @@ import LimitsControl from '@/maplibre/LimitsControl';
 import LayerControl from '@/maplibre/LayerControl';
 import FullscreenControl from '@/maplibre/FullscreenControl';
 import ShrinkControl from '@/maplibre/ShrinkControl';
-import {
-  isLineStringFeature,
-  isPolygonFeature,
-  LaneStatus,
-  type Feature,
-  LaneType,
-  LaneTypeFamily,
-  Quality,
-  type LineStringFeature,
-  type SectionFeature,
-} from '~/types';
+import { isLineStringFeature, isPolygonFeature, LaneStatus, type Feature, LaneType, LaneTypeFamily } from '~/types';
 import config from '~/config.json';
+import { regroupIntoSections } from '~/domain/sections';
 import { setDisplayedLayer } from '~/composables/useMap';
 import { sortByLine } from '~/composables//map/utils';
 
@@ -271,85 +262,6 @@ onMounted(() => {
 
     handleMapClick({ map, sections: sections, features: features.value, clickEvent });
   });
-
-  function computeTypeFamily(type: LaneType): LaneTypeFamily {
-    if (type == LaneType.Bidirectionnelle || type == LaneType.Bilaterale || type == LaneType.Unidirectionnelle) {
-      return LaneTypeFamily.Dedie;
-    } else if (type == LaneType.AirePietonne || type == LaneType.VoieVerte) {
-      return LaneTypeFamily.MixitePietonne;
-    } else if (
-      type == LaneType.BandesCyclables ||
-      type == LaneType.Chaucidou ||
-      type == LaneType.Velorue ||
-      type == LaneType.VoieBus ||
-      type == LaneType.VoieBusElargie ||
-      type == LaneType.ZoneDeRencontre ||
-      type == LaneType.Aucun
-    ) {
-      return LaneTypeFamily.MixiteMotorise;
-    } else {
-      console.assert(type == LaneType.Inconnu);
-      return LaneTypeFamily.Inconnu;
-    }
-  }
-
-  function regroupIntoSections(features: LineStringFeature[]): SectionFeature[] {
-    const sections: SectionFeature[] = [];
-    const sectionsWithDuplicates = [];
-    for (const f of features) {
-      const newSection: SectionFeature = {
-        type: 'Feature',
-        properties: {
-          id: f.properties.id ?? undefined,
-          lines: [f.properties.line],
-          name: f.properties.name,
-          // Qualité non évaluée (absente ou vide dans les données) : même affichage que « inconnu ».
-          quality: f.properties.quality || Quality.Inconnu,
-          qualityB: f.properties.qualityB,
-          status: f.properties.status,
-          type: f.properties.type,
-          typeB: f.properties.typeB,
-          typeFamily: computeTypeFamily(f.properties.type),
-          typeFamilyB: f.properties.typeB
-            ? computeTypeFamily(f.properties.typeB)
-            : computeTypeFamily(f.properties.type),
-          doneAt: f.properties.doneAt,
-          // Tronçon sans lien propre : le tooltip renvoie alors vers la page de la Véloligne.
-          links: f.properties.link ? [f.properties.link] : [],
-          displayedLinesName: '',
-        },
-        geometry: f.geometry,
-      };
-      if (f.properties.id) {
-        for (const o of features) {
-          if (o != f && f.properties.id == o.properties.id) {
-            newSection.properties.lines.push(o.properties.line);
-            if (o.properties.link) {
-              newSection.properties.links.push(o.properties.link);
-            }
-          }
-        }
-      }
-      newSection.properties.lines.sort();
-      sectionsWithDuplicates.push(newSection);
-    }
-    const treatedId: string[] = [];
-    for (const s of sectionsWithDuplicates) {
-      if (s.properties.id && treatedId.includes(s.properties.id)) {
-        continue;
-      }
-      sections.push(s);
-      if (s.properties.id) {
-        treatedId.push(s.properties.id);
-      }
-    }
-
-    for (const s of sections) {
-      s.properties.displayedLinesName = '(' + s.properties.lines.join(',') + ')';
-    }
-
-    return sections;
-  }
 });
 </script>
 
