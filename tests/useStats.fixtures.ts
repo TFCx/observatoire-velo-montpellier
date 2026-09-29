@@ -5,7 +5,8 @@ type SectionFixtureOptions = {
   line: number | string;
   status: LaneStatus;
   type: LaneType;
-  quality?: Quality;
+  // Vide comme dans les données, pour les tronçons dont la qualité n'est pas évaluée.
+  quality?: Quality | '';
 };
 
 // Tous les tronçons de test partagent la même géométrie, donc la même longueur :
