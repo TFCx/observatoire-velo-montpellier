@@ -32,6 +32,9 @@ jobs:
       - name: Lint
         run: npm run lint
 
+      - name: Typecheck
+        run: npm run typecheck
+
   test:
     runs-on: ubuntu-latest
     # Inscrits dans le site généré (build-info.ts) : l'aperçu d'une PR affiche son dernier commit.
