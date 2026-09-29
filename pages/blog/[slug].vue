@@ -23,16 +23,14 @@ if (!article.value) {
   router.push({ path: '/404' });
 }
 
+useShareImage(article.value.imageUrl);
 useHead({
   title: article.value.title,
   meta: [
     // description
     { name: 'description', content: article.value.description },
     { property: 'og:description', content: article.value.description },
-    { name: 'twitter:description', content: article.value.description },
-    // cover image
-    { property: 'og:image', content: article.value.imageUrl },
-    { name: 'twitter:image', content: article.value.imageUrl }
+    { name: 'twitter:description', content: article.value.description }
   ]
 });
 

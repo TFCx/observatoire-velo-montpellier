@@ -2,7 +2,8 @@
 import type { Page } from 'playwright-core';
 import { describe, expect, it } from 'vitest';
 
-import { countDistinctMapColors, setupBrowserTests } from './setup';
+import { countDistinctMapColors } from './browser';
+import { setupBrowserTests } from './setup';
 
 // Mesuré le 29/09/2026, fond de carte bloqué : une carte vide compte 6 couleurs ; nos couches
 // seules en dessinent de 1 400 (une Véloligne) à 14 000 (carte interactive).

@@ -59,7 +59,7 @@ Prochaine release :
 - [REFACTOR] Check la console / bugs (et les console.debug)
   - [x] Passe du 29/09/2026 : seul warning à nous (prop options de Map sur /carte-interactive/embed) corrigé ;
         les autres viennent de Nuxt (H3, devtools, Suspense). Restent : vitest 2 → 4 et MapLibre 5 → 6 (npm audit)
-- [BUG] carte-interactive/embed.vue et index.vue : l'image de partage est codée en dur sur un fichier au nom haché
+- [x] [BUG] carte-interactive/embed.vue et index.vue : l'image de partage est codée en dur sur un fichier au nom haché
   (logoCyclopolisVGM.CzJjkGQi.png) de l'ancienne adresse .netlify.app -> casse si l'image change
 - [x] [SEO] /historique, /blog, /mentions-legales, /sites-partenaires, /evolution et les articles de blog gardent le titre générique du site
 

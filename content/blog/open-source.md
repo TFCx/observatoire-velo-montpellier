@@ -1,7 +1,7 @@
 ---
 title: Tutoriel - Dupliquer Cyclopolis dans sa ville
 description: Guide à destination des associations qui souhaiteraient réutiliser Cyclopolis pour suivre les infrastructures cyclables de leur ville.
-imageUrl: https://cyclopolis.lavilleavelo.org/cyclopolis.png
+imageUrl: /cyclopolis.png
 ---
 
 ## Cyclopolis est (et restera) Open Source

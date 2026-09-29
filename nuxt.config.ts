@@ -5,7 +5,8 @@ const TITLE = `Observatoire Vélo de Montpellier - Suivi des ${config.revName.pl
 const DESCRIPTION =
   `Plateforme citoyenne et associative, par ${config.assoName}. État d'avancement, cartes interactives des itinéraires, détails, travaux : suivez le développement du réseau cyclable sécurisé montpelliérain`;
 const BUILD_INFO = readBuildInfo();
-const COVER_IMAGE_URL = 'https://observatoire-velo-montpellier.netlify.app/_nuxt/logoCyclopolisVGM.CzJjkGQi.png';
+// Bandeau et réseau final des Vélolignes, produite par scripts/og-image.ts ; nom fixe, servie par le site.
+const SHARE_IMAGE_URL = `${config.siteUrl}/og-image.png`;
 
 export default defineNuxtConfig({
   // Code applicatif à la racine plutôt que dans app/ (ADR 0003).
@@ -27,9 +28,9 @@ export default defineNuxtConfig({
           property: 'og:description',
           content: DESCRIPTION
         },
-        { property: 'og:image', content: COVER_IMAGE_URL },
-        { property: 'og:image:width', content: '640' },
-        { property: 'og:image:height', content: '476' },
+        { property: 'og:image', content: SHARE_IMAGE_URL },
+        { property: 'og:image:width', content: '1200' },
+        { property: 'og:image:height', content: '630' },
         // twitter
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:title', content: TITLE },
@@ -37,7 +38,7 @@ export default defineNuxtConfig({
           name: 'twitter:description',
           content: DESCRIPTION
         },
-        { name: 'twitter:image', content: COVER_IMAGE_URL }
+        { name: 'twitter:image', content: SHARE_IMAGE_URL }
       ]
     }
   },
