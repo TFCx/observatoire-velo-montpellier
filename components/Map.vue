@@ -109,7 +109,7 @@ function convertIntoDisplayedLayerEnum(s: string) {
 }
 
 onMounted(() => {
-  setWorkerUrl(maplibreWorkerUrl);
+  // setWorkerUrl(maplibreWorkerUrl);
   const map = new Map({
     container: 'map',
     style: style as StyleSpecification,
