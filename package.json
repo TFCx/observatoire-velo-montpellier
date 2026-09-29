@@ -9,21 +9,25 @@
     "test": "vitest",
     "test:smoke": "nuxt generate && vitest run --config vitest.smoke.config.ts",
     "test:e2e": "nuxt generate && vitest run --config vitest.e2e.config.ts",
-    "og-image": "nuxt generate && node scripts/og-image.ts"
+    "og-image": "nuxt generate && node scripts/og-image.ts",
+    "format": "oxfmt --write .",
+    "format:check": "oxfmt --check .",
+    "lint": "eslint ."
   },
   "devDependencies": {
     "@headlessui/vue": "^1.7.23",
     "@iconify-json/mdi": "^1.2.1",
     "@nuxt/content": "^3.16.1",
+    "@nuxt/eslint": "^1.17.0",
     "@nuxt/icon": "^1.10.3",
-    "@nuxtjs/eslint-config-typescript": "^12.1.0",
     "@nuxtjs/sitemap": "^8.5.1",
     "@nuxtjs/tailwindcss": "^6.14.0",
     "@tailwindcss/typography": "^0.5.16",
-    "eslint": "^8.57.1",
+    "eslint": "^10.11.0",
+    "eslint-config-prettier": "^10.1.8",
     "nuxt": "^4.5.2",
+    "oxfmt": "^0.71.0",
     "playwright-core": "^1.63.0",
-    "prettier": "^3.5.0",
     "vitest": "^4.1.11"
   },
   "dependencies": {
