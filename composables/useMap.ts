@@ -282,7 +282,7 @@ export const useMap = () => {
           const mapFeature = map.queryRenderedFeatures(clickEvent.point, { layers: ['dangers'] })[0];
           const feature = features.find((f) => {
             const ftyped = <DangerFeature>f;
-            ftyped.properties.name === mapFeature.properties.name;
+            return ftyped.properties.name === mapFeature.properties.name;
           });
           return { feature };
         },
