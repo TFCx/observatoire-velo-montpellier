@@ -19,6 +19,7 @@ Le typecheck (ADR 0007) a rendu l'écart visible : conversions forcées (`as unk
 et types contournés dans les tests.
 
 Alternatives examinées :
+
 - Corriger les types à la main et garder les règles de test : l'écart reviendrait à la prochaine
   évolution des données, rien ne reliant les types aux vérifications.
 - Un JSON Schema : validable, mais les types TypeScript devraient être générés par un outil de plus.
