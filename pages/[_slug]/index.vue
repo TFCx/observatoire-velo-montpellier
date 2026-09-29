@@ -30,8 +30,6 @@
 </template>
 
 <script setup>
-import config from '~/config.json';
-
 const { path } = useRoute();
 const { getLineColor } = useColors();
 const { getRevName } = useConfig();
@@ -53,19 +51,14 @@ const { data: voie } = await useAsyncData(`${path}`, () => {
 });
 
 const description = `Tout savoir sur la ${getRevName('singular')} ${voie.value.line} ${voie.value.from} ${voie.value.to}. Avancement, carte interactive, détail rue par rue, calendrier des travaux et photos du projet.`;
-// Une couverture hébergée sur le site est un chemin (/image.jpg) : les réseaux sociaux n'affichent
-// une image de partage que si son URL est absolue.
-const coverImage = voie.value.cover?.startsWith('/') ? `${config.siteUrl}${voie.value.cover}` : voie.value.cover;
+useShareImage(voie.value.cover);
 useHead({
   title: `${getRevName('singular')} ${voie.value.line} ${voie.value.from} ${voie.value.to}`,
   meta: [
     // description
     { name: 'description', content: description },
     { property: 'og:description', content: description },
-    { name: 'twitter:description', content: description },
-    // cover image
-    { property: 'og:image', content: coverImage },
-    { name: 'twitter:image', content: coverImage }
+    { name: 'twitter:description', content: description }
   ]
 });
 </script>

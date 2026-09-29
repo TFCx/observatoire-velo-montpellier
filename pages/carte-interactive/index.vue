@@ -25,17 +25,13 @@ const features = voies.value.map(voie => voie.features).flat().concat(limits.val
 
 const description =
   `Découvrez la carte interactive des ${getRevName()}. Itinéraires rue par rue. Plan régulièrement mis à jour pour une information complète.`;
-const COVER_IMAGE_URL = 'https://observatoire-velo-montpellier.netlify.app/_nuxt/logoCyclopolisVGM.CzJjkGQi.png';
 useHead({
   title: `Carte à jour des ${getRevName()}`,
   meta: [
     // description
     { name: 'description', content: description },
     { property: 'og:description', content: description },
-    { name: 'twitter:description', content: description },
-    // cover image
-    { property: 'og:image', content: COVER_IMAGE_URL },
-    { name: 'twitter:image', content: COVER_IMAGE_URL }
+    { name: 'twitter:description', content: description }
   ]
 });
 </script>
