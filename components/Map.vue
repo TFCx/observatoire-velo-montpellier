@@ -43,6 +43,7 @@ import {
   type Feature,
   LaneType,
   LaneTypeFamily,
+  Quality,
   type LineStringFeature,
   type SectionFeature,
 } from '~/types';
@@ -299,10 +300,11 @@ onMounted(() => {
       const newSection: SectionFeature = {
         type: 'Feature',
         properties: {
-          id: f.properties.id,
+          id: f.properties.id ?? undefined,
           lines: [f.properties.line],
           name: f.properties.name,
-          quality: f.properties.quality,
+          // Qualité non évaluée (absente ou vide dans les données) : même affichage que « inconnu ».
+          quality: f.properties.quality || Quality.Inconnu,
           qualityB: f.properties.qualityB,
           status: f.properties.status,
           type: f.properties.type,

@@ -5,7 +5,9 @@ import path from 'node:path';
 import { assert, describe, it } from 'vitest';
 
 import config from '../config.json';
-import { LaneStatus, LaneType } from '../types';
+import type { z } from 'zod';
+
+import { lineStringFeatureSchema, perspectiveFeatureSchema } from '../domain/schema';
 import {
   CONTENT_DIRECTORY,
   VOIES_CYCLABLES_DIRECTORY,
@@ -71,7 +73,6 @@ function describeFeature({ fileName, feature }: LoadedFeature): string {
 
 const allFeatures = loadVoiesCyclablesFeatures();
 const lineStringFeatures = allFeatures.filter(({ feature }) => feature.geometry.type === 'LineString');
-const pointFeatures = allFeatures.filter(({ feature }) => feature.geometry.type === 'Point');
 
 describe('data health', () => {
   it('should_parse_as_valid_json_when_file_is_in_content', () => {
@@ -90,54 +91,30 @@ describe('data health', () => {
     assert.deepEqual(invalidJsonFiles, []);
   });
 
+  // Chaque feature est validée par le schéma de sa géométrie : une union de schémas ne saurait pas dire
+  // quel champ est en cause, seulement que la feature ne correspond à aucun.
+  it('should_match_schema_when_feature_is_in_voie_cyclable_file', () => {
+    const schemaByGeometry: Record<string, z.ZodTypeAny> = {
+      LineString: lineStringFeatureSchema,
+      Point: perspectiveFeatureSchema,
+    };
+    const problems = allFeatures.flatMap((loadedFeature) => {
+      const schema = schemaByGeometry[loadedFeature.feature.geometry.type];
+      if (!schema) {
+        return [`${describeFeature(loadedFeature)} : géométrie ${loadedFeature.feature.geometry.type} inattendue`];
+      }
+      const validation = schema.safeParse(loadedFeature.feature);
+      return validation.success
+        ? []
+        : validation.error.issues.map(
+            (issue) => `${describeFeature(loadedFeature)} : ${issue.path.slice(1).join('.')} : ${issue.message}`,
+          );
+    });
+
+    assert.deepEqual(problems, []);
+  });
+
   describe('LineString', () => {
-    it('should_have_line_name_and_status_when_feature_is_line_string', () => {
-      const requiredProperties = ['line', 'name', 'status'];
-      const problems = lineStringFeatures.flatMap((loadedFeature) =>
-        requiredProperties
-          .filter((property) => loadedFeature.feature.properties?.[property] === undefined)
-          .map((property) => `${describeFeature(loadedFeature)} : "${property}" manquant`),
-      );
-
-      assert.deepEqual(problems, []);
-    });
-
-    it('should_have_known_status_when_feature_is_line_string', () => {
-      const knownStatuses: string[] = Object.values(LaneStatus);
-      const problems = lineStringFeatures
-        .filter(({ feature }) => !knownStatuses.includes(feature.properties?.status ?? ''))
-        .map(
-          (loadedFeature) =>
-            `${describeFeature(loadedFeature)} : statut "${loadedFeature.feature.properties?.status}" inconnu`,
-        );
-
-      assert.deepEqual(problems, []);
-    });
-
-    it('should_have_known_type_when_feature_is_line_string', () => {
-      const knownTypes: string[] = Object.values(LaneType);
-      const problems = lineStringFeatures
-        .filter(({ feature }) => !knownTypes.includes(feature.properties?.type ?? ''))
-        .map(
-          (loadedFeature) =>
-            `${describeFeature(loadedFeature)} : type "${loadedFeature.feature.properties?.type}" inconnu`,
-        );
-
-      assert.deepEqual(problems, []);
-    });
-
-    it('should_have_done_at_date_formatted_dd_mm_yyyy_when_line_string_is_done', () => {
-      const problems = lineStringFeatures
-        .filter(({ feature }) => feature.properties?.status === LaneStatus.Done)
-        .filter(({ feature }) => !/^\d{2}\/\d{2}\/\d{4}$/.test(feature.properties?.doneAt ?? ''))
-        .map(
-          (loadedFeature) =>
-            `${describeFeature(loadedFeature)} : doneAt "${loadedFeature.feature.properties?.doneAt}" invalide`,
-        );
-
-      assert.deepEqual(problems, []);
-    });
-
     it('should_link_to_existing_title_anchor_when_feature_is_line_string', () => {
       const existingLinks = loadAllExistingLinks();
       const problems = lineStringFeatures
@@ -176,30 +153,6 @@ describe('data health', () => {
         .map(([nameAndLine]) => nameAndLine);
 
       assert.deepEqual(duplicatedNamesAndLines, []);
-    });
-  });
-
-  describe('Point', () => {
-    it('should_have_type_line_name_and_image_when_feature_is_point', () => {
-      const requiredProperties = ['type', 'line', 'name', 'imgUrl'];
-      const problems = pointFeatures.flatMap((loadedFeature) =>
-        requiredProperties
-          .filter((property) => loadedFeature.feature.properties?.[property] === undefined)
-          .map((property) => `${describeFeature(loadedFeature)} : "${property}" manquant`),
-      );
-
-      assert.deepEqual(problems, []);
-    });
-
-    it('should_have_perspective_type_when_feature_is_point', () => {
-      const problems = pointFeatures
-        .filter(({ feature }) => feature.properties?.type !== 'perspective')
-        .map(
-          (loadedFeature) =>
-            `${describeFeature(loadedFeature)} : type "${loadedFeature.feature.properties?.type}" au lieu de "perspective"`,
-        );
-
-      assert.deepEqual(problems, []);
     });
   });
 

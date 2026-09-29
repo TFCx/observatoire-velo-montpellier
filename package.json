@@ -35,6 +35,7 @@
     "vue-tsc": "^3.3.11"
   },
   "dependencies": {
-    "maplibre-gl": "^6.11.2"
+    "maplibre-gl": "^6.11.2",
+    "zod": "^3.25.76"
   }
 }

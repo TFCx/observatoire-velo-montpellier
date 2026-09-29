@@ -46,8 +46,8 @@ const { getLineColor } = useColors();
 const { getTotalDistance, displayDistanceInKm } = useStats();
 
 const { data: voies } = await useAsyncData(async () => {
-  // Le schéma de la collection est volontairement souple (content.config.ts) : la forme des GeoJSON
-  // est garantie par tests/data-health.test.ts, pas par Nuxt Content.
+  // Même schéma que Geojson (ADR 0008), mais Nuxt Content régénère ses types via JSON Schema, où nos
+  // enums TypeScript deviennent de simples chaînes : TypeScript ne les juge plus compatibles.
   return (await queryCollection('voiesCyclablesGeojson').all()) as unknown as Geojson[];
 });
 const { data: mds } = await useAsyncData(() => {

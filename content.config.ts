@@ -1,10 +1,13 @@
 import { defineCollection, defineContentConfig, z } from '@nuxt/content';
 
+import { voieCyclableGeojsonSchema } from './domain/schema';
+
 // Les champs de frontmatter non déclarés ici ne sont pas accessibles directement dans les pages
 // (Content v3 les range dans `meta`) : chaque champ lu par un composant doit figurer dans un schéma.
 
-// Les features GeoJSON restent volontairement non détaillées : leur cohérence est vérifiée par
-// tests/data-health.test.ts. Les faire passer dans ce schéma est une étape ultérieure (TODO.md, phase 1).
+// Contour de la Métropole (content/limits) : non détaillé, un seul fichier, jamais modifié.
+// Nuxt Content ne valide pas les données avec ces schémas, il s'en sert pour les typer : la validation
+// des Vélolignes est faite par tests/data-health.test.ts avec le même schéma (ADR 0008).
 const geojsonSchema = z.object({
   type: z.string(),
   name: z.string().optional(),
@@ -30,7 +33,7 @@ export default defineContentConfig({
     voiesCyclablesGeojson: defineCollection({
       type: 'data',
       source: 'voies-cyclables/*.json',
-      schema: geojsonSchema,
+      schema: voieCyclableGeojsonSchema,
     }),
     limits: defineCollection({
       type: 'data',
