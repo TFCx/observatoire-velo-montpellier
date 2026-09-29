@@ -33,7 +33,6 @@ import LegendInfo from '@/components/LegendInfo.vue';
 import FilterModal from '@/components/FilterModal.vue';
 import FilterControl from '@/maplibre/FilterControl';
 import LimitsControl from '@/maplibre/LimitsControl';
-import BikeInfraControl from '@/maplibre/BikeInfraControl';
 import LayerControl from '@/maplibre/LayerControl';
 import FullscreenControl from '@/maplibre/FullscreenControl';
 import ShrinkControl from '@/maplibre/ShrinkControl';
@@ -58,7 +57,6 @@ const defaultOptions = {
   defaultLayer: DisplayedLayer.Progress,
   logo: true,
   limits: true,
-  bikeInfra: false,
   displayLayerType: false,
   filter: true,
   geolocation: false,
@@ -85,7 +83,6 @@ const {
   plotEverything,
   fitBounds,
   toggleLimits,
-  toggleBikeInfra,
   handleMapClick,
 } = useMap();
 
@@ -229,15 +226,6 @@ onMounted(() => {
       },
     });
     map.addControl(limitsControl, 'top-right');
-  }
-  if (options.bikeInfra) {
-    const bikeInfraControl = new BikeInfraControl({
-      onClick: () => {
-        toggleBikeInfra();
-        bikeInfraControl.toggleBackground();
-      },
-    });
-    map.addControl(bikeInfraControl, 'top-right');
   }
   setDisplayedLayer(options.defaultLayer);
 

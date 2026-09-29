@@ -41,28 +41,16 @@ export { DisplayedLayer, setDisplayedLayer };
 
 const displayLimits = ref(false);
 
-const displayBikeInfra = ref(false);
-
 function toggleLimits() {
   displayLimits.value = !displayLimits.value;
-}
-
-function toggleBikeInfra() {
-  displayBikeInfra.value = !displayBikeInfra.value;
 }
 
 function toggleLimitsVisibility(map: Map, displayLimits: boolean) {
   map.setLayoutProperty('limits', 'visibility', displayLimits ? 'visible' : 'none');
 }
 
-function toggleBikeInfraVisibility(map: Map, displayBikeInfra: boolean) {
-  map.setLayoutProperty('layer-underline-base-infrastructure', 'visibility', displayBikeInfra ? 'visible' : 'none');
-}
-
 export const useMap = () => {
   function plotEverything(map: Map, sections: SectionFeature[], features: Feature[]) {
-    //plotBaseBikeInfrastructure(map)
-
     const lanes = separateSectionsIntoLanes(sections);
 
     plotNetwork(map, sections, lanes);
@@ -109,7 +97,6 @@ export const useMap = () => {
     changeLayer(map, displayedLayer.value);
 
     watch(displayLimits, (displayLimits) => toggleLimitsVisibility(map, displayLimits));
-    watch(displayBikeInfra, (displayBikeInfra) => toggleBikeInfraVisibility(map, displayBikeInfra));
     watch(displayedLayer, (displayedLayer) => changeLayer(map, displayedLayer));
   }
 
@@ -331,7 +318,6 @@ export const useMap = () => {
     plotEverything,
     fitBounds,
     toggleLimits,
-    toggleBikeInfra,
     handleMapClick,
   };
 };
