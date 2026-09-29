@@ -1,10 +1,31 @@
 import { Map, Popup } from 'maplibre-gl';
 import { createApp, defineComponent, h, Suspense } from 'vue';
-import { isLineStringFeature, type Feature, type LaneFeature, type LineStringFeature, type PerspectiveFeature, type SectionFeature, type MultiColoredLineStringFeature, isSectionFeature, type DangerFeature} from '~/types';
+import {
+  isLineStringFeature,
+  type Feature,
+  type LaneFeature,
+  type LineStringFeature,
+  type PerspectiveFeature,
+  type SectionFeature,
+  type MultiColoredLineStringFeature,
+  isSectionFeature,
+  type DangerFeature,
+} from '~/types';
 import { ref } from 'vue';
 
-import { updateOrCreateSources, drawCurrentNetwork, drawFinishedNetwork, drawQualityNetwork, drawTypeNetwork, drawTypeFamilyNetwork, drawHoveredEffect, changeLayer, drawLineNames, addListnersForHovering } from "./map/network";
-import { plotPerspective, plotDangers, plotLimits, plotPumps, plotBaseBikeInfrastructure } from "./map/features";
+import {
+  updateOrCreateSources,
+  drawCurrentNetwork,
+  drawFinishedNetwork,
+  drawQualityNetwork,
+  drawTypeNetwork,
+  drawTypeFamilyNetwork,
+  drawHoveredEffect,
+  changeLayer,
+  drawLineNames,
+  addListnersForHovering,
+} from './map/network';
+import { plotPerspective, plotDangers, plotLimits, plotPumps, plotBaseBikeInfrastructure } from './map/features';
 
 // Tooltips
 import PerspectiveTooltip from '~/components/tooltips/PerspectiveTooltip.vue';
@@ -17,12 +38,10 @@ enum DisplayedLayer {
   Quality = 1,
   TypeFamily = 2,
   FinalizedProject = 3,
-  Type = 4
+  Type = 4,
 }
 
 const displayedLayer = ref(DisplayedLayer.Progress);
-
-
 
 const setDisplayedLayer = (value: DisplayedLayer) => {
   displayedLayer.value = value;
@@ -30,39 +49,35 @@ const setDisplayedLayer = (value: DisplayedLayer) => {
 
 export { DisplayedLayer, setDisplayedLayer };
 
+let displayLimits = ref(false);
 
-let displayLimits = ref(false)
-
-let displayBikeInfra = ref(false)
-
+let displayBikeInfra = ref(false);
 
 function toggleLimits() {
-  displayLimits.value = !displayLimits.value
+  displayLimits.value = !displayLimits.value;
 }
 
 function toggleBikeInfra() {
-  displayBikeInfra.value = !displayBikeInfra.value
+  displayBikeInfra.value = !displayBikeInfra.value;
 }
 
 function toggleLimitsVisibility(map: Map, displayLimits: boolean) {
-  map.setLayoutProperty("limits", "visibility", displayLimits ? "visible" : "none")
+  map.setLayoutProperty('limits', 'visibility', displayLimits ? 'visible' : 'none');
 }
 
 function toggleBikeInfraVisibility(map: Map, displayBikeInfra: boolean) {
-  map.setLayoutProperty("layer-underline-base-infrastructure", "visibility", displayBikeInfra ? "visible" : "none")
+  map.setLayoutProperty('layer-underline-base-infrastructure', 'visibility', displayBikeInfra ? 'visible' : 'none');
 }
 
-
 export const useMap = () => {
-
   function plotEverything(map: Map, sections: SectionFeature[], features: Feature[]) {
     //plotBaseBikeInfrastructure(map)
 
-    let lanes = separateSectionsIntoLanes(sections)
+    let lanes = separateSectionsIntoLanes(sections);
 
     plotNetwork(map, sections, lanes);
 
-    plotFeatures(map, features)
+    plotFeatures(map, features);
   }
 
   function plotNetwork(map: Map, sections: SectionFeature[], lanes: LaneFeature[]) {
@@ -72,47 +87,45 @@ export const useMap = () => {
       return;
     }
 
-    let onlyUpdate = updateOrCreateSources(map, sections, lanesWithId)
+    let onlyUpdate = updateOrCreateSources(map, sections, lanesWithId);
 
-    if(onlyUpdate) {
-      return
+    if (onlyUpdate) {
+      return;
     }
 
-    drawHoveredEffect(map)
+    drawHoveredEffect(map);
 
-    drawFinishedNetwork(map)
+    drawFinishedNetwork(map);
 
-    drawCurrentNetwork(map)
+    drawCurrentNetwork(map);
 
-    drawQualityNetwork(map)
+    drawQualityNetwork(map);
 
-    drawTypeFamilyNetwork(map)
+    drawTypeFamilyNetwork(map);
 
-    drawTypeNetwork(map)
+    drawTypeNetwork(map);
 
-    drawLineNames(map)
+    drawLineNames(map);
 
     addListnersForHovering(map);
   }
 
   function plotFeatures(map: Map, updated_features: Feature[]) {
-
     plotPerspective({ map, features: updated_features });
     plotPumps({ map, features: updated_features });
     plotDangers({ map, features: updated_features });
     plotLimits({ map, features: updated_features });
 
-    changeLayer(map, displayedLayer.value)
+    changeLayer(map, displayedLayer.value);
 
-    watch(displayLimits, (displayLimits) => toggleLimitsVisibility(map, displayLimits))
-    watch(displayBikeInfra, (displayBikeInfra) => toggleBikeInfraVisibility(map, displayBikeInfra))
-    watch(displayedLayer, (displayedLayer) => changeLayer(map, displayedLayer))
+    watch(displayLimits, (displayLimits) => toggleLimitsVisibility(map, displayLimits));
+    watch(displayBikeInfra, (displayBikeInfra) => toggleBikeInfraVisibility(map, displayBikeInfra));
+    watch(displayedLayer, (displayedLayer) => changeLayer(map, displayedLayer));
   }
 
-
   function separateSectionsIntoLanes(features: SectionFeature[]): LaneFeature[] {
-    let lanes: LaneFeature[] = []
-    features.forEach(f => {
+    let lanes: LaneFeature[] = [];
+    features.forEach((f) => {
       f.properties.lines.forEach((lineNo, index) => {
         let lane: LaneFeature = {
           type: f.type,
@@ -131,13 +144,13 @@ export const useMap = () => {
             typeFamilyB: f.properties.typeFamilyB,
             doneAt: f.properties.doneAt,
           },
-          geometry: f.geometry
-        }
+          geometry: f.geometry,
+        };
 
-        lanes.push(lane)
-      })
-    })
-    return lanes
+        lanes.push(lane);
+      });
+    });
+    return lanes;
   }
 
   const { getLineColor } = useColors();
@@ -150,40 +163,56 @@ export const useMap = () => {
     return argument;
   }
 
-  function handleMapClick({ map, sections, features, clickEvent }: { map: Map; sections: SectionFeature[], features: Feature[]; clickEvent: any }) {
+  function handleMapClick({
+    map,
+    sections,
+    features,
+    clickEvent,
+  }: {
+    map: Map;
+    sections: SectionFeature[];
+    features: Feature[];
+    clickEvent: any;
+  }) {
     const layers = [
       {
         id: 'dangers',
         isClicked: () => {
-          if (!map.getLayer('dangers')) { return false; }
+          if (!map.getLayer('dangers')) {
+            return false;
+          }
           const mapFeature = map.queryRenderedFeatures(clickEvent.point, { layers: ['dangers'] });
           return mapFeature.length > 0;
         },
         getTooltipProps: () => {
           const mapFeature = map.queryRenderedFeatures(clickEvent.point, { layers: ['dangers'] })[0];
-          const feature = features.find(f => f.properties.name === mapFeature.properties.name);
+          const feature = features.find((f) => f.properties.name === mapFeature.properties.name);
           return { feature };
         },
-        component: DangerTooltip
+        component: DangerTooltip,
       },
       {
         id: 'perspectives',
         isClicked: () => {
-          if (!map.getLayer('perspectives')) { return false; }
+          if (!map.getLayer('perspectives')) {
+            return false;
+          }
           const mapFeature = map.queryRenderedFeatures(clickEvent.point, { layers: ['perspectives'] });
           return mapFeature.length > 0;
         },
         getTooltipProps: () => {
           const mapFeature = map.queryRenderedFeatures(clickEvent.point, { layers: ['perspectives'] })[0];
-          const feature = features.find(f => {
-            return f.properties.type === 'perspective' &&
-            f.properties.line === mapFeature.properties.line &&
-            f.properties.imgUrl === mapFeature.properties.imgUrl;
+          const feature = features.find((f) => {
+            return (
+              f.properties.type === 'perspective' &&
+              f.properties.line === mapFeature.properties.line &&
+              f.properties.imgUrl === mapFeature.properties.imgUrl
+            );
           });
 
           return { feature };
         },
-        component: PerspectiveTooltip
+        component: PerspectiveTooltip,
       },
       {
         id: 'linestring', // not really a layer id. gather all linestrings.
@@ -193,8 +222,8 @@ export const useMap = () => {
               'all',
               ['==', ['geometry-type'], 'LineString'],
               ['!=', ['get', 'source'], 'openmaptiles'], // Exclude base map features
-              ['has', 'status'] // All sections in geojson LineStrings have a status
-            ]
+              ['has', 'status'], // All sections in geojson LineStrings have a status
+            ],
           });
           return mapFeature.length > 0;
         },
@@ -204,63 +233,71 @@ export const useMap = () => {
               'all',
               ['==', ['geometry-type'], 'LineString'],
               ['!=', ['get', 'source'], 'openmaptiles'], // Exclude base map features
-              ['has', 'status'] // All sections in geojson LineStrings have a status
-            ]
+              ['has', 'status'], // All sections in geojson LineStrings have a status
+            ],
           });
 
-          let mapFeature = mapFeatures[mapFeatures.length - 1]
+          let mapFeature = mapFeatures[mapFeatures.length - 1];
 
           const name = mapFeature.properties.name;
 
-          const section = ensure(sections.find(f => f.properties.name === name));
+          const section = ensure(sections.find((f) => f.properties.name === name));
 
           const lines = section.properties.lines;
 
           return { feature: section, lines: lines };
         },
-        component: LineTooltip
+        component: LineTooltip,
       },
       {
         id: 'perspectives',
         isClicked: () => {
-          if (!map.getLayer('perspectives')) { return false; }
+          if (!map.getLayer('perspectives')) {
+            return false;
+          }
           const mapFeature = map.queryRenderedFeatures(clickEvent.point, { layers: ['perspectives'] });
           return mapFeature.length > 0;
         },
         getTooltipProps: () => {
           const mapFeature = map.queryRenderedFeatures(clickEvent.point, { layers: ['perspectives'] })[0];
-          const feature = features.find(f => {
-            let ftyped = <PerspectiveFeature> f
-            return ftyped.properties.type === 'perspective' &&
-            ftyped.properties.line === mapFeature.properties.line &&
-            ftyped.properties.imgUrl === mapFeature.properties.imgUrl;
+          const feature = features.find((f) => {
+            let ftyped = <PerspectiveFeature>f;
+            return (
+              ftyped.properties.type === 'perspective' &&
+              ftyped.properties.line === mapFeature.properties.line &&
+              ftyped.properties.imgUrl === mapFeature.properties.imgUrl
+            );
           });
 
           return { feature };
         },
-        component: PerspectiveTooltip
+        component: PerspectiveTooltip,
       },
       {
         id: 'dangers',
         isClicked: () => {
-          if (!map.getLayer('dangers')) { return false; }
+          if (!map.getLayer('dangers')) {
+            return false;
+          }
           const mapFeature = map.queryRenderedFeatures(clickEvent.point, { layers: ['dangers'] });
           return mapFeature.length > 0;
         },
         getTooltipProps: () => {
           const mapFeature = map.queryRenderedFeatures(clickEvent.point, { layers: ['dangers'] })[0];
-          const feature = features.find(f => {
-            let ftyped = <DangerFeature> f
-            ftyped.properties.name === mapFeature.properties.name
+          const feature = features.find((f) => {
+            let ftyped = <DangerFeature>f;
+            ftyped.properties.name === mapFeature.properties.name;
           });
           return { feature };
         },
-        component: DangerTooltip
-      }
+        component: DangerTooltip,
+      },
     ];
 
-    const clickedLayer = layers.find(layer => layer.isClicked());
-    if (!clickedLayer) { return; }
+    const clickedLayer = layers.find((layer) => layer.isClicked());
+    if (!clickedLayer) {
+      return;
+    }
 
     new Popup({ closeButton: false, closeOnClick: true })
       .setLngLat(clickEvent.lngLat)
@@ -272,10 +309,11 @@ export const useMap = () => {
     const component = defineComponent(clickedLayer.component);
     nextTick(() => {
       createApp({
-        render: () => h(Suspense, null, {
-          default: h(component, props),
-          fallback: 'Chargement...'
-        })
+        render: () =>
+          h(Suspense, null, {
+            default: h(component, props),
+            fallback: 'Chargement...',
+          }),
       }).mount(`#${clickedLayer.id}-tooltip-content`);
     });
   }
@@ -303,6 +341,6 @@ export const useMap = () => {
     fitBounds,
     toggleLimits,
     toggleBikeInfra,
-    handleMapClick
+    handleMapClick,
   };
 };

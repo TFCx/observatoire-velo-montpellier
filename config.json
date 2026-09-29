@@ -7,10 +7,7 @@
   "assoLink": "https://www.velocite-montpellier.fr/",
   "siteUrl": "https://observatoire.velocite-montpellier.fr",
   "slug": "veloligne",
-  "center": [
-    3.862038,
-    43.62505
-  ],
+  "center": [3.862038, 43.62505],
   "zoom": 12,
   "nbVoiesCyclables": 16,
   "colors": [
@@ -109,6 +106,6 @@
       "line": "5",
       "color": "#e22350",
       "link": "https://tram5-montpellier3m.fr/"
-    }    
+    }
   ]
 }

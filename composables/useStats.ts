@@ -1,5 +1,15 @@
 import { groupBy } from '../helpers/helpers';
-import { isLineStringFeature, LaneStatus, LaneType, LaneTypeFamily, Quality, type Feature, type Geojson, type LineStringFeature, type SectionFeature } from '../types';
+import {
+  isLineStringFeature,
+  LaneStatus,
+  LaneType,
+  LaneTypeFamily,
+  Quality,
+  type Feature,
+  type Geojson,
+  type LineStringFeature,
+  type SectionFeature,
+} from '../types';
 
 export type TypologyFamilyStats = {
   name: string;
@@ -24,7 +34,7 @@ export type TypologyStats = {
 export const useStats = () => {
   function getAllUniqLineStrings(voies: Geojson[]) {
     return voies
-      .map(voie => voie.features)
+      .map((voie) => voie.features)
       .flat()
       .filter(isLineStringFeature)
       .filter((feature, index, sections) => {
@@ -35,7 +45,7 @@ export const useStats = () => {
           return false;
         }
 
-        return index === sections.findIndex(section => section.properties.id === feature.properties.id);
+        return index === sections.findIndex((section) => section.properties.id === feature.properties.id);
       });
   }
 
@@ -110,18 +120,18 @@ export const useStats = () => {
 
   function getStats(voies: Geojson[]) {
     const features = getAllUniqLineStrings(voies);
-    const doneFeatures = features.filter(feature => feature.properties.status === LaneStatus.Done);
-    const wipFeatures = features.filter(feature => feature.properties.status === LaneStatus.Wip);
-    const plannedFeatures = features.filter(feature =>
-      [LaneStatus.Planned, LaneStatus.Unknown, LaneStatus.Variante].includes(feature.properties.status)
+    const doneFeatures = features.filter((feature) => feature.properties.status === LaneStatus.Done);
+    const wipFeatures = features.filter((feature) => feature.properties.status === LaneStatus.Wip);
+    const plannedFeatures = features.filter((feature) =>
+      [LaneStatus.Planned, LaneStatus.Unknown, LaneStatus.Variante].includes(feature.properties.status),
     );
-    const postponedFeatures = features.filter(feature =>
-      [LaneStatus.Postponed, LaneStatus.VariantePostponed].includes(feature.properties.status)
+    const postponedFeatures = features.filter((feature) =>
+      [LaneStatus.Postponed, LaneStatus.VariantePostponed].includes(feature.properties.status),
     );
 
     const totalDistance = getDistance(features);
     const doneDistance = getDistance(doneFeatures);
-    const alreadyExistingDistance = getDistance(doneFeatures, f => isBeforeMandat(f));
+    const alreadyExistingDistance = getDistance(doneFeatures, (f) => isBeforeMandat(f));
     const wipDistance = getDistance(wipFeatures);
     const plannedDistance = getDistance(plannedFeatures);
     const postponedDistance = getDistance(postponedFeatures);
@@ -135,136 +145,143 @@ export const useStats = () => {
         name: 'Avant mandat',
         distance: alreadyExistingDistance,
         percent: getPercent(alreadyExistingDistance),
-        class: 'text-stats-already-existing font-semibold'
+        class: 'text-stats-already-existing font-semibold',
       },
       done: {
         name: 'Réalisés',
         distance: doneDistance - alreadyExistingDistance,
         percent: getPercent(doneDistance) - getPercent(alreadyExistingDistance),
-        class: 'text-stats-done font-semibold'
+        class: 'text-stats-done font-semibold',
       },
       wip: {
         name: 'En travaux',
         distance: wipDistance,
         percent: getPercent(wipDistance),
-        class: 'text-stats-wip font-semibold'
+        class: 'text-stats-wip font-semibold',
       },
       planned: {
         name: "Prévus d'ici 2026",
         distance: plannedDistance,
         percent: getPercent(plannedDistance),
-        class: 'text-stats-planned font-semibold'
+        class: 'text-stats-planned font-semibold',
       },
       postponed: {
         name: 'Après 2026',
         distance: postponedDistance,
         percent: getPercent(postponedDistance),
-        class: 'text-stats-postponed font-semibold'
-      }
+        class: 'text-stats-postponed font-semibold',
+      },
     };
   }
 
-  const qualityToDescription: { [key in Quality] : string } = {
-    [Quality.Bad] : 'Non satisfaisant',
+  const qualityToDescription: { [key in Quality]: string } = {
+    [Quality.Bad]: 'Non satisfaisant',
     [Quality.Fair]: 'À améliorer',
     [Quality.Good]: 'Satisfaisant',
   };
 
-  const laneTypeToDescription: { [key in LaneType] : string } = {
-      [LaneType.Unidirectionnelle]: "Piste unidirectionnelle",
-      [LaneType.Bidirectionnelle]: "Piste bidirectionnelle",
-      [LaneType.Bilaterale]: "Piste bilatérale",
-      [LaneType.VoieBus]: "Voie bus",
-      [LaneType.VoieBusElargie]: "Voie bus élargie",
-      [LaneType.Velorue]: "Vélorue",
-      [LaneType.VoieVerte]: "Voie verte",
-      [LaneType.BandesCyclables]: "Bandes cyclables",
-      [LaneType.ZoneDeRencontre]: "Zone de rencontre",
-      [LaneType.AirePietonne]: "Aire piétonne",
-      [LaneType.Chaucidou]: "Chaucidou",
-      [LaneType.Aucun]: "Aucun aménagement",
-      [LaneType.Inconnu]: "Inconnu",
-  }
+  const laneTypeToDescription: { [key in LaneType]: string } = {
+    [LaneType.Unidirectionnelle]: 'Piste unidirectionnelle',
+    [LaneType.Bidirectionnelle]: 'Piste bidirectionnelle',
+    [LaneType.Bilaterale]: 'Piste bilatérale',
+    [LaneType.VoieBus]: 'Voie bus',
+    [LaneType.VoieBusElargie]: 'Voie bus élargie',
+    [LaneType.Velorue]: 'Vélorue',
+    [LaneType.VoieVerte]: 'Voie verte',
+    [LaneType.BandesCyclables]: 'Bandes cyclables',
+    [LaneType.ZoneDeRencontre]: 'Zone de rencontre',
+    [LaneType.AirePietonne]: 'Aire piétonne',
+    [LaneType.Chaucidou]: 'Chaucidou',
+    [LaneType.Aucun]: 'Aucun aménagement',
+    [LaneType.Inconnu]: 'Inconnu',
+  };
 
-  const laneTypeFamilyToDescription: { [key in LaneTypeFamily] : string } = {
-      [LaneTypeFamily.Dedie]: "Aménagements cyclables dédiés",
-      [LaneTypeFamily.MixiteMotorise]: "En mixité motorisée",
-      [LaneTypeFamily.MixitePietonne]: "En mixité piétonne",
-      [LaneTypeFamily.Inconnu]: "Inconnu",
-}
+  const laneTypeFamilyToDescription: { [key in LaneTypeFamily]: string } = {
+    [LaneTypeFamily.Dedie]: 'Aménagements cyclables dédiés',
+    [LaneTypeFamily.MixiteMotorise]: 'En mixité motorisée',
+    [LaneTypeFamily.MixitePietonne]: 'En mixité piétonne',
+    [LaneTypeFamily.Inconnu]: 'Inconnu',
+  };
 
-function computeTypeFamily(type: LaneType): LaneTypeFamily {
-  if(type == LaneType.Bidirectionnelle || type == LaneType.Bilaterale || type == LaneType.Unidirectionnelle) {
-    return LaneTypeFamily.Dedie
-  } else if (type == LaneType.AirePietonne || type == LaneType.VoieVerte) {
-    return LaneTypeFamily.MixitePietonne
-  } else if (type == LaneType.BandesCyclables || type == LaneType.Chaucidou || type == LaneType.Velorue || type == LaneType.VoieBus || type == LaneType.VoieBusElargie || type == LaneType.ZoneDeRencontre || type == LaneType.Aucun) {
-    return LaneTypeFamily.MixiteMotorise
-  } else {
-    console.assert(type == LaneType.Inconnu)
-    //return LaneTypeFamily.Dedie
-    return LaneTypeFamily.Inconnu
-  }
-}
-
-function regroupIntoSections(features: LineStringFeature[]): SectionFeature[] {
-  let sections: SectionFeature[] = []
-  let sectionsWithDuplicates = []
-  for(let f of features) {
-    let newSection =
-    {
-      type: f.type,
-      properties:
-      {
-        id: f.properties.id,
-        lines: [f.properties.line],
-        name: f.properties.name,
-        quality: f.properties.quality,
-        qualityB: f.properties.qualityB,
-        status: f.properties.status,
-        type: f.properties.type,
-        typeB: f.properties.typeB,
-        typeFamily: computeTypeFamily(f.properties.type),
-        typeFamilyB: f.properties.typeB ? computeTypeFamily(f.properties.typeB) : computeTypeFamily(f.properties.type),
-        links: [f.properties.link],
-        doneAt: f.properties.doneAt,
-      },
-      geometry: f.geometry
+  function computeTypeFamily(type: LaneType): LaneTypeFamily {
+    if (type == LaneType.Bidirectionnelle || type == LaneType.Bilaterale || type == LaneType.Unidirectionnelle) {
+      return LaneTypeFamily.Dedie;
+    } else if (type == LaneType.AirePietonne || type == LaneType.VoieVerte) {
+      return LaneTypeFamily.MixitePietonne;
+    } else if (
+      type == LaneType.BandesCyclables ||
+      type == LaneType.Chaucidou ||
+      type == LaneType.Velorue ||
+      type == LaneType.VoieBus ||
+      type == LaneType.VoieBusElargie ||
+      type == LaneType.ZoneDeRencontre ||
+      type == LaneType.Aucun
+    ) {
+      return LaneTypeFamily.MixiteMotorise;
+    } else {
+      console.assert(type == LaneType.Inconnu);
+      //return LaneTypeFamily.Dedie
+      return LaneTypeFamily.Inconnu;
     }
-    if(f.properties.id) {
-      for(let o of features) {
-        if(o != f && f.properties.id == o.properties.id) {
-          newSection.properties.lines.push(o.properties.line)
-          newSection.properties.links.push(o.properties.link)
+  }
+
+  function regroupIntoSections(features: LineStringFeature[]): SectionFeature[] {
+    let sections: SectionFeature[] = [];
+    let sectionsWithDuplicates = [];
+    for (let f of features) {
+      let newSection = {
+        type: f.type,
+        properties: {
+          id: f.properties.id,
+          lines: [f.properties.line],
+          name: f.properties.name,
+          quality: f.properties.quality,
+          qualityB: f.properties.qualityB,
+          status: f.properties.status,
+          type: f.properties.type,
+          typeB: f.properties.typeB,
+          typeFamily: computeTypeFamily(f.properties.type),
+          typeFamilyB: f.properties.typeB
+            ? computeTypeFamily(f.properties.typeB)
+            : computeTypeFamily(f.properties.type),
+          links: [f.properties.link],
+          doneAt: f.properties.doneAt,
+        },
+        geometry: f.geometry,
+      };
+      if (f.properties.id) {
+        for (let o of features) {
+          if (o != f && f.properties.id == o.properties.id) {
+            newSection.properties.lines.push(o.properties.line);
+            newSection.properties.links.push(o.properties.link);
+          }
         }
       }
+      newSection.properties.lines.sort();
+      sectionsWithDuplicates.push(newSection);
     }
-    newSection.properties.lines.sort()
-    sectionsWithDuplicates.push(newSection)
-  }
-  let treatedId: string[] = []
-  for(let s of sectionsWithDuplicates) {
-    if(s.properties.id && treatedId.includes(s.properties.id)) {
-      continue
+    let treatedId: string[] = [];
+    for (let s of sectionsWithDuplicates) {
+      if (s.properties.id && treatedId.includes(s.properties.id)) {
+        continue;
+      }
+      sections.push(s);
+      if (s.properties.id) {
+        treatedId.push(s.properties.id);
+      }
     }
-    sections.push(s)
-    if(s.properties.id) {
-      treatedId.push(s.properties.id)
-    }
-  }
 
-  for(let s of sections) {
-    s.properties.displayedLinesName = s.properties.lines.join('-')
-  }
+    for (let s of sections) {
+      s.properties.displayedLinesName = s.properties.lines.join('-');
+    }
 
-  return sections
-}
+    return sections;
+  }
 
   function getStatsByTypology(voies: Geojson[]): TypologyStats {
     const lineStringFeatures = getAllUniqLineStrings(voies);
 
-    let sections = regroupIntoSections(lineStringFeatures)
-
+    let sections = regroupIntoSections(lineStringFeatures);
 
     function getPercent(distance: number, totalDistance: number) {
       return Math.round((distance / totalDistance) * 100);
@@ -273,19 +290,22 @@ function regroupIntoSections(features: LineStringFeature[]): SectionFeature[] {
     // TODO gérer les deux côtés pour les aménagements hétérogènes
     // TODO gérer les quality inconnus ou null ou undefined ?
 
-
-    let sections_todo = sections.filter(s => s.properties.status == LaneStatus.Planned || s.properties.status == LaneStatus.Postponed)
+    let sections_todo = sections.filter(
+      (s) => s.properties.status == LaneStatus.Planned || s.properties.status == LaneStatus.Postponed,
+    );
     let distance_todo = getDistance(sections_todo);
 
-    sections = sections.filter(s => s.properties.status == LaneStatus.Done || s.properties.status == LaneStatus.Wip)
-    sections = sections.filter(s => s.properties.typeFamily != LaneTypeFamily.Inconnu)
+    sections = sections.filter((s) => s.properties.status == LaneStatus.Done || s.properties.status == LaneStatus.Wip);
+    sections = sections.filter((s) => s.properties.typeFamily != LaneTypeFamily.Inconnu);
     const totalDistance = getDistance(sections) + distance_todo;
 
     // Sans tronçon mesurable (que des variantes, par exemple), totalDistance vaut 0 et la division donnerait NaN.
-    let percent_todo = totalDistance > 0 ? (distance_todo / totalDistance) : 0
+    let percent_todo = totalDistance > 0 ? distance_todo / totalDistance : 0;
 
-    const sectionsByType = groupBy<SectionFeature, LaneTypeFamily>(sections, section => section.properties.typeFamily);
-
+    const sectionsByType = groupBy<SectionFeature, LaneTypeFamily>(
+      sections,
+      (section) => section.properties.typeFamily,
+    );
 
     // La famille "inconnu" a déjà été exclue plus haut : il ne reste que dédié et les deux mixités.
     const doneAndWipStats: TypologyFamilyStats[] = Object.entries(sectionsByType)
@@ -294,25 +314,28 @@ function regroupIntoSections(features: LineStringFeature[]): SectionFeature[] {
         const familyPercent = getPercent(familyDistance, totalDistance);
         const familyStats: TypologyFamilyStats = {
           name: laneTypeFamilyToDescription[family as LaneTypeFamily],
-          percent: familyPercent
+          percent: familyPercent,
         };
 
-        const sectionsOfFamilyByQuality = groupBy<SectionFeature, Quality>(sectionsOfFamily, section => section.properties.quality);
+        const sectionsOfFamilyByQuality = groupBy<SectionFeature, Quality>(
+          sectionsOfFamily,
+          (section) => section.properties.quality,
+        );
         for (const [quality, sectionsOfFamilyOfQuality] of Object.entries(sectionsOfFamilyByQuality)) {
           if (quality === Quality.Good || quality === Quality.Fair || quality === Quality.Bad) {
             const qualityPercentOfFamily = getPercent(getDistance(sectionsOfFamilyOfQuality), familyDistance);
-            familyStats[quality] = qualityPercentOfFamily * familyPercent / 100;
+            familyStats[quality] = (qualityPercentOfFamily * familyPercent) / 100;
           }
         }
 
         return familyStats;
       })
-      .filter(familyStats => familyStats.percent > 0) // on ne veut pas afficher les types à 0% (arrondis)
+      .filter((familyStats) => familyStats.percent > 0) // on ne veut pas afficher les types à 0% (arrondis)
       .sort((a, b) => b.percent - a.percent); // plus grandes barres en haut, plus propre
 
     return {
       doneAndWip: doneAndWipStats,
-      todo: { name: "À réaliser", percent: Math.round(percent_todo * 100) }
+      todo: { name: 'À réaliser', percent: Math.round(percent_todo * 100) },
     };
   }
 
@@ -325,23 +348,22 @@ function regroupIntoSections(features: LineStringFeature[]): SectionFeature[] {
     displayDistanceInKm,
     displayPercent,
     laneTypeToDescription,
-    qualityToDescription
+    qualityToDescription,
   };
 };
 
 function isBeforeMandat(feature: Feature): boolean {
-  if(!isLineStringFeature(feature)) {
-      return false
+  if (!isLineStringFeature(feature)) {
+    return false;
   }
 
-  let lfeature = feature as LineStringFeature
-  let doneAt = lfeature.properties.doneAt
+  let lfeature = feature as LineStringFeature;
+  let doneAt = lfeature.properties.doneAt;
 
-  if(!doneAt) {
-    return false
+  if (!doneAt) {
+    return false;
   }
 
   const [day, month, year] = doneAt.split('/');
   return new Date(Number(year), Number(month) - 1, Number(day)).getTime() < new Date(2021, 0, 1).getTime();
 }
-

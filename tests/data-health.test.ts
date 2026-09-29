@@ -12,7 +12,7 @@ import {
   convertTitleToAnchor,
   readFrontmatterValue,
   readMarkdownFiles,
-  readMarkdownTitles
+  readMarkdownTitles,
 } from './helpers/content';
 
 type RawFeature = {
@@ -26,7 +26,7 @@ type LoadedFeature = {
 };
 
 function listFilesRecursively(directory: string): string[] {
-  return fs.readdirSync(directory, { withFileTypes: true }).flatMap(entry => {
+  return fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
     const entryPath = path.join(directory, entry.name);
     return entry.isDirectory() ? listFilesRecursively(entryPath) : [entryPath];
   });
@@ -35,8 +35,8 @@ function listFilesRecursively(directory: string): string[] {
 function loadVoiesCyclablesFeatures(): LoadedFeature[] {
   return fs
     .readdirSync(VOIES_CYCLABLES_DIRECTORY)
-    .filter(fileName => fileName.endsWith('.json'))
-    .flatMap(fileName => {
+    .filter((fileName) => fileName.endsWith('.json'))
+    .flatMap((fileName) => {
       const geojson = JSON.parse(fs.readFileSync(path.join(VOIES_CYCLABLES_DIRECTORY, fileName), 'utf8'));
       return geojson.features.map((feature: RawFeature) => ({ fileName, feature }));
     });
@@ -66,8 +66,8 @@ const pointFeatures = allFeatures.filter(({ feature }) => feature.geometry.type 
 describe('data health', () => {
   it('should_parse_as_valid_json_when_file_is_in_content', () => {
     const invalidJsonFiles = listFilesRecursively(CONTENT_DIRECTORY)
-      .filter(filePath => filePath.endsWith('.json'))
-      .filter(filePath => {
+      .filter((filePath) => filePath.endsWith('.json'))
+      .filter((filePath) => {
         try {
           JSON.parse(fs.readFileSync(filePath, 'utf8'));
           return false;
@@ -75,7 +75,7 @@ describe('data health', () => {
           return true;
         }
       })
-      .map(filePath => path.relative(CONTENT_DIRECTORY, filePath));
+      .map((filePath) => path.relative(CONTENT_DIRECTORY, filePath));
 
     assert.deepEqual(invalidJsonFiles, []);
   });
@@ -83,10 +83,10 @@ describe('data health', () => {
   describe('LineString', () => {
     it('should_have_line_name_and_status_when_feature_is_line_string', () => {
       const requiredProperties = ['line', 'name', 'status'];
-      const problems = lineStringFeatures.flatMap(loadedFeature =>
+      const problems = lineStringFeatures.flatMap((loadedFeature) =>
         requiredProperties
-          .filter(property => loadedFeature.feature.properties?.[property] === undefined)
-          .map(property => `${describeFeature(loadedFeature)} : "${property}" manquant`)
+          .filter((property) => loadedFeature.feature.properties?.[property] === undefined)
+          .map((property) => `${describeFeature(loadedFeature)} : "${property}" manquant`),
       );
 
       assert.deepEqual(problems, []);
@@ -96,7 +96,10 @@ describe('data health', () => {
       const knownStatuses: string[] = Object.values(LaneStatus);
       const problems = lineStringFeatures
         .filter(({ feature }) => !knownStatuses.includes(feature.properties?.status))
-        .map(loadedFeature => `${describeFeature(loadedFeature)} : statut "${loadedFeature.feature.properties?.status}" inconnu`);
+        .map(
+          (loadedFeature) =>
+            `${describeFeature(loadedFeature)} : statut "${loadedFeature.feature.properties?.status}" inconnu`,
+        );
 
       assert.deepEqual(problems, []);
     });
@@ -105,7 +108,10 @@ describe('data health', () => {
       const knownTypes: string[] = Object.values(LaneType);
       const problems = lineStringFeatures
         .filter(({ feature }) => !knownTypes.includes(feature.properties?.type))
-        .map(loadedFeature => `${describeFeature(loadedFeature)} : type "${loadedFeature.feature.properties?.type}" inconnu`);
+        .map(
+          (loadedFeature) =>
+            `${describeFeature(loadedFeature)} : type "${loadedFeature.feature.properties?.type}" inconnu`,
+        );
 
       assert.deepEqual(problems, []);
     });
@@ -114,7 +120,10 @@ describe('data health', () => {
       const problems = lineStringFeatures
         .filter(({ feature }) => feature.properties?.status === LaneStatus.Done)
         .filter(({ feature }) => !/^\d{2}\/\d{2}\/\d{4}$/.test(feature.properties?.doneAt ?? ''))
-        .map(loadedFeature => `${describeFeature(loadedFeature)} : doneAt "${loadedFeature.feature.properties?.doneAt}" invalide`);
+        .map(
+          (loadedFeature) =>
+            `${describeFeature(loadedFeature)} : doneAt "${loadedFeature.feature.properties?.doneAt}" invalide`,
+        );
 
       assert.deepEqual(problems, []);
     });
@@ -124,7 +133,10 @@ describe('data health', () => {
       const problems = lineStringFeatures
         // Certains liens sont saisis encodés (%C3%A9) : le navigateur les décode, on fait de même.
         .filter(({ feature }) => !existingLinks.has(decodeURIComponent(feature.properties?.link ?? '')))
-        .map(loadedFeature => `${describeFeature(loadedFeature)} : lien "${loadedFeature.feature.properties?.link}" sans titre correspondant`);
+        .map(
+          (loadedFeature) =>
+            `${describeFeature(loadedFeature)} : lien "${loadedFeature.feature.properties?.link}" sans titre correspondant`,
+        );
 
       assert.deepEqual(problems, []);
     });
@@ -160,10 +172,10 @@ describe('data health', () => {
   describe('Point', () => {
     it('should_have_type_line_name_and_image_when_feature_is_point', () => {
       const requiredProperties = ['type', 'line', 'name', 'imgUrl'];
-      const problems = pointFeatures.flatMap(loadedFeature =>
+      const problems = pointFeatures.flatMap((loadedFeature) =>
         requiredProperties
-          .filter(property => loadedFeature.feature.properties?.[property] === undefined)
-          .map(property => `${describeFeature(loadedFeature)} : "${property}" manquant`)
+          .filter((property) => loadedFeature.feature.properties?.[property] === undefined)
+          .map((property) => `${describeFeature(loadedFeature)} : "${property}" manquant`),
       );
 
       assert.deepEqual(problems, []);
@@ -172,7 +184,10 @@ describe('data health', () => {
     it('should_have_perspective_type_when_feature_is_point', () => {
       const problems = pointFeatures
         .filter(({ feature }) => feature.properties?.type !== 'perspective')
-        .map(loadedFeature => `${describeFeature(loadedFeature)} : type "${loadedFeature.feature.properties?.type}" au lieu de "perspective"`);
+        .map(
+          (loadedFeature) =>
+            `${describeFeature(loadedFeature)} : type "${loadedFeature.feature.properties?.type}" au lieu de "perspective"`,
+        );
 
       assert.deepEqual(problems, []);
     });
@@ -183,11 +198,11 @@ describe('data health', () => {
   describe('Images', () => {
     const PUBLIC_DIRECTORY = path.join(CONTENT_DIRECTORY, '..', 'public');
     const imageReferences = readMarkdownFiles(VOIES_CYCLABLES_DIRECTORY).flatMap(({ fileName, content }) =>
-      [...content.matchAll(/^(cover|imageUrl):\s*(\S+)\s*$/gm)].map(imageMatch => ({
+      [...content.matchAll(/^(cover|imageUrl):\s*(\S+)\s*$/gm)].map((imageMatch) => ({
         fileName,
         field: imageMatch[1],
-        url: imageMatch[2]
-      }))
+        url: imageMatch[2],
+      })),
     );
 
     it('should_be_hosted_on_the_site_when_line_page_references_an_image', () => {

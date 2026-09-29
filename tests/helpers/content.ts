@@ -14,8 +14,8 @@ export type MarkdownFile = {
 export function readMarkdownFiles(directory: string): MarkdownFile[] {
   return fs
     .readdirSync(directory)
-    .filter(fileName => fileName.endsWith('.md'))
-    .map(fileName => ({ fileName, content: fs.readFileSync(path.join(directory, fileName), 'utf8') }));
+    .filter((fileName) => fileName.endsWith('.md'))
+    .map((fileName) => ({ fileName, content: fs.readFileSync(path.join(directory, fileName), 'utf8') }));
 }
 
 export function readFrontmatterValue(markdownContent: string, key: string): string | undefined {
@@ -24,7 +24,7 @@ export function readFrontmatterValue(markdownContent: string, key: string): stri
 }
 
 export function readMarkdownTitles(markdownContent: string): string[] {
-  return [...markdownContent.matchAll(/^#+\s+(.*)$/gm)].map(titleMatch => titleMatch[1]);
+  return [...markdownContent.matchAll(/^#+\s+(.*)$/gm)].map((titleMatch) => titleMatch[1]);
 }
 
 // Reproduit la génération des ancres de titres par Nuxt Content : ponctuation et symboles (⇄, ', ...)

@@ -10,12 +10,20 @@
       width="75"
       height="75"
       :alt="`logo ${config.assoName}`"
-    >
+    />
   </div>
 </template>
 
 <script setup lang="ts">
-import { Map, AttributionControl, GeolocateControl, NavigationControl, setWorkerUrl, type StyleSpecification, type LngLatLike } from 'maplibre-gl';
+import {
+  Map,
+  AttributionControl,
+  GeolocateControl,
+  NavigationControl,
+  setWorkerUrl,
+  type StyleSpecification,
+  type LngLatLike,
+} from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 // MapLibre 6 charge son worker par une URL relative que Vite ne sait pas résoudre : on lui fournit
 // l'URL du worker construit par Vite (`?worker&url` et non `?url`, qui oublierait ses imports).
@@ -27,9 +35,20 @@ import BikeInfraControl from '@/maplibre/BikeInfraControl';
 import LayerControl from '@/maplibre/LayerControl';
 import FullscreenControl from '@/maplibre/FullscreenControl';
 import ShrinkControl from '@/maplibre/ShrinkControl';
-import { isLineStringFeature, isPolygonFeature, isSectionFeature, LaneStatus, type Feature, LaneType, LaneTypeFamily, type LineStringFeature, type PolygonFeature, type SectionFeature } from '~/types';
+import {
+  isLineStringFeature,
+  isPolygonFeature,
+  isSectionFeature,
+  LaneStatus,
+  type Feature,
+  LaneType,
+  LaneTypeFamily,
+  type LineStringFeature,
+  type PolygonFeature,
+  type SectionFeature,
+} from '~/types';
 import config from '~/config.json';
-import { setDisplayedLayer } from '~/composables/useMap'
+import { setDisplayedLayer } from '~/composables/useMap';
 import { sortByLine } from '~/composables//map/utils';
 
 // const config = useRuntimeConfig();
@@ -44,9 +63,9 @@ const defaultOptions = {
   filter: true,
   geolocation: false,
   fullscreen: false,
-  onFullscreenControlClick: () => { },
+  onFullscreenControlClick: () => {},
   shrink: false,
-  onShrinkControlClick: () => { }
+  onShrinkControlClick: () => {},
 };
 
 const props = defineProps<{
@@ -67,45 +86,76 @@ const {
   fitBounds,
   toggleLimits,
   toggleBikeInfra,
-  handleMapClick
+  handleMapClick,
 } = useMap();
 
-const statuses = ref([LaneStatus.Planned, LaneStatus.Variante, LaneStatus.Done, LaneStatus.Postponed, LaneStatus.VariantePostponed, LaneStatus.Unknown, LaneStatus.Wip]);
-const types = ref([LaneType.Unidirectionnelle, LaneType.Bidirectionnelle, LaneType.Bilaterale, LaneType.VoieBus, LaneType.VoieBusElargie, LaneType.Velorue, LaneType.VoieVerte, LaneType.BandesCyclables, LaneType.ZoneDeRencontre, LaneType.AirePietonne, LaneType.Chaucidou, LaneType.Aucun, LaneType.Inconnu]);
-const families = ref([LaneTypeFamily.Dedie, LaneTypeFamily.MixiteMotorise, LaneTypeFamily.MixitePietonne])
+const statuses = ref([
+  LaneStatus.Planned,
+  LaneStatus.Variante,
+  LaneStatus.Done,
+  LaneStatus.Postponed,
+  LaneStatus.VariantePostponed,
+  LaneStatus.Unknown,
+  LaneStatus.Wip,
+]);
+const types = ref([
+  LaneType.Unidirectionnelle,
+  LaneType.Bidirectionnelle,
+  LaneType.Bilaterale,
+  LaneType.VoieBus,
+  LaneType.VoieBusElargie,
+  LaneType.Velorue,
+  LaneType.VoieVerte,
+  LaneType.BandesCyclables,
+  LaneType.ZoneDeRencontre,
+  LaneType.AirePietonne,
+  LaneType.Chaucidou,
+  LaneType.Aucun,
+  LaneType.Inconnu,
+]);
+const families = ref([LaneTypeFamily.Dedie, LaneTypeFamily.MixiteMotorise, LaneTypeFamily.MixitePietonne]);
 const displayLimits = ref(true);
 const features = computed(() => {
-  let activeLineFeatures = (props.features ?? []).filter(feature => {
+  let activeLineFeatures = (props.features ?? []).filter((feature) => {
     if (isLineStringFeature(feature)) {
-      return statuses.value.includes(feature.properties.status) &&
-        types.value.includes(feature.properties.type);
+      return statuses.value.includes(feature.properties.status) && types.value.includes(feature.properties.type);
     }
     return true;
   });
-  let activeLimitsFeatures = (props.features ?? []).filter(feature => displayLimits.value && isPolygonFeature(feature))
-  return activeLineFeatures.concat(activeLimitsFeatures)
+  let activeLimitsFeatures = (props.features ?? []).filter(
+    (feature) => displayLimits.value && isPolygonFeature(feature),
+  );
+  return activeLineFeatures.concat(activeLimitsFeatures);
 });
 
-function refreshFilters({ visibleStatuses, visibleTypes, visibleTypesFamily }: { visibleStatuses: LaneStatus[]; visibleTypes: LaneType[], visibleTypesFamily: LaneTypeFamily[] }) {
+function refreshFilters({
+  visibleStatuses,
+  visibleTypes,
+  visibleTypesFamily,
+}: {
+  visibleStatuses: LaneStatus[];
+  visibleTypes: LaneType[];
+  visibleTypesFamily: LaneTypeFamily[];
+}) {
   statuses.value = visibleStatuses;
   types.value = visibleTypes;
   families.value = visibleTypesFamily;
 }
 
 function convertIntoDisplayedLayerEnum(s: string) {
-  if(s === "progress") {
-    return DisplayedLayer.Progress
-  } else if (s === "finalizedProject") {
-    return DisplayedLayer.FinalizedProject
-  } else if (s === "quality") {
-    return DisplayedLayer.Quality
-  } else if (s === "typeFamily") {
-    return DisplayedLayer.TypeFamily
-  } else if (s === "type") {
-    return DisplayedLayer.Type
+  if (s === 'progress') {
+    return DisplayedLayer.Progress;
+  } else if (s === 'finalizedProject') {
+    return DisplayedLayer.FinalizedProject;
+  } else if (s === 'quality') {
+    return DisplayedLayer.Quality;
+  } else if (s === 'typeFamily') {
+    return DisplayedLayer.TypeFamily;
+  } else if (s === 'type') {
+    return DisplayedLayer.Type;
   }
-  console.warn(`"${s}" ne correspond à aucun DisplayedLayer : repli sur l'affichage de l'avancement`)
-  return DisplayedLayer.Progress
+  console.warn(`"${s}" ne correspond à aucun DisplayedLayer : repli sur l'affichage de l'avancement`);
+  return DisplayedLayer.Progress;
 }
 
 onMounted(() => {
@@ -116,7 +166,7 @@ onMounted(() => {
     // style: `https://api.maptiler.com/maps/dataviz/style.json?key=${maptilerKey}`,
     center: config.center as LngLatLike,
     zoom: config.zoom,
-    attributionControl: false
+    attributionControl: false,
   });
 
   const layerControl = new LayerControl(
@@ -128,20 +178,20 @@ onMounted(() => {
       }
     },
     (s: string) => {
-      let dt = convertIntoDisplayedLayerEnum(s)
-      setDisplayedLayer(dt)
+      let dt = convertIntoDisplayedLayerEnum(s);
+      setDisplayedLayer(dt);
       if (legendModalComponent.value) {
         (legendModalComponent.value as any).setWhichLayerIsDisplayed(dt);
       }
-    }
+    },
   );
-  map.addControl(layerControl, 'top-left')
+  map.addControl(layerControl, 'top-left');
 
   map.addControl(new NavigationControl({ showCompass: false }), 'top-left');
   map.addControl(new AttributionControl({ compact: false }), 'bottom-left');
   if (options.fullscreen) {
     const fullscreenControl = new FullscreenControl({
-      onClick: () => options.onFullscreenControlClick()
+      onClick: () => options.onFullscreenControlClick(),
     });
     map.addControl(fullscreenControl, 'top-right');
   }
@@ -150,14 +200,14 @@ onMounted(() => {
       new GeolocateControl({
         positionOptions: { enableHighAccuracy: true },
         // When active the map will receive updates to the device's location as it changes.
-        trackUserLocation: true
+        trackUserLocation: true,
       }),
-      'top-right'
+      'top-right',
     );
   }
   if (options.shrink) {
     const shrinkControl = new ShrinkControl({
-      onClick: () => options.onShrinkControlClick()
+      onClick: () => options.onShrinkControlClick(),
     });
     map.addControl(shrinkControl, 'top-right');
   }
@@ -167,35 +217,35 @@ onMounted(() => {
         if (filterModalComponent.value) {
           (filterModalComponent.value as any).openModal();
         }
-      }
+      },
     });
     map.addControl(filterControl, 'top-right');
   }
   if (options.limits) {
     const limitsControl = new LimitsControl({
       onClick: () => {
-        toggleLimits()
-        limitsControl.toggleBackground()
-      }
+        toggleLimits();
+        limitsControl.toggleBackground();
+      },
     });
     map.addControl(limitsControl, 'top-right');
   }
   if (options.bikeInfra) {
     const bikeInfraControl = new BikeInfraControl({
       onClick: () => {
-        toggleBikeInfra()
-        bikeInfraControl.toggleBackground()
-      }
+        toggleBikeInfra();
+        bikeInfraControl.toggleBackground();
+      },
     });
     map.addControl(bikeInfraControl, 'top-right');
   }
-  setDisplayedLayer(options.defaultLayer)
+  setDisplayedLayer(options.defaultLayer);
 
-  map.on('load', async() => {
+  map.on('load', async () => {
     await loadImages({ map });
 
     let lineStringFeatures = features.value.filter(isLineStringFeature).sort(sortByLine);
-    let sections = regroupIntoSections(lineStringFeatures)
+    let sections = regroupIntoSections(lineStringFeatures);
 
     plotEverything(map, sections, features.value);
     const tailwindMdBreakpoint = 768;
@@ -205,64 +255,61 @@ onMounted(() => {
   });
 
   // When filters change
-  watch(
-    features,
-    newFeatures => {
+  watch(features, (newFeatures) => {
+    let lineStringFeatures = newFeatures.filter(isLineStringFeature).sort(sortByLine);
+    let sections = regroupIntoSections(lineStringFeatures);
+    let lanes = separateSectionsIntoLanes(sections);
 
-      let lineStringFeatures = newFeatures.filter(isLineStringFeature).sort(sortByLine);
-      let sections = regroupIntoSections(lineStringFeatures)
-      let lanes = separateSectionsIntoLanes(sections)
-
-      updateOrCreateSources(map, sections, lanes)
-    }
-  );
+    updateOrCreateSources(map, sections, lanes);
+  });
 
   // When evolution change
   watch(
     () => props.features,
-    newFeatures => {
-
+    (newFeatures) => {
       let lineStringFeatures = newFeatures.filter(isLineStringFeature).sort(sortByLine);
-      let sections = regroupIntoSections(lineStringFeatures)
-      let lanes = separateSectionsIntoLanes(sections)
+      let sections = regroupIntoSections(lineStringFeatures);
+      let lanes = separateSectionsIntoLanes(sections);
 
-      updateOrCreateSources(map, sections, lanes)
-
-
-    }
+      updateOrCreateSources(map, sections, lanes);
+    },
   );
 
-
-  map.on('click', clickEvent => {
-
+  map.on('click', (clickEvent) => {
     let lineStringFeatures = features.value.filter(isLineStringFeature).sort(sortByLine);
-    let sections = regroupIntoSections(lineStringFeatures)
+    let sections = regroupIntoSections(lineStringFeatures);
 
     handleMapClick({ map, sections: sections, features: features.value, clickEvent });
   });
 
   function computeTypeFamily(type: LaneType): LaneTypeFamily {
-    if(type == LaneType.Bidirectionnelle || type == LaneType.Bilaterale || type == LaneType.Unidirectionnelle) {
-      return LaneTypeFamily.Dedie
+    if (type == LaneType.Bidirectionnelle || type == LaneType.Bilaterale || type == LaneType.Unidirectionnelle) {
+      return LaneTypeFamily.Dedie;
     } else if (type == LaneType.AirePietonne || type == LaneType.VoieVerte) {
-      return LaneTypeFamily.MixitePietonne
-    } else if (type == LaneType.BandesCyclables || type == LaneType.Chaucidou || type == LaneType.Velorue || type == LaneType.VoieBus || type == LaneType.VoieBusElargie || type == LaneType.ZoneDeRencontre || type == LaneType.Aucun) {
-      return LaneTypeFamily.MixiteMotorise
+      return LaneTypeFamily.MixitePietonne;
+    } else if (
+      type == LaneType.BandesCyclables ||
+      type == LaneType.Chaucidou ||
+      type == LaneType.Velorue ||
+      type == LaneType.VoieBus ||
+      type == LaneType.VoieBusElargie ||
+      type == LaneType.ZoneDeRencontre ||
+      type == LaneType.Aucun
+    ) {
+      return LaneTypeFamily.MixiteMotorise;
     } else {
-      console.assert(type == LaneType.Inconnu)
-      return LaneTypeFamily.Inconnu
+      console.assert(type == LaneType.Inconnu);
+      return LaneTypeFamily.Inconnu;
     }
   }
 
   function regroupIntoSections(features: LineStringFeature[]): SectionFeature[] {
-    let sections: SectionFeature[] = []
-    let sectionsWithDuplicates = []
-    for(let f of features) {
-      let newSection =
-      {
+    let sections: SectionFeature[] = [];
+    let sectionsWithDuplicates = [];
+    for (let f of features) {
+      let newSection = {
         type: f.type,
-        properties:
-        {
+        properties: {
           id: f.properties.id,
           lines: [f.properties.line],
           name: f.properties.name,
@@ -272,39 +319,41 @@ onMounted(() => {
           type: f.properties.type,
           typeB: f.properties.typeB,
           typeFamily: computeTypeFamily(f.properties.type),
-          typeFamilyB: f.properties.typeB ? computeTypeFamily(f.properties.typeB) : computeTypeFamily(f.properties.type),
+          typeFamilyB: f.properties.typeB
+            ? computeTypeFamily(f.properties.typeB)
+            : computeTypeFamily(f.properties.type),
           doneAt: f.properties.doneAt,
           links: [f.properties.link],
         },
-        geometry: f.geometry
-      }
-      if(f.properties.id) {
-        for(let o of features) {
-          if(o != f && f.properties.id == o.properties.id) {
-            newSection.properties.lines.push(o.properties.line)
-            newSection.properties.links.push(o.properties.link)
+        geometry: f.geometry,
+      };
+      if (f.properties.id) {
+        for (let o of features) {
+          if (o != f && f.properties.id == o.properties.id) {
+            newSection.properties.lines.push(o.properties.line);
+            newSection.properties.links.push(o.properties.link);
           }
         }
       }
-      newSection.properties.lines.sort()
-      sectionsWithDuplicates.push(newSection)
+      newSection.properties.lines.sort();
+      sectionsWithDuplicates.push(newSection);
     }
-    let treatedId: string[] = []
-    for(let s of sectionsWithDuplicates) {
-      if(s.properties.id && treatedId.includes(s.properties.id)) {
-        continue
+    let treatedId: string[] = [];
+    for (let s of sectionsWithDuplicates) {
+      if (s.properties.id && treatedId.includes(s.properties.id)) {
+        continue;
       }
-      sections.push(s)
-      if(s.properties.id) {
-        treatedId.push(s.properties.id)
+      sections.push(s);
+      if (s.properties.id) {
+        treatedId.push(s.properties.id);
       }
     }
 
-    for(let s of sections) {
-      s.properties.displayedLinesName = "(" + s.properties.lines.join(',') + ")"
+    for (let s of sections) {
+      s.properties.displayedLinesName = '(' + s.properties.lines.join(',') + ')';
     }
 
-    return sections
+    return sections;
   }
 });
 </script>
@@ -384,16 +433,16 @@ onMounted(() => {
 }
 
 .layercontrol-title {
-    font-size: large;
-    font-weight: 700;
+  font-size: large;
+  font-weight: 700;
 }
 
 .layercontrol {
-    z-index: 1000;
-    background: #fff;
-    padding: 10px;
-    border-radius: 7px;
-    margin-left: 20px;
-    margin-right: 20px;
+  z-index: 1000;
+  background: #fff;
+  padding: 10px;
+  border-radius: 7px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 </style>

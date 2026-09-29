@@ -23,7 +23,7 @@ const CONTENT_TYPE_BY_EXTENSION: Record<string, string> = {
   '.ico': 'image/x-icon',
   '.woff2': 'font/woff2',
   '.wasm': 'application/wasm',
-  '.txt': 'text/plain; charset=utf-8'
+  '.txt': 'text/plain; charset=utf-8',
 };
 
 // Même résolution que Netlify pour un site statique : /page -> /page/index.html.
@@ -34,7 +34,7 @@ function findFileForUrl(url: string): string | null {
     return null;
   }
   const candidates = [requestedPath, path.join(requestedPath, 'index.html'), `${requestedPath}.html`];
-  return candidates.find(candidate => fs.existsSync(candidate) && fs.statSync(candidate).isFile()) ?? null;
+  return candidates.find((candidate) => fs.existsSync(candidate) && fs.statSync(candidate).isFile()) ?? null;
 }
 
 export function startStaticServer(): Promise<http.Server> {
@@ -49,7 +49,7 @@ export function startStaticServer(): Promise<http.Server> {
     response.writeHead(200, { 'Content-Type': contentType });
     fs.createReadStream(filePath).pipe(response);
   });
-  return new Promise(resolve => server.listen(0, '127.0.0.1', () => resolve(server)));
+  return new Promise((resolve) => server.listen(0, '127.0.0.1', () => resolve(server)));
 }
 
 // MapLibre exige WebGL2, que Chromium n'active pas de la même façon partout :
@@ -69,7 +69,9 @@ export async function launchChromiumWithWebgl2(): Promise<Browser> {
     }
     await browser.close();
   }
-  throw new Error(`Chromium sans WebGL2 avec chacun de ces arguments : ${JSON.stringify(CHROMIUM_WEBGL_ARGUMENT_CANDIDATES)}`);
+  throw new Error(
+    `Chromium sans WebGL2 avec chacun de ces arguments : ${JSON.stringify(CHROMIUM_WEBGL_ARGUMENT_CANDIDATES)}`,
+  );
 }
 
 // Nombre de couleurs différentes dans la carte telle qu'affichée à l'écran. Une carte vide est

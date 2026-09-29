@@ -8,6 +8,7 @@ Remplace : [0001](0001-strategie-sync-cyclopolis-lyon.md)
 
 L'ADR 0001 prévoyait de suivre Cyclopolis Lyon par merges incrémentaux.
 L'analyse de l'amont depuis 8336f85 (fév. 2025) montre :
+
 - 622 commits, dont une migration de stack : @nuxt/content v3 (#588,
   avril 2025), Nuxt 4, Node 24, MapLibre 5 (#763–#766, nov. 2025) ;
 - 173 fichiers de code modifiés, dont une réécriture de fait de

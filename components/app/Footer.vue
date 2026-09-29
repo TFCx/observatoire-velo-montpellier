@@ -10,7 +10,13 @@
       </nav>
       <div class="mt-4 border-t border-gray-200 pt-4 md:flex md:items-center md:justify-between">
         <div class="flex justify-center space-x-6 md:order-2">
-          <a v-for="item in socials" :key="item.name" :href="item.href" target="_blank" class="text-gray-500 hover:text-gray-500">
+          <a
+            v-for="item in socials"
+            :key="item.name"
+            :href="item.href"
+            target="_blank"
+            class="text-gray-500 hover:text-gray-500"
+          >
             <span class="sr-only">{{ item.name }}</span>
             <Icon :name="item.icon" class="h-6 w-6" aria-hidden="true" />
           </a>
@@ -36,39 +42,39 @@ const { build } = useRuntimeConfig().public;
 const links = [
   { name: 'Mentions légales', path: '/mentions-legales' },
   { name: 'Historique', path: '/historique' },
-  { name: 'Sites partenaires', path: '/sites-partenaires' }
+  { name: 'Sites partenaires', path: '/sites-partenaires' },
 ];
 
 const socials = [
   {
     name: 'Github',
     href: 'https://github.com/TFCx/observatoire-velo-montpellier',
-    icon: 'mdi:github'
+    icon: 'mdi:github',
   },
   {
     name: 'Bluesky',
     href: 'https://bsky.app/profile/velocitemtp.bsky.social',
-    icon: 'fa6-brands:bluesky'
+    icon: 'fa6-brands:bluesky',
   },
   {
     name: 'Twitter',
     href: 'https://twitter.com/VelociteMtp',
-    icon: 'mdi:twitter'
+    icon: 'mdi:twitter',
   },
   {
     name: 'Facebook',
     href: 'https://www.facebook.com/VelociteMontpellier/',
-    icon: 'mdi:facebook'
+    icon: 'mdi:facebook',
   },
   {
     name: 'Site web',
     href: 'https://www.velocite-montpellier.fr/',
-    icon: 'mdi:link'
+    icon: 'mdi:link',
   },
   {
     name: 'Email',
     href: 'mailto:velocite-montpellier@fub.fr',
-    icon: 'mdi:email-outline'
-  }
+    icon: 'mdi:email-outline',
+  },
 ];
 </script>

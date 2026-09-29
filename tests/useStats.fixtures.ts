@@ -14,10 +14,10 @@ function buildSameGeometryForAllSections() {
   return {
     type: 'LineString' as const,
     coordinates: [
-      [3.8770, 43.6110],
-      [3.8780, 43.6115],
-      [3.8790, 43.6120]
-    ]
+      [3.877, 43.611],
+      [3.878, 43.6115],
+      [3.879, 43.612],
+    ],
   };
 }
 
@@ -31,9 +31,9 @@ export function buildSection({ id, line, status, type, quality }: SectionFixture
       status,
       type,
       quality,
-      link: `/veloligne-${line}`
+      link: `/veloligne-${line}`,
     },
-    geometry: buildSameGeometryForAllSections()
+    geometry: buildSameGeometryForAllSections(),
   };
 }
 

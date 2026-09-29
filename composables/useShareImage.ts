@@ -15,7 +15,7 @@ export function useShareImage(imagePath: string | undefined) {
       { name: 'twitter:image', content: imageUrl },
       // Les dimensions déclarées par défaut sont celles de l'image du site, pas de celle-ci.
       { property: 'og:image:width', content: undefined },
-      { property: 'og:image:height', content: undefined }
-    ]
+      { property: 'og:image:height', content: undefined },
+    ],
   });
 }

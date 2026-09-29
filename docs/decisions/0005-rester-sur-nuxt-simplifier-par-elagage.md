@@ -12,6 +12,7 @@ contenu (`.md`, parfois `.json`/`.geojson`).
 
 L'objectif est un projet plus léger, plus rapide et plus simple à maintenir. Alternatives
 examinées :
+
 - Changer de framework pour un générateur plus léger (Astro, SvelteKit, Zola en Rust) : pages
   plus légères, mais une réécriture complète, et chaque feature de Lyon (ADR 0002) deviendrait
   une réécriture au lieu d'un portage.

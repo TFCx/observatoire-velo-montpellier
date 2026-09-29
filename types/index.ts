@@ -1,56 +1,55 @@
 export enum LaneType {
-  Unidirectionnelle = "unidirectionnelle",
-  Bidirectionnelle = "bidirectionnelle",
-  Bilaterale = "bilaterale",
-  VoieBus = "voie-bus",
-  VoieBusElargie = "voie-bus-elargie",
-  Velorue = "velorue",
-  VoieVerte = "voie-verte",
-  BandesCyclables = "bandes-cyclables",
-  ZoneDeRencontre = "zone-de-rencontre",
-  AirePietonne = "aire-pietonne",
-  Chaucidou = "chaucidou",
-  Aucun = "aucun",
-  Inconnu = "inconnu"
+  Unidirectionnelle = 'unidirectionnelle',
+  Bidirectionnelle = 'bidirectionnelle',
+  Bilaterale = 'bilaterale',
+  VoieBus = 'voie-bus',
+  VoieBusElargie = 'voie-bus-elargie',
+  Velorue = 'velorue',
+  VoieVerte = 'voie-verte',
+  BandesCyclables = 'bandes-cyclables',
+  ZoneDeRencontre = 'zone-de-rencontre',
+  AirePietonne = 'aire-pietonne',
+  Chaucidou = 'chaucidou',
+  Aucun = 'aucun',
+  Inconnu = 'inconnu',
 }
 
 export enum LaneTypeFamily {
-  Dedie = "dédié",
-  MixiteMotorise = "mixité-motorisés",
-  MixitePietonne = "mixité-piétons",
-  Inconnu = "inconnu"
+  Dedie = 'dédié',
+  MixiteMotorise = 'mixité-motorisés',
+  MixitePietonne = 'mixité-piétons',
+  Inconnu = 'inconnu',
 }
 
 export enum LaneStatus {
-  Done = "done",
-  Wip = "wip",
-  Planned = "planned",
-  Postponed = "postponed",
-  Unknown = "unknown",
-  Variante = "variante",
-  VariantePostponed = "variante-postponed",
+  Done = 'done',
+  Wip = 'wip',
+  Planned = 'planned',
+  Postponed = 'postponed',
+  Unknown = 'unknown',
+  Variante = 'variante',
+  VariantePostponed = 'variante-postponed',
 }
 
 export enum Quality {
-  Bad = "bad",
-  Fair = "fair",
-  Good = "good",
-  Inconnu = "inconnu"
+  Bad = 'bad',
+  Fair = 'fair',
+  Good = 'good',
+  Inconnu = 'inconnu',
 }
-
 
 export type PolygonFeature = {
   type: 'Feature';
   geometry: {
-    type: "Polygon",
+    type: 'Polygon';
     coordinates: [number, number][];
-  }
-}
+  };
+};
 
 export type LineStringFeature = {
   type: 'Feature';
   properties: {
-    id?: string
+    id?: string;
     line: string;
     name: string;
     status: LaneStatus;
@@ -71,7 +70,7 @@ export type SectionFeature = {
   type: 'Feature';
   properties: {
     lines: string[];
-    displayedLinesName: string
+    displayedLinesName: string;
     name: string;
     status: LaneStatus;
     quality: Quality;
@@ -91,7 +90,7 @@ export type SectionFeature = {
 
 export type MultiColoredLineStringFeature = LineStringFeature & { properties: { colors: string[] } };
 //export type SectionFeature = LineStringFeature & { properties: { colors: string[] } };
-export type LaneFeature = LineStringFeature & { properties: { color: string, lane_index: number, nb_lanes: number } };
+export type LaneFeature = LineStringFeature & { properties: { color: string; lane_index: number; nb_lanes: number } };
 
 export type PerspectiveFeature = {
   type: 'Feature';
@@ -110,28 +109,28 @@ export type PerspectiveFeature = {
 export type PumpFeature = {
   type: 'Feature';
   properties: {
-    type: 'pump',
-    name: string
-  }
+    type: 'pump';
+    name: string;
+  };
   geometry: {
     type: 'Point';
     coordinates: [number, number];
   };
-}
+};
 
 export type DangerFeature = {
   type: 'Feature';
   properties: {
-    type: 'danger',
-    name: string
-    description: string
-    danger: string
-  }
+    type: 'danger';
+    name: string;
+    description: string;
+    danger: string;
+  };
   geometry: {
     type: 'Point';
     coordinates: [number, number];
   };
-}
+};
 
 type PointFeature = PerspectiveFeature | PumpFeature | DangerFeature;
 
@@ -172,4 +171,3 @@ export function isDangerFeature(feature: Feature): feature is PerspectiveFeature
 export function isPumpFeature(feature: Feature): feature is PumpFeature {
   return isPointFeature(feature) && feature.properties.type === 'pump';
 }
-

@@ -4,7 +4,6 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-
         // Generate tones with https://gradients.app/en/shades/
         'color-primary-exact': '#FFDC4E',
 
@@ -19,7 +18,7 @@ module.exports = {
         'color-primary-300': '#F8CB5D',
         'color-primary-200': '#FADA8E',
         'color-primary-100': '#FCEABF',
-        'color-primary-50' : '#FDF2D7',
+        'color-primary-50': '#FDF2D7',
 
         'color-primary-600': '#B48208',
         'color-primary-500': '#E5A50A',
@@ -40,22 +39,22 @@ module.exports = {
         'legend-quality-good': '#77dd77',
         'legend-quality-fair': '#fafc74',
         'legend-quality-bad': '#ff6961',
-        'legend-infra-family-mix-motor': "#f797e7",
-        'legend-infra-family-mix-ped': "#e6ffb3",
-        'legend-infra-family-dedie': "#b3c6ff",
-        'legend-infra-type-bidirectionnelle': "#b3c6ff",
-        'legend-infra-type-bilaterale': "#b3fbff",
-        'legend-infra-type-velorue': "#fffbb3",
-        'legend-infra-type-voie-verte': "#b3ffb6",
+        'legend-infra-family-mix-motor': '#f797e7',
+        'legend-infra-family-mix-ped': '#e6ffb3',
+        'legend-infra-family-dedie': '#b3c6ff',
+        'legend-infra-type-bidirectionnelle': '#b3c6ff',
+        'legend-infra-type-bilaterale': '#b3fbff',
+        'legend-infra-type-velorue': '#fffbb3',
+        'legend-infra-type-voie-verte': '#b3ffb6',
       },
       typography: {
         DEFAULT: {
           css: {
-            a: { color: '#152B68' }
-          }
-        }
-      }
-    }
+            a: { color: '#152B68' },
+          },
+        },
+      },
+    },
   },
-  plugins: [require('@tailwindcss/typography')]
+  plugins: [require('@tailwindcss/typography')],
 };

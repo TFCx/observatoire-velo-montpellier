@@ -11,6 +11,7 @@ récupérer certaines features lyonnaises. La branche `sync/lyon/last` pointe su
 le dernier commit lyonnais pris en compte.
 
 Historique des synchronisations :
+
 - 2023 → avril 2024 : merges directs et fréquents de l'amont.
 - nov. 2024 : merges « Pick » incrémentaux (branche `dev/sync_lyon`), chacun
   arrêté sur le commit lyonnais qui termine une feature.
@@ -20,6 +21,7 @@ Historique des synchronisations :
 Les squashes de 2025 n'ont pas déplacé la base de merge : git considérait
 encore 93 commits lyonnais comme absents et aurait représenté, à la sync
 suivante, des conflits déjà tranchés. Les conflits récurrents sont :
+
 - modify/delete sur les données lyonnaises supprimées côté Montpellier ;
 - `composables/useMap.ts` et `components/Map.vue`, réécrits côté Montpellier.
 

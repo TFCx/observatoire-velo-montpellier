@@ -26,7 +26,7 @@ export default class ComboboxControl {
 
     const option3 = document.createElement('option');
     option3.value = 'type';
-    option3.text = 'Type d\'aménagements';
+    option3.text = "Type d'aménagements";
     this._select.appendChild(option3);
 
     this._container = document.createElement('div');

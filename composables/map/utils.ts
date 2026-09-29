@@ -1,25 +1,24 @@
 import { LngLatBounds, GeoJSONSource, Map } from 'maplibre-gl';
-import { isLineStringFeature, isPointFeature, type Feature, type LineStringFeature} from '~/types';
+import { isLineStringFeature, isPointFeature, type Feature, type LineStringFeature } from '~/types';
 
 export { sortOrder, sortByLine, getCrossIconUrl, upsertMapSource, fitBounds };
 
 function upsertMapSource(map: Map, sourceName: string, features: Feature[]) {
-    const source = map.getSource(sourceName) as GeoJSONSource;
-    if (source) {
-        source.setData({ type: 'FeatureCollection', features });
-        return true;
-    }
-    map.addSource(sourceName, {
-        type: 'geojson',
-        data: { type: 'FeatureCollection', features},
-        promoteId: "name"
-    });
-    return false;
+  const source = map.getSource(sourceName) as GeoJSONSource;
+  if (source) {
+    source.setData({ type: 'FeatureCollection', features });
+    return true;
+  }
+  map.addSource(sourceName, {
+    type: 'geojson',
+    data: { type: 'FeatureCollection', features },
+    promoteId: 'name',
+  });
+  return false;
 }
 
-
 // features plotted last are on top
-const sortOrder = ["Anneau", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "A", "B", "C", "D"].reverse();
+const sortOrder = ['Anneau', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', 'A', 'B', 'C', 'D'].reverse();
 
 function sortByLine(featureA: LineStringFeature, featureB: LineStringFeature) {
   const lineA = featureA.properties.line;
@@ -56,10 +55,10 @@ function getCrossIconUrl(): string {
 function fitBounds({ map, features }: { map: Map; features: Feature[] }) {
   const allLineStringsCoordinates = features
     .filter(isLineStringFeature)
-    .map(feature => feature.geometry.coordinates)
+    .map((feature) => feature.geometry.coordinates)
     .flat();
 
-  const allPointsCoordinates = features.filter(isPointFeature).map(feature => feature.geometry.coordinates);
+  const allPointsCoordinates = features.filter(isPointFeature).map((feature) => feature.geometry.coordinates);
 
   if (allPointsCoordinates.length === 0 && allLineStringsCoordinates.length === 0) {
     return;

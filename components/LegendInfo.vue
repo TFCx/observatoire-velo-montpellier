@@ -2,31 +2,27 @@
   <div class="relative z-50" v-show="isExpanded">
     <div class="fixed p-2 bottom-5">
       <div class="relative p-4 w-full max-w-sm rounded-xl bg-white">
-        <button type="button"
+        <button
+          type="button"
           class="absolute top-1 right-1 bg-white rounded-md p-1 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100"
-          @click="reduceLegend">
+          @click="reduceLegend"
+        >
           <Icon name="mdi:close" class="h-6 w-6" aria-hidden="true" />
         </button>
-        <div class="text-sm font-medium leading-4 text-gray-900 italic">
-          Légende
-        </div>
+        <div class="text-sm font-medium leading-4 text-gray-900 italic">Légende</div>
         <div class="mt-2">
-          <div v-if="true">
-          </div>
+          <div v-if="true"></div>
           <div v-if="layerDisplayed == 0">
             <div class="grid grid-cols-[64px_1fr] gap-x-4">
-
               <div class="col-span-2 font-bold text-center">
-                <hr class="m-1 border-gray-500">
+                <hr class="m-1 border-gray-500" />
                 Avancement du réseau
-                <hr class="m-1 border-gray-500">
+                <hr class="m-1 border-gray-500" />
               </div>
               <div class="my-auto rounded-md border-gray-500 border">
                 <div class="h-1 bg-color-primary-primary" />
               </div>
-              <div>
-                Terminé
-              </div>
+              <div>Terminé</div>
 
               <div class="my-auto rounded-md border-gray-500 border">
                 <div class="h-1 relative">
@@ -38,9 +34,7 @@
                   </div>
                 </div>
               </div>
-              <div>
-                En travaux
-              </div>
+              <div>En travaux</div>
 
               <div class="my-auto border-gray-500 border">
                 <div class="h-2 relative">
@@ -51,157 +45,136 @@
                   </div>
                 </div>
               </div>
-              <div>
-                Prévu pour 2026
-              </div>
+              <div>Prévu pour 2026</div>
 
               <div class="my-auto rounded-md border-gray-500 border relative">
                 <div class="h-1 bg-white" />
-                <div class="myabsolute h-full w-full bg-color-primary-primary dashed-line opacity-30 " />
-                <div class="text-gray-500 font-bold absolute -top-2 opacity-65 ">
-                  ✕ ✕ ✕
-                </div>
+                <div class="myabsolute h-full w-full bg-color-primary-primary dashed-line opacity-30" />
+                <div class="text-gray-500 font-bold absolute -top-2 opacity-65">✕ ✕ ✕</div>
               </div>
-              <div>
-                Reporté après 2026
-              </div>
+              <div>Reporté après 2026</div>
             </div>
           </div>
 
           <div v-if="layerDisplayed == 1">
             <div class="grid grid-cols-[64px_1fr] gap-x-4">
               <div class="col-span-2 font-bold text-center">
-                <hr class="m-1 border-gray-500">
+                <hr class="m-1 border-gray-500" />
                 Évaluation de la qualité
-                <hr class="m-1 border-gray-500">
+                <hr class="m-1 border-gray-500" />
               </div>
               <div class="my-auto rounded-md border-gray-500 border">
                 <div class="h-1 bg-legend-quality-good" />
               </div>
-              <div>
-                Satisfaisant
-              </div>
+              <div>Satisfaisant</div>
 
               <div class="my-auto rounded-md border-gray-500 border">
                 <div class="h-1 bg-legend-quality-fair" />
               </div>
-              <div>
-                À améliorer
-              </div>
+              <div>À améliorer</div>
 
               <div class="my-auto rounded-md border-gray-500 border">
                 <div class="h-1 bg-legend-quality-bad" />
               </div>
-              <div>
-                Non satisfaisant
-              </div>
+              <div>Non satisfaisant</div>
             </div>
           </div>
 
           <div v-if="layerDisplayed == 2">
             <div class="grid grid-cols-[64px_1fr] gap-x-4">
               <div class="col-span-2 font-bold text-center">
-                <hr class="m-1 border-gray-500">
+                <hr class="m-1 border-gray-500" />
                 Catégories principales
-                <hr class="m-1 border-gray-500">
+                <hr class="m-1 border-gray-500" />
               </div>
               <div class="my-auto rounded-md border-gray-500 border">
                 <div class="h-1 bg-legend-infra-family-dedie" />
               </div>
-              <div>
-                Aménagements dédiés
-              </div>
+              <div>Aménagements dédiés</div>
 
               <div class="my-auto rounded-md border-gray-500 border">
                 <div class="h-1 bg-legend-infra-family-mix-motor" />
               </div>
-              <div>
-                Mixité avec motorisés
-              </div>
+              <div>Mixité avec motorisés</div>
 
               <div class="my-auto rounded-md border-gray-500 border">
                 <div class="h-1 bg-legend-infra-family-mix-ped" />
               </div>
-              <div>
-                Cohabitation avec piétons
-              </div>
+              <div>Cohabitation avec piétons</div>
             </div>
           </div>
 
           <div v-if="layerDisplayed == 3">
             <div class="grid grid-cols-[64px_1fr] gap-x-2">
               <div class="col-span-2 font-bold text-center">
-                <hr class="m-1 border-gray-500">
+                <hr class="m-1 border-gray-500" />
                 Futur réseau
-                <hr class="m-1 border-gray-500">
+                <hr class="m-1 border-gray-500" />
               </div>
 
               <div class="my-auto rounded-md border-gray-500 border">
                 <div class="h-1.5 bg-gray-400" />
               </div>
-              <div>
-                Anneau vélo
-              </div>
+              <div>Anneau vélo</div>
 
               <div class="flex grow w-full items-center">
-                <div class="h-1.5 bg-emerald-400 rounded-full border border-black border-r-0 rounded-r-none"
-                  style="width: 16%;"></div>
-                <div class="h-1.5 bg-teal-700 border border-black border-l-0 border-r-0 rounded-none" style="width: 16%;">
-                </div>
-                <div class="h-1.5 bg-yellow-400 border border-black border-l-0 border-r-0 rounded-none"
-                  style="width: 16%;"></div>
-                <div class="h-1.5 bg-violet-400 border border-black border-l-0 border-r-0 rounded-none"
-                  style="width: 16%;"></div>
-                <div class="h-1.5 bg-yellow-600 border border-black border-l-0 border-r-0 rounded-none"
-                  style="width: 16%;"></div>
-                <div class="h-1.5 bg-red-300 rounded-full border border-black border-l-0 rounded-l-none"
-                  style="width: 17%;"></div>
+                <div
+                  class="h-1.5 bg-emerald-400 rounded-full border border-black border-r-0 rounded-r-none"
+                  style="width: 16%"
+                ></div>
+                <div
+                  class="h-1.5 bg-teal-700 border border-black border-l-0 border-r-0 rounded-none"
+                  style="width: 16%"
+                ></div>
+                <div
+                  class="h-1.5 bg-yellow-400 border border-black border-l-0 border-r-0 rounded-none"
+                  style="width: 16%"
+                ></div>
+                <div
+                  class="h-1.5 bg-violet-400 border border-black border-l-0 border-r-0 rounded-none"
+                  style="width: 16%"
+                ></div>
+                <div
+                  class="h-1.5 bg-yellow-600 border border-black border-l-0 border-r-0 rounded-none"
+                  style="width: 16%"
+                ></div>
+                <div
+                  class="h-1.5 bg-red-300 rounded-full border border-black border-l-0 rounded-l-none"
+                  style="width: 17%"
+                ></div>
               </div>
-              <div>
-                Autres lignes
-              </div>
-
-
+              <div>Autres lignes</div>
             </div>
           </div>
 
           <div v-if="layerDisplayed == 4">
             <div class="grid grid-cols-[64px_1fr] gap-x-4">
               <div class="col-span-2 font-bold text-center">
-                <hr class="m-1 border-gray-500">
+                <hr class="m-1 border-gray-500" />
                 Famille d'aménagements
-                <hr class="m-1 border-gray-500">
+                <hr class="m-1 border-gray-500" />
               </div>
               <div class="my-auto rounded-md border-gray-500 border">
                 <div class="h-1 bg-legend-infra-type-bidirectionnelle" />
               </div>
-              <div>
-                Bidirectionnelle
-              </div>
+              <div>Bidirectionnelle</div>
 
               <div class="my-auto rounded-md border-gray-500 border">
                 <div class="h-1 bg-legend-infra-type-bilaterale" />
               </div>
-              <div>
-                Bilatérale
-              </div>
+              <div>Bilatérale</div>
 
               <div class="my-auto rounded-md border-gray-500 border">
                 <div class="h-1 bg-legend-infra-type-voie-verte" />
               </div>
-              <div>
-                Voie verte
-              </div>
+              <div>Voie verte</div>
 
               <div class="my-auto rounded-md border-gray-500 border">
                 <div class="h-1 bg-legend-infra-type-velorue" />
               </div>
-              <div>
-                Vélorue
-              </div>
+              <div>Vélorue</div>
             </div>
           </div>
-
         </div>
       </div>
     </div>
@@ -210,7 +183,6 @@
 
 <script setup lang="ts">
 import type { DisplayedLayer } from '~/composables/map/network';
-
 
 const { defaultLegend } = defineProps<{
   defaultLegend: DisplayedLayer;
@@ -239,7 +211,7 @@ defineExpose({
   expandLegend,
   reduceLegend,
   toggleLegend,
-  setWhichLayerIsDisplayed
+  setWhichLayerIsDisplayed,
 });
 </script>
 

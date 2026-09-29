@@ -30,8 +30,7 @@ useHead({
     // description
     { name: 'description', content: article.value.description },
     { property: 'og:description', content: article.value.description },
-    { name: 'twitter:description', content: article.value.description }
-  ]
+    { name: 'twitter:description', content: article.value.description },
+  ],
 });
-
 </script>

@@ -1,0 +1,4 @@
+# Commits de formatage pur, ignorés par `git blame` (GitHub les ignore automatiquement ;
+# en local : git config blame.ignoreRevsFile .git-blame-ignore-revs).
+# style: formater le code avec oxfmt (ADR 0007)
+b3a761eae3b2fc7fb01b51d11a4c0ef4f3e09acc
