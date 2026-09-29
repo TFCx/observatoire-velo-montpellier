@@ -11,7 +11,7 @@ import {
   GENERATED_SITE_DIRECTORY,
   countDistinctMapColors,
   launchChromiumWithWebgl2,
-  startStaticServer
+  startStaticServer,
 } from '../tests/e2e/browser.ts';
 
 // Format recommandé par les réseaux sociaux pour les grands aperçus (rapport 1,91:1).
@@ -34,7 +34,7 @@ function convertToDataUri(pngContent: Buffer): string {
 
 async function main() {
   if (!fs.existsSync(path.join(GENERATED_SITE_DIRECTORY, 'index.html'))) {
-    throw new Error('Site généré introuvable : lancer `npm run og-image`, qui le génère d\'abord.');
+    throw new Error("Site généré introuvable : lancer `npm run og-image`, qui le génère d'abord.");
   }
   const server = await startStaticServer();
   const baseUrl = `http://127.0.0.1:${(server.address() as AddressInfo).port}`;
@@ -53,7 +53,7 @@ async function main() {
     // texte d'attribution affiché par la carte, pour qu'il suive le fond de carte utilisé.
     const attribution = (await mapPage.locator('.maplibregl-ctrl-attrib-inner').innerText()).trim();
     const mapScreenshot = await mapPage.locator('canvas.maplibregl-canvas').first().screenshot({
-      style: 'body * { visibility: hidden; } canvas.maplibregl-canvas { visibility: visible; }'
+      style: 'body * { visibility: hidden; } canvas.maplibregl-canvas { visibility: visible; }',
     });
 
     const compositionPage = await browser.newPage({ viewport: { width: IMAGE_WIDTH, height: IMAGE_HEIGHT } });
@@ -69,7 +69,9 @@ async function main() {
       element.textContent = text;
     }, attribution);
     await compositionPage.screenshot({ path: OUTPUT_PATH });
-    console.log(`Image de partage écrite : ${path.relative(PROJECT_DIRECTORY, OUTPUT_PATH)} (attribution : ${attribution})`);
+    console.log(
+      `Image de partage écrite : ${path.relative(PROJECT_DIRECTORY, OUTPUT_PATH)} (attribution : ${attribution})`,
+    );
   } finally {
     await browser.close();
     server.close();

@@ -13,7 +13,7 @@ const MAP_PAGES = [
   { name: 'line_page', route: '/veloligne-1' },
   { name: 'interactive_map_page', route: '/carte-interactive' },
   { name: 'embedded_map_page', route: '/carte-interactive/embed' },
-  { name: 'evolution_page', route: '/evolution' }
+  { name: 'evolution_page', route: '/evolution' },
 ];
 
 // Une carte se dessine en 3 s au plus en CI : 20 s laissent de la marge sans trop retarder l'échec

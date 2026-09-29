@@ -12,11 +12,13 @@ certificat Let's Encrypt) est le domaine principal ; `public/_redirects` y renvo
 `.netlify.app`.
 
 Deux problèmes :
+
 - Netlify construisait chaque branche indépendamment de la CI GitHub : un commit en échec aux
   tests pouvait être déployé, y compris en production, qui ne doit jamais régresser.
 - Chaque build Netlify consomme des minutes de build, d'autant plus avec des aperçus par PR.
 
 Alternatives examinées :
+
 - Laisser Netlify construire, avec des deploy previews : simple, mais consomme des minutes à
   chaque push de PR, et ce qui est déployé n'est pas le build qui a été testé.
 - Cloudflare Pages : gratuit, rapide, previews, `_redirects` compatible ; mais migration du DNS

@@ -13,38 +13,34 @@
         >
           <Icon name="mdi:close" class="h-6 w-6" aria-hidden="true" />
         </button>
-        <DialogTitle class="text-lg font-medium leading-6 text-gray-900">
-          Filtres
-        </DialogTitle>
+        <DialogTitle class="text-lg font-medium leading-6 text-gray-900"> Filtres </DialogTitle>
 
-        <div class="mt-2 text-base font-medium">
-          Filtrer par statut d'avancement
-        </div>
+        <div class="mt-2 text-base font-medium">Filtrer par statut d'avancement</div>
         <div class="mt-2 flex flex-wrap gap-x-2 gap-y-3">
           <div
             v-for="(statusFilter, index) in statusFilters"
             :key="statusFilter.label"
             class="px-2 py-1 border rounded-2xl text-sm cursor-pointer focus:outline-none ring-color-primary-primary ring-2"
             :class="{
-              'bg-color-primary-primary border-transparent text-white ring-offset-1 hover:bg-color-primary-500': statusFilter.isEnable,
-              'bg-white border-gray-200 text-gray-900 hover:bg-gray-50': !statusFilter.isEnable
+              'bg-color-primary-primary border-transparent text-white ring-offset-1 hover:bg-color-primary-500':
+                statusFilter.isEnable,
+              'bg-white border-gray-200 text-gray-900 hover:bg-gray-50': !statusFilter.isEnable,
             }"
             @click="toogleStatusFilter(index)"
           >
             {{ statusFilter.label }}
           </div>
         </div>
-        <div class="mt-2 text-base font-medium">
-          Filtrer par type d'aménagement
-        </div>
+        <div class="mt-2 text-base font-medium">Filtrer par type d'aménagement</div>
         <div class="mt-2 flex flex-wrap gap-x-2 gap-y-3">
           <div
             v-for="(typeFilter, index) in typeFilters"
             :key="typeFilter.label"
             class="px-2 py-1 border rounded-2xl text-sm cursor-pointer focus:outline-none ring-color-primary-primary ring-2"
             :class="{
-              'bg-color-primary-primary border-transparent text-white ring-offset-1 hover:bg-color-primary-500': typeFilter.isEnable,
-              'bg-white border-gray-200 text-gray-900 hover:bg-gray-50': !typeFilter.isEnable
+              'bg-color-primary-primary border-transparent text-white ring-offset-1 hover:bg-color-primary-500':
+                typeFilter.isEnable,
+              'bg-white border-gray-200 text-gray-900 hover:bg-gray-50': !typeFilter.isEnable,
             }"
             @click="toogleTypeFilter(index)"
           >
@@ -70,7 +66,7 @@ function openModal() {
 }
 
 defineExpose({
-  openModal
+  openModal,
 });
 
 const statusFilters = ref([
@@ -78,7 +74,7 @@ const statusFilters = ref([
   { label: 'En travaux', isEnable: true, statuses: [LaneStatus.Wip] },
   { label: 'Prévu pour 2026', isEnable: true, statuses: [LaneStatus.Planned, LaneStatus.Variante] },
   { label: 'Reporté', isEnable: true, statuses: [LaneStatus.Postponed, LaneStatus.VariantePostponed] },
-  { label: 'Inconnu', isEnable: true, statuses: [LaneStatus.Unknown] }
+  { label: 'Inconnu', isEnable: true, statuses: [LaneStatus.Unknown] },
 ]);
 
 const typeFilters = ref([
@@ -106,16 +102,15 @@ function toogleTypeFilter(index: number) {
 
 const emit = defineEmits(['update']);
 
-watch([statusFilters, typeFilters], () => {
-  const visibleStatuses = statusFilters.value
-    .filter(item => item.isEnable)
-    .flatMap(item => item.statuses);
+watch(
+  [statusFilters, typeFilters],
+  () => {
+    const visibleStatuses = statusFilters.value.filter((item) => item.isEnable).flatMap((item) => item.statuses);
 
-  const visibleTypes = typeFilters.value
-    .filter(item => item.isEnable)
-    .flatMap(item => item.types);
+    const visibleTypes = typeFilters.value.filter((item) => item.isEnable).flatMap((item) => item.types);
 
-  emit('update', { visibleStatuses, visibleTypes });
-}, { deep: true });
-
+    emit('update', { visibleStatuses, visibleTypes });
+  },
+  { deep: true },
+);
 </script>

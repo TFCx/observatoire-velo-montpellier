@@ -1,4 +1,5 @@
 Feuille de route technique (sept. 2026) — voir docs/decisions/0002 :
+
 - Phase 0 : fondations — FAIT (sept. 2026)
   - [x] ADR 0002 (portage manuel des features de Cyclopolis, remplace 0001)
   - [x] CI (run_tests.yml) : tests unitaires, tests de données (data-health), smoke tests sur le site généré
@@ -44,6 +45,7 @@ Feuille de route technique (sept. 2026) — voir docs/decisions/0002 :
 - En continu : refactor de chaque zone avant d'y porter une feature, en commit séparé
 
 Prochaine release :
+
 - [x] [BUG] lien mort dans page anneau (remplacement des images par assets ?) + lien mort véloligne A
   - Vérifié le 29/09/2026 : plus de lien mort sur ces pages ; le vrai lien mort était la couverture de la VL 10.
     Toutes les images des Vélolignes sont désormais dans public/ (test de données : aucune image externe).
@@ -60,10 +62,11 @@ Prochaine release :
   - [x] Passe du 29/09/2026 : seul warning à nous (prop options de Map sur /carte-interactive/embed) corrigé ;
         les autres viennent de Nuxt (H3, devtools, Suspense). Restent : vitest 2 → 4 et MapLibre 5 → 6 (npm audit)
 - [x] [BUG] carte-interactive/embed.vue et index.vue : l'image de partage est codée en dur sur un fichier au nom haché
-  (logoCyclopolisVGM.CzJjkGQi.png) de l'ancienne adresse .netlify.app -> casse si l'image change
+      (logoCyclopolisVGM.CzJjkGQi.png) de l'ancienne adresse .netlify.app -> casse si l'image change
 - [x] [SEO] /historique, /blog, /mentions-legales, /sites-partenaires, /evolution et les articles de blog gardent le titre générique du site
 
 Moyen terme :
+
 - [UX] Dans Type & Qualité : couleurs des familles
 - [REFACTOR] Faire en sorte que le nom de la section ne soit pas une clé primaire pour les sections partagées
 - [REFACTOR] MAJ les auto-scripts qui envoient des mails
@@ -73,7 +76,7 @@ Moyen terme :
   - [UX] Ajuster les couleurs y compris dans les bars de progression
 - [FEAT] Déplacer le lien vers le "tableau de bord"
 - [FEAT] Voir si dessiner les layers qualités/type avec le status ? Voir interactions avec les PCs non REV
-- [CONTENT] Renseigner un peu plus en détail Vélolignes C et D  (.md)
+- [CONTENT] Renseigner un peu plus en détail Vélolignes C et D (.md)
 - [FEAT++]mettre des liens vers le site des compteurs, Vigilo, Ville.plus, le baromètre.. peut-être en bas en pied de page ?
 - résoudre le bug de :line-link{line=X}
 - [FEAT++] Intégrer les carrefours
@@ -91,6 +94,7 @@ Moyen terme :
 - MAJ baromètre
 
 Long terme :
+
 - Mesure d'audience propre à Vélocité (Beam Analytics de Lyon retiré le 29/09/2026) -> ADR : outil respectueux de la vie privée,
   sans cookie ni bandeau de consentement (ex. Plausible, GoatCounter, Umami auto-hébergé), qui en paie l'hébergement
 - Intégration topographie

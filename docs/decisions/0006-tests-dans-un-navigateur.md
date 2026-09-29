@@ -18,6 +18,7 @@ seulement. Leur test de carte vérifie qu'un `<canvas>` existe, ce qui était vr
 la carte vide.
 
 Alternatives examinées :
+
 - `@playwright/test`, le runner officiel : plus complet (attentes automatiques, traces,
   captures d'écran, lancement du serveur), mais un second outil de test à côté de vitest, et
   des tests moins proches de ceux de Lyon.
@@ -38,7 +39,7 @@ Alternatives examinées :
 
 - Une carte vide ou une erreur JavaScript bloque la PR.
 - Chromium (~115 Mo) doit être téléchargé une fois en local (`npx playwright-core install
-  chromium`) et en CI (mis en cache).
+chromium`) et en CI (mis en cache).
 - Environ une minute de plus par exécution de la CI.
 - Le fond de carte vient d'Internet (tuiles OpenMapTiles) : les tests dépendent du réseau ;
   les vérifications portent sur nos propres couches, chargées localement.

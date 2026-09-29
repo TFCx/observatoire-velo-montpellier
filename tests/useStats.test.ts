@@ -20,8 +20,18 @@ function getTodoPercent(voies: ReturnType<typeof buildVoie>[]) {
 describe('useStats', () => {
   describe('getAllUniqLineStrings', () => {
     it('should_keep_only_first_feature_when_features_share_same_id', () => {
-      const sharedSectionOnLine1 = buildSection({ id: 'commun', line: 1, status: LaneStatus.Done, type: LaneType.Bidirectionnelle });
-      const sharedSectionOnLine2 = buildSection({ id: 'commun', line: 2, status: LaneStatus.Done, type: LaneType.Bidirectionnelle });
+      const sharedSectionOnLine1 = buildSection({
+        id: 'commun',
+        line: 1,
+        status: LaneStatus.Done,
+        type: LaneType.Bidirectionnelle,
+      });
+      const sharedSectionOnLine2 = buildSection({
+        id: 'commun',
+        line: 2,
+        status: LaneStatus.Done,
+        type: LaneType.Bidirectionnelle,
+      });
 
       const uniqLineStrings = getAllUniqLineStrings([buildVoie(sharedSectionOnLine1), buildVoie(sharedSectionOnLine2)]);
 
@@ -34,9 +44,9 @@ describe('useStats', () => {
       const voies = [
         buildVoie(
           buildSection({ id: 'commun', line: 1, status: LaneStatus.Done, type: LaneType.Bidirectionnelle }),
-          buildSection({ line: 1, status: LaneStatus.Planned, type: LaneType.Bidirectionnelle })
+          buildSection({ line: 1, status: LaneStatus.Planned, type: LaneType.Bidirectionnelle }),
         ),
-        buildVoie(buildSection({ id: 'commun', line: 2, status: LaneStatus.Done, type: LaneType.Bidirectionnelle }))
+        buildVoie(buildSection({ id: 'commun', line: 2, status: LaneStatus.Done, type: LaneType.Bidirectionnelle })),
       ];
 
       assert.deepEqual(getDoneAndWipStats(voies), [{ name: DEDICATED_FAMILY_NAME, percent: 50 }]);
@@ -46,8 +56,8 @@ describe('useStats', () => {
       const voies = [
         buildVoie(
           buildSection({ line: 1, status: LaneStatus.Planned, type: LaneType.Bidirectionnelle }),
-          buildSection({ line: 1, status: LaneStatus.Planned, type: LaneType.VoieVerte })
-        )
+          buildSection({ line: 1, status: LaneStatus.Planned, type: LaneType.VoieVerte }),
+        ),
       ];
 
       assert.equal(getTodoPercent(voies), 100);
@@ -57,8 +67,8 @@ describe('useStats', () => {
       const voies = [
         buildVoie(
           buildSection({ line: 1, status: LaneStatus.Postponed, type: LaneType.Bidirectionnelle }),
-          buildSection({ line: 1, status: LaneStatus.Done, type: LaneType.Bidirectionnelle })
-        )
+          buildSection({ line: 1, status: LaneStatus.Done, type: LaneType.Bidirectionnelle }),
+        ),
       ];
 
       assert.equal(getTodoPercent(voies), 50);
@@ -68,8 +78,8 @@ describe('useStats', () => {
       const voies = [
         buildVoie(
           buildSection({ line: 1, status: LaneStatus.Done, type: LaneType.Bidirectionnelle }),
-          buildSection({ line: 1, status: LaneStatus.Done, type: LaneType.Unidirectionnelle })
-        )
+          buildSection({ line: 1, status: LaneStatus.Done, type: LaneType.Unidirectionnelle }),
+        ),
       ];
 
       assert.deepEqual(getDoneAndWipStats(voies), [{ name: DEDICATED_FAMILY_NAME, percent: 100 }]);
@@ -79,8 +89,8 @@ describe('useStats', () => {
       const voies = [
         buildVoie(
           buildSection({ line: 1, status: LaneStatus.Wip, type: LaneType.Bidirectionnelle }),
-          buildSection({ line: 1, status: LaneStatus.Planned, type: LaneType.Bidirectionnelle })
-        )
+          buildSection({ line: 1, status: LaneStatus.Planned, type: LaneType.Bidirectionnelle }),
+        ),
       ];
 
       assert.deepEqual(getDoneAndWipStats(voies), [{ name: DEDICATED_FAMILY_NAME, percent: 50 }]);
@@ -90,8 +100,8 @@ describe('useStats', () => {
       const voies = [
         buildVoie(
           buildSection({ line: 1, status: LaneStatus.Variante, type: LaneType.Bidirectionnelle }),
-          buildSection({ line: 1, status: LaneStatus.Planned, type: LaneType.Bidirectionnelle })
-        )
+          buildSection({ line: 1, status: LaneStatus.Planned, type: LaneType.Bidirectionnelle }),
+        ),
       ];
 
       assert.equal(getTodoPercent(voies), 100);
@@ -101,8 +111,8 @@ describe('useStats', () => {
       const voies = [
         buildVoie(
           buildSection({ line: 1, status: LaneStatus.Done, type: LaneType.Inconnu }),
-          buildSection({ line: 1, status: LaneStatus.Planned, type: LaneType.Bidirectionnelle })
-        )
+          buildSection({ line: 1, status: LaneStatus.Planned, type: LaneType.Bidirectionnelle }),
+        ),
       ];
 
       assert.equal(getTodoPercent(voies), 100);
@@ -112,8 +122,8 @@ describe('useStats', () => {
       const voies = [
         buildVoie(
           buildSection({ line: 1, status: LaneStatus.Variante, type: LaneType.Bidirectionnelle }),
-          buildSection({ line: 2, status: LaneStatus.Variante, type: LaneType.VoieVerte })
-        )
+          buildSection({ line: 2, status: LaneStatus.Variante, type: LaneType.VoieVerte }),
+        ),
       ];
 
       assert.equal(getTodoPercent(voies), 0);
@@ -124,13 +134,13 @@ describe('useStats', () => {
         buildVoie(
           buildSection({ line: 1, status: LaneStatus.Done, type: LaneType.VoieVerte }),
           buildSection({ line: 1, status: LaneStatus.Done, type: LaneType.Bidirectionnelle }),
-          buildSection({ line: 1, status: LaneStatus.Done, type: LaneType.Bilaterale })
-        )
+          buildSection({ line: 1, status: LaneStatus.Done, type: LaneType.Bilaterale }),
+        ),
       ];
 
       assert.deepEqual(getDoneAndWipStats(voies), [
         { name: DEDICATED_FAMILY_NAME, percent: 67 },
-        { name: PEDESTRIAN_MIX_FAMILY_NAME, percent: 33 }
+        { name: PEDESTRIAN_MIX_FAMILY_NAME, percent: 33 },
       ]);
     });
 
@@ -138,13 +148,11 @@ describe('useStats', () => {
       const voies = [
         buildVoie(
           buildSection({ line: 1, status: LaneStatus.Done, type: LaneType.Bidirectionnelle, quality: Quality.Good }),
-          buildSection({ line: 1, status: LaneStatus.Done, type: LaneType.Bidirectionnelle, quality: Quality.Bad })
-        )
+          buildSection({ line: 1, status: LaneStatus.Done, type: LaneType.Bidirectionnelle, quality: Quality.Bad }),
+        ),
       ];
 
-      assert.deepEqual(getDoneAndWipStats(voies), [
-        { name: DEDICATED_FAMILY_NAME, percent: 100, good: 50, bad: 50 }
-      ]);
+      assert.deepEqual(getDoneAndWipStats(voies), [{ name: DEDICATED_FAMILY_NAME, percent: 100, good: 50, bad: 50 }]);
     });
   });
 });

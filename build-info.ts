@@ -27,7 +27,7 @@ export function readBuildInfo(): BuildInfo {
   return {
     commit: readBuildCommit(),
     environment: process.env.DEPLOY_ENVIRONMENT || 'local',
-    date: new Date().toISOString().slice(0, 10)
+    date: new Date().toISOString().slice(0, 10),
   };
 }
 

@@ -9,6 +9,6 @@ export default defineConfig({
     testTimeout: 60_000,
     hookTimeout: 60_000,
     // Un seul Chromium et un seul serveur pour tous les fichiers de test.
-    fileParallelism: false
-  }
+    fileParallelism: false,
+  },
 });

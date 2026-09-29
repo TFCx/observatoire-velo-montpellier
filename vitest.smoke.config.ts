@@ -4,6 +4,6 @@ import { defineConfig } from 'vitest/config';
 // qu'après `nuxt generate`. Ils ne doivent donc pas tourner avec les tests unitaires de `npm test`.
 export default defineConfig({
   test: {
-    include: ['tests/smoke/**/*.smoke.ts']
-  }
+    include: ['tests/smoke/**/*.smoke.ts'],
+  },
 });

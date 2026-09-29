@@ -9,7 +9,7 @@ export default defineNuxtPlugin(() => {
   useHead({
     meta: [
       { property: 'og:url', content: sharedPageUrl },
-      { name: 'twitter:url', content: sharedPageUrl }
-    ]
+      { name: 'twitter:url', content: sharedPageUrl },
+    ],
   });
 });

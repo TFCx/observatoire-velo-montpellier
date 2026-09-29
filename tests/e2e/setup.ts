@@ -30,7 +30,7 @@ export function setupBrowserTests() {
 
   afterAll(async () => {
     await browser?.close();
-    await new Promise(resolve => server?.close(resolve));
+    await new Promise((resolve) => server?.close(resolve));
   });
 
   // Les requêtes vers Internet (tuiles du fond de carte, polices…) sont bloquées : les tests ne
@@ -39,11 +39,11 @@ export function setupBrowserTests() {
     const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
     const blockedExternalUrls = new Set<string>();
     await page.route(
-      url => !url.href.startsWith(baseUrl) && !url.href.startsWith('data:'),
-      externalRoute => {
+      (url) => !url.href.startsWith(baseUrl) && !url.href.startsWith('data:'),
+      (externalRoute) => {
         blockedExternalUrls.add(externalRoute.request().url());
         return externalRoute.abort();
-      }
+      },
     );
 
     // Une erreur n'est ignorée que si elle désigne une requête que nous avons bloquée : par son
@@ -51,13 +51,13 @@ export function setupBrowserTests() {
     // (erreurs de chargement relayées par MapLibre).
     const consoleErrors: string[] = [];
     const isCausedByBlockedRequest = (text: string, sourceUrl: string) =>
-      blockedExternalUrls.has(sourceUrl) || [...blockedExternalUrls].some(blockedUrl => text.includes(blockedUrl));
-    page.on('console', message => {
+      blockedExternalUrls.has(sourceUrl) || [...blockedExternalUrls].some((blockedUrl) => text.includes(blockedUrl));
+    page.on('console', (message) => {
       if (message.type() === 'error' && !isCausedByBlockedRequest(message.text(), message.location().url)) {
         consoleErrors.push(message.text());
       }
     });
-    page.on('pageerror', error => {
+    page.on('pageerror', (error) => {
       if (!isCausedByBlockedRequest(error.message, '')) {
         consoleErrors.push(error.message);
       }

@@ -1,12 +1,8 @@
 <template>
   <div>
-    <ContentFrame
-      :description="voie.description"
-      :image-url="voie.cover"
-    >
+    <ContentFrame :description="voie.description" :image-url="voie.cover">
       <template #header>
         <h1 class="text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-
           <div
             class="mt-2 px-3 py-1 rounded-full flex items-center justify-center text-white font-bold mx-auto"
             :style="`background-color: white`"
@@ -15,9 +11,9 @@
               class="mt-2 px-3 py-1 rounded-full flex items-center justify-center text-white font-bold mx-auto"
               :style="`background-color: ${getLineColor(voie.line)}`"
             >
-            {{ voie.lineName }}
+              {{ voie.lineName }}
+            </div>
           </div>
-        </div>
         </h1>
       </template>
       <h2>Aperçu</h2>
@@ -41,12 +37,12 @@ const line = path.match(regex)[1];
 // https://github.com/nuxt/framework/issues/3587
 definePageMeta({
   pageTransition: false,
-  middleware: 'voie-cyclable'
+  middleware: 'voie-cyclable',
 });
 
 const { data: voie } = await useAsyncData(`${path}`, () => {
-  const lineInteger = Number(line)
-  const lineId = !Number.isNaN(lineInteger) ? lineInteger : line
+  const lineInteger = Number(line);
+  const lineId = !Number.isNaN(lineInteger) ? lineInteger : line;
   return queryCollection('voiesCyclablesPages').where('line', '=', lineId).first();
 });
 
@@ -58,7 +54,7 @@ useHead({
     // description
     { name: 'description', content: description },
     { property: 'og:description', content: description },
-    { name: 'twitter:description', content: description }
-  ]
+    { name: 'twitter:description', content: description },
+  ],
 });
 </script>

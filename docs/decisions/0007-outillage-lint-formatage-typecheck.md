@@ -19,6 +19,7 @@ Cyclopolis Lyon est passé à ESLint 9 avec `@nuxt/eslint` 1.15, `eslint-config-
 formateur `oxfmt`, qui exclut `content/`. Il n'a pas de typecheck.
 
 Alternatives examinées :
+
 - Prettier comme formateur (déjà présent) : plus mûr qu'`oxfmt` (version 0.x), mais un formatage
   qui ne serait pas strictement celui de Lyon.
 - `oxlint` à la place d'ESLint : très rapide, mais prise en charge des fichiers `.vue` encore

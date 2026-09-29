@@ -14,7 +14,7 @@
  * - pitch 90
  */
 const { params } = defineProps({
-  params: { type: String, required: true }
+  params: { type: String, required: true },
 });
 
 const url = new URL('https://www.google.com/maps/@?api=1&map_action=pano');

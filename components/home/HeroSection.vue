@@ -1,7 +1,13 @@
 <template>
   <div class="relative bg-white overflow-hidden">
     <div class="hidden lg:block lg:absolute lg:inset-0" aria-hidden="true">
-      <svg class="absolute top-0 left-1/2 transform translate-x-64 -translate-y-8" width="640" height="784" fill="none" viewBox="0 0 640 784">
+      <svg
+        class="absolute top-0 left-1/2 transform translate-x-64 -translate-y-8"
+        width="640"
+        height="784"
+        fill="none"
+        viewBox="0 0 640 784"
+      >
         <defs>
           <pattern
             id="9ebea6f4-a1f5-4d96-8c4e-4c2abf658047"
@@ -11,14 +17,7 @@
             height="20"
             patternUnits="userSpaceOnUse"
           >
-            <rect
-              x="0"
-              y="0"
-              width="4"
-              height="4"
-              class="text-gray-200"
-              fill="currentColor"
-            />
+            <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
           </pattern>
         </defs>
         <rect y="72" width="640" height="640" class="text-gray-50" fill="currentColor" />
@@ -29,62 +28,65 @@
     <div class="relative pt-6 pb-16 sm:pb-24 lg:pb-32">
       <div class="mt-16 mx-auto max-w-7xl px-4 sm:mt-24 sm:px-6 lg:mt-32">
         <div class="lg:grid lg:grid-cols-12 lg:gap-8">
-          <div
-            class="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left"
-          >
+          <div class="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left">
             <h1>
               <span
                 class="block text-sm font-semibold uppercase tracking-wide text-gray-500 sm:text-base lg:text-sm xl:text-base"
-              >Plateforme de suivi</span>
-              <span
-                class="mt-1 block text-4xl tracking-tight font-extrabold sm:text-5xl xl:text-6xl"
+                >Plateforme de suivi</span
               >
+              <span class="mt-1 block text-4xl tracking-tight font-extrabold sm:text-5xl xl:text-6xl">
                 <span class="block text-gray-900">Avancement des</span>
                 <span class="block text-color-primary-primary">{{ getRevName() }}</span>
               </span>
             </h1>
-            <p
-              class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl"
-            >
-              Une initiative de l'association <strong>{{ assoName }}</strong> pour suivre et évaluer le développement du nouveau réseau vélo sécurisé montpelliérain.
+            <p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
+              Une initiative de l'association <strong>{{ assoName }}</strong> pour suivre et évaluer le développement du
+              nouveau réseau vélo sécurisé montpelliérain.
             </p>
-            <div
-              class="mt-8 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0"
-            >
+            <div class="mt-8 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0">
               <div class="space-y-4 sm:space-y-0 sm:mx-auto sm:inline-grid sm:grid-cols-3 sm:gap-5">
-                <NuxtLink to="/carte-interactive" class="flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-color-primary-primary hover:shadow-lg sm:px-8 transition duration-300 transform hover:scale-105">
+                <NuxtLink
+                  to="/carte-interactive"
+                  class="flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-color-primary-primary hover:shadow-lg sm:px-8 transition duration-300 transform hover:scale-105"
+                >
                   Carte interactive
                 </NuxtLink>
-                <NuxtLink to="/plan-officiel" class="flex items-center justify-center px-4 py-3 text-base font-medium rounded-md shadow-sm text-color-primary-primary border border-color-primary-primary hover:shadow-lg sm:px-8 transition duration-300 transform hover:scale-105">
+                <NuxtLink
+                  to="/plan-officiel"
+                  class="flex items-center justify-center px-4 py-3 text-base font-medium rounded-md shadow-sm text-color-primary-primary border border-color-primary-primary hover:shadow-lg sm:px-8 transition duration-300 transform hover:scale-105"
+                >
                   Plan officiel
                 </NuxtLink>
-                <NuxtLink to="#ou-on-en-est" class="flex items-center justify-center px-4 py-3 text-base font-medium rounded-md shadow-sm text-color-primary-primary border border-color-primary-primary hover:shadow-lg sm:px-8 transition duration-300 transform hover:scale-105">
+                <NuxtLink
+                  to="#ou-on-en-est"
+                  class="flex items-center justify-center px-4 py-3 text-base font-medium rounded-md shadow-sm text-color-primary-primary border border-color-primary-primary hover:shadow-lg sm:px-8 transition duration-300 transform hover:scale-105"
+                >
                   Avancement global
                 </NuxtLink>
               </div>
 
               <NuxtLink to="https://www.barometre-velo.fr/" class="flex">
-                <img
-                  src="~/assets/logo_barometre_2025.png"
-                  alt="Logo du baromètre vélo"
-                >
+                <img src="~/assets/logo_barometre_2025.png" alt="Logo du baromètre vélo" />
               </NuxtLink>
 
-              <NuxtLink to="https://www.barometre-velo.fr/" class="flex items-center justify-center px-4 py-5 text-base font-bold rounded-md shadow-sm text-color-primary-200 border border-transparent bg-color-secondary hover:shadow-lg sm:px-8 transition duration-300 transform hover:scale-105">
-                  Consultez les résultats du baromètre vélo 2025
-                </NuxtLink>
+              <NuxtLink
+                to="https://www.barometre-velo.fr/"
+                class="flex items-center justify-center px-4 py-5 text-base font-bold rounded-md shadow-sm text-color-primary-200 border border-transparent bg-color-secondary hover:shadow-lg sm:px-8 transition duration-300 transform hover:scale-105"
+              >
+                Consultez les résultats du baromètre vélo 2025
+              </NuxtLink>
             </div>
           </div>
           <div
             class="mt-12 relative sm:max-w-lg sm:mx-auto lg:mt-0 lg:max-w-none lg:mx-0 lg:col-span-6 lg:flex lg:items-center"
           >
-            <div
-              class="relative mx-auto w-full rounded-lg shadow-lg lg:max-w-md"
-            >
-              <div
-                class="relative block w-full bg-white rounded-lg overflow-hidden"
-              >
-                <img class="w-full" src="https://i0.wp.com/lemouvement.info/wp-content/uploads/2020/01/Montpellier-av-Toulouse-demain.png" :alt="`illustration des Vélolignes : avenue de Toulouse`">
+            <div class="relative mx-auto w-full rounded-lg shadow-lg lg:max-w-md">
+              <div class="relative block w-full bg-white rounded-lg overflow-hidden">
+                <img
+                  class="w-full"
+                  src="https://i0.wp.com/lemouvement.info/wp-content/uploads/2020/01/Montpellier-av-Toulouse-demain.png"
+                  :alt="`illustration des Vélolignes : avenue de Toulouse`"
+                />
               </div>
             </div>
           </div>

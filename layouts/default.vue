@@ -33,8 +33,7 @@ function closeNewsBanner() {
 }
 
 onBeforeMount(() => {
-
-  window.addEventListener('scroll' , function () {
+  window.addEventListener('scroll', function () {
     const navbar = document.getElementById('navigation-header');
     const navbarHeight = navbar ? navbar.offsetHeight : 0;
     document.documentElement.style.setProperty('--navbar-height', navbarHeight + 'px');
@@ -43,7 +42,7 @@ onBeforeMount(() => {
       let window_top = this.scrollY;
       if (window_top == 0) {
         navbar.classList.remove('scrolled');
-      }else {
+      } else {
         navbar.classList.add('scrolled');
       }
     }
@@ -56,11 +55,16 @@ html {
   scroll-behavior: smooth;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   scroll-margin-top: calc(var(--navbar-height));
 }
 
 #navigation-header.scrolled img {
-max-width: 40%;
+  max-width: 40%;
 }
 </style>

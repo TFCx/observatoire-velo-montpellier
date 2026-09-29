@@ -17,17 +17,13 @@
     </div>
     <div class="px-2 divide-y">
       <div class="py-1 flex flex-col items-center">
-        <div class="text-base font-bold">
-          Tronçon
-        </div>
+        <div class="text-base font-bold">Tronçon</div>
         <div class="text-sm text-center">
           {{ feature.properties.name }}
         </div>
       </div>
       <div class="py-1 flex items-center justify-between">
-        <div class="text-sm font-bold mr-2">
-          Statut
-        </div>
+        <div class="text-sm font-bold mr-2">Statut</div>
         <div>
           <div class="text-sm" :class="getStatus(feature.properties).class">
             {{ getStatus(feature.properties).label }}
@@ -38,17 +34,11 @@
         </div>
       </div>
       <div class="py-1 flex items-center justify-between">
-        <div class="text-sm font-bold mr-2">
-          Longueur
-        </div>
-        <div class="text-sm">
-          {{ Math.round(getDistance([feature]) / 25) * 25 }}m
-        </div>
+        <div class="text-sm font-bold mr-2">Longueur</div>
+        <div class="text-sm">{{ Math.round(getDistance([feature]) / 25) * 25 }}m</div>
       </div>
       <div class="py-1 flex items-center justify-between">
-        <div class="text-sm font-bold mr-2">
-          Type
-        </div>
+        <div class="text-sm font-bold mr-2">Type</div>
         <div>
           <div class="text-right">
             {{ typeTextOf(feature) }}
@@ -56,9 +46,7 @@
         </div>
       </div>
       <div class="py-1 flex items-center justify-between">
-        <div class="text-sm font-bold mr-2">
-          Qualité
-        </div>
+        <div class="text-sm font-bold mr-2">Qualité</div>
         <div>
           <div class="italic text-right">
             {{ qualityTextOf(feature) }}
@@ -67,7 +55,11 @@
       </div>
     </div>
     <div class="bg-color-primary-primary flex justify-center">
-      <a class="p-1 text-white text-base italic hover:underline" :href="getSectionDetailsUrl(feature.properties)" target="_blank">
+      <a
+        class="p-1 text-white text-base italic hover:underline"
+        :href="getSectionDetailsUrl(feature.properties)"
+        target="_blank"
+      >
         voir le détail <Icon name="mdi:link-variant" class="h-4 w-4 text-white" />
       </a>
     </div>
@@ -78,17 +70,18 @@
 import type { LineStringFeature, SectionFeature } from '~/types';
 
 function qualityTextOf(section: SectionFeature): string {
-  let isHeterogenous = section.properties.qualityB != undefined && (section.properties.quality != section.properties.qualityB)
-  let qA = qualityToDescription[section.properties.quality]
-  let qB = section.properties.qualityB ? qualityToDescription[section.properties.qualityB] : ""
-  return isHeterogenous ? qA + " & " + qB : qA
+  let isHeterogenous =
+    section.properties.qualityB != undefined && section.properties.quality != section.properties.qualityB;
+  let qA = qualityToDescription[section.properties.quality];
+  let qB = section.properties.qualityB ? qualityToDescription[section.properties.qualityB] : '';
+  return isHeterogenous ? qA + ' & ' + qB : qA;
 }
 
 function typeTextOf(section: SectionFeature): string {
-  let isHeterogenous = section.properties.typeB != undefined && (section.properties.type != section.properties.typeB)
-  let tA = laneTypeToDescription[section.properties.type]
-  let tB = section.properties.typeB ? laneTypeToDescription[section.properties.typeB] : ""
-  return isHeterogenous ? tA + " & " + tB : tA
+  let isHeterogenous = section.properties.typeB != undefined && section.properties.type != section.properties.typeB;
+  let tA = laneTypeToDescription[section.properties.type];
+  let tB = section.properties.typeB ? laneTypeToDescription[section.properties.typeB] : '';
+  return isHeterogenous ? tA + ' & ' + tB : tA;
 }
 
 const { getLineColor } = useColors();
@@ -122,39 +115,39 @@ function getDoneAtText(doneAt: string): string {
   return `le ${doneAt}`;
 }
 
-function getStatus(properties: SectionFeature['properties']): { label: string, class: string; date?: string } {
+function getStatus(properties: SectionFeature['properties']): { label: string; class: string; date?: string } {
   const statusMapping = {
     done: {
       label: 'terminé',
       date: properties.doneAt && getDoneAtText(properties.doneAt),
-      class: 'text-white bg-color-primary-primary rounded-xl px-2 w-fit'
+      class: 'text-white bg-color-primary-primary rounded-xl px-2 w-fit',
     },
     wip: {
       label: 'en travaux',
-      class: 'text-color-primary-primary rounded-xl px-2 border border-dashed border-color-primary-primary'
+      class: 'text-color-primary-primary rounded-xl px-2 border border-dashed border-color-primary-primary',
     },
     planned: {
       label: 'prévu',
-      class: 'text-color-primary-primary rounded-xl px-2 border border-color-primary-primary'
+      class: 'text-color-primary-primary rounded-xl px-2 border border-color-primary-primary',
     },
     postponed: {
       label: 'reporté',
       date: 'après 2026',
-      class: 'text-white bg-color-secondary rounded-xl px-2'
+      class: 'text-white bg-color-secondary rounded-xl px-2',
     },
     variante: {
       label: 'variante',
-      class: ''
+      class: '',
     },
     'variante-postponed': {
       label: 'variante reportée',
       date: 'après 2026',
-      class: 'text-white bg-color-secondary rounded-xl px-2'
+      class: 'text-white bg-color-secondary rounded-xl px-2',
     },
     unknown: {
       label: 'à définir',
-      class: 'text-gray-900 bg-gray-200 rounded-xl px-2'
-    }
+      class: 'text-gray-900 bg-gray-200 rounded-xl px-2',
+    },
   };
   return statusMapping[properties.status];
 }

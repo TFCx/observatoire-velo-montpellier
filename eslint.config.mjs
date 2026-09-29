@@ -10,9 +10,9 @@ export default withNuxt(
       semi: ['error', 'always'],
       'space-before-function-paren': ['error', 'never'],
       'no-template-curly-in-string': 'off',
-      'vue/multi-word-component-names': 'off'
-    }
+      'vue/multi-word-component-names': 'off',
+    },
   },
   // En dernier : désactive les règles de mise en forme, laissées au formateur (oxfmt).
-  eslintConfigPrettier
+  eslintConfigPrettier,
 );

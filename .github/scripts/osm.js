@@ -10,13 +10,14 @@ const fs = require('fs');
 const path = require('path');
 
 (async () => {
- const pumps = await getPumps();
- const filePath = path.join('content/services/pumps.json');
- fs.writeFileSync(filePath, JSON.stringify(pumps, null, 2));
-})()
+  const pumps = await getPumps();
+  const filePath = path.join('content/services/pumps.json');
+  fs.writeFileSync(filePath, JSON.stringify(pumps, null, 2));
+})();
 
 async function getPumps() {
-  const URL = 'https://overpass-api.de/api/interpreter?data=[out:json];area["name"="Métropole de Lyon"]->.searchArea;(node["service:bicycle:pump"="yes"](area.searchArea);way["service:bicycle:pump"="yes"](area.searchArea););out;'
+  const URL =
+    'https://overpass-api.de/api/interpreter?data=[out:json];area["name"="Métropole de Lyon"]->.searchArea;(node["service:bicycle:pump"="yes"](area.searchArea);way["service:bicycle:pump"="yes"](area.searchArea););out;';
   const res = await fetch(URL);
   if (res.ok) {
     const data = await res.json();
@@ -31,8 +32,8 @@ function formatPumps(data) {
   return {
     type: 'FeatureCollection',
     features: data.elements
-      .filter(item => item.lon && item.lat)
-      .map(item => {
+      .filter((item) => item.lon && item.lat)
+      .map((item) => {
         return {
           type: 'Feature',
           properties: {
@@ -42,10 +43,9 @@ function formatPumps(data) {
           },
           geometry: {
             type: 'Point',
-            coordinates: [item.lon, item.lat]
+            coordinates: [item.lon, item.lat],
           },
-        }
-      }
-    )
-  }
+        };
+      }),
+  };
 }

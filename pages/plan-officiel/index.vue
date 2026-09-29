@@ -4,7 +4,7 @@
       src="~/assets/planOfficiel_2022-05-31.jpg"
       class="object-contain w-full h-screen"
       :alt="`plan officiel des ${getRevName()}`"
-    >
+    />
   </div>
 </template>
 
@@ -19,7 +19,7 @@ useHead({
     // description
     { name: 'description', content: description },
     { property: 'og:description', content: description },
-    { name: 'twitter:description', content: description }
-  ]
+    { name: 'twitter:description', content: description },
+  ],
 });
 </script>

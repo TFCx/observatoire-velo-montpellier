@@ -3,9 +3,7 @@
     <h1 class="text-center text-3xl text-color-primary-600 font-bold mb-8">
       Tableau de bord de suivi des {{ config.revName.plural }}
     </h1>
-    <div v-if="!voies">
-      Chargement ...
-    </div>
+    <div v-if="!voies">Chargement ...</div>
     <div v-else>
       <ProgressBar :voies="voies" />
       <Stats :voies="voies" :precision="1" class="mt-8 max-w-2xl mx-auto" />
@@ -18,12 +16,14 @@
             <LineLink :line="String(getLine(voie))" />
           </h2>
           <div class="text-center text-xl text-gray-900">
-            Distance totale: <span class="font-bold" :style="`color: ${getLineColor(getLine(voie))}`">
+            Distance totale:
+            <span class="font-bold" :style="`color: ${getLineColor(getLine(voie))}`">
               {{ displayDistanceInKm(getTotalDistance([voie]), 1) }}
             </span>
           </div>
           <div v-if="hasTrafic(voie)" class="text-center text-sm text-gray-900">
-            Fréquentation max 2030: <span class="font-bold" :style="`color: ${getLineColor(getLine(voie))}`">
+            Fréquentation max 2030:
+            <span class="font-bold" :style="`color: ${getLineColor(getLine(voie))}`">
               {{ getTrafic(voie) }}
             </span>
           </div>
@@ -76,7 +76,7 @@ useHead({
   meta: [
     { name: 'description', content: description },
     { property: 'og:description', content: description },
-    { name: 'twitter:description', content: description }
-  ]
+    { name: 'twitter:description', content: description },
+  ],
 });
 </script>

@@ -8,16 +8,12 @@
         {{ doneDistance }} km de {{ getRevName() }} réalisés
       </div>
       <div class="py-5 px-5 md:px-8 grid grid-cols-3 gap-3 sm:grid-cols-6">
-        <div
-          v-for="year in years"
-          :key="year.label"
-          @click="year.isChecked = !year.isChecked"
-        >
+        <div v-for="year in years" :key="year.label" @click="year.isChecked = !year.isChecked">
           <div
             class="border rounded-md py-3 px-3 flex items-center justify-center text-sm font-medium uppercase sm:flex-1 cursor-pointer focus:outline-none"
             :class="{
               'bg-color-primary-primary border-transparent text-white hover:bg-color-primary-500': year.isChecked,
-              'bg-white border-gray-200 text-gray-900 hover:bg-gray-50': !year.isChecked
+              'bg-white border-gray-200 text-gray-900 hover:bg-gray-50': !year.isChecked,
             }"
           >
             <div>{{ year.label }}</div>
@@ -35,13 +31,13 @@ const { getAllUniqLineStrings, getDistance } = useStats();
 const { getRevName } = useConfig();
 
 useHead({
-  title: `Évolution des ${getRevName()} année par année`
+  title: `Évolution des ${getRevName()} année par année`,
 });
 
 // https://github.com/nuxt/framework/issues/3587
 definePageMeta({
   pageTransition: false,
-  layout: 'fullscreen'
+  layout: 'fullscreen',
 });
 
 const years = ref([
@@ -50,7 +46,7 @@ const years = ref([
   { label: '2022', match: (year) => year === 2022, isChecked: true },
   { label: '2023', match: (year) => year === 2023, isChecked: true },
   { label: '2024', match: (year) => year === 2024, isChecked: true },
-  { label: '2025', match: (year) => year === 2025, isChecked: true }
+  { label: '2025', match: (year) => year === 2025, isChecked: true },
 ]);
 
 const { data: voies } = await useAsyncData(() => {
@@ -58,14 +54,17 @@ const { data: voies } = await useAsyncData(() => {
 });
 
 const features = computed(() => {
-  return voies.value.map(voie => voie.features)
+  return voies.value
+    .map((voie) => voie.features)
     .flat()
-    .filter(feature => feature.properties.status === LaneStatus.Done)
-    .filter(feature => {
-      if (!feature.properties.doneAt) { return false; }
-      const selectedYear = years.value.filter(year => year.isChecked);
-      const [,, featureYear] = feature.properties.doneAt.split('/');
-      return selectedYear.some(year => year.match(Number(featureYear)));
+    .filter((feature) => feature.properties.status === LaneStatus.Done)
+    .filter((feature) => {
+      if (!feature.properties.doneAt) {
+        return false;
+      }
+      const selectedYear = years.value.filter((year) => year.isChecked);
+      const [, , featureYear] = feature.properties.doneAt.split('/');
+      return selectedYear.some((year) => year.match(Number(featureYear)));
     });
 });
 
