@@ -99,3 +99,80 @@ export async function countDistinctMapColors(page: Page): Promise<number> {
     return distinctColors.size;
   }, screenshot.toString('base64'));
 }
+
+export type ScreenPoint = { x: number; y: number };
+
+type MapPointKind = 'network' | 'empty';
+
+// Point de la carte, en coordonnées de la page, où placer la souris. Le fond de carte étant bloqué
+// (setup.ts), il est d'une couleur unie : un pixel entouré de pixels d'une autre couleur est un
+// tronçon dessiné, un pixel entouré de fond est un endroit vide. La recherche évite les bords de la
+// carte, recouverts par la légende, les boutons et le logo, qui captent la souris.
+async function findMapPoint(page: Page, kind: MapPointKind): Promise<ScreenPoint> {
+  const canvas = page.locator('canvas.maplibregl-canvas').first();
+  const canvasBox = await canvas.boundingBox();
+  if (!canvasBox) {
+    throw new Error('Carte absente de la page.');
+  }
+  const screenshot = await canvas.screenshot({ style: SHOW_ONLY_MAP_CANVAS_STYLE });
+  const pointInCanvas = await page.evaluate(
+    async ({ base64Png, searchedKind }) => {
+      const blob = await (await fetch(`data:image/png;base64,${base64Png}`)).blob();
+      const bitmap = await createImageBitmap(blob);
+      const drawingCanvas = new OffscreenCanvas(bitmap.width, bitmap.height);
+      const context = drawingCanvas.getContext('2d')!;
+      context.drawImage(bitmap, 0, 0);
+      const { width, height } = bitmap;
+      const pixels = context.getImageData(0, 0, width, height).data;
+      const colorAt = (x: number, y: number) => {
+        const index = (y * width + x) * 4;
+        return ((pixels[index] ?? 0) << 16) | ((pixels[index + 1] ?? 0) << 8) | (pixels[index + 2] ?? 0);
+      };
+
+      const occurrencesByColor = new Map<number, number>();
+      for (let y = 0; y < height; y += 4) {
+        for (let x = 0; x < width; x += 4) {
+          const color = colorAt(x, y);
+          occurrencesByColor.set(color, (occurrencesByColor.get(color) ?? 0) + 1);
+        }
+      }
+      const backgroundColor = [...occurrencesByColor].sort((a, b) => b[1] - a[1])[0]?.[0];
+
+      const NEIGHBOR_DISTANCE = searchedKind === 'network' ? 2 : 12;
+      const isWantedAround = (x: number, y: number) =>
+        [
+          [0, 0],
+          [NEIGHBOR_DISTANCE, 0],
+          [-NEIGHBOR_DISTANCE, 0],
+          [0, NEIGHBOR_DISTANCE],
+          [0, -NEIGHBOR_DISTANCE],
+        ].every(([dx = 0, dy = 0]) => (colorAt(x + dx, y + dy) === backgroundColor) === (searchedKind === 'empty'));
+
+      const MARGIN_LEFT = 260;
+      const MARGIN_RIGHT = 80;
+      const MARGIN_TOP = 40;
+      const MARGIN_BOTTOM = 110;
+      for (let y = MARGIN_TOP; y < height - MARGIN_BOTTOM; y += 3) {
+        for (let x = MARGIN_LEFT; x < width - MARGIN_RIGHT; x += 3) {
+          if (isWantedAround(x, y)) {
+            return { x, y };
+          }
+        }
+      }
+      return null;
+    },
+    { base64Png: screenshot.toString('base64'), searchedKind: kind },
+  );
+  if (!pointInCanvas) {
+    throw new Error(`Aucun point « ${kind} » trouvé sur la carte.`);
+  }
+  return { x: canvasBox.x + pointInCanvas.x, y: canvasBox.y + pointInCanvas.y };
+}
+
+export function findNetworkPoint(page: Page): Promise<ScreenPoint> {
+  return findMapPoint(page, 'network');
+}
+
+export function findEmptyMapPoint(page: Page): Promise<ScreenPoint> {
+  return findMapPoint(page, 'empty');
+}
