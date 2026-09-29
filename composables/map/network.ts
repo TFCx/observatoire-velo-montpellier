@@ -64,6 +64,7 @@ const qualityColorDict: { [key in Quality]: string } = {
   [Quality.Good]: '#77dd77',
   [Quality.Fair]: '#F3F32A',
   [Quality.Bad]: '#ff6961',
+  [Quality.Inconnu]: '#ffffff',
 };
 
 function getColorOf(key: LaneType | LaneTypeFamily | Quality | LaneStatus): string {
@@ -942,8 +943,9 @@ function addListnersForHovering(map: Map) {
         if (hoveredLineId !== null) {
           map.setFeatureState({ source: 'src-sections', id: hoveredLineId }, { hover: false });
         }
-        if (e.features[0].id !== undefined) {
-          hoveredLineId = e.features[0].id;
+        const hoveredFeature = e.features[0];
+        if (hoveredFeature && hoveredFeature.id !== undefined) {
+          hoveredLineId = hoveredFeature.id;
           if (hoveredLineId !== null) {
             map.setFeatureState({ source: 'src-sections', id: hoveredLineId }, { hover: true });
           }
@@ -967,7 +969,7 @@ function animateOpacity(
   timestamp: number,
   animationLength: number,
   attributeId: string,
-  attributeOpacity: string,
+  attributeOpacity: 'line-opacity',
   min: number,
   max: number,
 ) {

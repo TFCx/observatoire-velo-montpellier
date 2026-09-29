@@ -93,11 +93,17 @@ const typeFilters = ref([
 ]);
 
 function toogleStatusFilter(index: number) {
-  statusFilters.value[index].isEnable = !statusFilters.value[index].isEnable;
+  const statusFilter = statusFilters.value[index];
+  if (statusFilter) {
+    statusFilter.isEnable = !statusFilter.isEnable;
+  }
 }
 
 function toogleTypeFilter(index: number) {
-  typeFilters.value[index].isEnable = !typeFilters.value[index].isEnable;
+  const typeFilter = typeFilters.value[index];
+  if (typeFilter) {
+    typeFilter.isEnable = !typeFilter.isEnable;
+  }
 }
 
 const emit = defineEmits(['update']);

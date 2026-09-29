@@ -3,9 +3,10 @@ import { DisplayedLayer } from '~/composables/map/network';
 export default class LayerControl {
   _defaultLayer: DisplayedLayer;
   _displayLayerType: boolean;
-  _container: HTMLDivElement;
+  // Créés dans onAdd(), que MapLibre appelle avant toute autre méthode du contrôle.
+  _container!: HTMLDivElement;
   _onChange: (layerName: string) => void;
-  _btn_legend: HTMLButtonElement;
+  _btn_legend!: HTMLButtonElement;
   _onClick: () => void;
 
   constructor(

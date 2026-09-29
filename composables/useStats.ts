@@ -67,10 +67,12 @@ export const useStats = () => {
     let distance = 0;
     const coordinates = feature.geometry.coordinates;
 
-    for (let i = 0; i < coordinates.length - 1; i++) {
-      const [lon1, lat1] = coordinates[i];
-      const [lon2, lat2] = coordinates[i + 1];
-      distance += haversine(lat1, lon1, lat2, lon2);
+    let previousPoint: [number, number] | undefined;
+    for (const point of coordinates) {
+      if (previousPoint) {
+        distance += haversine(previousPoint[1], previousPoint[0], point[1], point[0]);
+      }
+      previousPoint = point;
     }
 
     return distance;
@@ -178,6 +180,7 @@ export const useStats = () => {
     [Quality.Bad]: 'Non satisfaisant',
     [Quality.Fair]: 'À améliorer',
     [Quality.Good]: 'Satisfaisant',
+    [Quality.Inconnu]: 'Inconnue',
   };
 
   const laneTypeToDescription: { [key in LaneType]: string } = {
@@ -229,8 +232,8 @@ export const useStats = () => {
     const sections: SectionFeature[] = [];
     const sectionsWithDuplicates = [];
     for (const f of features) {
-      const newSection = {
-        type: f.type,
+      const newSection: SectionFeature = {
+        type: 'Feature',
         properties: {
           id: f.properties.id,
           lines: [f.properties.line],
@@ -244,7 +247,9 @@ export const useStats = () => {
           typeFamilyB: f.properties.typeB
             ? computeTypeFamily(f.properties.typeB)
             : computeTypeFamily(f.properties.type),
-          links: [f.properties.link],
+          // Tronçon sans lien propre : le tooltip renvoie alors vers la page de la Véloligne.
+          links: f.properties.link ? [f.properties.link] : [],
+          displayedLinesName: '',
           doneAt: f.properties.doneAt,
         },
         geometry: f.geometry,
@@ -253,7 +258,9 @@ export const useStats = () => {
         for (const o of features) {
           if (o != f && f.properties.id == o.properties.id) {
             newSection.properties.lines.push(o.properties.line);
-            newSection.properties.links.push(o.properties.link);
+            if (o.properties.link) {
+              newSection.properties.links.push(o.properties.link);
+            }
           }
         }
       }

@@ -69,6 +69,7 @@ export type LineStringFeature = {
 export type SectionFeature = {
   type: 'Feature';
   properties: {
+    id?: string;
     lines: string[];
     displayedLinesName: string;
     name: string;
@@ -90,7 +91,15 @@ export type SectionFeature = {
 
 export type MultiColoredLineStringFeature = LineStringFeature & { properties: { colors: string[] } };
 //export type SectionFeature = LineStringFeature & { properties: { colors: string[] } };
-export type LaneFeature = LineStringFeature & { properties: { color: string; lane_index: number; nb_lanes: number } };
+export type LaneFeature = LineStringFeature & {
+  properties: {
+    color: string;
+    lane_index: number;
+    nb_lanes: number;
+    typeFamily: LaneTypeFamily;
+    typeFamilyB: LaneTypeFamily;
+  };
+};
 
 export type PerspectiveFeature = {
   type: 'Feature';
@@ -164,7 +173,7 @@ export function isPerspectiveFeature(feature: Feature): feature is PerspectiveFe
   return isPointFeature(feature) && feature.properties.type === 'perspective';
 }
 
-export function isDangerFeature(feature: Feature): feature is PerspectiveFeature {
+export function isDangerFeature(feature: Feature): feature is DangerFeature {
   return isPointFeature(feature) && feature.properties.type === 'danger';
 }
 

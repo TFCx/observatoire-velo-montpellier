@@ -99,10 +99,7 @@ const title = computed(() => {
 });
 
 function getSectionDetailsUrl(properties: SectionFeature['properties']): string {
-  if (properties.links.length > 0) {
-    return properties.links[0];
-  }
-  return getVoieCyclablePath(properties.lines[0]);
+  return properties.links[0] ?? getVoieCyclablePath(properties.lines[0] ?? '');
 }
 
 function getDoneAtText(doneAt: string): string {
