@@ -20,11 +20,11 @@ export function readMarkdownFiles(directory: string): MarkdownFile[] {
 
 export function readFrontmatterValue(markdownContent: string, key: string): string | undefined {
   const valueMatch = markdownContent.match(new RegExp(`^${key}: *"?([^"\\n]+)"?$`, 'm'));
-  return valueMatch?.[1].trim();
+  return valueMatch?.[1]?.trim();
 }
 
 export function readMarkdownTitles(markdownContent: string): string[] {
-  return [...markdownContent.matchAll(/^#+\s+(.*)$/gm)].map((titleMatch) => titleMatch[1]);
+  return [...markdownContent.matchAll(/^#+\s+(.*)$/gm)].map((titleMatch) => titleMatch[1] ?? '');
 }
 
 // Reproduit la génération des ancres de titres par Nuxt Content : ponctuation et symboles (⇄, ', ...)

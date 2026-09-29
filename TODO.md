@@ -46,6 +46,8 @@ Feuille de route technique (sept. 2026) — voir docs/decisions/0002 :
 
 Prochaine release :
 
+- [BUG] Tableau de bord : « Fréquentation max 2030 » jamais affichée, alors que 3 Vélolignes ont un `trafic`
+  (déjà le cas en prod le 29/09/2026 ; sans doute `md.line === line` qui compare un nombre et une chaîne)
 - [x] [BUG] lien mort dans page anneau (remplacement des images par assets ?) + lien mort véloligne A
   - Vérifié le 29/09/2026 : plus de lien mort sur ces pages ; le vrai lien mort était la couverture de la VL 10.
     Toutes les images des Vélolignes sont désormais dans public/ (test de données : aucune image externe).

@@ -12,7 +12,8 @@
     "og-image": "nuxt generate && node scripts/og-image.ts",
     "format": "oxfmt --write .",
     "format:check": "oxfmt --check .",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "typecheck": "nuxt typecheck"
   },
   "devDependencies": {
     "@headlessui/vue": "^1.7.23",
@@ -23,12 +24,15 @@
     "@nuxtjs/sitemap": "^8.5.1",
     "@nuxtjs/tailwindcss": "^6.14.0",
     "@tailwindcss/typography": "^0.5.16",
+    "@types/node": "^24.19.0",
     "eslint": "^10.11.0",
     "eslint-config-prettier": "^10.1.8",
     "nuxt": "^4.5.2",
     "oxfmt": "^0.71.0",
     "playwright-core": "^1.63.0",
-    "vitest": "^4.1.11"
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.11",
+    "vue-tsc": "^3.3.11"
   },
   "dependencies": {
     "maplibre-gl": "^6.11.2"

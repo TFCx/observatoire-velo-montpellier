@@ -1,7 +1,8 @@
 import type { Map, MapMouseEvent } from 'maplibre-gl';
 import { Popup } from 'maplibre-gl';
 import { createApp, defineComponent, h, Suspense, ref } from 'vue';
-import type { Feature, LaneFeature, PerspectiveFeature, SectionFeature, DangerFeature } from '~/types';
+import { isDangerFeature, isPerspectiveFeature } from '~/types';
+import type { Feature, LaneFeature, SectionFeature } from '~/types';
 
 import {
   updateOrCreateSources,
@@ -151,6 +152,11 @@ export const useMap = () => {
     features: Feature[];
     clickEvent: MapMouseEvent;
   }) {
+    // Élément de la couche sous le clic ; getTooltipProps n'est appelé que si isClicked l'a trouvé.
+    function queryClickedFeature(layerId: string) {
+      return ensure(map.queryRenderedFeatures(clickEvent.point, { layers: [layerId] })[0]);
+    }
+
     const layers = [
       {
         id: 'dangers',
@@ -162,8 +168,10 @@ export const useMap = () => {
           return mapFeature.length > 0;
         },
         getTooltipProps: () => {
-          const mapFeature = map.queryRenderedFeatures(clickEvent.point, { layers: ['dangers'] })[0];
-          const feature = features.find((f) => f.properties.name === mapFeature.properties.name);
+          const mapFeature = queryClickedFeature('dangers');
+          const feature = features
+            .filter(isDangerFeature)
+            .find((f) => f.properties.name === mapFeature.properties.name);
           return { feature };
         },
         component: DangerTooltip,
@@ -178,15 +186,14 @@ export const useMap = () => {
           return mapFeature.length > 0;
         },
         getTooltipProps: () => {
-          const mapFeature = map.queryRenderedFeatures(clickEvent.point, { layers: ['perspectives'] })[0];
-          const feature = features.find((f) => {
-            return (
-              f.properties.type === 'perspective' &&
-              f.properties.line === mapFeature.properties.line &&
-              f.properties.imgUrl === mapFeature.properties.imgUrl
+          const mapFeature = queryClickedFeature('perspectives');
+          const feature = features
+            .filter(isPerspectiveFeature)
+            .find(
+              (f) =>
+                f.properties.line === mapFeature.properties.line &&
+                f.properties.imgUrl === mapFeature.properties.imgUrl,
             );
-          });
-
           return { feature };
         },
         component: PerspectiveTooltip,
@@ -214,7 +221,7 @@ export const useMap = () => {
             ],
           });
 
-          const mapFeature = mapFeatures[mapFeatures.length - 1];
+          const mapFeature = ensure(mapFeatures[mapFeatures.length - 1]);
 
           const name = mapFeature.properties.name;
 
@@ -225,49 +232,6 @@ export const useMap = () => {
           return { feature: section, lines: lines };
         },
         component: LineTooltip,
-      },
-      {
-        id: 'perspectives',
-        isClicked: () => {
-          if (!map.getLayer('perspectives')) {
-            return false;
-          }
-          const mapFeature = map.queryRenderedFeatures(clickEvent.point, { layers: ['perspectives'] });
-          return mapFeature.length > 0;
-        },
-        getTooltipProps: () => {
-          const mapFeature = map.queryRenderedFeatures(clickEvent.point, { layers: ['perspectives'] })[0];
-          const feature = features.find((f) => {
-            const ftyped = <PerspectiveFeature>f;
-            return (
-              ftyped.properties.type === 'perspective' &&
-              ftyped.properties.line === mapFeature.properties.line &&
-              ftyped.properties.imgUrl === mapFeature.properties.imgUrl
-            );
-          });
-
-          return { feature };
-        },
-        component: PerspectiveTooltip,
-      },
-      {
-        id: 'dangers',
-        isClicked: () => {
-          if (!map.getLayer('dangers')) {
-            return false;
-          }
-          const mapFeature = map.queryRenderedFeatures(clickEvent.point, { layers: ['dangers'] });
-          return mapFeature.length > 0;
-        },
-        getTooltipProps: () => {
-          const mapFeature = map.queryRenderedFeatures(clickEvent.point, { layers: ['dangers'] })[0];
-          const feature = features.find((f) => {
-            const ftyped = <DangerFeature>f;
-            return ftyped.properties.name === mapFeature.properties.name;
-          });
-          return { feature };
-        },
-        component: DangerTooltip,
       },
     ];
 

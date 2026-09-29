@@ -159,7 +159,8 @@ onMounted(() => {
   setWorkerUrl(maplibreWorkerUrl);
   const map = new Map({
     container: 'map',
-    style: style as StyleSpecification,
+    // Le JSON importé est typé au plus près de son contenu, pas selon la spécification MapLibre.
+    style: style as unknown as StyleSpecification,
     // style: `https://api.maptiler.com/maps/dataviz/style.json?key=${maptilerKey}`,
     center: config.center as LngLatLike,
     zoom: config.zoom,
@@ -295,8 +296,8 @@ onMounted(() => {
     const sections: SectionFeature[] = [];
     const sectionsWithDuplicates = [];
     for (const f of features) {
-      const newSection = {
-        type: f.type,
+      const newSection: SectionFeature = {
+        type: 'Feature',
         properties: {
           id: f.properties.id,
           lines: [f.properties.line],
@@ -311,7 +312,9 @@ onMounted(() => {
             ? computeTypeFamily(f.properties.typeB)
             : computeTypeFamily(f.properties.type),
           doneAt: f.properties.doneAt,
-          links: [f.properties.link],
+          // Tronçon sans lien propre : le tooltip renvoie alors vers la page de la Véloligne.
+          links: f.properties.link ? [f.properties.link] : [],
+          displayedLinesName: '',
         },
         geometry: f.geometry,
       };
@@ -319,7 +322,9 @@ onMounted(() => {
         for (const o of features) {
           if (o != f && f.properties.id == o.properties.id) {
             newSection.properties.lines.push(o.properties.line);
-            newSection.properties.links.push(o.properties.link);
+            if (o.properties.link) {
+              newSection.properties.links.push(o.properties.link);
+            }
           }
         }
       }

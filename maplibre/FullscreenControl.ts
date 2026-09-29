@@ -1,6 +1,7 @@
 export default class FullscreenControl {
-  _btn: HTMLButtonElement;
-  _container: HTMLDivElement;
+  // Créés dans onAdd(), que MapLibre appelle avant toute autre méthode du contrôle.
+  _btn!: HTMLButtonElement;
+  _container!: HTMLDivElement;
   _onClick: () => void;
 
   constructor({ onClick }: { onClick: () => void }) {

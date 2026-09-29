@@ -9,7 +9,7 @@
       <Stats :voies="voies" :precision="1" class="mt-8 max-w-2xl mx-auto" />
       <Typology :voies="voies" class="mt-8 max-w-2xl mx-auto" />
 
-      <div v-for="voie in voies" :key="voie.line" class="py-2 my-8 flex">
+      <div v-for="voie in voies" :key="getLine(voie)" class="py-2 my-8 flex">
         <div class="mr-4 w-2 lg:w-4 rounded-lg" :style="`background: ${getLineColor(getLine(voie))}`" />
         <div class="max-w-2xl mx-auto flex-grow">
           <h2 class="text-center text-2xl font-bold">
@@ -39,26 +39,26 @@
 </template>
 
 <script setup lang="ts">
-import type { VoiesCyclablesGeojsonCollectionItem } from '@nuxt/content';
 import config from '../../config.json';
-
-type Geojson = VoiesCyclablesGeojsonCollectionItem;
+import { isLineStringFeature, type Geojson } from '~/types';
 
 const { getLineColor } = useColors();
 const { getTotalDistance, displayDistanceInKm } = useStats();
 
-const { data: voies } = await useAsyncData(() => {
-  return queryCollection('voiesCyclablesGeojson').all();
+const { data: voies } = await useAsyncData(async () => {
+  // Le schéma de la collection est volontairement souple (content.config.ts) : la forme des GeoJSON
+  // est garantie par tests/data-health.test.ts, pas par Nuxt Content.
+  return (await queryCollection('voiesCyclablesGeojson').all()) as unknown as Geojson[];
 });
 const { data: mds } = await useAsyncData(() => {
   return queryCollection('voiesCyclablesPages').all();
 });
 
 function getLine(voie: Geojson): string {
-  return voie.features[0].properties.line;
+  return voie.features.find(isLineStringFeature)?.properties.line ?? '';
 }
 
-function hasTrafic(voie: Geojson): bool {
+function hasTrafic(voie: Geojson): boolean {
   const line = getLine(voie);
   const trafic = mds.value?.find((md) => md.line === line)?.trafic;
   return trafic != null;

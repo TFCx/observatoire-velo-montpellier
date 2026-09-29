@@ -80,7 +80,7 @@ const NON_INDEXABLE_ROUTES = ['/404', '/carte-interactive/embed'];
 
 function readSitemapUrls(): string[] {
   const sitemap = fs.readFileSync(path.join(GENERATED_SITE_DIRECTORY, 'sitemap.xml'), 'utf8');
-  return [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((locationMatch) => locationMatch[1]);
+  return [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((locationMatch) => locationMatch[1] ?? '');
 }
 
 function convertRouteToSitemapUrl(route: string): string {
@@ -238,7 +238,7 @@ describe('generated css', () => {
   // Seuls les attributs class="..." statiques sont lus : les classes calculées (:class) ne sont pas couvertes.
   function readStaticClasses(vueFileContent: string): string[] {
     return [...vueFileContent.matchAll(/(?<=\s)class="([^"]*)"/g)]
-      .flatMap((classMatch) => classMatch[1].split(/\s+/))
+      .flatMap((classMatch) => (classMatch[1] ?? '').split(/\s+/))
       .filter(Boolean);
   }
 
