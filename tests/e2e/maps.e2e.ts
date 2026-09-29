@@ -15,9 +15,11 @@ const MAP_PAGES = [
   { name: 'evolution_page', route: '/evolution' }
 ];
 
+// Une carte se dessine en 3 s au plus en CI : 20 s laissent de la marge sans trop retarder l'échec
+// quand elle ne se dessine jamais (chaque test attend alors ce délai).
 function waitUntilMapIsDrawn(page: Page) {
   return expect
-    .poll(() => countDistinctMapColors(page), { timeout: 45_000, interval: 2_000 })
+    .poll(() => countDistinctMapColors(page), { timeout: 20_000, interval: 1_000 })
     .toBeGreaterThanOrEqual(MINIMUM_COLORS_OF_A_DRAWN_MAP);
 }
 
@@ -41,7 +43,7 @@ describe('maps', () => {
       // la condition de ce test (c'est celle du test précédent).
       await waitUntilMapIsDrawn(page).catch(() => undefined);
 
-      expect(consoleErrors).toEqual([]);
+      expect(consoleErrors, `Erreurs :\n${consoleErrors.join('\n')}`).toEqual([]);
 
       await page.close();
     });

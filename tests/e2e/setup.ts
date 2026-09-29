@@ -79,9 +79,6 @@ export type OpenedPage = {
   consoleErrors: string[];
 };
 
-// Message de Chromium pour une requête interrompue par page.route(...).abort().
-const BLOCKED_REQUEST_CONSOLE_MESSAGE = 'net::ERR_FAILED';
-
 export function setupBrowserTests() {
   let server: http.Server;
   let browser: Browser;
@@ -105,26 +102,28 @@ export function setupBrowserTests() {
   // dépendent pas du réseau et vérifient ce que le site dessine lui-même (nos couches GeoJSON).
   async function openPage(route: string): Promise<OpenedPage> {
     const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
-    const blockedExternalOrigins = new Set<string>();
+    const blockedExternalUrls = new Set<string>();
     await page.route(
       url => !url.href.startsWith(baseUrl) && !url.href.startsWith('data:'),
       externalRoute => {
-        blockedExternalOrigins.add(new URL(externalRoute.request().url()).origin);
+        blockedExternalUrls.add(externalRoute.request().url());
         return externalRoute.abort();
       }
     );
 
+    // Une erreur n'est ignorée que si elle désigne une requête que nous avons bloquée : par son
+    // emplacement (« Failed to load resource » n'a pas l'URL dans son texte) ou par son texte
+    // (erreurs de chargement relayées par MapLibre).
     const consoleErrors: string[] = [];
-    const isCausedByBlockedRequest = (message: string) =>
-      message.includes(BLOCKED_REQUEST_CONSOLE_MESSAGE) ||
-      [...blockedExternalOrigins].some(origin => message.includes(origin));
+    const isCausedByBlockedRequest = (text: string, sourceUrl: string) =>
+      blockedExternalUrls.has(sourceUrl) || [...blockedExternalUrls].some(blockedUrl => text.includes(blockedUrl));
     page.on('console', message => {
-      if (message.type() === 'error' && !isCausedByBlockedRequest(message.text())) {
+      if (message.type() === 'error' && !isCausedByBlockedRequest(message.text(), message.location().url)) {
         consoleErrors.push(message.text());
       }
     });
     page.on('pageerror', error => {
-      if (!isCausedByBlockedRequest(error.message)) {
+      if (!isCausedByBlockedRequest(error.message, '')) {
         consoleErrors.push(error.message);
       }
     });
