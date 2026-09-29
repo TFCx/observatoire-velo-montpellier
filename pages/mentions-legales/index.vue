@@ -148,4 +148,8 @@
 
 <script setup lang="ts">
 const { getAssoName, getAssoLink } = useConfig();
+
+useHead({
+  title: 'Mentions légales'
+});
 </script>

@@ -29,6 +29,10 @@
 </template>
 
 <script setup>
+useHead({
+  title: "Historique des changements de l'observatoire"
+});
+
 const { data: news } = await useAsyncData(() => {
   return queryCollection('news').order('date', 'DESC').all();
 });

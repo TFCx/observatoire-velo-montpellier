@@ -61,7 +61,7 @@ Prochaine release :
         les autres viennent de Nuxt (H3, devtools, Suspense). Restent : vitest 2 → 4 et MapLibre 5 → 6 (npm audit)
 - [BUG] carte-interactive/embed.vue et index.vue : l'image de partage est codée en dur sur un fichier au nom haché
   (logoCyclopolisVGM.CzJjkGQi.png) de l'ancienne adresse .netlify.app -> casse si l'image change
-- [SEO] /historique, /blog, /mentions-legales, /sites-partenaires et /evolution gardent le titre générique du site
+- [x] [SEO] /historique, /blog, /mentions-legales, /sites-partenaires, /evolution et les articles de blog gardent le titre générique du site
 
 Moyen terme :
 - [UX] Dans Type & Qualité : couleurs des familles

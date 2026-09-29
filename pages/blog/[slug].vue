@@ -24,6 +24,7 @@ if (!article.value) {
 }
 
 useHead({
+  title: article.value.title,
   meta: [
     // description
     { name: 'description', content: article.value.description },

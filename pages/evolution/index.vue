@@ -34,6 +34,10 @@ import { LaneStatus } from '~/types';
 const { getAllUniqLineStrings, getDistance } = useStats();
 const { getRevName } = useConfig();
 
+useHead({
+  title: `Évolution des ${getRevName()} année par année`
+});
+
 // https://github.com/nuxt/framework/issues/3587
 definePageMeta({
   pageTransition: false,

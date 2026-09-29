@@ -98,6 +98,18 @@ describe('generated pages', () => {
     assert.deepEqual(missingRoutes, []);
   });
 
+  // Le titre du site (celui de l'accueil) sur une autre page la rend indiscernable dans les onglets,
+  // l'historique du navigateur et les résultats des moteurs de recherche.
+  it('should_have_its_own_title_when_page_is_not_home', () => {
+    const readTitle = (route: string) => readGeneratedPage(route).match(/<title>([^<]*)<\/title>/)?.[1];
+    const siteTitle = readTitle('/');
+    const routesWithSiteTitle = allExpectedRoutes
+      .filter(route => route !== '/' && readTitle(route) === siteTitle)
+      .map(route => `${route} : titre générique "${siteTitle}"`);
+
+    assert.deepEqual(routesWithSiteTitle, []);
+  });
+
   it('should_not_render_error_page_when_route_is_expected', () => {
     const routesShowingErrorPage = allExpectedRoutes
       .filter(route => fs.existsSync(getGeneratedPagePath(route)))
