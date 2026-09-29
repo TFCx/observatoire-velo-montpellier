@@ -1,15 +1,13 @@
 import { Map, Popup } from 'maplibre-gl';
 import { createApp, defineComponent, h, Suspense } from 'vue';
-import type { CounterParsedContent } from '../types/counters';
-import { isLineStringFeature, type Feature, type LaneFeature, type LineStringFeature, type CompteurFeature, type PerspectiveFeature, type SectionFeature, type MultiColoredLineStringFeature, isSectionFeature, type DangerFeature} from '~/types';
+import { isLineStringFeature, type Feature, type LaneFeature, type LineStringFeature, type PerspectiveFeature, type SectionFeature, type MultiColoredLineStringFeature, isSectionFeature, type DangerFeature} from '~/types';
 import { ref } from 'vue';
 
 import { updateOrCreateSources, drawCurrentNetwork, drawFinishedNetwork, drawQualityNetwork, drawTypeNetwork, drawTypeFamilyNetwork, drawHoveredEffect, changeLayer, drawLineNames, addListnersForHovering } from "./map/network";
-import { plotPerspective, plotCompteurs, plotDangers, plotLimits, plotPumps, plotBaseBikeInfrastructure } from "./map/features";
+import { plotPerspective, plotDangers, plotLimits, plotPumps, plotBaseBikeInfrastructure } from "./map/features";
 
 // Tooltips
 import PerspectiveTooltip from '~/components/tooltips/PerspectiveTooltip.vue';
-import CounterTooltip from '~/components/tooltips/CounterTooltip.vue';
 import DangerTooltip from '~/components/tooltips/DangerTooltip.vue';
 import LineTooltip from '~/components/tooltips/LineTooltip.vue';
 import { getCrossIconUrl, sortByLine, fitBounds, upsertMapSource } from './map/utils';
@@ -100,7 +98,6 @@ export const useMap = () => {
   function plotFeatures(map: Map, updated_features: Feature[]) {
 
     plotPerspective({ map, features: updated_features });
-    plotCompteurs({ map, features: updated_features });
     plotPumps({ map, features: updated_features });
     plotDangers({ map, features: updated_features });
     plotLimits({ map, features: updated_features });
@@ -112,31 +109,6 @@ export const useMap = () => {
     watch(displayedLayer, (displayedLayer) => changeLayer(map, displayedLayer))
   }
 
-
-  function getCompteursFeatures({
-    counters,
-    type
-  }: {
-    counters: CounterParsedContent[] | null;
-    type: 'compteur-velo' | 'compteur-voiture';
-  }): CompteurFeature[] {
-    if (!counters) { return []; }
-    if (counters.length === 0) { return []; }
-
-    return counters.map(counter => ({
-      type: 'Feature',
-      properties: {
-        type,
-        name: counter.name,
-        link: counter.path,
-        counts: counter.counts
-      },
-      geometry: {
-        type: 'Point',
-        coordinates: [counter.coordinates[0], counter.coordinates[1]]
-      }
-    }));
-  }
 
   function separateSectionsIntoLanes(features: SectionFeature[]): LaneFeature[] {
     let lanes: LaneFeature[] = []
@@ -269,23 +241,6 @@ export const useMap = () => {
         component: PerspectiveTooltip
       },
       {
-        id: 'compteurs',
-        isClicked: () => {
-          if (!map.getLayer('compteurs')) { return false; }
-          const mapFeature = map.queryRenderedFeatures(clickEvent.point, { layers: ['compteurs'] });
-          return mapFeature.length > 0;
-        },
-        getTooltipProps: () => {
-          const mapFeature = map.queryRenderedFeatures(clickEvent.point, { layers: ['compteurs'] })[0];
-          const feature = features.find(f => {
-            let ftyped = <CompteurFeature> f
-            ftyped.properties.name === mapFeature.properties.name
-          });
-          return { feature };
-        },
-        component: CounterTooltip
-      },
-      {
         id: 'dangers',
         isClicked: () => {
           if (!map.getLayer('dangers')) { return false; }
@@ -345,7 +300,6 @@ export const useMap = () => {
     updateOrCreateSources,
     separateSectionsIntoLanes,
     plotEverything,
-    getCompteursFeatures,
     fitBounds,
     toggleLimits,
     toggleBikeInfra,

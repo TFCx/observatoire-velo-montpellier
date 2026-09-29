@@ -1,6 +1,6 @@
 
 import { Map } from 'maplibre-gl';
-import { isCompteurFeature, isDangerFeature, isPumpFeature, isPerspectiveFeature, type Feature, isPolygonFeature} from '~/types';
+import { isDangerFeature, isPumpFeature, isPerspectiveFeature, type Feature, isPolygonFeature} from '~/types';
 import { ref } from 'vue';
 
 
@@ -23,7 +23,7 @@ export { DisplayedLayer, setDisplayedLayer };
 
 const { getLineColor } = useColors();
 
-export { plotPerspective, plotCompteurs, plotDangers, plotLimits, plotPumps, plotBaseBikeInfrastructure };
+export { plotPerspective, plotDangers, plotLimits, plotPumps, plotBaseBikeInfrastructure };
 
 function plotPerspective({ map, features }: { map: Map; features: Feature[] }) {
     const perspectives = features.filter(isPerspectiveFeature).map(feature => ({
@@ -170,48 +170,6 @@ function plotPerspective({ map, features }: { map: Map; features: Feature[] }) {
       }
     });
   }
-
-  function plotCompteurs({ map, features }: { map: Map; features: Feature[] }) {
-    const compteurs = features.filter(isCompteurFeature);
-    if (compteurs.length === 0) {
-      return;
-    }
-    compteurs
-      .sort((c1, c2) => (c2.properties.counts.at(-1)?.count ?? 0) - (c1.properties.counts.at(-1)?.count ?? 0))
-      .map((c, i) => {
-        // top counters are bigger and drawn above others
-        const top = 10;
-        c.properties.circleSortKey = i < top ? 1 : 0;
-        c.properties.circleRadius = i < top ? 10 : 7;
-        c.properties.circleStrokeWidth = i < top ? 3 : 0;
-        return c;
-      });
-
-    map.addSource('compteurs', {
-      type: 'geojson',
-      data: {
-        type: 'FeatureCollection',
-        features: compteurs
-      }
-    });
-    map.addLayer({
-      id: 'compteurs',
-      source: 'compteurs',
-      type: 'circle',
-      layout: {
-        'circle-sort-key': ['get', 'circleSortKey']
-      },
-      paint: {
-        'circle-color': '#152B68',
-        'circle-stroke-color': '#fff',
-        'circle-stroke-width': ['get', 'circleStrokeWidth'],
-        'circle-radius': ['get', 'circleRadius']
-      }
-    });
-    map.on('mouseenter', 'compteurs', () => (map.getCanvas().style.cursor = 'pointer'));
-    map.on('mouseleave', 'compteurs', () => (map.getCanvas().style.cursor = ''));
-  }
-
 
 // plot base bike infrastructure from OSM API
 async function plotBaseBikeInfrastructure(map: Map) {
