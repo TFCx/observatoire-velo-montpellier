@@ -24,6 +24,7 @@
     "@nuxtjs/sitemap": "^8.5.1",
     "@nuxtjs/tailwindcss": "^6.14.0",
     "@tailwindcss/typography": "^0.5.16",
+    "@types/node": "^24.19.0",
     "eslint": "^10.11.0",
     "eslint-config-prettier": "^10.1.8",
     "nuxt": "^4.5.2",
