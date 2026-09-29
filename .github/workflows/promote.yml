@@ -71,10 +71,10 @@ jobs:
           commit=$(git rev-parse --short HEAD)
           if [ "${{ inputs.environment }}" = "prod" ]; then
             npx --yes netlify-cli@27.10.0 deploy --no-build --dir=.output/public --prod \
-              --message="prod <- ${commit}"
+              --message="beta → prod : ${commit}"
           else
             npx --yes netlify-cli@27.10.0 deploy --no-build --dir=.output/public \
-              --alias=beta --message="beta <- ${commit}"
+              --alias=beta --message="main → beta : ${commit}"
           fi
 
       # La branche n'avance qu'une fois le déploiement réussi : elle indique ce qui est en ligne.
