@@ -22,7 +22,7 @@
 import type { Geojson } from '~/types';
 const { getStats, displayDistanceInKm, displayPercent } = useStats();
 
-const { voies, precision } = defineProps<{
+const { voies, precision = 0 } = defineProps<{
   voies: Geojson[];
   precision?: number;
 }>();

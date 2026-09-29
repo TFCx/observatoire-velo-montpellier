@@ -20,13 +20,6 @@ module.exports = {
         'color-primary-100': '#FCEABF',
         'color-primary-50': '#FDF2D7',
 
-        'color-primary-600': '#B48208',
-        'color-primary-500': '#E5A50A',
-        'color-primary-400': '#F6BB2C',
-        'color-primary-300': '#F8CB5D',
-        'color-primary-200': '#FADA8E',
-        'color-primary-100': '#FCEABF',
-
         'color-secondary': '#C84271',
 
         'stats-already-existing': '#000000',

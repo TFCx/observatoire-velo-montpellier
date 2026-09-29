@@ -1,4 +1,4 @@
-import { Map } from 'maplibre-gl';
+import type { Map } from 'maplibre-gl';
 import { isDangerFeature, isPumpFeature, isPerspectiveFeature, type Feature, isPolygonFeature } from '~/types';
 import { ref } from 'vue';
 
@@ -21,7 +21,7 @@ export { DisplayedLayer, setDisplayedLayer };
 
 const { getLineColor } = useColors();
 
-export { plotPerspective, plotDangers, plotLimits, plotPumps, plotBaseBikeInfrastructure };
+export { plotPerspective, plotDangers, plotLimits, plotPumps };
 
 function plotPerspective({ map, features }: { map: Map; features: Feature[] }) {
   const perspectives = features.filter(isPerspectiveFeature).map((feature) => ({
@@ -161,69 +161,4 @@ function plotPumps({ map, features }: { map: Map; features: Feature[] }) {
       'icon-color': '#152B68',
     },
   });
-}
-
-// plot base bike infrastructure from OSM API
-async function plotBaseBikeInfrastructure(map: Map) {
-  // Overpass request
-  const basehttp = 'https://overpass-api.de/api/interpreter?data=[out:json];';
-  const request =
-    'area["name"="Montpellier"]->.searchArea;(way["highway"~"cycleway|cycleway_lane|cycleway_track"](area.searchArea);way["bicycle"~"designated"](area.searchArea);way["cycleway:left"="track"](area.searchArea);way["cycleway:right"="track"](area.searchArea);way["cycleway:left"="opposite_track"](area.searchArea);way["cycleway:right"="opposite_track"](area.searchArea);way["cycleway:left"="lane"](area.searchArea);way["cycleway:right"="lane"](area.searchArea););out ids geom;>;out skel qt;';
-
-  const apiUrl = basehttp + encodeURI(request);
-  const data = await fetchBikeLanesGeojsonData(apiUrl);
-
-  map.addSource('source-base-infrastructure', {
-    type: 'geojson',
-    data: data,
-  });
-
-  const lw = 2.2;
-
-  map.addLayer(
-    {
-      id: 'layer-underline-base-infrastructure',
-      type: 'line',
-      source: 'source-base-infrastructure',
-      layout: {
-        visibility: 'none',
-      },
-      paint: {
-        'line-width': lw,
-        'line-color': '#000055',
-        'line-opacity': 0.8,
-      },
-    },
-    'highlight', // push layer to the background
-  );
-}
-
-async function fetchBikeLanesGeojsonData(apiUrl: string): Promise<any> {
-  const response = await fetch(apiUrl);
-  const data = await response.json();
-
-  const geojson = {
-    type: 'FeatureCollection',
-    features: data.elements.map((element: any) => {
-      if (!element.geometry) return [];
-      const feature = {
-        type: 'Feature',
-        properties: {
-          id: element.id,
-          tags: element.tags,
-        },
-        geometry: {
-          type: 'LineString',
-          coordinates: element.geometry.map((geometry: any) => {
-            return [geometry.lon, geometry.lat];
-          }),
-        },
-      };
-      return feature;
-    }),
-  };
-
-  geojson.features = geojson.features.filter((feature: any) => feature.type);
-
-  return geojson;
 }

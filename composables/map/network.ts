@@ -1,17 +1,9 @@
-import { GeoJSONSource, Map, type ExpressionSpecification } from 'maplibre-gl';
-import {
-  LaneType,
-  LaneTypeFamily,
-  Quality,
-  LaneStatus,
-  type Feature,
-  type LaneFeature,
-  type LineStringFeature,
-  type SectionFeature,
-} from '~/types';
+import type { Map, ExpressionSpecification, MapLayerMouseEvent } from 'maplibre-gl';
+import { LaneType, LaneTypeFamily, Quality, LaneStatus, type LaneFeature, type SectionFeature } from '~/types';
 import { ref } from 'vue';
 
-const { getNbVoiesCyclables } = useConfig();
+import { upsertMapSource } from './utils';
+
 enum DisplayedLayer {
   Progress = 0,
   Quality = 1,
@@ -186,11 +178,11 @@ const sectionTypeColor2ndHalf: ExpressionSpecification = [
 
 // ----------------------------
 
-let layersForFinishedNetwork: string[] = [];
-let layersForCurrentNetwork: string[] = [];
-let layersForQualityNetwork: string[] = [];
-let layersForTypeFamilyNetwork: string[] = [];
-let layersForTypeNetwork: string[] = [];
+const layersForFinishedNetwork: string[] = [];
+const layersForCurrentNetwork: string[] = [];
+const layersForQualityNetwork: string[] = [];
+const layersForTypeFamilyNetwork: string[] = [];
+const layersForTypeNetwork: string[] = [];
 
 const setDisplayedLayer = (value: DisplayedLayer) => {
   displayedLayer.value = value;
@@ -222,8 +214,6 @@ function changeLayer(map: Map, displayedLayer: DisplayedLayer) {
   }
 }
 
-import { upsertMapSource } from './utils';
-
 export {
   DisplayedLayer,
   setDisplayedLayer,
@@ -238,8 +228,6 @@ export {
   drawHoveredEffect,
   addListnersForHovering,
 };
-
-let layersBase: string[] = [];
 
 function filterSections(
   sections: SectionFeature[],
@@ -264,70 +252,70 @@ function filterLanes(
 }
 
 function updateOrCreateSources(map: Map, sections: SectionFeature[], lanes: LaneFeature[]) {
-  let b1 = upsertMapSource(map, 'src-lanes', lanes);
-  let b2 = upsertMapSource(
+  const b1 = upsertMapSource(map, 'src-lanes', lanes);
+  const b2 = upsertMapSource(
     map,
     'src-lanes-done',
     filterLanes(lanes, { done: true, wip: false, planned: false, postponed: false }),
   );
-  let b3 = upsertMapSource(
+  const b3 = upsertMapSource(
     map,
     'src-lanes-wip',
     filterLanes(lanes, { done: false, wip: true, planned: false, postponed: false }),
   );
-  let b4 = upsertMapSource(
+  const b4 = upsertMapSource(
     map,
     'src-lanes-planned',
     filterLanes(lanes, { done: false, wip: false, planned: true, postponed: false }),
   );
-  let b5 = upsertMapSource(
+  const b5 = upsertMapSource(
     map,
     'src-lanes-postponed',
     filterLanes(lanes, { done: false, wip: false, planned: false, postponed: true }),
   );
-  let b6 = upsertMapSource(
+  const b6 = upsertMapSource(
     map,
     'src-lanes-not-postponed',
     filterLanes(lanes, { done: true, wip: true, planned: true, postponed: false }),
   );
-  let b7 = upsertMapSource(
+  const b7 = upsertMapSource(
     map,
     'src-lanes-done-and-wip',
     filterLanes(lanes, { done: true, wip: true, planned: false, postponed: false }),
   );
 
-  let b8 = upsertMapSource(map, 'src-sections', sections);
-  let b9 = upsertMapSource(
+  const b8 = upsertMapSource(map, 'src-sections', sections);
+  const b9 = upsertMapSource(
     map,
     'src-sections-done',
     filterSections(sections, { done: true, wip: false, planned: false, postponed: false }),
   );
-  let b10 = upsertMapSource(
+  const b10 = upsertMapSource(
     map,
     'src-sections-wip',
     filterSections(sections, { done: false, wip: true, planned: false, postponed: false }),
   );
-  let b11 = upsertMapSource(
+  const b11 = upsertMapSource(
     map,
     'src-sections-planned',
     filterSections(sections, { done: false, wip: false, planned: true, postponed: false }),
   );
-  let b12 = upsertMapSource(
+  const b12 = upsertMapSource(
     map,
     'src-sections-postponed',
     filterSections(sections, { done: false, wip: false, planned: false, postponed: true }),
   );
-  let b13 = upsertMapSource(
+  const b13 = upsertMapSource(
     map,
     'src-sections-not-postponed',
     filterSections(sections, { done: true, wip: true, planned: true, postponed: false }),
   );
-  let b14 = upsertMapSource(
+  const b14 = upsertMapSource(
     map,
     'src-sections-done-and-wip',
     filterSections(sections, { done: true, wip: true, planned: false, postponed: false }),
   );
-  let b15 = upsertMapSource(
+  const b15 = upsertMapSource(
     map,
     'src-sections-todo',
     filterSections(sections, { done: false, wip: false, planned: true, postponed: true }),
@@ -395,8 +383,8 @@ function drawCurrentNetwork(map: Map) {
   });
   layersForCurrentNetwork.push('layer-current-network-src-lanes-postponed-dashed');
 
-  let farZoom = 11;
-  let closeZoom = 14;
+  const farZoom = 11;
+  const closeZoom = 14;
   map.addLayer({
     id: `layer-current-network-src-lanes-postponed-symbols`,
     type: 'symbol',
@@ -914,9 +902,9 @@ function drawHoveredEffect(map: Map) {
 }
 
 function drawLineNames(map: Map) {
-  let farZoom = 12;
-  let middleZoom = 13;
-  let closeZoom = 14;
+  const farZoom = 12;
+  const middleZoom = 13;
+  const closeZoom = 14;
 
   // ------------------------------------------------------------------------
   // Nom des lignes
@@ -947,10 +935,10 @@ function drawLineNames(map: Map) {
 function addListnersForHovering(map: Map) {
   for (const highlightLayer of ['layer-type-hover-highlight-fixed', 'layer-type-hover-highlight-lanes']) {
     // Add MouveMove event listner => maybe a section is hovered
-    let hoveredLineId: any = null;
-    map.on('mousemove', highlightLayer, (e: any) => {
+    let hoveredLineId: string | number | null = null;
+    map.on('mousemove', highlightLayer, (e: MapLayerMouseEvent) => {
       map.getCanvas().style.cursor = 'pointer';
-      if (e.features.length > 0) {
+      if (e.features && e.features.length > 0) {
         if (hoveredLineId !== null) {
           map.setFeatureState({ source: 'src-sections', id: hoveredLineId }, { hover: false });
         }

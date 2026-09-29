@@ -1,17 +1,7 @@
-import { Map, Popup } from 'maplibre-gl';
-import { createApp, defineComponent, h, Suspense } from 'vue';
-import {
-  isLineStringFeature,
-  type Feature,
-  type LaneFeature,
-  type LineStringFeature,
-  type PerspectiveFeature,
-  type SectionFeature,
-  type MultiColoredLineStringFeature,
-  isSectionFeature,
-  type DangerFeature,
-} from '~/types';
-import { ref } from 'vue';
+import type { Map, MapMouseEvent } from 'maplibre-gl';
+import { Popup } from 'maplibre-gl';
+import { createApp, defineComponent, h, Suspense, ref } from 'vue';
+import type { Feature, LaneFeature, PerspectiveFeature, SectionFeature, DangerFeature } from '~/types';
 
 import {
   updateOrCreateSources,
@@ -25,13 +15,13 @@ import {
   drawLineNames,
   addListnersForHovering,
 } from './map/network';
-import { plotPerspective, plotDangers, plotLimits, plotPumps, plotBaseBikeInfrastructure } from './map/features';
+import { plotPerspective, plotDangers, plotLimits, plotPumps } from './map/features';
 
 // Tooltips
 import PerspectiveTooltip from '~/components/tooltips/PerspectiveTooltip.vue';
 import DangerTooltip from '~/components/tooltips/DangerTooltip.vue';
 import LineTooltip from '~/components/tooltips/LineTooltip.vue';
-import { getCrossIconUrl, sortByLine, fitBounds, upsertMapSource } from './map/utils';
+import { getCrossIconUrl, fitBounds } from './map/utils';
 
 enum DisplayedLayer {
   Progress = 0,
@@ -49,31 +39,19 @@ const setDisplayedLayer = (value: DisplayedLayer) => {
 
 export { DisplayedLayer, setDisplayedLayer };
 
-let displayLimits = ref(false);
-
-let displayBikeInfra = ref(false);
+const displayLimits = ref(false);
 
 function toggleLimits() {
   displayLimits.value = !displayLimits.value;
-}
-
-function toggleBikeInfra() {
-  displayBikeInfra.value = !displayBikeInfra.value;
 }
 
 function toggleLimitsVisibility(map: Map, displayLimits: boolean) {
   map.setLayoutProperty('limits', 'visibility', displayLimits ? 'visible' : 'none');
 }
 
-function toggleBikeInfraVisibility(map: Map, displayBikeInfra: boolean) {
-  map.setLayoutProperty('layer-underline-base-infrastructure', 'visibility', displayBikeInfra ? 'visible' : 'none');
-}
-
 export const useMap = () => {
   function plotEverything(map: Map, sections: SectionFeature[], features: Feature[]) {
-    //plotBaseBikeInfrastructure(map)
-
-    let lanes = separateSectionsIntoLanes(sections);
+    const lanes = separateSectionsIntoLanes(sections);
 
     plotNetwork(map, sections, lanes);
 
@@ -87,7 +65,7 @@ export const useMap = () => {
       return;
     }
 
-    let onlyUpdate = updateOrCreateSources(map, sections, lanesWithId);
+    const onlyUpdate = updateOrCreateSources(map, sections, lanesWithId);
 
     if (onlyUpdate) {
       return;
@@ -119,15 +97,14 @@ export const useMap = () => {
     changeLayer(map, displayedLayer.value);
 
     watch(displayLimits, (displayLimits) => toggleLimitsVisibility(map, displayLimits));
-    watch(displayBikeInfra, (displayBikeInfra) => toggleBikeInfraVisibility(map, displayBikeInfra));
     watch(displayedLayer, (displayedLayer) => changeLayer(map, displayedLayer));
   }
 
   function separateSectionsIntoLanes(features: SectionFeature[]): LaneFeature[] {
-    let lanes: LaneFeature[] = [];
+    const lanes: LaneFeature[] = [];
     features.forEach((f) => {
       f.properties.lines.forEach((lineNo, index) => {
-        let lane: LaneFeature = {
+        const lane: LaneFeature = {
           type: f.type,
           properties: {
             line: lineNo,
@@ -172,7 +149,7 @@ export const useMap = () => {
     map: Map;
     sections: SectionFeature[];
     features: Feature[];
-    clickEvent: any;
+    clickEvent: MapMouseEvent;
   }) {
     const layers = [
       {
@@ -237,7 +214,7 @@ export const useMap = () => {
             ],
           });
 
-          let mapFeature = mapFeatures[mapFeatures.length - 1];
+          const mapFeature = mapFeatures[mapFeatures.length - 1];
 
           const name = mapFeature.properties.name;
 
@@ -261,7 +238,7 @@ export const useMap = () => {
         getTooltipProps: () => {
           const mapFeature = map.queryRenderedFeatures(clickEvent.point, { layers: ['perspectives'] })[0];
           const feature = features.find((f) => {
-            let ftyped = <PerspectiveFeature>f;
+            const ftyped = <PerspectiveFeature>f;
             return (
               ftyped.properties.type === 'perspective' &&
               ftyped.properties.line === mapFeature.properties.line &&
@@ -285,8 +262,8 @@ export const useMap = () => {
         getTooltipProps: () => {
           const mapFeature = map.queryRenderedFeatures(clickEvent.point, { layers: ['dangers'] })[0];
           const feature = features.find((f) => {
-            let ftyped = <DangerFeature>f;
-            ftyped.properties.name === mapFeature.properties.name;
+            const ftyped = <DangerFeature>f;
+            return ftyped.properties.name === mapFeature.properties.name;
           });
           return { feature };
         },
@@ -305,7 +282,8 @@ export const useMap = () => {
       .addTo(map);
 
     const props = clickedLayer.getTooltipProps();
-    // @ts-ignore:next
+    // @ts-expect-error -- les tooltips ont des props différentes : leur union n'est pas un composant
+    // valide pour defineComponent, alors que chaque paire composant/props l'est.
     const component = defineComponent(clickedLayer.component);
     nextTick(() => {
       createApp({
@@ -340,7 +318,6 @@ export const useMap = () => {
     plotEverything,
     fitBounds,
     toggleLimits,
-    toggleBikeInfra,
     handleMapClick,
   };
 };
