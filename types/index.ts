@@ -107,30 +107,6 @@ export type PerspectiveFeature = {
   };
 };
 
-export type CompteurFeature = {
-  type: 'Feature';
-  properties: {
-    type: 'compteur-velo' | 'compteur-voiture';
-    line?: number;
-    name: string;
-    link?: string;
-    counts: Array<{
-      month: string;
-      count: number;
-    }>;
-    /**
-     * z-index like
-     */
-    circleSortKey?: number;
-    circleRadius?: number;
-    circleStrokeWidth?: number;
-  };
-  geometry: {
-    type: 'Point';
-    coordinates: [number, number];
-  };
-};
-
 export type PumpFeature = {
   type: 'Feature';
   properties: {
@@ -157,7 +133,7 @@ export type DangerFeature = {
   };
 }
 
-type PointFeature = PerspectiveFeature | CompteurFeature | PumpFeature | DangerFeature;
+type PointFeature = PerspectiveFeature | PumpFeature | DangerFeature;
 
 export type Feature = SectionFeature | LineStringFeature | PointFeature | LaneFeature | PolygonFeature;
 
@@ -195,9 +171,5 @@ export function isDangerFeature(feature: Feature): feature is PerspectiveFeature
 
 export function isPumpFeature(feature: Feature): feature is PumpFeature {
   return isPointFeature(feature) && feature.properties.type === 'pump';
-}
-
-export function isCompteurFeature(feature: Feature): feature is CompteurFeature {
-  return isPointFeature(feature) && ['compteur-velo', 'compteur-voiture'].includes(feature.properties.type);
 }
 
