@@ -282,6 +282,23 @@ describe('social sharing meta', () => {
     assert.deepEqual(routesWithRelativeOgImage, []);
   });
 
+  // Une image servie par le site ne disparaît pas sans prévenir, contrairement à une image hébergée
+  // ailleurs ou à un fichier du build dont le nom change à chaque modification (_nuxt/xxx.HASH.png).
+  it('should_point_og_image_to_an_existing_site_file_when_page_is_generated', () => {
+    const routesWithUnreliableOgImage = allExpectedRoutes
+      .map(route => ({ route, ogImage: readMetaContent(route, 'property', 'og:image') ?? '(absente)' }))
+      .filter(({ ogImage }) => {
+        if (!ogImage.startsWith(`${config.siteUrl}/`) || ogImage.includes('/_nuxt/')) {
+          return true;
+        }
+        const imagePath = decodeURIComponent(ogImage.slice(config.siteUrl.length));
+        return !fs.existsSync(path.join(GENERATED_SITE_DIRECTORY, imagePath));
+      })
+      .map(({ route, ogImage }) => `${route} : og:image = ${ogImage}`);
+
+    assert.deepEqual(routesWithUnreliableOgImage, []);
+  });
+
   it('should_give_absolute_twitter_image_url_when_page_has_one', () => {
     const routesWithRelativeTwitterImage = allExpectedRoutes
       .map(route => ({ route, twitterImage: readMetaContent(route, 'name', 'twitter:image') }))
