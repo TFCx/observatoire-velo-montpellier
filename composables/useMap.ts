@@ -259,9 +259,11 @@ export const useMap = () => {
     }
     removeHoverTooltip();
 
+    // Dimensions minimales pour la même raison que le tooltip de survol (voir handleMapHover) : sans
+    // elles, près du haut de la carte, le tooltip grandit au-dessus et passe sous l'en-tête du site.
     const clickPopup = new Popup({ closeButton: false, closeOnClick: true })
       .setLngLat(clickEvent.lngLat)
-      .setHTML(`<div id="${clickedLayer.id}-tooltip-content"></div>`)
+      .setHTML(`<div id="${clickedLayer.id}-tooltip-content" style="min-height: 250px; min-width: 200px"></div>`)
       .addTo(map);
 
     const props = clickedLayer.getTooltipProps();
