@@ -58,7 +58,7 @@ function querySectionFeaturesAt(map: Map, point: MapMouseEvent['point']) {
   });
 }
 
-function mountTooltip(elementId: string, component: Component, props: Record<string, unknown>) {
+function mountTooltip(popup: Popup, elementId: string, component: Component, props: Record<string, unknown>) {
   nextTick(() => {
     createApp({
       render: () =>
@@ -67,6 +67,9 @@ function mountTooltip(elementId: string, component: Component, props: Record<str
           fallback: 'Chargement...',
         }),
     }).mount(`#${elementId}`);
+    // MapLibre a placé le popup (au-dessus ou au-dessous du point) avant que le contenu n'existe :
+    // reposer le même point le fait replacer selon la taille réelle du contenu.
+    popup.setLngLat(popup.getLngLat());
   });
 }
 
@@ -261,9 +264,11 @@ export const useMap = () => {
 
     // Dimensions minimales pour la même raison que le tooltip de survol (voir handleMapHover) : sans
     // elles, près du haut de la carte, le tooltip grandit au-dessus et passe sous l'en-tête du site.
-    const clickPopup = new Popup({ closeButton: false, closeOnClick: true })
+    // maxWidth : MapLibre limite sinon le cadre à 240 px et le contenu plus large en déborde ; la
+    // largeur est bornée par le composant du tooltip.
+    const clickPopup = new Popup({ closeButton: false, closeOnClick: true, maxWidth: 'none' })
       .setLngLat(clickEvent.lngLat)
-      .setHTML(`<div id="${clickedLayer.id}-tooltip-content" style="min-height: 250px; min-width: 200px"></div>`)
+      .setHTML(`<div id="${clickedLayer.id}-tooltip-content" style="min-height: 250px; min-width: 240px"></div>`)
       .addTo(map);
 
     const props = clickedLayer.getTooltipProps();
@@ -276,7 +281,7 @@ export const useMap = () => {
     // @ts-expect-error -- les tooltips ont des props différentes : leur union n'est pas un composant
     // valide pour defineComponent, alors que chaque paire composant/props l'est.
     const component = defineComponent(clickedLayer.component);
-    mountTooltip(`${clickedLayer.id}-tooltip-content`, component, props);
+    mountTooltip(clickPopup, `${clickedLayer.id}-tooltip-content`, component, props);
   }
 
   function removeHoverTooltip() {
@@ -317,11 +322,14 @@ export const useMap = () => {
     // MapLibre place le tooltip au-dessus ou au-dessous du point selon sa taille au moment de
     // l'ajout, avant que Vue n'y monte le contenu : sans ces dimensions minimales, un tooltip vide
     // est placé au-dessus d'un tronçon proche du haut, puis grandit hors de la carte.
-    hoverPopup = new Popup({ closeButton: false, closeOnClick: false, offset: 12 })
+    hoverPopup = new Popup({ closeButton: false, closeOnClick: false, offset: 12, maxWidth: 'none' })
       .setLngLat(hoverEvent.lngLat)
-      .setHTML('<div id="line-hover-tooltip-content" style="min-height: 130px; min-width: 208px"></div>')
+      .setHTML('<div id="line-hover-tooltip-content" style="min-height: 130px; min-width: 120px"></div>')
       .addTo(map);
-    mountTooltip('line-hover-tooltip-content', LineHoverTooltip, { feature: section, lines: section.properties.lines });
+    mountTooltip(hoverPopup, 'line-hover-tooltip-content', LineHoverTooltip, {
+      feature: section,
+      lines: section.properties.lines,
+    });
   }
 
   async function loadImages({ map }: { map: Map }) {

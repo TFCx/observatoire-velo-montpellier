@@ -1,5 +1,5 @@
 <template>
-  <div class="not-prose text-gray-900 w-88">
+  <div class="not-prose text-gray-900 w-max min-w-60 max-w-80">
     <div class="py-1 bg-zinc-100 flex flex-col items-center justify-center">
       <div class="font-bold text-base">
         {{ title }}
@@ -18,14 +18,18 @@
     <div class="px-2 divide-y">
       <div class="py-1 flex flex-col items-center">
         <div class="text-base font-bold">Tronçon</div>
-        <div class="text-sm text-center">
+        <div class="text-sm text-center break-words">
           {{ feature.properties.name }}
         </div>
       </div>
       <div class="py-1 flex items-center justify-between">
         <div class="text-sm font-bold mr-2">Statut</div>
-        <div>
-          <div :class="[SECTION_PILL_CLASS, getSectionStatus(feature.properties).class]">
+        <div class="flex flex-col items-end text-sm">
+          <!-- « terminé » est l'état normal d'un tronçon réalisé : du texte suffit, sans pastille. -->
+          <div v-if="feature.properties.status === LaneStatus.Done">
+            {{ getSectionStatus(feature.properties).label }}
+          </div>
+          <div v-else :class="[SECTION_PILL_CLASS, getSectionStatus(feature.properties).class]">
             {{ getSectionStatus(feature.properties).label }}
           </div>
           <div v-if="getSectionStatus(feature.properties).date" class="italic">
@@ -39,15 +43,14 @@
       </div>
       <div class="py-1 flex items-center justify-between">
         <div class="text-sm font-bold mr-2">Type</div>
-        <div>
-          <div class="text-right">
-            {{ getSectionTypeText(feature) }}
-          </div>
+        <div class="min-w-0 text-right break-words">
+          {{ getSectionTypeText(feature) }}
         </div>
       </div>
-      <div v-if="qualities.length > 0" class="py-1 flex items-center justify-between">
+      <!-- Deux qualités ne tiennent pas à côté du libellé : la capsule passe alors à la ligne, à droite. -->
+      <div v-if="qualities.length > 0" class="py-1 flex flex-wrap items-center justify-between gap-y-1">
         <div class="text-sm font-bold mr-2">Qualité</div>
-        <QualityBadge :qualities="qualities" />
+        <QualityBadge :qualities="qualities" class="ml-auto" />
       </div>
     </div>
     <div class="bg-color-primary-primary flex justify-center">
@@ -63,7 +66,7 @@
 </template>
 
 <script setup lang="ts">
-import type { SectionFeature } from '~/types';
+import { LaneStatus, type SectionFeature } from '~/types';
 import QualityBadge from './QualityBadge.vue';
 import { getDisplayedQualities } from '~/domain/sections';
 
