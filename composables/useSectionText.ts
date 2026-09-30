@@ -1,0 +1,47 @@
+import type { SectionFeature } from '~/types';
+
+type SectionStatusText = { label: string; class: string; date?: string };
+
+// Forme des pastilles de qualité d'un tronçon (QualityBadge).
+const SECTION_PILL_CLASS =
+  'inline-flex h-[22px] items-center gap-1 whitespace-nowrap rounded-full border bg-white px-2 text-xs font-medium text-gray-700';
+
+// Textes d'un tronçon partagés par ses tooltips (clic et survol), pour qu'ils disent la même chose.
+export const useSectionText = () => {
+  const { laneTypeToDescription } = useStats();
+
+  function getDoneAtText(doneAt: string): string {
+    const [day, month, year] = doneAt.split('/');
+    const isBeforeMandat =
+      new Date(Number(year), Number(month) - 1, Number(day)).getTime() < new Date(2021, 0, 1).getTime();
+    if (isBeforeMandat) {
+      return 'avant 2021';
+    }
+    return `le ${doneAt}`;
+  }
+
+  // Couleur du texte du statut. Provisoire : les statuts seront revus maintenant que le mandat est
+  // terminé (TODO), « prévu » et « reporté après 2026 » n'ayant plus le même sens.
+  function getSectionStatus(properties: SectionFeature['properties']): SectionStatusText {
+    const statusMapping = {
+      done: { label: 'terminé', date: properties.doneAt && getDoneAtText(properties.doneAt), class: 'text-gray-900' },
+      wip: { label: 'en travaux', class: 'text-color-primary-primary' },
+      planned: { label: 'prévu', class: 'text-gray-400' },
+      postponed: { label: 'reporté', date: 'après 2026', class: 'text-color-secondary' },
+      variante: { label: 'variante', class: 'text-gray-400' },
+      'variante-postponed': { label: 'variante reportée', date: 'après 2026', class: 'text-color-secondary' },
+      unknown: { label: 'à définir', class: 'text-gray-400' },
+    };
+    return statusMapping[properties.status];
+  }
+
+  // Un tronçon dont les deux côtés diffèrent est décrit « côté A & côté B ».
+  function getSectionTypeText(section: SectionFeature): string {
+    const isHeterogenous = section.properties.typeB != undefined && section.properties.type != section.properties.typeB;
+    const typeA = laneTypeToDescription[section.properties.type];
+    const typeB = section.properties.typeB ? laneTypeToDescription[section.properties.typeB] : '';
+    return isHeterogenous ? `${typeA} & ${typeB}` : typeA;
+  }
+
+  return { SECTION_PILL_CLASS, getSectionStatus, getSectionTypeText };
+};

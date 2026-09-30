@@ -1,7 +1,7 @@
 // Regroupement des tronçons saisis (un par Véloligne) en tronçons affichés et comptés : un tronçon
 // partagé entre plusieurs Vélolignes (même id dans chaque fichier) devient un seul tronçon qui les
 // liste toutes. Utilisé par la carte (components/Map.vue) et les statistiques (useStats).
-import { LaneType, LaneTypeFamily, Quality, type LineStringFeature, type SectionFeature } from '../types';
+import { LaneStatus, LaneType, LaneTypeFamily, Quality, type LineStringFeature, type SectionFeature } from '../types';
 
 export function computeTypeFamily(type: LaneType): LaneTypeFamily {
   if (type == LaneType.Bidirectionnelle || type == LaneType.Bilaterale || type == LaneType.Unidirectionnelle) {
@@ -78,4 +78,14 @@ export function regroupIntoSections(features: LineStringFeature[]): SectionFeatu
   }
 
   return sections;
+}
+
+// Qualités affichées pour un tronçon : aucune tant qu'il n'est pas terminé (sa qualité n'est pas
+// encore évaluée), une par sens de circulation quand les deux sens diffèrent.
+export function getDisplayedQualities(section: SectionFeature): Quality[] {
+  const { status, quality, qualityB } = section.properties;
+  if (status !== LaneStatus.Done) {
+    return [];
+  }
+  return qualityB !== undefined && qualityB !== quality ? [quality, qualityB] : [quality];
 }

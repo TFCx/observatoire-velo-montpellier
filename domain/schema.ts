@@ -56,6 +56,16 @@ export const lineStringFeatureSchema = z
         message: 'Un tronçon réalisé (status done) doit avoir sa date de réalisation (jj/mm/aaaa)',
       });
     }
+    // La qualité d'un tronçon réalisé est affichée sur la carte et dans les tooltips : elle ne peut
+    // pas rester à évaluer.
+    const { quality } = feature.properties;
+    if (feature.properties.status === LaneStatus.Done && (!quality || quality === Quality.Inconnu)) {
+      context.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ['properties', 'quality'],
+        message: 'Un tronçon réalisé (status done) doit avoir sa qualité : good, fair ou bad',
+      });
+    }
   });
 
 // Photo d'un projet d'aménagement, affichée sur la carte (aucune à Montpellier aujourd'hui).

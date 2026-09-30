@@ -25,22 +25,23 @@ Le fichier est une `FeatureCollection` GeoJSON. Chaque tronçon est une `Feature
 }
 ```
 
-| Champ      | Obligatoire | Valeurs                                                                                    |
-| ---------- | ----------- | ------------------------------------------------------------------------------------------ |
-| `name`     | oui         | Nom du tronçon, tel qu'il s'affiche au clic sur la carte.                                  |
-| `line`     | oui         | Véloligne, en texte : `"1"`, `"A"`, `"Anneau"`…                                            |
-| `status`   | oui         | Avancement : voir [Statuts](#statuts).                                                     |
-| `doneAt`   | oui         | Date de réalisation `jj/mm/aaaa` ; vide (`""`) tant que le tronçon n'est pas réalisé.      |
-| `type`     | oui         | Type d'aménagement : voir [Types d'aménagement](#types-daménagement).                      |
-| `typeB`    | non         | Type de l'autre côté de la chaussée, quand les deux côtés diffèrent.                       |
-| `quality`  | non         | Qualité : `good`, `fair`, `bad` ; absente ou vide (`""`) si elle n'est pas encore évaluée. |
-| `qualityB` | non         | Qualité de l'autre côté, quand les deux côtés diffèrent.                                   |
-| `link`     | oui         | Lien vers le texte du tronçon dans la page : `/veloligne-2#lez-vieille-poste`.             |
-| `id`       | non         | Uniquement pour un tronçon partagé entre plusieurs Vélolignes : voir ci-dessous.           |
+| Champ      | Obligatoire | Valeurs                                                                                         |
+| ---------- | ----------- | ----------------------------------------------------------------------------------------------- |
+| `name`     | oui         | Nom du tronçon, tel qu'il s'affiche au clic sur la carte.                                       |
+| `line`     | oui         | Véloligne, en texte : `"1"`, `"A"`, `"Anneau"`…                                                 |
+| `status`   | oui         | Avancement : voir [Statuts](#statuts).                                                          |
+| `doneAt`   | oui         | Date de réalisation `jj/mm/aaaa` ; vide (`""`) tant que le tronçon n'est pas réalisé.           |
+| `type`     | oui         | Type d'aménagement : voir [Types d'aménagement](#types-daménagement).                           |
+| `typeB`    | non         | Type de l'autre côté de la chaussée, quand les deux côtés diffèrent.                            |
+| `quality`  | si terminé  | Qualité : `good`, `fair`, `bad` ; absente ou vide (`""`) tant que le tronçon n'est pas terminé. |
+| `qualityB` | non         | Qualité de l'autre côté, quand les deux côtés diffèrent.                                        |
+| `link`     | oui         | Lien vers le texte du tronçon dans la page : `/veloligne-2#lez-vieille-poste`.                  |
+| `id`       | non         | Uniquement pour un tronçon partagé entre plusieurs Vélolignes : voir ci-dessous.                |
 
 Règles vérifiées en plus par la CI (`tests/data-health.test.ts`) :
 
 - un tronçon réalisé (`status: "done"`) a une date `doneAt` ;
+- un tronçon réalisé a une qualité (`good`, `fair` ou `bad`) ;
 - `link` mène à un titre existant de la page ;
 - un tronçon partagé entre plusieurs Vélolignes porte le **même `id`** dans le fichier de chacune
   d'elles : un `id` présent une seule fois est refusé ;

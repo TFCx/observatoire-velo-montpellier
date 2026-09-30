@@ -69,6 +69,17 @@ Prochaine release :
 
 Moyen terme :
 
+- [UX] Tronçons en travaux : remplacer l'animation (≈10 % du temps de calcul du navigateur en continu, carte immobile,
+  mesuré le 30/09/2026 ; 6 boucles requestAnimationFrame sans fin) par un liseré jaune et noir à l'extérieur du tracé,
+  comme Cyclopolis. Légende à mettre à jour. PR dédiée.
+- [DATA/UX] Statuts après la fin du mandat : « prévu » devient plutôt « en retard » ou « non réalisé » ? « reporté après
+  2026 » plutôt « sans prévision » ? Revoir libellés, couleurs (provisoires dans les tooltips : prévu gris, reporté
+  rose) et légende.
+- [DATA/UX] Qualité selon le sens : quand `quality` et `qualityB` diffèrent, le tooltip dit seulement « selon le
+  sens de circulation ». Réfléchir à préciser quel sens correspond à A et à B (ex. « vers Montpellier »). Utile mais
+  compliqué : A et B suivent le sens de numérisation du tracé, que les contributeurs ne voient pas ; il faudrait
+  un champ de données en plus, et le garder cohérent quand un tracé est redessiné.
+
 - [UX] Dans Type & Qualité : couleurs des familles
 - [REFACTOR] Faire en sorte que le nom de la section ne soit pas une clé primaire pour les sections partagées
 - [REFACTOR] MAJ les auto-scripts qui envoient des mails
