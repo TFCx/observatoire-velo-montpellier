@@ -58,15 +58,16 @@ visibles en bas de la pull request :
 
 Erreurs fréquentes :
 
-| Message                                                  | Correction                                                                             |
-| -------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `… inconnu ; valeurs admises : …`                        | Faute de frappe dans une valeur : reprendre une des valeurs admises.                   |
-| `date de réalisation attendue au format jj/mm/aaaa`      | Écrire la date comme `15/06/2026`.                                                     |
-| `Un tronçon réalisé (status done) doit avoir sa date`    | Renseigner `doneAt`.                                                                   |
-| `Un tronçon réalisé (status done) doit avoir sa qualité` | Renseigner `quality` : `good`, `fair` ou `bad`.                                        |
-| `lien "…" sans titre correspondant`                      | Le `link` du tronçon doit viser un titre `###` existant de la page `.md`.              |
-| `… externe https://…`                                    | Déposer l'image dans `public/` (voir ci-dessous) au lieu d'un lien vers un autre site. |
-| Le fichier ne s'enregistre pas, ou `JSON` invalide       | Virgule ou guillemet manquant : comparer avec les lignes voisines.                     |
+| Message                                                  | Correction                                                                               |
+| -------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `… inconnu ; valeurs admises : …`                        | Faute de frappe dans une valeur : reprendre une des valeurs admises.                     |
+| `date de réalisation attendue au format jj/mm/aaaa`      | Écrire la date comme `15/06/2026`.                                                       |
+| `Un tronçon réalisé (status done) doit avoir sa date`    | Renseigner `doneAt`.                                                                     |
+| `Un tronçon réalisé (status done) doit avoir sa qualité` | Renseigner `quality` : `good`, `fair` ou `bad`.                                          |
+| `lien "…" sans titre correspondant`                      | Le `link` du tronçon doit viser un titre `###` existant de la page `.md`.                |
+| `… externe https://…`                                    | Déposer l'image dans `public/` (voir ci-dessous) au lieu d'un lien vers un autre site.   |
+| Le fichier ne s'enregistre pas, ou `JSON` invalide       | Virgule ou guillemet manquant : comparer avec les lignes voisines.                       |
+| `[object Object]` affiché sur une page                   | Un texte de l'en-tête (entre les `---`) contient « : » : l'entourer de guillemets `"…"`. |
 
 ## Ajouter une image
 

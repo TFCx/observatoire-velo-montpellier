@@ -43,6 +43,11 @@ Feuille de route technique (sept. 2026) — voir docs/decisions/0002 :
   - Brancher sur les flux open data de la Métropole -> ADR
   - Inspirations : compteurs.velocite-montpellier.fr/dashboard, compteurs-velo-de-montpellier.onrender.com, montpellier-bike.vercel.app
 - En continu : refactor de chaque zone avant d'y porter une feature, en commit séparé
+- Restes du plan de simplification (ADR 0005) :
+  - Vérifier si le SQLite WASM de Content v3 est téléchargé en navigation côté client (poids des pages)
+  - Images de public/ (6,2 Mo) en WebP
+  - Autres fonctions métier de useStats / useMap vers domain/ : d'abord un test de caractérisation des
+    statistiques sur les données réelles (chiffres publics, rien ne signale aujourd'hui qu'ils changent)
 
 Prochaine release :
 
