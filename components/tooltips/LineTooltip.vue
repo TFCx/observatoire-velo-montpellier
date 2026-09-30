@@ -25,7 +25,11 @@
       <div class="py-1 flex items-center justify-between">
         <div class="text-sm font-bold mr-2">Statut</div>
         <div class="flex flex-col items-end text-sm" :class="getSectionStatus(feature.properties).class">
-          <div>{{ getSectionStatus(feature.properties).label }}</div>
+          <div>
+            <ConstructionIcon v-if="feature.properties.status === 'wip'" class="mr-0.5" />{{
+              getSectionStatus(feature.properties).label
+            }}
+          </div>
           <div v-if="getSectionStatus(feature.properties).date" class="italic">
             {{ getSectionStatus(feature.properties).date }}
           </div>
@@ -62,6 +66,7 @@
 <script setup lang="ts">
 import type { SectionFeature } from '~/types';
 import QualityBadge from './QualityBadge.vue';
+import ConstructionIcon from '~/components/ConstructionIcon.vue';
 import { getDisplayedQualities } from '~/domain/sections';
 
 const { getLineColor } = useColors();

@@ -27,7 +27,7 @@
               <div class="my-auto wip-outline">
                 <div class="h-1 bg-color-primary-primary wip-outline-inner" />
               </div>
-              <div>En travaux</div>
+              <div>En travaux <ConstructionIcon /></div>
 
               <div class="my-auto border-gray-500 border">
                 <div class="h-2 relative">
@@ -176,6 +176,7 @@
 
 <script setup lang="ts">
 import type { DisplayedLayer } from '~/composables/map/network';
+import ConstructionIcon from './ConstructionIcon.vue';
 
 const { defaultLegend } = defineProps<{
   defaultLegend: DisplayedLayer;
