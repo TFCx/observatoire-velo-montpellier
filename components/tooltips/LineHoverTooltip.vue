@@ -14,7 +14,9 @@
     <div class="px-3 py-1 flex flex-col items-center gap-1 text-center">
       <div class="text-sm font-semibold break-words">{{ feature.properties.name }}</div>
       <div class="text-xs break-words">{{ typeLabel }} de {{ roundedLengthInMeters }} m</div>
-      <div class="text-xs font-medium" :class="status.class">{{ statusText }}</div>
+      <div class="text-xs font-medium" :class="status.class">
+        <ConstructionIcon v-if="feature.properties.status === 'wip'" class="mr-0.5" />{{ statusText }}
+      </div>
       <QualityBadge :qualities="qualities" />
     </div>
   </div>
@@ -23,6 +25,7 @@
 <script setup lang="ts">
 import { LaneType, type SectionFeature } from '~/types';
 import QualityBadge from './QualityBadge.vue';
+import ConstructionIcon from '~/components/ConstructionIcon.vue';
 import { getDisplayedQualities } from '~/domain/sections';
 
 const { getLineColor } = useColors();

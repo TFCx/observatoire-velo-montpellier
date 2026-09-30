@@ -20,8 +20,20 @@ const dashesWidthRatio = 0.75;
 const laneWidth = 4;
 const fixedSectionWidth = laneWidth + 0.5;
 const laneDashes = [1.5, 0.7];
-const sectionDashWIP = [2.0, 2.1];
-const laneDashWIP = [1.0, 1.05];
+// Liseré « chantier » autour des tronçons en travaux : tirets jaunes sur un trait noir. Remplace une
+// animation qui redessinait toute la carte à chaque image (≈10 % de calcul en continu, carte immobile).
+const WIP_OUTLINE_WIDTH = 3;
+const WIP_OUTLINE_YELLOW = '#FFD400';
+const WIP_OUTLINE_BLACK = '#111111';
+// En multiples de la largeur du trait : des tirets deux fois plus longs que larges.
+const WIP_OUTLINE_DASHES = [2, 2];
+// Fins traits noirs de part et d'autre du liseré : à l'extérieur pour le détacher du fond de carte,
+// à l'intérieur pour qu'une ligne jaune (Véloligne B) ne se confonde pas avec les tirets jaunes.
+const WIP_OUTLINE_BORDER_WIDTH = 1;
+// Intérieur en pointillés, comme les tronçons prévus : un tronçon en travaux n'est pas encore
+// praticable (le tracé plein est réservé aux tronçons terminés).
+const WIP_LANE_DASHES = [1.0, 1.05];
+const WIP_SECTION_DASHES = [2.0, 2.1];
 const hoverExtension = 3;
 const fixedHoverWidth = fixedSectionWidth + contourWidth * 2 + hoverExtension * 2;
 
@@ -326,6 +338,80 @@ function updateOrCreateSources(map: Map, sections: SectionFeature[], lanes: Lane
   return b1 && b2 && b3 && b4 && b5 && b6 && b7 && b8 && b9 && b10 && b11 && b12 && b13 && b14 && b15;
 }
 
+// Liseré des tronçons en travaux, dessiné autour du tracé (line-gap-width) : trait noir, tirets jaunes
+// par-dessus, fins traits noirs de part et d'autre, puis panneaux de chantier.
+function drawWipOutline(
+  map: Map,
+  layerIdPrefix: string,
+  gapWidth: number | ExpressionSpecification,
+  layerIds: string[],
+) {
+  map.addLayer({
+    id: `${layerIdPrefix}-outline-black`,
+    type: 'line',
+    source: 'src-sections-wip',
+    paint: {
+      'line-gap-width': gapWidth,
+      'line-width': WIP_OUTLINE_WIDTH,
+      'line-color': WIP_OUTLINE_BLACK,
+    },
+  });
+  layerIds.push(`${layerIdPrefix}-outline-black`);
+
+  map.addLayer({
+    id: `${layerIdPrefix}-outline-yellow`,
+    type: 'line',
+    source: 'src-sections-wip',
+    paint: {
+      'line-gap-width': gapWidth,
+      'line-width': WIP_OUTLINE_WIDTH,
+      'line-color': WIP_OUTLINE_YELLOW,
+      'line-dasharray': WIP_OUTLINE_DASHES,
+    },
+  });
+  layerIds.push(`${layerIdPrefix}-outline-yellow`);
+
+  map.addLayer({
+    id: `${layerIdPrefix}-outline-outer-border`,
+    type: 'line',
+    source: 'src-sections-wip',
+    paint: {
+      'line-gap-width': ['+', gapWidth, 2 * WIP_OUTLINE_WIDTH],
+      'line-width': WIP_OUTLINE_BORDER_WIDTH,
+      'line-color': WIP_OUTLINE_BLACK,
+    },
+  });
+  layerIds.push(`${layerIdPrefix}-outline-outer-border`);
+
+  map.addLayer({
+    id: `${layerIdPrefix}-outline-inner-border`,
+    type: 'line',
+    source: 'src-sections-wip',
+    paint: {
+      'line-gap-width': gapWidth,
+      'line-width': WIP_OUTLINE_BORDER_WIDTH,
+      'line-color': WIP_OUTLINE_BLACK,
+    },
+  });
+  layerIds.push(`${layerIdPrefix}-outline-inner-border`);
+
+  // Panneaux de chantier répétés le long du tronçon, comme Cyclopolis Lyon (icône : utils.ts).
+  map.addLayer({
+    id: `${layerIdPrefix}-construction-icons`,
+    type: 'symbol',
+    source: 'src-sections-wip',
+    layout: {
+      'icon-image': 'construction-icon',
+      'icon-size': 0.5,
+      'symbol-placement': 'line',
+      'symbol-spacing': ['interpolate', ['linear'], ['zoom'], 13, 80, 16, 250],
+      'icon-allow-overlap': true,
+      'icon-anchor': 'bottom',
+    },
+  });
+  layerIds.push(`${layerIdPrefix}-construction-icons`);
+}
+
 function drawCurrentNetwork(map: Map) {
   // ------------------------------------------------------------------------
   // Postponed
@@ -487,6 +573,8 @@ function drawCurrentNetwork(map: Map) {
 
   // ------------------------------------------------------------------------
   // WIP
+  drawWipOutline(map, 'layer-current-network-wip', sectionWidth, layersForCurrentNetwork);
+
   map.addLayer({
     id: `layer-current-network-src-lanes-wip-background`,
     type: 'line',
@@ -506,24 +594,11 @@ function drawCurrentNetwork(map: Map) {
     paint: {
       'line-width': laneWidth,
       'line-color': laneColor,
-      'line-dasharray': laneDashWIP,
+      'line-dasharray': WIP_LANE_DASHES,
       'line-offset': offsetLane,
     },
   });
   layersForCurrentNetwork.push('layer-current-network-src-lanes-wip-dashed');
-
-  map.addLayer({
-    id: `layer-current-network-src-lanes-wip-as-done`,
-    type: 'line',
-    source: 'src-lanes-wip',
-    paint: {
-      'line-width': laneWidth,
-      'line-color': laneColor,
-      'line-offset': offsetLane,
-    },
-  });
-  animateOpacity(map, 0, 1000 * 1.5, 'layer-current-network-src-lanes-wip-as-done', 'line-opacity', 0.0, 1.0);
-  layersForCurrentNetwork.push('layer-current-network-src-lanes-wip-as-done');
 
   // ------------------------------------------------------------------------
   // Done
@@ -609,6 +684,8 @@ function drawQualityNetwork(map: Map) {
   });
   layersForQualityNetwork.push('layer-quality-network-sections-done-sideB');
 
+  drawWipOutline(map, 'layer-quality-network-sections-wip', fixedSectionWidth, layersForQualityNetwork);
+
   map.addLayer({
     id: `layer-quality-network-sections-wip-background`,
     type: 'line',
@@ -628,7 +705,7 @@ function drawQualityNetwork(map: Map) {
       'line-width': fixedSectionWidth / 2,
       'line-color': sectionQualityColor,
       'line-offset': fixedSectionWidth / 4,
-      'line-dasharray': sectionDashWIP,
+      'line-dasharray': WIP_SECTION_DASHES,
     },
   });
   layersForQualityNetwork.push('layer-quality-network-sections-wip-sideA');
@@ -641,36 +718,10 @@ function drawQualityNetwork(map: Map) {
       'line-width': fixedSectionWidth / 2,
       'line-color': sectionQualityColor2ndHalf,
       'line-offset': -fixedSectionWidth / 4,
-      'line-dasharray': sectionDashWIP,
+      'line-dasharray': WIP_SECTION_DASHES,
     },
   });
   layersForQualityNetwork.push('layer-quality-network-sections-wip-sideB');
-
-  map.addLayer({
-    id: `layer-quality-network-sections-wip-as-done-sideA`,
-    type: 'line',
-    source: 'src-sections-wip',
-    paint: {
-      'line-width': fixedSectionWidth / 2,
-      'line-color': sectionQualityColor,
-      'line-offset': fixedSectionWidth / 4,
-    },
-  });
-  animateOpacity(map, 0, 1000 * 1.5, 'layer-quality-network-sections-wip-as-done-sideA', 'line-opacity', 0.0, 1.0);
-  layersForQualityNetwork.push('layer-quality-network-sections-wip-as-done-sideA');
-
-  map.addLayer({
-    id: `layer-quality-network-sections-wip-as-done-sideB`,
-    type: 'line',
-    source: 'src-sections-wip',
-    paint: {
-      'line-width': fixedSectionWidth / 2,
-      'line-color': sectionQualityColor2ndHalf,
-      'line-offset': -fixedSectionWidth / 4,
-    },
-  });
-  animateOpacity(map, 0, 1000 * 1.5, 'layer-quality-network-sections-wip-as-done-sideB', 'line-opacity', 0.0, 1.0);
-  layersForQualityNetwork.push('layer-quality-network-sections-wip-as-done-sideB');
 
   map.addLayer({
     id: `layer-quality-network-sections-todo-sideA`,
@@ -738,6 +789,8 @@ function drawTypeFamilyNetwork(map: Map) {
   });
   layersForTypeFamilyNetwork.push('layer-type-family-network-sections-done-sideB');
 
+  drawWipOutline(map, 'layer-family-network-sections-wip', fixedSectionWidth, layersForTypeFamilyNetwork);
+
   map.addLayer({
     id: `layer-family-network-sections-wip-background`,
     type: 'line',
@@ -757,7 +810,7 @@ function drawTypeFamilyNetwork(map: Map) {
       'line-width': fixedSectionWidth / 2,
       'line-color': sectionTypeFamilyColor,
       'line-offset': fixedSectionWidth / 4,
-      'line-dasharray': sectionDashWIP,
+      'line-dasharray': WIP_SECTION_DASHES,
     },
   });
   layersForTypeFamilyNetwork.push('layer-family-network-sections-wip-sideA');
@@ -770,36 +823,10 @@ function drawTypeFamilyNetwork(map: Map) {
       'line-width': fixedSectionWidth / 2,
       'line-color': sectionTypeFamilyColor2ndHalf,
       'line-offset': -fixedSectionWidth / 4,
-      'line-dasharray': sectionDashWIP,
+      'line-dasharray': WIP_SECTION_DASHES,
     },
   });
   layersForTypeFamilyNetwork.push('layer-family-network-sections-wip-sideB');
-
-  map.addLayer({
-    id: `layer-family-network-sections-wip-as-done-sideA`,
-    type: 'line',
-    source: 'src-sections-wip',
-    paint: {
-      'line-width': fixedSectionWidth / 2,
-      'line-color': sectionTypeFamilyColor,
-      'line-offset': fixedSectionWidth / 4,
-    },
-  });
-  animateOpacity(map, 0, 1000 * 1.5, 'layer-family-network-sections-wip-as-done-sideA', 'line-opacity', 0.0, 1.0);
-  layersForTypeFamilyNetwork.push('layer-family-network-sections-wip-as-done-sideA');
-
-  map.addLayer({
-    id: `layer-family-network-sections-wip-as-done-sideB`,
-    type: 'line',
-    source: 'src-sections-wip',
-    paint: {
-      'line-width': fixedSectionWidth / 2,
-      'line-color': sectionTypeFamilyColor2ndHalf,
-      'line-offset': -fixedSectionWidth / 4,
-    },
-  });
-  animateOpacity(map, 0, 1000 * 1.5, 'layer-family-network-sections-wip-as-done-sideB', 'line-opacity', 0.0, 1.0);
-  layersForTypeFamilyNetwork.push('layer-family-network-sections-wip-as-done-sideB');
 
   map.addLayer({
     id: `layer-family-network-sections-todo-sideA`,
@@ -962,24 +989,4 @@ function addListnersForHovering(map: Map) {
       hoveredLineId = null;
     });
   }
-}
-
-function animateOpacity(
-  map: Map,
-  timestamp: number,
-  animationLength: number,
-  attributeId: string,
-  attributeOpacity: 'line-opacity',
-  min: number,
-  max: number,
-) {
-  function subAnimateOpacity(timestamp: number) {
-    const opacity010 = Math.abs(((timestamp * 2 * (1 / animationLength)) % 2) - 1);
-    const opacity = opacity010 * (max - min) + min;
-    map.setPaintProperty(attributeId, attributeOpacity, opacity);
-
-    // Request the next frame of the animation.
-    requestAnimationFrame(subAnimateOpacity);
-  }
-  subAnimateOpacity(timestamp);
 }

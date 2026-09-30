@@ -24,17 +24,10 @@
               </div>
               <div>Terminé</div>
 
-              <div class="my-auto rounded-md border-gray-500 border">
-                <div class="h-1 relative">
-                  <div class="h-full w-full">
-                    <div class="myrelative h-full w-full">
-                      <div class="myabsolute h-full w-full bg-color-primary-primary dashed-line" />
-                      <div class="myabsolute h-full w-full bg-color-primary-primary animated-opacity" />
-                    </div>
-                  </div>
-                </div>
+              <div class="my-auto wip-outline">
+                <div class="h-1 bg-color-primary-primary wip-outline-inner" />
               </div>
-              <div>En travaux</div>
+              <div>En travaux <ConstructionIcon /></div>
 
               <div class="my-auto border-gray-500 border">
                 <div class="h-2 relative">
@@ -183,6 +176,7 @@
 
 <script setup lang="ts">
 import type { DisplayedLayer } from '~/composables/map/network';
+import ConstructionIcon from './ConstructionIcon.vue';
 
 const { defaultLegend } = defineProps<{
   defaultLegend: DisplayedLayer;
@@ -223,12 +217,16 @@ defineExpose({
   background-size: 10px 0.25rem;
 }
 
-.animated-opacity {
-  animation: blinker 1s linear infinite;
+/* Même liseré que les tronçons en travaux sur la carte (composables/map/network.ts). */
+.wip-outline {
+  padding: 3px 0;
+  border-top: 1px solid #111111;
+  border-bottom: 1px solid #111111;
+  background: repeating-linear-gradient(to right, #ffd400 0 6px, #111111 6px 12px);
 }
 
-.animated-opacity-slow {
-  animation: blinker 5s linear infinite;
+.wip-outline-inner {
+  box-shadow: 0 0 0 1px #111111;
 }
 
 .myrelative {
@@ -245,36 +243,5 @@ defineExpose({
   position: absolute;
   top: 5px;
   right: 5px;
-}
-
-.font-size-small {
-  background-color: rgba(255, 255, 255, 0.1);
-  font-size: x-small;
-  position: absolute;
-  top: -5px;
-  left: 15px;
-  animation: halfblinker 5s linear infinite;
-}
-
-@keyframes halfblinker {
-  50% {
-    opacity: 0.5;
-  }
-}
-
-@keyframes blinker {
-  50% {
-    opacity: 0;
-  }
-}
-
-@keyframes dash-animation {
-  0% {
-    background-position: 0 0;
-  }
-
-  100% {
-    background-position: 12px 0;
-  }
 }
 </style>

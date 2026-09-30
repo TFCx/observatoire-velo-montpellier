@@ -69,9 +69,7 @@ Prochaine release :
 
 Moyen terme :
 
-- [UX] Tronçons en travaux : remplacer l'animation (≈10 % du temps de calcul du navigateur en continu, carte immobile,
-  mesuré le 30/09/2026 ; 6 boucles requestAnimationFrame sans fin) par un liseré jaune et noir à l'extérieur du tracé,
-  comme Cyclopolis. Légende à mettre à jour. PR dédiée.
+- [x] [UX] Tronçons en travaux : animation (≈10 % de calcul en continu) remplacée par un liseré jaune et noir.
 - [DATA/UX] Statuts après la fin du mandat : « prévu » devient plutôt « en retard » ou « non réalisé » ? « reporté après
   2026 » plutôt « sans prévision » ? Revoir libellés, couleurs (provisoires dans les tooltips : prévu gris, reporté
   rose) et légende.
