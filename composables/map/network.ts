@@ -22,11 +22,14 @@ const fixedSectionWidth = laneWidth + 0.5;
 const laneDashes = [1.5, 0.7];
 // Liseré « chantier » autour des tronçons en travaux : tirets jaunes sur un trait noir. Remplace une
 // animation qui redessinait toute la carte à chaque image (≈10 % de calcul en continu, carte immobile).
-const WIP_OUTLINE_WIDTH = 2.5;
+const WIP_OUTLINE_WIDTH = 3;
 const WIP_OUTLINE_YELLOW = '#FFD400';
 const WIP_OUTLINE_BLACK = '#111111';
-// En multiples de la largeur du trait : des tirets à peu près carrés.
-const WIP_OUTLINE_DASHES = [1.2, 1.2];
+// En multiples de la largeur du trait : des tirets deux fois plus longs que larges.
+const WIP_OUTLINE_DASHES = [2, 2];
+// Fins traits noirs de part et d'autre du liseré : à l'extérieur pour le détacher du fond de carte,
+// à l'intérieur pour qu'une ligne jaune (Véloligne B) ne se confonde pas avec les tirets jaunes.
+const WIP_OUTLINE_BORDER_WIDTH = 1;
 const hoverExtension = 3;
 const fixedHoverWidth = fixedSectionWidth + contourWidth * 2 + hoverExtension * 2;
 
@@ -331,8 +334,8 @@ function updateOrCreateSources(map: Map, sections: SectionFeature[], lanes: Lane
   return b1 && b2 && b3 && b4 && b5 && b6 && b7 && b8 && b9 && b10 && b11 && b12 && b13 && b14 && b15;
 }
 
-// Liseré des tronçons en travaux, dessiné autour du tracé (line-gap-width) : trait noir, puis tirets
-// jaunes par-dessus.
+// Liseré des tronçons en travaux, dessiné autour du tracé (line-gap-width) : trait noir, tirets jaunes
+// par-dessus, fins traits noirs de part et d'autre, puis panneaux de chantier.
 function drawWipOutline(
   map: Map,
   layerIdPrefix: string,
@@ -363,6 +366,46 @@ function drawWipOutline(
     },
   });
   layerIds.push(`${layerIdPrefix}-outline-yellow`);
+
+  map.addLayer({
+    id: `${layerIdPrefix}-outline-outer-border`,
+    type: 'line',
+    source: 'src-sections-wip',
+    paint: {
+      'line-gap-width': ['+', gapWidth, 2 * WIP_OUTLINE_WIDTH],
+      'line-width': WIP_OUTLINE_BORDER_WIDTH,
+      'line-color': WIP_OUTLINE_BLACK,
+    },
+  });
+  layerIds.push(`${layerIdPrefix}-outline-outer-border`);
+
+  map.addLayer({
+    id: `${layerIdPrefix}-outline-inner-border`,
+    type: 'line',
+    source: 'src-sections-wip',
+    paint: {
+      'line-gap-width': gapWidth,
+      'line-width': WIP_OUTLINE_BORDER_WIDTH,
+      'line-color': WIP_OUTLINE_BLACK,
+    },
+  });
+  layerIds.push(`${layerIdPrefix}-outline-inner-border`);
+
+  // Panneaux de chantier répétés le long du tronçon, comme Cyclopolis Lyon (icône : utils.ts).
+  map.addLayer({
+    id: `${layerIdPrefix}-construction-icons`,
+    type: 'symbol',
+    source: 'src-sections-wip',
+    layout: {
+      'icon-image': 'construction-icon',
+      'icon-size': 0.5,
+      'symbol-placement': 'line',
+      'symbol-spacing': ['interpolate', ['linear'], ['zoom'], 13, 80, 16, 250],
+      'icon-allow-overlap': true,
+      'icon-anchor': 'bottom',
+    },
+  });
+  layerIds.push(`${layerIdPrefix}-construction-icons`);
 }
 
 function drawCurrentNetwork(map: Map) {

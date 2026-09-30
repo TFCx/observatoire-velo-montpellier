@@ -25,7 +25,7 @@
               <div>Terminé</div>
 
               <div class="my-auto wip-outline">
-                <div class="h-1 bg-color-primary-primary" />
+                <div class="h-1 bg-color-primary-primary wip-outline-inner" />
               </div>
               <div>En travaux</div>
 
@@ -218,8 +218,14 @@ defineExpose({
 
 /* Même liseré que les tronçons en travaux sur la carte (composables/map/network.ts). */
 .wip-outline {
-  padding: 2px 0;
-  background: repeating-linear-gradient(to right, #ffd400 0 4px, #111111 4px 8px);
+  padding: 3px 0;
+  border-top: 1px solid #111111;
+  border-bottom: 1px solid #111111;
+  background: repeating-linear-gradient(to right, #ffd400 0 6px, #111111 6px 12px);
+}
+
+.wip-outline-inner {
+  box-shadow: 0 0 0 1px #111111;
 }
 
 .myrelative {
