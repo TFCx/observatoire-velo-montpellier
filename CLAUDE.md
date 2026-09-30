@@ -22,7 +22,8 @@ les ADR dans `docs/decisions/`, et `TODO.md` (feuille de route).
 - `npm run test:e2e` : génère le site, puis tests dans Chromium (ADR 0006).
 - `npm run format:check`, `npm run lint`, `npm run typecheck` : exécutés en CI, bloquants.
 - Contrôler chaque commande par son **code de retour** (`; echo exit=$?`), jamais par `| tail` :
-  oxfmt affiche ses erreurs avant une dernière ligne qui a l'air normale.
+  oxfmt affiche ses erreurs avant une dernière ligne qui a l'air normale. Enchaîner vérifications et
+  commit avec `&&`, jamais `;` : un échec doit arrêter le commit.
 
 ## Git et PR
 
