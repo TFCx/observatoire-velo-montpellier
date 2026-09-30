@@ -71,6 +71,28 @@ function describeFeature({ fileName, feature }: LoadedFeature): string {
   return `${fileName} : ligne ${feature.properties?.line}, tronçon "${feature.properties?.name}"`;
 }
 
+// « id GareBaillargues : name "Saint-Brès" (veloligne-1.json), "Gare de Baillargues" (veloligne-D.json) »
+function findSharedSectionsWithDifferentValues(property: 'name' | 'status'): string[] {
+  const filesByValueById = new Map<string, Map<string, Set<string>>>();
+  for (const { fileName, feature } of lineStringFeatures) {
+    const id = feature.properties?.id;
+    // Un id null vaut absence d'id, comme dans regroupIntoSections.
+    if (!id) {
+      continue;
+    }
+    const value = String(feature.properties?.[property]);
+    const filesByValue = filesByValueById.get(id) ?? new Map<string, Set<string>>();
+    filesByValue.set(value, (filesByValue.get(value) ?? new Set<string>()).add(fileName));
+    filesByValueById.set(id, filesByValue);
+  }
+  return [...filesByValueById]
+    .filter(([, filesByValue]) => filesByValue.size > 1)
+    .map(([id, filesByValue]) => {
+      const valuesWithFiles = [...filesByValue].map(([value, files]) => `"${value}" (${[...files].join(', ')})`);
+      return `id ${id} : ${property} ${valuesWithFiles.join(', ')}`;
+    });
+}
+
 const allFeatures = loadVoiesCyclablesFeatures();
 const lineStringFeatures = allFeatures.filter(({ feature }) => feature.geometry.type === 'LineString');
 
@@ -140,6 +162,16 @@ describe('data health', () => {
       const idsSeenOnce = [...occurrencesById].filter(([, occurrences]) => occurrences < 2).map(([id]) => id);
 
       assert.deepEqual(idsSeenOnce, []);
+    });
+
+    // Les tracés d'un même id sont fusionnés en un seul tronçon (regroupIntoSections) : un nom ou un
+    // statut qui diffère d'une ligne à l'autre ferait dépendre la carte de la ligne lue en premier.
+    it('should_have_same_name_when_line_strings_share_an_id', () => {
+      assert.deepEqual(findSharedSectionsWithDifferentValues('name'), []);
+    });
+
+    it('should_have_same_status_when_line_strings_share_an_id', () => {
+      assert.deepEqual(findSharedSectionsWithDifferentValues('status'), []);
     });
 
     it('should_be_unique_when_combining_name_and_line', () => {

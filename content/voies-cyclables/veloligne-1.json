@@ -291,9 +291,9 @@
         {
             "type": "Feature",
             "properties": {
-                "name": "Saint-Brès",
+                "name": "Gare de Baillargues",
                 "doneAt": "",
-                "status": "postponed",
+                "status": "planned",
                 "type": "inconnu",
                 "line": "1",
                 "id": "GareBaillargues",
