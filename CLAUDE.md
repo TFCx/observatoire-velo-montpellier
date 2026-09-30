@@ -8,6 +8,7 @@ Pour aller plus loin : `docs/explications/architecture.md`, `docs/reference/donn
 les ADR dans `docs/decisions/`, et `TODO.md` (feuille de route).
 
 ## Stack
+
 - Nuxt 4 avec la structure à la racine (`srcDir: '.'`, ADR 0003), Nuxt Content v3, MapLibre 6, Tailwind.
 - Données : `content/voies-cyclables/*.json` (GeoJSON) et `*.md` (une page par Véloligne).
 - Logique métier en TypeScript pur dans `domain/` ; schéma zod unique des données dans `domain/schema.ts`
@@ -15,6 +16,7 @@ les ADR dans `docs/decisions/`, et `TODO.md` (feuille de route).
 - Node 24 (`.nvmrc`).
 
 ## Commandes
+
 - `npm test -- --run` : tests unitaires et de données.
 - `npm run test:smoke` : génère le site, puis vérifie les pages générées.
 - `npm run test:e2e` : génère le site, puis tests dans Chromium (ADR 0006).
@@ -23,6 +25,7 @@ les ADR dans `docs/decisions/`, et `TODO.md` (feuille de route).
   oxfmt affiche ses erreurs avant une dernière ligne qui a l'air normale.
 
 ## Git et PR
+
 - Remotes : `origin` (TFCx/observatoire-velo-montpellier) et `lyon` (Cyclopolis). Branche de base :
   `montpellier/main`, qui est aussi le nom de la branche locale.
 - `gh` : toujours `--repo TFCx/observatoire-velo-montpellier`. `gh pr edit` échoue (Projects classic) :
@@ -35,6 +38,7 @@ les ADR dans `docs/decisions/`, et `TODO.md` (feuille de route).
   partiel) ; vérifier `git status --short` avant chaque commit.
 
 ## Déploiement (ADR 0004, `docs/guides/deployer-en-beta-puis-en-production.md`)
+
 - La CI construit, teste et déploie ; Netlify ne construit rien. Aperçu de chaque PR :
   `https://pr-<n>--observatoire-velo-montpellier.netlify.app`.
 - beta et prod ne changent que par le workflow Promote. **Jamais de push direct** sur `montpellier/beta`
@@ -46,6 +50,7 @@ les ADR dans `docs/decisions/`, et `TODO.md` (feuille de route).
 - La prod est le site public de l'association : elle ne doit jamais régresser. Jean-David vérifie sur beta.
 
 ## Pièges connus
+
 - Nuxt nomme les composants d'après leur dossier (`components/tooltips/QualityBadge.vue` devient
   `TooltipsQualityBadge`) : importer explicitement les composants d'un sous-dossier.
 - Icônes `@nuxt/icon` utilisées dans des composants montés à la main (tooltips) : les lister dans
@@ -54,6 +59,7 @@ les ADR dans `docs/decisions/`, et `TODO.md` (feuille de route).
 - Tests navigateur en local : WebGL headless peut échouer ; `tests/e2e/browser.ts` a un repli.
 
 ## Definition of done d'une PR
+
 - Tests : un nouveau test a été vu rouge (bug volontaire si besoin) ; limites du test dites honnêtement.
 - `format:check`, `lint`, `typecheck`, unitaires, smoke et e2e verts en local, puis CI verte.
 - Changement visible : captures avant/après montrées, sur desktop et, si pertinent, sur mobile.
