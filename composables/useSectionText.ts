@@ -1,10 +1,10 @@
-import type { SectionFeature } from '~/types';
+import type { Quality, SectionFeature } from '~/types';
 
 type SectionStatusText = { label: string; class: string; date?: string };
 
 // Textes d'un tronçon partagés par ses tooltips (clic et survol), pour qu'ils disent la même chose.
 export const useSectionText = () => {
-  const { laneTypeToDescription, qualityToDescription } = useStats();
+  const { laneTypeToDescription } = useStats();
 
   function getDoneAtText(doneAt: string): string {
     const [day, month, year] = doneAt.split('/');
@@ -61,13 +61,11 @@ export const useSectionText = () => {
     return isHeterogenous ? `${typeA} & ${typeB}` : typeA;
   }
 
-  function getSectionQualityText(section: SectionFeature): string {
-    const isHeterogenous =
-      section.properties.qualityB != undefined && section.properties.quality != section.properties.qualityB;
-    const qualityA = qualityToDescription[section.properties.quality];
-    const qualityB = section.properties.qualityB ? qualityToDescription[section.properties.qualityB] : '';
-    return isHeterogenous ? `${qualityA} & ${qualityB}` : qualityA;
+  // Une qualité par côté quand les deux côtés du tronçon diffèrent.
+  function getSectionQualities(section: SectionFeature): Quality[] {
+    const { quality, qualityB } = section.properties;
+    return qualityB !== undefined && qualityB !== quality ? [quality, qualityB] : [quality];
   }
 
-  return { getSectionStatus, getSectionTypeText, getSectionQualityText };
+  return { getSectionStatus, getSectionTypeText, getSectionQualities };
 };

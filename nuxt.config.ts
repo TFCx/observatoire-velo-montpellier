@@ -87,6 +87,11 @@ export default defineNuxtConfig({
         dir: './assets/icons',
       },
     ],
+    // Les tooltips de la carte n'existent que dans le navigateur : leurs icônes n'apparaissent dans
+    // aucune page générée, et un site statique n'a pas de serveur pour les fournir à la demande.
+    clientBundle: {
+      icons: ['mdi:link-variant', 'mdi:check-bold', 'mdi:exclamation-thick', 'mdi:close-thick', 'mdi:help'],
+    },
   },
 
   tailwindcss: { viewer: false },

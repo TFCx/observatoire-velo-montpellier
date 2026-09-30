@@ -47,10 +47,8 @@
       </div>
       <div class="py-1 flex items-center justify-between">
         <div class="text-sm font-bold mr-2">Qualité</div>
-        <div>
-          <div class="italic text-right">
-            {{ getSectionQualityText(feature) }}
-          </div>
+        <div class="flex flex-wrap justify-end gap-1">
+          <QualityBadge v-for="quality in getSectionQualities(feature)" :key="quality" :quality="quality" />
         </div>
       </div>
     </div>
@@ -68,11 +66,12 @@
 
 <script setup lang="ts">
 import type { SectionFeature } from '~/types';
+import QualityBadge from './QualityBadge.vue';
 
 const { getLineColor } = useColors();
 const { getRevName } = useConfig();
 const { getDistance } = useStats();
-const { getSectionStatus, getSectionTypeText, getSectionQualityText } = useSectionText();
+const { getSectionStatus, getSectionTypeText, getSectionQualities } = useSectionText();
 const { getVoieCyclablePath } = useUrl();
 
 const { feature, lines } = defineProps<{

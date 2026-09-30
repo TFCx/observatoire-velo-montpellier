@@ -14,17 +14,20 @@
       <div class="text-sm font-semibold">{{ feature.properties.name }}</div>
       <div class="text-xs">{{ getSectionTypeText(feature) }} de {{ roundedLengthInMeters }} m</div>
       <div class="text-xs" :class="status.class">{{ statusText }}</div>
-      <div class="text-xs italic">Qualité : {{ getSectionQualityText(feature) }}</div>
+      <div class="flex flex-wrap items-center justify-center gap-1">
+        <QualityBadge v-for="quality in getSectionQualities(feature)" :key="quality" :quality="quality" />
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import type { SectionFeature } from '~/types';
+import QualityBadge from './QualityBadge.vue';
 
 const { getLineColor } = useColors();
 const { getDistance } = useStats();
-const { getSectionStatus, getSectionTypeText, getSectionQualityText } = useSectionText();
+const { getSectionStatus, getSectionTypeText, getSectionQualities } = useSectionText();
 
 const { feature, lines } = defineProps<{
   feature: SectionFeature;
