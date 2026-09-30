@@ -31,7 +31,7 @@ export function regroupIntoSections(features: LineStringFeature[]): SectionFeatu
     const newSection: SectionFeature = {
       type: 'Feature',
       properties: {
-        id: f.properties.id ?? undefined,
+        id: f.properties.id,
         lines: [f.properties.line],
         name: f.properties.name,
         // Qualité non évaluée (absente ou vide dans les données) : même affichage que « inconnu ».

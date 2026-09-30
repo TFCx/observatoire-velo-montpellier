@@ -27,7 +27,14 @@ export const lineStringFeatureSchema = z
     type: z.literal('Feature'),
     properties: z.object({
       // Un id déclare un tronçon partagé entre plusieurs Vélolignes : même id dans chaque fichier.
-      id: z.string().nullish(),
+      // Un tronçon non partagé n'a pas d'id : null ou "" seraient une deuxième façon de le dire, que la
+      // carte et les statistiques ne comprenaient pas pareil (« Vanières Pagnol » absent des statistiques).
+      id: z
+        .string({
+          invalid_type_error: "id attendu sous forme de texte : retirer le champ si le tronçon n'est pas partagé",
+        })
+        .min(1, "id vide : retirer le champ si le tronçon n'est pas partagé")
+        .optional(),
       line: z.string(),
       name: z.string(),
       status: enumValue(LaneStatus, 'statut'),

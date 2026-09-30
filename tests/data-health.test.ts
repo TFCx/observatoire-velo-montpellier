@@ -76,8 +76,7 @@ function findSharedSectionsWithDifferentValues(property: 'name' | 'status'): str
   const filesByValueById = new Map<string, Map<string, Set<string>>>();
   for (const { fileName, feature } of lineStringFeatures) {
     const id = feature.properties?.id;
-    // Un id null vaut absence d'id, comme dans regroupIntoSections.
-    if (!id) {
+    if (id === undefined) {
       continue;
     }
     const value = String(feature.properties?.[property]);

@@ -392,7 +392,6 @@
                 "type": "inconnu",
                 "line": "B",
                 "doneAt": "",
-                "id": null,
                 "link": "/veloligne-B#avenue-de-vanières-entre-bugarel-et-paul-valéry"
             },
             "geometry": { "type": "LineString", "coordinates": [ [ 3.852443, 43.592699 ], [ 3.85067, 43.594196 ], [ 3.84861, 43.595203 ] ] }
@@ -406,7 +405,6 @@
                 "type": "inconnu",
                 "line": "B",
                 "doneAt": "",
-                "id": null,
                 "link": "/veloligne-B#avenue-de-vanières-collège-marcel-pagnol"
             },
             "geometry": { "type": "LineString", "coordinates": [ [ 3.84861, 43.595203 ], [ 3.844959, 43.59663 ], [ 3.843316, 43.597422 ], [ 3.842289, 43.598184 ], [ 3.841986, 43.598482 ] ] }
