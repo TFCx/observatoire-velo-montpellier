@@ -30,6 +30,10 @@ const WIP_OUTLINE_DASHES = [2, 2];
 // Fins traits noirs de part et d'autre du liseré : à l'extérieur pour le détacher du fond de carte,
 // à l'intérieur pour qu'une ligne jaune (Véloligne B) ne se confonde pas avec les tirets jaunes.
 const WIP_OUTLINE_BORDER_WIDTH = 1;
+// Intérieur en pointillés, comme les tronçons prévus : un tronçon en travaux n'est pas encore
+// praticable (le tracé plein est réservé aux tronçons terminés).
+const WIP_LANE_DASHES = [1.0, 1.05];
+const WIP_SECTION_DASHES = [2.0, 2.1];
 const hoverExtension = 3;
 const fixedHoverWidth = fixedSectionWidth + contourWidth * 2 + hoverExtension * 2;
 
@@ -572,17 +576,29 @@ function drawCurrentNetwork(map: Map) {
   drawWipOutline(map, 'layer-current-network-wip', sectionWidth, layersForCurrentNetwork);
 
   map.addLayer({
-    id: `layer-current-network-src-lanes-wip`,
+    id: `layer-current-network-src-lanes-wip-background`,
     type: 'line',
     source: 'src-lanes-wip',
-    layout: { 'line-cap': 'round' },
     paint: {
       'line-width': laneWidth,
-      'line-color': laneColor,
+      'line-color': '#fff',
       'line-offset': offsetLane,
     },
   });
-  layersForCurrentNetwork.push('layer-current-network-src-lanes-wip');
+  layersForCurrentNetwork.push('layer-current-network-src-lanes-wip-background');
+
+  map.addLayer({
+    id: `layer-current-network-src-lanes-wip-dashed`,
+    type: 'line',
+    source: 'src-lanes-wip',
+    paint: {
+      'line-width': laneWidth,
+      'line-color': laneColor,
+      'line-dasharray': WIP_LANE_DASHES,
+      'line-offset': offsetLane,
+    },
+  });
+  layersForCurrentNetwork.push('layer-current-network-src-lanes-wip-dashed');
 
   // ------------------------------------------------------------------------
   // Done
@@ -671,6 +687,17 @@ function drawQualityNetwork(map: Map) {
   drawWipOutline(map, 'layer-quality-network-sections-wip', fixedSectionWidth, layersForQualityNetwork);
 
   map.addLayer({
+    id: `layer-quality-network-sections-wip-background`,
+    type: 'line',
+    source: 'src-sections-wip',
+    paint: {
+      'line-width': fixedSectionWidth,
+      'line-color': 'white',
+    },
+  });
+  layersForQualityNetwork.push('layer-quality-network-sections-wip-background');
+
+  map.addLayer({
     id: `layer-quality-network-sections-wip-sideA`,
     type: 'line',
     source: 'src-sections-wip',
@@ -678,6 +705,7 @@ function drawQualityNetwork(map: Map) {
       'line-width': fixedSectionWidth / 2,
       'line-color': sectionQualityColor,
       'line-offset': fixedSectionWidth / 4,
+      'line-dasharray': WIP_SECTION_DASHES,
     },
   });
   layersForQualityNetwork.push('layer-quality-network-sections-wip-sideA');
@@ -690,6 +718,7 @@ function drawQualityNetwork(map: Map) {
       'line-width': fixedSectionWidth / 2,
       'line-color': sectionQualityColor2ndHalf,
       'line-offset': -fixedSectionWidth / 4,
+      'line-dasharray': WIP_SECTION_DASHES,
     },
   });
   layersForQualityNetwork.push('layer-quality-network-sections-wip-sideB');
@@ -763,6 +792,17 @@ function drawTypeFamilyNetwork(map: Map) {
   drawWipOutline(map, 'layer-family-network-sections-wip', fixedSectionWidth, layersForTypeFamilyNetwork);
 
   map.addLayer({
+    id: `layer-family-network-sections-wip-background`,
+    type: 'line',
+    source: 'src-sections-wip',
+    paint: {
+      'line-width': fixedSectionWidth,
+      'line-color': 'white',
+    },
+  });
+  layersForTypeFamilyNetwork.push('layer-family-network-sections-wip-background');
+
+  map.addLayer({
     id: `layer-family-network-sections-wip-sideA`,
     type: 'line',
     source: 'src-sections-wip',
@@ -770,6 +810,7 @@ function drawTypeFamilyNetwork(map: Map) {
       'line-width': fixedSectionWidth / 2,
       'line-color': sectionTypeFamilyColor,
       'line-offset': fixedSectionWidth / 4,
+      'line-dasharray': WIP_SECTION_DASHES,
     },
   });
   layersForTypeFamilyNetwork.push('layer-family-network-sections-wip-sideA');
@@ -782,6 +823,7 @@ function drawTypeFamilyNetwork(map: Map) {
       'line-width': fixedSectionWidth / 2,
       'line-color': sectionTypeFamilyColor2ndHalf,
       'line-offset': -fixedSectionWidth / 4,
+      'line-dasharray': WIP_SECTION_DASHES,
     },
   });
   layersForTypeFamilyNetwork.push('layer-family-network-sections-wip-sideB');
