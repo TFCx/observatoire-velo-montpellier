@@ -24,15 +24,8 @@
               </div>
               <div>Terminé</div>
 
-              <div class="my-auto rounded-md border-gray-500 border">
-                <div class="h-1 relative">
-                  <div class="h-full w-full">
-                    <div class="myrelative h-full w-full">
-                      <div class="myabsolute h-full w-full bg-color-primary-primary dashed-line" />
-                      <div class="myabsolute h-full w-full bg-color-primary-primary animated-opacity" />
-                    </div>
-                  </div>
-                </div>
+              <div class="my-auto wip-outline">
+                <div class="h-1 bg-color-primary-primary" />
               </div>
               <div>En travaux</div>
 
@@ -223,12 +216,10 @@ defineExpose({
   background-size: 10px 0.25rem;
 }
 
-.animated-opacity {
-  animation: blinker 1s linear infinite;
-}
-
-.animated-opacity-slow {
-  animation: blinker 5s linear infinite;
+/* Même liseré que les tronçons en travaux sur la carte (composables/map/network.ts). */
+.wip-outline {
+  padding: 2px 0;
+  background: repeating-linear-gradient(to right, #ffd400 0 4px, #111111 4px 8px);
 }
 
 .myrelative {
@@ -259,12 +250,6 @@ defineExpose({
 @keyframes halfblinker {
   50% {
     opacity: 0.5;
-  }
-}
-
-@keyframes blinker {
-  50% {
-    opacity: 0;
   }
 }
 
