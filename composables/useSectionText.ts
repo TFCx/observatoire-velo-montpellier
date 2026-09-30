@@ -2,7 +2,7 @@ import type { SectionFeature } from '~/types';
 
 type SectionStatusText = { label: string; class: string; date?: string };
 
-// Forme commune des pastilles d'un tronçon (statut, qualité), pour qu'elles s'alignent dans les tooltips.
+// Forme des pastilles de qualité d'un tronçon (QualityBadge).
 const SECTION_PILL_CLASS =
   'inline-flex h-[22px] items-center gap-1 whitespace-nowrap rounded-full border bg-white px-2 text-xs font-medium text-gray-700';
 
@@ -20,20 +20,17 @@ export const useSectionText = () => {
     return `le ${doneAt}`;
   }
 
-  // Couleur du bord de la pastille de statut, dans l'esprit de celle de qualité (QualityBadge).
+  // Couleur du texte du statut. Provisoire : les statuts seront revus maintenant que le mandat est
+  // terminé (TODO), « prévu » et « reporté après 2026 » n'ayant plus le même sens.
   function getSectionStatus(properties: SectionFeature['properties']): SectionStatusText {
     const statusMapping = {
-      done: {
-        label: 'terminé',
-        date: properties.doneAt && getDoneAtText(properties.doneAt),
-        class: 'border-color-primary-primary',
-      },
-      wip: { label: 'en travaux', class: 'border-dashed border-color-primary-primary' },
-      planned: { label: 'prévu', class: 'border-gray-400' },
-      postponed: { label: 'reporté', date: 'après 2026', class: 'border-color-secondary' },
-      variante: { label: 'variante', class: 'border-dashed border-gray-400' },
-      'variante-postponed': { label: 'variante reportée', date: 'après 2026', class: 'border-color-secondary' },
-      unknown: { label: 'à définir', class: 'border-gray-300' },
+      done: { label: 'terminé', date: properties.doneAt && getDoneAtText(properties.doneAt), class: 'text-gray-900' },
+      wip: { label: 'en travaux', class: 'text-color-primary-primary' },
+      planned: { label: 'prévu', class: 'text-gray-400' },
+      postponed: { label: 'reporté', date: 'après 2026', class: 'text-color-secondary' },
+      variante: { label: 'variante', class: 'text-gray-400' },
+      'variante-postponed': { label: 'variante reportée', date: 'après 2026', class: 'text-color-secondary' },
+      unknown: { label: 'à définir', class: 'text-gray-400' },
     };
     return statusMapping[properties.status];
   }

@@ -14,7 +14,7 @@
     <div class="px-3 py-1 flex flex-col items-center gap-1 text-center">
       <div class="text-sm font-semibold break-words">{{ feature.properties.name }}</div>
       <div class="text-xs break-words">{{ getSectionTypeText(feature) }} de {{ roundedLengthInMeters }} m</div>
-      <span :class="[SECTION_PILL_CLASS, status.class]">{{ statusText }}</span>
+      <div class="text-xs font-medium" :class="status.class">{{ statusText }}</div>
       <QualityBadge :qualities="qualities" />
     </div>
   </div>
@@ -27,7 +27,7 @@ import { getDisplayedQualities } from '~/domain/sections';
 
 const { getLineColor } = useColors();
 const { getDistance } = useStats();
-const { SECTION_PILL_CLASS, getSectionStatus, getSectionTypeText } = useSectionText();
+const { getSectionStatus, getSectionTypeText } = useSectionText();
 
 const { feature, lines } = defineProps<{
   feature: SectionFeature;

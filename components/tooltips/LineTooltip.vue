@@ -24,14 +24,8 @@
       </div>
       <div class="py-1 flex items-center justify-between">
         <div class="text-sm font-bold mr-2">Statut</div>
-        <div class="flex flex-col items-end text-sm">
-          <!-- « terminé » est l'état normal d'un tronçon réalisé : du texte suffit, sans pastille. -->
-          <div v-if="feature.properties.status === LaneStatus.Done">
-            {{ getSectionStatus(feature.properties).label }}
-          </div>
-          <div v-else :class="[SECTION_PILL_CLASS, getSectionStatus(feature.properties).class]">
-            {{ getSectionStatus(feature.properties).label }}
-          </div>
+        <div class="flex flex-col items-end text-sm" :class="getSectionStatus(feature.properties).class">
+          <div>{{ getSectionStatus(feature.properties).label }}</div>
           <div v-if="getSectionStatus(feature.properties).date" class="italic">
             {{ getSectionStatus(feature.properties).date }}
           </div>
@@ -66,14 +60,14 @@
 </template>
 
 <script setup lang="ts">
-import { LaneStatus, type SectionFeature } from '~/types';
+import type { SectionFeature } from '~/types';
 import QualityBadge from './QualityBadge.vue';
 import { getDisplayedQualities } from '~/domain/sections';
 
 const { getLineColor } = useColors();
 const { getRevName } = useConfig();
 const { getDistance } = useStats();
-const { SECTION_PILL_CLASS, getSectionStatus, getSectionTypeText } = useSectionText();
+const { getSectionStatus, getSectionTypeText } = useSectionText();
 const { getVoieCyclablePath } = useUrl();
 
 const { feature, lines } = defineProps<{
