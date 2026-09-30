@@ -22,11 +22,10 @@ describe('regroupIntoSections', () => {
   });
 
   it('should_keep_separate_sections_when_features_have_no_id', () => {
-    const withoutId = buildSection({ line: '1', status: LaneStatus.Done, type: LaneType.Bidirectionnelle });
-    const withNullId = buildSection({ line: '2', status: LaneStatus.Done, type: LaneType.Bidirectionnelle });
-    withNullId.properties.id = null;
+    const firstWithoutId = buildSection({ line: '1', status: LaneStatus.Done, type: LaneType.Bidirectionnelle });
+    const secondWithoutId = buildSection({ line: '2', status: LaneStatus.Done, type: LaneType.Bidirectionnelle });
 
-    const sections = regroupIntoSections([withoutId, withNullId]);
+    const sections = regroupIntoSections([firstWithoutId, secondWithoutId]);
 
     assert.equal(sections.length, 2);
   });
