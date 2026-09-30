@@ -29,6 +29,18 @@ describe('hover tooltip', () => {
     await page.close();
   });
 
+  it('should_show_quality_badge_when_hovering_a_section', async () => {
+    const page = await openDrawnInteractiveMap();
+    const sectionPoint = await findNetworkPoint(page);
+
+    await page.mouse.move(sectionPoint.x, sectionPoint.y);
+
+    await expect
+      .poll(() => page.locator(`${HOVER_TOOLTIP} .quality-badge`).count(), { timeout: 5_000 })
+      .toBeGreaterThan(0);
+    await page.close();
+  });
+
   it('should_hide_tooltip_when_leaving_the_section', async () => {
     const page = await openDrawnInteractiveMap();
     const sectionPoint = await findNetworkPoint(page);
