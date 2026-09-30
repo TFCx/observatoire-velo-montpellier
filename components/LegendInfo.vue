@@ -237,29 +237,4 @@ defineExpose({
   top: 5px;
   right: 5px;
 }
-
-.font-size-small {
-  background-color: rgba(255, 255, 255, 0.1);
-  font-size: x-small;
-  position: absolute;
-  top: -5px;
-  left: 15px;
-  animation: halfblinker 5s linear infinite;
-}
-
-@keyframes halfblinker {
-  50% {
-    opacity: 0.5;
-  }
-}
-
-@keyframes dash-animation {
-  0% {
-    background-position: 0 0;
-  }
-
-  100% {
-    background-position: 12px 0;
-  }
-}
 </style>
