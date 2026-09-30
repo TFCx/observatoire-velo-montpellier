@@ -13,7 +13,7 @@
     </div>
     <div class="px-3 py-1 flex flex-col items-center gap-1 text-center">
       <div class="text-sm font-semibold break-words">{{ feature.properties.name }}</div>
-      <div class="text-xs break-words">{{ getSectionTypeText(feature) }} de {{ roundedLengthInMeters }} m</div>
+      <div class="text-xs break-words">{{ typeLabel }} de {{ roundedLengthInMeters }} m</div>
       <div class="text-xs font-medium" :class="status.class">{{ statusText }}</div>
       <QualityBadge :qualities="qualities" />
     </div>
@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import type { SectionFeature } from '~/types';
+import { LaneType, type SectionFeature } from '~/types';
 import QualityBadge from './QualityBadge.vue';
 import { getDisplayedQualities } from '~/domain/sections';
 
@@ -35,6 +35,10 @@ const { feature, lines } = defineProps<{
 }>();
 
 const status = computed(() => getSectionStatus(feature.properties));
+// « Inconnu de 850 m » ne dit rien d'utile, notamment pour un tronçon pas encore construit.
+const typeLabel = computed(() =>
+  feature.properties.type === LaneType.Inconnu && !feature.properties.typeB ? 'Tronçon' : getSectionTypeText(feature),
+);
 const qualities = computed(() => getDisplayedQualities(feature));
 const statusText = computed(() => [status.value.label, status.value.date].filter(Boolean).join(' '));
 // Arrondi au pas de 25 m, comme le tooltip du clic : une longueur au mètre près serait trompeuse.

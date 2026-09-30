@@ -67,6 +67,13 @@ function mountTooltip(popup: Popup, elementId: string, component: Component, pro
           fallback: 'Chargement...',
         }),
     }).mount(`#${elementId}`);
+    // Les dimensions minimales ne servaient qu'au premier placement : sans elles, un tooltip court
+    // (tronçon non construit) ne garde pas de vide sous son contenu.
+    const container = document.getElementById(elementId);
+    if (container) {
+      container.style.minHeight = '';
+      container.style.minWidth = '';
+    }
     // MapLibre a placé le popup (au-dessus ou au-dessous du point) avant que le contenu n'existe :
     // reposer le même point le fait replacer selon la taille réelle du contenu.
     popup.setLngLat(popup.getLngLat());
