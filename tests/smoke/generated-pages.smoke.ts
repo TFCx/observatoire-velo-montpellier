@@ -130,6 +130,16 @@ describe('generated pages', () => {
     assert.deepEqual(routesShowingErrorPage, []);
   });
 
+  // Un objet affiché comme du texte. Cas vu le 30/09/2026 : un « : » dans un texte du frontmatter d'une
+  // news le transforme en objet YAML, et Content v3 ne valide pas le frontmatter contre son schéma.
+  it('should_not_show_an_object_as_text_when_route_is_expected', () => {
+    const routesShowingAnObject = allExpectedRoutes
+      .filter((route) => fs.existsSync(getGeneratedPagePath(route)))
+      .filter((route) => readGeneratedPage(route).includes('[object Object]'));
+
+    assert.deepEqual(routesShowingAnObject, []);
+  });
+
   it('should_contain_key_text_when_route_is_static_page', () => {
     const routesMissingKeyText = Object.entries(KEY_TEXT_BY_STATIC_ROUTE)
       .filter(([route, keyText]) => !readGeneratedPage(route).includes(keyText))
