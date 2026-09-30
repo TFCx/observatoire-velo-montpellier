@@ -2,7 +2,7 @@ import type { GeoJSONSource, Map } from 'maplibre-gl';
 import { LngLatBounds } from 'maplibre-gl';
 import { isLineStringFeature, isPointFeature, type Feature, type LineStringFeature } from '~/types';
 
-export { sortOrder, sortByLine, getCrossIconUrl, upsertMapSource, fitBounds, createConstructionIcon };
+export { sortOrder, sortByLine, getCrossIconUrl, upsertMapSource, fitBounds };
 
 function upsertMapSource(map: Map, sourceName: string, features: Feature[]) {
   const source = map.getSource(sourceName) as GeoJSONSource;
@@ -74,69 +74,4 @@ function fitBounds({ map, features }: { map: Map; features: Feature[] }) {
     }
     map.fitBounds(bounds, { padding: 20 });
   }
-}
-
-// Panneau de chantier (barrière jaune et noire) répété le long des tronçons en travaux.
-// Porté depuis lyon@1f340ad3 (« option de réduire les animations »), helpers/map-utils.ts.
-function createConstructionIcon(pixelRatio = 1): HTMLCanvasElement {
-  const size = 48;
-  const canvas = document.createElement('canvas');
-  canvas.width = size * pixelRatio;
-  canvas.height = size * pixelRatio;
-
-  const context = canvas.getContext('2d');
-  if (!context) {
-    return canvas;
-  }
-  context.scale(2 * pixelRatio, 2 * pixelRatio);
-  context.lineWidth = 2;
-  context.lineCap = 'round';
-  context.lineJoin = 'round';
-  context.fillStyle = '#FFCC00';
-  context.strokeStyle = '#000000';
-
-  context.beginPath();
-  context.roundRect(2, 6, 20, 8, 1);
-  context.fill();
-  context.stroke();
-
-  const segments: [[number, number], [number, number]][] = [
-    // Poteaux au-dessus et au-dessous de la barrière
-    [
-      [17, 3],
-      [17, 6],
-    ],
-    [
-      [7, 3],
-      [7, 6],
-    ],
-    [
-      [17, 14],
-      [17, 21],
-    ],
-    [
-      [7, 14],
-      [7, 21],
-    ],
-    // Bandes obliques
-    [
-      [10, 14],
-      [2.3, 6.3],
-    ],
-    [
-      [14, 6],
-      [21.7, 13.7],
-    ],
-    [
-      [8, 6],
-      [16, 14],
-    ],
-  ];
-  for (const [[startX, startY], [endX, endY]] of segments) {
-    context.beginPath();
-    context.moveTo(startX, startY);
-    context.lineTo(endX, endY);
-    context.stroke();
-  }
-  return canvas;
 }

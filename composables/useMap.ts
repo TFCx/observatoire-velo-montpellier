@@ -23,7 +23,8 @@ import PerspectiveTooltip from '~/components/tooltips/PerspectiveTooltip.vue';
 import DangerTooltip from '~/components/tooltips/DangerTooltip.vue';
 import LineTooltip from '~/components/tooltips/LineTooltip.vue';
 import LineHoverTooltip from '~/components/tooltips/LineHoverTooltip.vue';
-import { getCrossIconUrl, fitBounds, createConstructionIcon } from './map/utils';
+import { getCrossIconUrl, fitBounds } from './map/utils';
+import { createConstructionIcon } from './map/constructionIcon';
 
 enum DisplayedLayer {
   Progress = 0,
