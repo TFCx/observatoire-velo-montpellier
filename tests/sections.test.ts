@@ -1,6 +1,6 @@
 import { assert, describe, it } from 'vitest';
 
-import { computeTypeFamily, regroupIntoSections } from '../domain/sections';
+import { computeTypeFamily, getDisplayedQualities, regroupIntoSections } from '../domain/sections';
 import { LaneStatus, LaneType, LaneTypeFamily, Quality } from '../types';
 import { buildSection } from './useStats.fixtures';
 
@@ -50,5 +50,35 @@ describe('regroupIntoSections', () => {
 describe('computeTypeFamily', () => {
   it('should_classify_as_pedestrian_mix_when_type_is_voie_verte', () => {
     assert.equal(computeTypeFamily(LaneType.VoieVerte), LaneTypeFamily.MixitePietonne);
+  });
+});
+
+describe('getDisplayedQualities', () => {
+  function buildTerminatedSection(quality: Quality, qualityB?: Quality) {
+    const [section] = regroupIntoSections([
+      buildSection({ line: '1', status: LaneStatus.Done, type: LaneType.Bidirectionnelle, quality }),
+    ]);
+    const regrouped = section!;
+    regrouped.properties.qualityB = qualityB;
+    return regrouped;
+  }
+
+  it('should_show_no_quality_when_section_is_not_done', () => {
+    const [plannedSection] = regroupIntoSections([
+      buildSection({ line: '1', status: LaneStatus.Planned, type: LaneType.Inconnu, quality: '' }),
+    ]);
+
+    assert.deepEqual(getDisplayedQualities(plannedSection!), []);
+  });
+
+  it('should_show_one_quality_when_both_sides_are_equal', () => {
+    assert.deepEqual(getDisplayedQualities(buildTerminatedSection(Quality.Good, Quality.Good)), [Quality.Good]);
+  });
+
+  it('should_show_both_qualities_when_sides_differ', () => {
+    assert.deepEqual(getDisplayedQualities(buildTerminatedSection(Quality.Bad, Quality.Good)), [
+      Quality.Bad,
+      Quality.Good,
+    ]);
   });
 });
