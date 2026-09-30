@@ -1,6 +1,10 @@
-import type { Quality, SectionFeature } from '~/types';
+import type { SectionFeature } from '~/types';
 
 type SectionStatusText = { label: string; class: string; date?: string };
+
+// Forme commune des pastilles d'un tronçon (statut, qualité), pour qu'elles s'alignent dans les tooltips.
+const SECTION_PILL_CLASS =
+  'inline-flex h-[22px] items-center gap-1 whitespace-nowrap rounded-full border bg-white px-2 text-xs font-medium text-gray-700';
 
 // Textes d'un tronçon partagés par ses tooltips (clic et survol), pour qu'ils disent la même chose.
 export const useSectionText = () => {
@@ -16,39 +20,20 @@ export const useSectionText = () => {
     return `le ${doneAt}`;
   }
 
+  // Couleur du bord de la pastille de statut, dans l'esprit de celle de qualité (QualityBadge).
   function getSectionStatus(properties: SectionFeature['properties']): SectionStatusText {
     const statusMapping = {
       done: {
         label: 'terminé',
         date: properties.doneAt && getDoneAtText(properties.doneAt),
-        class: 'text-white bg-color-primary-primary rounded-xl px-2 w-fit',
+        class: 'border-color-primary-primary',
       },
-      wip: {
-        label: 'en travaux',
-        class: 'text-color-primary-primary rounded-xl px-2 border border-dashed border-color-primary-primary',
-      },
-      planned: {
-        label: 'prévu',
-        class: 'text-color-primary-primary rounded-xl px-2 border border-color-primary-primary',
-      },
-      postponed: {
-        label: 'reporté',
-        date: 'après 2026',
-        class: 'text-white bg-color-secondary rounded-xl px-2',
-      },
-      variante: {
-        label: 'variante',
-        class: '',
-      },
-      'variante-postponed': {
-        label: 'variante reportée',
-        date: 'après 2026',
-        class: 'text-white bg-color-secondary rounded-xl px-2',
-      },
-      unknown: {
-        label: 'à définir',
-        class: 'text-gray-900 bg-gray-200 rounded-xl px-2',
-      },
+      wip: { label: 'en travaux', class: 'border-dashed border-color-primary-primary' },
+      planned: { label: 'prévu', class: 'border-gray-400' },
+      postponed: { label: 'reporté', date: 'après 2026', class: 'border-color-secondary' },
+      variante: { label: 'variante', class: 'border-dashed border-gray-400' },
+      'variante-postponed': { label: 'variante reportée', date: 'après 2026', class: 'border-color-secondary' },
+      unknown: { label: 'à définir', class: 'border-gray-300' },
     };
     return statusMapping[properties.status];
   }
@@ -61,11 +46,5 @@ export const useSectionText = () => {
     return isHeterogenous ? `${typeA} & ${typeB}` : typeA;
   }
 
-  // Une qualité par côté quand les deux côtés du tronçon diffèrent.
-  function getSectionQualities(section: SectionFeature): Quality[] {
-    const { quality, qualityB } = section.properties;
-    return qualityB !== undefined && qualityB !== quality ? [quality, qualityB] : [quality];
-  }
-
-  return { getSectionStatus, getSectionTypeText, getSectionQualities };
+  return { SECTION_PILL_CLASS, getSectionStatus, getSectionTypeText };
 };

@@ -25,7 +25,7 @@
       <div class="py-1 flex items-center justify-between">
         <div class="text-sm font-bold mr-2">Statut</div>
         <div>
-          <div class="text-sm" :class="getSectionStatus(feature.properties).class">
+          <div :class="[SECTION_PILL_CLASS, getSectionStatus(feature.properties).class]">
             {{ getSectionStatus(feature.properties).label }}
           </div>
           <div v-if="getSectionStatus(feature.properties).date" class="italic">
@@ -45,11 +45,9 @@
           </div>
         </div>
       </div>
-      <div class="py-1 flex items-center justify-between">
+      <div v-if="qualities.length > 0" class="py-1 flex items-center justify-between">
         <div class="text-sm font-bold mr-2">Qualité</div>
-        <div class="flex flex-wrap justify-end gap-1">
-          <QualityBadge v-for="quality in getSectionQualities(feature)" :key="quality" :quality="quality" />
-        </div>
+        <QualityBadge :qualities="qualities" />
       </div>
     </div>
     <div class="bg-color-primary-primary flex justify-center">
@@ -67,17 +65,20 @@
 <script setup lang="ts">
 import type { SectionFeature } from '~/types';
 import QualityBadge from './QualityBadge.vue';
+import { getDisplayedQualities } from '~/domain/sections';
 
 const { getLineColor } = useColors();
 const { getRevName } = useConfig();
 const { getDistance } = useStats();
-const { getSectionStatus, getSectionTypeText, getSectionQualities } = useSectionText();
+const { SECTION_PILL_CLASS, getSectionStatus, getSectionTypeText } = useSectionText();
 const { getVoieCyclablePath } = useUrl();
 
 const { feature, lines } = defineProps<{
   feature: SectionFeature;
   lines: number[];
 }>();
+
+const qualities = computed(() => getDisplayedQualities(feature));
 
 const title = computed(() => {
   return lines.length > 1 ? getRevName() : getRevName('singular');
