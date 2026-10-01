@@ -106,6 +106,8 @@ to: Mauguio
 | `cover`         | non         | Image de couverture : un fichier de `public/` (`/nom.jpg`), jamais une image hébergée ailleurs. |
 | `trafic`        | non         | Fréquentation estimée.                                                                          |
 
+La CI refuse un champ d'en-tête absent de ce tableau (faute de frappe, champ retiré).
+
 Chaque tronçon a un titre `###` : c'est l'ancre visée par le `link` des tronçons du `.json`
 (`### Lez ⇄ Vieille Poste` → `#lez-vieille-poste`).
 

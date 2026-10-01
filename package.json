@@ -32,7 +32,8 @@
     "playwright-core": "^1.63.0",
     "typescript": "^6.0.3",
     "vitest": "^4.1.11",
-    "vue-tsc": "^3.3.11"
+    "vue-tsc": "^3.3.11",
+    "yaml": "^2.9.1"
   },
   "dependencies": {
     "maplibre-gl": "^6.11.2",
