@@ -89,7 +89,6 @@ line: 2
 lineName: Véloligne 2
 lineNameShort: 2
 description: Véloligne devant offrir (à terme) une jonction directe Montpellier ⇄ Mauguio via Grammont.
-trafic:
 cover: /VL2_couverture.jpg
 from: Mtp Antigone
 to: Mauguio
@@ -104,7 +103,8 @@ to: Mauguio
 | `description`   | non         | Phrase de présentation, reprise dans les résultats des moteurs de recherche.                    |
 | `from`, `to`    | oui         | Extrémités de la Véloligne.                                                                     |
 | `cover`         | non         | Image de couverture : un fichier de `public/` (`/nom.jpg`), jamais une image hébergée ailleurs. |
-| `trafic`        | non         | Fréquentation estimée.                                                                          |
+
+La CI refuse un champ d'en-tête absent de ce tableau (faute de frappe, champ retiré).
 
 Chaque tronçon a un titre `###` : c'est l'ancre visée par le `link` des tronçons du `.json`
 (`### Lez ⇄ Vieille Poste` → `#lez-vieille-poste`).

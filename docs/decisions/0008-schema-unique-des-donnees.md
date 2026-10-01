@@ -43,3 +43,11 @@ Alternatives examinées :
   tronçon, champ, valeurs admises).
 - Les données calculées par le code (tronçons regroupés, voies) gardent des types propres, bâtis
   sur les types déduits.
+
+## Erratum (2026-10-01)
+
+Le schéma de l'en-tête (frontmatter) des pages des Vélolignes (`content/voies-cyclables/*.md`) rejoint
+aussi `domain/schema.ts` (`velolignePageFrontmatterSchema`), utilisé par `content.config.ts`.
+`tests/data-health.test.ts` le valide en mode strict : un champ inconnu est refusé. Le mode strict reste
+propre au test, Nuxt Content ajoutant ses propres champs aux pages. L'en-tête est lu avec `yaml`
+(devDependency), la bibliothèque qu'utilise Nuxt Content, pour que le test lise les mêmes valeurs que le site.

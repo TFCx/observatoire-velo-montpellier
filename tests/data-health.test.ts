@@ -5,9 +5,10 @@ import path from 'node:path';
 import { assert, describe, it } from 'vitest';
 
 import config from '../config.json';
-import type { z } from 'zod';
+import { parse as parseYaml } from 'yaml';
+import { z } from 'zod';
 
-import { lineStringFeatureSchema, perspectiveFeatureSchema } from '../domain/schema';
+import { lineStringFeatureSchema, perspectiveFeatureSchema, velolignePageFrontmatterSchema } from '../domain/schema';
 import {
   CONTENT_DIRECTORY,
   VOIES_CYCLABLES_DIRECTORY,
@@ -129,6 +130,28 @@ describe('data health', () => {
         ? []
         : validation.error.issues.map(
             (issue) => `${describeFeature(loadedFeature)} : ${issue.path.slice(1).join('.')} : ${issue.message}`,
+          );
+    });
+
+    assert.deepEqual(problems, []);
+  });
+
+  // Strict ici seulement : Nuxt Content ajoute ses propres champs aux pages, mais un champ inconnu dans un
+  // fichier est une faute de frappe ou un reste d'une fonctionnalité retirée, que le site ignorerait sans rien dire.
+  it('should_match_schema_when_file_is_a_veloligne_page', () => {
+    const strictFrontmatterSchema = velolignePageFrontmatterSchema
+      .extend({ description: z.string().optional() })
+      .strict();
+    const problems = readMarkdownFiles(VOIES_CYCLABLES_DIRECTORY).flatMap(({ fileName, content }) => {
+      const frontmatter = content.match(/^---\n([\s\S]*?)\n---/)?.[1];
+      if (frontmatter === undefined) {
+        return [`${fileName} : en-tête --- absent`];
+      }
+      const validation = strictFrontmatterSchema.safeParse(parseYaml(frontmatter));
+      return validation.success
+        ? []
+        : validation.error.issues.map((issue) =>
+            [fileName, ...(issue.path.length > 0 ? [issue.path.join('.')] : []), issue.message].join(' : '),
           );
     });
 

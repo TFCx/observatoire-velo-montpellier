@@ -3,7 +3,6 @@ line: D
 lineName: Véloligne D
 lineNameShort: D
 description: Située essentiellement en dehors du territoire de la métropole de Montpellier cette Véloligne reliera Montpellier-Sud de France à Castries en passant au nord de Mauguio et par Baillargues. L'ensemble de la Véloligne doit être livrée pour 2026.
-trafic: 0k vélos/jour
 cover:
 from: Gare Sud de France
 to: Castries
