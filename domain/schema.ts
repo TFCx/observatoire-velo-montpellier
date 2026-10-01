@@ -1,4 +1,4 @@
-// Forme des données des Vélolignes (content/voies-cyclables/*.json), décrite une seule fois (ADR 0008).
+// Forme des données des Vélolignes (content/voies-cyclables/*.json et en-tête des *.md), décrite une seule fois (ADR 0008).
 // Ces schémas décrivent les fichiers tels qu'ils sont saisis, valeurs vides comprises : ils servent à
 // les valider (tests/data-health.test.ts) et à en déduire les types TypeScript (types/index.ts).
 // Chemins relatifs : ce fichier est aussi chargé par content.config.ts, hors des alias de Nuxt.
@@ -95,4 +95,17 @@ export const voieCyclableGeojsonSchema = z.object({
   type: z.literal('FeatureCollection'),
   name: z.string().optional(),
   features: z.array(z.union([lineStringFeatureSchema, perspectiveFeatureSchema])),
+});
+
+// En-tête (frontmatter) d'une page content/voies-cyclables/<véloligne>.md. `description` n'y figure pas :
+// c'est un champ que Nuxt Content déclare lui-même pour toute page.
+export const velolignePageFrontmatterSchema = z.object({
+  // YAML lit "line: 1" comme un nombre et "line: A" comme un texte.
+  line: z.union([z.number(), z.string()]),
+  lineName: z.string(),
+  lineNameShort: z.union([z.number(), z.string()]),
+  from: z.string(),
+  to: z.string(),
+  trafic: z.string().nullable().optional(),
+  cover: z.string().nullable().optional(),
 });
