@@ -122,11 +122,9 @@ export const useStats = () => {
     const doneFeatures = features.filter((feature) => feature.properties.status === LaneStatus.Done);
     const wipFeatures = features.filter((feature) => feature.properties.status === LaneStatus.Wip);
     const plannedFeatures = features.filter((feature) =>
-      [LaneStatus.Planned, LaneStatus.Unknown, LaneStatus.Variante].includes(feature.properties.status),
+      [LaneStatus.Planned, LaneStatus.Unknown].includes(feature.properties.status),
     );
-    const postponedFeatures = features.filter((feature) =>
-      [LaneStatus.Postponed, LaneStatus.VariantePostponed].includes(feature.properties.status),
-    );
+    const postponedFeatures = features.filter((feature) => feature.properties.status === LaneStatus.Postponed);
 
     const totalDistance = getDistance(features);
     const doneDistance = getDistance(doneFeatures);
@@ -224,7 +222,7 @@ export const useStats = () => {
     sections = sections.filter((s) => s.properties.typeFamily != LaneTypeFamily.Inconnu);
     const totalDistance = getDistance(sections) + distance_todo;
 
-    // Sans tronçon mesurable (que des variantes, par exemple), totalDistance vaut 0 et la division donnerait NaN.
+    // Sans tronçon mesurable (que des tronçons de statut inconnu, par exemple), totalDistance vaut 0 et la division donnerait NaN.
     const percent_todo = totalDistance > 0 ? distance_todo / totalDistance : 0;
 
     const sectionsByType = groupBy<SectionFeature, LaneTypeFamily>(

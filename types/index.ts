@@ -31,8 +31,6 @@ export enum LaneStatus {
   Planned = 'planned',
   Postponed = 'postponed',
   Unknown = 'unknown',
-  Variante = 'variante',
-  VariantePostponed = 'variante-postponed',
 }
 
 export enum Quality {

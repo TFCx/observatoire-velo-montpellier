@@ -49,17 +49,15 @@ Règles vérifiées en plus par la CI (`tests/data-health.test.ts`) :
 
 ### Statuts
 
-| Valeur               | Affiché comme (clic sur la carte) |
-| -------------------- | --------------------------------- |
-| `done`               | terminé                           |
-| `wip`                | en travaux                        |
-| `planned`            | prévu                             |
-| `postponed`          | reporté                           |
-| `variante`           | variante                          |
-| `variante-postponed` | variante reportée                 |
-| `unknown`            | inconnu                           |
+| Valeur      | Affiché comme (clic sur la carte) |
+| ----------- | --------------------------------- |
+| `done`      | terminé                           |
+| `wip`       | en travaux                        |
+| `planned`   | prévu                             |
+| `postponed` | reporté                           |
+| `unknown`   | inconnu                           |
 
-Aucune Véloligne n'utilise aujourd'hui `variante`, `variante-postponed` ni `unknown`.
+Aucune Véloligne n'utilise aujourd'hui `unknown`.
 
 ### Types d'aménagement
 

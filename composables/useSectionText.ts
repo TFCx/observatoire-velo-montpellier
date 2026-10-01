@@ -28,8 +28,6 @@ export const useSectionText = () => {
       wip: { label: 'en travaux', class: 'text-color-primary-primary' },
       planned: { label: 'prévu', class: 'text-gray-400' },
       postponed: { label: 'reporté', date: 'après 2026', class: 'text-color-secondary' },
-      variante: { label: 'variante', class: 'text-gray-400' },
-      'variante-postponed': { label: 'variante reportée', date: 'après 2026', class: 'text-color-secondary' },
       unknown: { label: 'à définir', class: 'text-gray-400' },
     };
     return statusMapping[properties.status];

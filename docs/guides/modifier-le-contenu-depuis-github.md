@@ -50,7 +50,7 @@ visibles en bas de la pull request :
 
   ```
   veloligne-3.json : ligne 3, tronçon "Jean Moulin" : status : statut "finished" inconnu ;
-  valeurs admises : done, wip, planned, postponed, unknown, variante, variante-postponed
+  valeurs admises : done, wip, planned, postponed, unknown
   ```
 
   Pour corriger, rouvrir le fichier depuis l'onglet **« Files changed »** de la pull request

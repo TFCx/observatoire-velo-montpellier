@@ -96,10 +96,10 @@ describe('useStats', () => {
       assert.deepEqual(getDoneAndWipStats(voies), [{ name: DEDICATED_FAMILY_NAME, percent: 50 }]);
     });
 
-    it('should_exclude_section_from_percents_when_status_is_variante', () => {
+    it('should_exclude_section_from_percents_when_status_is_unknown', () => {
       const voies = [
         buildVoie(
-          buildSection({ line: 1, status: LaneStatus.Variante, type: LaneType.Bidirectionnelle }),
+          buildSection({ line: 1, status: LaneStatus.Unknown, type: LaneType.Bidirectionnelle }),
           buildSection({ line: 1, status: LaneStatus.Planned, type: LaneType.Bidirectionnelle }),
         ),
       ];
@@ -121,8 +121,8 @@ describe('useStats', () => {
     it('should_return_zero_todo_percent_when_no_measurable_section', () => {
       const voies = [
         buildVoie(
-          buildSection({ line: 1, status: LaneStatus.Variante, type: LaneType.Bidirectionnelle }),
-          buildSection({ line: 2, status: LaneStatus.Variante, type: LaneType.VoieVerte }),
+          buildSection({ line: 1, status: LaneStatus.Unknown, type: LaneType.Bidirectionnelle }),
+          buildSection({ line: 2, status: LaneStatus.Unknown, type: LaneType.VoieVerte }),
         ),
       ];
 

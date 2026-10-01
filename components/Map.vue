@@ -80,15 +80,7 @@ const {
   removeHoverTooltip,
 } = useMap();
 
-const statuses = ref([
-  LaneStatus.Planned,
-  LaneStatus.Variante,
-  LaneStatus.Done,
-  LaneStatus.Postponed,
-  LaneStatus.VariantePostponed,
-  LaneStatus.Unknown,
-  LaneStatus.Wip,
-]);
+const statuses = ref([LaneStatus.Planned, LaneStatus.Done, LaneStatus.Postponed, LaneStatus.Unknown, LaneStatus.Wip]);
 const types = ref([
   LaneType.Unidirectionnelle,
   LaneType.Bidirectionnelle,
