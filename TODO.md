@@ -57,9 +57,6 @@ Prochaine release :
 - [x] [BUG] lien mort dans page anneau (remplacement des images par assets ?) + lien mort véloligne A
   - Vérifié le 29/09/2026 : plus de lien mort sur ces pages ; le vrai lien mort était la couverture de la VL 10.
     Toutes les images des Vélolignes sont désormais dans public/ (test de données : aucune image externe).
-- [UX] mettre à jour les légendes :
-  - supprimer le bouton 2021 dans la vue "évolution" s'il n'y a pas de trucs en 2021
-    (29/09/2026 : aucun tronçon réalisé en 2021, et le bouton est coché par défaut)
 - [x] [CONTENT] mettre à jour le post de news : date et contenu (dire ce qui a changé dans l'observatoire avec cette mise à jour)
 - [DATA] Vérifier les données :
   - aller vérifier sur le terrain (ou demander à notre puissant réseau) pour la véloligne 8 et les travaux L5 et les trucs entre les travaux L5
@@ -102,7 +99,9 @@ Moyen terme :
 - [FEAT++] Autres lignes majeures (BT, T, VL70, ...)
 - [FEAT] Statut "tactically-done" pour les aménagements transitoires / urbanisme tactique (ex : VL C Fabrègues-Saussan). L'ancien statut lyonnais "tested" a été supprimé car inutilisé.
 - Avoir des groupes (vélolignes, majeures, connexions... ) ?
-- Nouveau widget timeline
+- Nouveau widget timeline : réécrire le widget « évolution » en s'inspirant des mises à jour de Cyclopolis
+  - ne proposer que les années qui ont des tronçons réalisés (01/10/2026 : bouton 2021 coché par défaut, sans
+    aucun tronçon réalisé en 2021)
 - Nouveau popup de section
 - Changer la limite avec un greyout hors du polygone
 - Autres infos vélo (rue écoles, 30kmh, parking, ...)
