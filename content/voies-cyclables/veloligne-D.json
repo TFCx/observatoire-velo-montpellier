@@ -59,7 +59,7 @@
             "type": "Feature",
             "properties": {
                 "quality": "",
-                "status": "planned",
+                "status": "wip",
                 "type": "voie-verte",
                 "line": "D",
                 "doneAt": "",
