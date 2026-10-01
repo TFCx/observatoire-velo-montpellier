@@ -14,7 +14,11 @@ to: Castries
 
 ### de Montpellier Sud de France au canal Philippe Lamour
 
-Prévue pour 2026. La réalisation d'un pont-cadre sous la RM66 doit permettre de ménager le franchissement manquant entre Montpellier et Mauguio. Études engagées. Date des travaux non connue.
+::banner{type="wip"}
+Travaux démarrés le 14 septembre 2026. Mise en service annoncée en mars 2027.
+::
+
+Pays de l'Or Agglomération construit un passage cyclable en tunnel sous la RM66 (jusqu'au 30 octobre 2026), puis 1,5 km de voie verte (jusqu'au 31 mars 2027). Ce passage crée le franchissement manquant entre Montpellier et Mauguio (<a href="https://echo-des-tribunes.com/herault-tribune/articles/pays-de-lor-a-mauguio-les-travaux-de-la-liaison-cyclable-vers-la-gare-sud-de-france-ont-debute" target="_blank">Hérault Tribune, 26/09/2026</a>).
 
 ### canal Philippe Lamour
 
