@@ -3,7 +3,6 @@ line: B
 lineName: Véloligne B
 lineNameShort: B
 description: Cette Véloligne constituera une rocade cyclable de près de 40km au delà de la 2ème couronne de Montpellier. Basée à moitié sur des aménagements anciens, l'autre moitié est à créer. Il est prévu que plus de 75% du linéaire total soit livré en 2026. Cela implique la création d'un total d'au moins 10km de Véloligne, à l'ouest et à l'est de Montpellier et sur les communes de Clapiers, Castelnau-le-Lez et Jacou.
-trafic:
 cover:
 from: Gare Sud de France
 to: Gare Sud de France

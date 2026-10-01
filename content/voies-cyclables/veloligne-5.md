@@ -3,7 +3,6 @@ line: 5
 lineName: Véloligne 5
 lineNameShort: 5
 description: Véloligne reliant le centre-ville à Tournezy via Moularès et Monteils-l'Église.
-trafic:
 cover:
 from: Mtp Quai Laurens
 to: Mtp Tournezy

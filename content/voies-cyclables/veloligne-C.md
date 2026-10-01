@@ -3,7 +3,6 @@ line: C
 lineName: Véloligne C
 lineNameShort: C
 description: Cette Véloligne sera une rocade externe, reliant Carnon à Juvignac en passant par Palavas-les-Flots, Villeneuve-Lès-Maguelone, Fabrègues, Saussan et Pignan.
-trafic:
 cover:
 from: Carnon
 to: Juvignac

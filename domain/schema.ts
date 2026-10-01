@@ -106,6 +106,5 @@ export const velolignePageFrontmatterSchema = z.object({
   lineNameShort: z.union([z.number(), z.string()]),
   from: z.string(),
   to: z.string(),
-  trafic: z.string().nullable().optional(),
   cover: z.string().nullable().optional(),
 });

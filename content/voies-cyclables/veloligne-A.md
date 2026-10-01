@@ -3,7 +3,6 @@ line: A
 lineName: Véloligne A
 lineNameShort: A
 description: Cette Véloligne est l'une des rocades cyclables qui reliera à terme Juvignac à Castelnau.
-trafic:
 cover: /VLA_pers_dubout.jpg
 from: Juvignac
 to: Castelnau

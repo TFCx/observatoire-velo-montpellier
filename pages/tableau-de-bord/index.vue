@@ -21,12 +21,6 @@
               {{ displayDistanceInKm(getTotalDistance([voie]), 1) }}
             </span>
           </div>
-          <div v-if="hasTrafic(voie)" class="text-center text-sm text-gray-900">
-            Fréquentation max 2030:
-            <span class="font-bold" :style="`color: ${getLineColor(getLine(voie))}`">
-              {{ getTrafic(voie) }}
-            </span>
-          </div>
           <div>
             <ProgressBar :voies="[voie]" />
             <Stats :voies="[voie]" :precision="1" class="mt-8" />
@@ -50,24 +44,9 @@ const { data: voies } = await useAsyncData(async () => {
   // enums TypeScript deviennent de simples chaînes : TypeScript ne les juge plus compatibles.
   return (await queryCollection('voiesCyclablesGeojson').all()) as unknown as Geojson[];
 });
-const { data: mds } = await useAsyncData(() => {
-  return queryCollection('voiesCyclablesPages').all();
-});
 
 function getLine(voie: Geojson): string {
   return voie.features.find(isLineStringFeature)?.properties.line ?? '';
-}
-
-function hasTrafic(voie: Geojson): boolean {
-  const line = getLine(voie);
-  const trafic = mds.value?.find((md) => md.line === line)?.trafic;
-  return trafic != null;
-}
-
-function getTrafic(voie: Geojson): string {
-  const line = getLine(voie);
-  const trafic = mds.value?.find((md) => md.line === line)?.trafic;
-  return trafic || 'Inconnu';
 }
 
 const description = `Tableau de bord de suivi des ${config.revName.plural} en temps réel.`;
