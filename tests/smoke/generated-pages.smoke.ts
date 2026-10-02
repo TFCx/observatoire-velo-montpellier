@@ -148,6 +148,15 @@ describe('generated pages', () => {
     assert.deepEqual(routesMissingKeyText, []);
   });
 
+  // La page générée porte le compte à rebours du jour de génération : le texte dépend de la date, pas le reste.
+  it('should_show_mandate_deadline_when_route_is_home', () => {
+    const homePage = readGeneratedPage('/');
+
+    assert.include(homePage, 'Temps du mandat');
+    assert.match(homePage, /avant l'échéance du 31\/12\/2026|Échéance du 31\/12\/2026 dépassée depuis/);
+    assert.include(homePage, 'Vélolignes promises');
+  });
+
   it('should_contain_line_name_when_route_is_line_page', () => {
     const routesMissingLineName = linePages
       .filter((page) => !readGeneratedPage(page.route).includes(page.lineName))

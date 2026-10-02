@@ -9,6 +9,7 @@
           <p class="text-xl text-gray-500">Basé sur un réseau préexistant, les premiers travaux ont débuté en 2022.</p>
         </div>
       </div>
+      <HomeMandateDeadline :voies="voies" />
       <ProgressBar :voies="voies" class="mt-8 md:mt-10" />
       <Stats :voies="voies" class="mt-8" />
       <Typology :voies="voies" class="mt-8 max-w-2xl mx-auto" />
