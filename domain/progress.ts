@@ -29,3 +29,13 @@ export function getProgressCategory({
       return ProgressCategory.Unknown;
   }
 }
+
+// Une promesse pour l'année N vaut jusqu'au 31 décembre de N (ADR 0009) : un tronçon promis est en retard
+// s'il a été réalisé une année suivante. doneAt est au format jj/mm/aaaa (vérifié par le schéma).
+export function isDoneAfterPromise({ promisedFor, doneAt }: { promisedFor?: PromiseYear; doneAt?: string }): boolean {
+  if (promisedFor === undefined || !doneAt) {
+    return false;
+  }
+  const doneYear = Number(doneAt.split('/')[2]);
+  return doneYear > promisedFor;
+}

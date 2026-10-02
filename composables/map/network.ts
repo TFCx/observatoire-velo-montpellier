@@ -32,8 +32,8 @@ const WIP_OUTLINE_DASHES = [2, 2];
 // Fins traits noirs de part et d'autre du liseré : à l'extérieur pour le détacher du fond de carte,
 // à l'intérieur pour qu'une ligne jaune (Véloligne B) ne se confonde pas avec les tirets jaunes.
 const WIP_OUTLINE_BORDER_WIDTH = 1;
-// Intérieur en pointillés, comme les tronçons prévus : un tronçon en travaux n'est pas encore
-// praticable (le tracé plein est réservé aux tronçons terminés).
+// Intérieur en pointillés, comme les tronçons promis : un tronçon en travaux n'est pas encore
+// praticable (le tracé plein est réservé aux tronçons réalisés).
 const WIP_LANE_DASHES = [1.0, 1.05];
 const WIP_SECTION_DASHES = [2.0, 2.1];
 const hoverExtension = 3;

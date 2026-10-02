@@ -9,6 +9,7 @@ type SectionFixtureOptions = {
   type: LaneType;
   // Vide comme dans les données, pour les tronçons dont la qualité n'est pas évaluée.
   quality?: Quality | '';
+  doneAt?: string;
 };
 
 // Tous les tronçons de test partagent la même géométrie, donc la même longueur :
@@ -31,6 +32,7 @@ export function buildSection({
   promisedFor,
   type,
   quality,
+  doneAt = '',
 }: SectionFixtureOptions): LineStringFeature {
   return {
     type: 'Feature' as const,
@@ -42,7 +44,7 @@ export function buildSection({
       promisedFor,
       type,
       quality,
-      doneAt: '',
+      doneAt,
       link: `/veloligne-${line}`,
     },
     geometry: buildSameGeometryForAllSections(),

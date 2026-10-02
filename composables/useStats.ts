@@ -160,13 +160,13 @@ export const useStats = () => {
         class: 'text-stats-wip font-semibold',
       },
       planned: {
-        name: "Prévus d'ici 2026",
+        name: 'Promis pour fin 2026',
         distance: plannedDistance,
         percent: getPercent(plannedDistance),
         class: 'text-stats-planned font-semibold',
       },
       postponed: {
-        name: 'Après 2026',
+        name: 'Sans échéance',
         distance: postponedDistance,
         percent: getPercent(postponedDistance),
         class: 'text-stats-postponed font-semibold',

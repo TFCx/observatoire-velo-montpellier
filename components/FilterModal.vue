@@ -71,10 +71,10 @@ defineExpose({
 });
 
 const statusFilters = ref([
-  { label: 'Terminé', isEnable: true, progressCategories: [ProgressCategory.Done] },
+  { label: 'Réalisé', isEnable: true, progressCategories: [ProgressCategory.Done] },
   { label: 'En travaux', isEnable: true, progressCategories: [ProgressCategory.Wip] },
-  { label: 'Prévu pour 2026', isEnable: true, progressCategories: [ProgressCategory.PromisedTodo] },
-  { label: 'Reporté', isEnable: true, progressCategories: [ProgressCategory.UnpromisedTodo] },
+  { label: 'Promis pour fin 2026', isEnable: true, progressCategories: [ProgressCategory.PromisedTodo] },
+  { label: 'Sans échéance', isEnable: true, progressCategories: [ProgressCategory.UnpromisedTodo] },
   { label: 'Inconnu', isEnable: true, progressCategories: [ProgressCategory.Unknown] },
 ]);
 
