@@ -1,3 +1,4 @@
+import { getProgressCategory, ProgressCategory } from '../domain/progress';
 import { regroupIntoSections } from '../domain/sections';
 import { groupBy } from '../helpers/helpers';
 import {
@@ -122,9 +123,11 @@ export const useStats = () => {
     const doneFeatures = features.filter((feature) => feature.properties.status === LaneStatus.Done);
     const wipFeatures = features.filter((feature) => feature.properties.status === LaneStatus.Wip);
     const plannedFeatures = features.filter((feature) =>
-      [LaneStatus.Planned, LaneStatus.Unknown].includes(feature.properties.status),
+      [ProgressCategory.PromisedTodo, ProgressCategory.Unknown].includes(getProgressCategory(feature.properties)),
     );
-    const postponedFeatures = features.filter((feature) => feature.properties.status === LaneStatus.Postponed);
+    const postponedFeatures = features.filter(
+      (feature) => getProgressCategory(feature.properties) === ProgressCategory.UnpromisedTodo,
+    );
 
     const totalDistance = getDistance(features);
     const doneDistance = getDistance(doneFeatures);
@@ -213,9 +216,7 @@ export const useStats = () => {
     // TODO gérer les deux côtés pour les aménagements hétérogènes
     // TODO gérer les quality inconnus ou null ou undefined ?
 
-    const sections_todo = sections.filter(
-      (s) => s.properties.status == LaneStatus.Planned || s.properties.status == LaneStatus.Postponed,
-    );
+    const sections_todo = sections.filter((s) => s.properties.status == LaneStatus.Todo);
     const distance_todo = getDistance(sections_todo);
 
     sections = sections.filter((s) => s.properties.status == LaneStatus.Done || s.properties.status == LaneStatus.Wip);

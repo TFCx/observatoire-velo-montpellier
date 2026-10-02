@@ -1,9 +1,11 @@
+import type { PromiseYear } from '../domain/schema';
 import type { Geojson, LaneStatus, LaneType, LineStringFeature, Quality } from '../types';
 
 type SectionFixtureOptions = {
   id?: string;
   line: number | string;
   status: LaneStatus;
+  promisedFor?: PromiseYear;
   type: LaneType;
   // Vide comme dans les données, pour les tronçons dont la qualité n'est pas évaluée.
   quality?: Quality | '';
@@ -22,7 +24,14 @@ function buildSameGeometryForAllSections() {
   };
 }
 
-export function buildSection({ id, line, status, type, quality }: SectionFixtureOptions): LineStringFeature {
+export function buildSection({
+  id,
+  line,
+  status,
+  promisedFor,
+  type,
+  quality,
+}: SectionFixtureOptions): LineStringFeature {
   return {
     type: 'Feature' as const,
     properties: {
@@ -30,6 +39,7 @@ export function buildSection({ id, line, status, type, quality }: SectionFixture
       line: String(line),
       name: `Tronçon de test (ligne ${line})`,
       status,
+      promisedFor,
       type,
       quality,
       doneAt: '',

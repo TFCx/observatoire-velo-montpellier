@@ -27,7 +27,8 @@ La modification n'est pas encore en ligne : elle attend d'être vérifiée et re
 ## Exemple : un tronçon est terminé
 
 Dans le `.json` de la Véloligne, trouver le tronçon par son `name` (Ctrl+F dans la page), puis
-changer son statut et renseigner la date de réalisation :
+changer son statut et renseigner la date de réalisation. Ne pas toucher à `promisedFor` : il garde la
+promesse d'origine, même une fois le tronçon terminé.
 
 ```json
 "status": "done",
@@ -50,7 +51,7 @@ visibles en bas de la pull request :
 
   ```
   veloligne-3.json : ligne 3, tronçon "Jean Moulin" : status : statut "finished" inconnu ;
-  valeurs admises : done, wip, planned, postponed, unknown
+  valeurs admises : done, wip, todo, unknown
   ```
 
   Pour corriger, rouvrir le fichier depuis l'onglet **« Files changed »** de la pull request

@@ -1,6 +1,6 @@
 import type { z } from 'zod';
 
-import type { lineStringFeatureSchema, perspectiveFeatureSchema } from '../domain/schema';
+import type { lineStringFeatureSchema, perspectiveFeatureSchema, PromiseYear } from '../domain/schema';
 
 export enum LaneType {
   Unidirectionnelle = 'unidirectionnelle',
@@ -25,11 +25,11 @@ export enum LaneTypeFamily {
   Inconnu = 'inconnu',
 }
 
+// Avancement d'un tronçon. La promesse est un champ à part, promisedFor (ADR 0009).
 export enum LaneStatus {
   Done = 'done',
   Wip = 'wip',
-  Planned = 'planned',
-  Postponed = 'postponed',
+  Todo = 'todo',
   Unknown = 'unknown',
 }
 
@@ -59,6 +59,7 @@ export type SectionFeature = {
     displayedLinesName: string;
     name: string;
     status: LaneStatus;
+    promisedFor?: PromiseYear;
     quality: Quality;
     qualityB?: Quality;
     type: LaneType;
@@ -80,7 +81,16 @@ export type LaneFeature = {
   type: 'Feature';
   properties: Pick<
     SectionFeature['properties'],
-    'name' | 'status' | 'quality' | 'qualityB' | 'type' | 'typeB' | 'typeFamily' | 'typeFamilyB' | 'doneAt'
+    | 'name'
+    | 'status'
+    | 'promisedFor'
+    | 'quality'
+    | 'qualityB'
+    | 'type'
+    | 'typeB'
+    | 'typeFamily'
+    | 'typeFamilyB'
+    | 'doneAt'
   > & {
     line: string;
     color: string;

@@ -1,3 +1,4 @@
+import { getProgressCategory } from '../domain/progress';
 import type { SectionFeature } from '../types';
 import { useStats } from './useStats';
 
@@ -27,11 +28,11 @@ export const useSectionText = () => {
     const statusMapping = {
       done: { label: 'terminé', date: properties.doneAt && getDoneAtText(properties.doneAt), class: 'text-gray-900' },
       wip: { label: 'en travaux', class: 'text-color-primary-primary' },
-      planned: { label: 'prévu', class: 'text-gray-400' },
-      postponed: { label: 'reporté', date: 'après 2026', class: 'text-color-secondary' },
+      'promised-todo': { label: 'prévu', class: 'text-gray-400' },
+      'unpromised-todo': { label: 'reporté', date: 'après 2026', class: 'text-color-secondary' },
       unknown: { label: 'à définir', class: 'text-gray-400' },
     };
-    return statusMapping[properties.status];
+    return statusMapping[getProgressCategory(properties)];
   }
 
   // Un tronçon dont les deux côtés diffèrent est décrit « côté A & côté B ».

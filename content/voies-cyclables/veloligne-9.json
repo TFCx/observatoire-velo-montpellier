@@ -9,6 +9,7 @@
                 "quality": "fair",
                 "doneAt": "31/12/2019",
                 "status": "done",
+                "promisedFor": 2026,
                 "type": "bidirectionnelle",
                 "line": "9",
                 "link": "/veloligne-9"

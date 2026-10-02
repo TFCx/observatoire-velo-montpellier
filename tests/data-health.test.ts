@@ -73,7 +73,7 @@ function describeFeature({ fileName, feature }: LoadedFeature): string {
 }
 
 // « id GareBaillargues : name "Saint-Brès" (veloligne-1.json), "Gare de Baillargues" (veloligne-D.json) »
-function findSharedSectionsWithDifferentValues(property: 'name' | 'status'): string[] {
+function findSharedSectionsWithDifferentValues(property: 'name' | 'status' | 'promisedFor'): string[] {
   const filesByValueById = new Map<string, Map<string, Set<string>>>();
   for (const { fileName, feature } of lineStringFeatures) {
     const id = feature.properties?.id;
@@ -194,6 +194,10 @@ describe('data health', () => {
 
     it('should_have_same_status_when_line_strings_share_an_id', () => {
       assert.deepEqual(findSharedSectionsWithDifferentValues('status'), []);
+    });
+
+    it('should_have_same_promised_for_when_line_strings_share_an_id', () => {
+      assert.deepEqual(findSharedSectionsWithDifferentValues('promisedFor'), []);
     });
 
     it('should_be_unique_when_combining_name_and_line', () => {

@@ -2,6 +2,8 @@ import type { Map, ExpressionSpecification, MapLayerMouseEvent } from 'maplibre-
 import { LaneType, LaneTypeFamily, Quality, LaneStatus, type LaneFeature, type SectionFeature } from '~/types';
 import { ref } from 'vue';
 
+import { getProgressCategory, ProgressCategory } from '~/domain/progress';
+
 import { upsertMapSource } from './utils';
 
 enum DisplayedLayer {
@@ -172,9 +174,7 @@ function compSectionTypeColor(attribute: string): ExpressionSpecification {
     getColorOf(LaneType.Aucun),
     ['==', ['get', 'status'], LaneStatus.Done],
     getColorOf(LaneStatus.Done),
-    ['==', ['get', 'status'], LaneStatus.Planned],
-    '#ffffff',
-    ['==', ['get', 'status'], LaneStatus.Postponed],
+    ['==', ['get', 'status'], LaneStatus.Todo],
     '#ffffff',
     ['==', ['get', attribute], LaneType.Inconnu],
     getColorOf(LaneType.Inconnu),
@@ -242,26 +242,38 @@ export {
   addListnersForHovering,
 };
 
+// Un tronçon de statut inconnu n'est retiré par aucune option, comme avant la séparation de l'avancement
+// et de la promesse (ADR 0009).
+function isProgressCategoryKept(
+  progressCategory: ProgressCategory,
+  options: { done: boolean; wip: boolean; promisedTodo: boolean; unpromisedTodo: boolean },
+): boolean {
+  switch (progressCategory) {
+    case ProgressCategory.Done:
+      return options.done;
+    case ProgressCategory.Wip:
+      return options.wip;
+    case ProgressCategory.PromisedTodo:
+      return options.promisedTodo;
+    case ProgressCategory.UnpromisedTodo:
+      return options.unpromisedTodo;
+    case ProgressCategory.Unknown:
+      return true;
+  }
+}
+
 function filterSections(
   sections: SectionFeature[],
-  options: { done: boolean; wip: boolean; planned: boolean; postponed: boolean },
+  options: { done: boolean; wip: boolean; promisedTodo: boolean; unpromisedTodo: boolean },
 ): SectionFeature[] {
-  sections = options.done ? sections : sections.filter((s) => s.properties.status !== LaneStatus.Done);
-  sections = options.wip ? sections : sections.filter((s) => s.properties.status !== LaneStatus.Wip);
-  sections = options.planned ? sections : sections.filter((s) => s.properties.status !== LaneStatus.Planned);
-  sections = options.postponed ? sections : sections.filter((s) => s.properties.status !== LaneStatus.Postponed);
-  return sections;
+  return sections.filter((section) => isProgressCategoryKept(getProgressCategory(section.properties), options));
 }
 
 function filterLanes(
   lanes: LaneFeature[],
-  options: { done: boolean; wip: boolean; planned: boolean; postponed: boolean },
+  options: { done: boolean; wip: boolean; promisedTodo: boolean; unpromisedTodo: boolean },
 ): LaneFeature[] {
-  lanes = options.done ? lanes : lanes.filter((s) => s.properties.status !== LaneStatus.Done);
-  lanes = options.wip ? lanes : lanes.filter((s) => s.properties.status !== LaneStatus.Wip);
-  lanes = options.planned ? lanes : lanes.filter((s) => s.properties.status !== LaneStatus.Planned);
-  lanes = options.postponed ? lanes : lanes.filter((s) => s.properties.status !== LaneStatus.Postponed);
-  return lanes;
+  return lanes.filter((lane) => isProgressCategoryKept(getProgressCategory(lane.properties), options));
 }
 
 function updateOrCreateSources(map: Map, sections: SectionFeature[], lanes: LaneFeature[]) {
@@ -269,69 +281,69 @@ function updateOrCreateSources(map: Map, sections: SectionFeature[], lanes: Lane
   const b2 = upsertMapSource(
     map,
     'src-lanes-done',
-    filterLanes(lanes, { done: true, wip: false, planned: false, postponed: false }),
+    filterLanes(lanes, { done: true, wip: false, promisedTodo: false, unpromisedTodo: false }),
   );
   const b3 = upsertMapSource(
     map,
     'src-lanes-wip',
-    filterLanes(lanes, { done: false, wip: true, planned: false, postponed: false }),
+    filterLanes(lanes, { done: false, wip: true, promisedTodo: false, unpromisedTodo: false }),
   );
   const b4 = upsertMapSource(
     map,
     'src-lanes-planned',
-    filterLanes(lanes, { done: false, wip: false, planned: true, postponed: false }),
+    filterLanes(lanes, { done: false, wip: false, promisedTodo: true, unpromisedTodo: false }),
   );
   const b5 = upsertMapSource(
     map,
     'src-lanes-postponed',
-    filterLanes(lanes, { done: false, wip: false, planned: false, postponed: true }),
+    filterLanes(lanes, { done: false, wip: false, promisedTodo: false, unpromisedTodo: true }),
   );
   const b6 = upsertMapSource(
     map,
     'src-lanes-not-postponed',
-    filterLanes(lanes, { done: true, wip: true, planned: true, postponed: false }),
+    filterLanes(lanes, { done: true, wip: true, promisedTodo: true, unpromisedTodo: false }),
   );
   const b7 = upsertMapSource(
     map,
     'src-lanes-done-and-wip',
-    filterLanes(lanes, { done: true, wip: true, planned: false, postponed: false }),
+    filterLanes(lanes, { done: true, wip: true, promisedTodo: false, unpromisedTodo: false }),
   );
 
   const b8 = upsertMapSource(map, 'src-sections', sections);
   const b9 = upsertMapSource(
     map,
     'src-sections-done',
-    filterSections(sections, { done: true, wip: false, planned: false, postponed: false }),
+    filterSections(sections, { done: true, wip: false, promisedTodo: false, unpromisedTodo: false }),
   );
   const b10 = upsertMapSource(
     map,
     'src-sections-wip',
-    filterSections(sections, { done: false, wip: true, planned: false, postponed: false }),
+    filterSections(sections, { done: false, wip: true, promisedTodo: false, unpromisedTodo: false }),
   );
   const b11 = upsertMapSource(
     map,
     'src-sections-planned',
-    filterSections(sections, { done: false, wip: false, planned: true, postponed: false }),
+    filterSections(sections, { done: false, wip: false, promisedTodo: true, unpromisedTodo: false }),
   );
   const b12 = upsertMapSource(
     map,
     'src-sections-postponed',
-    filterSections(sections, { done: false, wip: false, planned: false, postponed: true }),
+    filterSections(sections, { done: false, wip: false, promisedTodo: false, unpromisedTodo: true }),
   );
   const b13 = upsertMapSource(
     map,
     'src-sections-not-postponed',
-    filterSections(sections, { done: true, wip: true, planned: true, postponed: false }),
+    filterSections(sections, { done: true, wip: true, promisedTodo: true, unpromisedTodo: false }),
   );
   const b14 = upsertMapSource(
     map,
     'src-sections-done-and-wip',
-    filterSections(sections, { done: true, wip: true, planned: false, postponed: false }),
+    filterSections(sections, { done: true, wip: true, promisedTodo: false, unpromisedTodo: false }),
   );
   const b15 = upsertMapSource(
     map,
     'src-sections-todo',
-    filterSections(sections, { done: false, wip: false, planned: true, postponed: true }),
+    filterSections(sections, { done: false, wip: false, promisedTodo: true, unpromisedTodo: true }),
   );
 
   // Check only update
@@ -414,8 +426,8 @@ function drawWipOutline(
 
 function drawCurrentNetwork(map: Map) {
   // ------------------------------------------------------------------------
-  // Postponed
-  // TODO : refaire postponed comme planned
+  // À faire, jamais promis (ADR 0009)
+  // TODO : dessiner comme les tronçons promis
   map.addLayer({
     id: 'layer-current-network-src-lanes-postponed-contour',
     type: 'line',
@@ -492,7 +504,7 @@ function drawCurrentNetwork(map: Map) {
   layersForCurrentNetwork.push('layer-current-network-src-lanes-postponed-symbols');
 
   // ------------------------------------------------------------------------
-  // Planned
+  // À faire, promis
   map.addLayer({
     id: 'layer-current-network-src-lanes-planned-black-contour',
     type: 'line',
