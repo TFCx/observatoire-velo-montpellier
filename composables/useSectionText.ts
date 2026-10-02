@@ -1,4 +1,5 @@
-import type { SectionFeature } from '~/types';
+import type { SectionFeature } from '../types';
+import { useStats } from './useStats';
 
 type SectionStatusText = { label: string; class: string; date?: string };
 
