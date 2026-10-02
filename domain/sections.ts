@@ -38,6 +38,7 @@ export function regroupIntoSections(features: LineStringFeature[]): SectionFeatu
         quality: f.properties.quality || Quality.Inconnu,
         qualityB: f.properties.qualityB,
         status: f.properties.status,
+        promisedFor: f.properties.promisedFor,
         type: f.properties.type,
         typeB: f.properties.typeB,
         typeFamily: computeTypeFamily(f.properties.type),

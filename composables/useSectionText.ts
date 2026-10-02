@@ -1,4 +1,6 @@
-import type { SectionFeature } from '~/types';
+import { getProgressCategory, isDoneAfterPromise } from '../domain/progress';
+import type { SectionFeature } from '../types';
+import { useStats } from './useStats';
 
 type SectionStatusText = { label: string; class: string; date?: string };
 
@@ -20,19 +22,25 @@ export const useSectionText = () => {
     return `le ${doneAt}`;
   }
 
-  // Couleur du texte du statut. Provisoire : les statuts seront revus maintenant que le mandat est
-  // terminé (TODO), « prévu » et « reporté après 2026 » n'ayant plus le même sens.
+  function getDoneText(properties: SectionFeature['properties']): string | undefined {
+    if (!properties.doneAt) {
+      return undefined;
+    }
+    const doneAtText = getDoneAtText(properties.doneAt);
+    return isDoneAfterPromise(properties) ? `${doneAtText}, avec retard` : doneAtText;
+  }
+
+  // Libellés de l'ADR 0009. Après l'échéance (janvier 2027), « promis pour fin 2026 » deviendra
+  // « promis pour 2026, non réalisé » (TODO.md).
   function getSectionStatus(properties: SectionFeature['properties']): SectionStatusText {
     const statusMapping = {
-      done: { label: 'terminé', date: properties.doneAt && getDoneAtText(properties.doneAt), class: 'text-gray-900' },
+      done: { label: 'réalisé', date: getDoneText(properties), class: 'text-gray-900' },
       wip: { label: 'en travaux', class: 'text-color-primary-primary' },
-      planned: { label: 'prévu', class: 'text-gray-400' },
-      postponed: { label: 'reporté', date: 'après 2026', class: 'text-color-secondary' },
-      variante: { label: 'variante', class: 'text-gray-400' },
-      'variante-postponed': { label: 'variante reportée', date: 'après 2026', class: 'text-color-secondary' },
+      'promised-todo': { label: 'promis', date: `pour fin ${properties.promisedFor}`, class: 'text-gray-400' },
+      'unpromised-todo': { label: 'sans échéance', class: 'text-color-secondary' },
       unknown: { label: 'à définir', class: 'text-gray-400' },
     };
-    return statusMapping[properties.status];
+    return statusMapping[getProgressCategory(properties)];
   }
 
   // Un tronçon dont les deux côtés diffèrent est décrit « côté A & côté B ».

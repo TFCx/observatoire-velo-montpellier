@@ -54,7 +54,8 @@
 
 <script setup lang="ts">
 import { Dialog, DialogPanel, DialogTitle } from '@headlessui/vue';
-import { LaneStatus, LaneType } from '~/types';
+import { ProgressCategory } from '~/domain/progress';
+import { LaneType } from '~/types';
 
 const isOpen = ref(false);
 
@@ -70,11 +71,11 @@ defineExpose({
 });
 
 const statusFilters = ref([
-  { label: 'Terminé', isEnable: true, statuses: [LaneStatus.Done] },
-  { label: 'En travaux', isEnable: true, statuses: [LaneStatus.Wip] },
-  { label: 'Prévu pour 2026', isEnable: true, statuses: [LaneStatus.Planned, LaneStatus.Variante] },
-  { label: 'Reporté', isEnable: true, statuses: [LaneStatus.Postponed, LaneStatus.VariantePostponed] },
-  { label: 'Inconnu', isEnable: true, statuses: [LaneStatus.Unknown] },
+  { label: 'Réalisé', isEnable: true, progressCategories: [ProgressCategory.Done] },
+  { label: 'En travaux', isEnable: true, progressCategories: [ProgressCategory.Wip] },
+  { label: 'Promis pour fin 2026', isEnable: true, progressCategories: [ProgressCategory.PromisedTodo] },
+  { label: 'Sans échéance', isEnable: true, progressCategories: [ProgressCategory.UnpromisedTodo] },
+  { label: 'Inconnu', isEnable: true, progressCategories: [ProgressCategory.Unknown] },
 ]);
 
 const typeFilters = ref([
@@ -111,11 +112,13 @@ const emit = defineEmits(['update']);
 watch(
   [statusFilters, typeFilters],
   () => {
-    const visibleStatuses = statusFilters.value.filter((item) => item.isEnable).flatMap((item) => item.statuses);
+    const visibleProgressCategories = statusFilters.value
+      .filter((item) => item.isEnable)
+      .flatMap((item) => item.progressCategories);
 
     const visibleTypes = typeFilters.value.filter((item) => item.isEnable).flatMap((item) => item.types);
 
-    emit('update', { visibleStatuses, visibleTypes });
+    emit('update', { visibleProgressCategories, visibleTypes });
   },
   { deep: true },
 );

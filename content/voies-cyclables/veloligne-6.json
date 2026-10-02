@@ -7,7 +7,8 @@
             "properties": {
                 "name": "Payroliers ⇄ Pavelet",
                 "quality": "",
-                "status": "planned",
+                "status": "todo",
+                "promisedFor": 2026,
                 "type": "inconnu",
                 "line": "6",
                 "doneAt": "",
@@ -19,7 +20,7 @@
             "type": "Feature",
             "properties": {
                 "name": "Pavelet ⇄ Condamine",
-                "status": "postponed",
+                "status": "todo",
                 "type": "inconnu",
                 "line": "6",
                 "doneAt": "",
@@ -31,7 +32,7 @@
             "type": "Feature",
             "properties": {
                 "name": "Condamine",
-                "status": "postponed",
+                "status": "todo",
                 "type": "inconnu",
                 "line": "6",
                 "doneAt": "",
@@ -43,7 +44,7 @@
             "type": "Feature",
             "properties": {
                 "name": "Condamine ⇄ A9",
-                "status": "postponed",
+                "status": "todo",
                 "type": "inconnu",
                 "line": "6",
                 "doneAt": "",
@@ -56,7 +57,8 @@
             "properties": {
                 "name": "A9 ⇄ St Victor",
                 "quality": "",
-                "status": "planned",
+                "status": "todo",
+                "promisedFor": 2026,
                 "type": "inconnu",
                 "line": "6",
                 "doneAt": "",
@@ -68,7 +70,7 @@
             "type": "Feature",
             "properties": {
                 "name": "St Victor ⇄ Villeneuve",
-                "status": "postponed",
+                "status": "todo",
                 "type": "inconnu",
                 "line": "6",
                 "doneAt": "",
@@ -82,6 +84,7 @@
                 "name": "Villeneuve ⇄ Mireval",
                 "quality": "good",
                 "status": "done",
+                "promisedFor": 2026,
                 "type": "voie-verte",
                 "line": "6",
                 "doneAt": "31\/12\/2019",
@@ -94,7 +97,8 @@
             "properties": {
                 "name": "Villeneuve ⇄ Gare",
                 "quality": "",
-                "status": "planned",
+                "status": "todo",
+                "promisedFor": 2026,
                 "type": "inconnu",
                 "line": "6",
                 "doneAt": "",
@@ -107,7 +111,8 @@
             "properties": {
                 "name": "Condamine ⇄ St-Jean-le-Sec",
                 "quality": "",
-                "status": "planned",
+                "status": "todo",
+                "promisedFor": 2026,
                 "type": "inconnu",
                 "line": "6",
                 "doneAt": "",
@@ -120,7 +125,8 @@
             "properties": {
                 "name": "St-Jean-le-Sec ⇄ sortie de Saint-Jean",
                 "quality": "",
-                "status": "planned",
+                "status": "todo",
+                "promisedFor": 2026,
                 "type": "inconnu",
                 "line": "6",
                 "doneAt": "",
@@ -133,7 +139,8 @@
             "properties": {
                 "name": "St Victor ⇄ Maurin",
                 "quality": "",
-                "status": "planned",
+                "status": "todo",
+                "promisedFor": 2026,
                 "type": "inconnu",
                 "line": "6",
                 "doneAt": "",

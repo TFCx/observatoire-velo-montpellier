@@ -36,7 +36,8 @@ import LimitsControl from '@/maplibre/LimitsControl';
 import LayerControl from '@/maplibre/LayerControl';
 import FullscreenControl from '@/maplibre/FullscreenControl';
 import ShrinkControl from '@/maplibre/ShrinkControl';
-import { isLineStringFeature, isPolygonFeature, LaneStatus, type Feature, LaneType, LaneTypeFamily } from '~/types';
+import { getProgressCategory, ProgressCategory } from '~/domain/progress';
+import { isLineStringFeature, isPolygonFeature, type Feature, LaneType, LaneTypeFamily } from '~/types';
 import config from '~/config.json';
 import { regroupIntoSections } from '~/domain/sections';
 import { setDisplayedLayer } from '~/composables/useMap';
@@ -80,15 +81,7 @@ const {
   removeHoverTooltip,
 } = useMap();
 
-const statuses = ref([
-  LaneStatus.Planned,
-  LaneStatus.Variante,
-  LaneStatus.Done,
-  LaneStatus.Postponed,
-  LaneStatus.VariantePostponed,
-  LaneStatus.Unknown,
-  LaneStatus.Wip,
-]);
+const progressCategories = ref(Object.values(ProgressCategory));
 const types = ref([
   LaneType.Unidirectionnelle,
   LaneType.Bidirectionnelle,
@@ -109,7 +102,10 @@ const displayLimits = ref(true);
 const features = computed(() => {
   const activeLineFeatures = (props.features ?? []).filter((feature) => {
     if (isLineStringFeature(feature)) {
-      return statuses.value.includes(feature.properties.status) && types.value.includes(feature.properties.type);
+      return (
+        progressCategories.value.includes(getProgressCategory(feature.properties)) &&
+        types.value.includes(feature.properties.type)
+      );
     }
     return true;
   });
@@ -120,15 +116,15 @@ const features = computed(() => {
 });
 
 function refreshFilters({
-  visibleStatuses,
+  visibleProgressCategories,
   visibleTypes,
   visibleTypesFamily,
 }: {
-  visibleStatuses: LaneStatus[];
+  visibleProgressCategories: ProgressCategory[];
   visibleTypes: LaneType[];
   visibleTypesFamily: LaneTypeFamily[];
 }) {
-  statuses.value = visibleStatuses;
+  progressCategories.value = visibleProgressCategories;
   types.value = visibleTypes;
   families.value = visibleTypesFamily;
 }

@@ -18,6 +18,7 @@ Le fichier est une `FeatureCollection` GeoJSON. Chaque tronçon est une `Feature
   "name": "Passerelle Moulin l'Eveque",
   "line": "2",
   "status": "done",
+  "promisedFor": 2026,
   "doneAt": "31/12/2019",
   "type": "voie-verte",
   "quality": "bad",
@@ -25,18 +26,19 @@ Le fichier est une `FeatureCollection` GeoJSON. Chaque tronçon est une `Feature
 }
 ```
 
-| Champ      | Obligatoire | Valeurs                                                                                         |
-| ---------- | ----------- | ----------------------------------------------------------------------------------------------- |
-| `name`     | oui         | Nom du tronçon, tel qu'il s'affiche au clic sur la carte.                                       |
-| `line`     | oui         | Véloligne, en texte : `"1"`, `"A"`, `"Anneau"`…                                                 |
-| `status`   | oui         | Avancement : voir [Statuts](#statuts).                                                          |
-| `doneAt`   | oui         | Date de réalisation `jj/mm/aaaa` ; vide (`""`) tant que le tronçon n'est pas réalisé.           |
-| `type`     | oui         | Type d'aménagement : voir [Types d'aménagement](#types-daménagement).                           |
-| `typeB`    | non         | Type de l'autre côté de la chaussée, quand les deux côtés diffèrent.                            |
-| `quality`  | si terminé  | Qualité : `good`, `fair`, `bad` ; absente ou vide (`""`) tant que le tronçon n'est pas terminé. |
-| `qualityB` | non         | Qualité de l'autre côté, quand les deux côtés diffèrent.                                        |
-| `link`     | oui         | Lien vers le texte du tronçon dans la page : `/veloligne-2#lez-vieille-poste`.                  |
-| `id`       | non         | Uniquement pour un tronçon partagé entre plusieurs Vélolignes : voir ci-dessous.                |
+| Champ         | Obligatoire | Valeurs                                                                                                          |
+| ------------- | ----------- | ---------------------------------------------------------------------------------------------------------------- |
+| `name`        | oui         | Nom du tronçon, tel qu'il s'affiche au clic sur la carte.                                                        |
+| `line`        | oui         | Véloligne, en texte : `"1"`, `"A"`, `"Anneau"`…                                                                  |
+| `status`      | oui         | Avancement : voir [Statuts](#statuts).                                                                           |
+| `promisedFor` | non         | Année de la première promesse : `2026`. Absent si le tronçon n'a jamais été promis : voir [Promesse](#promesse). |
+| `doneAt`      | oui         | Date de réalisation `jj/mm/aaaa` ; vide (`""`) tant que le tronçon n'est pas réalisé.                            |
+| `type`        | oui         | Type d'aménagement : voir [Types d'aménagement](#types-daménagement).                                            |
+| `typeB`       | non         | Type de l'autre côté de la chaussée, quand les deux côtés diffèrent.                                             |
+| `quality`     | si terminé  | Qualité : `good`, `fair`, `bad` ; absente ou vide (`""`) tant que le tronçon n'est pas terminé.                  |
+| `qualityB`    | non         | Qualité de l'autre côté, quand les deux côtés diffèrent.                                                         |
+| `link`        | oui         | Lien vers le texte du tronçon dans la page : `/veloligne-2#lez-vieille-poste`.                                   |
+| `id`          | non         | Uniquement pour un tronçon partagé entre plusieurs Vélolignes : voir ci-dessous.                                 |
 
 Règles vérifiées en plus par la CI (`tests/data-health.test.ts`) :
 
@@ -45,21 +47,30 @@ Règles vérifiées en plus par la CI (`tests/data-health.test.ts`) :
 - `link` mène à un titre existant de la page ;
 - un tronçon partagé entre plusieurs Vélolignes porte le **même `id`** dans le fichier de chacune
   d'elles : un `id` présent une seule fois est refusé ;
-- le couple `name` + `line` est unique.
+- le couple `name` + `line` est unique ;
+- les tronçons qui partagent un `id` ont le même `name`, le même `status` et la même `promisedFor`.
 
 ### Statuts
 
-| Valeur               | Affiché comme (clic sur la carte) |
-| -------------------- | --------------------------------- |
-| `done`               | terminé                           |
-| `wip`                | en travaux                        |
-| `planned`            | prévu                             |
-| `postponed`          | reporté                           |
-| `variante`           | variante                          |
-| `variante-postponed` | variante reportée                 |
-| `unknown`            | inconnu                           |
+Le statut ne dit que l'avancement ; la promesse est dans `promisedFor` (ADR 0009).
 
-Aucune Véloligne n'utilise aujourd'hui `variante`, `variante-postponed` ni `unknown`.
+| Valeur    | Signification       |
+| --------- | ------------------- |
+| `done`    | réalisé             |
+| `wip`     | en travaux          |
+| `todo`    | pas encore commencé |
+| `unknown` | avancement inconnu  |
+
+Aucune Véloligne n'utilise aujourd'hui `unknown`.
+
+### Promesse
+
+`promisedFor` donne l'année pour laquelle le tronçon a été promis **la première fois** : `2026` pour les
+tracés en trait plein du [plan officiel](/plan-officiel) de mai 2022 (« Horizon 2026 »), y compris ceux
+qui existaient déjà avant 2021. Un tracé en pointillé (« Au-delà de 2026 ») n'a pas le champ.
+
+Le champ ne change plus une fois posé, même quand le tronçon est réalisé ou promis de nouveau : c'est
+par rapport à lui qu'on mesure un retard. Ni `null` ni `""` : un tronçon jamais promis n'a pas le champ.
 
 ### Types d'aménagement
 

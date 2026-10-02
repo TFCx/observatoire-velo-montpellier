@@ -7,6 +7,7 @@
             "properties": {
                 "quality": "",
                 "status": "wip",
+                "promisedFor": 2026,
                 "type": "inconnu",
                 "line": "D",
                 "doneAt": "",
@@ -19,7 +20,8 @@
             "type": "Feature",
             "properties": {
                 "quality": "",
-                "status": "planned",
+                "status": "todo",
+                "promisedFor": 2026,
                 "type": "inconnu",
                 "line": "D",
                 "doneAt": "",
@@ -33,7 +35,8 @@
             "type": "Feature",
             "properties": {
                 "quality": "",
-                "status": "planned",
+                "status": "todo",
+                "promisedFor": 2026,
                 "type": "inconnu",
                 "line": "D",
                 "doneAt": "",
@@ -47,6 +50,7 @@
             "properties": {
                 "quality": "good",
                 "status": "done",
+                "promisedFor": 2026,
                 "type": "voie-verte",
                 "line": "D",
                 "doneAt": "31\/12\/2019",
@@ -60,6 +64,7 @@
             "properties": {
                 "quality": "",
                 "status": "wip",
+                "promisedFor": 2026,
                 "type": "voie-verte",
                 "line": "D",
                 "doneAt": "",
@@ -72,7 +77,8 @@
             "type": "Feature",
             "properties": {
                 "quality": "",
-                "status": "planned",
+                "status": "todo",
+                "promisedFor": 2026,
                 "type": "aucun",
                 "line": "D",
                 "doneAt": "",
@@ -87,6 +93,7 @@
                 "name": "Pont Gagarine",
                 "quality": "fair",
                 "status": "done",
+                "promisedFor": 2026,
                 "type": "bidirectionnelle",
                 "line": "D",
                 "doneAt": "31\/12\/2010",
