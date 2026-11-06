@@ -4,7 +4,7 @@ import { useStats } from '../composables/useStats';
 import { LaneStatus, LaneType, Quality } from '../types';
 import { buildSection, buildVoie } from './useStats.fixtures';
 
-const { getAllUniqLineStrings, getStatsByTypology } = useStats();
+const { getAllUniqLineStrings, getStatsByTypology, getPromiseProgress } = useStats();
 
 const DEDICATED_FAMILY_NAME = 'Aménagements cyclables dédiés';
 const PEDESTRIAN_MIX_FAMILY_NAME = 'En mixité piétonne';
@@ -153,6 +153,101 @@ describe('useStats', () => {
       ];
 
       assert.deepEqual(getDoneAndWipStats(voies), [{ name: DEDICATED_FAMILY_NAME, percent: 100, good: 50, bad: 50 }]);
+    });
+  });
+
+  // Ce qui avait été promis pour 2026 et restait à construire : la mesure du bilan du mandat (ADR 0009).
+  describe('getPromiseProgress', () => {
+    function readPercents(voies: ReturnType<typeof buildVoie>[]) {
+      const { done, wip, todo } = getPromiseProgress(voies);
+      return { done: done.percent, wip: wip.percent, todo: todo.percent };
+    }
+
+    it('should_exclude_section_when_done_before_mandate', () => {
+      const voies = [
+        buildVoie(
+          buildSection({
+            line: 1,
+            status: LaneStatus.Done,
+            promisedFor: 2026,
+            type: LaneType.VoieVerte,
+            doneAt: '01/06/2019',
+          }),
+          buildSection({ line: 1, status: LaneStatus.Todo, promisedFor: 2026, type: LaneType.Bidirectionnelle }),
+        ),
+      ];
+
+      assert.deepEqual(readPercents(voies), { done: 0, wip: 0, todo: 100 });
+    });
+
+    it('should_exclude_section_when_never_promised', () => {
+      const voies = [
+        buildVoie(
+          buildSection({ line: 1, status: LaneStatus.Done, type: LaneType.VoieVerte, doneAt: '31/08/2024' }),
+          buildSection({ line: 1, status: LaneStatus.Todo, type: LaneType.VoieVerte }),
+          buildSection({ line: 1, status: LaneStatus.Todo, promisedFor: 2026, type: LaneType.Bidirectionnelle }),
+        ),
+      ];
+
+      assert.deepEqual(readPercents(voies), { done: 0, wip: 0, todo: 100 });
+    });
+
+    it('should_split_promised_distance_by_progress_when_sections_are_done_wip_and_todo', () => {
+      const voies = [
+        buildVoie(
+          buildSection({
+            line: 1,
+            status: LaneStatus.Done,
+            promisedFor: 2026,
+            type: LaneType.VoieVerte,
+            doneAt: '01/09/2023',
+          }),
+          buildSection({ line: 1, status: LaneStatus.Wip, promisedFor: 2026, type: LaneType.VoieVerte }),
+          buildSection({ line: 1, status: LaneStatus.Todo, promisedFor: 2026, type: LaneType.VoieVerte }),
+          buildSection({ line: 1, status: LaneStatus.Todo, promisedFor: 2026, type: LaneType.Bidirectionnelle }),
+        ),
+      ];
+
+      assert.deepEqual(readPercents(voies), { done: 25, wip: 25, todo: 50 });
+    });
+
+    it('should_count_shared_section_once_when_lines_share_an_id', () => {
+      const voies = [
+        buildVoie(
+          buildSection({
+            id: 'commun',
+            line: 1,
+            status: LaneStatus.Done,
+            promisedFor: 2026,
+            type: LaneType.VoieVerte,
+            doneAt: '01/09/2023',
+          }),
+          buildSection({ line: 1, status: LaneStatus.Todo, promisedFor: 2026, type: LaneType.VoieVerte }),
+        ),
+        buildVoie(
+          buildSection({
+            id: 'commun',
+            line: 2,
+            status: LaneStatus.Done,
+            promisedFor: 2026,
+            type: LaneType.VoieVerte,
+            doneAt: '01/09/2023',
+          }),
+        ),
+      ];
+
+      assert.deepEqual(readPercents(voies), { done: 50, wip: 0, todo: 50 });
+    });
+
+    it('should_count_promised_section_as_todo_when_status_is_unknown', () => {
+      const voies = [
+        buildVoie(
+          buildSection({ line: 1, status: LaneStatus.Unknown, promisedFor: 2026, type: LaneType.VoieVerte }),
+          buildSection({ line: 1, status: LaneStatus.Wip, promisedFor: 2026, type: LaneType.VoieVerte }),
+        ),
+      ];
+
+      assert.deepEqual(readPercents(voies), { done: 0, wip: 50, todo: 50 });
     });
   });
 });
