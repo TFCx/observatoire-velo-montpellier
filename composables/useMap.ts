@@ -160,6 +160,7 @@ export const useMap = () => {
             nb_lanes: f.properties.lines.length,
             color: getLineColor(lineNo),
             status: f.properties.status,
+            promisedFor: f.properties.promisedFor,
             quality: f.properties.quality,
             qualityB: f.properties.qualityB,
             type: f.properties.type,

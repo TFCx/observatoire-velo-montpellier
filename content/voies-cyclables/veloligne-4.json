@@ -8,6 +8,7 @@
         "quality": "fair",
         "doneAt": "16\/05\/2025",
         "status": "done",
+        "promisedFor": 2026,
         "type": "inconnu",
         "line": "4",
         "link": "/veloligne-4#antigone-rond-point-christophe-colomb"
@@ -21,6 +22,7 @@
         "quality": "good",
         "doneAt": "01/12/2025",
         "status": "done",
+        "promisedFor": 2026,
         "type": "bidirectionnelle",
         "line": "4",
         "link": "/veloligne-4#rond-point-christophe-colomb-place-ernest-granier"
@@ -34,6 +36,7 @@
         "quality": "bad",
         "doneAt": "31/12/2019",
         "status": "done",
+        "promisedFor": 2026,
         "type": "bilaterale",
         "line": "4",
         "link": "/veloligne-4#place-ernest-granier-marché-du-lez"
@@ -47,6 +50,7 @@
         "quality": "fair",
         "doneAt": "31/12/2019",
         "status": "done",
+        "promisedFor": 2026,
         "type": "bilaterale",
         "line": "4",
         "link": "/veloligne-4#marché-du-lez-pérols-boulidou"
@@ -60,6 +64,7 @@
         "quality": "fair",
         "doneAt": "31/12/2019",
         "status": "done",
+        "promisedFor": 2026,
         "type": "bidirectionnelle",
         "line": "4",
         "link": "/veloligne-4#marché-du-lez-pérols-boulidou"
@@ -73,6 +78,7 @@
           "quality": "fair",
           "doneAt": "31/12/2019",
           "status": "done",
+          "promisedFor": 2026,
           "type": "bidirectionnelle",
           "line": "4",
           "link": "/veloligne-4#pérols-boulidou-carnon"
@@ -86,6 +92,7 @@
           "quality": "bad",
           "doneAt": "31/12/2019",
           "status": "done",
+          "promisedFor": 2026,
           "type": "bidirectionnelle",
           "line": "4",
           "link": "/veloligne-4#pérols-boulidou-carnon"
@@ -99,6 +106,7 @@
           "quality": "good",
           "doneAt": "01/10/2024",
           "status": "done",
+          "promisedFor": 2026,
           "type": "bidirectionnelle",
           "line": "4",
           "link": "/veloligne-4#pérols-boulidou-carnon"
@@ -112,6 +120,7 @@
         "quality": "good",
         "doneAt": "01/01/2025",
         "status": "done",
+        "promisedFor": 2026,
         "type": "bidirectionnelle",
         "line": "4",
         "link": "/veloligne-4#jonction-derrière-le-marché-du-lez"
@@ -125,6 +134,7 @@
         "quality": "fair",
         "doneAt": "31/12/2019",
         "status": "done",
+        "promisedFor": 2026,
         "type": "voie-verte",
         "line": "4",
         "link": "/veloligne-4#voie-verte-le-long-du-lez"
@@ -138,6 +148,7 @@
         "quality": "good",
         "doneAt": "31/12/2019",
         "status": "done",
+        "promisedFor": 2026,
         "type": "voie-verte",
         "line": "4",
         "link": "/veloligne-4#fin-de-la-voie-verte-entre-les-cabanes-de-4-vents-et-palavas"
@@ -150,7 +161,8 @@
         "name": "Lez Maurin",
         "quality": "",
         "doneAt": "",
-        "status": "planned",
+        "status": "todo",
+        "promisedFor": 2026,
         "type": "inconnu",
         "line": "4",
         "link": "/veloligne-4#desserte-de-maurin"
@@ -163,7 +175,8 @@
         "name": "Avenue Alfred Sauvy",
         "quality": "",
         "doneAt": "",
-        "status": "planned",
+        "status": "todo",
+        "promisedFor": 2026,
         "type": "inconnu",
         "line": "4",
         "link": "/veloligne-4#desserte-de-laéroport"
@@ -177,6 +190,7 @@
         "quality": "bad",
         "doneAt": "31/12/2019",
         "status": "done",
+        "promisedFor": 2026,
         "type": "bidirectionnelle",
         "line": "4",
         "link": "/veloligne-4#desserte-de-laéroport"

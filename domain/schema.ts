@@ -11,6 +11,10 @@ const coordinatesSchema = z.tuple([z.number(), z.number()]);
 // Date de réalisation au format jj/mm/aaaa, ou vide tant que le tronçon n'est pas réalisé.
 const DONE_AT_DATE_PATTERN = /^\d{2}\/\d{2}\/\d{4}$/;
 
+// Années pour lesquelles des tronçons ont été promis (ADR 0009) : celle du plan officiel de mai 2022.
+export const PROMISE_YEARS = [2026] as const;
+export type PromiseYear = (typeof PROMISE_YEARS)[number];
+
 // Valeur d'une énumération, avec un message qui donne la valeur reçue et les valeurs admises : il est
 // lu par les contributeurs quand la CI refuse une saisie.
 function enumValue<EnumObject extends Record<string, string>>(enumObject: EnumObject, fieldLabel: string) {
@@ -38,6 +42,18 @@ export const lineStringFeatureSchema = z
       line: z.string(),
       name: z.string(),
       status: enumValue(LaneStatus, 'statut'),
+      // Année de la première promesse, qui ne change plus ensuite. Un tronçon jamais promis n'a pas le
+      // champ : null ou "" seraient une deuxième façon de le dire.
+      promisedFor: z
+        .custom<PromiseYear>(
+          (value) => PROMISE_YEARS.includes(value as PromiseYear),
+          (value) => ({
+            message:
+              `année de promesse "${String(value)}" inconnue ; valeurs admises : ${PROMISE_YEARS.join(', ')} ; ` +
+              "retirer le champ si le tronçon n'a jamais été promis",
+          }),
+        )
+        .optional(),
       type: enumValue(LaneType, "type d'aménagement"),
       // Côté B d'un tronçon dont les deux côtés diffèrent.
       typeB: enumValue(LaneType, "type d'aménagement").optional(),

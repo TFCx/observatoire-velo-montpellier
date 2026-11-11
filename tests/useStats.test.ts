@@ -44,7 +44,7 @@ describe('useStats', () => {
       const voies = [
         buildVoie(
           buildSection({ id: 'commun', line: 1, status: LaneStatus.Done, type: LaneType.Bidirectionnelle }),
-          buildSection({ line: 1, status: LaneStatus.Planned, type: LaneType.Bidirectionnelle }),
+          buildSection({ line: 1, status: LaneStatus.Todo, promisedFor: 2026, type: LaneType.Bidirectionnelle }),
         ),
         buildVoie(buildSection({ id: 'commun', line: 2, status: LaneStatus.Done, type: LaneType.Bidirectionnelle })),
       ];
@@ -52,21 +52,21 @@ describe('useStats', () => {
       assert.deepEqual(getDoneAndWipStats(voies), [{ name: DEDICATED_FAMILY_NAME, percent: 50 }]);
     });
 
-    it('should_return_100_percent_todo_when_all_sections_are_planned', () => {
+    it('should_return_100_percent_todo_when_all_sections_are_promised_todo', () => {
       const voies = [
         buildVoie(
-          buildSection({ line: 1, status: LaneStatus.Planned, type: LaneType.Bidirectionnelle }),
-          buildSection({ line: 1, status: LaneStatus.Planned, type: LaneType.VoieVerte }),
+          buildSection({ line: 1, status: LaneStatus.Todo, promisedFor: 2026, type: LaneType.Bidirectionnelle }),
+          buildSection({ line: 1, status: LaneStatus.Todo, promisedFor: 2026, type: LaneType.VoieVerte }),
         ),
       ];
 
       assert.equal(getTodoPercent(voies), 100);
     });
 
-    it('should_count_postponed_section_as_todo_when_computing_todo_percent', () => {
+    it('should_count_unpromised_section_as_todo_when_computing_todo_percent', () => {
       const voies = [
         buildVoie(
-          buildSection({ line: 1, status: LaneStatus.Postponed, type: LaneType.Bidirectionnelle }),
+          buildSection({ line: 1, status: LaneStatus.Todo, type: LaneType.Bidirectionnelle }),
           buildSection({ line: 1, status: LaneStatus.Done, type: LaneType.Bidirectionnelle }),
         ),
       ];
@@ -89,18 +89,18 @@ describe('useStats', () => {
       const voies = [
         buildVoie(
           buildSection({ line: 1, status: LaneStatus.Wip, type: LaneType.Bidirectionnelle }),
-          buildSection({ line: 1, status: LaneStatus.Planned, type: LaneType.Bidirectionnelle }),
+          buildSection({ line: 1, status: LaneStatus.Todo, promisedFor: 2026, type: LaneType.Bidirectionnelle }),
         ),
       ];
 
       assert.deepEqual(getDoneAndWipStats(voies), [{ name: DEDICATED_FAMILY_NAME, percent: 50 }]);
     });
 
-    it('should_exclude_section_from_percents_when_status_is_variante', () => {
+    it('should_exclude_section_from_percents_when_status_is_unknown', () => {
       const voies = [
         buildVoie(
-          buildSection({ line: 1, status: LaneStatus.Variante, type: LaneType.Bidirectionnelle }),
-          buildSection({ line: 1, status: LaneStatus.Planned, type: LaneType.Bidirectionnelle }),
+          buildSection({ line: 1, status: LaneStatus.Unknown, type: LaneType.Bidirectionnelle }),
+          buildSection({ line: 1, status: LaneStatus.Todo, promisedFor: 2026, type: LaneType.Bidirectionnelle }),
         ),
       ];
 
@@ -111,7 +111,7 @@ describe('useStats', () => {
       const voies = [
         buildVoie(
           buildSection({ line: 1, status: LaneStatus.Done, type: LaneType.Inconnu }),
-          buildSection({ line: 1, status: LaneStatus.Planned, type: LaneType.Bidirectionnelle }),
+          buildSection({ line: 1, status: LaneStatus.Todo, promisedFor: 2026, type: LaneType.Bidirectionnelle }),
         ),
       ];
 
@@ -121,8 +121,8 @@ describe('useStats', () => {
     it('should_return_zero_todo_percent_when_no_measurable_section', () => {
       const voies = [
         buildVoie(
-          buildSection({ line: 1, status: LaneStatus.Variante, type: LaneType.Bidirectionnelle }),
-          buildSection({ line: 2, status: LaneStatus.Variante, type: LaneType.VoieVerte }),
+          buildSection({ line: 1, status: LaneStatus.Unknown, type: LaneType.Bidirectionnelle }),
+          buildSection({ line: 2, status: LaneStatus.Unknown, type: LaneType.VoieVerte }),
         ),
       ];
 

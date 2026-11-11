@@ -9,6 +9,7 @@
                 "quality": "fair",
                 "doneAt": "31\/12\/2019",
                 "status": "done",
+                "promisedFor": 2026,
                 "type": "bidirectionnelle",
                 "line": "10",
                 "link": "/veloligne-10#anneau-vélo-place-jules-rimet"
@@ -22,6 +23,7 @@
                 "quality": "good",
                 "doneAt": "01\/01\/2025",
                 "status": "done",
+                "promisedFor": 2026,
                 "type": "bilaterale",
                 "line": "10",
                 "link": "/veloligne-10#flahault-entre-la-place-jules-rimet-et-la-voie-domitienne"
@@ -35,6 +37,7 @@
                 "quality": "good",
                 "doneAt": "01\/08\/2025",
                 "status": "done",
+                "promisedFor": 2026,
                 "type": "bilaterale",
                 "line": "10",
                 "link": "/veloligne-10#flahault-entre-la-place-jules-rimet-et-la-voie-domitienne"
@@ -48,6 +51,7 @@
                 "quality": "good",
                 "doneAt": "01\/10\/2025",
                 "status": "done",
+                "promisedFor": 2026,
                 "type": "bilaterale",
                 "line": "10",
                 "link": "/veloligne-10#voie-domitienne-lapeyronie"
@@ -61,6 +65,7 @@
                 "quality": "good",
                 "doneAt": "31\/12\/2025",
                 "status": "done",
+                "promisedFor": 2026,
                 "type": "bilaterale",
                 "line": "10",
                 "link": "/veloligne-10#voie-domitienne-lapeyronie"
@@ -73,7 +78,8 @@
                 "name": "route de Ganges Occitanie ⇄ Lyre",
                 "quality": "",
                 "doneAt": "",
-                "status": "planned",
+                "status": "todo",
+                "promisedFor": 2026,
                 "type": "bidirectionnelle",
                 "line": "10",
                 "link": "/veloligne-10#lapeyronie-rond-point-de-la-lyre"
@@ -86,7 +92,8 @@
                 "name": "Lyre ⇄ Valsière",
                 "quality": "",
                 "doneAt": "",
-                "status": "planned",
+                "status": "todo",
+                "promisedFor": 2026,
                 "type": "inconnu",
                 "line": "10",
                 "link": "/veloligne-10#rond-point-de-la-lyre-la-valsière"
@@ -99,7 +106,8 @@
                 "name": "Valsière",
                 "quality": "",
                 "doneAt": "",
-                "status": "planned",
+                "status": "todo",
+                "promisedFor": 2026,
                 "type": "inconnu",
                 "line": "10",
                 "link": "/veloligne-10#rond-point-de-la-lyre-la-valsière"
@@ -113,6 +121,7 @@
                 "quality": "good",
                 "doneAt": "22\/04\/2023",
                 "status": "done",
+                "promisedFor": 2026,
                 "type": "voie-verte",
                 "line": "10",
                 "link": "/veloligne-10#la-valsière-saint-gély-du-fesc"
@@ -126,6 +135,7 @@
                 "quality": "good",
                 "doneAt": "22\/04\/2023",
                 "status": "done",
+                "promisedFor": 2026,
                 "type": "chaucidou",
                 "line": "10",
                 "link": "/veloligne-10#la-valsière-saint-gély-du-fesc"
@@ -139,6 +149,7 @@
                 "quality": "good",
                 "doneAt": "22\/04\/2023",
                 "status": "done",
+                "promisedFor": 2026,
                 "type": "bidirectionnelle",
                 "line": "10",
                 "link": "/veloligne-10#la-valsière-saint-gély-du-fesc"
@@ -152,6 +163,7 @@
                 "quality": "good",
                 "doneAt": "22\/04\/2023",
                 "status": "done",
+                "promisedFor": 2026,
                 "type": "chaucidou",
                 "line": "10",
                 "link": "/veloligne-10#la-valsière-saint-gély-du-fesc"
@@ -165,6 +177,7 @@
                 "quality": "good",
                 "doneAt": "01\/06\/2024",
                 "status": "done",
+                "promisedFor": 2026,
                 "type": "bidirectionnelle",
                 "line": "10",
                 "link": "/veloligne-10#la-valsière-saint-gély-du-fesc"
@@ -178,6 +191,7 @@
                 "quality": "good",
                 "doneAt": "01\/01\/2025",
                 "status": "done",
+                "promisedFor": 2026,
                 "type": "bidirectionnelle",
                 "line": "10",
                 "link": "/veloligne-10#la-valsière-saint-gély-du-fesc"
@@ -191,6 +205,7 @@
                 "quality": "bad",
                 "doneAt": "31\/12\/2019",
                 "status": "done",
+                "promisedFor": 2026,
                 "type": "voie-bus",
                 "line": "10",
                 "link": "/veloligne-10#voie-domitienne-rue-dunant"
@@ -204,6 +219,7 @@
                 "quality": "fair",
                 "doneAt": "30\/04\/2023",
                 "status": "done",
+                "promisedFor": 2026,
                 "type": "bidirectionnelle",
                 "line": "10",
                 "link": "/veloligne-10#rue-dunant-place-de-la-voie-domitienne"
@@ -217,6 +233,7 @@
                 "quality": "good",
                 "doneAt": "01\/08\/2025",
                 "status": "done",
+                "promisedFor": 2026,
                 "type": "bidirectionnelle",
                 "line": "10",
                 "link": "/veloligne-10#place-de-la-voie-domitienne-avenue-arthur-young"
@@ -230,6 +247,7 @@
                 "quality": "fair",
                 "doneAt": "31\/12\/2019",
                 "status": "done",
+                "promisedFor": 2026,
                 "type": "voie-verte",
                 "line": "10",
                 "link": "/veloligne-10#route-de-mende-de-lavenue-arthur-young-à-la-rm65"
@@ -242,7 +260,8 @@
                 "name": "Montferrier Route de Mende",
                 "quality": "",
                 "doneAt": "",
-                "status": "planned",
+                "status": "todo",
+                "promisedFor": 2026,
                 "type": "inconnu",
                 "line": "10",
                 "link": "/veloligne-10#route-de-mende-de-la-rm65-à-montferrier-sur-lez-fescau"
@@ -255,7 +274,8 @@
                 "name": "Montferrier Fescau ⇄ St Clément",
                 "quality": "",
                 "doneAt": "",
-                "status": "planned",
+                "status": "todo",
+                "promisedFor": 2026,
                 "type": "inconnu",
                 "line": "10",
                 "link": "/veloligne-10#route-de-st-clément-du-rond-point-du-fescau-à-st-clément"

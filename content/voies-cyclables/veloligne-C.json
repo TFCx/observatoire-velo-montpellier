@@ -7,7 +7,7 @@
             "properties": {
                 "name": "Juvignac",
                 "doneAt": "",
-                "status": "postponed",
+                "status": "todo",
                 "type": "inconnu",
                 "line": "C",
                 "link": "/veloligne-C#juvignac"
@@ -21,6 +21,7 @@
                 "quality": "good",
                 "doneAt": "31\/03\/2022",
                 "status": "done",
+                "promisedFor": 2026,
                 "type": "bidirectionnelle",
                 "line": "C",
                 "link": "/veloligne-C#st-georges-entr%C3%A9e-de-juvignac"
@@ -32,7 +33,7 @@
             "properties": {
                 "name": "St Georges d'Orques ⇄ Saussan",
                 "doneAt": "",
-                "status": "postponed",
+                "status": "todo",
                 "type": "inconnu",
                 "line": "C",
                 "link": "/veloligne-C#saussan-pignan-st-georges"
@@ -58,7 +59,7 @@
                 "name": "Fabrègues ⇄ Villeneuve",
                 "quality": "",
                 "doneAt": "",
-                "status": "postponed",
+                "status": "todo",
                 "type": "inconnu",
                 "line": "C",
                 "link": "/veloligne-C#villeneuve-fabr%C3%A8gues"
@@ -71,7 +72,8 @@
                 "name": "Maison d'arrêt",
                 "quality": "",
                 "doneAt": "",
-                "status": "planned",
+                "status": "todo",
+                "promisedFor": 2026,
                 "type": "inconnu",
                 "line": "C",
                 "link": "/veloligne-C#villeneuve-fabr%C3%A8gues"
@@ -85,6 +87,7 @@
                 "quality": "bad",
                 "doneAt": "31\/12\/2019",
                 "status": "done",
+                "promisedFor": 2026,
                 "type": "bilaterale",
                 "line": "C",
                 "link": "/veloligne-C#villeneuve-diligence-maison-darr%C3%AAt"
@@ -98,6 +101,7 @@
                 "quality": "fair",
                 "doneAt": "31\/12\/2019",
                 "status": "done",
+                "promisedFor": 2026,
                 "type": "bilaterale",
                 "line": "C",
                 "link": "/veloligne-C#palavas-4-canaux-villeneuve"
@@ -111,6 +115,7 @@
                 "quality": "fair",
                 "doneAt": "31\/12\/2019",
                 "status": "done",
+                "promisedFor": 2026,
                 "type": "bidirectionnelle",
                 "line": "C",
                 "link": "/veloligne-C#palavas-4-canaux-villeneuve"
@@ -124,6 +129,7 @@
                 "quality": "fair",
                 "doneAt": "31/12/2019",
                 "status": "done",
+                "promisedFor": 2026,
                 "type": "bidirectionnelle",
                 "line": "C",
                 "link": "/veloligne-C#palavas-4-canaux-villeneuve"
@@ -137,6 +143,7 @@
                 "quality": "bad",
                 "doneAt": "31/12/2019",
                 "status": "done",
+                "promisedFor": 2026,
                 "type": "bilaterale",
                 "line": "C",
                 "link": "/veloligne-C#palavas-traversée-du-canal-du-rhône-à-sète"
@@ -150,6 +157,7 @@
                 "quality": "fair",
                 "doneAt": "31/12/2019",
                 "status": "done",
+                "promisedFor": 2026,
                 "type": "voie-verte",
                 "line": "C",
                 "link": "/veloligne-C#carnon-palavas-4-canaux"
@@ -163,6 +171,7 @@
                 "quality": "fair",
                 "doneAt": "31/12/2019",
                 "status": "done",
+                "promisedFor": 2026,
                 "type": "bidirectionnelle",
                 "line": "C",
                 "link": "/veloligne-C#carnon-palavas-4-canaux"

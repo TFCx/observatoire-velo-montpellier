@@ -9,6 +9,7 @@
                 "quality": "fair",
                 "doneAt": "31\/12\/2019",
                 "status": "done",
+                "promisedFor": 2026,
                 "type": "bidirectionnelle",
                 "line": "8",
                 "link": "/veloligne-8#figuerolles-jusquà-lécole-maternelle-du-docteur-roux"
@@ -21,7 +22,8 @@
                 "name": "Figuerolles Claret ⇄ Ronsard",
                 "quality": "",
                 "doneAt": "",
-                "status": "planned",
+                "status": "todo",
+                "promisedFor": 2026,
                 "type": "inconnu",
                 "line": "8",
                 "link": "/veloligne-8#de-figuerolles-à-la-rue-des-chasseurs"
@@ -35,6 +37,7 @@
                 "quality": "fair",
                 "doneAt": "15\/12\/2025",
                 "status": "done",
+                "promisedFor": 2026,
                 "type": "bilaterale",
                 "line": "8",
                 "link": "/veloligne-8#de-figuerolles-à-la-rue-des-chasseurs"
@@ -48,6 +51,7 @@
                 "quality": "good",
                 "doneAt": "01\/12\/2025",
                 "status": "done",
+                "promisedFor": 2026,
                 "type": "bilaterale",
                 "line": "8",
                 "link": "/veloligne-8#de-la-rue-des-chasseurs-au-boulevard-paul-valéry"
@@ -60,7 +64,8 @@
                 "name": "Cité Paul Valery",
                 "quality": "",
                 "doneAt": "",
-                "status": "planned",
+                "status": "todo",
+                "promisedFor": 2026,
                 "type": "inconnu",
                 "line": "8",
                 "link": "/veloligne-8#du-boulevard-paul-valéry-à-lavenue-de-vanières"
@@ -74,6 +79,7 @@
                 "quality": "bad",
                 "doneAt": "31\/12\/2019",
                 "status": "done",
+                "promisedFor": 2026,
                 "type": "bilaterale",
                 "line": "8",
                 "link": "/veloligne-8#de-lavenue-de-vanières-au-rond-point-paul-fajon"
@@ -87,6 +93,7 @@
                 "quality": "good",
                 "doneAt": "01\/08\/2025",
                 "status": "done",
+                "promisedFor": 2026,
                 "type": "bilaterale",
                 "line": "8",
                 "link": "/veloligne-8#du-rond-point-paul-fajon-au-rond-point-maurice-gennevaux"
@@ -100,6 +107,7 @@
                 "quality": "good",
                 "doneAt": "31\/12\/2019",
                 "status": "done",
+                "promisedFor": 2026,
                 "type": "voie-verte",
                 "line": "8",
                 "link": "/veloligne-8#de-gennevaux-à-cournonsec"
@@ -113,6 +121,7 @@
                 "quality": "good",
                 "doneAt": "01\/06\/2022",
                 "status": "done",
+                "promisedFor": 2026,
                 "type": "voie-verte",
                 "line": "8",
                 "link": "/veloligne-8#de-gennevaux-à-cournonsec"
@@ -126,6 +135,7 @@
                 "quality": "good",
                 "doneAt": "31\/12\/2019",
                 "status": "done",
+                "promisedFor": 2026,
                 "type": "voie-verte",
                 "line": "8",
                 "link": "/veloligne-8#de-gennevaux-à-cournonsec"

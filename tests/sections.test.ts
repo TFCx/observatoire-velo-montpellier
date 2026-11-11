@@ -38,7 +38,7 @@ describe('regroupIntoSections', () => {
   });
 
   it('should_use_unknown_quality_when_quality_is_empty', () => {
-    const section = buildSection({ line: '1', status: LaneStatus.Planned, type: LaneType.Inconnu, quality: '' });
+    const section = buildSection({ line: '1', status: LaneStatus.Todo, type: LaneType.Inconnu, quality: '' });
 
     const sections = regroupIntoSections([section]);
 
@@ -64,7 +64,7 @@ describe('getDisplayedQualities', () => {
 
   it('should_show_no_quality_when_section_is_not_done', () => {
     const [plannedSection] = regroupIntoSections([
-      buildSection({ line: '1', status: LaneStatus.Planned, type: LaneType.Inconnu, quality: '' }),
+      buildSection({ line: '1', status: LaneStatus.Todo, type: LaneType.Inconnu, quality: '' }),
     ]);
 
     assert.deepEqual(getDisplayedQualities(plannedSection!), []);

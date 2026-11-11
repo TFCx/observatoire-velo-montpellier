@@ -73,9 +73,17 @@ Prochaine release :
 Moyen terme :
 
 - [x] [UX] Tronçons en travaux : animation (≈10 % de calcul en continu) remplacée par un liseré jaune et noir.
-- [DATA/UX] Statuts après la fin du mandat : « prévu » devient plutôt « en retard » ou « non réalisé » ? « reporté après
-  2026 » plutôt « sans prévision » ? Revoir libellés, couleurs (provisoires dans les tooltips : prévu gris, reporté
-  rose) et légende.
+- [x] [DATA/UX] Statuts après la fin du mandat : avancement (`status`) et première promesse (`promisedFor`) séparés,
+      ADR 0009 ; libellés « réalisé », « promis pour fin 2026 », « sans échéance ».
+- [CONTENT] Textes rédigés encore à l'ancienne : « Prévu pour 2026 » / « Reporté après le mandat » dans les pages
+  des Vélolignes (B surtout, A, C, 1), section « Reporté après 2026 » de blog/methodo.md, encadré
+  `::banner{type="postponed"}` (titre « Reporté »). À reformuler par l'association.
+- [REFACTOR] Noms internes restés à l'ancienne après l'ADR 0009 : clés `planned` / `postponed` des statistiques
+  (useStats, ProgressBar), classes CSS `stats-planned` / `stats-postponed`, sources et couches de la carte
+  (`src-lanes-planned`…).
+- [DATA/UX] Janvier 2027, échéance des promesses passée (ADR 0009, point 5) : PR qui passe « promis pour fin 2026 »
+  à « promis pour 2026, non réalisé ». Idée à trancher par l'association : faire ressortir ces tronçons sur la
+  carte (couleur ou contour), aujourd'hui dessinés comme les autres tronçons à faire.
 - [DATA/UX] Qualité selon le sens : quand `quality` et `qualityB` diffèrent, le tooltip dit seulement « selon le
   sens de circulation ». Réfléchir à préciser quel sens correspond à A et à B (ex. « vers Montpellier »). Utile mais
   compliqué : A et B suivent le sens de numérisation du tracé, que les contributeurs ne voient pas ; il faudrait

@@ -1,3 +1,4 @@
+import { getProgressCategory, ProgressCategory } from '../domain/progress';
 import { regroupIntoSections } from '../domain/sections';
 import { groupBy } from '../helpers/helpers';
 import {
@@ -122,10 +123,10 @@ export const useStats = () => {
     const doneFeatures = features.filter((feature) => feature.properties.status === LaneStatus.Done);
     const wipFeatures = features.filter((feature) => feature.properties.status === LaneStatus.Wip);
     const plannedFeatures = features.filter((feature) =>
-      [LaneStatus.Planned, LaneStatus.Unknown, LaneStatus.Variante].includes(feature.properties.status),
+      [ProgressCategory.PromisedTodo, ProgressCategory.Unknown].includes(getProgressCategory(feature.properties)),
     );
-    const postponedFeatures = features.filter((feature) =>
-      [LaneStatus.Postponed, LaneStatus.VariantePostponed].includes(feature.properties.status),
+    const postponedFeatures = features.filter(
+      (feature) => getProgressCategory(feature.properties) === ProgressCategory.UnpromisedTodo,
     );
 
     const totalDistance = getDistance(features);
@@ -159,13 +160,13 @@ export const useStats = () => {
         class: 'text-stats-wip font-semibold',
       },
       planned: {
-        name: "Prévus d'ici 2026",
+        name: 'Promis pour fin 2026',
         distance: plannedDistance,
         percent: getPercent(plannedDistance),
         class: 'text-stats-planned font-semibold',
       },
       postponed: {
-        name: 'Après 2026',
+        name: 'Sans échéance',
         distance: postponedDistance,
         percent: getPercent(postponedDistance),
         class: 'text-stats-postponed font-semibold',
@@ -215,16 +216,14 @@ export const useStats = () => {
     // TODO gérer les deux côtés pour les aménagements hétérogènes
     // TODO gérer les quality inconnus ou null ou undefined ?
 
-    const sections_todo = sections.filter(
-      (s) => s.properties.status == LaneStatus.Planned || s.properties.status == LaneStatus.Postponed,
-    );
+    const sections_todo = sections.filter((s) => s.properties.status == LaneStatus.Todo);
     const distance_todo = getDistance(sections_todo);
 
     sections = sections.filter((s) => s.properties.status == LaneStatus.Done || s.properties.status == LaneStatus.Wip);
     sections = sections.filter((s) => s.properties.typeFamily != LaneTypeFamily.Inconnu);
     const totalDistance = getDistance(sections) + distance_todo;
 
-    // Sans tronçon mesurable (que des variantes, par exemple), totalDistance vaut 0 et la division donnerait NaN.
+    // Sans tronçon mesurable (que des tronçons de statut inconnu, par exemple), totalDistance vaut 0 et la division donnerait NaN.
     const percent_todo = totalDistance > 0 ? distance_todo / totalDistance : 0;
 
     const sectionsByType = groupBy<SectionFeature, LaneTypeFamily>(

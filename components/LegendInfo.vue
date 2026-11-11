@@ -22,7 +22,7 @@
               <div class="my-auto rounded-md border-gray-500 border">
                 <div class="h-1 bg-color-primary-primary" />
               </div>
-              <div>Terminé</div>
+              <div>Réalisé</div>
 
               <div class="my-auto wip-outline">
                 <div class="h-1 bg-color-primary-primary wip-outline-inner" />
@@ -38,14 +38,14 @@
                   </div>
                 </div>
               </div>
-              <div>Prévu pour 2026</div>
+              <div>Promis pour fin 2026</div>
 
               <div class="my-auto rounded-md border-gray-500 border relative">
                 <div class="h-1 bg-white" />
                 <div class="myabsolute h-full w-full bg-color-primary-primary dashed-line opacity-30" />
                 <div class="text-gray-500 font-bold absolute -top-2 opacity-65">✕ ✕ ✕</div>
               </div>
-              <div>Reporté après 2026</div>
+              <div>Sans échéance</div>
             </div>
           </div>
 
