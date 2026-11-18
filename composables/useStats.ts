@@ -33,6 +33,13 @@ export type TypologyStats = {
   todo: TypologyTodoStats;
 };
 
+export type PromiseProgress = {
+  totalDistance: number;
+  done: { distance: number; percent: number };
+  wip: { distance: number; percent: number };
+  todo: { distance: number; percent: number };
+};
+
 export const useStats = () => {
   function getAllUniqLineStrings(voies: Geojson[]) {
     return voies
@@ -263,8 +270,29 @@ export const useStats = () => {
     };
   }
 
+  // Ce qui avait été promis pour 2026 et restait à construire : les tronçons promis, sauf ceux qui existaient
+  // avant le mandat. Un statut inconnu compte comme reste à faire, comme dans getStats.
+  function getPromiseProgress(voies: Geojson[]): PromiseProgress {
+    const promisedToBuild = getAllUniqLineStrings(voies).filter(
+      (feature) => feature.properties.promisedFor !== undefined && !isBeforeMandat(feature),
+    );
+    const doneDistance = getDistance(
+      promisedToBuild.filter((feature) => feature.properties.status === LaneStatus.Done),
+    );
+    const wipDistance = getDistance(promisedToBuild.filter((feature) => feature.properties.status === LaneStatus.Wip));
+    const totalDistance = getDistance(promisedToBuild);
+    const todoDistance = totalDistance - doneDistance - wipDistance;
+
+    function toShare(distance: number) {
+      return { distance, percent: totalDistance > 0 ? Math.round((distance / totalDistance) * 100) : 0 };
+    }
+
+    return { totalDistance, done: toShare(doneDistance), wip: toShare(wipDistance), todo: toShare(todoDistance) };
+  }
+
   return {
     getAllUniqLineStrings,
+    getPromiseProgress,
     getDistance,
     getTotalDistance,
     getStats,

@@ -81,6 +81,12 @@ Moyen terme :
 - [REFACTOR] Noms internes restés à l'ancienne après l'ADR 0009 : clés `planned` / `postponed` des statistiques
   (useStats, ProgressBar), classes CSS `stats-planned` / `stats-postponed`, sources et couches de la carte
   (`src-lanes-planned`…).
+- [x] [UX] Accueil : compte à rebours avant le 31/12/2026, et temps du mandat (depuis le 15/07/2020) face à
+      l'avancement des km promis hors existant.
+  - À trancher : la nouvelle barre et l'ancienne barre d'avancement global se suivent ; garder les deux ?
+  - En thème sombre, le titre « Où en est le projet ? » est illisible (noir sur fond sombre) : préexistant ?
+  - « Avant mandat » compte ce qui est réalisé avant le 01/01/2021, alors que le mandat commence le 15/07/2020 :
+    aligner (aucun tronçon réalisé en 2020, aucun chiffre ne changerait aujourd'hui).
 - [DATA/UX] Janvier 2027, échéance des promesses passée (ADR 0009, point 5) : PR qui passe « promis pour fin 2026 »
   à « promis pour 2026, non réalisé ». Idée à trancher par l'association : faire ressortir ces tronçons sur la
   carte (couleur ou contour), aujourd'hui dessinés comme les autres tronçons à faire.
