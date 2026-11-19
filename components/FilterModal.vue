@@ -38,6 +38,8 @@ function openModal() {
 }
 
 defineExpose({
+  isOpen,
   openModal,
+  closeModal,
 });
 </script>

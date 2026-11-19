@@ -120,6 +120,15 @@ function setMapPanel(panel: MapPanel) {
   router.replace({ query: convertMapPanelToQuery(panel, route.query) });
 }
 
+// En grand écran, la carte interactive montre les filtres dans le panneau : une modale ouverte avant
+// d'agrandir la fenêtre y passe, pour ne pas afficher les filtres deux fois.
+watch(isLargeScreen, (isNowLargeScreen) => {
+  if (isNowLargeScreen && options.sidePanel && filterModalComponent.value?.isOpen) {
+    filterModalComponent.value.closeModal();
+    setMapPanel({ kind: 'filters' });
+  }
+});
+
 function toggleFilters() {
   if (options.sidePanel && isLargeScreen.value) {
     setMapPanel(mapPanel.value.kind === 'filters' ? { kind: 'closed' } : { kind: 'filters' });

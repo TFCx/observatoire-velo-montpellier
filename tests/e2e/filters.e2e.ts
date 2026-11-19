@@ -105,6 +105,20 @@ describe('map filters', () => {
     await page.close();
   });
 
+  // Une fenêtre agrandie au-delà de 1024 px, modale ouverte, ne doit pas montrer les filtres deux fois.
+  it('should_move_the_filters_from_the_modal_to_the_panel_when_the_screen_becomes_large', async () => {
+    const { page } = await openPage('/carte-interactive', PHONE_VIEWPORT);
+    await waitUntilMapIsDrawn(page);
+    await page.locator('.maplibregl-filter').click();
+    await expect.poll(() => page.getByRole('dialog').count()).toBe(1);
+
+    await page.setViewportSize(DESKTOP_VIEWPORT);
+
+    await expect.poll(() => page.locator(FILTER_PANEL).count()).toBe(1);
+    await expect.poll(() => page.getByRole('dialog').count()).toBe(0);
+    await page.close();
+  });
+
   // Les autres cartes ne lisent pas l'URL : le bouton ouvre toujours la modale.
   it('should_open_the_filter_modal_when_the_map_is_not_the_interactive_map', async () => {
     const { page } = await openPage('/carte-interactive/embed');
