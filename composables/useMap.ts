@@ -1,6 +1,6 @@
 import type { Map, MapMouseEvent } from 'maplibre-gl';
 import { Popup } from 'maplibre-gl';
-import { createApp, defineComponent, h, Suspense, ref, type Component } from 'vue';
+import { createApp, defineComponent, effectScope, h, Suspense, ref, type Component } from 'vue';
 import { isDangerFeature, isPerspectiveFeature, isSectionFeature } from '~/types';
 import type { Feature, LaneFeature, SectionFeature } from '~/types';
 
@@ -94,6 +94,10 @@ function toggleLimitsVisibility(map: Map, displayLimits: boolean) {
 }
 
 export const useMap = () => {
+  // Les watchers de plotFeatures sont créés au chargement de la carte, hors du setup du composant :
+  // Vue ne les arrêterait pas au démontage, et ils redessineraient la carte quittée. Ce scope, créé
+  // pendant le setup, est arrêté avec le composant.
+  const mapWatchersScope = effectScope();
   let hoverPopup: Popup | null = null;
   let hoveredSectionName: string | null = null;
   // Tronçon dont le tooltip du clic est ouvert : pas de tooltip de survol par-dessus.
@@ -146,8 +150,10 @@ export const useMap = () => {
 
     changeLayer(map, displayedLayer.value);
 
-    watch(displayLimits, (displayLimits) => toggleLimitsVisibility(map, displayLimits));
-    watch(displayedLayer, (displayedLayer) => changeLayer(map, displayedLayer));
+    mapWatchersScope.run(() => {
+      watch(displayLimits, (displayLimits) => toggleLimitsVisibility(map, displayLimits));
+      watch(displayedLayer, (displayedLayer) => changeLayer(map, displayedLayer));
+    });
   }
 
   function separateSectionsIntoLanes(features: SectionFeature[]): LaneFeature[] {

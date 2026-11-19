@@ -49,4 +49,55 @@ describe('maps', () => {
       await page.close();
     });
   }
+
+  // Un lien interne ne recharge pas la page (application d'une seule page) : seul le composant de la
+  // carte peut libérer ce qu'elle occupe quand on la quitte.
+  async function leaveMapPageByHeaderLogo(page: Page) {
+    await page.locator('#navigation-header a[href="/"]').first().click();
+    await page.locator('canvas.maplibregl-canvas').waitFor({ state: 'detached' });
+  }
+
+  it('should_release_the_webgl_context_when_leaving_a_map_page', async () => {
+    const { page } = await openPage('/carte-interactive');
+    await page.locator('canvas.maplibregl-canvas').first().waitFor();
+    await waitUntilMapIsDrawn(page);
+    // getContext rend le contexte déjà créé par MapLibre ; il est gardé pour être relu après la navigation.
+    const hasMapContext = await page.evaluate(() => {
+      const canvas = document.querySelector<HTMLCanvasElement>('canvas.maplibregl-canvas');
+      const windowWithMapContext = window as Window & { leftMapContext?: WebGL2RenderingContext | null };
+      windowWithMapContext.leftMapContext = canvas?.getContext('webgl2');
+      return windowWithMapContext.leftMapContext !== null && windowWithMapContext.leftMapContext !== undefined;
+    });
+    expect(hasMapContext).toBe(true);
+
+    await leaveMapPageByHeaderLogo(page);
+
+    // Chromium garde 16 contextes WebGL au plus : une carte non libérée finit par faire perdre le sien à
+    // une carte affichée.
+    const isLeftMapContextLost = await page.evaluate(() =>
+      (window as Window & { leftMapContext?: WebGL2RenderingContext | null }).leftMapContext?.isContextLost(),
+    );
+    expect(isLeftMapContextLost).toBe(true);
+
+    await page.close();
+  });
+
+  it('should_log_no_error_when_changing_layer_after_coming_back_to_a_map_page', async () => {
+    const { page, consoleErrors } = await openPage('/carte-interactive');
+    await page.locator('canvas.maplibregl-canvas').first().waitFor();
+    await waitUntilMapIsDrawn(page);
+    await leaveMapPageByHeaderLogo(page);
+    await page.goBack();
+    await page.locator('canvas.maplibregl-canvas').first().waitFor();
+    await waitUntilMapIsDrawn(page);
+
+    // Un watcher resté attaché à la carte quittée la redessinerait aussi, alors qu'elle n'a plus de style.
+    await page.locator('#quality').click();
+    // Les erreurs du changement de couche sont émises avant l'image suivante.
+    await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(resolve)));
+
+    expect(consoleErrors, `Erreurs :\n${consoleErrors.join('\n')}`).toEqual([]);
+
+    await page.close();
+  });
 });
