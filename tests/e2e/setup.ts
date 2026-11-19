@@ -14,6 +14,10 @@ export type OpenedPage = {
   consoleErrors: string[];
 };
 
+export const DESKTOP_VIEWPORT = { width: 1280, height: 800 };
+// Largeur d'un téléphone : sous 1024 px, la carte garde la modale des filtres (ADR 0010).
+export const PHONE_VIEWPORT = { width: 390, height: 800 };
+
 export function setupBrowserTests() {
   let server: http.Server;
   let browser: Browser;
@@ -35,8 +39,8 @@ export function setupBrowserTests() {
 
   // Les requêtes vers Internet (tuiles du fond de carte, polices…) sont bloquées : les tests ne
   // dépendent pas du réseau et vérifient ce que le site dessine lui-même (nos couches GeoJSON).
-  async function openPage(route: string): Promise<OpenedPage> {
-    const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
+  async function openPage(route: string, viewport = DESKTOP_VIEWPORT): Promise<OpenedPage> {
+    const page = await browser.newPage({ viewport });
     const blockedExternalUrls = new Set<string>();
     await page.route(
       (url) => !url.href.startsWith(baseUrl) && !url.href.startsWith('data:'),
