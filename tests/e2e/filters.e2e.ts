@@ -81,6 +81,21 @@ describe('map filters', () => {
     await page.close();
   });
 
+  // MapLibre suit la taille de son conteneur (ResizeObserver) : la carte rétrécit sans appel explicite.
+  it('should_narrow_the_map_when_the_filter_button_opens_the_panel', async () => {
+    const { page } = await openPage('/carte-interactive');
+    await waitUntilMapIsDrawn(page);
+
+    await page.locator('.maplibregl-filter').click();
+    await page.locator(FILTER_PANEL).waitFor();
+    const panelWidth = (await page.locator(FILTER_PANEL).boundingBox())?.width ?? 0;
+
+    await expect
+      .poll(async () => (await page.locator('canvas.maplibregl-canvas').first().boundingBox())?.width ?? 0)
+      .toBeLessThanOrEqual(DESKTOP_VIEWPORT.width - panelWidth);
+    await page.close();
+  });
+
   it('should_hide_the_network_when_every_status_is_unselected_in_the_filter_panel', async () => {
     const { page } = await openPage('/carte-interactive?panneau=filtres');
     const colorsOfTheWholeNetwork = await waitUntilMapIsDrawn(page);

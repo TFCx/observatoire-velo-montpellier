@@ -281,10 +281,6 @@ onMounted(() => {
   });
   map.on('mouseout', () => removeHoverTooltip());
 
-  // MapLibre ne suit que le redimensionnement de la fenêtre : ouvrir ou fermer le panneau change la
-  // largeur de la carte sans en changer la fenêtre.
-  watch(isFilterPanelShown, () => nextTick(() => map.resize()));
-
   map.on('click', (clickEvent) => {
     const lineStringFeatures = features.value.filter(isLineStringFeature).sort(sortByLine);
     const sections = regroupIntoSections(lineStringFeatures);
