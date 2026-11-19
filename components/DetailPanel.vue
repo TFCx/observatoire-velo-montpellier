@@ -3,8 +3,7 @@
     ref="scrollContainer"
     aria-label="Détail du tronçon"
     class="h-full w-[600px] shrink-0 overflow-y-auto border-l border-gray-200 bg-white"
-    @wheel.passive="hasUserScrolled = true"
-    @touchmove.passive="hasUserScrolled = true"
+    @scroll.passive="detectUserScroll"
   >
     <div ref="header" class="sticky top-0 z-10 flex items-center gap-2 border-b border-gray-200 bg-white px-4 py-2">
       <h2 class="text-lg font-medium leading-6 text-gray-900">{{ getRevName('singular') }}</h2>
@@ -104,11 +103,29 @@ function scrollToAnchor() {
   const target = findAnchorTarget();
   if (!target) {
     container.scrollTop = 0;
+    scrollTopSetByPanel = 0;
     return;
   }
   const headerHeight = header.value?.offsetHeight ?? 0;
   container.scrollTop =
     target.getBoundingClientRect().top - container.getBoundingClientRect().top + container.scrollTop - headerHeight;
+  scrollTopSetByPanel = container.scrollTop;
+}
+
+// Molette, doigt, barre de défilement ou clavier : tout défilement qui ne vient pas de scrollToAnchor
+// est celui de la personne, et le panneau cesse de la ramener à l'ancre. Le navigateur arrondit
+// scrollTop : on tolère quelques pixels d'écart.
+let scrollTopSetByPanel: number | undefined;
+const SCROLL_TOLERANCE_PX = 2;
+
+function detectUserScroll() {
+  const container = scrollContainer.value;
+  if (
+    container &&
+    (scrollTopSetByPanel === undefined || Math.abs(container.scrollTop - scrollTopSetByPanel) > SCROLL_TOLERANCE_PX)
+  ) {
+    hasUserScrolled.value = true;
+  }
 }
 
 // Le contenu de la page est rendu quelques images après le panneau (ContentRenderer est asynchrone) :
@@ -166,9 +183,12 @@ function updateHighlight() {
 
 function scrollToAnchorOnceRendered() {
   hasUserScrolled.value = false;
+  scrollTopSetByPanel = undefined;
   highlightFlashCount.value += 1;
   waitForAnchorTarget(MAXIMUM_FRAMES_TO_WAIT_FOR_ANCHOR, () => {
-    scrollToAnchor();
+    if (!hasUserScrolled.value) {
+      scrollToAnchor();
+    }
     updateHighlight();
   });
 }

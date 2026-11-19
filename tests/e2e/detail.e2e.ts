@@ -159,6 +159,33 @@ describe('section detail panel', () => {
     await page.close();
   });
 
+  // Défilement par la barre ou au clavier : aucun événement de molette. Le panneau ne doit pas ramener la
+  // lecture à l'ancre quand le contenu change ensuite de hauteur (police ou image chargée).
+  it('should_keep_the_reading_position_when_content_grows_after_scrolling_with_the_scrollbar', async () => {
+    const { page } = await openPage(detailRoute(SHARED_SECTION, 'B'));
+    await waitUntilMapIsDrawn(page);
+    const panel = page.locator(DETAIL_PANEL);
+    const title = panel.locator(`[id="${SHARED_SECTION_ANCHOR_ON_LINE_B}"]`);
+    const titleOffsetInPanel = async () =>
+      ((await title.boundingBox())?.y ?? 0) - ((await panel.boundingBox())?.y ?? 0);
+    await expect.poll(titleOffsetInPanel).toBeLessThan(120);
+
+    await panel.evaluate((panelElement) => {
+      panelElement.scrollTop += 600;
+    });
+    await expect.poll(titleOffsetInPanel).toBeLessThan(-300);
+    await panel.evaluate((panelElement) => {
+      const lateContent = document.createElement('div');
+      lateContent.style.height = '400px';
+      panelElement.querySelector(':scope > div:nth-child(2)')?.prepend(lateContent);
+    });
+    // On vérifie que rien ne se passe : il faut laisser au panneau le temps de réagir à tort.
+    await page.waitForTimeout(1_000);
+
+    expect(await titleOffsetInPanel()).toBeLessThan(-300);
+    await page.close();
+  });
+
   // Le rendu de la carte varie d'une capture à l'autre (animation du cadrage) : le test vérifie le tronçon
   // passé à la couche de mise en évidence, que la carte expose dans data-selected-section.
   it('should_highlight_the_selected_section_on_the_map', async () => {
