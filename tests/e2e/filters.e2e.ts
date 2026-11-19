@@ -3,9 +3,10 @@ import type { Page } from 'playwright-core';
 import { describe, expect, it } from 'vitest';
 
 import { countDistinctMapColors } from './browser';
-import { PHONE_VIEWPORT, setupBrowserTests } from './setup';
+import { DESKTOP_VIEWPORT, PHONE_VIEWPORT, setupBrowserTests } from './setup';
 
 const MINIMUM_COLORS_OF_A_DRAWN_MAP = 200;
+const FILTER_PANEL = 'aside[aria-label="Filtres"]';
 const STATUS_FILTER_LABELS = ['Réalisé', 'En travaux', 'Promis pour fin 2026', 'Sans échéance', 'Inconnu'];
 
 async function waitUntilMapIsDrawn(page: Page): Promise<number> {
@@ -34,6 +35,84 @@ describe('map filters', () => {
     await expect
       .poll(() => countDistinctMapColors(page), { timeout: 10_000, interval: 1_000 })
       .toBeLessThan(colorsOfTheWholeNetwork / 2);
+    await page.close();
+  });
+
+  it('should_show_the_filter_panel_when_the_url_asks_for_it', async () => {
+    const { page } = await openPage('/carte-interactive?panneau=filtres');
+    await waitUntilMapIsDrawn(page);
+
+    await expect.poll(() => page.locator(FILTER_PANEL).count()).toBe(1);
+    await page.close();
+  });
+
+  it('should_open_the_filter_panel_when_clicking_the_filter_button_on_a_large_screen', async () => {
+    const { page } = await openPage('/carte-interactive');
+    await waitUntilMapIsDrawn(page);
+
+    await page.locator('.maplibregl-filter').click();
+
+    await expect.poll(() => new URL(page.url()).searchParams.get('panneau')).toBe('filtres');
+    await expect.poll(() => page.locator(FILTER_PANEL).count()).toBe(1);
+    expect(await page.getByRole('dialog').count()).toBe(0);
+    await page.close();
+  });
+
+  it('should_remove_the_panel_from_the_url_when_closing_the_filter_panel', async () => {
+    const { page } = await openPage('/carte-interactive?panneau=filtres');
+    await waitUntilMapIsDrawn(page);
+
+    await page.locator(FILTER_PANEL).getByRole('button', { name: 'Fermer les filtres' }).click();
+
+    await expect.poll(() => new URL(page.url()).searchParams.has('panneau')).toBe(false);
+    await expect.poll(() => page.locator(FILTER_PANEL).count()).toBe(0);
+    await page.close();
+  });
+
+  it('should_narrow_the_map_when_the_filter_panel_is_open', async () => {
+    const { page } = await openPage('/carte-interactive?panneau=filtres');
+    await waitUntilMapIsDrawn(page);
+
+    const panelWidth = (await page.locator(FILTER_PANEL).boundingBox())?.width ?? 0;
+    const mapWidth = (await page.locator('canvas.maplibregl-canvas').first().boundingBox())?.width ?? 0;
+
+    expect(panelWidth).toBeGreaterThan(300);
+    expect(mapWidth).toBeLessThanOrEqual(DESKTOP_VIEWPORT.width - panelWidth);
+    await page.close();
+  });
+
+  it('should_hide_the_network_when_every_status_is_unselected_in_the_filter_panel', async () => {
+    const { page } = await openPage('/carte-interactive?panneau=filtres');
+    const colorsOfTheWholeNetwork = await waitUntilMapIsDrawn(page);
+
+    const panel = page.locator(FILTER_PANEL);
+    for (const label of STATUS_FILTER_LABELS) {
+      await panel.getByText(label, { exact: true }).first().click();
+    }
+
+    await expect
+      .poll(() => countDistinctMapColors(page), { timeout: 10_000, interval: 1_000 })
+      .toBeLessThan(colorsOfTheWholeNetwork / 2);
+    await page.close();
+  });
+
+  // Sous 1024 px, la carte garde la modale (ADR 0010) : le paramètre d'URL est ignoré.
+  it('should_not_show_the_filter_panel_when_the_screen_is_small', async () => {
+    const { page } = await openPage('/carte-interactive?panneau=filtres', PHONE_VIEWPORT);
+    await waitUntilMapIsDrawn(page);
+
+    expect(await page.locator(FILTER_PANEL).count()).toBe(0);
+    await page.close();
+  });
+
+  // Les autres cartes ne lisent pas l'URL : le bouton ouvre toujours la modale.
+  it('should_open_the_filter_modal_when_the_map_is_not_the_interactive_map', async () => {
+    const { page } = await openPage('/carte-interactive/embed');
+    await waitUntilMapIsDrawn(page);
+
+    await page.locator('.maplibregl-filter').click();
+
+    await expect.poll(() => page.getByRole('dialog').count()).toBe(1);
     await page.close();
   });
 });

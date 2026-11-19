@@ -42,7 +42,15 @@ ajoutées par-dessus en couches GeoJSON :
 - `components/Map.vue` crée la carte et ses contrôles (`maplibre/`) ;
 - `composables/useMap.ts` et `composables/map/` dessinent le réseau selon la visualisation choisie
   (avancement, qualité, type, futur réseau) et gèrent les clics ;
-- un tronçon partagé est dessiné en voies parallèles, une par Véloligne (`LaneFeature`).
+- un tronçon partagé est dessiné en voies parallèles, une par Véloligne (`LaneFeature`) ;
+- les filtres (`useMapFilters`, `components/filter/FilterForm.vue`) s'affichent dans une modale, sauf
+  sur la carte interactive en grand écran (1024 px et plus), où ils occupent un panneau latéral à
+  droite de la carte (ADR 0010).
+
+L'état du panneau latéral est dans l'URL de la carte interactive : `?panneau=filtres` l'ouvre sur les
+filtres. `domain/mapPanel.ts` lit ces paramètres une seule fois et les convertit en un état typé ; une
+valeur inconnue ferme le panneau. Le panneau change l'URL sans ajouter d'entrée dans l'historique du
+navigateur. Les autres cartes (page d'une Véloligne, carte intégrable) ne lisent pas l'URL.
 
 MapLibre ne se charge que sur les pages qui ont une carte : les autres pages restent légères.
 
