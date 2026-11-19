@@ -57,6 +57,18 @@ describe('maps', () => {
     await page.locator('canvas.maplibregl-canvas').waitFor({ state: 'detached' });
   }
 
+  // Un rechargement effacerait la carte quittée et tout son code avec le document, et le test passerait
+  // sans rien prouver : ce témoin, posé sur window, montre que la navigation n'a pas rechargé la page.
+  async function markCurrentDocument(page: Page) {
+    await page.evaluate(() => {
+      (window as Window & { documentMark?: boolean }).documentMark = true;
+    });
+  }
+
+  function isStillMarkedDocument(page: Page): Promise<boolean> {
+    return page.evaluate(() => (window as Window & { documentMark?: boolean }).documentMark === true);
+  }
+
   it('should_release_the_webgl_context_when_leaving_a_map_page', async () => {
     const { page } = await openPage('/carte-interactive');
     await page.locator('canvas.maplibregl-canvas').first().waitFor();
@@ -86,10 +98,12 @@ describe('maps', () => {
     const { page, consoleErrors } = await openPage('/carte-interactive');
     await page.locator('canvas.maplibregl-canvas').first().waitFor();
     await waitUntilMapIsDrawn(page);
+    await markCurrentDocument(page);
     await leaveMapPageByHeaderLogo(page);
     await page.goBack();
     await page.locator('canvas.maplibregl-canvas').first().waitFor();
     await waitUntilMapIsDrawn(page);
+    expect(await isStillMarkedDocument(page)).toBe(true);
 
     // Un watcher resté attaché à la carte quittée la redessinerait aussi, alors qu'elle n'a plus de style.
     await page.locator('#quality').click();
