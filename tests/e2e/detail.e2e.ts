@@ -11,6 +11,8 @@ const DETAIL_PANEL = 'aside[aria-label="Détail du tronçon"]';
 // Tronçon réel partagé par les Vélolignes 1 et B : son lien vers la page B a pour ancre ce titre.
 const SHARED_SECTION = 'Chemin des Alouettes';
 const SHARED_SECTION_ANCHOR_ON_LINE_B = 'chemin-des-alouettes-à-castelnau-le-lez';
+// Titre suivant, de même niveau, sur la page de la Véloligne B.
+const NEXT_TITLE_ON_LINE_B = 'chemin-de-caylus';
 
 function detailRoute(sectionName: string, line?: string): string {
   const query = new URLSearchParams({ panneau: 'detail', troncon: sectionName, ...(line ? { ligne: line } : {}) });
@@ -123,6 +125,28 @@ describe('section detail panel', () => {
 
     await expect.poll(titleOffsetInPanel).toBeLessThan(120);
     await expect.poll(titleOffsetInPanel).toBeGreaterThan(0);
+    await page.close();
+  });
+
+  // Un titre en fin de page ne peut pas monter en haut du panneau : la section du tronçon est surlignée,
+  // de son titre jusqu'au titre suivant de même niveau.
+  it('should_highlight_the_text_of_the_section_from_its_title_to_the_next_title', async () => {
+    const { page } = await openPage(detailRoute(SHARED_SECTION, 'B'));
+    await waitUntilMapIsDrawn(page);
+    const panel = page.locator(DETAIL_PANEL);
+    const highlight = panel.locator('.section-highlight');
+    await highlight.waitFor();
+
+    const highlightBox = await highlight.boundingBox();
+    const titleBox = await panel.locator(`[id="${SHARED_SECTION_ANCHOR_ON_LINE_B}"]`).boundingBox();
+    const nextTitleBox = await panel.locator(`[id="${NEXT_TITLE_ON_LINE_B}"]`).boundingBox();
+    if (!highlightBox || !titleBox || !nextTitleBox) {
+      throw new Error('Surlignage ou titres absents du panneau.');
+    }
+
+    expect(highlightBox.y).toBeLessThanOrEqual(titleBox.y);
+    expect(highlightBox.y + highlightBox.height).toBeGreaterThan(titleBox.y + titleBox.height);
+    expect(highlightBox.y + highlightBox.height).toBeLessThanOrEqual(nextTitleBox.y);
     await page.close();
   });
 

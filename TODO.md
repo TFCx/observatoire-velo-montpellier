@@ -34,6 +34,9 @@ Feuille de route technique (sept. 2026) — voir docs/decisions/0002 :
     - [x] Contenu d'une page de Véloligne dans un composant (VoieCyclableDetails)
     - [x] Panneau des filtres
     - [x] Panneau de détail : page de la Véloligne défilée jusqu'à l'ancre, tronçon mis en évidence
+    - Idée : cliquer sur un titre du panneau de détail sélectionne et cadre ses tronçons. Une ancre
+      désigne souvent plusieurs tronçons (35 ancres sur 143, jusqu'à 6 tronçons) : l'URL ne sait désigner
+      qu'un tronçon. Piste : une bijection parfaite entre titres et tronçons dans les pages
     - `SectionFeature.links` n'est pas dans l'ordre de `lines` (regroupIntoSections) : le tooltip du clic
       (`LineTooltip`, petits écrans) renvoie au premier lien, pas forcément celui de la première Véloligne
     - `cover:` vide vaut null en YAML : le schéma accepte null et absent, deux façons de dire « pas d'image »

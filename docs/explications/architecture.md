@@ -48,7 +48,8 @@ ajoutées par-dessus en couches GeoJSON :
   droite de la carte (ADR 0010) ;
 - dans ce même cas, un clic sur un tronçon ouvre dans le panneau la page de sa Véloligne
   (`components/DetailPanel.vue`), sans sa carte d'aperçu, défilée jusqu'au titre de l'ancre du lien du
-  tronçon ; la carte se cadre sur le tronçon, mis en évidence par un halo. Un tronçon partagé montre une pastille par
+  tronçon ; la carte se cadre sur le tronçon, mis en évidence par un halo, et la section du texte qui en parle
+  (son titre jusqu'au titre suivant de même niveau) est surlignée. Un tronçon partagé montre une pastille par
   Véloligne pour passer de l'une à l'autre ; il s'ouvre sur la première de ses Vélolignes. Ailleurs, le
   clic ouvre un tooltip.
 

@@ -39,6 +39,7 @@
       <DetailPanel
         v-if="detailPanel"
         :line-detail="detailPanel.lineDetail"
+        :section-name="detailPanel.sectionName"
         :line="detailPanel.line"
         :lines="detailPanel.lines"
         :anchor="detailPanel.anchor"

@@ -41,8 +41,20 @@
         </button>
       </div>
     </div>
-    <div ref="content">
+    <div ref="content" class="relative">
       <VoieCyclableDetails :voie="lineDetail.page" :geojson="lineDetail.geojson" :show-map="false" />
+      <!-- La clé relance le flash à chaque tronçon sélectionné, même si sa section est déjà surlignée. -->
+      <div
+        v-if="highlightBox"
+        :key="highlightFlashCount"
+        class="section-highlight pointer-events-none absolute z-10"
+        :style="{
+          top: `${highlightBox.top}px`,
+          left: `${highlightBox.left}px`,
+          width: `${highlightBox.width}px`,
+          height: `${highlightBox.height}px`,
+        }"
+      />
     </div>
   </aside>
 </template>
@@ -64,8 +76,9 @@ export type LineDetail = {
 const { getLineColor } = useColors();
 const { getRevName } = useConfig();
 
-const { lineDetail, line, lines, anchor } = defineProps<{
+const { lineDetail, sectionName, line, lines, anchor } = defineProps<{
   lineDetail: LineDetail;
+  sectionName: string;
   line: string;
   lines: string[];
   anchor: string | undefined;
@@ -110,9 +123,54 @@ function waitForAnchorTarget(remainingFrames: number, onReady: () => void) {
   requestAnimationFrame(() => waitForAnchorTarget(remainingFrames - 1, onReady));
 }
 
+// Section du texte d'un tronçon : son titre et ce qui suit, jusqu'au titre suivant de même niveau ou
+// de niveau supérieur. Surlignée parce qu'un titre en fin de page ne peut pas monter en haut du panneau.
+type HighlightBox = { top: number; left: number; width: number; height: number };
+const HIGHLIGHT_MARGIN = 8;
+const highlightBox = ref<HighlightBox | null>(null);
+const highlightFlashCount = ref(0);
+
+function readHeadingLevel(element: Element): number | undefined {
+  const headingMatch = /^H([1-6])$/.exec(element.tagName);
+  return headingMatch ? Number(headingMatch[1]) : undefined;
+}
+
+function findSectionElements(title: Element): Element[] {
+  const titleLevel = readHeadingLevel(title) ?? 6;
+  const sectionElements = [title];
+  for (let sibling = title.nextElementSibling; sibling; sibling = sibling.nextElementSibling) {
+    const siblingLevel = readHeadingLevel(sibling);
+    if (siblingLevel !== undefined && siblingLevel <= titleLevel) {
+      break;
+    }
+    sectionElements.push(sibling);
+  }
+  return sectionElements;
+}
+
+function updateHighlight() {
+  const contentElement = content.value;
+  const title = findAnchorTarget();
+  if (!contentElement || !title) {
+    highlightBox.value = null;
+    return;
+  }
+  const origin = contentElement.getBoundingClientRect();
+  const boxes = findSectionElements(title).map((element) => element.getBoundingClientRect());
+  const top = Math.min(...boxes.map((box) => box.top)) - origin.top - HIGHLIGHT_MARGIN;
+  const bottom = Math.max(...boxes.map((box) => box.bottom)) - origin.top + HIGHLIGHT_MARGIN;
+  const left = Math.min(...boxes.map((box) => box.left)) - origin.left - HIGHLIGHT_MARGIN;
+  const right = Math.max(...boxes.map((box) => box.right)) - origin.left + HIGHLIGHT_MARGIN;
+  highlightBox.value = { top, left, width: right - left, height: bottom - top };
+}
+
 function scrollToAnchorOnceRendered() {
   hasUserScrolled.value = false;
-  waitForAnchorTarget(MAXIMUM_FRAMES_TO_WAIT_FOR_ANCHOR, scrollToAnchor);
+  highlightFlashCount.value += 1;
+  waitForAnchorTarget(MAXIMUM_FRAMES_TO_WAIT_FOR_ANCHOR, () => {
+    scrollToAnchor();
+    updateHighlight();
+  });
 }
 
 // Images et polices chargées après le défilement changent la hauteur du contenu et décalent le titre :
@@ -126,11 +184,37 @@ onMounted(() => {
     if (!hasUserScrolled.value) {
       scrollToAnchor();
     }
+    updateHighlight();
   });
   if (content.value) {
     contentResizeObserver.observe(content.value);
   }
 });
 onBeforeUnmount(() => contentResizeObserver?.disconnect());
-watch(() => [line, anchor], scrollToAnchorOnceRendered);
+watch(() => [sectionName, line, anchor], scrollToAnchorOnceRendered);
 </script>
+
+<style scoped>
+/* Jaune de l'observatoire ; multiply garde le texte lisible sous le surlignage. */
+.section-highlight {
+  background-color: rgb(255 220 78 / 0.3);
+  border-radius: 0.5rem;
+  mix-blend-mode: multiply;
+  animation: section-highlight-flash 1.5s ease-out;
+}
+
+@keyframes section-highlight-flash {
+  from {
+    background-color: rgb(255 220 78 / 0.9);
+  }
+  to {
+    background-color: rgb(255 220 78 / 0.3);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section-highlight {
+    animation: none;
+  }
+}
+</style>
