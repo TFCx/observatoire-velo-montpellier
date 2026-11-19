@@ -12,6 +12,8 @@ import {
   drawTypeNetwork,
   drawTypeFamilyNetwork,
   drawHoveredEffect,
+  drawSelectedSectionEffect,
+  highlightSelectedSection,
   changeLayer,
   drawLineNames,
   addListnersForHovering,
@@ -119,6 +121,7 @@ export const useMap = () => {
     }
 
     drawHoveredEffect(map);
+    drawSelectedSectionEffect(map);
 
     drawFinishedNetwork(map);
 
@@ -387,5 +390,6 @@ export const useMap = () => {
     handleMapClick,
     handleMapHover,
     removeHoverTooltip,
+    highlightSelectedSection,
   };
 };

@@ -6,7 +6,9 @@
     <FilterModal ref="filterModalComponent" :filters="filters" />
     <div class="flex h-full w-full">
       <div class="relative h-full min-w-0 flex-1">
-        <div id="map" class="rounded-lg h-full w-full" />
+        <!-- data-selected-section : le tronçon passé à la couche de mise en évidence, lu par les tests
+             navigateur, le rendu de la carte variant d'une capture à l'autre. -->
+        <div id="map" class="rounded-lg h-full w-full" :data-selected-section="highlightedSectionName ?? undefined" />
         <img
           v-if="options.logo"
           class="my-0 absolute bottom-0 right-0 z-10"
@@ -126,6 +128,7 @@ const {
   handleMapClick,
   handleMapHover,
   removeHoverTooltip,
+  highlightSelectedSection,
 } = useMap();
 
 const filters = useMapFilters();
@@ -167,6 +170,9 @@ const detailPanel = computed(() => {
     anchor: link ? findLinkAnchor(link) : undefined,
   };
 });
+
+// Tronçon effectivement mis en évidence sur la carte : null avant le dessin des couches.
+const highlightedSectionName = ref<string | null>(null);
 
 function openSectionDetail(section: SectionFeature) {
   const firstLine = section.properties.lines[0];
@@ -304,11 +310,20 @@ onMounted(() => {
     const sections = regroupIntoSections(lineStringFeatures);
 
     plotEverything(map, sections, features.value);
+    applySelectedSection();
     const tailwindMdBreakpoint = 768;
     if (window.innerWidth > tailwindMdBreakpoint) {
       fitBounds({ map, features: features.value });
     }
   });
+
+  function applySelectedSection() {
+    const sectionName = detailPanel.value?.sectionName ?? null;
+    if (highlightSelectedSection(map, sectionName)) {
+      highlightedSectionName.value = sectionName;
+    }
+  }
+  watch(() => detailPanel.value?.sectionName, applySelectedSection);
 
   // When filters change
   watch(features, (newFeatures) => {

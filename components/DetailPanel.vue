@@ -41,7 +41,9 @@
         </button>
       </div>
     </div>
-    <VoieCyclableDetails :voie="lineDetail.page" :geojson="lineDetail.geojson" :show-map="false" />
+    <div ref="content">
+      <VoieCyclableDetails :voie="lineDetail.page" :geojson="lineDetail.geojson" :show-map="false" />
+    </div>
   </aside>
 </template>
 
@@ -96,8 +98,6 @@ function scrollToAnchor() {
     target.getBoundingClientRect().top - container.getBoundingClientRect().top + container.scrollTop - headerHeight;
 }
 
-// Les images au-dessus du titre (couverture, photos) se chargent après le défilement et poussent le
-// titre vers le bas : on redéfile à chaque image chargée, tant que la personne n'a pas fait défiler.
 // Le contenu de la page est rendu quelques images après le panneau (ContentRenderer est asynchrone) :
 // on attend que le titre de l'ancre existe, au plus une seconde, avant de défiler.
 const MAXIMUM_FRAMES_TO_WAIT_FOR_ANCHOR = 60;
@@ -110,26 +110,27 @@ function waitForAnchorTarget(remainingFrames: number, onReady: () => void) {
   requestAnimationFrame(() => waitForAnchorTarget(remainingFrames - 1, onReady));
 }
 
-function scrollToAnchorNowAndAfterImages() {
+function scrollToAnchorOnceRendered() {
   hasUserScrolled.value = false;
-  waitForAnchorTarget(MAXIMUM_FRAMES_TO_WAIT_FOR_ANCHOR, () => {
-    scrollToAnchor();
-    for (const image of scrollContainer.value?.querySelectorAll('img') ?? []) {
-      if (!image.complete) {
-        image.addEventListener(
-          'load',
-          () => {
-            if (!hasUserScrolled.value) {
-              scrollToAnchor();
-            }
-          },
-          { once: true },
-        );
-      }
-    }
-  });
+  waitForAnchorTarget(MAXIMUM_FRAMES_TO_WAIT_FOR_ANCHOR, scrollToAnchor);
 }
 
-onMounted(scrollToAnchorNowAndAfterImages);
-watch(() => [line, anchor], scrollToAnchorNowAndAfterImages);
+// Images et polices chargées après le défilement changent la hauteur du contenu et décalent le titre :
+// on redéfile à chaque changement, tant que la personne n'a pas fait défiler elle-même.
+const content = ref<HTMLElement | null>(null);
+let contentResizeObserver: ResizeObserver | undefined;
+
+onMounted(() => {
+  scrollToAnchorOnceRendered();
+  contentResizeObserver = new ResizeObserver(() => {
+    if (!hasUserScrolled.value) {
+      scrollToAnchor();
+    }
+  });
+  if (content.value) {
+    contentResizeObserver.observe(content.value);
+  }
+});
+onBeforeUnmount(() => contentResizeObserver?.disconnect());
+watch(() => [line, anchor], scrollToAnchorOnceRendered);
 </script>

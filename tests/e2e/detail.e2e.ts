@@ -104,6 +104,49 @@ describe('section detail panel', () => {
     await page.close();
   });
 
+  // Images et polices chargées après coup agrandissent le contenu au-dessus du titre : simulé ici par un
+  // bloc inséré en tête de page, le fond de carte et les polices étant bloqués pendant les tests.
+  it('should_keep_the_section_title_in_view_when_content_above_it_grows', async () => {
+    const { page } = await openPage(detailRoute(SHARED_SECTION, 'B'));
+    await waitUntilMapIsDrawn(page);
+    const panel = page.locator(DETAIL_PANEL);
+    const title = panel.locator(`[id="${SHARED_SECTION_ANCHOR_ON_LINE_B}"]`);
+    const titleOffsetInPanel = async () =>
+      ((await title.boundingBox())?.y ?? 0) - ((await panel.boundingBox())?.y ?? 0);
+    await expect.poll(titleOffsetInPanel).toBeLessThan(120);
+
+    await panel.evaluate((panelElement) => {
+      const lateContent = document.createElement('div');
+      lateContent.style.height = '400px';
+      panelElement.querySelector(':scope > div:nth-child(2)')?.prepend(lateContent);
+    });
+
+    await expect.poll(titleOffsetInPanel).toBeLessThan(120);
+    await expect.poll(titleOffsetInPanel).toBeGreaterThan(0);
+    await page.close();
+  });
+
+  // Le rendu de la carte varie d'une capture à l'autre (animation du cadrage) : le test vérifie le tronçon
+  // passé à la couche de mise en évidence, que la carte expose dans data-selected-section.
+  it('should_highlight_the_selected_section_on_the_map', async () => {
+    const { page } = await openPage(detailRoute(SHARED_SECTION));
+    await waitUntilMapIsDrawn(page);
+
+    await expect.poll(() => page.locator('#map').getAttribute('data-selected-section')).toBe(SHARED_SECTION);
+    await page.close();
+  });
+
+  it('should_remove_the_highlight_when_closing_the_detail_panel', async () => {
+    const { page } = await openPage(detailRoute(SHARED_SECTION));
+    await waitUntilMapIsDrawn(page);
+    await expect.poll(() => page.locator('#map').getAttribute('data-selected-section')).toBe(SHARED_SECTION);
+
+    await page.locator(DETAIL_PANEL).getByRole('button', { name: 'Fermer le détail' }).click();
+
+    await expect.poll(() => page.locator('#map').getAttribute('data-selected-section')).toBeNull();
+    await page.close();
+  });
+
   it('should_not_draw_a_second_map_in_the_detail_panel', async () => {
     const { page } = await openPage(detailRoute(SHARED_SECTION));
     await waitUntilMapIsDrawn(page);

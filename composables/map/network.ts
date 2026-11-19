@@ -239,6 +239,8 @@ export {
   changeLayer,
   drawLineNames,
   drawHoveredEffect,
+  drawSelectedSectionEffect,
+  highlightSelectedSection,
   addListnersForHovering,
 };
 
@@ -939,6 +941,45 @@ function drawHoveredEffect(map: Map) {
   });
   layersForCurrentNetwork.push('layer-type-hover-highlight-lanes');
   layersForFinishedNetwork.push('layer-type-hover-highlight-lanes');
+}
+
+// Halo du tronçon affiché dans le panneau de détail (ADR 0010), sous le réseau comme celui du survol
+// mais plus large et plus sombre. Il est présent dans toutes les visualisations.
+const SELECTED_SECTION_LAYER = 'layer-selected-section-highlight';
+const SELECTED_SECTION_EXTENSION = 3;
+
+function drawSelectedSectionEffect(map: Map) {
+  map.addLayer({
+    id: SELECTED_SECTION_LAYER,
+    type: 'line',
+    source: 'src-sections',
+    layout: { 'line-cap': 'round' },
+    filter: ['==', ['get', 'name'], ''],
+    paint: {
+      'line-width': ['+', hoverWidth, SELECTED_SECTION_EXTENSION * 2],
+      'line-color': '#000000',
+      'line-opacity': 0.5,
+    },
+  });
+  for (const layers of [
+    layersForFinishedNetwork,
+    layersForCurrentNetwork,
+    layersForQualityNetwork,
+    layersForTypeFamilyNetwork,
+    layersForTypeNetwork,
+  ]) {
+    layers.push(SELECTED_SECTION_LAYER);
+  }
+}
+
+// null : aucun tronçon mis en évidence. Sans effet tant que la carte n'a pas dessiné ses couches :
+// renvoie alors false.
+function highlightSelectedSection(map: Map, sectionName: string | null): boolean {
+  if (!map.getLayer(SELECTED_SECTION_LAYER)) {
+    return false;
+  }
+  map.setFilter(SELECTED_SECTION_LAYER, ['==', ['get', 'name'], sectionName ?? '']);
+  return true;
 }
 
 function drawLineNames(map: Map) {
