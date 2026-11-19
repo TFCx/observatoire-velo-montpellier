@@ -17,15 +17,23 @@
       </h1>
     </template>
     <h2>Aperçu</h2>
-    <Overview :voie="voie" />
+    <Overview :voie="voie" :geojson="geojson" :show-map="showMap" />
     <ContentRenderer :value="voie" />
   </ContentFrame>
 </template>
 
 <script setup lang="ts">
-import type { VoiesCyclablesPagesCollectionItem } from '@nuxt/content';
+import type { VoiesCyclablesGeojsonCollectionItem, VoiesCyclablesPagesCollectionItem } from '@nuxt/content';
 
 const { getLineColor } = useColors();
 
-const { voie } = defineProps<{ voie: VoiesCyclablesPagesCollectionItem }>();
+const {
+  voie,
+  geojson,
+  showMap = true,
+} = defineProps<{
+  voie: VoiesCyclablesPagesCollectionItem;
+  geojson: VoiesCyclablesGeojsonCollectionItem;
+  showMap?: boolean;
+}>();
 </script>

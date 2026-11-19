@@ -1,6 +1,6 @@
 <template>
   <div>
-    <VoieCyclableDetails :voie="voie" />
+    <VoieCyclableDetails :voie="voie" :geojson="geojson" />
 
     <AssoCallToAaction class="pb-10" />
   </div>
@@ -24,6 +24,11 @@ const { data: voie } = await useAsyncData(`${path}`, () => {
   const lineInteger = Number(line);
   const lineId = !Number.isNaN(lineInteger) ? lineInteger : line;
   return queryCollection('voiesCyclablesPages').where('line', '=', lineId).first();
+});
+
+const { data: geojson } = await useAsyncData(`geojson-${path}`, () => {
+  // Le .json d'une ligne porte le même nom de fichier (stem) que son .md.
+  return queryCollection('voiesCyclablesGeojson').where('stem', '=', voie.value.stem).first();
 });
 
 const description = `Tout savoir sur la ${getRevName('singular')} ${voie.value.line} ${voie.value.from} ${voie.value.to}. Avancement, carte interactive, détail rue par rue, calendrier des travaux et photos du projet.`;

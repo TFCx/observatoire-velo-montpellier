@@ -1,10 +1,14 @@
 <template>
-  <div class="relative">
+  <!-- min-h-0 : une page de Véloligne dans le panneau de détail (9 000 px) empêcherait sinon la carte de
+       rétrécir à la hauteur disponible, sous l'en-tête du site. -->
+  <div class="relative min-h-0">
     <LegendInfo ref="legendModalComponent" :default-legend="options.defaultLayer" />
     <FilterModal ref="filterModalComponent" :filters="filters" />
     <div class="flex h-full w-full">
       <div class="relative h-full min-w-0 flex-1">
-        <div id="map" class="rounded-lg h-full w-full" />
+        <!-- data-selected-section : le tronçon passé à la couche de mise en évidence, lu par les tests
+             navigateur, le rendu de la carte variant d'une capture à l'autre. -->
+        <div id="map" class="rounded-lg h-full w-full" :data-selected-section="highlightedSectionName ?? undefined" />
         <img
           v-if="options.logo"
           class="my-0 absolute bottom-0 right-0 z-10"
@@ -32,6 +36,16 @@
         </div>
         <FilterForm :filters="filters" />
       </aside>
+      <DetailPanel
+        v-if="detailPanel"
+        :line-detail="detailPanel.lineDetail"
+        :section-name="detailPanel.sectionName"
+        :line="detailPanel.line"
+        :lines="detailPanel.lines"
+        :anchor="detailPanel.anchor"
+        @close="setMapPanel({ kind: 'closed' })"
+        @select-line="(line) => setMapPanel({ kind: 'detail', sectionName: detailPanel!.sectionName, line })"
+      />
     </div>
   </div>
 </template>
@@ -54,18 +68,25 @@ import style from '@/assets/style.json';
 import LegendInfo from '@/components/LegendInfo.vue';
 import FilterModal from '@/components/FilterModal.vue';
 import FilterForm from '~/components/filter/FilterForm.vue';
+import DetailPanel, { type LineDetail } from '~/components/DetailPanel.vue';
 import FilterControl from '@/maplibre/FilterControl';
 import LimitsControl from '@/maplibre/LimitsControl';
 import LayerControl from '@/maplibre/LayerControl';
 import FullscreenControl from '@/maplibre/FullscreenControl';
 import ShrinkControl from '@/maplibre/ShrinkControl';
 import { getProgressCategory } from '~/domain/progress';
-import { isLineStringFeature, isPolygonFeature, type Feature } from '~/types';
+import { isLineStringFeature, isPolygonFeature, type Feature, type SectionFeature } from '~/types';
 import config from '~/config.json';
 import { regroupIntoSections } from '~/domain/sections';
-import { convertMapPanelToQuery, parseMapPanel, type MapPanel } from '~/domain/mapPanel';
+import {
+  convertMapPanelToQuery,
+  findLinkAnchor,
+  findSectionLink,
+  parseMapPanel,
+  type MapPanel,
+} from '~/domain/mapPanel';
 import { setDisplayedLayer } from '~/composables/useMap';
-import { sortByLine } from '~/composables//map/utils';
+import { fitSectionBounds, sortByLine } from '~/composables//map/utils';
 
 // const config = useRuntimeConfig();
 // const maptilerKey = config.public.maptilerKey;
@@ -89,6 +110,8 @@ const defaultOptions = {
 const props = defineProps<{
   features: Feature[];
   options?: Partial<typeof defaultOptions>;
+  // Pages des Vélolignes affichées par le panneau de détail ; seule la carte interactive les fournit.
+  lineDetails?: LineDetail[];
 }>();
 
 const options = { ...defaultOptions, ...props.options };
@@ -106,6 +129,7 @@ const {
   handleMapClick,
   handleMapHover,
   removeHoverTooltip,
+  highlightSelectedSection,
 } = useMap();
 
 const filters = useMapFilters();
@@ -113,8 +137,50 @@ const filters = useMapFilters();
 const route = useRoute();
 const router = useRouter();
 const isLargeScreen = useIsLargeScreen();
-const mapPanel = computed<MapPanel>(() => (options.sidePanel ? parseMapPanel(route.query) : { kind: 'closed' }));
+// Tous les tronçons, filtrés ou non : un lien vers un tronçon masqué par les filtres reste valide.
+const allSections = computed(() =>
+  regroupIntoSections((props.features ?? []).filter(isLineStringFeature).sort(sortByLine)),
+);
+const mapPanel = computed<MapPanel>(() =>
+  options.sidePanel
+    ? parseMapPanel(
+        route.query,
+        allSections.value.map((section) => section.properties),
+      )
+    : { kind: 'closed' },
+);
 const isFilterPanelShown = computed(() => isLargeScreen.value && mapPanel.value.kind === 'filters');
+
+// Tout ce que le panneau de détail affiche ; null quand il est fermé, ou sans page pour la Véloligne.
+const detailPanel = computed(() => {
+  const panel = mapPanel.value;
+  if (!isLargeScreen.value || panel.kind !== 'detail') {
+    return null;
+  }
+  const section = allSections.value.find((candidate) => candidate.properties.name === panel.sectionName);
+  const lineDetail = props.lineDetails?.find((candidate) => candidate.line === panel.line);
+  if (!section || !lineDetail) {
+    return null;
+  }
+  const link = findSectionLink(props.features.filter(isLineStringFeature), panel.sectionName, panel.line);
+  return {
+    sectionName: panel.sectionName,
+    line: panel.line,
+    lines: section.properties.lines,
+    lineDetail,
+    anchor: link ? findLinkAnchor(link) : undefined,
+  };
+});
+
+// Tronçon effectivement mis en évidence sur la carte : null avant le dessin des couches.
+const highlightedSectionName = ref<string | null>(null);
+
+function openSectionDetail(section: SectionFeature) {
+  const firstLine = section.properties.lines[0];
+  if (firstLine !== undefined) {
+    setMapPanel({ kind: 'detail', sectionName: section.properties.name, line: firstLine });
+  }
+}
 
 function setMapPanel(panel: MapPanel) {
   router.replace({ query: convertMapPanelToQuery(panel, route.query) });
@@ -246,10 +312,27 @@ onMounted(() => {
 
     plotEverything(map, sections, features.value);
     const tailwindMdBreakpoint = 768;
-    if (window.innerWidth > tailwindMdBreakpoint) {
+    // Un lien vers un tronçon cadre la carte sur ce tronçon (applySelectedSection), pas sur le réseau.
+    if (window.innerWidth > tailwindMdBreakpoint && !detailPanel.value) {
       fitBounds({ map, features: features.value });
     }
+    applySelectedSection();
   });
+
+  // Met en évidence le tronçon du panneau de détail et cadre la carte sur lui ; data-selected-section
+  // n'est mis à jour qu'une fois les deux faits.
+  function applySelectedSection() {
+    const sectionName = detailPanel.value?.sectionName;
+    const section = allSections.value.find((candidate) => candidate.properties.name === sectionName) ?? null;
+    if (!highlightSelectedSection(map, section)) {
+      return;
+    }
+    if (section) {
+      fitSectionBounds(map, section);
+    }
+    highlightedSectionName.value = section?.properties.name ?? null;
+  }
+  watch(() => detailPanel.value?.sectionName, applySelectedSection);
 
   // When filters change
   watch(features, (newFeatures) => {
@@ -285,7 +368,13 @@ onMounted(() => {
     const lineStringFeatures = features.value.filter(isLineStringFeature).sort(sortByLine);
     const sections = regroupIntoSections(lineStringFeatures);
 
-    handleMapClick({ map, sections: sections, features: features.value, clickEvent });
+    handleMapClick({
+      map,
+      sections: sections,
+      features: features.value,
+      clickEvent,
+      openSectionDetail: options.sidePanel && isLargeScreen.value ? openSectionDetail : undefined,
+    });
   });
 });
 </script>

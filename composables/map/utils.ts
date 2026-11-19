@@ -1,8 +1,14 @@
 import type { GeoJSONSource, Map } from 'maplibre-gl';
 import { LngLatBounds } from 'maplibre-gl';
-import { isLineStringFeature, isPointFeature, type Feature, type LineStringFeature } from '~/types';
+import {
+  isLineStringFeature,
+  isPointFeature,
+  type Feature,
+  type LineStringFeature,
+  type SectionFeature,
+} from '~/types';
 
-export { sortOrder, sortByLine, getCrossIconUrl, upsertMapSource, fitBounds };
+export { sortOrder, sortByLine, getCrossIconUrl, upsertMapSource, fitBounds, fitSectionBounds };
 
 function upsertMapSource(map: Map, sourceName: string, features: Feature[]) {
   const source = map.getSource(sourceName) as GeoJSONSource;
@@ -74,4 +80,21 @@ function fitBounds({ map, features }: { map: Map; features: Feature[] }) {
     }
     map.fitBounds(bounds, { padding: 20 });
   }
+}
+
+// Cadrage sur le tronçon du panneau de détail (ADR 0010) : au zoom d'ensemble, un tronçon ne fait que
+// quelques pixels. Le zoom maximal garde autour d'un tronçon très court les rues qui le situent.
+const MAXIMUM_ZOOM_ON_SECTION = 15;
+const PADDING_AROUND_SECTION = 60;
+
+function fitSectionBounds(map: Map, section: SectionFeature) {
+  const [firstCoordinate, ...otherCoordinates] = section.geometry.coordinates;
+  if (!firstCoordinate) {
+    return;
+  }
+  const bounds = new LngLatBounds(firstCoordinate, firstCoordinate);
+  for (const coordinate of otherCoordinates) {
+    bounds.extend(coordinate);
+  }
+  map.fitBounds(bounds, { padding: PADDING_AROUND_SECTION, maxZoom: MAXIMUM_ZOOM_ON_SECTION });
 }

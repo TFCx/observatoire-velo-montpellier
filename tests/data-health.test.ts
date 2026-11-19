@@ -172,6 +172,22 @@ describe('data health', () => {
       assert.deepEqual(problems, []);
     });
 
+    // Le panneau de la carte affiche la page de la Véloligne du tronçon et n'emprunte au lien que son
+    // ancre (ADR 0010) : un lien vers une autre page ferait défiler vers un titre absent.
+    it('should_link_to_the_page_of_its_own_line_when_feature_is_line_string', () => {
+      const problems = lineStringFeatures
+        .filter(
+          ({ feature }) =>
+            (feature.properties?.link ?? '').split('#')[0] !== `/${config.slug}-${feature.properties?.line}`,
+        )
+        .map(
+          (loadedFeature) =>
+            `${describeFeature(loadedFeature)} : lien "${loadedFeature.feature.properties?.link}" vers une autre page`,
+        );
+
+      assert.deepEqual(problems, []);
+    });
+
     // Un id sert à déclarer un tronçon partagé entre plusieurs lignes : un id présent une seule fois est une erreur de saisie.
     it('should_appear_at_least_twice_when_line_string_has_id', () => {
       const occurrencesById = new Map<string, number>();

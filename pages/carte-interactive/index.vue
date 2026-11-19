@@ -1,6 +1,11 @@
 <template>
   <ClientOnly>
-    <Map :features="features" :options="{ geolocation: true, sidePanel: true }" class="h-full w-full" />
+    <Map
+      :features="features"
+      :line-details="lineDetails"
+      :options="{ geolocation: true, sidePanel: true }"
+      class="h-full w-full"
+    />
   </ClientOnly>
 </template>
 
@@ -19,6 +24,18 @@ const { data: voies } = await useAsyncData(() => {
 
 const { data: limits } = await useAsyncData(() => {
   return queryCollection('limits').all();
+});
+
+// Préchargées pour le panneau de détail (ADR 0010) : ~20 Ko compressés de plus pour la page, contre le
+// moteur SQLite de Nuxt Content (~400 Ko) qu'une requête au clic téléchargerait.
+const { data: pages } = await useAsyncData(() => {
+  return queryCollection('voiesCyclablesPages').all();
+});
+
+// Le .json d'une ligne porte le même nom de fichier (stem) que son .md.
+const lineDetails = pages.value.flatMap((page) => {
+  const geojson = voies.value.find((voie) => voie.stem === page.stem);
+  return geojson ? [{ line: String(page.line), page, geojson }] : [];
 });
 
 const features = voies.value
