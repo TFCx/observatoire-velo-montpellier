@@ -34,8 +34,6 @@ Feuille de route technique (sept. 2026) — voir docs/decisions/0002 :
     - [x] Contenu d'une page de Véloligne dans un composant (VoieCyclableDetails)
     - [ ] Panneau des filtres
     - [ ] Panneau de détail : page de la Véloligne défilée jusqu'à l'ancre, tronçon mis en évidence
-    - Test de données à ajouter : chaque ancre des `link` correspond à un titre de la page (relevé
-      approximatif du 18/11/2026 : une dizaine d'ancres sans titre correspondant)
     - `cover:` vide vaut null en YAML : le schéma accepte null et absent, deux façons de dire « pas d'image »
   - Curseur de dates (cf. "Nouveau widget timeline")
   - Géocodeur
