@@ -17,7 +17,7 @@
       </h1>
     </template>
     <h2>Aperçu</h2>
-    <Overview :voie="voie" :geojson="geojson" />
+    <Overview :voie="voie" :geojson="geojson" :show-map="showMap" />
     <ContentRenderer :value="voie" />
   </ContentFrame>
 </template>
@@ -27,8 +27,13 @@ import type { VoiesCyclablesGeojsonCollectionItem, VoiesCyclablesPagesCollection
 
 const { getLineColor } = useColors();
 
-const { voie, geojson } = defineProps<{
+const {
+  voie,
+  geojson,
+  showMap = true,
+} = defineProps<{
   voie: VoiesCyclablesPagesCollectionItem;
   geojson: VoiesCyclablesGeojsonCollectionItem;
+  showMap?: boolean;
 }>();
 </script>

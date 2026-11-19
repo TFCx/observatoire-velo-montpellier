@@ -1,7 +1,7 @@
 import type { Map, MapMouseEvent } from 'maplibre-gl';
 import { Popup } from 'maplibre-gl';
 import { createApp, defineComponent, h, Suspense, ref, type Component } from 'vue';
-import { isDangerFeature, isPerspectiveFeature } from '~/types';
+import { isDangerFeature, isPerspectiveFeature, isSectionFeature } from '~/types';
 import type { Feature, LaneFeature, SectionFeature } from '~/types';
 
 import {
@@ -188,16 +188,20 @@ export const useMap = () => {
     return argument;
   }
 
+  // openSectionDetail : la carte interactive en grand écran ouvre le panneau de détail du tronçon
+  // cliqué au lieu de son tooltip (ADR 0010).
   function handleMapClick({
     map,
     sections,
     features,
     clickEvent,
+    openSectionDetail,
   }: {
     map: Map;
     sections: SectionFeature[];
     features: Feature[];
     clickEvent: MapMouseEvent;
+    openSectionDetail?: (section: SectionFeature) => void;
   }) {
     // Élément de la couche sous le clic ; getTooltipProps n'est appelé que si isClicked l'a trouvé.
     function queryClickedFeature(layerId: string) {
@@ -270,6 +274,14 @@ export const useMap = () => {
       return;
     }
     removeHoverTooltip();
+
+    if (clickedLayer.id === 'linestring' && openSectionDetail) {
+      const { feature } = clickedLayer.getTooltipProps();
+      if (feature && isSectionFeature(feature)) {
+        openSectionDetail(feature);
+        return;
+      }
+    }
 
     // Dimensions minimales pour la même raison que le tooltip de survol (voir handleMapHover) : sans
     // elles, près du haut de la carte, le tooltip grandit au-dessus et passe sous l'en-tête du site.

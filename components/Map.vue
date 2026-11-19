@@ -1,5 +1,7 @@
 <template>
-  <div class="relative">
+  <!-- min-h-0 : une page de Véloligne dans le panneau de détail (9 000 px) empêcherait sinon la carte de
+       rétrécir à la hauteur disponible, sous l'en-tête du site. -->
+  <div class="relative min-h-0">
     <LegendInfo ref="legendModalComponent" :default-legend="options.defaultLayer" />
     <FilterModal ref="filterModalComponent" :filters="filters" />
     <div class="flex h-full w-full">
@@ -32,6 +34,15 @@
         </div>
         <FilterForm :filters="filters" />
       </aside>
+      <DetailPanel
+        v-if="detailPanel"
+        :line-detail="detailPanel.lineDetail"
+        :line="detailPanel.line"
+        :lines="detailPanel.lines"
+        :anchor="detailPanel.anchor"
+        @close="setMapPanel({ kind: 'closed' })"
+        @select-line="(line) => setMapPanel({ kind: 'detail', sectionName: detailPanel!.sectionName, line })"
+      />
     </div>
   </div>
 </template>
@@ -54,16 +65,23 @@ import style from '@/assets/style.json';
 import LegendInfo from '@/components/LegendInfo.vue';
 import FilterModal from '@/components/FilterModal.vue';
 import FilterForm from '~/components/filter/FilterForm.vue';
+import DetailPanel, { type LineDetail } from '~/components/DetailPanel.vue';
 import FilterControl from '@/maplibre/FilterControl';
 import LimitsControl from '@/maplibre/LimitsControl';
 import LayerControl from '@/maplibre/LayerControl';
 import FullscreenControl from '@/maplibre/FullscreenControl';
 import ShrinkControl from '@/maplibre/ShrinkControl';
 import { getProgressCategory } from '~/domain/progress';
-import { isLineStringFeature, isPolygonFeature, type Feature } from '~/types';
+import { isLineStringFeature, isPolygonFeature, type Feature, type SectionFeature } from '~/types';
 import config from '~/config.json';
 import { regroupIntoSections } from '~/domain/sections';
-import { convertMapPanelToQuery, parseMapPanel, type MapPanel } from '~/domain/mapPanel';
+import {
+  convertMapPanelToQuery,
+  findLinkAnchor,
+  findSectionLink,
+  parseMapPanel,
+  type MapPanel,
+} from '~/domain/mapPanel';
 import { setDisplayedLayer } from '~/composables/useMap';
 import { sortByLine } from '~/composables//map/utils';
 
@@ -89,6 +107,8 @@ const defaultOptions = {
 const props = defineProps<{
   features: Feature[];
   options?: Partial<typeof defaultOptions>;
+  // Pages des Vélolignes affichées par le panneau de détail ; seule la carte interactive les fournit.
+  lineDetails?: LineDetail[];
 }>();
 
 const options = { ...defaultOptions, ...props.options };
@@ -126,6 +146,34 @@ const mapPanel = computed<MapPanel>(() =>
     : { kind: 'closed' },
 );
 const isFilterPanelShown = computed(() => isLargeScreen.value && mapPanel.value.kind === 'filters');
+
+// Tout ce que le panneau de détail affiche ; null quand il est fermé, ou sans page pour la Véloligne.
+const detailPanel = computed(() => {
+  const panel = mapPanel.value;
+  if (!isLargeScreen.value || panel.kind !== 'detail') {
+    return null;
+  }
+  const section = allSections.value.find((candidate) => candidate.properties.name === panel.sectionName);
+  const lineDetail = props.lineDetails?.find((candidate) => candidate.line === panel.line);
+  if (!section || !lineDetail) {
+    return null;
+  }
+  const link = findSectionLink(props.features.filter(isLineStringFeature), panel.sectionName, panel.line);
+  return {
+    sectionName: panel.sectionName,
+    line: panel.line,
+    lines: section.properties.lines,
+    lineDetail,
+    anchor: link ? findLinkAnchor(link) : undefined,
+  };
+});
+
+function openSectionDetail(section: SectionFeature) {
+  const firstLine = section.properties.lines[0];
+  if (firstLine !== undefined) {
+    setMapPanel({ kind: 'detail', sectionName: section.properties.name, line: firstLine });
+  }
+}
 
 function setMapPanel(panel: MapPanel) {
   router.replace({ query: convertMapPanelToQuery(panel, route.query) });
@@ -296,7 +344,13 @@ onMounted(() => {
     const lineStringFeatures = features.value.filter(isLineStringFeature).sort(sortByLine);
     const sections = regroupIntoSections(lineStringFeatures);
 
-    handleMapClick({ map, sections: sections, features: features.value, clickEvent });
+    handleMapClick({
+      map,
+      sections: sections,
+      features: features.value,
+      clickEvent,
+      openSectionDetail: options.sidePanel && isLargeScreen.value ? openSectionDetail : undefined,
+    });
   });
 });
 </script>

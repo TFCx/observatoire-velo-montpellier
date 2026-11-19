@@ -1,0 +1,138 @@
+// Tests navigateur du panneau de détail d'un tronçon (ADR 0010) : lancer `npm run test:e2e`.
+import type { Page } from 'playwright-core';
+import { describe, expect, it } from 'vitest';
+
+import { countDistinctMapColors, findNetworkPoint } from './browser';
+import { DESKTOP_VIEWPORT, PHONE_VIEWPORT, setupBrowserTests } from './setup';
+
+const MINIMUM_COLORS_OF_A_DRAWN_MAP = 200;
+const DETAIL_PANEL = 'aside[aria-label="Détail du tronçon"]';
+
+// Tronçon réel partagé par les Vélolignes 1 et B : son lien vers la page B a pour ancre ce titre.
+const SHARED_SECTION = 'Chemin des Alouettes';
+const SHARED_SECTION_ANCHOR_ON_LINE_B = 'chemin-des-alouettes-à-castelnau-le-lez';
+
+function detailRoute(sectionName: string, line?: string): string {
+  const query = new URLSearchParams({ panneau: 'detail', troncon: sectionName, ...(line ? { ligne: line } : {}) });
+  return `/carte-interactive?${query}`;
+}
+
+async function waitUntilMapIsDrawn(page: Page) {
+  await page.locator('canvas.maplibregl-canvas').first().waitFor();
+  await expect
+    .poll(() => countDistinctMapColors(page), { timeout: 20_000, interval: 1_000 })
+    .toBeGreaterThanOrEqual(MINIMUM_COLORS_OF_A_DRAWN_MAP);
+}
+
+function lineBadge(page: Page, line: string) {
+  return page.locator(DETAIL_PANEL).getByRole('button', { name: line, exact: true });
+}
+
+describe('section detail panel', () => {
+  const { openPage } = setupBrowserTests();
+
+  it('should_open_the_detail_panel_when_clicking_a_section_on_a_large_screen', async () => {
+    const { page } = await openPage('/carte-interactive');
+    await waitUntilMapIsDrawn(page);
+    const sectionPoint = await findNetworkPoint(page);
+
+    await page.mouse.click(sectionPoint.x, sectionPoint.y);
+
+    await expect.poll(() => page.locator(DETAIL_PANEL).count()).toBe(1);
+    const url = new URL(page.url());
+    expect(url.searchParams.get('panneau')).toBe('detail');
+    expect(url.searchParams.get('troncon')).toBeTruthy();
+    // Le panneau remplace le tooltip du clic.
+    expect(await page.locator('.maplibregl-popup').count()).toBe(0);
+    await page.close();
+  });
+
+  it('should_show_the_page_of_the_first_line_when_the_url_names_a_shared_section', async () => {
+    const { page } = await openPage(detailRoute(SHARED_SECTION));
+    await waitUntilMapIsDrawn(page);
+
+    await expect.poll(() => lineBadge(page, '1').getAttribute('aria-pressed')).toBe('true');
+    expect(await lineBadge(page, 'B').getAttribute('aria-pressed')).toBe('false');
+    await page.close();
+  });
+
+  it('should_switch_to_the_other_line_when_clicking_its_badge', async () => {
+    const { page } = await openPage(detailRoute(SHARED_SECTION));
+    await waitUntilMapIsDrawn(page);
+
+    await lineBadge(page, 'B').click();
+
+    await expect.poll(() => new URL(page.url()).searchParams.get('ligne')).toBe('B');
+    await expect.poll(() => lineBadge(page, 'B').getAttribute('aria-pressed')).toBe('true');
+    await page.close();
+  });
+
+  it('should_scroll_to_the_title_of_the_section_when_the_panel_opens', async () => {
+    const { page } = await openPage(detailRoute(SHARED_SECTION, 'B'));
+    await waitUntilMapIsDrawn(page);
+    const panel = page.locator(DETAIL_PANEL);
+    const title = panel.locator(`[id="${SHARED_SECTION_ANCHOR_ON_LINE_B}"]`);
+    await title.waitFor();
+
+    // Le titre est juste sous l'en-tête collant du panneau, à quelques pixels près.
+    await expect
+      .poll(async () => {
+        const panelTop = (await panel.boundingBox())?.y ?? 0;
+        const titleTop = (await title.boundingBox())?.y ?? 0;
+        return titleTop - panelTop;
+      })
+      .toBeGreaterThan(0);
+    await expect
+      .poll(async () => {
+        const panelTop = (await panel.boundingBox())?.y ?? 0;
+        const titleTop = (await title.boundingBox())?.y ?? 0;
+        return titleTop - panelTop;
+      })
+      .toBeLessThan(120);
+    await page.close();
+  });
+
+  // Une page de Véloligne (des milliers de pixels) ne doit pas étirer la carte et le panneau sous la fenêtre.
+  it('should_fit_the_detail_panel_in_the_window_when_the_page_is_long', async () => {
+    const { page } = await openPage(detailRoute(SHARED_SECTION));
+    await waitUntilMapIsDrawn(page);
+    await page.locator(DETAIL_PANEL).waitFor();
+
+    // Le panneau défile seul : la page entière ne doit pas dépasser la fenêtre.
+    const pageHeight = await page.evaluate(() => document.scrollingElement?.scrollHeight ?? 0);
+    expect(pageHeight).toBeLessThanOrEqual(DESKTOP_VIEWPORT.height);
+    await page.close();
+  });
+
+  it('should_not_draw_a_second_map_in_the_detail_panel', async () => {
+    const { page } = await openPage(detailRoute(SHARED_SECTION));
+    await waitUntilMapIsDrawn(page);
+    await page.locator(DETAIL_PANEL).waitFor();
+
+    expect(await page.locator(`${DETAIL_PANEL} canvas`).count()).toBe(0);
+    await page.close();
+  });
+
+  it('should_remove_the_section_from_the_url_when_closing_the_detail_panel', async () => {
+    const { page } = await openPage(detailRoute(SHARED_SECTION, 'B'));
+    await waitUntilMapIsDrawn(page);
+
+    await page.locator(DETAIL_PANEL).getByRole('button', { name: 'Fermer le détail' }).click();
+
+    await expect.poll(() => page.locator(DETAIL_PANEL).count()).toBe(0);
+    const url = new URL(page.url());
+    expect([...url.searchParams.keys()]).toEqual([]);
+    await page.close();
+  });
+
+  // Sous 1024 px, la carte garde le tooltip au clic (ADR 0010) : le paramètre d'URL est ignoré.
+  it('should_not_show_the_detail_panel_when_the_screen_is_small', async () => {
+    const { page } = await openPage(detailRoute(SHARED_SECTION), PHONE_VIEWPORT);
+    // Un panneau affiché à tort écraserait la carte, qui ne se dessinerait pas : on n'en fait pas la
+    // condition du test, pour qu'il échoue sur le panneau lui-même.
+    await waitUntilMapIsDrawn(page).catch(() => undefined);
+
+    expect(await page.locator(DETAIL_PANEL).count()).toBe(0);
+    await page.close();
+  });
+});
