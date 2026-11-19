@@ -94,7 +94,9 @@ Prochaine release :
     - `plotDangers` (composables/map/features.ts) masque la couche `perspectives` au lieu de `dangers` : latent,
       aucun danger dans les données
     - Map.vue : `watch(() => props.features)` repousse les données non filtrées juste après le watcher des
-      données filtrées (page évolution, si elle a des filtres)
+      données filtrées. Prioritaire : la carte de la page évolution a les filtres (`filter: true` par défaut),
+      un changement d'année y réafficherait les tronçons filtrés (non observé). Test e2e : désactiver un filtre,
+      changer d'année. Correction probable : retirer ce watcher en double
     - Map.vue : le calcul `features` garde les polygones des limites (`return true`) puis les ajoute une seconde
       fois ; son `displayLimits` local, toujours vrai, n'est pas celui du bouton des limites (useMap)
     - Chaque tooltip monte une application Vue (`createApp`) jamais démontée : fuite au fil des survols
