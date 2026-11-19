@@ -30,7 +30,11 @@ Feuille de route technique (sept. 2026) — voir docs/decisions/0002 :
   - Fonds de carte au choix + accessibilité (palette contraste élevé, couleurs personnalisées, réduction des animations)
     - À voir dans une branche dédiée : test d'une couleur unique pour toutes les vélolignes (simplifierait l'affichage des lignes parallèles)
   - Tooltip au survol
-  - Panneau latéral de tronçon (cf. "Nouveau popup de section")
+  - Panneau latéral : filtres et détail de tronçon (ADR 0010), en 3 PR
+    - [x] Contenu d'une page de Véloligne dans un composant (VoieCyclableDetails)
+    - [ ] Panneau des filtres
+    - [ ] Panneau de détail : page de la Véloligne défilée jusqu'à l'ancre, tronçon mis en évidence
+    - `cover:` vide vaut null en YAML : le schéma accepte null et absent, deux façons de dire « pas d'image »
   - Curseur de dates (cf. "Nouveau widget timeline")
   - Géocodeur
   - Mobile : bottom sheet, menu

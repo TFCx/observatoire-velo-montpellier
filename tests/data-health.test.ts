@@ -212,6 +212,23 @@ describe('data health', () => {
 
       assert.deepEqual(duplicatedNamesAndLines, []);
     });
+
+    // Le panneau latéral de la carte désigne un tronçon par son name dans l'URL (ADR 0010) : deux
+    // tronçons distincts au même nom rendraient le lien ambigu. Les tracés d'un même id sont un seul tronçon.
+    it('should_designate_a_single_section_when_line_strings_share_a_name', () => {
+      const sectionsByName = new Map<string, Set<string>>();
+      for (const { feature } of lineStringFeatures) {
+        const name = String(feature.properties?.name);
+        const id = feature.properties?.id;
+        const section = id === undefined ? `ligne ${feature.properties?.line}` : `id ${id}`;
+        sectionsByName.set(name, (sectionsByName.get(name) ?? new Set<string>()).add(section));
+      }
+      const ambiguousNames = [...sectionsByName]
+        .filter(([, sections]) => sections.size > 1)
+        .map(([name, sections]) => `tronçon "${name}" : ${[...sections].join(', ')}`);
+
+      assert.deepEqual(ambiguousNames, []);
+    });
   });
 
   // Les images hébergées ailleurs disparaissent sans prévenir (couverture de la Véloligne 10 en 404
