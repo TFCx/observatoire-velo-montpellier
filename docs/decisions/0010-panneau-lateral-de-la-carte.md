@@ -1,7 +1,7 @@
 # 10. Panneau latéral de la carte, état dans l'URL
 
 Date : 2026-11-18
-Statut : Accepté, implémenté (PR 49 à 51)
+Statut : Accepté, implémenté (PR 49 à 51). Point 4 remplacé par l'ADR 0011 (bottom sheet).
 
 ## Contexte
 

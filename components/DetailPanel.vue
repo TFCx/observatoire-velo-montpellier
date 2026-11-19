@@ -2,10 +2,17 @@
   <aside
     ref="scrollContainer"
     aria-label="Détail du tronçon"
-    class="h-full w-[600px] shrink-0 overflow-y-auto border-l border-gray-200 bg-white"
+    class="overflow-y-auto bg-white"
+    :class="display === 'side-panel' ? 'h-full w-[600px] shrink-0 border-l border-gray-200' : 'min-h-0 flex-1'"
     @scroll.passive="detectUserScroll"
   >
-    <div ref="header" class="sticky top-0 z-10 flex items-center gap-2 border-b border-gray-200 bg-white px-4 py-2">
+    <!-- data-bottom-sheet-handle : dans le bottom sheet, l'en-tête sert aussi à régler sa hauteur. -->
+    <div
+      ref="header"
+      data-bottom-sheet-handle
+      class="sticky top-0 z-10 flex items-center gap-2 border-b border-gray-200 bg-white px-4 py-2"
+      :class="{ 'touch-none': display === 'bottom-sheet' }"
+    >
       <h2 class="text-lg font-medium leading-6 text-gray-900">{{ getRevName('singular') }}</h2>
       <!-- Un tronçon partagé : une pastille par Véloligne pour passer de l'une à l'autre (ADR 0010). -->
       <button
@@ -61,6 +68,7 @@
 <script lang="ts">
 import type { VoiesCyclablesGeojsonCollectionItem, VoiesCyclablesPagesCollectionItem } from '@nuxt/content';
 import config from '~/config.json';
+import type { PanelDisplay } from '~/domain/bottomSheet';
 
 // Page d'une Véloligne et ses tracés, préchargés par la carte interactive pour ce panneau (ADR 0010) :
 // le panneau s'ouvre sans requête vers la base de Nuxt Content.
@@ -75,7 +83,8 @@ export type LineDetail = {
 const { getLineColor } = useColors();
 const { getRevName } = useConfig();
 
-const { lineDetail, sectionName, line, lines, anchor } = defineProps<{
+const { lineDetail, sectionName, line, lines, anchor, display } = defineProps<{
+  display: PanelDisplay;
   lineDetail: LineDetail;
   sectionName: string;
   line: string;
