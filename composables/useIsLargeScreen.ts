@@ -2,9 +2,10 @@
 // qu'avec `@vueuse/core`, qui n'est pas une dépendance du projet.
 const LARGE_SCREEN_MEDIA_QUERY = '(min-width: 1024px)';
 
-// Faux côté serveur et avant le montage : la page générée ne connaît pas la taille de l'écran.
+// Faux côté serveur : la page générée ne connaît pas la taille de l'écran. Lu dès la création côté client,
+// pour qu'un grand écran ne montre pas un instant le bottom sheet des petits écrans (ADR 0011).
 export function useIsLargeScreen() {
-  const isLargeScreen = ref(false);
+  const isLargeScreen = ref(import.meta.client ? window.matchMedia(LARGE_SCREEN_MEDIA_QUERY).matches : false);
   let mediaQueryList: MediaQueryList | undefined;
 
   function updateIsLargeScreen() {

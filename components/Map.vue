@@ -8,7 +8,13 @@
       <div class="relative h-full min-w-0 flex-1">
         <!-- data-selected-section : le tronçon passé à la couche de mise en évidence, lu par les tests
              navigateur, le rendu de la carte variant d'une capture à l'autre. -->
-        <div id="map" class="rounded-lg h-full w-full" :data-selected-section="highlightedSectionName ?? undefined" />
+        <!-- data-section-framing : l'affichage du panneau pour lequel la carte a cadré le tronçon. -->
+        <div
+          id="map"
+          class="rounded-lg h-full w-full"
+          :data-selected-section="highlightedSectionName ?? undefined"
+          :data-section-framing="sectionFraming ?? undefined"
+        />
         <img
           v-if="options.logo"
           class="my-0 absolute bottom-0 right-0 z-10"
@@ -18,18 +24,47 @@
           :alt="`logo ${config.assoName}`"
         />
       </div>
-      <FilterPanel v-if="isFilterPanelShown" :filters="filters" @close="setMapPanel({ kind: 'closed' })" />
-      <DetailPanel
-        v-if="detailPanel"
-        :line-detail="detailPanel.lineDetail"
-        :section-name="detailPanel.sectionName"
-        :line="detailPanel.line"
-        :lines="detailPanel.lines"
-        :anchor="detailPanel.anchor"
-        @close="setMapPanel({ kind: 'closed' })"
-        @select-line="(line) => setMapPanel({ kind: 'detail', sectionName: detailPanel!.sectionName, line })"
-      />
+      <template v-if="panelDisplay === 'side-panel'">
+        <FilterPanel
+          v-if="mapPanel.kind === 'filters'"
+          display="side-panel"
+          :filters="filters"
+          @close="setMapPanel({ kind: 'closed' })"
+        />
+        <DetailPanel
+          v-if="detailPanel"
+          display="side-panel"
+          v-bind="detailPanel"
+          @close="setMapPanel({ kind: 'closed' })"
+          @select-line="(line) => setMapPanel({ kind: 'detail', sectionName: detailPanel!.sectionName, line })"
+        />
+      </template>
     </div>
+    <!-- Le contenu reste affiché pendant que le bottom sheet redescend, puis disparaît (afterLeave). -->
+    <BottomSheet
+      v-if="options.sidePanel && panelDisplay === 'bottom-sheet'"
+      :open="mapPanel.kind !== 'closed'"
+      @close="setMapPanel({ kind: 'closed' })"
+      @after-leave="bottomSheetContent = null"
+    >
+      <FilterPanel
+        v-if="bottomSheetContent?.kind === 'filters'"
+        display="bottom-sheet"
+        :filters="filters"
+        @close="setMapPanel({ kind: 'closed' })"
+      />
+      <DetailPanel
+        v-if="bottomSheetContent?.kind === 'detail'"
+        display="bottom-sheet"
+        v-bind="bottomSheetContent.detail"
+        @close="setMapPanel({ kind: 'closed' })"
+        @select-line="
+          (line) =>
+            bottomSheetContent?.kind === 'detail' &&
+            setMapPanel({ kind: 'detail', sectionName: bottomSheetContent.detail.sectionName, line })
+        "
+      />
+    </BottomSheet>
   </div>
 </template>
 
@@ -51,6 +86,7 @@ import style from '@/assets/style.json';
 import LegendInfo from '@/components/LegendInfo.vue';
 import FilterModal from '@/components/FilterModal.vue';
 import FilterPanel from '~/components/FilterPanel.vue';
+import BottomSheet from '~/components/BottomSheet.vue';
 import DetailPanel, { type LineDetail } from '~/components/DetailPanel.vue';
 import FilterControl from '@/maplibre/FilterControl';
 import LimitsControl from '@/maplibre/LimitsControl';
@@ -68,6 +104,7 @@ import {
   parseMapPanel,
   type MapPanel,
 } from '~/domain/mapPanel';
+import { computeSectionFramingPadding, type PanelDisplay } from '~/domain/bottomSheet';
 import { setDisplayedLayer } from '~/composables/useMap';
 import { fitSectionBounds, sortByLine } from '~/composables//map/utils';
 
@@ -132,12 +169,14 @@ const mapPanel = computed<MapPanel>(() =>
       )
     : { kind: 'closed' },
 );
-const isFilterPanelShown = computed(() => isLargeScreen.value && mapPanel.value.kind === 'filters');
+// Le même état de l'URL s'affiche à droite de la carte en grand écran, dans un bottom sheet en dessous
+// (ADR 0011).
+const panelDisplay = computed<PanelDisplay>(() => (isLargeScreen.value ? 'side-panel' : 'bottom-sheet'));
 
 // Tout ce que le panneau de détail affiche ; null quand il est fermé, ou sans page pour la Véloligne.
 const detailPanel = computed(() => {
   const panel = mapPanel.value;
-  if (!isLargeScreen.value || panel.kind !== 'detail') {
+  if (panel.kind !== 'detail') {
     return null;
   }
   const section = allSections.value.find((candidate) => candidate.properties.name === panel.sectionName);
@@ -155,8 +194,24 @@ const detailPanel = computed(() => {
   };
 });
 
+type DetailPanelContent = NonNullable<typeof detailPanel.value>;
+type BottomSheetContent = { kind: 'filters' } | { kind: 'detail'; detail: DetailPanelContent };
+
+// Dernier contenu ouvert dans le bottom sheet, gardé pendant qu'il redescend à la fermeture. shallowRef :
+// ref déballerait les types de la page de la Véloligne, que DetailPanel n'accepterait plus.
+const bottomSheetContent = shallowRef<BottomSheetContent | null>(null);
+watchEffect(() => {
+  if (mapPanel.value.kind === 'filters') {
+    bottomSheetContent.value = { kind: 'filters' };
+  } else if (detailPanel.value) {
+    bottomSheetContent.value = { kind: 'detail', detail: detailPanel.value };
+  }
+});
+
 // Tronçon effectivement mis en évidence sur la carte : null avant le dessin des couches.
 const highlightedSectionName = ref<string | null>(null);
+// Affichage du panneau pour lequel la carte a cadré le tronçon mis en évidence ; null sans tronçon.
+const sectionFraming = ref<PanelDisplay | null>(null);
 
 function openSectionDetail(section: SectionFeature) {
   const firstLine = section.properties.lines[0];
@@ -169,17 +224,8 @@ function setMapPanel(panel: MapPanel) {
   router.replace({ query: convertMapPanelToQuery(panel, route.query) });
 }
 
-// En grand écran, la carte interactive montre les filtres dans le panneau : une modale ouverte avant
-// d'agrandir la fenêtre y passe, pour ne pas afficher les filtres deux fois.
-watch(isLargeScreen, (isNowLargeScreen) => {
-  if (isNowLargeScreen && options.sidePanel && filterModalComponent.value?.isOpen) {
-    filterModalComponent.value.closeModal();
-    setMapPanel({ kind: 'filters' });
-  }
-});
-
 function toggleFilters() {
-  if (options.sidePanel && isLargeScreen.value) {
+  if (options.sidePanel) {
     setMapPanel(mapPanel.value.kind === 'filters' ? { kind: 'closed' } : { kind: 'filters' });
   } else {
     filterModalComponent.value?.openModal();
@@ -311,11 +357,14 @@ onMounted(() => {
       return;
     }
     if (section) {
-      fitSectionBounds(map, section);
+      fitSectionBounds(map, section, computeSectionFramingPadding(panelDisplay.value, window.innerHeight));
     }
     highlightedSectionName.value = section?.properties.name ?? null;
+    sectionFraming.value = section ? panelDisplay.value : null;
   }
-  watch(() => detailPanel.value?.sectionName, applySelectedSection);
+  // Un changement d'affichage (fenêtre redimensionnée, tablette tournée) recadre le tronçon avec la
+  // marge du nouvel affichage : sous le bottom sheet, il serait caché.
+  watch([() => detailPanel.value?.sectionName, panelDisplay], applySelectedSection);
 
   // When filters change
   watch(features, (newFeatures) => {
@@ -356,7 +405,7 @@ onMounted(() => {
       sections: sections,
       features: features.value,
       clickEvent,
-      openSectionDetail: options.sidePanel && isLargeScreen.value ? openSectionDetail : undefined,
+      openSectionDetail: options.sidePanel ? openSectionDetail : undefined,
     });
   });
 });

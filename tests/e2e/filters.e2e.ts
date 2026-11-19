@@ -7,7 +7,23 @@ import { DESKTOP_VIEWPORT, PHONE_VIEWPORT, setupBrowserTests } from './setup';
 
 const MINIMUM_COLORS_OF_A_DRAWN_MAP = 200;
 const FILTER_PANEL = 'aside[aria-label="Filtres"]';
+const BOTTOM_SHEET = '[data-bottom-sheet]';
+const FILTERS_IN_BOTTOM_SHEET = `${BOTTOM_SHEET} ${FILTER_PANEL}`;
 const STATUS_FILTER_LABELS = ['Réalisé', 'En travaux', 'Promis pour fin 2026', 'Sans échéance', 'Inconnu'];
+
+// Glisse la poignée du bottom sheet à la souris : vers le haut si deltaY est négatif.
+async function dragBottomSheetHandle(page: Page, deltaY: number) {
+  const handleBox = await page.locator(`${BOTTOM_SHEET} [data-bottom-sheet-handle]`).first().boundingBox();
+  if (!handleBox) {
+    throw new Error('Poignée du bottom sheet absente.');
+  }
+  const startX = handleBox.x + handleBox.width / 2;
+  const startY = handleBox.y + handleBox.height / 2;
+  await page.mouse.move(startX, startY);
+  await page.mouse.down();
+  await page.mouse.move(startX, startY + deltaY, { steps: 10 });
+  await page.mouse.up();
+}
 
 async function waitUntilMapIsDrawn(page: Page): Promise<number> {
   await page.locator('canvas.maplibregl-canvas').first().waitFor();
@@ -20,16 +36,15 @@ async function waitUntilMapIsDrawn(page: Page): Promise<number> {
 describe('map filters', () => {
   const { openPage } = setupBrowserTests();
 
-  it('should_hide_the_network_when_every_status_is_unselected_in_the_filter_modal', async () => {
+  it('should_hide_the_network_when_every_status_is_unselected_in_the_filter_bottom_sheet', async () => {
     const { page } = await openPage('/carte-interactive', PHONE_VIEWPORT);
     const colorsOfTheWholeNetwork = await waitUntilMapIsDrawn(page);
 
     await page.locator('.maplibregl-filter').click();
-    const modal = page.getByRole('dialog');
+    const bottomSheet = page.locator(FILTERS_IN_BOTTOM_SHEET);
     for (const label of STATUS_FILTER_LABELS) {
-      await modal.getByText(label, { exact: true }).first().click();
+      await bottomSheet.getByText(label, { exact: true }).first().click();
     }
-    await page.keyboard.press('Escape');
 
     // Restent les limites de la Métropole : bien moins de couleurs que le réseau entier.
     await expect
@@ -111,26 +126,75 @@ describe('map filters', () => {
     await page.close();
   });
 
-  // Sous 1024 px, la carte garde la modale (ADR 0010) : le paramètre d'URL est ignoré.
-  it('should_not_show_the_filter_panel_when_the_screen_is_small', async () => {
+  // Sous 1024 px, les filtres sont dans un bottom sheet, et l'URL est lue comme en grand écran (ADR 0011).
+  it('should_show_the_filters_in_a_bottom_sheet_when_the_url_asks_for_it_on_a_small_screen', async () => {
     const { page } = await openPage('/carte-interactive?panneau=filtres', PHONE_VIEWPORT);
     await waitUntilMapIsDrawn(page);
 
-    expect(await page.locator(FILTER_PANEL).count()).toBe(0);
+    await expect.poll(() => page.locator(FILTERS_IN_BOTTOM_SHEET).count()).toBe(1);
     await page.close();
   });
 
-  // Une fenêtre agrandie au-delà de 1024 px, modale ouverte, ne doit pas montrer les filtres deux fois.
-  it('should_move_the_filters_from_the_modal_to_the_panel_when_the_screen_becomes_large', async () => {
+  it('should_open_the_filter_bottom_sheet_when_clicking_the_filter_button_on_a_small_screen', async () => {
+    const { page } = await openPage('/carte-interactive', PHONE_VIEWPORT);
+    await waitUntilMapIsDrawn(page);
+
+    await page.locator('.maplibregl-filter').click();
+
+    await expect.poll(() => new URL(page.url()).searchParams.get('panneau')).toBe('filtres');
+    await expect.poll(() => page.locator(FILTERS_IN_BOTTOM_SHEET).count()).toBe(1);
+    expect(await page.getByRole('dialog').count()).toBe(0);
+    await page.close();
+  });
+
+  it('should_open_the_bottom_sheet_at_half_the_screen_height', async () => {
+    const { page } = await openPage('/carte-interactive?panneau=filtres', PHONE_VIEWPORT);
+    await waitUntilMapIsDrawn(page);
+
+    // L'animation d'ouverture fait glisser le bottom sheet : on attend qu'il soit en place.
+    await expect
+      .poll(async () => (await page.locator(BOTTOM_SHEET).boundingBox())?.y ?? 0)
+      .toBe(PHONE_VIEWPORT.height / 2);
+    await page.close();
+  });
+
+  it('should_follow_the_finger_when_the_bottom_sheet_handle_is_dragged_up', async () => {
+    const { page } = await openPage('/carte-interactive?panneau=filtres', PHONE_VIEWPORT);
+    await waitUntilMapIsDrawn(page);
+    const bottomSheet = page.locator(BOTTOM_SHEET);
+    await expect.poll(async () => (await bottomSheet.boundingBox())?.y ?? 0).toBe(PHONE_VIEWPORT.height / 2);
+
+    await dragBottomSheetHandle(page, -200);
+
+    await expect.poll(async () => (await bottomSheet.boundingBox())?.y ?? 0).toBe(PHONE_VIEWPORT.height / 2 - 200);
+    await page.close();
+  });
+
+  it('should_close_the_bottom_sheet_when_dragged_under_150_px', async () => {
+    const { page } = await openPage('/carte-interactive?panneau=filtres', PHONE_VIEWPORT);
+    await waitUntilMapIsDrawn(page);
+    await expect
+      .poll(async () => (await page.locator(BOTTOM_SHEET).boundingBox())?.y ?? 0)
+      .toBe(PHONE_VIEWPORT.height / 2);
+
+    await dragBottomSheetHandle(page, PHONE_VIEWPORT.height / 2 - 100);
+
+    await expect.poll(() => new URL(page.url()).searchParams.has('panneau')).toBe(false);
+    await expect.poll(() => page.locator(BOTTOM_SHEET).count()).toBe(0);
+    await page.close();
+  });
+
+  // Même état dans l'URL : en passant au-dessus de 1024 px, les filtres changent seulement d'affichage.
+  it('should_move_the_filters_from_the_bottom_sheet_to_the_side_panel_when_the_screen_becomes_large', async () => {
     const { page } = await openPage('/carte-interactive', PHONE_VIEWPORT);
     await waitUntilMapIsDrawn(page);
     await page.locator('.maplibregl-filter').click();
-    await expect.poll(() => page.getByRole('dialog').count()).toBe(1);
+    await expect.poll(() => page.locator(FILTERS_IN_BOTTOM_SHEET).count()).toBe(1);
 
     await page.setViewportSize(DESKTOP_VIEWPORT);
 
+    await expect.poll(() => page.locator(BOTTOM_SHEET).count()).toBe(0);
     await expect.poll(() => page.locator(FILTER_PANEL).count()).toBe(1);
-    await expect.poll(() => page.getByRole('dialog').count()).toBe(0);
     await page.close();
   });
 

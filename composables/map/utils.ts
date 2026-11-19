@@ -1,4 +1,4 @@
-import type { GeoJSONSource, Map } from 'maplibre-gl';
+import type { GeoJSONSource, Map, PaddingOptions } from 'maplibre-gl';
 import { LngLatBounds } from 'maplibre-gl';
 import {
   isLineStringFeature,
@@ -85,9 +85,8 @@ function fitBounds({ map, features }: { map: Map; features: Feature[] }) {
 // Cadrage sur le tronçon du panneau de détail (ADR 0010) : au zoom d'ensemble, un tronçon ne fait que
 // quelques pixels. Le zoom maximal garde autour d'un tronçon très court les rues qui le situent.
 const MAXIMUM_ZOOM_ON_SECTION = 15;
-const PADDING_AROUND_SECTION = 60;
 
-function fitSectionBounds(map: Map, section: SectionFeature) {
+function fitSectionBounds(map: Map, section: SectionFeature, padding: PaddingOptions) {
   const [firstCoordinate, ...otherCoordinates] = section.geometry.coordinates;
   if (!firstCoordinate) {
     return;
@@ -96,5 +95,5 @@ function fitSectionBounds(map: Map, section: SectionFeature) {
   for (const coordinate of otherCoordinates) {
     bounds.extend(coordinate);
   }
-  map.fitBounds(bounds, { padding: PADDING_AROUND_SECTION, maxZoom: MAXIMUM_ZOOM_ON_SECTION });
+  map.fitBounds(bounds, { padding, maxZoom: MAXIMUM_ZOOM_ON_SECTION });
 }

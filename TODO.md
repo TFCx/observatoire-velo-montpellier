@@ -38,11 +38,19 @@ Feuille de route technique (sept. 2026) — voir docs/decisions/0002 :
       désigne souvent plusieurs tronçons (35 ancres sur 143, jusqu'à 6 tronçons) : l'URL ne sait désigner
       qu'un tronçon. Piste : une bijection parfaite entre titres et tronçons dans les pages
     - `SectionFeature.links` n'est pas dans l'ordre de `lines` (regroupIntoSections) : le tooltip du clic
-      (`LineTooltip`, petits écrans) renvoie au premier lien, pas forcément celui de la première Véloligne
+      (`LineTooltip`, cartes autres que la carte interactive) renvoie au premier lien, pas forcément celui
+      de la première Véloligne
     - `cover:` vide vaut null en YAML : le schéma accepte null et absent, deux façons de dire « pas d'image »
   - Curseur de dates (cf. "Nouveau widget timeline")
   - Géocodeur
-  - Mobile : bottom sheet, menu
+  - Mobile
+    - [x] Bottom sheet : filtres et détail de tronçon sous 1024 px (ADR 0011)
+    - Sur téléphone, la légende « Visualisation » (environ 250 px de haut) recouvre la moitié de la carte
+      visible au-dessus du bottom sheet, et souvent le tronçon cadré. Piste : légende repliable sur
+      petit écran, ou marge du haut du cadrage qui tient compte de sa hauteur
+    - Écran très bas (téléphone en paysage, environ 390 px) : la marge du cadrage (bottom sheet à
+      mi-hauteur et 60 px de chaque côté) dépasse la hauteur de la carte : à vérifier sur un vrai téléphone
+    - Menu
   - Plus tard, peu coûteux : page d'impression, export GPX
 - Page /services (pompes à vélo) : supprimée car elle affichait les pompes de Lyon. À recréer :
   - Recréer pages/services, la collection "services" (content.config.ts) et content/services/pumps.json (voir l'historique git)
