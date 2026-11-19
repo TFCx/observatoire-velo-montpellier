@@ -15,38 +15,7 @@
         </button>
         <DialogTitle class="text-lg font-medium leading-6 text-gray-900"> Filtres </DialogTitle>
 
-        <div class="mt-2 text-base font-medium">Filtrer par statut d'avancement</div>
-        <div class="mt-2 flex flex-wrap gap-x-2 gap-y-3">
-          <div
-            v-for="(statusFilter, index) in statusFilters"
-            :key="statusFilter.label"
-            class="px-2 py-1 border rounded-2xl text-sm cursor-pointer focus:outline-none ring-color-primary-primary ring-2"
-            :class="{
-              'bg-color-primary-primary border-transparent text-white ring-offset-1 hover:bg-color-primary-500':
-                statusFilter.isEnable,
-              'bg-white border-gray-200 text-gray-900 hover:bg-gray-50': !statusFilter.isEnable,
-            }"
-            @click="toogleStatusFilter(index)"
-          >
-            {{ statusFilter.label }}
-          </div>
-        </div>
-        <div class="mt-2 text-base font-medium">Filtrer par type d'aménagement</div>
-        <div class="mt-2 flex flex-wrap gap-x-2 gap-y-3">
-          <div
-            v-for="(typeFilter, index) in typeFilters"
-            :key="typeFilter.label"
-            class="px-2 py-1 border rounded-2xl text-sm cursor-pointer focus:outline-none ring-color-primary-primary ring-2"
-            :class="{
-              'bg-color-primary-primary border-transparent text-white ring-offset-1 hover:bg-color-primary-500':
-                typeFilter.isEnable,
-              'bg-white border-gray-200 text-gray-900 hover:bg-gray-50': !typeFilter.isEnable,
-            }"
-            @click="toogleTypeFilter(index)"
-          >
-            {{ typeFilter.label }}
-          </div>
-        </div>
+        <FilterForm :filters="filters" />
       </DialogPanel>
     </div>
   </Dialog>
@@ -54,8 +23,10 @@
 
 <script setup lang="ts">
 import { Dialog, DialogPanel, DialogTitle } from '@headlessui/vue';
-import { ProgressCategory } from '~/domain/progress';
-import { LaneType } from '~/types';
+import FilterForm from '~/components/filter/FilterForm.vue';
+import type { MapFilters } from '~/composables/useMapFilters';
+
+const { filters } = defineProps<{ filters: MapFilters }>();
 
 const isOpen = ref(false);
 
@@ -67,59 +38,8 @@ function openModal() {
 }
 
 defineExpose({
+  isOpen,
   openModal,
+  closeModal,
 });
-
-const statusFilters = ref([
-  { label: 'Réalisé', isEnable: true, progressCategories: [ProgressCategory.Done] },
-  { label: 'En travaux', isEnable: true, progressCategories: [ProgressCategory.Wip] },
-  { label: 'Promis pour fin 2026', isEnable: true, progressCategories: [ProgressCategory.PromisedTodo] },
-  { label: 'Sans échéance', isEnable: true, progressCategories: [ProgressCategory.UnpromisedTodo] },
-  { label: 'Inconnu', isEnable: true, progressCategories: [ProgressCategory.Unknown] },
-]);
-
-const typeFilters = ref([
-  { label: 'Unidirectionnelle', isEnable: true, types: [LaneType.Unidirectionnelle] },
-  { label: 'Bidirectionnelle', isEnable: true, types: [LaneType.Bidirectionnelle] },
-  { label: 'Bilaterale', isEnable: true, types: [LaneType.Bilaterale] },
-  { label: 'Voie Bus', isEnable: true, types: [LaneType.VoieBus, LaneType.VoieBusElargie] },
-  { label: 'Voie verte', isEnable: true, types: [LaneType.VoieVerte] },
-  { label: 'Vélorue', isEnable: true, types: [LaneType.Velorue] },
-  { label: 'Bandes cyclables', isEnable: true, types: [LaneType.BandesCyclables] },
-  { label: 'Zone de rencontre', isEnable: true, types: [LaneType.ZoneDeRencontre] },
-  { label: 'Aire piétonne', isEnable: true, types: [LaneType.AirePietonne] },
-  { label: 'Chaucidou', isEnable: true, types: [LaneType.Chaucidou] },
-  { label: 'Inconnu', isEnable: true, types: [LaneType.Inconnu] },
-  { label: 'Aucun aménagement', isEnable: true, types: [LaneType.Aucun] },
-]);
-
-function toogleStatusFilter(index: number) {
-  const statusFilter = statusFilters.value[index];
-  if (statusFilter) {
-    statusFilter.isEnable = !statusFilter.isEnable;
-  }
-}
-
-function toogleTypeFilter(index: number) {
-  const typeFilter = typeFilters.value[index];
-  if (typeFilter) {
-    typeFilter.isEnable = !typeFilter.isEnable;
-  }
-}
-
-const emit = defineEmits(['update']);
-
-watch(
-  [statusFilters, typeFilters],
-  () => {
-    const visibleProgressCategories = statusFilters.value
-      .filter((item) => item.isEnable)
-      .flatMap((item) => item.progressCategories);
-
-    const visibleTypes = typeFilters.value.filter((item) => item.isEnable).flatMap((item) => item.types);
-
-    emit('update', { visibleProgressCategories, visibleTypes });
-  },
-  { deep: true },
-);
 </script>

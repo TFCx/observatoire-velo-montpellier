@@ -1,16 +1,38 @@
 <template>
   <div class="relative">
     <LegendInfo ref="legendModalComponent" :default-legend="options.defaultLayer" />
-    <FilterModal ref="filterModalComponent" @update="refreshFilters" />
-    <div id="map" class="rounded-lg h-full w-full" />
-    <img
-      v-if="options.logo"
-      class="my-0 absolute bottom-0 right-0 z-10"
-      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmhVxxaZmo-qSqIqhnj5ZrGoX0lP1UChF4dw&s"
-      width="75"
-      height="75"
-      :alt="`logo ${config.assoName}`"
-    />
+    <FilterModal ref="filterModalComponent" :filters="filters" />
+    <div class="flex h-full w-full">
+      <div class="relative h-full min-w-0 flex-1">
+        <div id="map" class="rounded-lg h-full w-full" />
+        <img
+          v-if="options.logo"
+          class="my-0 absolute bottom-0 right-0 z-10"
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmhVxxaZmo-qSqIqhnj5ZrGoX0lP1UChF4dw&s"
+          width="75"
+          height="75"
+          :alt="`logo ${config.assoName}`"
+        />
+      </div>
+      <aside
+        v-if="isFilterPanelShown"
+        aria-label="Filtres"
+        class="h-full w-[415px] shrink-0 overflow-y-auto border-l border-gray-200 bg-white p-4"
+      >
+        <div class="flex items-center justify-between">
+          <h2 class="text-lg font-medium leading-6 text-gray-900">Filtres</h2>
+          <button
+            type="button"
+            aria-label="Fermer les filtres"
+            class="rounded-md p-1 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100"
+            @click="setMapPanel({ kind: 'closed' })"
+          >
+            <Icon name="mdi:close" class="h-6 w-6" aria-hidden="true" />
+          </button>
+        </div>
+        <FilterForm :filters="filters" />
+      </aside>
+    </div>
   </div>
 </template>
 
@@ -31,15 +53,17 @@ import maplibreWorkerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&ur
 import style from '@/assets/style.json';
 import LegendInfo from '@/components/LegendInfo.vue';
 import FilterModal from '@/components/FilterModal.vue';
+import FilterForm from '~/components/filter/FilterForm.vue';
 import FilterControl from '@/maplibre/FilterControl';
 import LimitsControl from '@/maplibre/LimitsControl';
 import LayerControl from '@/maplibre/LayerControl';
 import FullscreenControl from '@/maplibre/FullscreenControl';
 import ShrinkControl from '@/maplibre/ShrinkControl';
-import { getProgressCategory, ProgressCategory } from '~/domain/progress';
-import { isLineStringFeature, isPolygonFeature, type Feature, LaneType, LaneTypeFamily } from '~/types';
+import { getProgressCategory } from '~/domain/progress';
+import { isLineStringFeature, isPolygonFeature, type Feature } from '~/types';
 import config from '~/config.json';
 import { regroupIntoSections } from '~/domain/sections';
+import { convertMapPanelToQuery, parseMapPanel, type MapPanel } from '~/domain/mapPanel';
 import { setDisplayedLayer } from '~/composables/useMap';
 import { sortByLine } from '~/composables//map/utils';
 
@@ -57,6 +81,9 @@ const defaultOptions = {
   onFullscreenControlClick: () => {},
   shrink: false,
   onShrinkControlClick: () => {},
+  // Panneau latéral piloté par l'URL, pour la seule carte interactive (ADR 0010) : les cartes
+  // intégrées dans une autre page n'ont pas à lire ni changer l'URL de cette page.
+  sidePanel: false,
 };
 
 const props = defineProps<{
@@ -81,30 +108,41 @@ const {
   removeHoverTooltip,
 } = useMap();
 
-const progressCategories = ref(Object.values(ProgressCategory));
-const types = ref([
-  LaneType.Unidirectionnelle,
-  LaneType.Bidirectionnelle,
-  LaneType.Bilaterale,
-  LaneType.VoieBus,
-  LaneType.VoieBusElargie,
-  LaneType.Velorue,
-  LaneType.VoieVerte,
-  LaneType.BandesCyclables,
-  LaneType.ZoneDeRencontre,
-  LaneType.AirePietonne,
-  LaneType.Chaucidou,
-  LaneType.Aucun,
-  LaneType.Inconnu,
-]);
-const families = ref([LaneTypeFamily.Dedie, LaneTypeFamily.MixiteMotorise, LaneTypeFamily.MixitePietonne]);
+const filters = useMapFilters();
+
+const route = useRoute();
+const router = useRouter();
+const isLargeScreen = useIsLargeScreen();
+const mapPanel = computed<MapPanel>(() => (options.sidePanel ? parseMapPanel(route.query) : { kind: 'closed' }));
+const isFilterPanelShown = computed(() => isLargeScreen.value && mapPanel.value.kind === 'filters');
+
+function setMapPanel(panel: MapPanel) {
+  router.replace({ query: convertMapPanelToQuery(panel, route.query) });
+}
+
+// En grand écran, la carte interactive montre les filtres dans le panneau : une modale ouverte avant
+// d'agrandir la fenêtre y passe, pour ne pas afficher les filtres deux fois.
+watch(isLargeScreen, (isNowLargeScreen) => {
+  if (isNowLargeScreen && options.sidePanel && filterModalComponent.value?.isOpen) {
+    filterModalComponent.value.closeModal();
+    setMapPanel({ kind: 'filters' });
+  }
+});
+
+function toggleFilters() {
+  if (options.sidePanel && isLargeScreen.value) {
+    setMapPanel(mapPanel.value.kind === 'filters' ? { kind: 'closed' } : { kind: 'filters' });
+  } else {
+    filterModalComponent.value?.openModal();
+  }
+}
 const displayLimits = ref(true);
 const features = computed(() => {
   const activeLineFeatures = (props.features ?? []).filter((feature) => {
     if (isLineStringFeature(feature)) {
       return (
-        progressCategories.value.includes(getProgressCategory(feature.properties)) &&
-        types.value.includes(feature.properties.type)
+        filters.visibleProgressCategories.value.includes(getProgressCategory(feature.properties)) &&
+        filters.visibleTypes.value.includes(feature.properties.type)
       );
     }
     return true;
@@ -114,20 +152,6 @@ const features = computed(() => {
   );
   return activeLineFeatures.concat(activeLimitsFeatures);
 });
-
-function refreshFilters({
-  visibleProgressCategories,
-  visibleTypes,
-  visibleTypesFamily,
-}: {
-  visibleProgressCategories: ProgressCategory[];
-  visibleTypes: LaneType[];
-  visibleTypesFamily: LaneTypeFamily[];
-}) {
-  progressCategories.value = visibleProgressCategories;
-  types.value = visibleTypes;
-  families.value = visibleTypesFamily;
-}
 
 function convertIntoDisplayedLayerEnum(s: string) {
   if (s === 'progress') {
@@ -200,13 +224,7 @@ onMounted(() => {
     map.addControl(shrinkControl, 'top-right');
   }
   if (options.filter) {
-    const filterControl = new FilterControl({
-      onClick: () => {
-        if (filterModalComponent.value) {
-          filterModalComponent.value.openModal();
-        }
-      },
-    });
+    const filterControl = new FilterControl({ onClick: toggleFilters });
     map.addControl(filterControl, 'top-right');
   }
   if (options.limits) {
