@@ -113,7 +113,18 @@ const filters = useMapFilters();
 const route = useRoute();
 const router = useRouter();
 const isLargeScreen = useIsLargeScreen();
-const mapPanel = computed<MapPanel>(() => (options.sidePanel ? parseMapPanel(route.query) : { kind: 'closed' }));
+// Tous les tronçons, filtrés ou non : un lien vers un tronçon masqué par les filtres reste valide.
+const allSections = computed(() =>
+  regroupIntoSections((props.features ?? []).filter(isLineStringFeature).sort(sortByLine)),
+);
+const mapPanel = computed<MapPanel>(() =>
+  options.sidePanel
+    ? parseMapPanel(
+        route.query,
+        allSections.value.map((section) => section.properties),
+      )
+    : { kind: 'closed' },
+);
 const isFilterPanelShown = computed(() => isLargeScreen.value && mapPanel.value.kind === 'filters');
 
 function setMapPanel(panel: MapPanel) {
