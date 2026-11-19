@@ -1,7 +1,7 @@
 <template>
   <div class="relative">
     <LegendInfo ref="legendModalComponent" :default-legend="options.defaultLayer" />
-    <FilterModal ref="filterModalComponent" @update="refreshFilters" />
+    <FilterModal ref="filterModalComponent" :filters="filters" />
     <div id="map" class="rounded-lg h-full w-full" />
     <img
       v-if="options.logo"
@@ -36,8 +36,8 @@ import LimitsControl from '@/maplibre/LimitsControl';
 import LayerControl from '@/maplibre/LayerControl';
 import FullscreenControl from '@/maplibre/FullscreenControl';
 import ShrinkControl from '@/maplibre/ShrinkControl';
-import { getProgressCategory, ProgressCategory } from '~/domain/progress';
-import { isLineStringFeature, isPolygonFeature, type Feature, LaneType, LaneTypeFamily } from '~/types';
+import { getProgressCategory } from '~/domain/progress';
+import { isLineStringFeature, isPolygonFeature, type Feature } from '~/types';
 import config from '~/config.json';
 import { regroupIntoSections } from '~/domain/sections';
 import { setDisplayedLayer } from '~/composables/useMap';
@@ -81,30 +81,14 @@ const {
   removeHoverTooltip,
 } = useMap();
 
-const progressCategories = ref(Object.values(ProgressCategory));
-const types = ref([
-  LaneType.Unidirectionnelle,
-  LaneType.Bidirectionnelle,
-  LaneType.Bilaterale,
-  LaneType.VoieBus,
-  LaneType.VoieBusElargie,
-  LaneType.Velorue,
-  LaneType.VoieVerte,
-  LaneType.BandesCyclables,
-  LaneType.ZoneDeRencontre,
-  LaneType.AirePietonne,
-  LaneType.Chaucidou,
-  LaneType.Aucun,
-  LaneType.Inconnu,
-]);
-const families = ref([LaneTypeFamily.Dedie, LaneTypeFamily.MixiteMotorise, LaneTypeFamily.MixitePietonne]);
+const filters = useMapFilters();
 const displayLimits = ref(true);
 const features = computed(() => {
   const activeLineFeatures = (props.features ?? []).filter((feature) => {
     if (isLineStringFeature(feature)) {
       return (
-        progressCategories.value.includes(getProgressCategory(feature.properties)) &&
-        types.value.includes(feature.properties.type)
+        filters.visibleProgressCategories.value.includes(getProgressCategory(feature.properties)) &&
+        filters.visibleTypes.value.includes(feature.properties.type)
       );
     }
     return true;
@@ -114,20 +98,6 @@ const features = computed(() => {
   );
   return activeLineFeatures.concat(activeLimitsFeatures);
 });
-
-function refreshFilters({
-  visibleProgressCategories,
-  visibleTypes,
-  visibleTypesFamily,
-}: {
-  visibleProgressCategories: ProgressCategory[];
-  visibleTypes: LaneType[];
-  visibleTypesFamily: LaneTypeFamily[];
-}) {
-  progressCategories.value = visibleProgressCategories;
-  types.value = visibleTypes;
-  families.value = visibleTypesFamily;
-}
 
 function convertIntoDisplayedLayerEnum(s: string) {
   if (s === 'progress') {
