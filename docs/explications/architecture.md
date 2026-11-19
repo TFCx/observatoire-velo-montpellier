@@ -43,17 +43,23 @@ ajoutées par-dessus en couches GeoJSON :
 - `composables/useMap.ts` et `composables/map/` dessinent le réseau selon la visualisation choisie
   (avancement, qualité, type, futur réseau) et gèrent les clics ;
 - un tronçon partagé est dessiné en voies parallèles, une par Véloligne (`LaneFeature`) ;
-- les filtres (`useMapFilters`, `components/filter/FilterForm.vue`) s'affichent dans une modale, sauf
-  sur la carte interactive en grand écran (1024 px et plus), où ils occupent un panneau latéral à
-  droite de la carte (ADR 0010) ;
-- dans ce même cas, un clic sur un tronçon ouvre dans le panneau la page de sa Véloligne
+- sur la carte interactive, les filtres (`useMapFilters`, `components/filter/FilterForm.vue`) s'affichent
+  dans un panneau latéral à droite de la carte en grand écran (1024 px et plus, ADR 0010), et dans un
+  bottom sheet en dessous (ADR 0011) ; les autres cartes les affichent dans une modale ;
+- dans ce même panneau, un clic sur un tronçon de la carte interactive ouvre la page de sa Véloligne
   (`components/DetailPanel.vue`), sans sa carte d'aperçu, défilée jusqu'au titre de l'ancre du lien du
   tronçon ; la carte se cadre sur le tronçon, mis en évidence par un halo, et la section du texte qui en parle
   (son titre jusqu'au titre suivant de même niveau) est surlignée. Un tronçon partagé montre une pastille par
-  Véloligne pour passer de l'une à l'autre ; il s'ouvre sur la première de ses Vélolignes. Ailleurs, le
-  clic ouvre un tooltip.
+  Véloligne pour passer de l'une à l'autre ; il s'ouvre sur la première de ses Vélolignes. Sur les autres
+  cartes, le clic ouvre un tooltip.
 
-L'état du panneau latéral est dans l'URL de la carte interactive :
+Le bottom sheet (`components/BottomSheet.vue`) monte du bas de l'écran, par-dessus la carte, à la moitié de
+sa hauteur. On règle sa hauteur en glissant sa poignée ou l'en-tête de son contenu, entre 200 px et 90 % de
+l'écran ; lâché sous 150 px, il se ferme. La carte reste en plein écran derrière lui : le tronçon est cadré
+dans la partie visible au-dessus du bottom sheet à mi-hauteur, et recadré quand l'écran passe d'un côté à
+l'autre de 1024 px. Ces règles sont des fonctions pures, dans `domain/bottomSheet.ts`.
+
+L'état du panneau, latéral ou bottom sheet, est dans l'URL de la carte interactive, sur tous les écrans :
 
 | URL                                           | Panneau                                     |
 | --------------------------------------------- | ------------------------------------------- |
