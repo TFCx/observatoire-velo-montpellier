@@ -944,17 +944,19 @@ function drawHoveredEffect(map: Map) {
 }
 
 // Halo du tronçon affiché dans le panneau de détail (ADR 0010), sous le réseau comme celui du survol
-// mais plus large et plus sombre. Il est présent dans toutes les visualisations.
+// mais plus large et plus sombre, dans toutes les visualisations. Sa source ne contient que ce tronçon,
+// indépendamment des filtres : un tronçon masqué par les filtres garde son halo.
+const SELECTED_SECTION_SOURCE = 'src-selected-section';
 const SELECTED_SECTION_LAYER = 'layer-selected-section-highlight';
 const SELECTED_SECTION_EXTENSION = 3;
 
 function drawSelectedSectionEffect(map: Map) {
+  upsertMapSource(map, SELECTED_SECTION_SOURCE, []);
   map.addLayer({
     id: SELECTED_SECTION_LAYER,
     type: 'line',
-    source: 'src-sections',
+    source: SELECTED_SECTION_SOURCE,
     layout: { 'line-cap': 'round' },
-    filter: ['==', ['get', 'name'], ''],
     paint: {
       'line-width': ['+', hoverWidth, SELECTED_SECTION_EXTENSION * 2],
       'line-color': '#000000',
@@ -974,11 +976,11 @@ function drawSelectedSectionEffect(map: Map) {
 
 // null : aucun tronçon mis en évidence. Sans effet tant que la carte n'a pas dessiné ses couches :
 // renvoie alors false.
-function highlightSelectedSection(map: Map, sectionName: string | null): boolean {
+function highlightSelectedSection(map: Map, section: SectionFeature | null): boolean {
   if (!map.getLayer(SELECTED_SECTION_LAYER)) {
     return false;
   }
-  map.setFilter(SELECTED_SECTION_LAYER, ['==', ['get', 'name'], sectionName ?? '']);
+  upsertMapSource(map, SELECTED_SECTION_SOURCE, section ? [section] : []);
   return true;
 }
 

@@ -322,15 +322,15 @@ onMounted(() => {
   // Met en évidence le tronçon du panneau de détail et cadre la carte sur lui ; data-selected-section
   // n'est mis à jour qu'une fois les deux faits.
   function applySelectedSection() {
-    const sectionName = detailPanel.value?.sectionName ?? null;
-    if (!highlightSelectedSection(map, sectionName)) {
+    const sectionName = detailPanel.value?.sectionName;
+    const section = allSections.value.find((candidate) => candidate.properties.name === sectionName) ?? null;
+    if (!highlightSelectedSection(map, section)) {
       return;
     }
-    const section = allSections.value.find((candidate) => candidate.properties.name === sectionName);
     if (section) {
       fitSectionBounds(map, section);
     }
-    highlightedSectionName.value = sectionName;
+    highlightedSectionName.value = section?.properties.name ?? null;
   }
   watch(() => detailPanel.value?.sectionName, applySelectedSection);
 

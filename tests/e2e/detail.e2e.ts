@@ -6,6 +6,8 @@ import { countDistinctMapColors, findNetworkPoint } from './browser';
 import { DESKTOP_VIEWPORT, PHONE_VIEWPORT, setupBrowserTests } from './setup';
 
 const MINIMUM_COLORS_OF_A_DRAWN_MAP = 200;
+// Fond de carte bloqué et aucune de nos couches à l'écran (setup.ts).
+const MAP_COLORS_WITHOUT_ANY_LAYER = 6;
 const DETAIL_PANEL = 'aside[aria-label="Détail du tronçon"]';
 
 // Tronçon réel partagé par les Vélolignes 1 et B : son lien vers la page B a pour ancre ce titre.
@@ -193,6 +195,29 @@ describe('section detail panel', () => {
     await waitUntilMapIsDrawn(page);
 
     await expect.poll(() => page.locator('#map').getAttribute('data-selected-section')).toBe(SHARED_SECTION);
+    await page.close();
+  });
+
+  // Seul chemin vers un tronçon sélectionné mais masqué par les filtres : lien ouvert sur téléphone,
+  // filtres réglés dans la modale, puis fenêtre agrandie. Réseau entièrement masqué : restent les limites
+  // de la Métropole et, si elle est indépendante des filtres, la couche du halo.
+  it('should_draw_the_halo_when_filters_hide_the_selected_section', async () => {
+    const { page } = await openPage(detailRoute(SHARED_SECTION), PHONE_VIEWPORT);
+    await waitUntilMapIsDrawn(page);
+    await page.locator('.maplibregl-filter').click();
+    for (const label of ['Réalisé', 'En travaux', 'Promis pour fin 2026', 'Sans échéance', 'Inconnu']) {
+      await page.getByRole('dialog').getByText(label, { exact: true }).first().click();
+    }
+    await page.keyboard.press('Escape');
+    await expect.poll(() => page.getByRole('dialog').count()).toBe(0);
+
+    await page.setViewportSize(DESKTOP_VIEWPORT);
+    await expect.poll(() => page.locator('#map').getAttribute('data-selected-section')).toBe(SHARED_SECTION);
+
+    // Sans halo, la carte cadrée sur le tronçon n'a que le fond uni : 6 couleurs (mesuré le 19/11/2026).
+    await expect
+      .poll(() => countDistinctMapColors(page), { timeout: 10_000, interval: 1_000 })
+      .toBeGreaterThan(MAP_COLORS_WITHOUT_ANY_LAYER * 3);
     await page.close();
   });
 
