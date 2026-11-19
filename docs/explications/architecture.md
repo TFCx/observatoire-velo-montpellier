@@ -45,12 +45,28 @@ ajoutées par-dessus en couches GeoJSON :
 - un tronçon partagé est dessiné en voies parallèles, une par Véloligne (`LaneFeature`) ;
 - les filtres (`useMapFilters`, `components/filter/FilterForm.vue`) s'affichent dans une modale, sauf
   sur la carte interactive en grand écran (1024 px et plus), où ils occupent un panneau latéral à
-  droite de la carte (ADR 0010).
+  droite de la carte (ADR 0010) ;
+- dans ce même cas, un clic sur un tronçon ouvre dans le panneau la page de sa Véloligne
+  (`components/DetailPanel.vue`), sans sa carte d'aperçu, défilée jusqu'au titre de l'ancre du lien du
+  tronçon ; le tronçon est mis en évidence par un halo. Un tronçon partagé montre une pastille par
+  Véloligne pour passer de l'une à l'autre ; il s'ouvre sur la première de ses Vélolignes. Ailleurs, le
+  clic ouvre un tooltip.
 
-L'état du panneau latéral est dans l'URL de la carte interactive : `?panneau=filtres` l'ouvre sur les
-filtres. `domain/mapPanel.ts` lit ces paramètres une seule fois et les convertit en un état typé ; une
-valeur inconnue ferme le panneau. Le panneau change l'URL sans ajouter d'entrée dans l'historique du
-navigateur. Les autres cartes (page d'une Véloligne, carte intégrable) ne lisent pas l'URL.
+L'état du panneau latéral est dans l'URL de la carte interactive :
+
+| URL                                           | Panneau                                     |
+| --------------------------------------------- | ------------------------------------------- |
+| `?panneau=filtres`                            | les filtres                                 |
+| `?panneau=detail&troncon=<name>&ligne=<line>` | la page de la Véloligne `<line>` du tronçon |
+| autre valeur, tronçon introuvable             | fermé                                       |
+
+`ligne` est facultatif ; absent ou hors du tronçon, c'est la première Véloligne du tronçon.
+`domain/mapPanel.ts` lit ces paramètres une seule fois et les convertit en un état typé. Le panneau change
+l'URL sans ajouter d'entrée dans l'historique du navigateur. Les autres cartes (page d'une Véloligne,
+carte intégrable) ne lisent pas l'URL.
+
+Les pages des Vélolignes sont préchargées dans la page de la carte interactive (environ 20 Ko
+compressés) : une requête au clic téléchargerait le moteur SQLite de Nuxt Content (environ 400 Ko).
 
 MapLibre ne se charge que sur les pages qui ont une carte : les autres pages restent légères.
 
