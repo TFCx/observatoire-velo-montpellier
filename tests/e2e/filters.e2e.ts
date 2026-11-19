@@ -184,6 +184,25 @@ describe('map filters', () => {
     await page.close();
   });
 
+  // Téléphone tourné en paysage, bottom sheet agrandi : sa poignée doit rester à l'écran pour le régler
+  // ou le fermer (review croisée de la PR 52).
+  it('should_keep_the_bottom_sheet_handle_on_screen_when_the_screen_gets_shorter', async () => {
+    const { page } = await openPage('/carte-interactive?panneau=filtres', PHONE_VIEWPORT);
+    await waitUntilMapIsDrawn(page);
+    const bottomSheet = page.locator(BOTTOM_SHEET);
+    await expect.poll(async () => (await bottomSheet.boundingBox())?.y ?? 0).toBe(PHONE_VIEWPORT.height / 2);
+    await dragBottomSheetHandle(page, -PHONE_VIEWPORT.height);
+    await expect.poll(async () => (await bottomSheet.boundingBox())?.height ?? 0).toBe(PHONE_VIEWPORT.height * 0.9);
+
+    const LANDSCAPE_PHONE_VIEWPORT = { width: PHONE_VIEWPORT.height, height: PHONE_VIEWPORT.width };
+    await page.setViewportSize(LANDSCAPE_PHONE_VIEWPORT);
+
+    await expect
+      .poll(async () => (await bottomSheet.boundingBox())?.height ?? 0)
+      .toBeLessThanOrEqual(LANDSCAPE_PHONE_VIEWPORT.height * 0.9);
+    await page.close();
+  });
+
   // Même état dans l'URL : en passant au-dessus de 1024 px, les filtres changent seulement d'affichage.
   it('should_move_the_filters_from_the_bottom_sheet_to_the_side_panel_when_the_screen_becomes_large', async () => {
     const { page } = await openPage('/carte-interactive', PHONE_VIEWPORT);

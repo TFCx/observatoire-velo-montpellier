@@ -51,6 +51,13 @@ watch(
   },
 );
 
+// Téléphone tourné en paysage : la hauteur réglée peut dépasser 90 % du nouvel écran et cacher la poignée.
+function clampHeightToScreen() {
+  height.value = clampDraggedBottomSheetHeight(height.value, window.innerHeight);
+}
+onMounted(() => window.addEventListener('resize', clampHeightToScreen));
+onBeforeUnmount(() => window.removeEventListener('resize', clampHeightToScreen));
+
 // Les événements pointer couvrent doigt et souris. La capture garde le glisser même quand le pointeur
 // sort du bottom sheet ; un bouton ou un lien de l'en-tête reste cliquable.
 function startDragging(event: PointerEvent) {
