@@ -197,18 +197,18 @@ watch(() => [sectionName, line, anchor], scrollToAnchorOnceRendered);
 <style scoped>
 /* Jaune de l'observatoire ; multiply garde le texte lisible sous le surlignage. */
 .section-highlight {
-  background-color: rgb(255 220 78 / 0.3);
+  background-color: rgb(255 220 78 / 0.18);
   border-radius: 0.5rem;
   mix-blend-mode: multiply;
-  animation: section-highlight-flash 1.5s ease-out;
+  animation: section-highlight-flash 2s ease-out;
 }
 
 @keyframes section-highlight-flash {
   from {
-    background-color: rgb(255 220 78 / 0.9);
+    background-color: rgb(255 220 78 / 0.5);
   }
   to {
-    background-color: rgb(255 220 78 / 0.3);
+    background-color: rgb(255 220 78 / 0.18);
   }
 }
 
