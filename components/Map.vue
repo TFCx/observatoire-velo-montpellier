@@ -264,6 +264,14 @@ function convertIntoDisplayedLayerEnum(s: string) {
   return DisplayedLayer.Progress;
 }
 
+// Un lien interne ne recharge pas la page : sans remove(), une carte quittée garderait son contexte
+// WebGL (Chromium en garde 16 au plus) et son worker.
+let mapToRemoveOnUnmount: Map | null = null;
+onBeforeUnmount(() => {
+  mapToRemoveOnUnmount?.remove();
+  mapToRemoveOnUnmount = null;
+});
+
 onMounted(() => {
   setWorkerUrl(maplibreWorkerUrl);
   const map = new Map({
@@ -275,6 +283,7 @@ onMounted(() => {
     zoom: config.zoom,
     attributionControl: false,
   });
+  mapToRemoveOnUnmount = map;
 
   const layerControl = new LayerControl(
     options.defaultLayer,
@@ -335,6 +344,10 @@ onMounted(() => {
 
   map.on('load', async () => {
     await loadImages({ map });
+    // Page quittée pendant le chargement des images : la carte est déjà détruite.
+    if (mapToRemoveOnUnmount !== map) {
+      return;
+    }
 
     const lineStringFeatures = features.value.filter(isLineStringFeature).sort(sortByLine);
     const sections = regroupIntoSections(lineStringFeatures);

@@ -83,6 +83,25 @@ Prochaine release :
 - [REFACTOR] Check la console / bugs (et les console.debug)
   - [x] Passe du 29/09/2026 : seul warning à nous (prop options de Map sur /carte-interactive/embed) corrigé ;
         les autres viennent de Nuxt (H3, devtools, Suspense). Restent : vitest 2 → 4 et MapLibre 5 → 6 (npm audit)
+  - Relecture du code du 19/11/2026 (lecture seule, à confirmer par un test avant correction) :
+    - [x] Carte jamais détruite en quittant sa page (contexte WebGL gardé) et watchers de couche jamais arrêtés,
+          qui redessinaient les cartes quittées
+    - Page quittée pendant `loadImages` (premiers instants) : les icônes restantes sont chargées sur la carte
+      détruite. Pas d'erreur (vérifié le 19/11/2026) : `addImage` recrée en silence un style vide
+      (`_lazyInitEmptyStyle` de MapLibre), qui n'est jamais libéré
+    - Les listes `layersFor…` de composables/map/network.ts sont des états du module : chaque carte ouverte
+      y ajoute de nouveau ses identifiants de couche, que `changeLayer` parcourt en doublons
+    - `plotDangers` (composables/map/features.ts) masque la couche `perspectives` au lieu de `dangers` : latent,
+      aucun danger dans les données
+    - Map.vue : `watch(() => props.features)` repousse les données non filtrées juste après le watcher des
+      données filtrées. Prioritaire : la carte de la page évolution a les filtres (`filter: true` par défaut),
+      un changement d'année y réafficherait les tronçons filtrés (non observé). Test e2e : désactiver un filtre,
+      changer d'année. Correction probable : retirer ce watcher en double
+    - Map.vue : le calcul `features` garde les polygones des limites (`return true`) puis les ajoute une seconde
+      fois ; son `displayLimits` local, toujours vrai, n'est pas celui du bouton des limites (useMap)
+    - Chaque tooltip monte une application Vue (`createApp`) jamais démontée : fuite au fil des survols
+    - useMap : `displayedLayer` et `displayLimits` sont des états du module, partagés par toutes les cartes
+    - useStats : arrondis cumulés (`done.percent`, qualité par famille) : les barres peuvent ne pas totaliser 100 %
 - [x] [BUG] carte-interactive/embed.vue et index.vue : l'image de partage est codée en dur sur un fichier au nom haché
       (logoCyclopolisVGM.CzJjkGQi.png) de l'ancienne adresse .netlify.app -> casse si l'image change
 - [x] [SEO] /historique, /blog, /mentions-legales, /sites-partenaires, /evolution et les articles de blog gardent le titre générique du site
@@ -103,7 +122,8 @@ Moyen terme :
   - À trancher : la nouvelle barre et l'ancienne barre d'avancement global se suivent ; garder les deux ?
   - En thème sombre, le titre « Où en est le projet ? » est illisible (noir sur fond sombre) : préexistant ?
   - « Avant mandat » compte ce qui est réalisé avant le 01/01/2021, alors que le mandat commence le 15/07/2020 :
-    aligner (aucun tronçon réalisé en 2020, aucun chiffre ne changerait aujourd'hui).
+    aligner (aucun tronçon réalisé en 2020, aucun chiffre ne changerait aujourd'hui). La règle est écrite deux
+    fois (useStats, useSectionText), en heure locale : la ramener dans domain/, en jours de calendrier comme mandate.ts.
 - [DATA/UX] Janvier 2027, échéance des promesses passée (ADR 0009, point 5) : PR qui passe « promis pour fin 2026 »
   à « promis pour 2026, non réalisé ». Idée à trancher par l'association : faire ressortir ces tronçons sur la
   carte (couleur ou contour), aujourd'hui dessinés comme les autres tronçons à faire.
