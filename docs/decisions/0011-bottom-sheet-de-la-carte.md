@@ -1,7 +1,7 @@
 # 11. Bottom sheet de la carte sur les petits écrans
 
 Date : 2026-11-19
-Statut : Proposé. Remplace le point 4 de l'ADR 0010.
+Statut : Accepté, implémenté (PR 52). Remplace le point 4 de l'ADR 0010.
 
 ## Contexte
 
