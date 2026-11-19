@@ -1,6 +1,6 @@
 # Handoff
 
-Date : 2026-11-19 · Branche : `claude/mobile-bottom-sheet-668c96` · S'appuie sur `5184bd4a` (bottom sheet)
+Date : 2026-11-19 · Branche : `claude/mobile-bottom-sheet-668c96` · S'appuie sur `a564205b` (corrections de la review croisée)
 
 ## Où on en est
 
@@ -10,7 +10,7 @@ production** : Jean-David veut une seule news et une seule promotion beta → pr
 
 ## Prochaine étape : de la PR à la production
 
-1. Review croisée Codex de la PR (`/cross-review`), à la demande de Jean-David, puis fusion.
+1. Fusion de la PR 52 (review croisée Codex faite, deux findings corrigés).
 2. Promotion main → beta (confirmation de Jean-David juste avant), vérification par Jean-David sur un vrai
    téléphone : glisser au doigt, défilement du contenu, carte derrière.
 3. Promotion beta → prod avec la news, quand Jean-David la décide.
@@ -34,6 +34,8 @@ téléphone.
 - Captures avec le vrai fond de carte : `findNetworkPoint` (tests) suppose un fond uni et clique à côté des
   tronçons ; viser un point relevé sur une capture. Pour une capture « avant », générer l'ancienne version
   dans un dossier temporaire (`git archive montpellier/main | tar -x`, `node_modules` en lien symbolique).
+- `map.resize()` n'est appelé qu'à un endroit : avant le recadrage au changement d'affichage, pour que
+  MapLibre cadre avec la nouvelle taille de la carte au lieu d'attendre son `ResizeObserver`.
 - Filtres et détail s'excluent : un tronçon sélectionné masqué par les filtres n'est plus atteignable par
   l'interface. Le test du halo y arrive par le routeur de l'application (`replaceRouteQuery`).
 
