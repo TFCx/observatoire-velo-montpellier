@@ -86,8 +86,11 @@ Prochaine release :
   - Relecture du code du 19/11/2026 (lecture seule, à confirmer par un test avant correction) :
     - [x] Carte jamais détruite en quittant sa page (contexte WebGL gardé) et watchers de couche jamais arrêtés,
           qui redessinaient les cartes quittées
-    - Page quittée pendant `loadImages` (premiers instants) : `addImage` sur la carte détruite lève une erreur
-      dans la console, sans effet visible
+    - Page quittée pendant `loadImages` (premiers instants) : les icônes restantes sont chargées sur la carte
+      détruite. Pas d'erreur (vérifié le 19/11/2026) : `addImage` recrée en silence un style vide
+      (`_lazyInitEmptyStyle` de MapLibre), qui n'est jamais libéré
+    - Les listes `layersFor…` de composables/map/network.ts sont des états du module : chaque carte ouverte
+      y ajoute de nouveau ses identifiants de couche, que `changeLayer` parcourt en doublons
     - `plotDangers` (composables/map/features.ts) masque la couche `perspectives` au lieu de `dangers` : latent,
       aucun danger dans les données
     - Map.vue : `watch(() => props.features)` repousse les données non filtrées juste après le watcher des
