@@ -147,6 +147,24 @@ describe('section detail panel', () => {
     await page.close();
   });
 
+  // Fond de carte bloqué : cadrée sur un tronçon, la carte ne montre que quelques tracés, donc bien moins
+  // de couleurs que le réseau entier.
+  it('should_frame_the_map_on_the_section_when_the_url_names_it', async () => {
+    const { page: wholeNetworkPage } = await openPage('/carte-interactive?panneau=filtres');
+    await waitUntilMapIsDrawn(wholeNetworkPage);
+    await wholeNetworkPage.waitForTimeout(2_000);
+    const colorsOfTheWholeNetwork = await countDistinctMapColors(wholeNetworkPage);
+    await wholeNetworkPage.close();
+
+    const { page } = await openPage(detailRoute(SHARED_SECTION));
+    await expect.poll(() => page.locator('#map').getAttribute('data-selected-section')).toBe(SHARED_SECTION);
+
+    await expect
+      .poll(() => countDistinctMapColors(page), { timeout: 10_000, interval: 1_000 })
+      .toBeLessThan(colorsOfTheWholeNetwork / 2);
+    await page.close();
+  });
+
   it('should_not_draw_a_second_map_in_the_detail_panel', async () => {
     const { page } = await openPage(detailRoute(SHARED_SECTION));
     await waitUntilMapIsDrawn(page);

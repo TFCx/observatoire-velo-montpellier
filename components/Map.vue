@@ -85,7 +85,7 @@ import {
   type MapPanel,
 } from '~/domain/mapPanel';
 import { setDisplayedLayer } from '~/composables/useMap';
-import { sortByLine } from '~/composables//map/utils';
+import { fitSectionBounds, sortByLine } from '~/composables//map/utils';
 
 // const config = useRuntimeConfig();
 // const maptilerKey = config.public.maptilerKey;
@@ -310,18 +310,26 @@ onMounted(() => {
     const sections = regroupIntoSections(lineStringFeatures);
 
     plotEverything(map, sections, features.value);
-    applySelectedSection();
     const tailwindMdBreakpoint = 768;
-    if (window.innerWidth > tailwindMdBreakpoint) {
+    // Un lien vers un tronçon cadre la carte sur ce tronçon (applySelectedSection), pas sur le réseau.
+    if (window.innerWidth > tailwindMdBreakpoint && !detailPanel.value) {
       fitBounds({ map, features: features.value });
     }
+    applySelectedSection();
   });
 
+  // Met en évidence le tronçon du panneau de détail et cadre la carte sur lui ; data-selected-section
+  // n'est mis à jour qu'une fois les deux faits.
   function applySelectedSection() {
     const sectionName = detailPanel.value?.sectionName ?? null;
-    if (highlightSelectedSection(map, sectionName)) {
-      highlightedSectionName.value = sectionName;
+    if (!highlightSelectedSection(map, sectionName)) {
+      return;
     }
+    const section = allSections.value.find((candidate) => candidate.properties.name === sectionName);
+    if (section) {
+      fitSectionBounds(map, section);
+    }
+    highlightedSectionName.value = sectionName;
   }
   watch(() => detailPanel.value?.sectionName, applySelectedSection);
 
