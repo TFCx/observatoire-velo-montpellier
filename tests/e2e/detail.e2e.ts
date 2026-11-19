@@ -130,7 +130,7 @@ describe('section detail panel', () => {
 
   // Un titre en fin de page ne peut pas monter en haut du panneau : la section du tronçon est surlignée,
   // de son titre jusqu'au titre suivant de même niveau.
-  it('should_highlight_the_text_of_the_section_from_its_title_to_the_next_title', async () => {
+  it('should_highlight_the_whole_text_of_the_section_from_its_title_to_the_next_title', async () => {
     const { page } = await openPage(detailRoute(SHARED_SECTION, 'B'));
     await waitUntilMapIsDrawn(page);
     const panel = page.locator(DETAIL_PANEL);
@@ -144,8 +144,17 @@ describe('section detail panel', () => {
       throw new Error('Surlignage ou titres absents du panneau.');
     }
 
+    // Dernier élément de la section : celui qui précède le titre suivant (ici l'encadré « Pas de projet »).
+    const lastElementBox = await panel.locator(`[id="${NEXT_TITLE_ON_LINE_B}"]`).evaluate((nextTitle) => {
+      const box = nextTitle.previousElementSibling?.getBoundingClientRect();
+      return box ? { bottom: box.bottom } : null;
+    });
+    if (!lastElementBox) {
+      throw new Error('Aucun élément avant le titre suivant.');
+    }
+
     expect(highlightBox.y).toBeLessThanOrEqual(titleBox.y);
-    expect(highlightBox.y + highlightBox.height).toBeGreaterThan(titleBox.y + titleBox.height);
+    expect(highlightBox.y + highlightBox.height).toBeGreaterThanOrEqual(lastElementBox.bottom);
     expect(highlightBox.y + highlightBox.height).toBeLessThanOrEqual(nextTitleBox.y);
     await page.close();
   });
