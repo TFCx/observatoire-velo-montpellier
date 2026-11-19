@@ -362,9 +362,19 @@ onMounted(() => {
     highlightedSectionName.value = section?.properties.name ?? null;
     sectionFraming.value = section ? panelDisplay.value : null;
   }
+  watch(() => detailPanel.value?.sectionName, applySelectedSection);
   // Un changement d'affichage (fenêtre redimensionnée, tablette tournée) recadre le tronçon avec la
-  // marge du nouvel affichage : sous le bottom sheet, il serait caché.
-  watch([() => detailPanel.value?.sectionName, panelDisplay], applySelectedSection);
+  // marge du nouvel affichage : sous le bottom sheet, il serait caché. Le panneau latéral vient d'être
+  // ajouté ou retiré (flush: 'post') ; MapLibre ne lirait la nouvelle taille de la carte qu'après le
+  // cadrage (ResizeObserver), qui serait calculé pour l'ancienne : on la lui fait lire avant.
+  watch(
+    panelDisplay,
+    () => {
+      map.resize();
+      applySelectedSection();
+    },
+    { flush: 'post' },
+  );
 
   // When filters change
   watch(features, (newFeatures) => {
