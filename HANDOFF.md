@@ -1,67 +1,43 @@
 # Handoff
 
-Date : 2026-11-19 · Branche : `mobile-bottom-sheet` · S'appuie sur `90e25d6b` (merge de la PR 51)
+Date : 2026-11-19 · Branche : `claude/mobile-bottom-sheet-668c96` · S'appuie sur `5184bd4a` (bottom sheet)
 
 ## Où on en est
 
-Le panneau latéral de la carte interactive (ADR 0010, PR 49 à 51) est sur `montpellier/main` et sur
-beta (`90e25d6b`). **Il n'est volontairement pas en production** : Jean-David ne veut pas multiplier
-les news. La prod attendra le bottom sheet, pour une seule news et une seule promotion beta → prod.
+Le bottom sheet mobile de la carte interactive (ADR 0011) est dans sa PR, vers `montpellier/main`. Avec lui,
+le panneau latéral (ADR 0010, déjà en beta) et le bottom sheet forment une seule feature, **pas encore en
+production** : Jean-David veut une seule news et une seule promotion beta → prod pour les deux.
 
-## Prochaine étape : bottom sheet mobile
+## Prochaine étape : de la PR à la production
 
-Sous 1024 px, la carte interactive garde la modale des filtres et le tooltip au clic (ADR 0010,
-point 4). Objectif : y afficher les filtres et le détail d'un tronçon dans un bottom sheet (panneau qui
-monte du bas de l'écran), comme Cyclopolis.
+1. Review croisée Codex de la PR (`/cross-review`), à la demande de Jean-David, puis fusion.
+2. Promotion main → beta (confirmation de Jean-David juste avant), vérification par Jean-David sur un vrai
+   téléphone : glisser au doigt, défilement du contenu, carte derrière.
+3. Promotion beta → prod avec la news, quand Jean-David la décide.
 
-Critère de réussite : sur un téléphone (390 px), `/carte-interactive?panneau=filtres` et
-`/carte-interactive?panneau=detail&troncon=Chemin%20des%20Alouettes&ligne=B` ouvrent le bottom sheet ; le
-clic sur un tronçon l'ouvre ; captures avant/après sur téléphone, tests navigateur vus rouges.
-
-Avant le code, des décisions à faire trancher par Jean-David, puis un ADR (le point 4 de l'ADR 0010
-change : nouvel ADR qui le remplace, ou erratum) :
-
-- l'URL est-elle lue sur téléphone comme en grand écran (aujourd'hui ignorée sous 1024 px) ;
-- hauteurs du bottom sheet (Cyclopolis : moitié de l'écran par défaut, déplaçable au doigt) et ce que
-  devient la carte derrière (cadrage sur le tronçon dans la partie visible) ;
-- passage d'un écran à l'autre (le panneau latéral et la modale se passent déjà la main à
-  l'agrandissement : `components/Map.vue`, watch sur `isLargeScreen`).
-
-## À lire
-
-- Cyclopolis (remote `lyon`) : `git show lyon/main:components/BottomSheet.vue` (176 lignes, glisser
-  au doigt), ses usages dans `components/FilterPanel.vue` et `components/DetailPanel.vue`, commits
-  `9fbffb5b` et `ec6e7345`. Portage manuel (ADR 0002) : lire comme une spécification.
-- Chez nous : `components/Map.vue` (option `sidePanel`, `isFilterPanelShown`, `detailPanel`, gardés
-  par `isLargeScreen`), `components/DetailPanel.vue` (son défilement et son surlignage supposent que
-  le panneau lui-même défile), `components/filter/FilterForm.vue`, `composables/useIsLargeScreen.ts`,
-  `domain/mapPanel.ts`.
-- Tests : `tests/e2e/filters.e2e.ts` et `tests/e2e/detail.e2e.ts` ont des tests « petit écran » qui
-  vérifient l'absence de panneau ; ils changeront avec la décision sur l'URL.
+Critère de réussite : la balise `observatoire-build` de la prod donne le commit de la fusion, et
+`/carte-interactive?panneau=detail&troncon=Chemin%20des%20Alouettes&ligne=B` ouvre le bottom sheet sur un
+téléphone.
 
 ## Questions ouvertes (aussi dans `TODO.md`)
 
-- Clic sur un titre du panneau de détail pour sélectionner ses tronçons : une ancre désigne souvent
-  plusieurs tronçons. Piste de Jean-David : une bijection parfaite entre titres et tronçons.
-- `SectionFeature.links` n'est pas dans l'ordre de `lines` : le tooltip du clic (petits écrans)
-  renvoie au premier lien saisi. À régler si le bottom sheet remplace ce tooltip.
+- Sur téléphone, la légende « Visualisation » (environ 250 px de haut) recouvre la moitié de la carte visible
+  au-dessus du bottom sheet, et souvent le tronçon cadré (capture de la PR). Légende repliable sur petit
+  écran, ou marge du haut du cadrage qui en tient compte : à faire trancher, peut-être avant la prod.
+- Téléphone en paysage : la marge du cadrage peut dépasser la hauteur de la carte. Non vérifié.
+- Toujours ouverte : cliquer sur un titre du panneau de détail pour sélectionner ses tronçons.
 
-## Pièges de la session précédente
+## Pièges de la session
 
-- Tests navigateur : le rendu de la carte varie d'une capture à l'autre (animation du cadrage), et
-  les couleurs de nos couches se retrouvent partout. Ni comparaison de captures ni comptage d'une
-  couleur précise : compter les couleurs distinctes dans une vue où le reste est vide, ou lire un
-  attribut posé par le code (`data-selected-section` sur `#map`).
-- Une `flex item` ne rétrécit pas sous son contenu : la carte a `min-h-0`, sinon une page longue dans
-  un panneau l'étire sous la fenêtre.
-- MapLibre suit lui-même la taille de son conteneur (`ResizeObserver`) : pas de `map.resize()`.
-- Captures avec le vrai fond de carte : le script de la session précédente servait le site généré avec
-  `tests/e2e/browser.ts` (`startStaticServer`, `launchChromiumWithWebgl2`) ; le navigateur intégré de
-  l'app n'a pas WebGL.
+- Le glisser se teste à la souris dans Chromium (`page.mouse`) : le bottom sheet utilise les événements
+  pointer, qui couvrent doigt et souris. Le doigt n'a été vérifié que par ce biais, jamais sur un appareil.
+- Captures avec le vrai fond de carte : `findNetworkPoint` (tests) suppose un fond uni et clique à côté des
+  tronçons ; viser un point relevé sur une capture. Pour une capture « avant », générer l'ancienne version
+  dans un dossier temporaire (`git archive montpellier/main | tar -x`, `node_modules` en lien symbolique).
+- Filtres et détail s'excluent : un tronçon sélectionné masqué par les filtres n'est plus atteignable par
+  l'interface. Le test du halo y arrive par le routeur de l'application (`replaceRouteQuery`).
 
 ## Pistes écartées
 
-- Charger la page de la Véloligne au clic (requête Nuxt Content) : télécharge le moteur SQLite (~400 Ko
-  compressés). Pages préchargées par la carte : +8 Ko compressés.
-- Choisir la Véloligne d'un tronçon partagé d'après le trait cliqué : un seul trait dans les vues
-  qualité et type, traits de 4 px sur un contour commun en vue avancement.
+- Rétrécir la carte au-dessus du bottom sheet : MapLibre se redimensionnerait à chaque pixel du glisser.
+- Crans de hauteur (50 % / 90 %) ou hauteur fixe : voir l'ADR 0011.
