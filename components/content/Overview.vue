@@ -18,11 +18,15 @@
 </template>
 
 <script setup>
-const { path } = useRoute();
 const { getLineColor } = useColors();
 const { getTotalDistance, displayDistanceInKm } = useStats();
 
-const { voie } = defineProps({ voie: { type: Object, required: true } });
+// geojson : tracés de la Véloligne, chargés par la page qui l'affiche (une page de Véloligne ou le
+// panneau de la carte interactive, qui les a déjà tous).
+const { voie, geojson } = defineProps({
+  voie: { type: Object, required: true },
+  geojson: { type: Object, required: true },
+});
 
 const mapOptions = {
   fullscreen: false,
@@ -30,13 +34,8 @@ const mapOptions = {
   defaultLayer: DisplayedLayer.Quality,
 };
 
-const { data: geojson } = await useAsyncData(`geojson-${path}`, () => {
-  // Le .json d'une ligne porte le même nom de fichier (stem) que son .md.
-  return queryCollection('voiesCyclablesGeojson').where('stem', '=', voie.stem).first();
-});
-
-const features = geojson.value.features;
+const features = geojson.features;
 
 const color = getLineColor(voie.line);
-const distance = getTotalDistance([geojson.value]);
+const distance = getTotalDistance([geojson]);
 </script>
