@@ -41,18 +41,32 @@ Alternatives examinées pour l'état du panneau :
 2. Le détail d'un tronçon est la page de sa Véloligne (celle de son `link`), sans sa carte d'aperçu,
    défilée jusqu'à l'ancre du `link` quand il en a une. Le tronçon cliqué est mis en évidence sur la
    carte. Un bouton ouvre la page complète.
+
+   Un tronçon partagé entre plusieurs Vélolignes a un `link` par Véloligne (11 tronçons le 18/11/2026,
+   par exemple « Chemin des Alouettes » sur les Vélolignes 1 et B). Le panneau affiche d'abord la page de
+   la première Véloligne dans l'ordre de `lines` (déjà trié : 1 avant B). Son en-tête montre une pastille
+   par Véloligne ; un clic sur une pastille affiche la page de cette Véloligne, défilée jusqu'à l'ancre de
+   son `link`. Le clic sur la carte ne choisit pas la Véloligne : dans les vues qualité et type, un
+   tronçon partagé n'est qu'un seul trait, et dans la vue avancement le trait de chaque Véloligne ne fait
+   que 4 px de large, sur un contour commun que le clic renvoie aussi.
+
 3. L'état du panneau est dans les paramètres de l'URL :
 
-   | État                | URL                                                |
-   | ------------------- | -------------------------------------------------- |
-   | Panneau fermé       | `/carte-interactive`                               |
-   | Filtres             | `/carte-interactive?panneau=filtres`               |
-   | Détail d'un tronçon | `/carte-interactive?panneau=detail&troncon=<name>` |
+   | État                | URL                                                             |
+   | ------------------- | --------------------------------------------------------------- |
+   | Panneau fermé       | `/carte-interactive`                                            |
+   | Filtres             | `/carte-interactive?panneau=filtres`                            |
+   | Détail d'un tronçon | `/carte-interactive?panneau=detail&troncon=<name>`              |
+   | Détail, autre ligne | `/carte-interactive?panneau=detail&troncon=<name>&ligne=<line>` |
 
-   `troncon` est le `name` du tronçon. Un même `name` sur plusieurs Vélolignes désigne un seul tronçon
-   physique (11 cas le 18/11/2026) : c'est déjà ce qui regroupe les tronçons en sections sur la carte.
-   L'URL est lue une fois, à l'entrée, et convertie en un état typé ; une valeur inconnue ou un tronçon
-   introuvable donne « panneau fermé ».
+   `troncon` est le `name` du tronçon. La carte regroupe les tracés d'un tronçon partagé par leur `id`
+   (`regroupIntoSections`), et un test de données impose déjà le même `name` aux tracés d'un même `id`.
+   Pour que `name` désigne un seul tronçon, un test de données vérifie aussi que deux tronçons distincts
+   (`id` différents, ou sans `id`) n'ont jamais le même `name`.
+
+   `ligne` est facultatif : absent, le panneau affiche la première Véloligne du tronçon. L'URL est lue
+   une fois, à l'entrée, et convertie en un état typé ; une valeur inconnue ou un tronçon introuvable
+   donne « panneau fermé », une `ligne` qui ne passe pas par le tronçon donne sa première Véloligne.
 
    L'URL change par `router.replace`, comme chez Cyclopolis : ouvrir, changer ou fermer le panneau
    n'ajoute pas d'entrée dans l'historique, et le bouton retour du navigateur quitte la carte. Avec
@@ -70,14 +84,14 @@ Alternatives examinées pour l'état du panneau :
   avec une option pour ne pas afficher la carte d'aperçu (une carte dans la carte).
 - La carte doit suivre l'URL dans les deux sens : un clic change l'URL, et une URL ouverte directement
   ouvre le panneau et met le tronçon en évidence.
-- Une ancre qui ne correspond à aucun titre de la page ne fait pas défiler le panneau. Un test de données
-  pourra vérifier que chaque ancre existe.
+- Le défilement s'appuie sur les ancres des `link`, que le test de données
+  `should_link_to_existing_title_anchor_when_feature_is_line_string` vérifie déjà.
 - On ne réutilise pas les noms de paramètres de Cyclopolis (`modal`, `line`, `sectionName`) : le portage
   est manuel (ADR 0002) et nos URL sont en français.
 
 ## Questions tranchées
 
-- Noms des paramètres : `panneau`, `troncon`, en français et sans accent.
+- Noms des paramètres : `panneau`, `troncon`, `ligne`, en français et sans accent.
 - Le popup disparaît au clic quand le panneau s'ouvre (grand écran) : le panneau le remplace. Le tooltip
   au survol reste.
 - Le panneau des filtres n'est pas ouvert par défaut. Cyclopolis l'ouvre par défaut sur grand écran.
